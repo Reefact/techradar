@@ -21,6 +21,9 @@ a{color:var(--accent)} a:focus-visible,button:focus-visible{outline:2px solid va
 .banner{position:fixed;top:0;left:0;right:0;height:var(--bar);z-index:10;display:flex;align-items:center;gap:16px;
   padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));background:var(--panel);border-bottom:1px solid var(--line)}
 .banner h1{margin:0;font:400 2rem/1 VT323,"IBM Plex Mono",monospace;letter-spacing:.04em;color:var(--accent);white-space:nowrap;text-shadow:0 0 10px rgba(94,234,212,.5)}
+.banner h1 .brand{color:#5eaedb;text-decoration:none;text-shadow:0 0 10px rgba(94,174,219,.5);transition:text-shadow .2s,filter .2s}
+.banner h1 .brand:hover,.banner h1 .brand:focus-visible{filter:brightness(1.15);text-shadow:0 0 16px rgba(94,174,219,.85)}
+.banner h1 .sep{margin:0 .45em;color:var(--mute);text-shadow:none;font-weight:400}
 .banner p{margin:0;color:var(--mute);font-size:.9rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .banner .rss{margin-left:auto;display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 12px;border-radius:999px;text-decoration:none;white-space:nowrap;
   font:600 .74rem/1 "IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:#04100e;
@@ -63,7 +66,7 @@ iframe{position:relative;display:block;width:100%;height:100%;border:0;backgroun
 </head>
 <body>
 <header class="banner">
-  <h1>TechRadar</h1>
+  <h1><a class="brand" href="https://reefact.net" title="Retour sur reefact.net" aria-label="Reefact, retour sur reefact.net">Reefact</a><span class="sep" aria-hidden="true">|</span><span class="app">TechRadar</span></h1>
   <p>Veille quotidienne : sécurité, .NET, IA, API et architecture, outils, conférences et CFP.</p>
   <a class="rss" href="feed.xml" title="S'abonner au flux Atom" aria-label="S'abonner au flux Atom"><svg viewBox="0 0 16 16" aria-hidden="true"><circle class="dot" cx="2.5" cy="13.5" r="1.9"/><path class="w" d="M2.5 7.5a6 6 0 0 1 6 6"/><path class="w w2" d="M2.5 2.5a11 11 0 0 1 11 11"/></svg><span>S'abonner</span></a>
 </header>
