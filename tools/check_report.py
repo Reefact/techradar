@@ -121,8 +121,8 @@ def check(path):
         mois = MONTHS.split("|").index(m.group(3)) + 1; jour = 1 if m.group(2) == "1er" else int(m.group(2))
         if r.date != f"{int(m.group(4)):04d}-{mois:02d}-{jour:02d}": add(f"date meta {r.date} incohérente avec le titre")
     # structure
-    if 'href="../../assets/report.css"' not in raw: add("lien vers ../../assets/report.css manquant")
-    if re.search(r"<style|<script(?! src=\"\.\./\.\./assets/report\.js\" defer></script>)", raw, re.I): add("<style> ou <script> en ligne interdit (seul ../../assets/report.js est chargé)")
+    if not re.search(r'href="\.\./\.\./assets/report\.css(\?v=[0-9a-f]+)?"', raw): add("lien vers ../../assets/report.css manquant")
+    if re.search(r"<style|<script(?! src=\"\.\./\.\./assets/report\.js(\?v=[0-9a-f]+)?\" defer></script>)", raw, re.I): add("<style> ou <script> en ligne interdit (seul ../../assets/report.js est chargé)")
     tl = re.search(r'<div class="card tldr">(.*?)</div>', raw, re.S)
     n = len(re.findall(r"<li>", tl.group(1))) if tl else 0
     if not tl: add("bloc card tldr manquant")

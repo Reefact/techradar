@@ -255,6 +255,19 @@ def filters(sujets, cfg, seuil, dossier=False):
 TOTOP = '<a class="totop" href="#top" title="Revenir en haut" aria-label="Revenir en haut">⌃</a>'
 SCRIPT = '<script src="../../assets/report.js" defer></script>'
 
+# Version des fichiers communs (empreinte de leur contenu) : un changement de CSS ou de JS change l'adresse, donc le navigateur
+# ne garde pas une ancienne version en cache.
+def _version(*noms):
+    import hashlib
+    h = hashlib.sha256()
+    for n in noms:
+        h.update((Path(__file__).resolve().parent.parent / "assets" / n).read_bytes())
+    return h.hexdigest()[:10]
+
+
+HEAD = HEAD.replace('assets/report.css"', f'assets/report.css?v={_version("report.css")}"')
+SCRIPT = SCRIPT.replace('assets/report.js"', f'assets/report.js?v={_version("report.js")}"')
+
 
 # ---------- rapport publié ----------
 def render_report(day, cfg, seuil=None):
