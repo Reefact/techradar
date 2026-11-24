@@ -93,3 +93,23 @@ details.card[open]{border-color:#2a4b50}
 .ask{font:600 .72rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;padding:8px 12px;border-radius:999px;border:1px dashed currentColor;background:transparent;color:var(--accent);cursor:pointer}
 @media(max-width:560px){.head h3{flex-basis:100%}}
 @media(max-width:480px){.flabel{min-width:0;flex-basis:100%}.dz-journal dl{grid-template-columns:1fr}}
+/* Vérification des sources : bouton « badge-check » sur la carte et fenêtre de détail (API popover, sans JavaScript) */
+.vf-btn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;border-radius:7px;border:1px solid var(--line);background:var(--panel2);color:var(--tool);cursor:pointer;flex:none}
+.vf-h3{display:flex;align-items:flex-start;gap:8px;min-width:0}.vf-h3 .vf-btn{width:26px;height:26px}
+.vf-btn:hover{border-color:currentColor}.vf-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.vf-faux{color:var(--alert)}.vf-indetermine{color:var(--api)}
+.vf-pop{width:min(640px,calc(100vw - 32px));max-height:min(80vh,720px);overflow:auto;margin:auto;padding:18px 20px;border:1px solid var(--accent);border-radius:12px;background:var(--panel);color:var(--fg);font:15px/1.55 var(--font-b);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.vf-pop::backdrop{background:rgba(2,6,8,.72);backdrop-filter:blur(2px)}
+.vf-top{display:flex;align-items:center;gap:10px}
+.vf-ico{display:inline-flex;color:var(--tool)}.vf-ico.vf-faux{color:var(--alert)}.vf-ico.vf-indetermine{color:var(--api)}
+.vf-title{margin:0;font:1.6rem/1 var(--font-d);color:var(--accent)}
+.vf-close{margin-left:auto;width:32px;height:32px;border-radius:7px;border:1px solid var(--line);background:transparent;color:var(--mute);font-size:1.3rem;line-height:1;cursor:pointer}
+.vf-close:hover{color:var(--fg);border-color:var(--fg)}
+.vf-pop p{margin:8px 0}
+.vf-subject{font-weight:700}
+.vf-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--mute);font-size:.85rem}
+.vf-h{margin:16px 0 4px!important;font:600 .72rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.vf-list{margin:4px 0;padding-left:1.2em}.vf-list li{margin:6px 0;overflow-wrap:anywhere}
+.vf-ok li::marker{content:"✓  ";color:var(--tool)}.vf-ko li::marker{content:"✗  ";color:var(--alert)}
+.vf-proof{display:block;color:var(--mute);font-size:.82rem}
+

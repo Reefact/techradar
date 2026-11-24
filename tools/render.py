@@ -84,6 +84,82 @@ def meta_of(s):
     return " · ".join(p for p in parts if p)
 
 
+# Icône « badge-check » (Lucide, licence ISC), dessinée en ligne pour rester sans dépendance.
+BADGE_CHECK = ('<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+               'stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 '
+               '4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>'
+               '<path d="m9 12 2 2 4-4"/></svg>')
+VERIF_TIP = {"vrai": "Information vérifiée — voir le détail", "faux": "Information démentie — voir le détail",
+             "indetermine": "Vérification non tranchée — voir le détail"}
+VERDICT_LABEL = {"vrai": "Vrai", "faux": "Faux", "indetermine": "Non tranché"}
+VERDICT_CLASSE = {"vrai": "b-tool", "faux": "b-alert", "indetermine": "b-api"}
+
+
+def date_fr(iso):
+    """« 2026-11-24T06:40+01:00 » → « 24/11/2026 à 06:40 » (ou la date seule)."""
+    d, _, h = (iso or "").partition("T")
+    if len(d) != 10:
+        return iso or ""
+    return f"{d[8:]}/{d[5:7]}/{d[:4]}" + (f" à {h[:5]}" if len(h) >= 5 else "")
+
+
+def link(x):
+    return f'<a href="{E(x["url"])}" target="_blank" rel="noopener">{inline(x["texte"])}</a>'
+
+
+def verif_button(s):
+    v = s.get("verification")
+    if not v:
+        return ""
+    vid, tip = f'verif-{s["id"]}', VERIF_TIP.get(v.get("verdict"), VERIF_TIP["vrai"])
+    return (f'<button type="button" class="vf-btn vf-{E(v.get("verdict", ""))}" popovertarget="{vid}" title="{E(tip)}" '
+            f'aria-label="{E(tip)}">{BADGE_CHECK}</button>')
+
+
+def verif_popover(s):
+    """Fenêtre de la vérification (API « popover » : sans JavaScript, fermeture par Échap, clic à côté ou bouton)."""
+    v = s.get("verification")
+    if not v:
+        return ""
+    vid, verdict = f'verif-{s["id"]}', v.get("verdict", "")
+    src = v.get("source") or {}
+    o = [f'<div class="vf-pop" id="{vid}" popover role="dialog" aria-labelledby="{vid}-t">',
+         f'  <div class="vf-top"><span class="vf-ico vf-{E(verdict)}">{BADGE_CHECK}</span>'
+         f'<p class="vf-title" id="{vid}-t">Vérification de l\'information</p>'
+         f'<button type="button" class="vf-close" popovertarget="{vid}" popovertargetaction="hide" aria-label="Fermer">×</button></div>',
+         f'  <p class="vf-subject">{inline(s["titre"])}</p>',
+         f'  <p class="vf-meta"><span class="badge {VERDICT_CLASSE.get(verdict, "b-api")}">{E(VERDICT_LABEL.get(verdict, verdict))}</span> '
+         f'vérifié le {E(date_fr(v.get("date")))}</p>']
+    o += blocks(v.get("resume", ""))
+    if src:
+        o.append(f'  <p class="vf-h">Source initiale</p>')
+        o.append(f'  <p><strong>{inline(src.get("nom", ""))}</strong>' + (f" — {inline(src['nature'])}" if src.get("nature") else "") + "</p>")
+    if v.get("affirmations"):
+        o.append('  <p class="vf-h">Affirmations vérifiées</p>')
+        o.append('  <ul class="vf-list vf-ok">' + "".join(
+            f'<li>{inline(a["texte"])}' + (f'<span class="vf-proof">{" · ".join(link(p) for p in a.get("preuves", []))}</span>' if a.get("preuves") else "") + "</li>"
+            for a in v["affirmations"]) + "</ul>")
+    if v.get("retirees"):
+        o.append('  <p class="vf-h">Retiré du résumé</p>')
+        o.append('  <ul class="vf-list vf-ko">' + "".join(
+            f'<li>{inline(r["texte"])}<span class="vf-proof">{inline(r.get("raison", ""))}</span></li>' for r in v["retirees"]) + "</ul>")
+    if v.get("ecarts"):
+        o.append('  <p class="vf-h">Écarts entre sources</p>')
+        o.append('  <ul class="vf-list">' + "".join(f"<li>{inline(x)}</li>" for x in v["ecarts"]) + "</ul>")
+    if v.get("recoupements"):
+        o.append('  <p class="vf-h">Recoupements</p>')
+        o.append('  <ul class="vf-list">' + "".join(f"<li>{link(r)}</li>" for r in v["recoupements"]) + "</ul>")
+    o.append("</div>")
+    return "\n".join(o)
+
+
+def titre_h3(s, blip=""):
+    """Titre du sujet ; s'il y a une vérification, son badge se place juste à gauche du texte."""
+    if not s.get("verification"):
+        return f'<h3>{blip}{inline(s["titre"])}</h3>'
+    return f'<h3 class="vf-h3">{verif_button(s)}<span>{blip}{inline(s["titre"])}</span></h3>'
+
+
 def card(s, cfg, seuil, dossier=False, date_jour=""):
     """Un sujet = un bloc dépliant : en-tête (badges, titre, ligne source · date) ; corps (résumé, détails, sources, actions)."""
     cats, tags = cfg["categories"], cfg["tags"]
@@ -98,7 +174,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     blip = f'<span class="fresh" title="{E(FRAIS_AIDE)} (le {date_courte(s["date"])})" aria-label="Du jour">☄️</span>' if frais else ""
     meta = meta_of(s)
     out = [f'<details class="card" id="{E(s["id"])}"{attrs}>',
-           f'  <summary class="head"><span class="badges">{badges}</span><h3>{blip}{inline(s["titre"])}</h3>'
+           f'  <summary class="head"><span class="badges">{badges}</span>{titre_h3(s, blip)}'
            + (f'<span class="meta">{inline(meta)}</span>' if meta else "") + "</summary>",
            '  <div class="body">']
     out += ["  " + b for b in blocks(s.get("resume", ""))]
@@ -119,6 +195,8 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     out.append(f'  <div class="foot">{ask}<span class="actions"></span>'
                f'<a class="fold" href="#{E(s["id"])}" title="Replier ce sujet" aria-label="Replier ce sujet">⌃</a></div>')
     out += ["  </div>", "</details>"]
+    if s.get("verification"):
+        out.append(verif_popover(s))   # hors du <details> : visible même sujet replié
     return "\n".join(out)
 
 
@@ -179,7 +257,7 @@ EXEC_LABEL = {"planifiee": "planifiée", "manuelle": "manuelle"}
 MOTIF_LABEL = {"deja-publie": "déjà publié", "hors-fenetre": "hors fenêtre de dates", "hors-perimetre": "hors périmètre",
                "non-verifiable": "source non vérifiable", "doublon": "doublon", "trop-mineur": "trop mineur",
                "plafond-atteint": "plafond de la catégorie atteint", "exclu-config": "exclu par la configuration",
-               "rien-de-neuf": "vérifié, rien de neuf"}
+               "rien-de-neuf": "vérifié, rien de neuf", "infirme": "information démentie après vérification"}
 
 
 def render_dossier(day, cfg, seuil=None):
@@ -200,6 +278,9 @@ def render_dossier(day, cfg, seuil=None):
         rows.append(("Pages ouvertes", str(j["pages_ouvertes"])))
     if j.get("sources_illisibles"):
         rows.append(("Sources illisibles", ", ".join(j["sources_illisibles"])))
+    vs = j.get("verifications_sources")
+    if vs:
+        rows.append(("Vérifications", f"{vs.get('lancees', 0)} lancée(s) : {vs.get('vrai', 0)} vrai, {vs.get('faux', 0)} faux, {vs.get('indetermine', 0)} non tranchée(s)"))
     for h in j.get("hypotheses", []):
         rows.append(("Hypothèse", h))
     for x in day.get("executions", []):

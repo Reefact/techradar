@@ -39,7 +39,7 @@ Chaque sujet examiné, même rejeté, est consigné dans le fichier du jour (au 
 | `publie` | dans le rapport du jour |
 | `candidat` | bon sujet, non retenu aujourd'hui (plafond, moindre intérêt) ou trouvé lors d'une relance |
 | `mis-de-cote` | important mais pas encore mûr : à réexaminer à la prochaine exécution |
-| `ecarte` | rejeté, avec un `motif` : `deja-publie`, `hors-fenetre`, `hors-perimetre`, `non-verifiable`, `doublon`, `trop-mineur`, `plafond-atteint`, `exclu-config`, `rien-de-neuf` |
+| `ecarte` | rejeté, avec un `motif` : `deja-publie`, `hors-fenetre`, `hors-perimetre`, `non-verifiable`, `doublon`, `trop-mineur`, `plafond-atteint`, `exclu-config`, `rien-de-neuf`, `infirme` (démenti par la vérification) |
 
 Règles :
 - **Anti-doublon** : seul un sujet **publié un jour précédent** bloque (`--seen` répond « publie ») ; il ne revient que pour une grosse nouveauté, avec le tag `mise-a-jour` et en disant ce qui a changé. Un sujet écarté ou mis de côté auparavant reste reconsidérable.
@@ -49,13 +49,19 @@ Règles :
 - **Pas de brèves** : une actualité qui mérite d'être signalée est un sujet de sa catégorie, avec un résumé même court ; sinon elle reste candidate ou est écartée.
 - **Tags** : `config/tags.json` (leur description dit quand les appliquer) ; les sujets prioritaires de `perimetre.json` portent `tes-sujets` et passent en tête de leur catégorie.
 
+## 3 bis. Vérification des affirmations
+
+Avant de publier, applique `tools/veille-verification.md` : tout sujet que tu comptes publier et qui contient une **affirmation qui pourrait être fausse** (faille, incident, attaque, fuite, attribution, rumeur, chiffre central d'un incident), portée **ni par l'auteur du fait ni par une source de référence** (`config/sujets/sources.json`, bloc `verification`), passe par un **sous-agent vérificateur indépendant** (un par sujet, en parallèle, avec le brief de ce fichier et sans ton avis). Ne vérifie pas ce qui ne le demande pas (annonce d'un éditeur sur son produit, outil présenté par son dépôt, dates d'une conférence).
+
+Le verdict est binaire : `vrai` → publiable, avec le bloc `verification` et un résumé réduit aux affirmations prouvées ; `faux` → `ecarte`, motif `infirme` ; `indetermine` → `mis-de-cote` (revérifié à l'exécution suivante), jamais publié. Si un sujet vérifié manque, prends le suivant de la catégorie : ne publie jamais un sujet douteux pour tenir un minimum. Les candidats ne sont pas vérifiés d'office (le skill `veille-publier` le fera s'ils sont publiés plus tard). Un sujet `mis-de-cote` avec une vérification `indetermine` des jours précédents est revérifié en priorité.
+
 ## 4. Le fichier du jour
 
 Chemin : `data/days/AAAA/AAAAMMJJ.json`. Exemple et référence : les fichiers existants dans `data/days/`. Champs :
 
 - `date` (AAAA-MM-JJ) ; `config` : `{"commit": "<git rev-parse --short HEAD au démarrage>"}`.
 - `executions` : liste ; ajoute `{"type": "planifiee"|"manuelle", "debut": "<ISO avec fuseau>", "note": "…"}` à chaque exécution.
-- `journal` : `{"recherches": {"<clé de catégorie>": <nombre de requêtes>, …}, "pages_ouvertes": <n>, "sources_illisibles": [...], "verifications": [...], "hypotheses": [...]}`. Lors d'une relance, additionne aux valeurs existantes.
+- `journal` : `{"recherches": {"<clé de catégorie>": <nombre de requêtes>, …}, "pages_ouvertes": <n>, "sources_illisibles": [...], "verifications": [...], "verifications_sources": {"lancees": n, "vrai": n, "faux": n, "indetermine": n}, "hypotheses": [...]}`. Lors d'une relance, additionne aux valeurs existantes.
 - `sous_titre` : « Ta veille technologique, dans le cadre de tes missions Reefact » (+ éventuelle hypothèse de couverture).
 - `a_retenir` : 3 à 5 `{"texte": "<Markdown>", "sujets": ["<id publiés concernés>"]}`.
 - `sujets` : liste de sujets (ordre = ordre d'affichage dans sa catégorie) :
@@ -63,6 +69,7 @@ Chemin : `data/days/AAAA/AAAAMMJJ.json`. Exemple et référence : les fichiers e
   - `categorie` (clé), `statut`, `motif` (si écarté), `tags` (clés, ou `{"tag": "rappel-cfp", "texte": "⏰ J-7"}`), `titre` (Markdown) ;
   - pour `publie`, `candidat`, `mis-de-cote` : `resume` (Markdown : 4 à 6 lignes ; paragraphes séparés par une ligne vide ; lignes « - » pour une liste), `pourquoi` (une ligne, préfixe compris : « Pourquoi ça compte pour toi : … », « Recoupement avec <projet> : … », « Utile pour toi parce que : … », « À surveiller parce que : … »), `sources` (`[{"texte": "Source : <nom>, <date>", "url": "https://…"}]`), `meta` (ligne affichée sous le titre, bloc replié : « <source> · <date> · te concerne : oui|peut-être|non » ; facultatif pour une conférence, dont la ligne est faite des dates, du lieu et du CFP), `date` (AAAA-MM-JJ : date de parution de la source la plus récente du sujet ; obligatoire pour `publie` et `candidat` hors conférences ; pour un dépôt en tendance sans date de publication, la date où tu l'as observé ; elle sert au repère « du jour » : un sujet paru depuis le brief précédent est marqué d'une météorite ☄️), `details` facultatif (objet « Touché », « Correctif », « Gravité », « Action » pour une alerte ; « Pourquoi il monte », « Maturité » pour un outil ; « Dates et lieu », « CFP », « Inscription » pour une conférence), `etiquette` facultatif (libellé de carte différent de celui de la catégorie) ;
   - radar : `depot` (« Reefact/<nom> », un seul) ; conférence : `conference` = `{"dates": …, "lieu": …, "cfp": "<date limite avec l'année>"}` ;
+  - `verification` : bloc de la vérification des affirmations (format dans `tools/veille-verification.md`) ; ou `verification_non_requise` : « <raison> » pour un sujet d'une catégorie à risque sans source de référence dont le fait est annoncé par son auteur ;
   - pour `ecarte` : au minimum `titre`, `motif`, `sources` (si une URL existe) et une courte `note` si utile ;
   - `historique` : ajoute `{"date": "<ISO>", "statut": "<statut>", "par": "tache"}` à chaque changement.
 - `pied` : paragraphes Markdown : « **Sources :** … », « **Hypothèses :** … », « Généré le … à HH:MM (Paris). ».
@@ -79,7 +86,7 @@ Procédure : (1) ta relecture ; (2) **lance UN sous-agent relecteur indépendant
 
 ## 6. Validation
 
-1. `python3 tools/check_day.py data/days/AAAA/AAAAMMJJ.json --contre HEAD` : aucune erreur (schéma, minimums, radar, journal, immuabilité des sujets publiés, rendu). Les lignes « ? langue » signalent des passages à revoir : corrige celles qui sont justifiées.
+1. `python3 tools/check_day.py data/days/AAAA/AAAAMMJJ.json --contre HEAD` : aucune erreur (schéma, minimums, radar, vérification des sources, journal, immuabilité des sujets publiés, rendu). Les lignes « ? langue » signalent des passages à revoir : corrige celles qui sont justifiées.
 2. En cas d'erreur, corrige et relance ; après deux échecs, publie quand même si le fichier reste valide JSON et que seules des règles de volume échouent, en le disant dans `journal.hypotheses` et dans la notification ; sinon ne pousse rien et notifie l'échec.
 
 ## 7. Publication
@@ -88,4 +95,4 @@ Commit uniquement le fichier du jour (et `data/notes.md` si mis à jour, et la s
 
 ## 8. Notification (toujours)
 
-Termine par une notification push courte : les 1 ou 2 informations les plus importantes du jour, puis le bilan (« création » ou « relance », nombre de sujets publiés / candidats / mis de côté / écartés, recherches effectuées, relecture : sous-agent oui/non et nombre de corrections) et tout écart au processus (étape sautée, source illisible, validation forcée).
+Termine par une notification push courte : les 1 ou 2 informations les plus importantes du jour, puis le bilan (« création » ou « relance », nombre de sujets publiés / candidats / mis de côté / écartés, recherches effectuées, vérifications : lancées / vrai / faux / non tranchées, relecture : sous-agent oui/non et nombre de corrections) et tout écart au processus (étape sautée, source illisible, validation forcée).
