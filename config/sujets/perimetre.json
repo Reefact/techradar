@@ -20,6 +20,7 @@
     "a_retenir": {
       "description": "« À retenir aujourd'hui » : résumé rédigé du rapport, en sections (voir tools/veille-prompt.md, §4). Une section par clé : « urgent » d'abord, puis des catégories (titre = emoji et libellé de config/categories.json), puis « aussi » ; chaque clé une fois au plus.",
       "min_sections": 1,
+      "max_caracteres": 1700,
       "sections_speciales": {
         "urgent": {
           "emoji": "🚨",

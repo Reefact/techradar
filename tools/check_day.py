@@ -29,6 +29,11 @@ import check_report  # noqa: E402
 import render  # noqa: E402
 
 
+def longueur_resume(ar):
+    """Longueur de « À retenir » : texte affiché des paragraphes (sans Markdown ni titres de section, qui viennent de la config)."""
+    return sum(len(plain(p)) for x in ar for p in x.get("paragraphes", []) if isinstance(p, str))
+
+
 CHAMPS_SUJET = {"id", "categorie", "statut", "motif", "tags", "titre", "titre_sommaire", "resume", "pourquoi", "sources", "meta", "date",
                 "details", "depot", "conference", "verification", "verification_non_requise", "historique", "note",
                 "categorie_secondaire"}
@@ -150,6 +155,9 @@ def check(path, contre=None, partiel=False):
             if not x.get("paragraphes") or not all(isinstance(p, str) and p.strip() for p in x["paragraphes"]): E(f"« À retenir » : section « {k} » sans paragraphe")
             if set(x) - {"section", "paragraphes", "sujets"}: E(f"« À retenir » : section « {k} » avec un champ inconnu ({', '.join(sorted(set(x) - {'section', 'paragraphes', 'sujets'}))})")
         if vues != sorted(vues, key=ordre.index): E("« À retenir » : sections dans le désordre (urgent, puis l'ordre des catégories, puis aussi)")
+        n = longueur_resume(ar)
+        if rule.get("max_caracteres") and n > rule["max_caracteres"]:
+            E(f"« À retenir » : {n} caractères, {rule['max_caracteres']} au plus (texte des paragraphes, sans le Markdown ni les titres de section)")
     for x in ar:
         for ref in x.get("sujets", []):
             if ref not in pub_ids: E(f"« À retenir » référence {ref}, qui n'est pas un sujet publié")

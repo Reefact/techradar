@@ -5,7 +5,7 @@ description: Relit le français d'un jour de veille TechRadar (champs de texte d
 
 # Relire le français d'un jour de veille
 
-Cible : `data/days/AAAA/AAAAMMJJ.json` (par défaut le jour le plus récent). Le texte est en Markdown simple (`**gras**`, `` `code` ``, `[texte](url)`) dans les champs `titre`, `resume`, `pourquoi`, `meta`, `details`, `a_retenir[].paragraphes`. Relire les sujets `publie` (et `candidat` si l'utilisateur le demande). Un titre corrigé doit rester à **72 caractères au plus** (texte affiché, sans le Markdown) : le validateur le refuse sinon.
+Cible : `data/days/AAAA/AAAAMMJJ.json` (par défaut le jour le plus récent). Le texte est en Markdown simple (`**gras**`, `` `code` ``, `[texte](url)`) dans les champs `titre`, `resume`, `pourquoi`, `meta`, `details`, `a_retenir[].paragraphes`. Relire les sujets `publie` (et `candidat` si l'utilisateur le demande). Un titre corrigé doit rester à **72 caractères au plus**, et « À retenir » à **1 700 caractères au plus** pour l'ensemble de ses paragraphes (texte affiché, sans le Markdown) : le validateur le refuse sinon.
 
 ## 1. Signaux automatiques
 
