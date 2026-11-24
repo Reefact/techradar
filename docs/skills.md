@@ -21,7 +21,7 @@ Tous commitent directement sur `main` (pas de branche ni de PR) après ton accor
 
 **But** : choisir ce qui est publié. Le rapport d'un jour = ses sujets au statut `publie`.
 
-**Déroulé** : liste les sujets par statut (`tools/statut.py list`) ; applique ta demande (`set … publie|candidat|mis-de-cote|ecarte`) ; refuse un changement qui casserait une règle (plafond ou minimum d'une catégorie, deux sujets du radar pour un dépôt, sujet sans résumé) ; propose d'ajuster « À retenir » ; valide, commite, vérifie en ligne.
+**Déroulé** : liste les sujets par statut (`tools/statut.py list`) ; applique ta demande (`set … publie|candidat|mis-de-cote|ecarte`) ; refuse un changement qui casserait une règle (plafond ou minimum d'une catégorie, dépôt inconnu, sujet sans résumé) ; propose d'ajuster « À retenir » ; valide, commite, vérifie en ligne.
 
 **Raccourci** : sur https://techradar.reefact.net/dossier/, le bouton « Demander la publication » d'un candidat copie la demande ; colle-la dans Claude.
 
@@ -39,7 +39,7 @@ Tous commitent directement sur `main` (pas de branche ni de PR) après ton accor
 
 **But** : modifier le périmètre de la veille sans toucher au processus.
 
-**Déroulé** : identifie le bon fichier de `config/` (catégories, tags, priorités, sources, consignes de recherche, radar, conférences) ; le modifie ; vérifie avec `check_config.py` ; montre le diff ; commite après accord. Effet dès la prochaine exécution.
+**Déroulé** : identifie le bon fichier de `config/` (catégories, tags, priorités, sources, consignes de recherche, projets, conférences) ; le modifie ; vérifie avec `check_config.py` ; montre le diff ; commite après accord. Effet dès la prochaine exécution.
 
 **Exemples** : « ajoute Verify aux concurrents surveillés pour unified-assertions », « suis toujours NDC Oslo », « exclus les conférences blockchain », « mets la catégorie Distribution en pause ».
 

@@ -16,7 +16,7 @@ from datetime import date as Date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import (SUFFIX, STATUTS, blocks, config, day_files, inline, load_json, ordered_categories,  # noqa: E402
+from veille_lib import (SUFFIX, STATUTS, blocks, config, day_files, inline, load_json, ordered_categories, projets,  # noqa: E402
                         plain, published, titre_jour)
 
 E = lambda s: html.escape(s or "", quote=True)
@@ -162,6 +162,15 @@ def titre_h3(s, blip=""):
     return f'<h3 class="vf-h3">{verif_button(s)}<span>{blip}{inline(s["titre"])}</span></h3>'
 
 
+def projet_badge(s, cfg):
+    """Badge « 📦 <projet> » d'un sujet qui touche un de tes dépôts (config/sujets/projets.json)."""
+    if not s.get("depot"):
+        return ""
+    p = projets(cfg).get(s["depot"], {})
+    nom = p.get("nom") or s["depot"].split("/")[-1]
+    return badge("b-projet", "📦 " + nom, f"Touche ton projet {nom}" + (f" ({p['theme']})" if p.get("theme") else "") + f" : dépôt {s['depot']}")
+
+
 def card(s, cfg, seuil, dossier=False, date_jour=""):
     """Un sujet = un bloc dépliant : en-tête (badges, titre, ligne source · date) ; corps (résumé, détails, sources, actions)."""
     cats, tags = cfg["categories"], cfg["tags"]
@@ -172,7 +181,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     if frais: attrs += " data-frais"
     if s.get("depot"): attrs += f' data-repo="{E(s["depot"])}"'
     badges = (statut_badge(s) if dossier else "") + badge(c["classe"], s.get("etiquette") or c["carte"], c["label"] + " : " + c["description"]) \
-        + "".join(tag_html(t, tags) for t in s.get("tags", []))
+        + projet_badge(s, cfg) + "".join(tag_html(t, tags) for t in s.get("tags", []))
     blip = (f'<span class="fresh" title="Récent : paru le {date_courte(s["date"])}, depuis le brief précédent ({date_courte(seuil)}, jour compris)" '
             'aria-label="Récent">☄️</span>') if frais else ""
     meta = meta_of(s)
@@ -205,11 +214,12 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
 
 def ordered(sujets, cfg):
     order = {k: i for i, k in enumerate(ordered_categories(cfg["categories"]))}
-    return sorted(sujets, key=lambda s: order.get(s["categorie"], 99))   # tri stable : l'ordre du fichier est gardé dans une catégorie
+    # tri stable : dans une catégorie, les sujets de tes projets d'abord, puis l'ordre du fichier
+    return sorted(sujets, key=lambda s: (order.get(s["categorie"], 99), not s.get("depot")))
 
 
 def filters(sujets, cfg, seuil, dossier=False):
-    """Barre de filtres (masquée sans JavaScript) : catégories, tags (dont « récent »), statuts dans le dossier."""
+    """Barre de filtres (masquée sans JavaScript) : catégories, projets, tags (dont « récent »), statuts dans le dossier."""
     cats, tags = cfg["categories"], cfg["tags"]
     def chip(group_val, classe, label, aide, n):
         return f'<button type="button" class="chip {classe}" data-v="{E(group_val)}" aria-pressed="false" title="{E(aide)}">{E(label)} <span class="n">{n}</span></button>'
@@ -219,6 +229,11 @@ def filters(sujets, cfg, seuil, dossier=False):
                                             for st in STATUTS if (n := sum(1 for s in sujets if s.get("statut") == st))]))
     present = [k for k in ordered_categories(cats) if any(s["categorie"] == k for s in sujets)]
     groups.append(("cat", "Catégorie", [chip(k, cats[k]["classe"], cats[k]["label"], cats[k]["description"], sum(1 for s in sujets if s["categorie"] == k)) for k in present]))
+    proj = projets(cfg)
+    present_p = [d for d in proj if any(s.get("depot") == d for s in sujets)]
+    if present_p:
+        groups.append(("projet", "Projet", [chip(d, "b-projet", "📦 " + proj[d]["nom"], f"Touche ton projet {proj[d]['nom']} ({proj[d].get('theme', '')})",
+                                                 sum(1 for s in sujets if s.get("depot") == d)) for d in present_p]))
     tchips = []
     nf = sum(1 for s in sujets if s.get("date") and s["date"] >= seuil)
     if nf: tchips.append(chip("frais", "b-fresh", "☄️ Récent", aide_recent(seuil), nf))

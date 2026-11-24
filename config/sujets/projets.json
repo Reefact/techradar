@@ -1,9 +1,9 @@
 {
+  "consigne": "Tes projets (dépôts Reefact) et leurs thèmes. Chercher les signaux qui concernent un projet : nouvelle version ou annonce d'un concurrent listé dans « surveiller », évolution de l'écosystème qui le touche, article marquant sur son thème. Un tel sujet va dans la catégorie technique qui convient (.NET, Outils, API & architecture…) et porte le champ « depot » : il s'affiche avec le badge 📦 du projet et passe en tête de sa catégorie. Ces sujets ne comptent pas dans le plafond de leur catégorie.",
   "regles": [
-    "Un sujet par dépôt, jamais deux projets mélangés ; le titre ne nomme qu'un projet.",
-    "Un sujet n'existe que s'il y a un vrai signal pour ce dépôt (nouvelle version, annonce, concurrent ou évolution de l'écosystème qui le concerne vraiment).",
-    "Si un fait concerne plusieurs projets : un sujet par projet, chacun avec son angle.",
-    "Pour chaque signal : en quoi ça recoupe ce projet."
+    "Un sujet ne touche qu'un projet (un seul « depot ») ; si un fait concerne plusieurs projets : un sujet par projet, chacun avec son angle.",
+    "Un sujet n'est rattaché à un projet que s'il y a un vrai signal pour lui (nouvelle version, annonce, concurrent, évolution de l'écosystème ou article qui le concerne vraiment).",
+    "Le « pourquoi » dit en quoi ça recoupe le projet (« Recoupement avec <projet> : … »)."
   ],
   "projets": [
     {
@@ -27,7 +27,7 @@
     {
       "nom": "just-dummies",
       "depot": "Reefact/just-dummies",
-      "theme": "données de test",
+      "theme": "données de test (génération, fixtures)",
       "surveiller": [
         "Bogus",
         "AutoFixture"
@@ -36,7 +36,7 @@
     {
       "nom": "first-class-errors",
       "depot": "Reefact/first-class-errors",
-      "theme": "gestion d'erreurs",
+      "theme": "gestion d'erreurs en .NET (Result pattern, ProblemDetails…)",
       "surveiller": [
         "unions C# 15",
         "ErrorOr",
@@ -47,9 +47,19 @@
     {
       "nom": "conventional-comments-toolkit",
       "depot": "Reefact/conventional-comments-toolkit",
-      "theme": "revue de code",
+      "theme": "revue de code (pratiques, conventions de commentaires)",
       "surveiller": [
         "conventions de commentaires de revue"
+      ]
+    },
+    {
+      "nom": "hypermedia-domain-language",
+      "depot": "Reefact/hypermedia-domain-language",
+      "theme": "contrats d'API (OpenAPI, versioning, rétrocompatibilité, hypermédia)",
+      "surveiller": [
+        "OpenAPI (spécification et outillage .NET)",
+        "versioning et rétrocompatibilité des API",
+        "formats hypermédia (HAL, JSON:API, Siren, HATEOAS)"
       ]
     },
     {
@@ -81,7 +91,7 @@
   "exclure": [
     {
       "nom": "api-contract-guardrails",
-      "raison": "exclu à la demande de l'utilisateur : ne pas le lire ni surveiller ses concurrents ; le sujet prioritaire « contrats d'API » reste actif ailleurs"
+      "raison": "exclu à la demande de l'utilisateur : ne pas le lire ni surveiller ses concurrents ; le thème des contrats d'API est suivi via hypermedia-domain-language"
     }
   ],
   "note": "Les README des dépôts Reefact ne sont pas lisibles de façon fiable depuis la tâche : s'appuyer sur cette liste."

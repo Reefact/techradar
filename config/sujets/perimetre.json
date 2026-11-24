@@ -1,17 +1,6 @@
 {
   "langue": "Tout en français ; paraphrase toujours (jamais de long extrait, citations de moins de 15 mots, une seule par source).",
   "fenetre": "Les dernières 24 à 48 h ; si la veille ouvrée précède un week-end ou un férié, toute la période depuis le dernier rapport. Distribution : 7 jours.",
-  "priorites": {
-    "tag": "tes-sujets",
-    "description": "Sujets prioritaires : badge « ⭐ Tes sujets », en tête de leur catégorie.",
-    "sujets": [
-      "Tests de mutation (Stryker.NET et équivalents)",
-      "Contrats d'API (OpenAPI, versioning, rétrocompatibilité, hypermédia)",
-      "Gestion d'erreurs en .NET (Result pattern, ProblemDetails…)",
-      "Tests, assertions et génération de données de test",
-      "Revue de code (pratiques, conventions de commentaires)"
-    ]
-  },
   "exclusions": [
     {
       "nom": "Cloud et FinOps",

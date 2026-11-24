@@ -46,7 +46,6 @@ def check():
     for p in (CONFIG / "sujets").rglob("*.json"):
         if p.resolve() not in listed: add(f"{p.relative_to(CONFIG)} : présent mais absent de l'index sujets.json")
     per = CONFIG / "sujets" / "perimetre.json"
-    if per.exists() and load_json(per).get("priorites", {}).get("tag") not in tags: add("perimetre.json : le tag des priorités n'existe pas dans tags.json")
     src = CONFIG / "sujets" / "sources.json"
     v = load_json(src).get("verification") if src.exists() else None
     if v:
@@ -56,10 +55,12 @@ def check():
         for g, d in v.get("references", {}).items():
             for dom in d.get("domaines", []):
                 if not re.fullmatch(r"[a-z0-9.-]+\.[a-z]{2,}(/[\w./-]+)?", dom): add(f"sources.json : référence « {g} » : domaine invalide « {dom} » (sans https://, ex. lemonde.fr ou github.com/dotnet)")
-    radar = CONFIG / "sujets" / "radar.json"
-    if radar.exists():
-        for pr in load_json(radar).get("projets", []):
-            if not re.fullmatch(r"[\w.-]+/[\w.-]+", pr.get("depot", "")): add(f"radar.json : dépôt invalide pour {pr.get('nom')}")
+    proj = CONFIG / "sujets" / "projets.json"
+    if proj.exists():
+        for pr in load_json(proj).get("projets", []):
+            if not re.fullmatch(r"Reefact/[\w.-]+", pr.get("depot", "")): add(f"projets.json : dépôt invalide pour {pr.get('nom')}")
+            if pr.get("depot", "").split("/")[-1] != pr.get("nom"): add(f"projets.json : le nom « {pr.get('nom')} » ne correspond pas au dépôt « {pr.get('depot')} »")
+            if not pr.get("theme"): add(f"projets.json : {pr.get('nom')} sans « theme »")
     return errs
 
 

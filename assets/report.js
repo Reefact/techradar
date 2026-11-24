@@ -14,6 +14,7 @@
     sum.after(empty);
     const values = (el, g) => g === 'cat' ? [el.dataset.cat]
       : g === 'statut' ? [el.dataset.statut]
+      : g === 'projet' ? [el.dataset.repo || '']
       : (el.dataset.tags || '').split(' ').filter(Boolean).concat('frais' in el.dataset ? ['frais'] : []);
     const visible = () => items.filter(el => !el.hidden);
     function apply() {

@@ -41,7 +41,7 @@ def parse_dates(text):
 def build():
     days = [load_json(p) for p in day_files()]
     days.sort(key=lambda d: d["date"])
-    reports, topics, tools, radar, url_index, confs = [], [], [], {}, {}, {}
+    reports, topics, tools, projets, url_index, confs = [], [], [], {}, {}, {}
     for d in days:
         pub = [s for s in d.get("sujets", []) if s.get("statut") == "publie"]
         if pub:
@@ -64,7 +64,7 @@ def build():
             if s["categorie"] == "outils":
                 tools.append({"date": d["date"], "titre": plain(s["titre"]), "url": s["sources"][0]["url"] if s.get("sources") else None})
             if s.get("depot"):
-                radar.setdefault(s["depot"], []).append({"date": d["date"], "id": s["id"], "titre": plain(s["titre"])})
+                projets.setdefault(s["depot"], []).append({"date": d["date"], "id": s["id"], "titre": plain(s["titre"])})
             if s["categorie"] == "conferences":
                 name = plain(s.get("titre_sommaire") or s["titre"])
                 k = s.get("conference", {})
@@ -76,7 +76,7 @@ def build():
                         m = re.search(r"J-(\d+)", t.get("texte", ""))
                         if m:
                             c["reminders_seen"].append({"date": d["date"], "label": t["texte"], "n": int(m.group(1))})
-    return {"reports": reports, "radar": radar, "tools_proposed": tools, "conferences": sorted(confs.values(), key=lambda c: c["name"]),
+    return {"reports": reports, "projets": projets, "tools_proposed": tools, "conferences": sorted(confs.values(), key=lambda c: c["name"]),
             "topics": topics, "urls": dict(sorted(url_index.items()))}
 
 

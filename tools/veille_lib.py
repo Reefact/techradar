@@ -31,6 +31,11 @@ def config():
     return {"categories": cats, "tags": tags, "index": index, "sujets": sujets}
 
 
+def projets(cfg):
+    """Tes projets (config/sujets/projets.json), par dépôt « Reefact/<nom> »."""
+    return {p["depot"]: p for p in (cfg["sujets"].get("sujets/projets.json") or {}).get("projets", [])}
+
+
 def ordered_categories(cats):
     return sorted(cats, key=lambda k: cats[k]["ordre"])
 

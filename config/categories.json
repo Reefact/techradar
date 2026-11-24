@@ -9,16 +9,6 @@
     "max": null,
     "description": "Failles de sécurité en cours (Java, .NET, NuGet, npm, supply chain), gros bugs et pannes (Microsoft, Cloudflare, GitHub). Pour chacun : ce qui est touché, versions, correctif, gravité, « te concerne ? ». Section omise s'il n'y a rien."
   },
-  "radar": {
-    "label": "Radar de tes projets",
-    "carte": "Radar",
-    "classe": "b-radar",
-    "prefixe": "r",
-    "ordre": 2,
-    "min": 0,
-    "max": null,
-    "description": "Signaux qui concernent un de tes dépôts (concurrents, nouvelles versions de l'écosystème). Un sujet par dépôt, seulement s'il y a un vrai signal."
-  },
   "dotnet": {
     "label": ".NET",
     "carte": ".NET",

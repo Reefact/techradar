@@ -8,7 +8,8 @@
   --partiel     exécution qui n'a pas fait de recherche complète (ex. modification par un skill) :
                 le nombre minimal de sujets analysés n'est pas exigé.
 
-Contrôles : schéma, clés de catégories et de tags, dépôts du radar, minimums et plafonds (config/categories.json),
+Contrôles : schéma, clés de catégories et de tags, dépôts des projets (config/sujets/projets.json), minimums et plafonds
+(config/categories.json ; les sujets d'un projet ne comptent pas dans le plafond),
 « À retenir » (config/sujets/perimetre.json), dates des sujets, un sujet publié par dépôt, vérification des sources
 (bloc « verification », config/sujets/sources.json), journal (motifs, éléments
 toujours suivis vérifiés, exclusions respectées), puis rendu du rapport et contrôle du HTML produit
@@ -64,7 +65,7 @@ def check(path, contre=None, partiel=False):
     cats, tags = cfg["categories"], cfg["tags"]
     sj = cfg["sujets"]
     per = sj.get("sujets/perimetre.json", {})
-    radar = sj.get("sujets/radar.json", {})
+    proj = sj.get("sujets/projets.json", {})
     confs = sj.get("sujets/conferences.json", {})
     errs, warns = [], []
     E, W = errs.append, warns.append
@@ -80,8 +81,8 @@ def check(path, contre=None, partiel=False):
     for f in ("sous_titre", "a_retenir", "sujets", "pied", "executions", "journal"):
         if f not in day: E(f"champ « {f} » manquant")
     if "en_bref" in day: E("champ « en_bref » supprimé : chaque brève devient un sujet de sa catégorie")
-    ids, repos_pub = set(), {}
-    projets = {p["depot"]: p["nom"] for p in radar.get("projets", [])}
+    ids = set()
+    projets = {p["depot"]: p["nom"] for p in proj.get("projets", [])}
     for i, s in enumerate(day.get("sujets", [])):
         where = s.get("id", f"sujet n°{i + 1}")
         for f in ("id", "categorie", "statut", "titre"):
@@ -108,25 +109,21 @@ def check(path, contre=None, partiel=False):
             if not re.match(r"https?://", src.get("url", "")): E(f"{where} : source sans URL http(s)")
             if not src.get("texte"): E(f"{where} : source sans texte")
         if s.get("depot"):
-            if s["categorie"] != "radar": E(f"{where} : « depot » réservé aux sujets du radar")
-            elif s["depot"] not in projets: E(f"{where} : dépôt « {s['depot']} » absent de config/sujets/radar.json")
+            if not isinstance(s["depot"], str) or s["depot"] not in projets: E(f"{where} : « depot » doit être un seul dépôt de config/sujets/projets.json (reçu : {s['depot']!r})")
+            elif s["categorie"] == "conferences": E(f"{where} : une conférence ne se rattache pas à un projet")
         if st == "publie":
             for f in ("resume", "sources") + (() if s["categorie"] == "conferences" else ("meta",)):
                 if not s.get(f): E(f"{where} : sujet publié sans « {f} »")
-            if s["categorie"] == "radar":
-                if not s.get("depot"): E(f"{where} : sujet du radar publié sans « depot »")
-                else: repos_pub.setdefault(s["depot"], []).append(where)
             if s["categorie"] == "conferences" and not s.get("conference"): E(f"{where} : conférence publiée sans bloc « conference » (dates, lieu, cfp)")
         errs.extend(check_verification(s, where, day, cfg))
-    for depot, w in repos_pub.items():
-        if len(w) > 1: E(f"radar : plusieurs sujets publiés pour {depot} ({', '.join(w)}) ; un seul par dépôt")
 
     # ----- volumes
     pub = published(day)
     for k, c in cats.items():
         n = sum(1 for s in pub if s["categorie"] == k)
+        hors_projets = sum(1 for s in pub if s["categorie"] == k and not s.get("depot"))
         if c.get("min") and n < c["min"]: E(f"catégorie « {c['label']} » : {n} sujet(s) publié(s), minimum {c['min']}")
-        if c.get("max") is not None and n > c["max"]: E(f"catégorie « {c['label']} » : {n} sujet(s) publié(s), plafond {c['max']}")
+        if c.get("max") is not None and hors_projets > c["max"]: E(f"catégorie « {c['label']} » : {hors_projets} sujet(s) publié(s) hors projets, plafond {c['max']}")
     rap = per.get("rapport", {})
     ar = day.get("a_retenir", [])
     for name, lst, rule in (("À retenir", ar, rap.get("a_retenir", {})),):
@@ -148,7 +145,7 @@ def check(path, contre=None, partiel=False):
         for item in confs.get("toujours_suivre", []) + [x for f, d in sj.items() if "/recherche/" in f for x in d.get("toujours_suivre", [])]:
             n = item["nom"].lower()
             if not any(n in v for v in verified): E(f"journal : « {item['nom']} » est toujours suivi mais n'a pas été vérifié (ajouter une entrée dans journal.verifications)")
-    for item in confs.get("exclure", []) + [x for f, d in sj.items() if "/recherche/" in f for x in d.get("exclure", [])] + radar.get("exclure", []):
+    for item in confs.get("exclure", []) + [x for f, d in sj.items() if "/recherche/" in f for x in d.get("exclure", [])] + proj.get("exclure", []):
         n = item["nom"].lower()
         for s in pub:
             if n in plain(s["titre"]).lower(): E(f"{s['id']} : « {item['nom']} » est exclu par la configuration mais publié")

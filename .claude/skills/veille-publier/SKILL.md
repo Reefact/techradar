@@ -31,7 +31,7 @@ python3 tools/statut.py set AAAA-MM-JJ n4,i6 publie [--note "pourquoi"]
 python3 tools/statut.py set AAAA-MM-JJ t3 candidat              # retirer du rapport
 python3 tools/statut.py set AAAA-MM-JJ a8 ecarte --motif doublon
 ```
-Le script refuse un changement qui rendrait le jour invalide (plafond ou minimum d'une catégorie, sujet sans résumé, radar avec deux sujets pour un dépôt…) : rapporter le refus tel quel et proposer une solution (retirer un autre sujet de la catégorie, par exemple), sans contourner.
+Le script refuse un changement qui rendrait le jour invalide (plafond ou minimum d'une catégorie, sujet sans résumé, dépôt inconnu…) : rapporter le refus tel quel et proposer une solution (retirer un autre sujet de la catégorie, par exemple), sans contourner.
 
 **Retirer un sujet publié** change le rapport en ligne : demander une confirmation explicite.
 

@@ -39,7 +39,7 @@ flowchart TD
     P --> NT["Notification (toujours)"]
 ```
 
-- **Recherche** : par catégorie active, selon `config/sujets/recherche/*.json`, `outils.json`, `radar.json`, `conferences.json` ; les éléments « toujours suivis » sont vérifiés à chaque fois (consignés dans le journal s'il n'y a rien de neuf), les « exclus » ne sont jamais affichés.
+- **Recherche** : par catégorie active, selon `config/sujets/recherche/*.json`, `outils.json`, `projets.json`, `conferences.json` ; les éléments « toujours suivis » sont vérifiés à chaque fois (consignés dans le journal s'il n'y a rien de neuf), les « exclus » ne sont jamais affichés.
 - **Tri** : chaque sujet analysé reçoit un statut ; seuls les sujets publiés un jour précédent bloquent l'anti-doublon.
 - **Journal** : nombre de recherches par catégorie, pages ouvertes, sources illisibles, vérifications, hypothèses ; au moins 30 sujets analysés (`analyses_min`).
 - **Relance** : un sujet publié n'est jamais modifié par la tâche (le validateur le vérifie avec `--contre HEAD`) ; l'utilisateur publie ensuite ce qu'il veut parmi les candidats.
@@ -58,13 +58,13 @@ L'historique Git de `data/days/AAAA/AAAAMMJJ.json` garde toutes les versions d'u
 
 ## Contrôles
 
-- `python3 tools/check_config.py` : configuration cohérente (clés, préfixes, index, fichiers de recherche, dépôts du radar).
-- `python3 tools/check_day.py <jour.json> [--contre REF] [--partiel]` : schéma, catégories et tags connus, dépôts du radar, minimums et plafonds, « À retenir » (3 à 5), `date` des sujets publiés et candidats, pas de champ `en_bref`, un sujet publié par dépôt, vérification des sources (catégories à risque sans source de référence, verdicts, format du bloc `verification`), motifs des écartés, éléments toujours suivis vérifiés, exclusions respectées, nombre de sujets analysés, immuabilité des sujets publiés, puis rendu et contrôle du HTML (structure, liens, signaux de langue « ? »).
+- `python3 tools/check_config.py` : configuration cohérente (clés, préfixes, index, fichiers de recherche, dépôts des projets).
+- `python3 tools/check_day.py <jour.json> [--contre REF] [--partiel]` : schéma, catégories et tags connus, dépôts des projets, minimums et plafonds (hors sujets des projets), « À retenir » (3 à 5), `date` des sujets publiés et candidats, pas de champ `en_bref`, vérification des sources (catégories à risque sans source de référence, verdicts, format du bloc `verification`), motifs des écartés, éléments toujours suivis vérifiés, exclusions respectées, nombre de sujets analysés, immuabilité des sujets publiés, puis rendu et contrôle du HTML (structure, liens, signaux de langue « ? »).
 - L'Action `memory.yml` lance ces contrôles à chaque push (onglet Actions de GitHub) et régénère `data/memory.json`.
 
 ## Mémoire
 
-`data/memory.json` est dérivée des jours : sujets (avec statut et motif), URL vues (une URL publiée prime), outils proposés, conférences et rappels de CFP émis, signaux du radar. Commandes : `--seen <URL>`, `--due <date>`, `--reconsiderer`. `data/notes.md` garde le reste.
+`data/memory.json` est dérivée des jours : sujets (avec statut et motif), URL vues (une URL publiée prime), outils proposés, conférences et rappels de CFP émis, sujets de chaque projet. Commandes : `--seen <URL>`, `--due <date>`, `--reconsiderer`. `data/notes.md` garde le reste.
 
 ## Qualité du français
 

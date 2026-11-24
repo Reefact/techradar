@@ -140,13 +140,10 @@ def check(path):
     for href in set(re.findall(r'href="#([^"]+)"', raw)):
         if href != "top" and href not in ids and f'id="{href}"' not in raw: add(f"ancre #{href} sans cible")
     if 'id="top"' not in raw: add('ancre id="top" manquante')
-    # radar : un dépôt par article, uniquement sur le radar
+    # projets : au plus un dépôt par article
     for a in r.articles:
-        radar = a["category"] == "b-radar"
         repo = a["repo"]
-        if radar and not (repo and re.fullmatch(r"Reefact/[\w.-]+", repo)): add(f"radar sans data-repo unique valide : {a['id']}")
-        if radar and repo and "," in repo: add(f"radar avec plusieurs dépôts (un article par dépôt) : {a['id']}")
-        if not radar and repo: add(f"data-repo sur un article hors radar : {a['id']}")
+        if repo is not None and not re.fullmatch(r"Reefact/[\w.-]+", repo): add(f"data-repo invalide (un seul dépôt Reefact/<nom>) : {a['id']}")
     if not r.articles: add("aucun sujet")
     return errs, prose_warnings(r)
 

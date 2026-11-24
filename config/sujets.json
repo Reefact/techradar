@@ -47,8 +47,8 @@
       "actif": true
     },
     {
-      "chemin": "sujets/radar.json",
-      "role": "Radar de tes projets",
+      "chemin": "sujets/projets.json",
+      "role": "Tes projets (dépôts) : thèmes, concurrents à surveiller, projets exclus",
       "actif": true
     },
     {

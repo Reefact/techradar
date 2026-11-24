@@ -1,9 +1,4 @@
 {
-  "tes-sujets": {
-    "label": "⭐ Tes sujets",
-    "classe": "b-star",
-    "description": "Sujet prioritaire listé dans config/sujets/perimetre.json ; placé en tête de sa catégorie."
-  },
   "nouveau": {
     "label": "Nouveau",
     "classe": "b-new",

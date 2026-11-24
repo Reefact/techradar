@@ -24,6 +24,11 @@
    "type": "manuelle",
    "debut": "2026-11-24T18:50+01:00",
    "note": "vérification a posteriori des sources de a3, a4, a5, d1 et d3 : 4 vrais (résumés corrigés et rebasés sur des sources fiables), d3 publié comme revendication"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-24T20:00+01:00",
+   "note": "catégorie Radar supprimée : r2 → n9, r3 → n10, r4 → n11, r5 → n12 (catégorie .NET, badge du projet) ; p1 et p2 rattachés à leur projet"
   }
  ],
  "journal": {
@@ -646,12 +651,10 @@
    "date": "2026-11-11"
   },
   {
-   "id": "r2",
-   "categorie": "radar",
+   "id": "n9",
+   "categorie": "dotnet",
    "statut": "publie",
-   "tags": [
-    "tes-sujets"
-   ],
+   "tags": [],
    "titre": "first-class-errors : unions C# 15 contre Result pattern",
    "resume": "Le mot-clé `union` de C# 15 déclare un type dont la liste de cas est fermée. Chaque cas se convertit implicitement vers l'union, et le compilateur vérifie l'exhaustivité des `switch`. Les hiérarchies fermées (`closed`) donnent la même garantie aux classes dérivées. Le billet .NET du 10 septembre recommande, pour une nouvelle API, une hiérarchie fermée avec discriminateur `$type` plutôt qu'une union sans discriminateur. Côté JSON, seul le cas actif est écrit, et les cas objets ambigus demandent un classifieur structurel.\n\nLe 21 novembre, Milan Jovanović a posé directement la question : les unions peuvent-elles remplacer le Result pattern ? Son exemple de code utilise un `switch` exhaustif dont le compilateur signale les cas manquants avec l'erreur CS8509, et renvoie les erreurs HTTP par `Results.Problem(...)`. L'article ne parle ni d'ErrorOr ni de FluentResults.",
    "pourquoi": "Recoupement avec first-class-errors : des types de retour fermés et vérifiés à la compilation sont un concurrent direct des types d'erreur de ta bibliothèque. Le sujet monte dans la communauté ; à suivre.",
@@ -672,17 +675,21 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-24T20:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
     }
    ],
    "date": "2026-11-21"
   },
   {
-   "id": "r3",
-   "categorie": "radar",
+   "id": "n10",
+   "categorie": "dotnet",
    "statut": "publie",
-   "tags": [
-    "tes-sujets"
-   ],
+   "tags": [],
    "titre": "kill-mutants : Stryker.NET, exécuteur de tests MTP et paquet 5.1.0",
    "resume": "Stryker.NET propose depuis la 4.13 (billet du 13 mars 2026) un exécuteur de tests Microsoft Testing Platform (MTP) en préversion, activé par `--test-runner mtp`. Il évite de relancer un processus VSTest à chaque exécution. Limites annoncées : la couverture par test n'est pas finalisée et .NET Framework n'est pas pris en charge.\n\nLe paquet NuGet `stryker` est en 5.1.0, publié le 10 novembre 2026 ; c'est la bibliothèque de mutation, pas l'outil en ligne de commande (`dotnet-stryker`, dont la version n'a pas été relevée précisément). Aucune actualité plus récente sur les tests de mutation n'a été trouvée cette semaine.",
    "pourquoi": "Recoupement avec kill-mutants : concurrent direct. La sortie d'une série 5.x et la prise en charge de MTP sont les deux signaux à surveiller.",
@@ -703,17 +710,21 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-24T20:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
     }
    ],
    "date": "2026-11-10"
   },
   {
-   "id": "r4",
-   "categorie": "radar",
+   "id": "n11",
+   "categorie": "dotnet",
    "statut": "publie",
-   "tags": [
-    "tes-sujets"
-   ],
+   "tags": [],
    "titre": "unified-assertions : Shouldly 5 en préversion",
    "resume": "Relevé des versions sur NuGet (dates lues sur les pages, aucune dans les 7 derniers jours). AwesomeAssertions est à la 9.6.0 (20 août 2026) après la 9.5.0 (19 juillet). Shouldly reste à la 4.3.0 stable (janvier 2025) mais prépare une 5.0.0, avec deux préversions (10 juin et 18 juillet 2026).",
    "pourquoi": "Recoupement avec unified-assertions : un concurrent d'assertions prépare une version majeure 5. Si sa version 5 casse la compatibilité, c'est l'occasion de positionner ta bibliothèque. Signal ancien : à relire quand la 5.0.0 stable sort.",
@@ -734,16 +745,20 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-24T20:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
     }
    ]
   },
   {
-   "id": "r5",
-   "categorie": "radar",
+   "id": "n12",
+   "categorie": "dotnet",
    "statut": "publie",
-   "tags": [
-    "tes-sujets"
-   ],
+   "tags": [],
    "titre": "just-dummies : AutoFixture 5 en préversion",
    "resume": "Relevé des versions sur NuGet (dates lues sur les pages, aucune dans les 7 derniers jours). AutoFixture reste à la 4.18.1 stable (novembre 2023) avec une 5.0.0-rc.1 du 31 juillet 2026. Bogus est à la 35.6.5 (octobre 2025).",
    "pourquoi": "Recoupement avec just-dummies : un concurrent de génération de données de test prépare sa version majeure 5. Si cette version casse la compatibilité, c'est l'occasion de positionner ta bibliothèque. Signal ancien : à relire quand la 5.0.0 stable sort.",
@@ -760,6 +775,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-24T20:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
     }
    ]
   },
@@ -983,12 +1004,10 @@
    "id": "p1",
    "categorie": "api",
    "statut": "publie",
-   "tags": [
-    "tes-sujets"
-   ],
+   "tags": [],
    "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf",
    "resume": "ASP.NET Core 11 génère désormais du OpenAPI 3.2 par défaut, avec Microsoft.OpenApi 3.x, ce qui est signalé comme un changement cassant pour les outils en aval qui ne suivent pas ; une propriété MSBuild (`OpenApiGenerationEnvironment`) permet de revenir à une version antérieure.\n\n- Les unions C# 15 sortent en `anyOf` dans le schéma (corps JSON uniquement).\n- La méthode HTTP QUERY est décrite, les événements SSE ont un schéma de payload (`itemSchema`), `[Obsolete]` devient `deprecated: true` et les fichiers binaires sont décrits.\n- Toutes les annotations `ProducesResponseType` sont conservées par code de statut, et les URL de serveur n'ont plus de slash final : deux changements qui modifient le contrat généré.\n- Les paramètres enum hors corps gardent les noms de membres C#, quelle que soit la politique de nommage JSON.",
-   "pourquoi": "Pourquoi ça compte pour toi : un contrat régénéré en 3.2 au lieu de 3.1 peut produire des différences qui ne sont pas de vraies ruptures, et les unions en `anyOf` sont un nouveau cas de rétrocompatibilité à classer. Le projet api-contract-guardrails est exclu du radar, mais le sujet reste actif ici.",
+   "pourquoi": "Pourquoi ça compte pour toi : un contrat régénéré en 3.2 au lieu de 3.1 peut produire des différences qui ne sont pas de vraies ruptures, et les unions en `anyOf` sont un nouveau cas de rétrocompatibilité à classer.",
    "sources": [
     {
      "texte": "Source : InfoQ, 19 nov. 2026",
@@ -1005,17 +1024,22 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-24T20:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
     }
    ],
-   "date": "2026-11-19"
+   "date": "2026-11-19",
+   "depot": "Reefact/hypermedia-domain-language"
   },
   {
    "id": "p2",
    "categorie": "api",
    "statut": "publie",
-   "tags": [
-    "tes-sujets"
-   ],
+   "tags": [],
    "titre": "Revue de code : « rendre le changement facile d'abord »",
    "etiquette": "Architecture",
    "resume": "Oskar Dudycz soutient que la revue de code n'est pas le vrai goulot d'étranglement : il faut d'abord un processus de livraison sain, car accélérer un processus défaillant amplifie ses défauts. Il suggère de fusionner du code « débranché » (non activé), de séparer le refactoring mécanique des changements de comportement, et de relire le code produit par des agents par petits incréments réguliers.\n\nSa conclusion : la bonne question est comment travailler autrement, pas comment relire plus vite ni comment supprimer les revues. L'article date du 16 novembre, à la limite de la fenêtre.",
@@ -1032,9 +1056,16 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-24T20:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
     }
    ],
-   "date": "2026-11-16"
+   "date": "2026-11-16",
+   "depot": "Reefact/conventional-comments-toolkit"
   },
   {
    "id": "p3",
@@ -2255,7 +2286,7 @@
  ],
  "pied": [
   "**Sources :** Microsoft .NET Blog et Microsoft Learn, InfoQ, The Hacker News, Threat Defence, SecurityOnline, SecurityWeek, OX Security, IT-Connect, Le Monde Informatique, Actu17, ZATAZ, L'Impertinent, FrenchBreaches, Boursorama, Claude, GitHub Changelog, The New Stack, LangChain, Replit, event-driven.io, milanjovanovic.tech, Stryker Mutator, NuGet, GitHub, Hacker News, devoxx.fr, Sessionize, dddeurope.com, mixitconf.org, devoxx.be.",
-  "**Hypothèses :** exécution complétée après l'échéance de 8h : la version du matin ne couvrait ni l'IA, ni les outils, ni l'API et l'architecture, ni les alertes complémentaires. L'effort de recherche a été réparti entre plusieurs recherches parallèles ; la fenêtre est de 7 jours faute de brief de la veille. La catégorie DDD est omise : rien de daté et vérifié. Les README des dépôts Reefact restent inaccessibles (erreur 403) : la liste de veille du radar est provisoire. Le dépôt api-contract-guardrails est exclu du radar ; son sujet n'apparaît que dans API & architecture. Les résumés ont été allongés à la demande de l'utilisateur. Reddit, Product Hunt, Lobsters, dev.to, TLDR et Console.dev n'ont pas pu être consultés pour la découverte d'outils, et LSA, LeMagIT, Silicon.fr et ZDNet n'étaient pas lisibles.",
+  "**Hypothèses :** exécution complétée après l'échéance de 8h : la version du matin ne couvrait ni l'IA, ni les outils, ni l'API et l'architecture, ni les alertes complémentaires. L'effort de recherche a été réparti entre plusieurs recherches parallèles ; la fenêtre est de 7 jours faute de brief de la veille. La catégorie DDD est omise : rien de daté et vérifié. Les README des dépôts Reefact restent inaccessibles (erreur 403) : la liste de veille des projets est provisoire. Les résumés ont été allongés à la demande de l'utilisateur. Reddit, Product Hunt, Lobsters, dev.to, TLDR et Console.dev n'ont pas pu être consultés pour la découverte d'outils, et LSA, LeMagIT, Silicon.fr et ZDNet n'étaient pas lisibles.",
   "Généré le 24 novembre 2026, après l'échéance de 8h (Paris)."
  ]
 }

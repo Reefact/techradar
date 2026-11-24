@@ -26,7 +26,7 @@ Ta production n'est PAS une page HTML : c'est un **fichier de données du jour**
 
 ## 2. Recherche
 
-Pour chaque fichier de recherche actif (`config/sujets/recherche/*.json`), pour les outils (`outils.json`), le radar (`radar.json`) et les conférences (`conferences.json`) : applique la consigne, parcours les sources, et :
+Pour chaque fichier de recherche actif (`config/sujets/recherche/*.json`), pour les outils (`outils.json`), tes projets (`projets.json`) et les conférences (`conferences.json`) : applique la consigne, parcours les sources, et :
 - **toujours suivre** : vérifie chaque élément listé à chaque exécution ; s'il n'y a rien de neuf, consigne-le dans `journal.verifications` (`{"nom": …, "resultat": "rien de neuf"}`) au lieu de l'afficher ;
 - **exclure** : n'affiche jamais un élément exclu ; s'il est trouvé, consigne-le comme sujet `ecarte`, motif `exclu-config`.
 
@@ -44,10 +44,10 @@ Chaque sujet examiné, même rejeté, est consigné dans le fichier du jour (au 
 Règles :
 - **Anti-doublon** : seul un sujet **publié un jour précédent** bloque (`--seen` répond « publie ») ; il ne revient que pour une grosse nouveauté, avec le tag `mise-a-jour` et en disant ce qui a changé. Un sujet écarté ou mis de côté auparavant reste reconsidérable.
 - **Minimums et plafonds** par catégorie : `config/categories.json` (sur les sujets publiés). Ne remplis jamais une catégorie avec du bruit : cherche davantage.
-- **Radar** : règles de `config/sujets/radar.json` (un sujet publié par dépôt, seulement avec un vrai signal, `depot` obligatoire).
+- **Tes projets** : règles de `config/sujets/projets.json`. Un sujet qui touche vraiment un de tes dépôts va dans sa catégorie technique (.NET, Outils, API & architecture…) avec le champ `depot` : il s'affiche avec le badge 📦 du projet, passe en tête de sa catégorie et ne compte pas dans son plafond. Un seul dépôt par sujet ; pas de `depot` sur une conférence.
 - **Conférences** : affichées seulement en cas de déclencheur (`config/sujets/conferences.json`) ; rappels de CFP avec le tag `rappel-cfp` et le texte du seuil (« ⏰ J-7 »).
 - **Pas de brèves** : une actualité qui mérite d'être signalée est un sujet de sa catégorie, avec un résumé même court ; sinon elle reste candidate ou est écartée.
-- **Tags** : `config/tags.json` (leur description dit quand les appliquer) ; les sujets prioritaires de `perimetre.json` portent `tes-sujets` et passent en tête de leur catégorie.
+- **Tags** : `config/tags.json` (leur description dit quand les appliquer).
 
 ## 3 bis. Vérification des affirmations
 
@@ -68,7 +68,7 @@ Chemin : `data/days/AAAA/AAAAMMJJ.json`. Exemple et référence : les fichiers e
   - `id` : préfixe de la catégorie (`config/categories.json`, champ `prefixe`) + numéro, unique dans le jour (ex. `a1`, `n3`, `dd1`) ;
   - `categorie` (clé), `statut`, `motif` (si écarté), `tags` (clés, ou `{"tag": "rappel-cfp", "texte": "⏰ J-7"}`), `titre` (Markdown) ;
   - pour `publie`, `candidat`, `mis-de-cote` : `resume` (Markdown : 4 à 6 lignes ; paragraphes séparés par une ligne vide ; lignes « - » pour une liste), `pourquoi` (une ligne, préfixe compris : « Pourquoi ça compte pour toi : … », « Recoupement avec <projet> : … », « Utile pour toi parce que : … », « À surveiller parce que : … »), `sources` (`[{"texte": "Source : <nom>, <date>", "url": "https://…"}]`), `meta` (ligne affichée sous le titre, bloc replié : « <source> · <date> · te concerne : oui|peut-être|non » ; facultatif pour une conférence, dont la ligne est faite des dates, du lieu et du CFP), `date` (AAAA-MM-JJ : date de parution de la source la plus récente du sujet ; obligatoire pour `publie` et `candidat` hors conférences ; pour un dépôt en tendance sans date de publication, la date où tu l'as observé ; elle sert au repère « ☄️ Récent » : un sujet daté du jour du brief précédent ou après est marqué d'une météorite), `details` facultatif (objet « Touché », « Correctif », « Gravité », « Action » pour une alerte ; « Pourquoi il monte », « Maturité » pour un outil ; « Dates et lieu », « CFP », « Inscription » pour une conférence), `etiquette` facultatif (libellé de carte différent de celui de la catégorie) ;
-  - radar : `depot` (« Reefact/<nom> », un seul) ; conférence : `conference` = `{"dates": …, "lieu": …, "cfp": "<date limite avec l'année>"}` ;
+  - sujet qui touche un de tes projets : `depot` (« Reefact/<nom> », un seul, listé dans `projets.json`) ; conférence : `conference` = `{"dates": …, "lieu": …, "cfp": "<date limite avec l'année>"}` ;
   - `verification` : bloc de la vérification des affirmations (format dans `tools/veille-verification.md`) ; ou `verification_non_requise` : « <raison> » pour un sujet d'une catégorie à risque sans source de référence dont le fait est annoncé par son auteur ;
   - pour `ecarte` : au minimum `titre`, `motif`, `sources` (si une URL existe) et une courte `note` si utile ;
   - `historique` : ajoute `{"date": "<ISO>", "statut": "<statut>", "par": "tache"}` à chaque changement.
@@ -86,7 +86,7 @@ Procédure : (1) ta relecture ; (2) **lance UN sous-agent relecteur indépendant
 
 ## 6. Validation
 
-1. `python3 tools/check_day.py data/days/AAAA/AAAAMMJJ.json --contre HEAD` : aucune erreur (schéma, minimums, radar, vérification des sources, journal, immuabilité des sujets publiés, rendu). Les lignes « ? langue » signalent des passages à revoir : corrige celles qui sont justifiées.
+1. `python3 tools/check_day.py data/days/AAAA/AAAAMMJJ.json --contre HEAD` : aucune erreur (schéma, minimums, projets, vérification des sources, journal, immuabilité des sujets publiés, rendu). Les lignes « ? langue » signalent des passages à revoir : corrige celles qui sont justifiées.
 2. En cas d'erreur, corrige et relance ; après deux échecs, publie quand même si le fichier reste valide JSON et que seules des règles de volume échouent, en le disant dans `journal.hypotheses` et dans la notification ; sinon ne pousse rien et notifie l'échec.
 
 ## 7. Publication
