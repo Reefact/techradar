@@ -163,12 +163,14 @@ def titre_h3(s, blip=""):
 
 
 def projet_badge(s, cfg):
-    """Badge « 📦 <projet> » d'un sujet qui touche un de tes dépôts (config/sujets/projets.json)."""
+    """Badge 📦 d'un sujet qui touche un de tes dépôts (config/sujets/projets.json)."""
     if not s.get("depot"):
         return ""
     p = projets(cfg).get(s["depot"], {})
     nom = p.get("nom") or s["depot"].split("/")[-1]
-    return badge("b-projet", "📦 " + nom, f"Touche ton projet {nom}" + (f" ({p['theme']})" if p.get("theme") else "") + f" : dépôt {s['depot']}")
+    # sur la carte, seule l'icône : le nom du projet est dans l'infobulle (le filtre « Projet » affiche les noms)
+    aide = f"Projet {nom}" + (f" ({p['theme']})" if p.get("theme") else "") + f" : dépôt {s['depot']}"
+    return f'<span class="badge b-projet" title="{E(aide)}" aria-label="{E(aide)}">📦</span>'
 
 
 def card(s, cfg, seuil, dossier=False, date_jour=""):
