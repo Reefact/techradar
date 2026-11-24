@@ -17,7 +17,7 @@
   "rappel": {
     "label": "⏰ Rappel",
     "classe": "b-up",
-    "description": "Rappel d'une échéance proche : date limite d'un CFP (aux seuils J-30, J-14, J-7, J-3), fin de support, migration ou changement annoncé. Le texte précise le délai et l'échéance (« ⏰ J-7 : CFP »)."
+    "description": "Une échéance importante approche (date limite d'un CFP, fin de support, migration…) : le titre du sujet dit laquelle et quand."
   },
   "revendication": {
     "label": "Revendication",

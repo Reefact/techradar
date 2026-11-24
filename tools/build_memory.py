@@ -73,9 +73,9 @@ def build():
                 c["cfp_deadlines"] = parse_dates(c["cfp"])
                 for t in s.get("tags", []):
                     if isinstance(t, dict) and t.get("tag") in ("rappel", "rappel-cfp"):
-                        m = re.search(r"J-(\d+)", t.get("texte", ""))
+                        m = re.search(r"J-(\d+)", t.get("seuil") or t.get("texte", ""))
                         if m:
-                            c["reminders_seen"].append({"date": d["date"], "label": t["texte"], "n": int(m.group(1))})
+                            c["reminders_seen"].append({"date": d["date"], "label": t.get("seuil") or t.get("texte"), "n": int(m.group(1))})
     return {"reports": reports, "projets": projets, "tools_proposed": tools, "conferences": sorted(confs.values(), key=lambda c: c["name"]),
             "topics": topics, "urls": dict(sorted(url_index.items()))}
 
