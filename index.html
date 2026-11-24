@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TechRadar</title>
+<meta name="description" content="Veille quotidienne : sécurité, .NET, IA, API et architecture, outils, conférences et CFP.">
+<link rel="alternate" type="application/atom+xml" title="TechRadar" href="feed.xml">
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--line:#25314f;--fg:#e6ebf7;--mute:#93a0bf;--accent:#5eead4;--bar:64px;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 "Inter",system-ui,sans-serif}
+a{color:var(--accent)} a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.banner{position:fixed;top:0;left:0;right:0;height:var(--bar);z-index:10;display:flex;align-items:center;gap:16px;
+  padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));background:var(--panel);border-bottom:1px solid var(--line)}
+.banner h1{margin:0;font:700 1.25rem/1 "Space Grotesk",system-ui,sans-serif;color:var(--accent);white-space:nowrap}
+.banner p{margin:0;color:var(--mute);font-size:.9rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.banner .rss{margin-left:auto;font:600 .72rem/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase;
+  padding:6px 10px;border:1px solid currentColor;border-radius:5px;text-decoration:none;white-space:nowrap}
+.layout{display:flex;height:100%;padding-top:var(--bar)}
+nav{flex:0 0 220px;overflow-y:auto;border-right:1px solid var(--line);background:var(--panel);padding:12px 8px}
+nav h2{margin:8px 8px 6px;font:600 .72rem/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+nav ul{list-style:none;margin:0;padding:0}
+nav a{display:block;padding:8px 10px;border-radius:6px;color:var(--fg);text-decoration:none;font-variant-numeric:tabular-nums}
+nav a:hover{background:#17213d}
+nav a[aria-current="page"]{background:#17213d;color:var(--accent);box-shadow:inset 3px 0 var(--accent)}
+nav .month{margin:14px 8px 4px;color:var(--mute);font-size:.8rem;text-transform:capitalize}
+nav .msg{margin:8px;color:var(--mute);font-size:.85rem}
+main{flex:1;min-width:0}
+iframe{display:block;width:100%;height:100%;border:0;background:var(--bg)}
+@media(max-width:700px){
+  .banner p{display:none}
+  .layout{flex-direction:column}
+  nav{flex:0 0 auto;max-height:34vh;border-right:0;border-bottom:1px solid var(--line)}
+  main{flex:1;min-height:0}
+}
+</style>
+</head>
+<body>
+<header class="banner">
+  <h1>TechRadar</h1>
+  <p>Veille quotidienne : sécurité, .NET, IA, API et architecture, outils, conférences et CFP.</p>
+  <a class="rss" href="feed.xml">Flux Atom</a>
+</header>
+<div class="layout">
+  <nav aria-label="Rapports">
+    <h2>Rapports</h2>
+    <div id="list"><p class="msg">Chargement…</p></div>
+  </nav>
+  <main><iframe id="view" title="Rapport TechRadar"></iframe></main>
+</div>
+<noscript><p style="position:fixed;top:var(--bar);left:240px">JavaScript est nécessaire. <a href="feed.xml">Flux Atom</a></p></noscript>
+<script>
+(async () => {
+  const list = document.getElementById('list'), view = document.getElementById('view');
+  const ATOM = 'http://www.w3.org/2005/Atom';
+  let reports = [];
+  try {
+    // Découverte : feed.xml (généré par tools/build_feed.py depuis la <meta name="date"> de chaque rapport).
+    const res = await fetch('feed.xml', {cache: 'no-cache'});
+    if (!res.ok) throw new Error(res.status);
+    const xml = new DOMParser().parseFromString(await res.text(), 'application/xml');
+    reports = [...xml.getElementsByTagNameNS(ATOM, 'entry')].map(e => ({
+      date: e.getElementsByTagNameNS(ATOM, 'updated')[0].textContent.slice(0, 10),
+      href: e.getElementsByTagNameNS(ATOM, 'link')[0].getAttribute('href'),
+    })).sort((a, b) => b.date.localeCompare(a.date));
+  } catch (err) {
+    list.innerHTML = '<p class="msg">Impossible de charger la liste des rapports (servir le site en HTTP, pas via file://).</p>';
+    return;
+  }
+  if (!reports.length) { list.innerHTML = '<p class="msg">Aucun rapport.</p>'; return; }
+
+  const fmtDay = d => new Date(d + 'T12:00:00').toLocaleDateString('fr-FR', {weekday: 'short', day: 'numeric'});
+  const fmtMonth = d => new Date(d + 'T12:00:00').toLocaleDateString('fr-FR', {month: 'long', year: 'numeric'});
+  let html = '', month = '';
+  for (const r of reports) {
+    const m = r.date.slice(0, 7);
+    if (m !== month) { if (month) html += '</ul>'; html += `<div class="month">${fmtMonth(r.date)}</div><ul>`; month = m; }
+    html += `<li><a href="#${r.date}" data-date="${r.date}">${fmtDay(r.date)}</a></li>`;
+  }
+  list.innerHTML = html + '</ul>';
+
+  function show() {
+    const wanted = location.hash.slice(1);
+    const r = reports.find(x => x.date === wanted) || reports[0]; // par défaut : le plus récent
+    list.querySelectorAll('a').forEach(a => { if (a.dataset.date === r.date) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    const target = new URL(r.href, location.href).href;
+    if (view.src !== target) view.src = target;
+    document.title = `TechRadar — ${r.date}`;
+  }
+  addEventListener('hashchange', show);
+  show();
+})();
+</script>
+</body>
+</html>

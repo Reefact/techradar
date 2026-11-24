@@ -1,2 +1,16 @@
 # techradar
 Veille quotidienne : un brief HTML publié chaque matin (alertes de sécurité, .NET, IA, API et architecture, outils, distribution, conférences et CFP), généré automatiquement et déployé sur Cloudflare.
+
+## Structure
+- `index.html` : page d'accueil (bandeau, barre latérale par date, rapport affiché dans une iframe ; le dernier rapport par défaut, `#AAAA-MM-JJ` pour un jour précis).
+- `reports/AAAA/AAAAMMJJ.html` : un rapport par jour. Chaque rapport doit contenir `<meta name="date" content="AAAA-MM-JJ">`, un `<title>`, et (pour le flux) un bloc `<div class="card tldr">` avec une liste `<li>`.
+- `assets/report.css` : feuille de style partagée par les rapports.
+- `feed.xml` : flux Atom, **généré**. Il sert aussi à l'index pour découvrir les rapports.
+- `tools/build_feed.py` : régénère `feed.xml`.
+
+## Publier un rapport
+1. Ajouter `reports/AAAA/AAAAMMJJ.html`, avec `<link rel="stylesheet" href="../../assets/report.css">`.
+2. Lancer `python3 tools/build_feed.py [URL_DU_SITE]` (avec l'URL, les liens du flux sont absolus).
+3. Déployer.
+
+Pour tester en local : `python3 -m http.server` (l'index lit `feed.xml` via `fetch`, ce qui ne fonctionne pas en `file://`).

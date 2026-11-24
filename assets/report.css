@@ -1,0 +1,53 @@
+/* Feuille de style partagée des rapports TechRadar */
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+/* Mise en page : colonne unique, sommaire d'abord, résumés ensuite ; fond grille à dérive lente */
+:root{
+  --bg:#0b1020; --panel:#121a30; --panel2:#17213d; --line:#25314f;
+  --fg:#e6ebf7; --mute:#93a0bf; --accent:#5eead4;
+  --alert:#fb7185; --dotnet:#a78bfa; --ia:#60a5fa; --ddd:#f0abfc; --api:#fbbf24; --tool:#34d399; --retail:#fb923c; --conf:#38bdf8; --radar:#f472b6;
+  --font-d:"Space Grotesk",system-ui,sans-serif; --font-b:"Inter",system-ui,sans-serif; --font-m:ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.6 var(--font-b);margin:0}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:radial-gradient(circle at 1px 1px,#2a3a63 1px,transparent 1.5px),linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:40px 40px,40px 40px,40px 40px;opacity:.35;animation:drift 90s linear infinite}
+@keyframes drift{to{background-position:400px 200px,400px 200px,400px 200px}}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}}
+.wrap{max-width:900px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent)} a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{font-family:var(--font-d);text-wrap:balance;margin:0}
+h1{font-size:2rem;line-height:1.15}
+h2{font-size:1.25rem;margin:36px 0 12px}
+h3{font-size:1.05rem}
+.sub{color:var(--mute);margin:6px 0 0}
+.badge{display:inline-block;font:600 .68rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:5px;border:1px solid currentColor}
+.b-alert{color:var(--alert)}.b-dotnet{color:var(--dotnet)}.b-ia{color:var(--ia)}.b-api{color:var(--api)}.b-tool{color:var(--tool)}.b-retail{color:var(--retail)}.b-conf{color:var(--conf)}.b-radar{color:var(--radar)}.b-star{color:var(--accent)}.b-new{color:var(--accent)}.b-up{color:var(--api)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;min-width:0}
+.tldr{border-color:var(--accent)}
+.tldr ul{margin:8px 0 0;padding-left:1.1em}
+.toc{display:flex;flex-direction:column;gap:8px}
+.toc .badge{align-self:flex-start;margin-top:10px}
+.toc a.item{display:block;text-decoration:none;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+.toc a.item:hover{border-color:var(--accent)}
+.toc .meta{display:block;color:var(--mute);font-size:.8rem;margin-top:2px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.88rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mute);font:600 .72rem var(--font-m);text-transform:uppercase;letter-spacing:.06em;background:var(--panel2)}
+td{font-variant-numeric:tabular-nums}
+.sum{display:flex;flex-direction:column;gap:14px}
+.sum .card{scroll-margin-top:16px}
+.sum .head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.sum p{margin:8px 0}
+.why{color:var(--accent);font-size:.9rem}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:.88rem;margin:8px 0}
+.kv dt{color:var(--mute)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.back{font-size:.8rem}
+.brief{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.brief li{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 14px;overflow-wrap:anywhere}
+footer{margin-top:48px;color:var(--mute);font-size:.82rem}
+footer p{margin:8px 0}
+@media(max-width:480px){h1{font-size:1.6rem}.kv{grid-template-columns:1fr}}
+.card ul{margin:6px 0 10px;padding-left:1.2em}.card li{margin:5px 0}.card code{font-family:var(--font-m);font-size:.85em;overflow-wrap:anywhere}
