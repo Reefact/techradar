@@ -159,7 +159,7 @@ def titre_h3(s, blip=""):
     """Titre du sujet ; s'il y a une vérification, son badge se place juste à gauche du texte."""
     if not s.get("verification"):
         return f'<h3>{blip}{inline(s["titre"])}</h3>'
-    return f'<h3 class="vf-h3">{verif_button(s)}<span>{blip}{inline(s["titre"])}</span></h3>'
+    return f'<h3 class="vf-h3">{blip}{verif_button(s)}<span>{inline(s["titre"])}</span></h3>'
 
 
 def projet_badge(s, cfg):
