@@ -20,7 +20,23 @@
     "volume": "15 sujets publiés au plus hors prioritaires (max_publies), pour un rapport qui se lit en 10 à 15 minutes ; moins les jours calmes, sans jamais remplir.",
     "prioritaires": "Sujets prioritaires : une alerte récente (tag alerte et date postérieure ou égale au rapport précédent, ☄️), quelle que soit sa catégorie, et un rappel de conférence (tag rappel). Ils sont toujours publiés, en plus des 15 : ils ne prennent aucune place aux autres sujets et ne comptent pas dans les plafonds de catégorie. Le total publié peut donc dépasser 15 ces jours-là.",
     "arbitrage": "Les 15 places vont aux meilleurs sujets non prioritaires, dans la limite des plafonds de config/categories.json (max) ; à intérêt égal, le poids de la catégorie (poids, 3 = le plus important) départage. Les minimums sont à 0 : une catégorie sans rien d'intéressant reste vide.",
-    "fraicheur": "Un sujet publié est récent : sa date est dans la fenêtre de recherche (voir « fenetre »). Sinon il reste candidat, sauf raison écrite dans « hors_fenetre ». Les conférences (déclencheurs) ne sont pas concernées.",
+    "fraicheur": {
+      "description": "Un sujet publié n'a jamais été publié un jour précédent (sauf tag mise-a-jour ou rappel). Le plus frais passe d'abord : les sujets plus anciens servent à compléter les jours calmes, jamais à remplir avec du bruit.",
+      "actualites_jours": 7,
+      "actualites": "Actualités (alertes, versions, annonces, incidents) : priorité aux dernières 24 à 48 h ; jusqu'à actualites_jours jours si jamais traitées et s'il reste de la place.",
+      "fond_jours": 14,
+      "fond": "Sujets de fond (catégories fond_categories, ou tags fond_tags) : articles, retours d'expérience, outils qui montent ; jusqu'à fond_jours jours après leur parution s'ils n'ont jamais été traités.",
+      "fond_categories": [
+        "craftsmanship",
+        "architecture",
+        "outils"
+      ],
+      "fond_tags": [
+        "ddd",
+        "rex"
+      ],
+      "hors_fenetre": "Au-delà : candidat, sauf raison écrite dans le champ « hors_fenetre » du sujet. Les conférences suivent leurs déclencheurs."
+    },
     "a_retenir": {
       "description": "« À retenir aujourd'hui » : résumé rédigé du rapport, en sections (voir tools/veille-prompt.md, §4). cible_caracteres est la consigne donnée à la tâche (un maximum, pas un objectif) ; max_caracteres est le plafond vérifié par check_day.py, volontairement absent du prompt (marge de sécurité).",
       "min_sections": 1,

@@ -250,6 +250,17 @@ class Donnees(unittest.TestCase):
         s["date"] = "2026-01-01"
         self.assertTrue(any(f"{s['id']} : publié mais daté" in e for e in self.valider(day)))
 
+    def test_sujet_deja_publie_un_jour_precedent_refuse(self):
+        days = [load_json(p) for p in day_files()]
+        if len(days) < 2: self.skipTest("un seul jour")
+        avant, apres = days[-2], copy.deepcopy(days[-1])
+        apres["config"] = {"commit": "test"}
+        ancien = next(s for s in avant["sujets"] if s["statut"] == "publie" and s["categorie"] != "conferences")
+        s = next(x for x in apres["sujets"] if x["statut"] == "publie" and x["categorie"] != "conferences")
+        s["sources"] = ancien["sources"]
+        s["tags"] = [t for t in s.get("tags", []) if (t if isinstance(t, str) else t["tag"]) not in ("mise-a-jour", "rappel")]
+        self.assertTrue(any("déjà publié" in e for e in self.valider(apres)))
+
     def test_projet_inconnu_refuse(self):
         day = jour()
         day["sujets"][0]["depot"] = "Reefact/inconnu"

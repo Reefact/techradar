@@ -35,6 +35,20 @@ def longueur_resume(ar):
     return sum(len(plain(p)) for x in ar for p in x.get("paragraphes", []) if isinstance(p, str))
 
 
+def deja_publies(day):
+    """URL des sources des sujets publiés les jours précédents : url → date de publication."""
+    out = {}
+    for p in day_files():
+        if p.stem >= day["date"].replace("-", ""):
+            continue
+        d = load_json(p)
+        for s in d.get("sujets", []):
+            if s.get("statut") == "publie":
+                for u in s.get("sources", []):
+                    out.setdefault(u.get("url"), d["date"])
+    return out
+
+
 def rapport_precedent(day):
     """Date du rapport précédent (fichier du jour antérieur le plus récent), sinon la veille : c'est le seuil du repère ☄️."""
     avant = [p.stem for p in day_files() if p.stem < day["date"].replace("-", "")]
@@ -170,14 +184,21 @@ def check(path, contre=None, partiel=False):
         hors_prio = sum(1 for s in autres if s["categorie"] == k)
         if c.get("min") and n < c["min"]: E(f"catégorie « {c['label']} » : {n} sujet(s) publié(s), minimum {c['min']}")
         if c.get("max") is not None and not legacy and hors_prio > c["max"]: E(f"catégorie « {c['label']} » : {hors_prio} sujet(s) publié(s) hors prioritaires, plafond {c['max']}")
-    # ----- fraîcheur : un sujet publié est dans la fenêtre (rapport précédent ; 7 jours pour la distribution), sauf « hors_fenetre »
+    # ----- fraîcheur et anti-doublon (config/sujets/perimetre.json → rapport.fraicheur)
     if not legacy:
+        fr = rap.get("fraicheur", {})
+        deja = deja_publies(day)
         for s in pub:
+            tg = tagset(s)
+            if "mise-a-jour" not in tg and "rappel" not in tg:
+                vus = [u["url"] for u in s.get("sources", []) if u.get("url") in deja]
+                if vus: E(f"{s['id']} : déjà publié le {deja[vus[0]]} ({vus[0]}) : un sujet ne revient qu'avec le tag mise-a-jour")
             if s["categorie"] == "conferences" or s.get("hors_fenetre") or not s.get("date"):
                 continue
-            premier = not any(p.stem < day["date"].replace("-", "") for p in day_files())   # premier rapport : fenêtre de 7 jours
-            limite = (Date.fromisoformat(day["date"]) - timedelta(days=7)).isoformat() if premier or s["categorie"] == "distribution" else min(seuil, (Date.fromisoformat(day["date"]) - timedelta(days=2)).isoformat())
-            if s["date"] < limite: E(f"{s['id']} : publié mais daté du {s['date']}, hors fenêtre (depuis le {limite}) : candidat, ou raison dans « hors_fenetre »")
+            fond = s["categorie"] in fr.get("fond_categories", []) or s.get("categorie_secondaire") in fr.get("fond_categories", []) or tg & set(fr.get("fond_tags", []))
+            jours = fr.get("fond_jours", 14) if fond else fr.get("actualites_jours", 7)
+            limite = (Date.fromisoformat(day["date"]) - timedelta(days=jours)).isoformat()
+            if s["date"] < limite: E(f"{s['id']} : publié mais daté du {s['date']}, au-delà de {jours} jours ({'sujet de fond' if fond else 'actualité'}) : candidat, ou raison dans « hors_fenetre »")
     rap = per.get("rapport", {})
     ar = day.get("a_retenir", [])
     rule = rap.get("a_retenir", {})
