@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr" data-kind="drafts">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Brouillons – TechRadar – Reefact</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="banner">
+  <div class="title"><h1><a class="brand" href="https://reefact.net" title="Retour sur reefact.net" aria-label="Reefact, retour sur reefact.net">Reefact</a><span class="sep" aria-hidden="true">|</span><a class="app" href="/" title="Accueil TechRadar (dernier rapport)" aria-label="TechRadar, accueil (dernier rapport)">TechRadar</a></h1><span class="draft-tag">Brouillons</span>
+  <p>Versions régénérées des rapports, non listées sur le site public.</p></div>
+  <a class="rss back" href="/" title="Retour aux rapports publiés"><span>← Rapports publiés</span></a>
+</header>
+<div class="layout">
+  <nav aria-label="Brouillons">
+    <h2>Brouillons</h2>
+    <div id="list"><p class="msg">Chargement…</p></div>
+  </nav>
+  <main>
+    <div id="radar" aria-hidden="true"><canvas id="dial" class="rl"></canvas><div id="sweep" class="rl"></div><canvas id="blips" class="rl"></canvas></div>
+    <iframe id="view" title="Brouillon TechRadar"></iframe>
+    <div class="crt" aria-hidden="true"></div>
+  </main>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p style="position:fixed;top:var(--bar);left:240px">JavaScript est nécessaire.</p></noscript>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -4,13 +4,13 @@
 
 - **Worker** : `techradar` (tableau de bord : Workers & Pages → techradar). C'est un Worker avec *static assets*, pas un projet Pages.
 - **Config** : `wrangler.jsonc` — `name: "techradar"` (doit correspondre au Worker), `assets.directory: "./dist"`, pas de code de Worker.
-- **Build** (`tools/build_site.sh`) : régénère `feed.xml` (si `python3` est présent) puis copie `index.html`, `feed.xml`, `assets/` et `reports/` dans `dist/`. Sont donc **exclus** : `drafts/`, `tools/`, `.github/`, `.claude/`, `docs/`, README.
+- **Build** (`tools/build_site.sh`) : régénère `feed.xml` (si `python3` est présent), puis copie `index.html`, `feed.xml`, `assets/`, `reports/` et la page des brouillons (`drafts/index.html`, `drafts/AAAA/*.html`, plus un `drafts.json` généré par `tools/build_drafts.py`) dans `dist/`, avec un fichier `_headers` qui demande aux moteurs de ne pas indexer `/drafts`. Sont donc **exclus** : `tools/`, `.github/`, `.claude/`, `docs/`, `data/`, README.
 - **Réglages Workers Builds** (Settings → Build) :
   - branche de production : `main`
   - build command : `bash tools/build_site.sh`
   - deploy command : `npx wrangler deploy`
   - variable de build `SITE_URL` = `https://techradar.reefact.net` (texte, pas un secret ; sans elle, les liens du flux restent relatifs) ;
-  - **Build watch paths**, inclusions : `index.html, assets/*, reports/*, wrangler.jsonc, tools/build_site.sh, tools/build_feed.py` (exclusions : aucune). Un push qui ne touche aucun de ces fichiers (docs, drafts, data, skills, workflows…) ne déclenche pas de build. Un push **sans aucun fichier modifié** (commit vide) en déclenche toujours un : c'est le moyen de forcer un déploiement ;
+  - **Build watch paths**, inclusions : `index.html, assets/*, reports/*, drafts/*, wrangler.jsonc, tools/build_site.sh, tools/build_feed.py, tools/build_drafts.py` (exclusions : aucune). Un push qui ne touche aucun de ces fichiers (docs, data, skills, workflows…) ne déclenche pas de build. Un push **sans aucun fichier modifié** (commit vide) en déclenche toujours un : c'est le moyen de forcer un déploiement ;
 
 ```mermaid
 flowchart LR

@@ -18,7 +18,8 @@ Tout est **statique** : pas de base de données, pas de code serveur. Le « back
 
 | Chemin | Rôle |
 |---|---|
-| `index.html` | Page d'accueil : bandeau, barre latérale, rapport en iframe, radar animé |
+| `index.html` | Page d'accueil : bandeau, barre latérale, rapport en iframe, radar animé (le code est dans `assets/site.css` et `assets/site.js`, partagés avec la page des brouillons) |
+| `drafts/index.html` | Page https://techradar.reefact.net/drafts/ : même interface, mais elle ne liste que les brouillons (`mar. 24 16h44`), avec un lien « ← Rapports publiés » à la place du flux |
 | `reports/AAAA/AAAAMMJJ.html` | Un rapport par jour (publié, listé dans l'index et le flux) |
 | `drafts/AAAA/AAAAMMJJ-HHMM.html` | Versions régénérées d'un jour déjà publié (jamais listées) |
 | `assets/report.css` | Feuille de style partagée par tous les rapports |
@@ -29,6 +30,7 @@ Tout est **statique** : pas de base de données, pas de code serveur. Le « back
 | `data/memory.json`, `data/notes.md` | Mémoire de la veille côté dépôt (dérivée des rapports) et notes manuelles |
 | `tools/check_report.py` | Valide un rapport ou un brouillon (titre, date, tldr, liens, radar…) |
 | `.claude/skills/` | Skills Claude Code : `promote-draft`, `veille-memoire`, `veille-test` (teste la tâche planifiée), `veille-regenerer` (régénère le rapport d'une date, en brouillon ou en l'écrasant) |
+| `tools/build_drafts.py` | Génère `drafts.json` (liste des brouillons) pour la page `/drafts/` |
 | `tools/build_memory.py` | Génère `data/memory.json` ; interroge les rappels de CFP et les URL déjà publiées |
 | `tools/report-template.html` | Gabarit que la tâche de veille doit suivre |
 | `wrangler.jsonc` | Config Cloudflare (Worker `techradar`, assets dans `dist/`) |

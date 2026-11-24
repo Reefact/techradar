@@ -44,7 +44,7 @@ Règles décidées :
 
 ## Brouillons et promotion
 
-Les brouillons (`drafts/`) n'apparaissent ni dans l'index ni dans le flux. Pour en choisir un :
+Les brouillons (`drafts/`) n'apparaissent ni dans l'index ni dans le flux. Ils se consultent sur https://techradar.reefact.net/drafts/ (même interface que l'accueil, navigation par date et heure, non indexée par les moteurs). Pour en choisir un :
 - **GitHub** : Actions → « Promote a draft report » → Run workflow → saisir le chemin (`drafts/2026/20261124-0815.html`). L'Action copie le brouillon vers `reports/`, régénère le flux et commit sur `main`. Le chemin est validé (format strict).
 - **Skill Claude Code** : `/promote-draft` dans une session sur ce dépôt ; il liste les brouillons, demande confirmation, lance le workflow et vérifie le résultat.
 - **À la main** : copier le fichier vers `reports/AAAA/AAAAMMJJ.html`, lancer `python3 tools/build_feed.py`, commiter.
