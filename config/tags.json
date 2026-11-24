@@ -15,7 +15,7 @@
     "description": "Sujet déjà publié un jour précédent qui revient pour une grosse nouveauté ; le résumé dit ce qui a changé."
   },
   "pepite": {
-    "label": "🧪 Pépite du jour",
+    "label": "🧪 Pépite",
     "classe": "b-new",
     "description": "L'outil original ou surprenant du jour dans « Outils du moment » (un seul par jour)."
   },
