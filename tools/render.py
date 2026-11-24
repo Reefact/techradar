@@ -231,11 +231,6 @@ def filters(sujets, cfg, seuil, dossier=False):
                                             for st in STATUTS if (n := sum(1 for s in sujets if s.get("statut") == st))]))
     present = [k for k in ordered_categories(cats) if any(s["categorie"] == k for s in sujets)]
     groups.append(("cat", "Catégorie", [chip(k, cats[k]["classe"], cats[k]["label"], cats[k]["description"], sum(1 for s in sujets if s["categorie"] == k)) for k in present]))
-    proj = projets(cfg)
-    present_p = [d for d in proj if any(s.get("depot") == d for s in sujets)]
-    if present_p:
-        groups.append(("projet", "Projet", [chip(d, "b-projet", "📦 " + proj[d]["nom"], f"Touche ton projet {proj[d]['nom']} ({proj[d].get('theme', '')})",
-                                                 sum(1 for s in sujets if s.get("depot") == d)) for d in present_p]))
     tchips = []
     nf = sum(1 for s in sujets if s.get("date") and s["date"] >= seuil)
     if nf: tchips.append(chip("frais", "b-fresh", "☄️ Récent", aide_recent(seuil), nf))
@@ -243,9 +238,14 @@ def filters(sujets, cfg, seuil, dossier=False):
         n = sum(1 for s in sujets if k in [tag_key(x) for x in s.get("tags", [])])
         if n: tchips.append(chip(k, t["classe"], (t["label"].replace("J-{n}", "Rappel CFP") if "{n}" in t["label"] else t["label"]), t["description"], n))
     if tchips: groups.append(("tag", "Tag", tchips))
+    proj = projets(cfg)   # ordre des groupes : (statut), catégorie, tag, projet
+    present_p = [d for d in proj if any(s.get("depot") == d for s in sujets)]
+    if present_p:
+        groups.append(("projet", "Projet", [chip(d, "b-projet", "📦 " + proj[d]["nom"], f"Touche ton projet {proj[d]['nom']} ({proj[d].get('theme', '')})",
+                                                 sum(1 for s in sujets if s.get("depot") == d)) for d in present_p]))
     o = ['<div class="filters" id="filtres" hidden>']
     for g, label, chips in groups:
-        o.append(f'  <div class="fgroup" data-g="{g}" role="group" aria-label="{label}"><span class="flabel">{label}</span>{"".join(chips)}</div>')
+        o.append(f'  <div class="fgroup" data-g="{g}" role="group" aria-label="{label}"><span class="flabel">{label}</span><span class="chips">{"".join(chips)}</span></div>')
     o.append('  <div class="fbar"><span class="count" aria-live="polite"></span><button type="button" class="reset" hidden>Réinitialiser</button>'
              '<button type="button" class="expand">Tout déplier</button></div>')
     o.append("</div>")
