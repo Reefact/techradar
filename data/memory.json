@@ -3,7 +3,7 @@
   {
    "date": "2026-11-24",
    "path": "reports/2026/20261124.html",
-   "publies": 36
+   "publies": 37
   }
  ],
  "radar": {
@@ -502,7 +502,7 @@
    "date": "2026-11-24",
    "id": "d3",
    "categorie": "distribution",
-   "statut": "mis-de-cote",
+   "statut": "publie",
    "titre": "Fuite revendiquée : 46 600 lignes sur des salariés de supermarchés"
   },
   {
@@ -611,12 +611,12 @@
   "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees": {
    "date": "2026-11-24",
    "id": "d3",
-   "statut": "mis-de-cote"
+   "statut": "publie"
   },
   "https://fuitesinfos.fr/article/2026-11-11-gestool": {
    "date": "2026-11-24",
    "id": "d3",
-   "statut": "mis-de-cote"
+   "statut": "publie"
   },
   "https://github.blog/changelog/2026-11-17-github-copilot-in-jetbrains-ignite-releases/": {
    "date": "2026-11-24",
