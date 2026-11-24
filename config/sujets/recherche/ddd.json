@@ -1,6 +1,6 @@
 {
-  "categorie": "ddd",
-  "consigne": "Domain-Driven Design : publications, retours de terrain et événements marquants. Seulement s'il y a du vraiment nouveau.",
+  "categorie": "architecture",
+  "consigne": "Domain-Driven Design : publications, retours de terrain et événements marquants, seulement s'il y a du vraiment nouveau. Ces sujets vont en Architecture (ou dans la catégorie qui convient) avec le tag « ddd ».",
   "sources": [
     "DDD Europe",
     "Virtual DDD",

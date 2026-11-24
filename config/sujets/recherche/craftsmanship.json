@@ -1,0 +1,11 @@
+{
+  "categorie": "craftsmanship",
+  "consigne": "Pratiques de développement : tests (TDD, tests de mutation, assertions, génération de données de test), refactoring, revue de code et conventions de commentaires, clean code, gestion des erreurs. Articles de praticiens, retours de terrain, nouvelles versions des outils de test qui changent les pratiques. Recoupe souvent tes projets (champ « depot »).",
+  "sources": [
+    "blogs de praticiens reconnus",
+    "InfoQ",
+    "conférences craft (SoCraTes, Agile Testing Days)"
+  ],
+  "toujours_suivre": [],
+  "exclure": []
+}

@@ -775,9 +775,16 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
+    },
+    {
+     "date": "2026-11-25T01:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie secondaire Craftsmanship"
     }
    ],
-   "date": "2026-11-10"
+   "date": "2026-11-10",
+   "categorie_secondaire": "craftsmanship"
   },
   {
    "id": "n11",
@@ -816,9 +823,16 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "date de survenance ajoutée (2026-07-18, lue sur l'API NuGet)"
+    },
+    {
+     "date": "2026-11-25T01:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie secondaire Craftsmanship"
     }
    ],
-   "date": "2026-07-18"
+   "date": "2026-07-18",
+   "categorie_secondaire": "craftsmanship"
   },
   {
    "id": "n12",
@@ -853,9 +867,16 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "date de survenance ajoutée (2026-07-31, lue sur l'API NuGet)"
+    },
+    {
+     "date": "2026-11-25T01:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie secondaire Craftsmanship"
     }
    ],
-   "date": "2026-07-31"
+   "date": "2026-07-31",
+   "categorie_secondaire": "craftsmanship"
   },
   {
    "id": "n1",
@@ -1117,8 +1138,8 @@
    "depot": "Reefact/hypermedia-domain-language"
   },
   {
-   "id": "p2",
-   "categorie": "architecture",
+   "id": "cr1",
+   "categorie": "craftsmanship",
    "statut": "publie",
    "tags": [],
    "titre": "Revue de code : « rendre le changement facile d'abord »",
@@ -1148,6 +1169,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie API & architecture → Architecture ; libellé de carte propre supprimé"
+    },
+    {
+     "date": "2026-11-25T01:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "Architecture → Craftsmanship (p2 → cr1)"
     }
    ],
    "date": "2026-11-16",
@@ -1565,6 +1592,7 @@
    "statut": "publie",
    "tags": [
     "nouveau",
+    "ddd",
     {
      "tag": "rappel",
      "seuil": "J-6"
@@ -1612,6 +1640,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "titre = sujet du bloc, sans dates (avant : « DDD Europe 2027 : CFP ateliers jusqu'au 30 nov., conférence au 16 janv. »)"
+    },
+    {
+     "date": "2026-11-25T01:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tag ddd"
     }
    ],
    "titre_sommaire": "DDD Europe 2027"

@@ -28,5 +28,15 @@
     "label": "⏰ Rappel",
     "classe": "b-up",
     "description": "Une échéance importante approche : date limite d'un CFP, fin de support, migration…"
+  },
+  "ddd": {
+    "label": "DDD",
+    "classe": "b-ddd",
+    "description": "Domain-Driven Design : modélisation du domaine, contextes délimités, langage omniprésent, retours de terrain."
+  },
+  "talk": {
+    "label": "Talk",
+    "classe": "b-conf",
+    "description": "Le sujet est une présentation enregistrée (vidéo d'une conférence ou d'un meetup), pas un article."
   }
 }

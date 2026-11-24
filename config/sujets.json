@@ -28,7 +28,12 @@
     },
     {
       "chemin": "sujets/recherche/ddd.json",
-      "role": "Recherche : DDD",
+      "role": "Recherche : DDD (catégorie Architecture, tag ddd)",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/recherche/craftsmanship.json",
+      "role": "Recherche : craftsmanship",
       "actif": true
     },
     {

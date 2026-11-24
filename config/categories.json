@@ -26,14 +26,14 @@
     "max": 5,
     "description": "Modèles et agents de code, MCP, usages concrets pour développeurs, annonces majeures. Jamais vide."
   },
-  "ddd": {
-    "label": "DDD",
+  "craftsmanship": {
+    "label": "Craftsmanship",
     "classe": "b-ddd",
-    "prefixe": "dd",
+    "prefixe": "cr",
     "ordre": 5,
     "min": 0,
-    "max": 2,
-    "description": "Domain-Driven Design : pratiques, retours d'expérience, publications marquantes. Omise s'il n'y a rien de vraiment nouveau."
+    "max": 4,
+    "description": "Pratiques de développement : tests (TDD, tests de mutation, assertions, données de test), refactoring, revue de code, clean code, gestion des erreurs."
   },
   "architecture": {
     "label": "Architecture",
