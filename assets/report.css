@@ -107,6 +107,9 @@ details.card[open]{border-color:#2a4b50}
 .vf-btn:hover{border-color:currentColor}.vf-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .vf-faux{color:var(--alert)}.vf-indetermine{color:var(--api)}
 .vf-pop{width:min(640px,calc(100vw - 32px));max-height:min(80vh,720px);overflow:auto;margin:auto;padding:18px 20px;border:1px solid var(--accent);border-radius:12px;background:var(--panel);color:var(--fg);font:15px/1.55 var(--font-b);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+/* Fenêtre ouverte : la page dessous ne défile plus, et le défilement de la fenêtre ne se propage pas à la page */
+html:has(.vf-pop:popover-open){overflow:hidden}
+.vf-pop{overscroll-behavior:contain}
 .vf-pop::backdrop{background:rgba(2,6,8,.72);backdrop-filter:blur(2px)}
 .vf-top{display:flex;align-items:center;gap:10px}
 .vf-ico{display:inline-flex;color:var(--tool)}.vf-ico.vf-faux{color:var(--alert)}.vf-ico.vf-indetermine{color:var(--api)}
