@@ -1338,7 +1338,8 @@
    "conference": {
     "dates": "Ateliers 31 mai – 2 juin ; conférence 3–4 juin 2027",
     "lieu": "Meervaart, Amsterdam",
-    "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)"
+    "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)",
+    "site": "https://2027.dddeurope.com/"
    },
    "historique": [
     {
@@ -1399,7 +1400,8 @@
    "conference": {
     "dates": "27–28 mai 2027 (ateliers 26 mai)",
     "lieu": "Södra Teatern, Stockholm",
-    "cfp": "8 déc. 2026, 23h59"
+    "cfp": "8 déc. 2026, 23h59",
+    "site": "https://www.devsum.se/"
    },
    "historique": [
     {
@@ -1440,7 +1442,8 @@
    "conference": {
     "dates": "7–9 avril 2027",
     "lieu": "Palais des Congrès, Paris",
-    "cfp": "10 janv. 2027 (heure non publiée)"
+    "cfp": "10 janv. 2027 (heure non publiée)",
+    "site": "https://www.devoxx.fr/"
    },
    "historique": [
     {
@@ -1582,8 +1585,7 @@
    "resume": "Conférence généraliste centrée sur .NET, l'architecture et les pratiques de développement. Le CFP est ouvert depuis le 2 novembre 2026.",
    "details": {
     "Dates et lieu": "31 mai – 4 juin 2027, Oslo Spektrum, Oslo (Norvège)",
-    "CFP": "clôture le 17 janvier 2027, 23h59 CET · [Sessionize](https://sessionize.com/ndc-oslo-2027/)",
-    "Site": "[ndcoslo.com](https://ndcoslo.com)"
+    "CFP": "clôture le 17 janvier 2027, 23h59 CET · [Sessionize](https://sessionize.com/ndc-oslo-2027/)"
    },
    "pourquoi": {
     "type": "surveiller",
@@ -1598,7 +1600,8 @@
    "conference": {
     "dates": "31 mai – 4 juin 2027",
     "lieu": "Oslo Spektrum, Oslo",
-    "cfp": "17 janv. 2027, 23h59 CET"
+    "cfp": "17 janv. 2027, 23h59 CET",
+    "site": "https://ndcoslo.com/"
    },
    "historique": [
     {
@@ -1646,7 +1649,8 @@
    "conference": {
     "dates": "22–23 avril 2027",
     "lieu": "CPE Lyon, Villeurbanne",
-    "cfp": "ouverture 30 nov., clôture 23 janv. (années à confirmer)"
+    "cfp": "ouverture 30 nov., clôture 23 janv. (années à confirmer)",
+    "site": "https://mixitconf.org/"
    },
    "historique": [
     {
@@ -1693,7 +1697,8 @@
    "conference": {
     "dates": "4–8 oct. 2027",
     "lieu": "Kinepolis, Anvers",
-    "cfp": "CFP du 1er juin au 16 juil. 2027"
+    "cfp": "CFP du 1er juin au 16 juil. 2027",
+    "site": "https://devoxx.be/"
    },
    "historique": [
     {

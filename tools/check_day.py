@@ -166,7 +166,9 @@ def check(path, contre=None, partiel=False):
         if st == "publie":
             for f in ("resume", "sources") + (() if s["categorie"] == "conferences" else ("meta",)):
                 if not s.get(f): E(f"{where} : sujet publié sans « {f} »")
-            if s["categorie"] == "conferences" and not s.get("conference"): E(f"{where} : conférence publiée sans bloc « conference » (dates, lieu, cfp)")
+            if s["categorie"] == "conferences" and not s.get("conference"): E(f"{where} : conférence publiée sans bloc « conference » (dates, lieu, cfp, site)")
+        if s["categorie"] == "conferences" and st != "ecarte" and not re.match(r"https?://", (s.get("conference") or {}).get("site", "")):
+            E(f"{where} : conférence sans « conference.site » (lien vers le site officiel, même si le CFP passe par Sessionize ou un autre service)")
         errs.extend(check_verification(s, where, day, cfg))
 
     # ----- volumes : 15 publiés au plus hors prioritaires ; les prioritaires (alerte récente, rappel) s'ajoutent, hors plafonds

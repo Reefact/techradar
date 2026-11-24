@@ -293,7 +293,8 @@
    "conference": {
     "dates": "Ateliers 31 mai – 2 juin ; conférence 3–4 juin 2027",
     "lieu": "Meervaart, Amsterdam",
-    "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)"
+    "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)",
+    "site": "https://2027.dddeurope.com/"
    },
    "historique": [
     {
@@ -357,7 +358,8 @@
    "conference": {
     "dates": "27–28 mai 2027 (ateliers 26 mai)",
     "lieu": "Södra Teatern, Stockholm",
-    "cfp": "8 déc. 2026, 23h59"
+    "cfp": "8 déc. 2026, 23h59",
+    "site": "https://www.devsum.se/"
    },
    "historique": [
     {

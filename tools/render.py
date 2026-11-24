@@ -221,7 +221,11 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
         emoji, prefixe = pourquoi_prefixe(s, cfg)
         out.append(f'  <p class="why" data-type="{E(s["pourquoi"]["type"])}"><span class="why-p"><span class="why-e" aria-hidden="true">{E(emoji)}</span> '
                    f'{E(prefixe)} :</span><br>{inline(majuscule(s["pourquoi"]["texte"]))}</p>')
-    links = " · ".join(f'<a href="{E(x["url"])}" target="_blank" rel="noopener">{inline(x["texte"])}</a>' for x in s.get("sources", []))
+    site = (s.get("conference") or {}).get("site")
+    sources = [x for x in s.get("sources", []) if not site or x["url"].rstrip("/") != site.rstrip("/")]
+    liens = ([f'<a href="{E(site)}" target="_blank" rel="noopener">Site officiel : {E(re.sub(r"^https?://(www\.)?", "", site).rstrip("/"))}</a>'] if site else []) \
+        + [f'<a href="{E(x["url"])}" target="_blank" rel="noopener">{inline(x["texte"])}</a>' for x in sources]
+    links = " · ".join(liens)
     ask = ""
     if dossier and st != "publie":
         ask = (f'<button type="button" class="ask" data-ask="Publie le sujet {E(s["id"])} (« {E(plain(s["titre"]))} ») du {date_jour} dans le rapport.">'

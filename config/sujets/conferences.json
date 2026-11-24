@@ -55,6 +55,7 @@
     "Une entrée par série (« Devoxx France »), pas par édition.",
     "Tout événement dont le CFP ou l'inscription est ouvert reste dans le tableau, trié par date limite la plus proche.",
     "Détail complet à la première apparition (tag nouveau) ; dates vérifiées sur la page officielle, sinon le dire.",
-    "Écrire toujours l'année dans les dates limites."
+    "Écrire toujours l'année dans les dates limites.",
+    "Le lien vers le site officiel de la conférence (conference.site) est toujours présent, même quand le CFP ou la billetterie passent par un service tiers (Sessionize, conference-hall, ti.to…) : ces liens-là viennent en plus, dans les sources ou les détails."
   ]
 }

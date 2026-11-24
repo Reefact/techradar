@@ -276,6 +276,12 @@ class Donnees(unittest.TestCase):
         s["date"], s["tags"] = il_y_a(60), ["agents"]                    # agents : jamais de fond
         self.assertTrue(perime())
 
+    def test_conference_sans_site_officiel_refusee(self):
+        day = jour()
+        c = next(x for x in day["sujets"] if x["categorie"] == "conferences")
+        c["conference"].pop("site", None)
+        self.assertTrue(any("conference.site" in e for e in self.valider(day)))
+
     def test_projet_inconnu_refuse(self):
         day = jour()
         day["sujets"][0]["depot"] = "Reefact/inconnu"
