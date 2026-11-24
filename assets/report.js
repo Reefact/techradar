@@ -47,7 +47,7 @@
       const def = sortBar.querySelector('.sdefault');
       const STATUTS = ['publie', 'candidat', 'mis-de-cote', 'ecarte'];
       const val = {statut: el => STATUTS.indexOf(el.dataset.statut), cat: el => +el.dataset.ordre,
-                   date: el => -(+(el.dataset.date || '').replace(/-/g, '') || 0), projet: el => el.dataset.repo ? '0' + el.dataset.repo : '1'};
+                   date: el => -(+(el.dataset.date || '').replace(/-/g, '') || 0)};
       const store = 'techradar-tri2-' + (document.querySelector('.dossier') ? 'dossier' : 'rapport');
       let chosen = [];
       function sortNow(save) {

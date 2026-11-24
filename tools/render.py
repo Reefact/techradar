@@ -216,19 +216,18 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     return "\n".join(out)
 
 
-SORT_KEYS = ("statut", "date", "cat", "projet")     # ordre de tri par défaut (sans « statut » dans le rapport publié)
-SORT_LABEL = {"statut": "Statut", "cat": "Catégorie", "date": "Date", "projet": "Projet"}
+SORT_KEYS = ("statut", "date", "cat")     # ordre de tri par défaut (sans « statut » dans le rapport publié)
+SORT_LABEL = {"statut": "Statut", "cat": "Catégorie", "date": "Date"}
 
 
 def ordered(sujets, cfg, dossier=False):
-    """Tri par défaut : (statut), date de survenance (la plus récente d'abord, sans date à la fin), catégorie, projet.
+    """Tri par défaut : (statut), date de survenance (la plus récente d'abord, sans date à la fin), catégorie.
     Le script des pages permet de mettre une autre clé en premier."""
     order = {k: i for i, k in enumerate(ordered_categories(cfg["categories"]))}
     def key(s, k):
         if k == "statut": return STATUTS.index(s.get("statut", "candidat"))
         if k == "cat": return order.get(s["categorie"], 99)
-        if k == "date": return -int((s.get("date") or "0").replace("-", ""))
-        return (0, s["depot"]) if s.get("depot") else (1, "")
+        return -int((s.get("date") or "0").replace("-", ""))   # date
     keys = SORT_KEYS if dossier else SORT_KEYS[1:]
     return sorted(sujets, key=lambda s: tuple(key(s, k) for k in keys))
 
