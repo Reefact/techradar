@@ -5,30 +5,37 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>TechRadar</title>
 <meta name="description" content="Veille quotidienne : sécurité, .NET, IA, API et architecture, outils, conférences et CFP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
 <link rel="alternate" type="application/atom+xml" title="TechRadar" href="feed.xml">
 <style>
-:root{--bg:#0b1020;--panel:#121a30;--line:#25314f;--fg:#e6ebf7;--mute:#93a0bf;--accent:#5eead4;--bar:64px;color-scheme:dark}
+:root{--bg:#050b0d;--panel:#0a1517;--line:#1b3236;--fg:#dff5ee;--mute:#7fa39d;--accent:#5eead4;--bar:64px;color-scheme:dark}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 "Inter",system-ui,sans-serif}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 "IBM Plex Sans",system-ui,sans-serif}
 a{color:var(--accent)} a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .banner{position:fixed;top:0;left:0;right:0;height:var(--bar);z-index:10;display:flex;align-items:center;gap:16px;
   padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));background:var(--panel);border-bottom:1px solid var(--line)}
-.banner h1{margin:0;font:700 1.25rem/1 "Space Grotesk",system-ui,sans-serif;color:var(--accent);white-space:nowrap}
+.banner h1{margin:0;font:400 2rem/1 VT323,"IBM Plex Mono",monospace;letter-spacing:.04em;color:var(--accent);white-space:nowrap;text-shadow:0 0 10px rgba(94,234,212,.5)}
 .banner p{margin:0;color:var(--mute);font-size:.9rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.banner .rss{margin-left:auto;font:600 .72rem/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase;
+.banner .rss{margin-left:auto;font:600 .72rem/1 "IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase;
   padding:6px 10px;border:1px solid currentColor;border-radius:5px;text-decoration:none;white-space:nowrap}
 .layout{display:flex;height:100%;padding-top:var(--bar)}
 nav{flex:0 0 220px;overflow-y:auto;border-right:1px solid var(--line);background:var(--panel);padding:12px 8px}
-nav h2{margin:8px 8px 6px;font:600 .72rem/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+nav h2{margin:8px 8px 6px;font:600 .72rem/1 "IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
 nav ul{list-style:none;margin:0;padding:0}
 nav a{display:block;padding:8px 10px;border-radius:6px;color:var(--fg);text-decoration:none;font-variant-numeric:tabular-nums}
-nav a:hover{background:#17213d}
-nav a[aria-current="page"]{background:#17213d;color:var(--accent);box-shadow:inset 3px 0 var(--accent)}
+nav a:hover{background:#0f1d20}
+nav a[aria-current="page"]{background:#0f1d20;color:var(--accent);box-shadow:inset 3px 0 var(--accent)}
 nav .month{margin:14px 8px 4px;color:var(--mute);font-size:.8rem;text-transform:capitalize}
 nav .msg{margin:8px;color:var(--mute);font-size:.85rem}
 main{flex:1;min-width:0;position:relative;overflow:hidden}
-#radar{position:absolute;inset:0;width:100%;height:100%;display:block}
+#radar{position:absolute;inset:0;overflow:hidden;--py:0px}
+.rl{position:absolute;left:50%;top:50%;translate:-50% calc(-50% + var(--py));display:block}
+#sweep{border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,transparent 250deg,rgba(94,234,212,.05) 300deg,rgba(94,234,212,.22) 358deg,rgba(94,234,212,.5) 360deg);will-change:transform}
+.crt{position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.14) 0,rgba(0,0,0,.14) 1px,transparent 1px,transparent 3px),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.45) 100%)}
 iframe{position:relative;display:block;width:100%;height:100%;border:0;background:transparent}
 @media(max-width:700px){
   .banner p{display:none}
@@ -49,86 +56,119 @@ iframe{position:relative;display:block;width:100%;height:100%;border:0;backgroun
     <h2>Rapports</h2>
     <div id="list"><p class="msg">Chargement…</p></div>
   </nav>
-  <main><canvas id="radar" aria-hidden="true"></canvas><iframe id="view" title="Rapport TechRadar"></iframe></main>
+  <main>
+    <div id="radar" aria-hidden="true"><canvas id="dial" class="rl"></canvas><div id="sweep" class="rl"></div><canvas id="blips" class="rl"></canvas></div>
+    <iframe id="view" title="Rapport TechRadar"></iframe>
+    <div class="crt" aria-hidden="true"></div>
+  </main>
 </div>
 <noscript><p style="position:fixed;top:var(--bar);left:240px">JavaScript est nécessaire. <a href="feed.xml">Flux Atom</a></p></noscript>
 <script>
 // ---------- Radar d'arrière-plan ----------
+// Cadran peint UNE fois (canvas hors écran) ; le balayage tourne en CSS/WAAPI (compositeur) ;
+// seul un petit canvas redessine les blips, les échos et la poussière de phosphore.
 const Radar = (() => {
-  const cv = document.getElementById('radar'), ctx = cv.getContext('2d');
+  const root = document.getElementById('radar'), dial = document.getElementById('dial'),
+        sweep = document.getElementById('sweep'), cv = document.getElementById('blips'), ctx = cv.getContext('2d');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const COLORS = {alert:'#fb7185',dotnet:'#a78bfa',ia:'#60a5fa',ddd:'#f0abfc',api:'#fbbf24',tool:'#34d399',retail:'#fb923c',conf:'#38bdf8',radar:'#f472b6',def:'#5eead4'};
-  const SPEED = 0.35; // rad/s : un tour en ~18 s
-  let W = 0, H = 0, blips = [], angle = -Math.PI / 2, last = 0, raf = 0;
+  const PERIOD = 16000, TAU = Math.PI * 2; // un tour de balayage = 16 s
+  let D = 0, dpr = 1, blips = [], dust = [], pings = [], nextPing = 0, raf = 0, anim = null;
 
   const hash = str => { let h = 2166136261; for (const c of str) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return (h >>> 0) / 4294967295; };
 
-  // blips = éléments du rapport affiché ; alertes près du centre, le reste plus loin
+  // --- cadran : anneaux, graduations, relèvements, échelle de distance ---
+  function paintDial() {
+    const S = Math.min(2048, Math.max(1024, Math.ceil(D * dpr / 256) * 256)), R = S / 2, k = S / 1600;
+    const c = dial, g = c.getContext('2d');
+    c.width = c.height = S; g.clearRect(0, 0, S, S); g.translate(R, R);
+    g.lineWidth = Math.max(1, k * 1.2);
+    for (let i = 1; i <= 6; i++) {
+      g.strokeStyle = `rgba(94,234,212,${i === 6 ? .34 : .16})`;
+      g.beginPath(); g.arc(0, 0, R * .96 * i / 6, 0, TAU); g.stroke();
+    }
+    g.strokeStyle = 'rgba(94,234,212,.12)';
+    g.beginPath(); g.moveTo(-R * .96, 0); g.lineTo(R * .96, 0); g.moveTo(0, -R * .96); g.lineTo(0, R * .96); g.stroke();
+    for (let d = 0; d < 360; d += 2) {                               // graduations tous les 2°, plus longues tous les 10°
+      const t = d * Math.PI / 180, long = d % 10 === 0, r0 = R * .96, r1 = r0 - R * (long ? .03 : .014);
+      g.strokeStyle = `rgba(94,234,212,${long ? .5 : .24})`;
+      g.beginPath(); g.moveTo(Math.sin(t) * r0, -Math.cos(t) * r0); g.lineTo(Math.sin(t) * r1, -Math.cos(t) * r1); g.stroke();
+    }
+    g.fillStyle = 'rgba(94,234,212,.6)'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.font = `${Math.round(34 * k)}px VT323, "IBM Plex Mono", monospace`;
+    for (let d = 0; d < 360; d += 30) {                              // relèvements 000, 030, ...
+      const t = d * Math.PI / 180, r = R * .89;
+      g.fillText(String(d).padStart(3, '0'), Math.sin(t) * r, -Math.cos(t) * r);
+    }
+    g.fillStyle = 'rgba(94,234,212,.38)'; g.textAlign = 'left';
+    g.font = `${Math.round(26 * k)}px VT323, "IBM Plex Mono", monospace`;
+    for (let i = 1; i <= 5; i++) g.fillText(String(i * 10) + ' NM', R * .96 * i / 6 + 6 * k, -6 * k);   // échelle de distance
+  }
+
+  function layout() {
+    const r = root.getBoundingClientRect();
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    D = Math.max(r.width, r.height) * 1.25;
+    for (const el of [dial, sweep, cv]) { el.style.width = el.style.height = D + 'px'; }
+    cv.width = cv.height = Math.round(D * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    dust = Array.from({length: Math.round(D * D / 9000)}, () => {
+      const a = Math.random() * TAU, r2 = Math.sqrt(Math.random()) * D * .48;
+      return {x: D / 2 + Math.cos(a) * r2, y: D / 2 + Math.sin(a) * r2, r: .5 + Math.random() * 1.1, p: Math.random() * TAU, s: .4 + Math.random() * 1.4};
+    });
+    paintDial();
+    if (reduce) draw(0, 0);
+  }
+
+  // blips = éléments du rapport affiché ; alertes près du centre
   function setItems(items) {
     blips = items.map(({title, cat}) => {
-      const a = hash(title) * Math.PI * 2, r = (cat === 'alert' ? 0.15 : 0.3) + hash(title + '#') * (cat === 'alert' ? 0.3 : 0.62);
-      return {a, r, color: COLORS[cat] || COLORS.def, glow: 0};
+      const a = hash(title) * TAU, rr = (cat === 'alert' ? .12 : .28) + hash(title + '#') * (cat === 'alert' ? .28 : .62);
+      return {a, r: rr, color: COLORS[cat] || COLORS.def, glow: 0};
     });
-    if (reduce) draw();
+    if (reduce) draw(0, 0);
   }
 
-  function resize() {
-    const dpr = devicePixelRatio || 1, r = cv.getBoundingClientRect();
-    W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (reduce) draw();
-  }
+  const beamAngle = () => anim ? ((anim.currentTime % PERIOD) / PERIOD) * TAU : 0;   // 0 = haut, sens horaire
 
-  const norm = a => ((a % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const cx = W / 2, cy = H / 2, R = Math.hypot(W, H) / 2 * 0.95;
-    ctx.lineWidth = 1;
-    // anneaux + axes
-    ctx.strokeStyle = 'rgba(94,234,212,.2)';
-    for (let i = 1; i <= 6; i++) { ctx.beginPath(); ctx.arc(cx, cy, R * i / 6, 0, 7); ctx.stroke(); }
-    ctx.beginPath();
-    for (let k = 0; k < 12; k++) { const t = k * Math.PI / 6; ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(t) * R, cy + Math.sin(t) * R); }
-    ctx.strokeStyle = 'rgba(94,234,212,.1)'; ctx.stroke();
-    // traînée du faisceau
-    if (!reduce) {
-      const N = 90, span = 1.2;
-      for (let i = 0; i < N; i++) {
-        const a1 = angle - span * i / N, a0 = angle - span * (i + 1) / N;
-        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, R, a0, a1 + .01); ctx.closePath();
-        ctx.fillStyle = `rgba(94,234,212,${0.22 * (1 - i / N) ** 2})`; ctx.fill();
-      }
-      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(angle) * R, cy + Math.sin(angle) * R);
-      ctx.strokeStyle = 'rgba(94,234,212,.45)'; ctx.stroke();
+  function draw(now, dt) {
+    const R = D / 2;
+    ctx.clearRect(0, 0, D, D);
+    for (const d of dust) {                                          // poussière de phosphore qui scintille
+      const tw = reduce ? .6 : .5 + .5 * Math.sin(now / 1000 * d.s + d.p);
+      ctx.fillStyle = `rgba(94,234,212,${.05 + .22 * tw})`;
+      ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, TAU); ctx.fill();
     }
-    // blips
+    const beam = beamAngle();
     for (const b of blips) {
-      const x = cx + Math.cos(b.a) * b.r * R, y = cy + Math.sin(b.a) * b.r * R, g = reduce ? .5 : b.glow;
+      if (!reduce) {
+        const prev = ((beam - (dt * TAU) / PERIOD) + TAU) % TAU;
+        if (((beam - b.a) + TAU) % TAU < ((prev - b.a) + TAU) % TAU) b.glow = 1;  // le faisceau vient de passer
+        b.glow = Math.max(0, b.glow - dt / 2800);
+      }
+      const x = R + Math.sin(b.a) * b.r * R, y = R - Math.cos(b.a) * b.r * R, g = reduce ? .5 : b.glow;
       ctx.globalAlpha = .35 + .65 * g; ctx.fillStyle = b.color;
-      ctx.beginPath(); ctx.arc(x, y, 3 + 3 * g, 0, 7); ctx.fill();
-      if (g > .05) { ctx.globalAlpha = g * .5; ctx.strokeStyle = b.color; ctx.beginPath(); ctx.arc(x, y, 6 + 18 * (1 - g), 0, 7); ctx.stroke(); }
+      ctx.fillRect(x - 3 - 2 * g, y - 3 - 2 * g, 6 + 4 * g, 6 + 4 * g);   // blips carrés, esprit écran rétro
+      if (g > .05) { ctx.globalAlpha = g * .5; ctx.strokeStyle = b.color; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(x, y, 8 + 22 * (1 - g), 0, TAU); ctx.stroke(); }
     }
     ctx.globalAlpha = 1;
-  }
-
-  function frame(t) {
-    const dt = Math.min((t - last) / 1000, .1); last = t;
-    const prev = angle; angle += SPEED * dt;
-    for (const b of blips) {
-      b.glow = Math.max(0, b.glow - dt * .45);
-      const d = norm(angle - b.a), dp = norm(prev - b.a);
-      if (d < dp) b.glow = 1; // le faisceau vient de passer sur le blip
+    if (!reduce) {                                                   // échos : anneaux qui s'étendent à intervalles irréguliers
+      if (now > nextPing) { const a = Math.random() * TAU, r = .15 + Math.random() * .7; pings.push({x: R + Math.sin(a) * r * R, y: R - Math.cos(a) * r * R, t: 0}); nextPing = now + 2500 + Math.random() * 5000; }
+      pings = pings.filter(p => p.t < 1);
+      for (const p of pings) { p.t += dt / 2600; ctx.strokeStyle = `rgba(94,234,212,${.5 * (1 - p.t)})`; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.arc(p.x, p.y, 4 + p.t * 46, 0, TAU); ctx.stroke(); }
     }
-    draw(); raf = requestAnimationFrame(frame);
   }
-  const start = () => { if (reduce || raf) return; last = performance.now(); raf = requestAnimationFrame(frame); };
-  const stop = () => { cancelAnimationFrame(raf); raf = 0; };
 
-  new ResizeObserver(resize).observe(cv); resize();
+  let last = 0;
+  function frame(t) { const dt = Math.min(t - last, 100); last = t; draw(t, dt); raf = requestAnimationFrame(frame); }
+  const start = () => { if (reduce || raf) return; last = performance.now(); raf = requestAnimationFrame(frame); anim && anim.play(); };
+  const stop = () => { cancelAnimationFrame(raf); raf = 0; anim && anim.pause(); };
+
+  if (!reduce) anim = sweep.animate([{transform: 'rotate(0deg)'}, {transform: 'rotate(360deg)'}], {duration: PERIOD, iterations: Infinity});
+  new ResizeObserver(layout).observe(root); layout();
+  document.fonts && document.fonts.ready.then(paintDial);           // repeint quand VT323 est chargée
   document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
   start();
-  return {setItems};
+  return {setItems, scroll: y => { root.style.setProperty('--py', `${-y * .06}px`); }};
 })();
 
 // ---------- Index ----------
@@ -183,6 +223,8 @@ const Radar = (() => {
         else items.push({title: el.textContent, cat});
       });
       Radar.setItems(items);
+      Radar.scroll(0);
+      view.contentWindow.addEventListener('scroll', () => Radar.scroll(view.contentWindow.scrollY), {passive: true});
     } catch (e) { /* iframe inaccessible : on garde le fond seul */ }
   });
   addEventListener('hashchange', show);
