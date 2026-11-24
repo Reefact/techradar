@@ -3,7 +3,7 @@
   {
    "date": "2026-11-24",
    "path": "reports/2026/20261124.html",
-   "publies": 37
+   "publies": 36
   }
  ],
  "radar": {
@@ -162,14 +162,14 @@
    "id": "a4",
    "categorie": "alertes",
    "statut": "publie",
-   "titre": "Java4Shell : faille OpenJDK, mise à jour de l'avis"
+   "titre": "Java4Shell : faille critique dans OpenJDK, correctifs disponibles"
   },
   {
    "date": "2026-11-24",
    "id": "a5",
    "categorie": "alertes",
    "statut": "publie",
-   "titre": "Spring : failles critiques corrigées en novembre"
+   "titre": "Spring : grosse série de correctifs de sécurité en novembre"
   },
   {
    "date": "2026-11-24",
@@ -502,8 +502,8 @@
    "date": "2026-11-24",
    "id": "d3",
    "categorie": "distribution",
-   "statut": "publie",
-   "titre": "Fuite de 46 600 enregistrements d'hôtesses de caisse"
+   "statut": "mis-de-cote",
+   "titre": "Fuite revendiquée : 46 600 lignes sur des salariés de supermarchés"
   },
   {
    "date": "2026-11-24",
@@ -533,6 +533,11 @@
    "id": "c3",
    "statut": "publie"
   },
+  "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018": {
+   "date": "2026-11-24",
+   "id": "a4",
+   "statut": "publie"
+  },
   "https://actu17.fr/international/frigos-a-50-degres-dans-700-supermarches-la-justice-francaise-remonte-jusqu-aux-gardiens-de-la-revolution-iraniens.html": {
    "date": "2026-11-24",
    "id": "d1",
@@ -541,6 +546,11 @@
   "https://blog.nimblepros.com/blogs/ef-core-11-migrations/": {
    "date": "2026-11-24",
    "id": "n6",
+   "statut": "publie"
+  },
+  "https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-009.pdf": {
+   "date": "2026-11-24",
+   "id": "d1",
    "statut": "publie"
   },
   "https://claude.com/resources/articles/introducing-claude-ship": {
@@ -601,7 +611,12 @@
   "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees": {
    "date": "2026-11-24",
    "id": "d3",
-   "statut": "publie"
+   "statut": "mis-de-cote"
+  },
+  "https://fuitesinfos.fr/article/2026-11-11-gestool": {
+   "date": "2026-11-24",
+   "id": "d3",
+   "statut": "mis-de-cote"
   },
   "https://github.blog/changelog/2026-11-17-github-copilot-in-jetbrains-ignite-releases/": {
    "date": "2026-11-24",
@@ -636,6 +651,11 @@
   "https://github.com/gulivan/worker755": {
    "date": "2026-11-24",
    "id": "t4",
+   "statut": "publie"
+  },
+  "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md": {
+   "date": "2026-11-24",
+   "id": "a3",
    "statut": "publie"
   },
   "https://github.com/obra/superpowers": {
@@ -713,6 +733,11 @@
    "id": "t3",
    "statut": "publie"
   },
+  "https://openjdk.org/groups/vulnerability/advisories/2026-11-17": {
+   "date": "2026-11-24",
+   "id": "a4",
+   "statut": "publie"
+  },
   "https://pointsdevente.fr/pdv-business/supermarches-pirates-les-deux-tiers-des-visites-perdues-deja-reconquis/": {
    "date": "2026-11-24",
    "id": "d4",
@@ -752,6 +777,16 @@
    "date": "2026-11-24",
    "id": "i6",
    "statut": "candidat"
+  },
+  "https://spring.io/security": {
+   "date": "2026-11-24",
+   "id": "a5",
+   "statut": "publie"
+  },
+  "https://spring.io/security/cve-2026-59273/": {
+   "date": "2026-11-24",
+   "id": "a5",
+   "statut": "publie"
   },
   "https://stalw.art/blog/microsoft-exchange-replacement/": {
    "date": "2026-11-24",
@@ -823,6 +858,11 @@
    "id": "c1",
    "statut": "publie"
   },
+  "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html": {
+   "date": "2026-11-24",
+   "id": "d1",
+   "statut": "publie"
+  },
   "https://www.infoq.com/news/2026/11/asp-net-11-release/": {
    "date": "2026-11-24",
    "id": "p1",
@@ -863,6 +903,11 @@
    "id": "d1",
    "statut": "publie"
   },
+  "https://www.lsa-conso.fr/distributeurs-alimentaires/casino/monoprix/cyberattaque-en-grande-distribution-pres-de-500-magasins-concernes-jusqua-200-000-de-pertes-par-hypermarche.XIAWZQOVLBGVNPXHNFFMIH7OMM.html": {
+   "date": "2026-11-24",
+   "id": "d1",
+   "statut": "publie"
+  },
   "https://www.nuget.org/packages/AutoFixture": {
    "date": "2026-11-24",
    "id": "r5",
@@ -896,6 +941,11 @@
   "https://www.ox.security/blog/breaking-hijacked-releases-of-microsofts-official-agent-framework-steals-azure-and-ci-credentials/": {
    "date": "2026-11-24",
    "id": "a6",
+   "statut": "publie"
+  },
+  "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/": {
+   "date": "2026-11-24",
+   "id": "a4",
    "statut": "publie"
   },
   "https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/": {
