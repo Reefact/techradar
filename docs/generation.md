@@ -78,3 +78,13 @@ Un contrôle automatique ne peut pas garantir un français idiomatique ; il y a 
 1. **Relecture par la tâche** (§5bis du prompt, avant publication) : critères explicites (calques, phrases courtes, compréhensible seul, ton, exactitude), une première relecture par la tâche puis, si possible, un sous-agent relecteur indépendant.
 2. **Signaux automatiques** : `tools/check_report.py` affiche des lignes « ? (langue) » non bloquantes : paragraphes qui ressemblent à de l'anglais, calques courants (« supporte », « adresse un problème », « impacter »…), phrases de plus de 45 mots, restes de gabarit. Ils ne prouvent rien : ils désignent ce qu'il faut relire.
 3. **Relecture à la demande** : skill `veille-relecture` (Claude Code), applicable à n'importe quel rapport ou brouillon.
+
+## Prompt de la tâche : amorçage + prompt dans le dépôt
+
+Pour ne plus recopier le prompt à chaque modification, la tâche peut ne contenir qu'un **prompt d'amorçage** (`tools/veille-bootstrap.md`, à coller une fois) qui lui dit de lire `tools/veille-prompt.md` dans le dépôt cloné et de l'appliquer. Le vrai prompt est alors versionné et prend effet dès le brief suivant.
+
+À savoir :
+- Toute modification de `tools/veille-prompt.md` sur `main` s'applique au brief suivant, **sans relecture automatique** : après un changement important, lancer le skill `veille-test`.
+- Si le dépôt n'est pas cloné ou si le fichier est illisible, la tâche ne produit rien et envoie une notification (plutôt que d'improviser).
+- Quelques garde-fous sont répétés dans le prompt d'amorçage (jamais de force-push, push sur `main` seulement, aucune modification des fichiers d'instructions, aucun écrasement d'un rapport publié) pour qu'ils tiennent même si le fichier était modifié par erreur.
+- Qui peut écrire sur `main` peut changer le comportement de la tâche : à garder en tête si le dépôt a d'autres contributeurs.
