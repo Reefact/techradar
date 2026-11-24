@@ -45,7 +45,7 @@
   "Reefact/conventional-comments-toolkit": [
    {
     "date": "2026-11-24",
-    "id": "p2",
+    "id": "cr1",
     "titre": "Revue de code : « rendre le changement facile d'abord »"
    }
   ]
@@ -297,8 +297,8 @@
   },
   {
    "date": "2026-11-24",
-   "id": "p2",
-   "categorie": "architecture",
+   "id": "cr1",
+   "categorie": "craftsmanship",
    "statut": "publie",
    "titre": "Revue de code : « rendre le changement facile d'abord »",
    "depot": "Reefact/conventional-comments-toolkit"
@@ -621,7 +621,7 @@
   },
   "https://event-driven.io/en/make_the_change_easy_make_the_easy_change/": {
    "date": "2026-11-24",
-   "id": "p2",
+   "id": "cr1",
    "statut": "publie"
   },
   "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees": {
