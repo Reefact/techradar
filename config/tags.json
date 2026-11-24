@@ -17,7 +17,7 @@
   "rappel": {
     "label": "⏰ Rappel",
     "classe": "b-up",
-    "description": "Une échéance importante approche (date limite d'un CFP, fin de support, migration…) : le titre du sujet dit laquelle et quand."
+    "description": "Une échéance importante approche : date limite d'un CFP, fin de support, migration…"
   },
   "revendication": {
     "label": "Revendication",
