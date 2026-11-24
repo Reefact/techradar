@@ -10,6 +10,7 @@ from build_memory import Report   # même parseur que la mémoire
 
 DAYS = "lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche"
 MONTHS = "janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre"
+SUFFIX = " \u2013 Reefact"   # tiret demi-cadratin U+2013, comme le titre de reefact.net
 TITLE_RE = re.compile(rf"^Veille technologique du ({DAYS}) (\d{{1,2}}|1er) ({MONTHS}) (\d{{4}})$")
 FORBIDDEN = re.compile(r"chapter|stime", re.I)
 
@@ -20,11 +21,12 @@ def check(path):
     errs = []
     add = errs.append
     # titre, date
-    if not r.title or not TITLE_RE.match(r.title): add(f"<title> invalide : {r.title!r} (attendu « Veille technologique du mardi 24 novembre 2026 »)")
+    base = r.title[:-len(SUFFIX)] if r.title and r.title.endswith(SUFFIX) else None
+    if base is None or not TITLE_RE.match(base): add(f"<title> invalide : {r.title!r} (attendu « Veille technologique du mardi 24 novembre 2026 \u2013 Reefact », tiret demi-cadratin U+2013)")
     h1 = re.search(r"<h1>(.*?)</h1>", raw, re.S)
-    if not h1 or re.sub(r"\s+", " ", h1.group(1)).strip() != r.title: add("<h1> absent ou différent du <title>")
+    if not h1 or re.sub(r"\s+", " ", h1.group(1)).strip() != base: add("<h1> absent ou différent du <title> sans le suffixe « \u2013 Reefact »")
     if not r.date or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", r.date): add("<meta name=\"date\"> absente ou invalide")
-    m = TITLE_RE.match(r.title or "")
+    m = TITLE_RE.match(base or "")
     if m and r.date:
         mois = MONTHS.split("|").index(m.group(3)) + 1; jour = 1 if m.group(2) == "1er" else int(m.group(2))
         if r.date != f"{int(m.group(4)):04d}-{mois:02d}-{jour:02d}": add(f"date meta {r.date} incohérente avec le titre")

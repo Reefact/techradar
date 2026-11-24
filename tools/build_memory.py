@@ -117,7 +117,7 @@ def build():
         r = Report(); r.feed(p.read_text(encoding="utf-8"))
         if not r.date: continue
         rel = p.relative_to(ROOT).as_posix()
-        reports.append({"date": r.date, "path": rel, "title": r.title})
+        reports.append({"date": r.date, "path": rel, "title": (r.title or "").removesuffix(" \u2013 Reefact")})
         def note_url(u, kind, ref):
             urls.setdefault(u["url"], {"first_seen": r.date, "report": rel, "kind": kind, "ref": ref})
         for a in r.articles:

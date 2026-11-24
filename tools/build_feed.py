@@ -27,7 +27,7 @@ for p in sorted((ROOT / "reports").rglob("*.html")):
     if not date:
         print(f"ignoré (pas de <meta name=\"date\">) : {p}", file=sys.stderr)
         continue
-    title = text(re.search(r"<title>(.*?)</title>", t, re.S).group(1))
+    title = text(re.search(r"<title>(.*?)</title>", t, re.S).group(1)).removesuffix(" \u2013 Reefact")   # le suffixe est redondant dans le flux
     tldr = re.search(r'<div class="card tldr">(.*?)</div>', t, re.S)
     items = [text(x) for x in re.findall(r"<li>(.*?)</li>", tldr.group(1), re.S)] if tldr else []
     rel = p.relative_to(ROOT).as_posix()
