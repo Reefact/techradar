@@ -744,7 +744,7 @@
     }
    ],
    "depot": "Reefact/unified-assertions",
-   "meta": "NuGet · juin à juil. 2026 (signal ancien)",
+   "meta": "NuGet · 10 juin et 18 juil. 2026 (signal ancien)",
    "historique": [
     {
      "date": "2026-11-24",
@@ -756,8 +756,15 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
+    },
+    {
+     "date": "2026-11-24T21:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "date de survenance ajoutée (2026-07-18, lue sur l'API NuGet)"
     }
-   ]
+   ],
+   "date": "2026-07-18"
   },
   {
    "id": "n12",
@@ -774,7 +781,7 @@
     }
    ],
    "depot": "Reefact/just-dummies",
-   "meta": "NuGet · juil. 2026 (signal ancien)",
+   "meta": "NuGet · 31 juil. 2026 (signal ancien)",
    "historique": [
     {
      "date": "2026-11-24",
@@ -786,8 +793,15 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
+    },
+    {
+     "date": "2026-11-24T21:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "date de survenance ajoutée (2026-07-31, lue sur l'API NuGet)"
     }
-   ]
+   ],
+   "date": "2026-07-31"
   },
   {
    "id": "n1",
