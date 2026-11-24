@@ -172,12 +172,12 @@ class Donnees(unittest.TestCase):
 
     def test_resume_trop_long_refuse(self):
         day = jour()
-        day["a_retenir"] = [{"section": "urgent", "paragraphes": ["x" * 1701], "sujets": []}]
-        self.assertTrue(any("1700 au plus" in e for e in self.valider(day)))
+        day["a_retenir"] = [{"section": "urgent", "paragraphes": ["x" * 1901], "sujets": []}]
+        self.assertTrue(any("1900 au plus" in e for e in self.valider(day)))
 
     def test_resume_a_la_limite_accepte(self):
         day = jour()
-        day["a_retenir"] = [{"section": "urgent", "paragraphes": ["**" + "x" * 1700 + "**"], "sujets": []}]
+        day["a_retenir"] = [{"section": "urgent", "paragraphes": ["**" + "x" * 1900 + "**"], "sujets": []}]
         self.assertFalse(any("caractères" in e for e in self.valider(day)))
 
     def test_projet_inconnu_refuse(self):
