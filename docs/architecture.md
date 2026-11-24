@@ -29,7 +29,8 @@ Tout est **statique** : pas de base de données, pas de code serveur. Le « back
 | `tools/build_site.sh` | Assemble `dist/` (ce qui est réellement déployé) |
 | `data/memory.json`, `data/notes.md` | Mémoire de la veille côté dépôt (dérivée des rapports) et notes manuelles |
 | `tools/check_report.py` | Valide un rapport ou un brouillon (titre, date, tldr, liens, radar…) |
-| `.claude/skills/` | Skills Claude Code : `promote-draft`, `veille-memoire`, `veille-test` (teste la tâche planifiée), `veille-regenerer` (régénère le rapport d'une date, en brouillon ou en l'écrasant) |
+| `.claude/skills/` | Skills Claude Code : `promote-draft`, `veille-memoire`, `veille-test` (teste la tâche planifiée), `veille-regenerer` (régénère le rapport d'une date, en brouillon ou en l'écrasant), `veille-copier-sujet` (copie des sujets d'un brouillon vers le rapport du même jour) |
+| `tools/merge_topic.py` | Copie des cartes et lignes « En bref » d'un brouillon vers le rapport du même jour (`list` / `copy`, essai à blanc par défaut) |
 | `tools/build_drafts.py` | Génère `drafts.json` (liste des brouillons) pour la page `/drafts/` |
 | `tools/build_memory.py` | Génère `data/memory.json` ; interroge les rappels de CFP et les URL déjà publiées |
 | `tools/report-template.html` | Gabarit que la tâche de veille doit suivre |

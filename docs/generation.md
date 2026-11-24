@@ -92,3 +92,10 @@ Pour ne plus recopier le prompt à chaque modification, la tâche peut ne conten
 ## Jours fériés et lancements manuels
 
 Le saut d'un jour férié ne s'applique qu'à l'exécution **planifiée** (jour ouvré, démarrage entre 05:45 et 07:00 heure de Paris). Tout lancement manuel (« Run now », ou un jour/une heure hors planning) produit toujours un rapport : on peut donc forcer un brief n'importe quand. Limite : un lancement manuel un jour férié entre 05:45 et 07:00 serait pris pour l'exécution planifiée et sauté ; le relancer après 07:00.
+
+## Copier des sujets d'un brouillon vers le rapport
+
+Plutôt que de remplacer tout le rapport, on peut n'y reprendre que certains sujets d'un brouillon du même jour : skill `veille-copier-sujet`, qui s'appuie sur `tools/merge_topic.py`.
+- `python3 tools/merge_topic.py list <brouillon>` classe les cartes (nouvelles, différentes, identiques) et les lignes « En bref » nouvelles.
+- `python3 tools/merge_topic.py copy <brouillon> --card a7,n4 --brief 1 [--replace NOUVEAU=ANCIEN] [--apply]` : essai à blanc par défaut ; avec `--apply`, la carte est insérée dans la bonne catégorie (créée si besoin, dans l'ordre habituel), reçoit un identifiant libre, et le sommaire est mis à jour. La copie est refusée si elle introduit une nouvelle erreur de `check_report.py`.
+- Non gérés : cartes de conférence (tableau à mettre à jour à la main), « À retenir aujourd'hui » et pied de page.
