@@ -134,7 +134,7 @@ const Radar = (() => {
   }
   if (!reports.length) { list.innerHTML = `<p class="msg">Aucun ${DOSSIER ? 'dossier' : 'rapport'} pour le moment.</p>`; return; }
 
-  const fmtDay = d => new Date(d + 'T12:00:00').toLocaleDateString('fr-FR', {weekday: 'short', day: 'numeric'});
+  const fmtDay = d => new Date(d + 'T12:00:00').toLocaleDateString('fr-FR', {weekday: 'long', day: 'numeric'});
   const fmtMonth = d => new Date(d + 'T12:00:00').toLocaleDateString('fr-FR', {month: 'long', year: 'numeric'});
   let html = '', month = '';
   for (const r of reports) {
