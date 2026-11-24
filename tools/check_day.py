@@ -155,7 +155,7 @@ def check(path, contre=None, partiel=False):
             if s["categorie"] == "conferences" and not s.get("conference"): E(f"{where} : conférence publiée sans bloc « conference » (dates, lieu, cfp)")
         errs.extend(check_verification(s, where, day, cfg))
 
-    # ----- volumes : 15 publiés au plus ; les prioritaires (alerte récente, rappel) passent devant, hors plafonds de catégorie
+    # ----- volumes : 15 publiés au plus hors prioritaires ; les prioritaires (alerte récente, rappel) s'ajoutent, hors plafonds
     pub = published(day)
     rap = per.get("rapport", {})
     seuil = rapport_precedent(day)
@@ -163,8 +163,8 @@ def check(path, contre=None, partiel=False):
     prio = [s for s in pub if ("alerte" in tagset(s) and (s.get("date") or "") >= seuil) or "rappel" in tagset(s)]
     autres = [s for s in pub if s not in prio]
     cap = rap.get("max_publies")
-    if cap and not legacy and len(autres) > max(0, cap - len(prio)):
-        E(f"{len(pub)} sujets publiés ({len(prio)} prioritaire(s) : alerte récente ou rappel) : {cap} au plus, dépassement permis seulement par les prioritaires")
+    if cap and not legacy and len(autres) > cap:
+        E(f"{len(autres)} sujets publiés hors prioritaires (alerte récente, rappel) : {cap} au plus")
     for k, c in cats.items():
         n = sum(1 for s in pub if s["categorie"] == k)
         hors_prio = sum(1 for s in autres if s["categorie"] == k)

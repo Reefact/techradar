@@ -17,9 +17,9 @@
   ],
   "rapport": {
     "max_publies": 15,
-    "volume": "15 sujets publiés au plus (max_publies), pour un rapport qui se lit en 10 à 15 minutes ; moins les jours calmes, sans jamais remplir.",
-    "prioritaires": "Sujets prioritaires : une alerte récente (tag alerte et date postérieure ou égale au rapport précédent, ☄️), quelle que soit sa catégorie, et un rappel de conférence (tag rappel). Ils passent avant tous les autres, ne comptent pas dans les plafonds de catégorie, et peuvent faire dépasser max_publies seulement s'ils sont plus nombreux que les places.",
-    "arbitrage": "Au-delà des prioritaires, les places restantes vont aux meilleurs sujets, dans la limite des plafonds de config/categories.json (max) ; à intérêt égal, le poids de la catégorie (poids, 3 = le plus important) départage. Les minimums sont à 0 : une catégorie sans rien d'intéressant reste vide.",
+    "volume": "15 sujets publiés au plus hors prioritaires (max_publies), pour un rapport qui se lit en 10 à 15 minutes ; moins les jours calmes, sans jamais remplir.",
+    "prioritaires": "Sujets prioritaires : une alerte récente (tag alerte et date postérieure ou égale au rapport précédent, ☄️), quelle que soit sa catégorie, et un rappel de conférence (tag rappel). Ils sont toujours publiés, en plus des 15 : ils ne prennent aucune place aux autres sujets et ne comptent pas dans les plafonds de catégorie. Le total publié peut donc dépasser 15 ces jours-là.",
+    "arbitrage": "Les 15 places vont aux meilleurs sujets non prioritaires, dans la limite des plafonds de config/categories.json (max) ; à intérêt égal, le poids de la catégorie (poids, 3 = le plus important) départage. Les minimums sont à 0 : une catégorie sans rien d'intéressant reste vide.",
     "fraicheur": "Un sujet publié est récent : sa date est dans la fenêtre de recherche (voir « fenetre »). Sinon il reste candidat, sauf raison écrite dans « hors_fenetre ». Les conférences (déclencheurs) ne sont pas concernées.",
     "a_retenir": {
       "description": "« À retenir aujourd'hui » : résumé rédigé du rapport, en sections (voir tools/veille-prompt.md, §4). cible_caracteres est la consigne donnée à la tâche (un maximum, pas un objectif) ; max_caracteres est le plafond vérifié par check_day.py, volontairement absent du prompt (marge de sécurité).",

@@ -216,17 +216,20 @@ class Donnees(unittest.TestCase):
         day["config"] = {"commit": "test"}
         return day
 
-    def test_plus_de_15_publies_refuse(self):
+    def test_plus_de_15_publies_hors_prioritaires_refuse(self):
         day = self.jour_recent()
         for s in day["sujets"]: s["tags"] = [t for t in s.get("tags", []) if (t if isinstance(t, str) else t["tag"]) not in ("alerte", "rappel")]
         self.assertTrue(any("15 au plus" in e for e in self.valider(day)))
 
-    def test_prioritaires_peuvent_depasser_15(self):
+    def test_prioritaires_en_plus_des_15(self):
         day = self.jour_recent()
         pub = [s for s in day["sujets"] if s["statut"] == "publie"]
-        for s in pub[:16]: s["tags"], s["date"] = ["alerte"], day["date"]
-        for s in pub[16:]: s["statut"] = "candidat"
+        for s in pub: s["tags"] = [t for t in s.get("tags", []) if (t if isinstance(t, str) else t["tag"]) not in ("alerte", "rappel")]
+        for s in pub[:5]: s["tags"], s["date"] = ["alerte"], day["date"]      # 5 prioritaires
+        for s in pub[20:]: s["statut"] = "candidat"                           # 15 autres : 20 publiés au total
         self.assertFalse(any("15 au plus" in e for e in self.valider(day)))
+        pub[20]["statut"] = "publie"                                           # 16 autres : refusé
+        self.assertTrue(any("15 au plus" in e for e in self.valider(day)))
 
     def test_sujet_ancien_publie_refuse(self):
         day = self.jour_recent()
