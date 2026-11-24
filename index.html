@@ -27,8 +27,9 @@ nav a:hover{background:#17213d}
 nav a[aria-current="page"]{background:#17213d;color:var(--accent);box-shadow:inset 3px 0 var(--accent)}
 nav .month{margin:14px 8px 4px;color:var(--mute);font-size:.8rem;text-transform:capitalize}
 nav .msg{margin:8px;color:var(--mute);font-size:.85rem}
-main{flex:1;min-width:0}
-iframe{display:block;width:100%;height:100%;border:0;background:var(--bg)}
+main{flex:1;min-width:0;position:relative;overflow:hidden}
+#radar{position:absolute;inset:0;width:100%;height:100%;display:block}
+iframe{position:relative;display:block;width:100%;height:100%;border:0;background:transparent}
 @media(max-width:700px){
   .banner p{display:none}
   .layout{flex-direction:column}
@@ -48,10 +49,89 @@ iframe{display:block;width:100%;height:100%;border:0;background:var(--bg)}
     <h2>Rapports</h2>
     <div id="list"><p class="msg">Chargement…</p></div>
   </nav>
-  <main><iframe id="view" title="Rapport TechRadar"></iframe></main>
+  <main><canvas id="radar" aria-hidden="true"></canvas><iframe id="view" title="Rapport TechRadar"></iframe></main>
 </div>
 <noscript><p style="position:fixed;top:var(--bar);left:240px">JavaScript est nécessaire. <a href="feed.xml">Flux Atom</a></p></noscript>
 <script>
+// ---------- Radar d'arrière-plan ----------
+const Radar = (() => {
+  const cv = document.getElementById('radar'), ctx = cv.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const COLORS = {alert:'#fb7185',dotnet:'#a78bfa',ia:'#60a5fa',ddd:'#f0abfc',api:'#fbbf24',tool:'#34d399',retail:'#fb923c',conf:'#38bdf8',radar:'#f472b6',def:'#5eead4'};
+  const SPEED = 0.35; // rad/s : un tour en ~18 s
+  let W = 0, H = 0, blips = [], angle = -Math.PI / 2, last = 0, raf = 0;
+
+  const hash = str => { let h = 2166136261; for (const c of str) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return (h >>> 0) / 4294967295; };
+
+  // blips = éléments du rapport affiché ; alertes près du centre, le reste plus loin
+  function setItems(items) {
+    blips = items.map(({title, cat}) => {
+      const a = hash(title) * Math.PI * 2, r = (cat === 'alert' ? 0.15 : 0.3) + hash(title + '#') * (cat === 'alert' ? 0.3 : 0.62);
+      return {a, r, color: COLORS[cat] || COLORS.def, glow: 0};
+    });
+    if (reduce) draw();
+  }
+
+  function resize() {
+    const dpr = devicePixelRatio || 1, r = cv.getBoundingClientRect();
+    W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (reduce) draw();
+  }
+
+  const norm = a => ((a % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const cx = W / 2, cy = H / 2, R = Math.hypot(W, H) / 2 * 0.95;
+    ctx.lineWidth = 1;
+    // anneaux + axes
+    ctx.strokeStyle = 'rgba(94,234,212,.2)';
+    for (let i = 1; i <= 6; i++) { ctx.beginPath(); ctx.arc(cx, cy, R * i / 6, 0, 7); ctx.stroke(); }
+    ctx.beginPath();
+    for (let k = 0; k < 12; k++) { const t = k * Math.PI / 6; ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(t) * R, cy + Math.sin(t) * R); }
+    ctx.strokeStyle = 'rgba(94,234,212,.1)'; ctx.stroke();
+    // traînée du faisceau
+    if (!reduce) {
+      const N = 90, span = 1.2;
+      for (let i = 0; i < N; i++) {
+        const a1 = angle - span * i / N, a0 = angle - span * (i + 1) / N;
+        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, R, a0, a1 + .01); ctx.closePath();
+        ctx.fillStyle = `rgba(94,234,212,${0.22 * (1 - i / N) ** 2})`; ctx.fill();
+      }
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(angle) * R, cy + Math.sin(angle) * R);
+      ctx.strokeStyle = 'rgba(94,234,212,.45)'; ctx.stroke();
+    }
+    // blips
+    for (const b of blips) {
+      const x = cx + Math.cos(b.a) * b.r * R, y = cy + Math.sin(b.a) * b.r * R, g = reduce ? .5 : b.glow;
+      ctx.globalAlpha = .35 + .65 * g; ctx.fillStyle = b.color;
+      ctx.beginPath(); ctx.arc(x, y, 3 + 3 * g, 0, 7); ctx.fill();
+      if (g > .05) { ctx.globalAlpha = g * .5; ctx.strokeStyle = b.color; ctx.beginPath(); ctx.arc(x, y, 6 + 18 * (1 - g), 0, 7); ctx.stroke(); }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function frame(t) {
+    const dt = Math.min((t - last) / 1000, .1); last = t;
+    const prev = angle; angle += SPEED * dt;
+    for (const b of blips) {
+      b.glow = Math.max(0, b.glow - dt * .45);
+      const d = norm(angle - b.a), dp = norm(prev - b.a);
+      if (d < dp) b.glow = 1; // le faisceau vient de passer sur le blip
+    }
+    draw(); raf = requestAnimationFrame(frame);
+  }
+  const start = () => { if (reduce || raf) return; last = performance.now(); raf = requestAnimationFrame(frame); };
+  const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+
+  new ResizeObserver(resize).observe(cv); resize();
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+  start();
+  return {setItems};
+})();
+
+// ---------- Index ----------
 (async () => {
   const list = document.getElementById('list'), view = document.getElementById('view');
   const ATOM = 'http://www.w3.org/2005/Atom';
@@ -89,6 +169,22 @@ iframe{display:block;width:100%;height:100%;border:0;background:var(--bg)}
     if (view.src !== target) view.src = target;
     document.title = `TechRadar — ${r.date}`;
   }
+  // Quand le rapport est chargé : fond transparent (le radar reste visible) + blips tirés de son sommaire.
+  view.addEventListener('load', () => {
+    try {
+      const doc = view.contentDocument;
+      const st = doc.createElement('style');
+      st.textContent = 'html,body{background:transparent!important}body::before{display:none!important}';
+      doc.head.appendChild(st);
+      const items = [];
+      let cat = '';
+      doc.querySelectorAll('.toc > .badge, .toc > a.item').forEach(el => {
+        if (el.classList.contains('badge')) cat = ([...el.classList].find(c => c.startsWith('b-')) || '').slice(2);
+        else items.push({title: el.textContent, cat});
+      });
+      Radar.setItems(items);
+    } catch (e) { /* iframe inaccessible : on garde le fond seul */ }
+  });
   addEventListener('hashchange', show);
   show();
 })();
