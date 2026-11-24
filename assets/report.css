@@ -63,6 +63,7 @@ details.card[open]{border-color:#2a4b50}
 .body{padding:0 18px 14px}
 .body>p:first-child{margin-top:2px}
 .fresh{margin-right:6px;cursor:default;font-size:1.05em}
+.projet{cursor:default;font-size:1.05em;line-height:1}
 .src{font-size:.88rem;overflow-wrap:anywhere}
 .foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:12px}
 .foot .actions{display:flex;flex-wrap:wrap;gap:10px;margin-left:auto}

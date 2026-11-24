@@ -170,7 +170,7 @@ def projet_badge(s, cfg):
     nom = p.get("nom") or s["depot"].split("/")[-1]
     # sur la carte, seule l'icône : le nom du projet est dans l'infobulle (le filtre « Projet » affiche les noms)
     aide = f"Projet {nom}" + (f" ({p['theme']})" if p.get("theme") else "") + f" : dépôt {s['depot']}"
-    return f'<span class="badge b-projet" title="{E(aide)}" aria-label="{E(aide)}">📦</span>'
+    return f'<span class="projet" title="{E(aide)}" aria-label="{E(aide)}">📦</span>'   # icône seule, comme ☄️
 
 
 def card(s, cfg, seuil, dossier=False, date_jour=""):
