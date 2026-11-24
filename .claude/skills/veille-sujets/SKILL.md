@@ -18,7 +18,7 @@ La configuration vit dans `config/` ; la tâche planifiée la relit à chaque ex
 | Sources à privilégier, à toujours consulter, à ignorer | `config/sujets/sources.json` |
 | Sources de référence (dispensent de vérification), catégories à risque, règle de vérification des affirmations | `config/sujets/sources.json`, bloc `verification` (voir `tools/veille-verification.md`) |
 | Consigne, sources, « toujours suivre », « exclure » d'une catégorie | `config/sujets/recherche/<catégorie>.json` |
-| Outils du moment (sources de découverte, composition) | `config/sujets/outils.json` |
+| Outils (sources de découverte, composition) | `config/sujets/outils.json` |
 | Tes projets (dépôt, thème, concurrents à surveiller), projets exclus ; ce sont eux qui donnent le badge 📦 et les thèmes prioritaires | `config/sujets/projets.json` |
 | Conférences toujours suivies ou exclues, déclencheurs, seuils de rappel | `config/sujets/conferences.json` |
 

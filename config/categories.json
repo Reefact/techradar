@@ -50,7 +50,7 @@
     "description": "Conception d'API, OpenAPI, événementiel, monolithe modulaire, microservices, patterns, retours de terrain publiés."
   },
   "outils": {
-    "label": "Outils du moment",
+    "label": "Outils",
     "carte": "Outil",
     "classe": "b-tool",
     "prefixe": "t",
