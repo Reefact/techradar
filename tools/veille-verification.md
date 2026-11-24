@@ -16,6 +16,17 @@ Ce qui compte, c'est **la source qui porte l'affirmation**. Un article du Monde 
 
 Dans les catégories à risque (`categories_a_risque`), le validateur exige une vérification pour tout sujet publié **sans aucune source de référence**. Si le fait est annoncé par son auteur (communiqué repris par un site non référencé), mets à la place `"verification_non_requise": "<raison>"`.
 
+## Rebaser le sujet sur une source fiable
+
+Le but n'est pas d'écarter un sujet réel parce que sa première source est faible, mais de le **rebaser** sur la meilleure source disponible. L'agent cherche donc, pour le même fait, une source primaire ou de référence (avis de l'éditeur, CERT, communiqué, AFP, presse de référence). S'il en trouve une :
+- elle devient la **première source** du sujet (la source d'origine reste citée après) ;
+- le titre, le résumé, la ligne `meta` et les `details` sont réécrits **à partir d'elle** ;
+- ce que seule la source d'origine affirmait va dans `retirees`.
+
+**Revendications.** Une fuite ou une attaque revendiquée (forum, site de rançongiciel) est un fait vérifiable : l'annonce existe ou non. Si aucune source fiable ne confirme l'incident mais qu'**au moins deux sources indépendantes** ont constaté et analysé l'annonce elle-même (pas une reprise l'une de l'autre), le sujet est publiable **comme revendication** : tag `revendication`, titre qui le dit (« Fuite revendiquée : … », « … revendique … »), résumé qui attribue chaque chiffre à qui l'avance, et précise qu'aucune confirmation n'a été trouvée. Le verdict est alors `vrai` : ce qui est affirmé (la revendication) est prouvé.
+
+Seul un sujet pour lequel on ne trouve **ni source fiable, ni deux constats indépendants** reste `indetermine`.
+
 ## Effet du verdict
 
 Le verdict est **binaire**, pour le sujet comme pour chaque affirmation.
@@ -24,7 +35,7 @@ Le verdict est **binaire**, pour le sujet comme pour chaque affirmation.
 |---|---|
 | `vrai` : le cœur de l'information est prouvé | publiable ; le résumé ne garde **que** les affirmations prouvées |
 | `faux` : l'information est démentie | `ecarte`, motif `infirme` |
-| `indetermine` : impossible à trancher aujourd'hui | jamais publié : `mis-de-cote`, revérifié à l'exécution suivante |
+| `indetermine` : ni source fiable, ni revendication constatée par deux sources indépendantes | jamais publié : `mis-de-cote`, revérifié à l'exécution suivante |
 
 Une affirmation non prouvée **sort du résumé** et va dans `retirees`. Une revendication peut rester si elle est formulée comme telle (« le groupe X **revendique** 46 000 comptes ») : le fait vérifié est alors l'existence de la revendication. Pour des chiffres divergents, le résumé dit qui annonce quoi, et `ecarts` le consigne.
 
@@ -59,11 +70,13 @@ Lance **un sous-agent par sujet** (outil Agent). Donne-lui **seulement** le titr
 > 4. **Chiffres.** Compare les chiffres entre sources et note les écarts (qui annonce quoi, à quelle date).
 > 5. **Dates.** Vérifie que l'information n'est pas ancienne et republiée.
 > 6. **Démentis.** Cherche explicitement un démenti ou une correction (« fake », « hoax », « démenti », « erratum », mise à jour de l'article).
+> 7. **Meilleure source.** Si la source d'origine n'est pas fiable, cherche activement la meilleure source fiable du même fait (source primaire, CERT, AFP, presse de référence) : c'est sur elle que le sujet sera réécrit. Pour une fuite ou une attaque revendiquée sans confirmation, dis si l'annonce elle-même a été constatée par au moins deux sources indépendantes.
 >
 > Fais plusieurs recherches distinctes (mode « extended » pour les faits récents) et ouvre les pages avant de conclure. Ne prétends jamais avoir lu une page que tu n'as pas pu ouvrir.
 >
 > Réponds en français, avec :
-> - **verdict** : `vrai` si le cœur de l'information est prouvé par une source primaire ou par deux sources de référence indépendantes ; `faux` si elle est démentie ; `indetermine` sinon ;
+> - **verdict** : `vrai` si le cœur de l'information est prouvé par une source primaire ou par deux sources de référence indépendantes, ou, pour une revendication non confirmée, si l'annonce a été constatée par deux sources indépendantes (préciser alors « revendication ») ; `faux` si elle est démentie ; `indetermine` sinon ;
+> - **source_fiable** : la meilleure source fiable trouvée pour le fait (texte court et URL), ou rien ;
 > - **resume** : deux ou trois phrases ;
 > - **source** : nom et nature de la source d'origine (une ligne) ;
 > - **affirmations** prouvées, chacune avec ses preuves (texte court et URL) ;
@@ -74,6 +87,6 @@ Lance **un sous-agent par sujet** (outil Agent). Donne-lui **seulement** le titr
 ## Après la vérification
 
 1. Écris le bloc `verification` dans le sujet (paraphrase, citations de moins de 15 mots).
-2. Si le verdict est `vrai`, réécris le résumé pour qu'il ne contienne que les affirmations prouvées (ou des revendications formulées comme telles). Ajuste le titre s'il affirmait ce qui a été retiré.
+2. Si le verdict est `vrai`, rebase le sujet : la source fiable trouvée passe en tête des `sources`, et le titre, le résumé, `meta` et `details` sont réécrits à partir d'elle, avec seulement les affirmations prouvées. Pour une revendication : tag `revendication` et titre qui le dit.
 3. Applique le statut du tableau ci-dessus et ajoute une entrée à `historique`.
 4. Compte les vérifications dans `journal.verifications_sources` : `{"lancees": n, "vrai": n, "faux": n, "indetermine": n}`.

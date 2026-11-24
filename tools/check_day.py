@@ -41,6 +41,9 @@ def check_verification(s, where, day, cfg):
     if not v.get("resume"): E(f"{where} : vérification sans « resume »")
     if st == "publie" and verdict != "vrai": E(f"{where} : seul un sujet vérifié « vrai » peut être publié (verdict : {verdict})")
     if verdict == "faux" and (st != "ecarte" or s.get("motif") != "infirme"): E(f"{where} : un sujet vérifié « faux » doit être écarté avec le motif « infirme »")
+    tags = [t if isinstance(t, str) else t.get("tag") for t in s.get("tags", [])]
+    if "revendication" in tags and not re.search(r"revendiqu", plain(s.get("titre", "")), re.I):
+        E(f"{where} : sujet tagué « revendication » dont le titre ne dit pas que l'incident est revendiqué")
     if verdict == "vrai":
         src = v.get("source") or {}
         if not src.get("nom") or not src.get("nature"): E(f"{where} : vérification sans « source » (nom, nature)")

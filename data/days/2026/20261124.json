@@ -23,7 +23,7 @@
   {
    "type": "manuelle",
    "debut": "2026-11-24T18:50+01:00",
-   "note": "vérification a posteriori des sources de a3, a4, a5, d1 et d3 : 4 vrais (résumés corrigés), d3 non tranché et retiré du rapport"
+   "note": "vérification a posteriori des sources de a3, a4, a5, d1 et d3 : 4 vrais (résumés corrigés et rebasés sur des sources fiables), d3 publié comme revendication"
   }
  ],
  "journal": {
@@ -32,9 +32,9 @@
   ],
   "verifications_sources": {
    "lancees": 5,
-   "vrai": 4,
+   "vrai": 5,
    "faux": 0,
-   "indetermine": 1
+   "indetermine": 0
   }
  },
  "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact · version complétée, publiée après l'échéance de 8h (Paris)",
@@ -2086,10 +2086,12 @@
   {
    "id": "d3",
    "categorie": "distribution",
-   "statut": "mis-de-cote",
-   "tags": [],
+   "statut": "publie",
+   "tags": [
+    "revendication"
+   ],
    "titre": "Fuite revendiquée : 46 600 lignes sur des salariés de supermarchés",
-   "resume": "Le 11 novembre, un vendeur a proposé sur un forum cybercriminel un fichier d'environ 46 600 lignes sur des salariés de supermarchés français. Selon le site de veille Fuites Infos, environ 9 lignes sur 10 concernent des magasins U, Carrefour n'y apparaît pas, et le fichier viendrait du logiciel de planning Gestool (éditeur Lixora). Aucune confirmation de l'éditeur, d'une enseigne ou d'un média de référence n'a été trouvée.",
+   "resume": "Le 11 novembre, un vendeur a mis en vente sur un forum cybercriminel un fichier d'environ 46 600 lignes sur des salariés de supermarchés français. Deux sites de veille l'ont constaté et analysé chacun de leur côté : FrenchBreaches et Fuites Infos.\n\nSelon Fuites Infos, le fichier compte 42 406 salariés, dont environ 9 sur 10 dans des magasins U, avec quelques Leclerc, Darty, Mr.Bricolage, Weldom, Auchan et trois magasins des Mousquetaires ; Carrefour n'y apparaît pas, contrairement à ce qu'annonce le vendeur. Les données : nom, prénom, poste, magasin, et un e-mail pour environ un quart des lignes. Fuites Infos attribue le fichier au logiciel de planning Gestool (éditeur Lixora). Aucune confirmation de l'éditeur, d'une enseigne ou d'un média de référence n'a été trouvée.",
    "sources": [
     {
      "texte": "FrenchBreaches, 11 nov. 2026",
@@ -2100,8 +2102,8 @@
      "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
     }
    ],
-   "meta": "FrenchBreaches, Fuites Infos · 11 nov. 2026",
-   "pourquoi": "Pourquoi ça compte pour toi : un prestataire partagé par plusieurs enseignes est un point de fuite commun à surveiller.",
+   "meta": "FrenchBreaches, Fuites Infos · 11 nov. 2026 · revendication non confirmée",
+   "pourquoi": "Pourquoi ça compte pour toi : un logiciel RH partagé par des magasins de plusieurs enseignes est un point de fuite commun ; à faire remonter pour qualification, pas comme incident avéré.",
    "date": "2026-11-11",
    "historique": [
     {
@@ -2115,12 +2117,18 @@
      "statut": "mis-de-cote",
      "par": "utilisateur",
      "note": "vérification non tranchée : retiré du rapport, à revérifier"
+    },
+    {
+     "date": "2026-11-24T19:10+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "republié comme revendication (constatée par deux sources indépendantes)"
     }
    ],
    "verification": {
-    "date": "2026-11-24T18:50+01:00",
-    "verdict": "indetermine",
-    "resume": "La mise en vente du fichier sur un forum est établie, mais pas la fuite elle-même ni son périmètre. La liste des enseignes vient du vendeur et est contredite par l'analyse de Fuites Infos. Une confirmation de Lixora est annoncée par un titre de Fuites Infos du 12 novembre, mais l'article n'a pas pu être lu. À revérifier.",
+    "date": "2026-11-24T19:10+01:00",
+    "verdict": "vrai",
+    "resume": "Aucune source fiable (éditeur, enseigne, CNIL, presse de référence) ne confirme l'incident : le sujet est publié comme revendication. L'annonce elle-même a été constatée et analysée par deux sites de veille indépendants, dont les chiffres diffèrent. Un titre de Fuites Infos du 12 novembre annonce une confirmation de l'éditeur Lixora, mais l'article n'a pas pu être lu. Réserve : le réseau de la session n'a pas permis d'ouvrir les pages ; la vérification repose sur les extraits des résultats de recherche.",
     "source": {
      "nom": "FrenchBreaches",
      "nature": "site bénévole de veille sur les fuites de données ; relaie surtout des revendications « crédibles mais non confirmées »"
@@ -2133,6 +2141,15 @@
         "texte": "FrenchBreaches, 11 nov. 2026",
         "url": "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees"
        },
+       {
+        "texte": "Fuites Infos, 11 nov. 2026",
+        "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
+       }
+      ]
+     },
+     {
+      "texte": "Selon l'analyse de Fuites Infos : 42 406 salariés, surtout des magasins U, pas de Carrefour, attribution au logiciel Gestool (Lixora)",
+      "preuves": [
        {
         "texte": "Fuites Infos, 11 nov. 2026",
         "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
