@@ -22,7 +22,7 @@ La configuration vit dans `config/` ; la tâche planifiée la relit à chaque ex
 | Tes projets (dépôt, thème, concurrents à surveiller), projets exclus ; ce sont eux qui donnent le badge 📦 et les thèmes prioritaires | `config/sujets/projets.json` |
 | Conférences toujours suivies ou exclues, déclencheurs, seuils de rappel | `config/sujets/conferences.json` |
 
-Principes : une **clé** de catégorie ou de tag ne se renomme pas (les fichiers du jour la référencent) ; on change son `label`. « Toujours suivre » ≠ « afficher » : l'élément est vérifié à chaque exécution, mais n'apparaît que s'il y a du nouveau. Les conférences s'écrivent par **série** (« Devoxx France »), pas par édition.
+Principes : un bloc affiche **exactement** les libellés déclarés ici (catégorie, tags, projets) : le build échoue sinon (`tools/check_front.py`, `tests/`). une **clé** de catégorie ou de tag ne se renomme pas (les fichiers du jour la référencent) ; on change son `label`. « Toujours suivre » ≠ « afficher » : l'élément est vérifié à chaque exécution, mais n'apparaît que s'il y a du nouveau. Les conférences s'écrivent par **série** (« Devoxx France »), pas par édition.
 
 ## Déroulé
 

@@ -8,7 +8,9 @@ cd "$(dirname "$0")/.."
 command -v python3 >/dev/null 2>&1 || { echo "python3 est nécessaire au rendu" >&2; exit 1; }
 rm -rf dist && mkdir -p dist
 python3 tools/check_config.py                     # configuration cohérente, sinon pas de déploiement
+python3 -m unittest discover -s tests -q          # tests (dont la cohérence config ↔ front), sinon pas de déploiement
 python3 tools/render.py dist "${SITE_URL:-}"      # reports/, dossier/AAAA/, dossier/dossier.json, feed.xml
+python3 tools/check_front.py                      # tout ce qui est affiché est déclaré dans config/, sinon pas de déploiement
 cp index.html dist/
 cp -r assets dist/
 cp dossier/index.html dist/dossier/

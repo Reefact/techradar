@@ -9,6 +9,11 @@
     "classe": "b-up",
     "description": "Sujet déjà publié un jour précédent qui revient pour une grosse nouveauté ; le résumé dit ce qui a changé."
   },
+  "api": {
+    "label": "API",
+    "classe": "b-new",
+    "description": "Sujet qui porte sur la conception ou l'évolution d'une API : contrats, OpenAPI, versioning, rétrocompatibilité."
+  },
   "pepite": {
     "label": "🧪 Pépite",
     "classe": "b-new",

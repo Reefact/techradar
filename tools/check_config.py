@@ -20,7 +20,7 @@ def check():
         return [f"lecture impossible : {e}"]
     for k, c in cats.items():
         if not re.fullmatch(r"[a-z][a-z0-9-]*", k): add(f"categories.json : clé invalide « {k} »")
-        for f in ("label", "carte", "classe", "prefixe", "ordre", "description"):
+        for f in ("label", "classe", "prefixe", "ordre", "description"):
             if f not in c: add(f"categories.json : {k} sans « {f} »")
         if c.get("max") is not None and c.get("min", 0) > c["max"]: add(f"categories.json : {k} a min > max")
     if len({c.get("ordre") for c in cats.values()}) != len(cats): add("categories.json : deux catégories ont le même ordre")

@@ -24,8 +24,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
+import check_front  # noqa: E402
 import check_report  # noqa: E402
 import render  # noqa: E402
+
+
+CHAMPS_SUJET = {"id", "categorie", "statut", "motif", "tags", "titre", "titre_sommaire", "resume", "pourquoi", "sources", "meta", "date",
+                "details", "depot", "conference", "verification", "verification_non_requise", "historique", "note"}
 
 
 def check_verification(s, where, day, cfg):
@@ -85,6 +90,7 @@ def check(path, contre=None, partiel=False):
         for f in ("id", "categorie", "statut", "titre"):
             if not s.get(f): E(f"{where} : champ « {f} » manquant")
         if s.get("id") in ids: E(f"{where} : identifiant en double")
+        for f in sorted(set(s) - CHAMPS_SUJET): E(f"{where} : champ « {f} » inconnu (libellés, tags et projets viennent uniquement de config/)")
         if len(plain(s.get("titre", ""))) > TITRE_MAX: E(f"{where} : titre de {len(plain(s['titre']))} caractères, {TITRE_MAX} au plus : « {plain(s['titre'])} »")
         ids.add(s.get("id"))
         c = cats.get(s.get("categorie"))
@@ -169,6 +175,10 @@ def check(path, contre=None, partiel=False):
         e2, w2 = check_report.check(f.name)
         errs += [f"rendu : {e}" for e in e2]
         warns += [f"langue : {w}" for w in w2]
+    # ----- cohérence avec config/ : rien d'affiché qui ne soit déclaré (catégories, tags, projets, filtres)
+    if not errs:
+        for nom, page in (("rapport", render.render_report(day, cfg)), ("dossier", render.render_dossier(day, cfg))):
+            errs += [f"front : {e}" for e in check_front.check(page, cfg, nom)]
     return errs, warns
 
 

@@ -192,7 +192,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     if frais: attrs += " data-frais"
     if s.get("depot"): attrs += f' data-repo="{E(s["depot"])}"'
     attrs += f' data-ordre="{list(ordered_categories(cats)).index(s["categorie"])}" data-date="{E(s.get("date") or "")}"'
-    badges = (statut_badge(s) if dossier else "") + badge(c["classe"], s.get("etiquette") or c["carte"], c["label"] + " : " + c["description"]) \
+    badges = (statut_badge(s) if dossier else "") + badge(c["classe"], c["label"], c["description"]) \
         + "".join(tag_html(t, tags, icone=True) for t in s.get("tags", [])) + projet_badge(s, cfg)   # catégorie, tags (0 à N), projet (0 ou 1)
     blip = (f'<span class="fresh" title="Récent : paru le {date_courte(s["date"])}, depuis le brief précédent ({date_courte(seuil)}, jour compris)" '
             'aria-label="Récent">☄️</span>') if frais else ""

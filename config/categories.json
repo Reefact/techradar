@@ -1,7 +1,6 @@
 {
   "alertes": {
     "label": "Alertes & incidents",
-    "carte": "Alerte",
     "classe": "b-alert",
     "prefixe": "a",
     "ordre": 1,
@@ -11,7 +10,6 @@
   },
   "dotnet": {
     "label": ".NET",
-    "carte": ".NET",
     "classe": "b-dotnet",
     "prefixe": "n",
     "ordre": 3,
@@ -21,7 +19,6 @@
   },
   "ia": {
     "label": "IA",
-    "carte": "IA",
     "classe": "b-ia",
     "prefixe": "i",
     "ordre": 4,
@@ -31,7 +28,6 @@
   },
   "ddd": {
     "label": "DDD",
-    "carte": "DDD",
     "classe": "b-ddd",
     "prefixe": "dd",
     "ordre": 5,
@@ -39,19 +35,17 @@
     "max": 2,
     "description": "Domain-Driven Design : pratiques, retours d'expérience, publications marquantes. Omise s'il n'y a rien de vraiment nouveau."
   },
-  "api": {
-    "label": "API & architecture",
-    "carte": "API",
+  "architecture": {
+    "label": "Architecture",
     "classe": "b-api",
     "prefixe": "p",
     "ordre": 6,
     "min": 2,
     "max": 4,
-    "description": "Conception d'API, OpenAPI, événementiel, monolithe modulaire, microservices, patterns, retours de terrain publiés."
+    "description": "Architecture logicielle : événementiel, monolithe modulaire, microservices, patterns, conception d'API (tag API), retours de terrain publiés."
   },
   "outils": {
     "label": "Outils",
-    "carte": "Outil",
     "classe": "b-tool",
     "prefixe": "t",
     "ordre": 7,
@@ -61,7 +55,6 @@
   },
   "distribution": {
     "label": "Distribution",
-    "carte": "Distribution",
     "classe": "b-retail",
     "prefixe": "d",
     "ordre": 8,
@@ -71,7 +64,6 @@
   },
   "conferences": {
     "label": "Conférences & CFP",
-    "carte": "Conférence",
     "classe": "b-conf",
     "prefixe": "c",
     "ordre": 9,

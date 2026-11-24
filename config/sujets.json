@@ -32,8 +32,8 @@
       "actif": true
     },
     {
-      "chemin": "sujets/recherche/api.json",
-      "role": "Recherche : API et architecture",
+      "chemin": "sujets/recherche/architecture.json",
+      "role": "Recherche : architecture (et API)",
       "actif": true
     },
     {

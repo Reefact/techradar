@@ -1,0 +1,11 @@
+{
+  "categorie": "architecture",
+  "consigne": "Architecture logicielle : événementiel, monolithe modulaire, microservices, patterns, retours de terrain publiés ; conception d'API (OpenAPI, versioning, rétrocompatibilité), avec le tag « api ».",
+  "sources": [
+    "InfoQ",
+    "blogs de praticiens",
+    "OpenAPI Initiative"
+  ],
+  "toujours_suivre": [],
+  "exclure": []
+}
