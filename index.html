@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="alternate" type="application/atom+xml" title="TechRadar" href="feed.xml">
 <style>
 :root{--bg:#050b0d;--panel:#0a1517;--line:#1b3236;--fg:#dff5ee;--mute:#7fa39d;--accent:#5eead4;--bar:64px;color-scheme:dark}
@@ -42,11 +45,11 @@ nav .month{margin:14px 8px 4px;color:var(--mute);font-size:.8rem;text-transform:
 nav .msg{margin:8px;color:var(--mute);font-size:.85rem}
 main{flex:1;min-width:0;position:relative;overflow:hidden}
 /* Réglage de la présence du radar : 0 = invisible, 1 = plein. */
-#radar{position:absolute;inset:0;overflow:hidden;--py:0px;opacity:var(--radar-opacity,.3)}
+#radar{position:absolute;inset:0;overflow:hidden;--py:0px;opacity:var(--radar-opacity,.7)}
 .rl{position:absolute;left:50%;top:50%;translate:-50% calc(-50% + var(--py));display:block}
-#sweep{border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,transparent 250deg,rgba(94,234,212,.04) 300deg,rgba(94,234,212,.14) 358deg,rgba(94,234,212,.3) 360deg);will-change:transform}
+#sweep{border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,transparent 250deg,rgba(94,234,212,.05) 300deg,rgba(94,234,212,.2) 358deg,rgba(94,234,212,.45) 360deg);will-change:transform}
 .crt{position:absolute;inset:0;pointer-events:none;z-index:2;
-  background:repeating-linear-gradient(0deg,rgba(0,0,0,.07) 0,rgba(0,0,0,.07) 1px,transparent 1px,transparent 3px),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.3) 100%)}
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.1) 0,rgba(0,0,0,.1) 1px,transparent 1px,transparent 3px),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.3) 100%)}
 iframe{position:relative;display:block;width:100%;height:100%;border:0;background:transparent}
 @media(max-width:700px){
   .banner p{display:none}
@@ -218,7 +221,6 @@ const Radar = (() => {
     list.querySelectorAll('a').forEach(a => { if (a.dataset.date === r.date) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     const target = new URL(r.href, location.href).href;
     if (view.src !== target) view.src = target;
-    document.title = `TechRadar — ${r.date}`;
   }
   // Quand le rapport est chargé : fond transparent (le radar reste visible) + blips tirés de son sommaire.
   view.addEventListener('load', () => {
