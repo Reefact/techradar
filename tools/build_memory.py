@@ -72,7 +72,7 @@ def build():
                 c.update({"last_seen": d["date"], "dates": plain(k.get("dates", "")), "place": plain(k.get("lieu", "")), "cfp": plain(k.get("cfp", ""))})
                 c["cfp_deadlines"] = parse_dates(c["cfp"])
                 for t in s.get("tags", []):
-                    if isinstance(t, dict) and t.get("tag") == "rappel-cfp":
+                    if isinstance(t, dict) and t.get("tag") in ("rappel", "rappel-cfp"):
                         m = re.search(r"J-(\d+)", t.get("texte", ""))
                         if m:
                             c["reminders_seen"].append({"date": d["date"], "label": t["texte"], "n": int(m.group(1))})

@@ -73,10 +73,12 @@ def tag_html(t, tags, icone=False):
     """Badge d'un tag. Avec icone=True (en-tête d'un sujet), un tag dont le libellé commence par un emoji
     (« 🧪 Pépite », « ⏰ J-7 ») s'affiche comme l'emoji seul, comme ☄️ et 📦 ; le texte passe dans l'infobulle."""
     d = tags[tag_key(t)]
-    txt = (None if isinstance(t, str) else t.get("texte")) or d["label"]
+    propre = None if isinstance(t, str) else t.get("texte")      # texte propre au sujet (« ⏰ J-7 : CFP »)
+    txt = propre or d["label"]
     m = re.match(r"^(\S+)\s+(.+)$", txt)
     if icone and m and not re.match(r"[\w«(]", m.group(1)):
-        aide = f"{m.group(2)} : {d['description']}"
+        nom = re.sub(r"^\S+\s+", "", d["label"])
+        aide = f"{nom} — {m.group(2)}" if propre else f"{nom} : {d['description']}"
         return f'<span class="ico" title="{E(aide)}" aria-label="{E(aide)}">{E(m.group(1))}</span>'
     return badge(d["classe"], txt, d["description"])
 
@@ -256,7 +258,7 @@ def filters(sujets, cfg, seuil, dossier=False):
     if nf: tchips.append(chip("frais", "b-fresh", "☄️ Récent", aide_recent(seuil), nf))
     for k, t in tags.items():
         n = sum(1 for s in sujets if k in [tag_key(x) for x in s.get("tags", [])])
-        if n: tchips.append(chip(k, t["classe"], (t["label"].replace("J-{n}", "Rappel CFP") if "{n}" in t["label"] else t["label"]), t["description"], n))
+        if n: tchips.append(chip(k, t["classe"], t["label"], t["description"], n))
     if tchips: groups.append(("tag", "Tag", tchips))
     proj = projets(cfg)   # ordre des groupes : (statut), catégorie, tag, projet
     present_p = [d for d in proj if any(s.get("depot") == d for s in sujets)]
