@@ -36,6 +36,7 @@ class Report(HTMLParser):
         self._brief_ul = False
         self._a = None              # lien en cours : [href, [textes]]
         self._badge = None          # badge en cours : [classes, [textes]]
+        self._in_text = False       # dans un <p>/<dt>/<dd> d'un article
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -52,7 +53,8 @@ class Report(HTMLParser):
         elif tag == "li" and self._brief_ul: self._li = {"text": [], "links": []}
         elif tag == "tr": self._tr = []
         elif tag == "td" and self._tr is not None: self._td = {"text": [], "badges": [], "link": None}
-        elif tag == "p" and self._art is not None: self._art["text"].append("")
+        elif tag in ("p", "dt", "dd") and self._art is not None:
+            self._art["text"].append(""); self._in_text = True
         elif tag == "a":
             self._a = [a.get("href", ""), []]
 
@@ -83,9 +85,10 @@ class Report(HTMLParser):
             self._tr = None
         elif tag == "li" and self._li is not None:
             self.brief.append({"text": norm("".join(self._li["text"])), "links": self._li["links"]}); self._li = None
+        elif tag in ("p", "dt", "dd"): self._in_text = False
         elif tag == "ul": self._brief_ul = False
         elif tag == "article" and self._art is not None:
-            art = self._art; art["text"] = norm(" ".join(art["text"])); self.articles.append(art); self._art = None
+            art = self._art; art["paras"] = [norm(x) for x in art["text"] if norm(x)]; art["text"] = norm(" ".join(art["paras"])); self.articles.append(art); self._art = None
 
     def handle_data(self, d):
         if self._in_title: self.title = norm((self.title or "") + d)
@@ -94,8 +97,8 @@ class Report(HTMLParser):
         if self._a: self._a[1].append(d)
         if self._td is not None: self._td["text"].append(d)
         if self._li is not None: self._li["text"].append(d)
-        if self._art is not None and self._h3 is None and self._badge is None: 
-            if self._art["text"]: self._art["text"][-1] += d
+        if self._art is not None and self._in_text and self._h3 is None and self._badge is None and self._art["text"]:
+            self._art["text"][-1] += d
 
 
 def parse_dates(text):

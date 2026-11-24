@@ -2,6 +2,8 @@
 """Valide qu'un rapport (reports/** ou drafts/**) respecte le gabarit et les règles de la veille.
 
 Usage : python3 tools/check_report.py <fichier.html> [...]      (code retour 1 s'il y a des erreurs)
+Les lignes « ? (langue) » sont des avertissements non bloquants (anglais résiduel, calques, phrases trop longues) :
+ils ne prouvent pas un mauvais français, ils désignent ce que la relecture doit regarder.
 """
 import re, sys
 from pathlib import Path
@@ -13,6 +15,36 @@ MONTHS = "janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|n
 SUFFIX = " \u2013 Reefact"   # tiret demi-cadratin U+2013, comme le titre de reefact.net
 TITLE_RE = re.compile(rf"^Veille technologique du ({DAYS}) (\d{{1,2}}|1er) ({MONTHS}) (\d{{4}})$")
 FORBIDDEN = re.compile(r"chapter|stime", re.I)
+# --- Garde-fous de langue (avertissements, jamais bloquants : ils signalent, la relecture décide) ---
+EN_WORDS = set("the and of with for is are that this from was were has have will been which their they you your our into than then when while also not its it's can't".split())
+CALQUES = [  # (motif, suggestion)
+    (r"\bsupporte(?:nt|r|ra|ront)?\s+(?:le|la|les|l['’]|un|une|des)\b", "« supporter » au sens anglais : préférer « prend en charge »"),
+    (r"\badress(?:e|er|ent)\s+(?:le|la|les|l['’]|un|une|ce|cette)\b", "« adresser » au sens anglais : préférer « traiter », « répondre à »"),
+    (r"\bimpact(?:e|er|ent|é|és|ée|ées)\b", "« impacter » : préférer « toucher », « avoir un effet sur »"),
+    (r"\bopportunités?\b", "« opportunité » au sens de « chance » est un calque : préférer « occasion »"),
+    (r"\bdéfinitivement\b", "« définitivement » pour « definitely » : préférer « clairement », « certainement »"),
+    (r"\bactuellement\s+en\s+cours\b", "pléonasme"),
+]
+
+
+def prose_warnings(r):
+    warns = []
+    for a in r.articles:
+        text = a.get("text", "")
+        for para in a.get("paras", []):
+            words = re.findall(r"[A-Za-zÀ-ÿ'’-]+", para)
+            if len(words) >= 12:
+                en = sum(1 for w in words if w.lower() in EN_WORDS)
+                if en / len(words) >= 0.10: warns.append(f"{a['id']} : paragraphe qui ressemble à de l'anglais ({en}/{len(words)} mots outils anglais) : « {para[:60]}… »")
+        sentences = [x for para in a.get("paras", []) for x in re.split(r"(?<=[.!?])\s+", para) if len(x.split()) > 1]
+        long_ = [x for x in sentences if len(x.split()) > 45]
+        if long_: warns.append(f"{a['id']} : phrase très longue ({len(long_[0].split())} mots) : « {long_[0][:70]}… »")
+        for pat, hint in CALQUES:
+            m = re.search(pat, text, re.I)
+            if m: warns.append(f"{a['id']} : « {m.group(0)} » — {hint}")
+        if re.search(r"\bTODO\b|\{\{|\}\}|\bAAAA\b|JJ/MM", text): warns.append(f"{a['id']} : reste de gabarit ou ponctuation douteuse")
+        if len(text) < 120 and a["category"] not in ("b-conf",): warns.append(f"{a['id']} : résumé très court ({len(text)} caractères)")
+    return warns
 
 
 def check(path):
@@ -58,14 +90,15 @@ def check(path):
         if radar and repo and "," in repo: add(f"radar avec plusieurs dépôts (un article par dépôt) : {a['id']}")
         if not radar and repo: add(f"data-repo sur un article hors radar : {a['id']}")
     if not r.articles: add("aucun article de résumé")
-    return errs
+    return errs, prose_warnings(r)
 
 
 if __name__ == "__main__":
     bad = 0
     for p in sys.argv[1:]:
-        errs = check(p)
+        errs, warns = check(p)
         print(("OK   " if not errs else "ERREURS ") + p)
         for e in errs: print("   -", e)
+        for w in warns: print("   ? (langue)", w)
         bad += bool(errs)
     sys.exit(1 if bad else 0)

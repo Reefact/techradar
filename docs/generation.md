@@ -71,3 +71,10 @@ Aujourd'hui la tâche s'appuie sur l'artefact « Veille — registre ». En para
 Écart connu avec l'artefact : celui-ci indiquait un rappel DevSum « J-14 » envoyé le 24/11 alors que le rapport du jour n'affiche pas de badge ⏰ pour DevSum. La mémoire du dépôt ne connaît que ce que les rapports montrent, donc elle considère ce rappel comme non émis.
 
 Pour basculer la tâche sur cette mémoire : lui faire lire `data/memory.json` et `data/notes.md` à la place de l'artefact (dépend du même accès au dépôt que la publication), puis arrêter de republier l'artefact.
+
+## Qualité du français
+
+Un contrôle automatique ne peut pas garantir un français idiomatique ; il y a donc trois niveaux complémentaires :
+1. **Relecture par la tâche** (§5bis du prompt, avant publication) : critères explicites (calques, phrases courtes, compréhensible seul, ton, exactitude), une première relecture par la tâche puis, si possible, un sous-agent relecteur indépendant.
+2. **Signaux automatiques** : `tools/check_report.py` affiche des lignes « ? (langue) » non bloquantes : paragraphes qui ressemblent à de l'anglais, calques courants (« supporte », « adresse un problème », « impacter »…), phrases de plus de 45 mots, restes de gabarit. Ils ne prouvent rien : ils désignent ce qu'il faut relire.
+3. **Relecture à la demande** : skill `veille-relecture` (Claude Code), applicable à n'importe quel rapport ou brouillon.
