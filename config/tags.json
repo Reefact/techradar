@@ -1,4 +1,9 @@
 {
+  "alerte": {
+    "label": "⚠️ Alerte",
+    "classe": "b-alert",
+    "description": "Demande d'agir vite : faille à corriger, panne en cours, fin de support, rupture annoncée."
+  },
   "nouveau": {
     "label": "Nouveau",
     "classe": "b-new",

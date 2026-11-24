@@ -12,8 +12,8 @@
       "actif": true
     },
     {
-      "chemin": "sujets/recherche/alertes.json",
-      "role": "Recherche : alertes et incidents",
+      "chemin": "sujets/recherche/securite.json",
+      "role": "Recherche : sécurité (et pannes à signaler)",
       "actif": true
     },
     {

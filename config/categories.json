@@ -1,12 +1,12 @@
 {
-  "alertes": {
-    "label": "Alertes",
+  "securite": {
+    "label": "Sécurité",
     "classe": "b-alert",
-    "prefixe": "a",
+    "prefixe": "s",
     "ordre": 1,
     "min": 0,
     "max": null,
-    "description": "Failles de sécurité en cours (Java, .NET, NuGet, npm, supply chain), gros bugs et pannes (Microsoft, Cloudflare, GitHub). Pour chacun : ce qui est touché, versions, correctif, gravité, « te concerne ? ». Section omise s'il n'y a rien."
+    "description": "Sécurité qui touche un développeur .NET et son outillage : failles (Java, .NET, NuGet, npm), attaques, chaîne d'approvisionnement des paquets, correctifs, pratiques et outils. Pour une faille : ce qui est touché, versions, correctif, gravité, « te concerne ? »."
   },
   "dotnet": {
     "label": ".NET",

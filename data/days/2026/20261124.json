@@ -29,6 +29,11 @@
    "type": "manuelle",
    "debut": "2026-11-24T20:00+01:00",
    "note": "catégorie Radar supprimée : r2 → n9, r3 → n10, r4 → n11, r5 → n12 (catégorie .NET, badge du projet) ; p1 et p2 rattachés à leur projet"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-25T00:15+01:00",
+   "note": "catégorie Alertes remplacée par Sécurité (+ tag Alerte) ; catégorie secondaire IA pour les outils à base d'IA"
   }
  ],
  "journal": {
@@ -67,10 +72,12 @@
  ],
  "sujets": [
   {
-   "id": "a3",
-   "categorie": "alertes",
+   "id": "s3",
+   "categorie": "securite",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "alerte"
+   ],
    "titre": "Idunno.AntiCsrf : exécution de code à distance exploitée, sans correctif",
    "resume": "La bibliothèque tierce Idunno.AntiCsrf protège les formulaires ASP.NET WebForms contre les attaques CSRF (falsification de requête inter-sites). Son module HTTP désérialise le jeton envoyé par le client sans clé, donc sans signature ni contrôle d'intégrité. Une seule requête POST non authentifiée suffit à exécuter du code dans le processus IIS (w3wp.exe).\n\nMandiant a publié l'avis MNDT-2026-0048 le 18 novembre (CVE-2026-131914, CVSS 4.0 : 9,3). Il signale une exploitation active, découverte lors d'une réponse à incident. Le projet n'a plus de mainteneur depuis sa dernière version, en décembre 2008 : aucun correctif n'existe. La solution : retirer la bibliothèque et la remplacer par System.Web.Helpers.AntiForgery, par ViewStateUserKey avec un ViewState protégé par MAC, ou par IAntiforgery sous ASP.NET Core.",
    "details": {
@@ -108,6 +115,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "titre raccourci à 72 caractères au plus (avant : « Idunno.AntiCsrf : exécution de code à distance exploitée, aucun correctif »)"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a3 → s3) ; tag Alerte"
     }
    ],
    "date": "2026-11-23",
@@ -210,10 +223,12 @@
    }
   },
   {
-   "id": "a1",
-   "categorie": "alertes",
+   "id": "s1",
+   "categorie": "securite",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "alerte"
+   ],
    "titre": "Fin de support de .NET 8 et .NET 9",
    "resume": "La sortie de .NET 11 a été annoncée le 10 novembre, pendant la .NET Conf (10–13 novembre). Le même jour, .NET 8 (LTS, support à long terme) et .NET 9 (STS, support standard) sont arrivés en fin de support : ils ne reçoivent plus de correctifs de sécurité. Microsoft recommande de migrer vers .NET 10 (LTS, pris en charge jusqu'en novembre 2028) ou vers .NET 11 (STS, 24 mois, jusqu'en novembre 2028).\n\nAvant de migrer vers .NET 11, il faut lire la liste des changements cassants. Les principaux : niveau minimal de processeur relevé, conversions de flottant vers entier saturantes, hôte CLI Native AOT par défaut, OpenAPI 3.2 par défaut et plusieurs changements EF Core (détail dans le résumé .NET 11 plus bas). Passer d'abord par .NET 10 est le chemin le plus sûr pour les services critiques.",
    "details": {
@@ -234,15 +249,24 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a1 → s1) ; catégorie secondaire .NET ; tag Alerte"
     }
    ],
-   "date": "2026-11-10"
+   "date": "2026-11-10",
+   "categorie_secondaire": "dotnet"
   },
   {
-   "id": "a4",
-   "categorie": "alertes",
+   "id": "s4",
+   "categorie": "securite",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "alerte"
+   ],
    "titre": "Java4Shell : faille critique dans OpenJDK, correctifs disponibles",
    "resume": "La faille CVE-2026-114938, surnommée « Java4Shell », est une corruption mémoire dans le décodeur Base64 optimisé de la JVM HotSpot. Elle peut mener à une exécution de code à distance sans authentification. Elle touche les lignes 17 (à partir de 17.0.6), 21, 25 et 27, seulement sur les processeurs x86-64 dotés d'AVX-512 VBMI ; ARM64 n'est pas concerné.\n\nOpenJDK et Oracle ont publié les correctifs le 17 novembre : 17.0.21.1, 21.0.13.1, 25.0.5.1 et 27.0.1.1. GraalVM et Corretto ont suivi, et Keycloak a publié des images corrigées. Red Hat propose un contournement provisoire : l'option JVM `-XX:-UseBASE64Intrinsics`. Une preuve de concept qui fait planter la JVM circule, et des tentatives d'exploitation sont observées depuis le 18 novembre, sans compromission confirmée. Pense aux produits qui embarquent leur propre JDK.",
    "details": {
@@ -282,6 +306,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a4 → s4) ; tag Alerte"
     }
    ],
    "date": "2026-11-21",
@@ -444,10 +474,12 @@
    }
   },
   {
-   "id": "a5",
-   "categorie": "alertes",
+   "id": "s5",
+   "categorie": "securite",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "alerte"
+   ],
    "titre": "Spring : grosse série de correctifs de sécurité en novembre",
    "resume": "Spring a publié le 19 novembre une importante série d'avis de sécurité, sur de nombreux projets. Les plus marquants :\n\n- CVE-2026-59367 (critique) : le serveur LDAP de test de spring-ldap-test écoute sur toutes les interfaces, avec un identifiant administrateur fixe ; corrigé en 4.1.3 et 4.0.7.\n- CVE-2026-59378 (haute) : contournement de l'authentification sur les endpoints de santé d'Actuator avec Jersey ; corrigé dans Spring Boot 4.1.3 et 4.0.10.\n- CVE-2026-123886 (haute) : injection SpEL (Spring Expression Language) dans Spring Data Elasticsearch ; corrigé en 6.1.3 et 6.0.9.\n- CVE-2026-59273 : injection SpEL dans l'ELRequestMatcher de Spring Security, corrigée en 7.1.3 et 7.0.9 ; annoncée à 9,8, elle a été reclassée en sévérité moyenne par Spring le 23 novembre.\n- Failles d'isolation entre locataires dans les vector stores de Spring AI, corrigées en 2.0.3.\n\nSpring Integration est corrigé en 7.1.3 et 7.0.8. Le nombre total de failles varie selon les médias (de 50 à 91) : la liste officielle de spring.io fait foi.",
    "pourquoi": "Pourquoi ça compte pour toi : surtout un sujet pour les équipes Java du groupe. Te concerne : peut-être.",
@@ -477,6 +509,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a5 → s5) ; tag Alerte"
     }
    ],
    "date": "2026-11-23",
@@ -599,10 +637,12 @@
    }
   },
   {
-   "id": "a6",
-   "categorie": "alertes",
+   "id": "s6",
+   "categorie": "securite",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "alerte"
+   ],
    "titre": "Paquets PyPI agent-framework piégés : vol d'identifiants Azure et CI",
    "resume": "Le 17 novembre, deux versions du paquet PyPI officiel agent-framework de Microsoft (1.26.1 et 1.26.2, publiées à environ 33 minutes d'écart) ont été détournées. Elles contiennent un voleur d'identifiants qui s'exécute via un fichier .pth à chaque démarrage de l'interpréteur Python, sans même importer le paquet, et envoie les secrets Azure et CI vers webhook.site.\n\nLes versions ont été mises en quarantaine ; la dernière version saine est la 1.26.0. Les équipes concernées doivent contrôler leurs images CI et leurs environnements, renouveler tous les secrets possiblement exposés et bloquer webhook.site en sortie. Ce n'est pas du .NET, mais cela touche le même écosystème Azure et CI/CD (la gravité « critique » est mon évaluation, pas celle des sources).",
    "pourquoi": "Pourquoi ça compte pour toi : une attaque de plus sur la chaîne d'approvisionnement logicielle (supply chain), visant un paquet « officiel », d'autant plus pertinent avec la nouvelle publication en deux temps de NuGet. Te concerne : peut-être (rappel, antérieur à la fenêtre de 3 jours).",
@@ -622,15 +662,23 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a6 → s6) ; tag Alerte"
     }
    ],
    "date": "2026-11-18"
   },
   {
-   "id": "a2",
-   "categorie": "alertes",
+   "id": "s2",
+   "categorie": "securite",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "alerte"
+   ],
    "titre": "Patch Tuesday de novembre : 1 093 failles, un zero-day Outlook",
    "resume": "Le lot du 10 novembre corrige 1 093 vulnérabilités, surtout dans Windows (733) et Office (174), plus SQL Server (52), SharePoint (27) et Exchange (9). Une seule faille zero-day, exploitée activement : CVE-2026-124194, une usurpation (spoofing) dans Outlook qui divulgue l'empreinte NTLMv2 quand on ouvre un fichier Office piégé. Deux failles notées 9,8 au CVSS : LDAP (exécution à distance sans authentification) et Windows Search.",
    "details": {
@@ -651,6 +699,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a2 → s2) ; tag Alerte"
     }
    ],
    "date": "2026-11-11"
@@ -1153,9 +1207,16 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie secondaire IA"
     }
    ],
-   "date": "2026-11-24"
+   "date": "2026-11-24",
+   "categorie_secondaire": "ia"
   },
   {
    "id": "t2",
@@ -1181,9 +1242,16 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie secondaire IA"
     }
    ],
-   "date": "2026-11-24"
+   "date": "2026-11-24",
+   "categorie_secondaire": "ia"
   },
   {
    "id": "t3",
@@ -1249,9 +1317,16 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie secondaire IA"
     }
    ],
-   "date": "2026-11-24"
+   "date": "2026-11-24",
+   "categorie_secondaire": "ia"
   },
   {
    "id": "d1",
@@ -1704,10 +1779,12 @@
    ]
   },
   {
-   "id": "a7",
-   "categorie": "alertes",
+   "id": "s7",
+   "categorie": "securite",
    "statut": "candidat",
-   "tags": [],
+   "tags": [
+    "alerte"
+   ],
    "titre": ".NET Framework : un bit modifié contourne le contrôle d'intégrité",
    "resume": "James Forshaw, de Google Project Zero, décrit deux contournements fondés sur un défaut de chargement de .NET Framework 4. Quand le chargement normal d'une image échoue, .NET Framework retombe sur une copie exécutée en mémoire qui saute les contrôles d'image.\n\nCe repli a contourné le durcissement des processus de VirtualBox. Ensuite, effacer un seul bit d'en-tête (IMAGE_FILE_EXECUTABLE_IMAGE) fait rejeter l'image par Windows, alors que .NET l'exécute quand même : la règle UMCI (contrôle d'intégrité du code en mode utilisateur) est contournée. L'attaque est locale et passe par un détournement COM.",
    "details": {
@@ -1735,13 +1812,19 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "titre raccourci à 72 caractères au plus (avant : « .NET Framework : un bit modifié suffit à contourner le contrôle d'intégrité du code Windows »)"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a7 → s7) ; tag Alerte"
     }
    ],
    "date": "2026-11-24"
   },
   {
-   "id": "a8",
-   "categorie": "alertes",
+   "id": "s8",
+   "categorie": "securite",
    "statut": "candidat",
    "tags": [],
    "titre": "Actions GitHub : épingler un SHA ne garantit pas l'auteur du code",
@@ -1765,15 +1848,23 @@
      "statut": "candidat",
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a8 → s8)"
     }
    ],
    "date": "2026-11-24"
   },
   {
-   "id": "a9",
-   "categorie": "alertes",
+   "id": "s9",
+   "categorie": "securite",
    "statut": "candidat",
-   "tags": [],
+   "tags": [
+    "alerte"
+   ],
    "titre": "Azure API Management Classic : des secrets ciblés, Microsoft corrige",
    "resume": "L'autorité norvégienne NSM a signalé qu'un acteur inconnu cherchait des jetons, des secrets et des valeurs nommées dans des instances Azure API Management du niveau Classic. Equinor et Skagerak Energi figureraient parmi les victimes.\n\nMicrosoft a fermé la voie d'accès vulnérable le 19 novembre et publié le 21 novembre un guide de rotation des identifiants. L'exposition dépend du respect des bonnes pratiques de sécurité documentées. Aucun identifiant CVE n'est cité.",
    "details": {
@@ -1805,6 +1896,12 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "titre raccourci à 72 caractères au plus (avant : « Azure API Management (niveau Classic) : un acteur cherche des secrets, Microsoft corrige »)"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a9 → s9) ; tag Alerte"
     }
    ],
    "date": "2026-11-24"
@@ -1894,8 +1991,15 @@
      "statut": "candidat",
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "catégorie secondaire IA"
     }
-   ]
+   ],
+   "categorie_secondaire": "ia"
   },
   {
    "id": "t6",
@@ -1927,8 +2031,15 @@
      "date": "2026-11-24T16:43+00:00",
      "statut": "publie",
      "par": "utilisateur"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie secondaire IA"
     }
-   ]
+   ],
+   "categorie_secondaire": "ia"
   },
   {
    "id": "t7",
@@ -2167,8 +2278,15 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "catégorie secondaire IA"
     }
-   ]
+   ],
+   "categorie_secondaire": "ia"
   },
   {
    "id": "t10",
@@ -2315,10 +2433,12 @@
    ]
   },
   {
-   "id": "a10",
-   "categorie": "alertes",
+   "id": "s10",
+   "categorie": "securite",
    "statut": "candidat",
-   "tags": [],
+   "tags": [
+    "alerte"
+   ],
    "titre": "VMware vCenter : nouvelle faille critique d'authentification",
    "resume": "Nouvelle faille critique d'authentification dans vCenter (CVSS 9,8), après un zero-day déjà exploité ; Broadcom corrige 23 failles.",
    "sources": [
@@ -2335,12 +2455,18 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a10 → s10) ; tag Alerte"
     }
    ]
   },
   {
-   "id": "a11",
-   "categorie": "alertes",
+   "id": "s11",
+   "categorie": "securite",
    "statut": "candidat",
    "tags": [],
    "titre": "Rançongiciels : les frameworks offensifs pilotés par agents arrivent",
@@ -2358,6 +2484,12 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a11 → s11)"
     }
    ]
   }

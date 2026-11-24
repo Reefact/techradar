@@ -30,7 +30,8 @@ import render  # noqa: E402
 
 
 CHAMPS_SUJET = {"id", "categorie", "statut", "motif", "tags", "titre", "titre_sommaire", "resume", "pourquoi", "sources", "meta", "date",
-                "details", "depot", "conference", "verification", "verification_non_requise", "historique", "note"}
+                "details", "depot", "conference", "verification", "verification_non_requise", "historique", "note",
+                "categorie_secondaire"}
 
 
 def check_verification(s, where, day, cfg):
@@ -97,6 +98,11 @@ def check(path, contre=None, partiel=False):
         if not c:
             E(f"{where} : catégorie inconnue « {s.get('categorie')} »"); continue
         if s.get("id") and not re.fullmatch(re.escape(c["prefixe"]) + r"\d+", s["id"]): E(f"{where} : l'identifiant doit être « {c['prefixe']} » suivi d'un numéro (catégorie {s['categorie']})")
+        sec = s.get("categorie_secondaire")
+        if sec is not None:
+            if not isinstance(sec, str) or sec not in cats: E(f"{where} : catégorie secondaire « {sec} » absente de config/categories.json (une seule, 2 catégories au plus)")
+            elif sec == s["categorie"]: E(f"{where} : catégorie secondaire identique à la principale")
+            elif "conferences" in (sec, s["categorie"]): E(f"{where} : pas de catégorie secondaire avec les conférences")
         st = s.get("statut")
         if st not in STATUTS: E(f"{where} : statut inconnu « {st} »")
         if s.get("date"):

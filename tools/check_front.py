@@ -38,17 +38,21 @@ def check(raw, cfg, nom="page"):
     for m in re.finditer(r'(<details class="card"[^>]*>)\s*<summary class="head"><span class="badges">(.*?)</span><h3', raw, re.S):
         tag, inner = m.group(1), m.group(2)
         sid = ATTR(tag, "id") or "?"
-        cat, repo = ATTR(tag, "data-cat"), ATTR(tag, "data-repo")
+        ckeys, repo = (ATTR(tag, "data-cat") or "").split(), ATTR(tag, "data-repo")
         tkeys = (ATTR(tag, "data-tags") or "").split()
         spans = [(cls.split(), H.unescape(title or ""), texte(t)) for cls, title, t in SPAN.findall(inner)]
         if spans and "badge" in spans[0][0] and spans[0][2] in STATUT_LABEL.values():
             spans = spans[1:]                                   # badge de statut (dossier)
-        if cat not in cats:
-            E(f"{sid} : catégorie « {cat} » absente de config/categories.json"); continue
-        c = cats[cat]
-        if not spans or spans[0][2] != c["label"] or c["classe"] not in spans[0][0]:
-            E(f"{sid} : le badge de catégorie doit afficher « {c['label']} » (classe {c['classe']}), trouvé « {spans[0][2] if spans else '—'} »")
-        rest = spans[1:]
+        if not 1 <= len(ckeys) <= 2:
+            E(f"{sid} : {len(ckeys)} catégorie(s), 1 ou 2 attendues"); continue
+        inconnues = [k for k in ckeys if k not in cats]
+        if inconnues:
+            E(f"{sid} : catégorie « {inconnues[0]} » absente de config/categories.json"); continue
+        for i, k in enumerate(ckeys):
+            c = cats[k]
+            if len(spans) <= i or spans[i][2] != c["label"] or c["classe"] not in spans[i][0]:
+                E(f"{sid} : le badge de catégorie doit afficher « {c['label']} » (classe {c['classe']}), trouvé « {spans[i][2] if len(spans) > i else '—'} »")
+        rest = spans[len(ckeys):]
         for k in tkeys:
             if k not in tags:
                 E(f"{sid} : tag « {k} » absent de config/tags.json"); continue

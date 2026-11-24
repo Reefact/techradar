@@ -17,7 +17,7 @@ from datetime import date as Date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import (SUFFIX, STATUTS, blocks, config, day_files, inline, load_json, ordered_categories, projets,  # noqa: E402
+from veille_lib import (SUFFIX, STATUTS, blocks, config, day_files, inline, load_json, ordered_categories, projets, categories_de,  # noqa: E402
                         plain, published, titre_jour)
 
 E = lambda s: html.escape(s or "", quote=True)
@@ -188,11 +188,11 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     c = cats[s["categorie"]]
     st = s.get("statut", "candidat")
     frais = bool(s.get("date")) and s["date"] >= seuil
-    attrs = f' data-cat="{E(s["categorie"])}" data-classe="{E(c["classe"])}" data-tags="{E(" ".join(tag_key(t) for t in s.get("tags", [])))}" data-statut="{st}"'
+    attrs = f' data-cat="{E(" ".join(categories_de(s)))}" data-classe="{E(c["classe"])}" data-tags="{E(" ".join(tag_key(t) for t in s.get("tags", [])))}" data-statut="{st}"'
     if frais: attrs += " data-frais"
     if s.get("depot"): attrs += f' data-repo="{E(s["depot"])}"'
     attrs += f' data-ordre="{list(ordered_categories(cats)).index(s["categorie"])}" data-date="{E(s.get("date") or "")}"'
-    badges = (statut_badge(s) if dossier else "") + badge(c["classe"], c["label"], c["description"]) \
+    badges = (statut_badge(s) if dossier else "") + "".join(badge(cats[k]["classe"], cats[k]["label"], cats[k]["description"]) for k in categories_de(s)) \
         + "".join(tag_html(t, tags, icone=True) for t in s.get("tags", [])) + projet_badge(s, cfg)   # catégorie, tags (0 à N), projet (0 ou 1)
     blip = (f'<span class="fresh" title="Récent : paru le {date_courte(s["date"])}, depuis le brief précédent ({date_courte(seuil)}, jour compris)" '
             'aria-label="Récent">☄️</span>') if frais else ""
@@ -249,8 +249,8 @@ def filters(sujets, cfg, seuil, dossier=False):
     if dossier:
         groups.append(("statut", "Statut", [chip(st, STATUT_CLASSE[st], STATUT_LABEL[st], STATUT_AIDE[st], n)
                                             for st in STATUTS if (n := sum(1 for s in sujets if s.get("statut") == st))]))
-    present = [k for k in ordered_categories(cats) if any(s["categorie"] == k for s in sujets)]
-    groups.append(("cat", "Catégorie", [chip(k, cats[k]["classe"], cats[k]["label"], cats[k]["description"], sum(1 for s in sujets if s["categorie"] == k)) for k in present]))
+    present = [k for k in ordered_categories(cats) if any(k in categories_de(s) for s in sujets)]
+    groups.append(("cat", "Catégorie", [chip(k, cats[k]["classe"], cats[k]["label"], cats[k]["description"], sum(1 for s in sujets if k in categories_de(s))) for k in present]))
     tchips = []
     nf = sum(1 for s in sujets if s.get("date") and s["date"] >= seuil)
     if nf: tchips.append(chip("frais", "b-fresh", "☄️ Récent", aide_recent(seuil), nf))

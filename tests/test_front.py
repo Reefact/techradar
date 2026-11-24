@@ -45,7 +45,8 @@ class Front(unittest.TestCase):
         rapport, _ = self.rendu()
         n = rapport.count('<details class="card"')
         faux = rapport.replace('<span class="badges">', '<span class="badges"><span class="badge b-new" title="x">Inventé</span>')
-        self.assertEqual(len([e for e in self.erreurs([faux]) if "badge de catégorie" in e]), n)
+        blocs = {e.split(" : ")[1] for e in self.erreurs([faux]) if "badge de catégorie" in e}
+        self.assertEqual(len(blocs), n)
 
     def test_libelle_de_categorie_different(self):
         rapport, _ = self.rendu()
@@ -61,6 +62,17 @@ class Front(unittest.TestCase):
         cfg["categories"]["renommee"] = cfg["categories"].pop(k)
         rapport, _ = self.rendu()
         self.assertTrue(any("absente de config/categories.json" in e for e in self.erreurs([rapport], cfg)))
+
+    def test_categorie_secondaire_affichee_et_filtrable(self):
+        day = copy.deepcopy(self.day)
+        s = next(s for s in day["sujets"] if s["statut"] == "publie" and not s.get("categorie_secondaire") and s["categorie"] != "conferences")
+        autre = next(k for k in self.cfg["categories"] if k not in (s["categorie"], "conferences"))
+        s["categorie_secondaire"] = autre
+        rapport, _ = self.rendu(day)
+        self.assertEqual(self.erreurs([rapport]), [])
+        self.assertIn(f'data-cat="{s["categorie"]} {autre}"', rapport)
+        faux = rapport.replace(f'data-cat="{s["categorie"]} {autre}"', f'data-cat="{s["categorie"]} {autre} ia"', 1)
+        self.assertTrue(any("1 ou 2 attendues" in e for e in self.erreurs([faux])))
 
     def test_tag_non_declare(self):
         rapport, _ = self.rendu()
@@ -130,6 +142,16 @@ class Donnees(unittest.TestCase):
         day = jour()
         day["sujets"][0]["categorie"] = "api"
         self.assertTrue(any("catégorie inconnue" in e for e in self.valider(day)))
+
+    def test_categorie_secondaire_inconnue_refusee(self):
+        day = jour()
+        day["sujets"][0]["categorie_secondaire"] = "inventee"
+        self.assertTrue(any("catégorie secondaire" in e for e in self.valider(day)))
+
+    def test_trois_categories_impossible(self):
+        day = jour()
+        day["sujets"][0]["categorie_secondaire"] = ["ia", "dotnet"]
+        self.assertTrue(any("catégorie secondaire" in e for e in self.valider(day)))
 
     def test_projet_inconnu_refuse(self):
         day = jour()

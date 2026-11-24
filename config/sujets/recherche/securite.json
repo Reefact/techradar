@@ -1,0 +1,13 @@
+{
+  "categorie": "securite",
+  "consigne": "Sécurité qui peut toucher un développeur .NET ou son outillage : failles en cours, attaques, chaîne d'approvisionnement des paquets, correctifs, et sujets de fond (pratiques, outils, authentification). Pour une faille : ce qui est touché, versions, correctif, gravité, « te concerne ? » (oui / peut-être / non). Surveiller aussi les gros incidents et pannes (Microsoft, Cloudflare, GitHub) : ils vont dans la catégorie de la technologie concernée, avec le tag « alerte ».",
+  "sources": [
+    "avis de sécurité éditeurs (Microsoft MSRC, GitHub Advisory, NuGet, npm)",
+    "The Hacker News",
+    "SecurityWeek",
+    "IT-Connect",
+    "CISA KEV"
+  ],
+  "toujours_suivre": [],
+  "exclure": []
+}

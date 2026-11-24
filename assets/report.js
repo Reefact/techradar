@@ -12,7 +12,7 @@
     const count = bar.querySelector('.count'), reset = bar.querySelector('.reset'), expand = bar.querySelector('.expand');
     const empty = document.createElement('p'); empty.className = 'empty'; empty.textContent = 'Aucun sujet ne correspond à ces filtres.'; empty.hidden = true;
     sum.after(empty);
-    const values = (el, g) => g === 'cat' ? [el.dataset.cat]
+    const values = (el, g) => g === 'cat' ? el.dataset.cat.split(' ')
       : g === 'statut' ? [el.dataset.statut]
       : g === 'projet' ? [el.dataset.repo || '']
       : (el.dataset.tags || '').split(' ').filter(Boolean).concat('frais' in el.dataset ? ['frais'] : []);

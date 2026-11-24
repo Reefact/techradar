@@ -37,6 +37,11 @@ def projets(cfg):
     return {p["depot"]: p for p in (cfg["sujets"].get("sujets/projets.json") or {}).get("projets", [])}
 
 
+def categories_de(sujet):
+    """Catégories d'un sujet : la principale, puis la secondaire éventuelle (2 au plus)."""
+    return [sujet["categorie"]] + ([sujet["categorie_secondaire"]] if sujet.get("categorie_secondaire") else [])
+
+
 def ordered_categories(cats):
     return sorted(cats, key=lambda k: cats[k]["ordre"])
 
@@ -70,7 +75,7 @@ def verification_requise(sujet, day, cfg):
     v = verif_config(cfg)
     if not v or day.get("date", "") < v.get("depuis", "9999"):
         return False
-    if sujet.get("categorie") not in v.get("categories_a_risque", {}).get("categories", []):
+    if not set(categories_de(sujet)) & set(v.get("categories_a_risque", {}).get("categories", [])):
         return False
     return not any(est_reference(s.get("url"), cfg) for s in sujet.get("sources", []))
 
