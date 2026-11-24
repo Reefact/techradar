@@ -129,6 +129,7 @@ def verif_popover(s):
          f'  <div class="vf-top"><span class="vf-ico vf-{E(verdict)}">{BADGE_CHECK}</span>'
          f'<p class="vf-title" id="{vid}-t">Vérification de l\'information</p>'
          f'<button type="button" class="vf-close" popovertarget="{vid}" popovertargetaction="hide" aria-label="Fermer">×</button></div>',
+         '  <div class="vf-body">',   # seul le corps défile : l'en-tête et le bouton Fermer restent visibles
          f'  <p class="vf-subject">{inline(s["titre"])}</p>',
          f'  <p class="vf-meta"><span class="badge {VERDICT_CLASSE.get(verdict, "b-api")}">{E(VERDICT_LABEL.get(verdict, verdict))}</span> '
          f'vérifié le {E(date_fr(v.get("date")))}</p>']
@@ -151,7 +152,7 @@ def verif_popover(s):
     if v.get("recoupements"):
         o.append('  <p class="vf-h">Recoupements</p>')
         o.append('  <ul class="vf-list">' + "".join(f"<li>{link(r)}</li>" for r in v["recoupements"]) + "</ul>")
-    o.append("</div>")
+    o += ["  </div>", "</div>"]
     return "\n".join(o)
 
 
