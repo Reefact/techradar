@@ -291,6 +291,10 @@ const Radar = (() => {
         else items.push({title: el.textContent, cat});
       });
       Radar.setItems(items);
+      // Liens externes : toujours dans un nouvel onglet (les ancres #… restent dans le rapport).
+      doc.querySelectorAll('a[href]').forEach(l => {
+        if (/^https?:$/.test(l.protocol) && l.origin !== doc.location.origin) { l.target = '_blank'; l.rel = 'noopener'; }
+      });
       addActions(doc, (reports.find(x => new URL(x.href, location.href).href === view.src) || {}).date || '');
       Radar.scroll(0);
       view.contentWindow.addEventListener('scroll', () => Radar.scroll(view.contentWindow.scrollY), {passive: true});

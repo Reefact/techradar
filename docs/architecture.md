@@ -82,3 +82,6 @@ Thème sombre noir-vert, accent turquoise, couleurs par catégorie. Polices Goog
 - **Bouton « Claude Code »** (violet) : sur les cartes qui portent `data-repo="Reefact/nom"` (sujets du radar, plusieurs dépôts séparés par des virgules). Il ouvre `https://claude.ai/code?repositories=…&prompt=…` : dépôt présélectionné, prompt pré-rempli, **non envoyé** (documenté officiellement). Le dépôt privé exige l'app GitHub Claude installée dessus.
 - **Bouton « Claude »** (turquoise) : sur les autres cartes. Il ouvre `https://claude.ai/new?q=…` — ce pré-remplissage n'est **pas documenté** — et **copie aussi le prompt dans le presse-papiers** (un message le signale) pour le coller si la conversation s'ouvre vide.
 - La tâche de veille ajoute `data-repo` sur les cartes du radar (règle dans son prompt et dans `tools/report-template.html`).
+
+### Liens externes
+Tout lien externe d'un rapport s'ouvre dans un nouvel onglet. Double sécurité : le gabarit impose `target="_blank" rel="noopener"` (le rapport ouvert seul se comporte aussi bien), et l'index l'applique de lui-même à tout lien externe de l'iframe (filet de sécurité si la tâche l'oublie). Les ancres internes (`#a1`, `#top`) restent dans la page.

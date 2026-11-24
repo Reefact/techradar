@@ -20,6 +20,7 @@
   - un <div class="toc"> : un <span class="badge b-…"> par catégorie, suivi de ses <a class="item"> ; l'index en tire les "blips" du radar ;
   - classes de badge : b-alert, b-radar, b-dotnet, b-ia, b-ddd, b-api, b-tool, b-retail, b-conf, b-star (⭐ tes sujets), b-new (Nouveau), b-up (⏰ rappel CFP) ;
   - boutons « travailler ce sujet avec Claude » : l'index les ajoute tout seul sur chaque <article class="card" id="…"> (il lit le <h3>, les <p>, la ligne « why » et les liens). Pour un sujet du RADAR qui concerne un de mes dépôts, mettre data-repo="Reefact/nom-du-depot" sur l'<article> (plusieurs dépôts : séparés par des virgules, ex. data-repo="Reefact/unified-assertions,Reefact/just-dummies") : le bouton devient « Claude Code » avec ce dépôt présélectionné. Sans data-repo : bouton « Claude » (conversation simple) ;
+  - TOUT lien externe (http/https) porte target="_blank" rel="noopener" ; les ancres internes (#a1, #top) n'en portent pas ;
   - supprimer toute catégorie vide ; garder les ancres (#a1, #n1, …) cohérentes entre sommaire et résumés.
 -->
 <div class="wrap">
@@ -53,7 +54,7 @@
 
 <h2>En bref</h2>
 <ul class="brief">
-  <li><strong>Sujet :</strong> une ligne. <a href="https://exemple.org/">Source, date</a></li>
+  <li><strong>Sujet :</strong> une ligne. <a href="https://exemple.org/" target="_blank" rel="noopener">Source, date</a></li>
 </ul>
 
 <h2>Résumés</h2>
@@ -65,7 +66,7 @@
   <p>Résumé en français, 4 à 6 lignes.</p>
   <dl class="kv"><dt>Touché</dt><dd>…</dd><dt>Correctif</dt><dd>…</dd><dt>Gravité</dt><dd>…</dd><dt>Action</dt><dd>…</dd></dl>
   <p class="why">Pourquoi ça compte pour toi : une ligne. Te concerne : peut-être.</p>
-  <a href="https://exemple.org/">Source : nom, date</a> · <a class="back" href="#top">↑ sommaire</a>
+  <a href="https://exemple.org/" target="_blank" rel="noopener">Source : nom, date</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
 <h3 style="margin-top:12px"><span class="badge b-radar">Radar de tes projets</span></h3>
@@ -73,15 +74,15 @@
   <div class="head"><span class="badge b-radar">Radar</span><span class="badge b-star">⭐ Tes sujets</span><h3>kill-mutants : titre du signal</h3></div>
   <p>Résumé en français.</p>
   <p class="why">Recoupement avec kill-mutants : une ligne.</p>
-  <a href="https://exemple.org/">Source : nom, date</a> · <a class="back" href="#top">↑ sommaire</a>
+  <a href="https://exemple.org/" target="_blank" rel="noopener">Source : nom, date</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
 <h3 style="margin-top:12px"><span class="badge b-conf">Conférences &amp; CFP</span></h3>
 <article class="card" id="c1">
   <div class="head"><span class="badge b-conf">Conférence</span><h3>Nom de la conférence</h3></div>
   <p>Présentation courte.</p>
-  <dl class="kv"><dt>Dates et lieu</dt><dd>…</dd><dt>CFP</dt><dd>date limite · <a href="https://exemple.org/">lien</a></dd></dl>
-  <a href="https://exemple.org/">Source : site officiel</a> · <a class="back" href="#top">↑ sommaire</a>
+  <dl class="kv"><dt>Dates et lieu</dt><dd>…</dd><dt>CFP</dt><dd>date limite · <a href="https://exemple.org/" target="_blank" rel="noopener">lien</a></dd></dl>
+  <a href="https://exemple.org/" target="_blank" rel="noopener">Source : site officiel</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 </div>
 
