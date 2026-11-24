@@ -1,52 +1,36 @@
 {
  "reports": [
   {
+   "date": "2026-11-23",
+   "path": "reports/2026/20261123.html",
+   "publies": 18
+  },
+  {
    "date": "2026-11-24",
    "path": "reports/2026/20261124.html",
-   "publies": 37
+   "publies": 9
   }
  ],
  "projets": {
   "Reefact/first-class-errors": [
    {
-    "date": "2026-11-24",
+    "date": "2026-11-23",
     "id": "n9",
     "titre": "first-class-errors : unions C# 15 contre Result pattern"
    }
   ],
-  "Reefact/kill-mutants": [
+  "Reefact/conventional-comments-toolkit": [
    {
-    "date": "2026-11-24",
-    "id": "n10",
-    "titre": "kill-mutants : Stryker.NET, exécuteur de tests MTP et paquet 5.1.0"
-   }
-  ],
-  "Reefact/unified-assertions": [
-   {
-    "date": "2026-11-24",
-    "id": "n11",
-    "titre": "unified-assertions : Shouldly 5 en préversion"
-   }
-  ],
-  "Reefact/just-dummies": [
-   {
-    "date": "2026-11-24",
-    "id": "n12",
-    "titre": "just-dummies : AutoFixture 5 en préversion"
+    "date": "2026-11-23",
+    "id": "cr1",
+    "titre": "Revue de code : « rendre le changement facile d'abord »"
    }
   ],
   "Reefact/hypermedia-domain-language": [
    {
-    "date": "2026-11-24",
+    "date": "2026-11-23",
     "id": "p1",
     "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf"
-   }
-  ],
-  "Reefact/conventional-comments-toolkit": [
-   {
-    "date": "2026-11-24",
-    "id": "cr1",
-    "titre": "Revue de code : « rendre le changement facile d'abord »"
    }
   ]
  },
@@ -58,30 +42,25 @@
   },
   {
    "date": "2026-11-24",
-   "titre": "open-code-review (Alibaba) : revue de code par pipelines et agent LLM",
-   "url": "https://github.com/alibaba/open-code-review"
-  },
-  {
-   "date": "2026-11-24",
-   "titre": "Zero C# : du C# compilé en binaires natifs de 11 à 66 Ko",
-   "url": "https://onurgumus.github.io/zero-csharp/"
+   "titre": "CLI-Anything : rendre n'importe quel logiciel pilotable par un agent",
+   "url": "https://github.com/HKUDS/CLI-Anything"
   },
   {
    "date": "2026-11-24",
    "titre": "worker755 : le jeu où tu es le sous-agent d'un manager IA",
    "url": "https://worker755.com"
-  },
-  {
-   "date": "2026-11-24",
-   "titre": "CLI-Anything : rendre n'importe quel logiciel pilotable par un agent",
-   "url": "https://github.com/HKUDS/CLI-Anything"
   }
  ],
  "conferences": [
   {
    "name": "DDD Europe 2027",
-   "first_seen": "2026-11-24",
+   "first_seen": "2026-11-23",
    "reminders_seen": [
+    {
+     "date": "2026-11-23",
+     "label": "J-7",
+     "n": 7
+    },
     {
      "date": "2026-11-24",
      "label": "J-6",
@@ -99,8 +78,14 @@
   },
   {
    "name": "DevSum 2027",
-   "first_seen": "2026-11-24",
-   "reminders_seen": [],
+   "first_seen": "2026-11-23",
+   "reminders_seen": [
+    {
+     "date": "2026-11-24",
+     "label": "J-14",
+     "n": 14
+    }
+   ],
    "last_seen": "2026-11-24",
    "dates": "27–28 mai 2027 (ateliers 26 mai)",
    "place": "Södra Teatern, Stockholm",
@@ -110,97 +95,70 @@
    ]
   },
   {
-   "name": "Devoxx Belgium 2027",
-   "first_seen": "2026-11-24",
-   "reminders_seen": [],
-   "last_seen": "2026-11-24",
-   "dates": "4–8 oct. 2027",
-   "place": "Kinepolis, Anvers",
-   "cfp": "CFP du 1er juin au 16 juil. 2027",
-   "cfp_deadlines": [
-    "2027-07-16"
-   ]
-  },
-  {
    "name": "Devoxx France 2027",
-   "first_seen": "2026-11-24",
+   "first_seen": "2026-11-23",
    "reminders_seen": [],
-   "last_seen": "2026-11-24",
+   "last_seen": "2026-11-23",
    "dates": "7–9 avril 2027",
    "place": "Palais des Congrès, Paris",
    "cfp": "10 janv. 2027 (heure non publiée)",
    "cfp_deadlines": [
     "2027-01-10"
    ]
-  },
-  {
-   "name": "MiXiT 2027",
-   "first_seen": "2026-11-24",
-   "reminders_seen": [],
-   "last_seen": "2026-11-24",
-   "dates": "22–23 avril 2027",
-   "place": "CPE Lyon, Villeurbanne",
-   "cfp": "ouverture 30 nov., clôture 23 janv. (années à confirmer)",
-   "cfp_deadlines": []
-  },
-  {
-   "name": "NDC Oslo 2027",
-   "first_seen": "2026-11-24",
-   "reminders_seen": [],
-   "last_seen": "2026-11-24",
-   "dates": "31 mai – 4 juin 2027",
-   "place": "Oslo Spektrum, Oslo",
-   "cfp": "17 janv. 2027, 23h59 CET",
-   "cfp_deadlines": [
-    "2027-01-17"
-   ]
   }
  ],
  "topics": [
   {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s3",
    "categorie": "securite",
    "statut": "publie",
    "titre": "Idunno.AntiCsrf : exécution de code à distance exploitée, sans correctif"
   },
   {
-   "date": "2026-11-24",
-   "id": "s1",
-   "categorie": "securite",
-   "statut": "publie",
-   "titre": "Fin de support de .NET 8 et .NET 9"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "s4",
-   "categorie": "securite",
-   "statut": "publie",
-   "titre": "Java4Shell : faille critique dans OpenJDK, correctifs disponibles"
-  },
-  {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s5",
    "categorie": "securite",
    "statut": "publie",
    "titre": "Spring : grosse série de correctifs de sécurité en novembre"
   },
   {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
+   "id": "s4",
+   "categorie": "securite",
+   "statut": "publie",
+   "titre": "Java4Shell : faille critique dans OpenJDK, correctifs disponibles"
+  },
+  {
+   "date": "2026-11-23",
    "id": "s6",
    "categorie": "securite",
    "statut": "publie",
    "titre": "Paquets PyPI agent-framework piégés : vol d'identifiants Azure et CI"
   },
   {
-   "date": "2026-11-24",
-   "id": "s2",
-   "categorie": "securite",
+   "date": "2026-11-23",
+   "id": "n1",
+   "categorie": "dotnet",
    "statut": "publie",
-   "titre": "Patch Tuesday de novembre : 1 093 failles, un zero-day Outlook"
+   "titre": ".NET 11 : toutes les nouveautés"
   },
   {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
+   "id": "n2",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "NuGet.org : publication en deux temps (staged publishing)"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "n3",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "Modèles locaux dans une app .NET avec Llama sur Windows"
+  },
+  {
+   "date": "2026-11-23",
    "id": "n9",
    "categorie": "dotnet",
    "statut": "publie",
@@ -208,95 +166,35 @@
    "depot": "Reefact/first-class-errors"
   },
   {
-   "date": "2026-11-24",
-   "id": "n10",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "titre": "kill-mutants : Stryker.NET, exécuteur de tests MTP et paquet 5.1.0",
-   "depot": "Reefact/kill-mutants"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "n11",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "titre": "unified-assertions : Shouldly 5 en préversion",
-   "depot": "Reefact/unified-assertions"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "n12",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "titre": "just-dummies : AutoFixture 5 en préversion",
-   "depot": "Reefact/just-dummies"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "n1",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "titre": ".NET 11 : toutes les nouveautés"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "n2",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "titre": "NuGet.org : publication en deux temps (staged publishing)"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "n3",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "titre": "Modèles locaux dans une app .NET avec Llama sur Windows"
-  },
-  {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "i1",
    "categorie": "ia",
    "statut": "publie",
    "titre": "Claude Ship : des agents qui prennent en charge les PR après ouverture"
   },
   {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "i2",
    "categorie": "ia",
    "statut": "publie",
    "titre": "Netflix : adapter le cycle de développement aux agents de code"
   },
   {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "i3",
    "categorie": "ia",
    "statut": "publie",
    "titre": "GitHub Copilot dans JetBrains : sandbox cloud, accès distant, navigateur"
   },
   {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "i4",
    "categorie": "ia",
    "statut": "publie",
    "titre": "Devin Bots : des agents persistants qui pilotent d'autres agents"
   },
   {
-   "date": "2026-11-24",
-   "id": "i5",
-   "categorie": "ia",
-   "statut": "publie",
-   "titre": "LangSmith Tool Gateway : une passerelle MCP avec politiques et audit"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "p1",
-   "categorie": "architecture",
-   "statut": "publie",
-   "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf",
-   "depot": "Reefact/hypermedia-domain-language"
-  },
-  {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "cr1",
    "categorie": "craftsmanship",
    "statut": "publie",
@@ -304,53 +202,205 @@
    "depot": "Reefact/conventional-comments-toolkit"
   },
   {
-   "date": "2026-11-24",
-   "id": "p3",
+   "date": "2026-11-23",
+   "id": "p1",
    "categorie": "architecture",
    "statut": "publie",
-   "titre": "Outbox pattern sous Postgres : workers concurrents ou lecture du WAL"
+   "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf",
+   "depot": "Reefact/hypermedia-domain-language"
   },
   {
-   "date": "2026-11-24",
-   "id": "t1",
-   "categorie": "outils",
-   "statut": "publie",
-   "titre": "chrome-devtools-mcp : un agent de code qui pilote un vrai Chrome"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "t2",
-   "categorie": "outils",
-   "statut": "publie",
-   "titre": "open-code-review (Alibaba) : revue de code par pipelines et agent LLM"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "t3",
-   "categorie": "outils",
-   "statut": "publie",
-   "titre": "Zero C# : du C# compilé en binaires natifs de 11 à 66 Ko"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "t4",
-   "categorie": "outils",
-   "statut": "publie",
-   "titre": "worker755 : le jeu où tu es le sous-agent d'un manager IA"
-  },
-  {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d1",
    "categorie": "distribution",
    "statut": "publie",
    "titre": "Frigos Danfoss : l'enquête vise des responsables liés à l'Iran"
   },
   {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
+   "id": "c3",
+   "categorie": "conferences",
+   "statut": "publie",
+   "titre": "DDD Europe 2027 : appel à propositions (ateliers et conférence)"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "c4",
+   "categorie": "conferences",
+   "statut": "publie",
+   "titre": "DevSum 2027"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "c1",
+   "categorie": "conferences",
+   "statut": "publie",
+   "titre": "Devoxx France 2027"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "i5",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "LangSmith Tool Gateway : une passerelle MCP avec politiques et audit"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "t3",
+   "categorie": "outils",
+   "statut": "candidat",
+   "titre": "Zero C# : du C# compilé en binaires natifs de 11 à 66 Ko"
+  },
+  {
+   "date": "2026-11-23",
    "id": "d2",
    "categorie": "distribution",
-   "statut": "publie",
+   "statut": "candidat",
    "titre": "Carrefour : plan hypermarchés 2030, étiquettes Vusion, retail media"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "c2",
+   "categorie": "conferences",
+   "statut": "candidat",
+   "titre": "NDC Oslo 2027"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "c5",
+   "categorie": "conferences",
+   "statut": "candidat",
+   "titre": "MiXiT 2027"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "c6",
+   "categorie": "conferences",
+   "statut": "candidat",
+   "titre": "Devoxx Belgium 2027"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "s1",
+   "categorie": "securite",
+   "statut": "candidat",
+   "titre": "Fin de support de .NET 8 et .NET 9"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "s2",
+   "categorie": "securite",
+   "statut": "candidat",
+   "titre": "Patch Tuesday de novembre : 1 093 failles, un zero-day Outlook"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "n10",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "kill-mutants : Stryker.NET, exécuteur de tests MTP et paquet 5.1.0",
+   "depot": "Reefact/kill-mutants"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "n5",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "AutoMapper 17.0 et MediatR 15.0 publiés"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "n6",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "EF Core 11 : migrations plus faciles en équipe"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "p3",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "titre": "Outbox pattern sous Postgres : workers concurrents ou lecture du WAL"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "d3",
+   "categorie": "distribution",
+   "statut": "candidat",
+   "titre": "Fuite revendiquée : 46 600 lignes sur des salariés de supermarchés"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "n11",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "unified-assertions : Shouldly 5 en préversion",
+   "depot": "Reefact/unified-assertions"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "n12",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "just-dummies : AutoFixture 5 en préversion",
+   "depot": "Reefact/just-dummies"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "n4",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "Blazor : Syncfusion contribue et publie un kit de composants libre (MIT)"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "n8",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "Skills d'agents livrés dans des paquets NuGet"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "i7",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "Replit Missions : un essaim d'agents jusqu'à l'objectif"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "n7",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "IA et choix d'interface multiplateforme avec MAUI"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "t7",
+   "categorie": "outils",
+   "statut": "candidat",
+   "titre": "Ladybird : un navigateur à moteur indépendant passe en alpha"
+  },
+  {
+   "date": "2026-11-23",
+   "id": "i8",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Rider 2025.2 n'est plus pris en charge par Copilot",
+   "motif": "doublon"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "s7",
+   "categorie": "securite",
+   "statut": "publie",
+   "titre": ".NET Framework : un bit modifié contourne le contrôle d'intégrité"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "s9",
+   "categorie": "securite",
+   "statut": "publie",
+   "titre": "Azure API Management Classic : des secrets ciblés, Microsoft corrige"
   },
   {
    "date": "2026-11-24",
@@ -368,73 +418,24 @@
   },
   {
    "date": "2026-11-24",
-   "id": "c1",
-   "categorie": "conferences",
-   "statut": "publie",
-   "titre": "Devoxx France 2027"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "c2",
-   "categorie": "conferences",
-   "statut": "publie",
-   "titre": "NDC Oslo 2027"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "c5",
-   "categorie": "conferences",
-   "statut": "publie",
-   "titre": "MiXiT 2027"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "c6",
-   "categorie": "conferences",
-   "statut": "publie",
-   "titre": "Devoxx Belgium 2027"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "s7",
-   "categorie": "securite",
-   "statut": "candidat",
-   "titre": ".NET Framework : un bit modifié contourne le contrôle d'intégrité"
-  },
-  {
-   "date": "2026-11-24",
    "id": "s8",
    "categorie": "securite",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Actions GitHub : épingler un SHA ne garantit pas l'auteur du code"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "s9",
-   "categorie": "securite",
-   "statut": "candidat",
-   "titre": "Azure API Management Classic : des secrets ciblés, Microsoft corrige"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "n4",
-   "categorie": "dotnet",
-   "statut": "candidat",
-   "titre": "Blazor : Syncfusion contribue et publie un kit de composants libre (MIT)"
   },
   {
    "date": "2026-11-24",
    "id": "i6",
    "categorie": "ia",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Shirudo (OpenAI, Cisco) : des agents qui écrivent des boucliers eBPF"
   },
   {
    "date": "2026-11-24",
-   "id": "t5",
+   "id": "t1",
    "categorie": "outils",
-   "statut": "candidat",
-   "titre": "Superpowers : une méthode complète de développement pour agents de code"
+   "statut": "publie",
+   "titre": "chrome-devtools-mcp : un agent de code qui pilote un vrai Chrome"
   },
   {
    "date": "2026-11-24",
@@ -445,60 +446,17 @@
   },
   {
    "date": "2026-11-24",
-   "id": "t7",
+   "id": "t4",
+   "categorie": "outils",
+   "statut": "publie",
+   "titre": "worker755 : le jeu où tu es le sous-agent d'un manager IA"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "t2",
    "categorie": "outils",
    "statut": "candidat",
-   "titre": "Ladybird : un navigateur à moteur indépendant passe en alpha"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "t8",
-   "categorie": "outils",
-   "statut": "candidat",
-   "titre": "Stalwart 1.2 : un serveur de messagerie qui parle le protocole Exchange"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "n5",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "titre": "AutoMapper 17.0 et MediatR 15.0 publiés"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "n6",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "titre": "EF Core 11 : migrations plus faciles en équipe"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "n7",
-   "categorie": "dotnet",
-   "statut": "candidat",
-   "titre": "IA et choix d'interface multiplateforme avec MAUI"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "n8",
-   "categorie": "dotnet",
-   "statut": "candidat",
-   "titre": "Skills d'agents livrés dans des paquets NuGet"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "i7",
-   "categorie": "ia",
-   "statut": "candidat",
-   "titre": "Replit Missions : un essaim d'agents jusqu'à l'objectif"
-  },
-  {
-   "date": "2026-11-24",
-   "id": "i8",
-   "categorie": "ia",
-   "statut": "ecarte",
-   "titre": "Rider 2025.2 n'est plus pris en charge par Copilot",
-   "motif": "doublon"
+   "titre": "open-code-review (Alibaba) : revue de code par pipelines et agent LLM"
   },
   {
    "date": "2026-11-24",
@@ -516,10 +474,17 @@
   },
   {
    "date": "2026-11-24",
-   "id": "d3",
-   "categorie": "distribution",
-   "statut": "publie",
-   "titre": "Fuite revendiquée : 46 600 lignes sur des salariés de supermarchés"
+   "id": "t5",
+   "categorie": "outils",
+   "statut": "candidat",
+   "titre": "Superpowers : une méthode complète de développement pour agents de code"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "t8",
+   "categorie": "outils",
+   "statut": "candidat",
+   "titre": "Stalwart 1.2 : un serveur de messagerie qui parle le protocole Exchange"
   },
   {
    "date": "2026-11-24",
@@ -530,112 +495,113 @@
   },
   {
    "date": "2026-11-24",
-   "id": "s10",
-   "categorie": "securite",
-   "statut": "candidat",
-   "titre": "VMware vCenter : nouvelle faille critique d'authentification"
-  },
-  {
-   "date": "2026-11-24",
    "id": "s11",
    "categorie": "securite",
    "statut": "candidat",
    "titre": "Rançongiciels : les frameworks offensifs pilotés par agents arrivent"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "s10",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "VMware vCenter : nouvelle faille critique d'authentification",
+   "motif": "hors-perimetre"
   }
  ],
  "urls": {
   "https://2027.dddeurope.com/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c3",
    "statut": "publie"
   },
   "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s4",
    "statut": "publie"
   },
   "https://actu17.fr/international/frigos-a-50-degres-dans-700-supermarches-la-justice-francaise-remonte-jusqu-aux-gardiens-de-la-revolution-iraniens.html": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d1",
    "statut": "publie"
   },
   "https://blog.nimblepros.com/blogs/ef-core-11-migrations/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n6",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-009.pdf": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d1",
    "statut": "publie"
   },
   "https://claude.com/resources/articles/introducing-claude-ship": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "i1",
    "statut": "publie"
   },
   "https://devblogs.microsoft.com/dotnet/ai-cross-platform-decision-matrix/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n7",
    "statut": "candidat"
   },
   "https://devblogs.microsoft.com/dotnet/announcing-dotnet-11/": {
-   "date": "2026-11-24",
-   "id": "s1",
+   "date": "2026-11-23",
+   "id": "n1",
    "statut": "publie"
   },
   "https://devblogs.microsoft.com/dotnet/blazor-welcomes-syncfusion/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n4",
    "statut": "candidat"
   },
   "https://devblogs.microsoft.com/dotnet/delivering-skills-in-nuget-packages/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n8",
    "statut": "candidat"
   },
   "https://devblogs.microsoft.com/dotnet/local-models-dotnet-llama-windows/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n3",
    "statut": "publie"
   },
   "https://devblogs.microsoft.com/dotnet/nuget-staged-publishing/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n2",
    "statut": "publie"
   },
   "https://devblogs.microsoft.com/dotnet/unions-and-closed-hierarchies-in-aspnetcore/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n9",
    "statut": "publie"
   },
   "https://devoxx.be/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c6",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://devoxxfr2027.cfp.dev": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c1",
    "statut": "publie"
   },
   "https://event-driven.io/en/make_the_change_easy_make_the_easy_change/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "cr1",
    "statut": "publie"
   },
   "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d3",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://fuitesinfos.fr/article/2026-11-11-gestool": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d3",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://github.blog/changelog/2026-11-17-github-copilot-in-jetbrains-ignite-releases/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "i3",
    "statut": "publie"
   },
@@ -650,14 +616,14 @@
    "statut": "publie"
   },
   "https://github.com/OnurGumus/zero-csharp": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "t3",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://github.com/alibaba/open-code-review": {
    "date": "2026-11-24",
    "id": "t2",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://github.com/backnotprop/plannotator": {
    "date": "2026-11-24",
@@ -670,7 +636,7 @@
    "statut": "publie"
   },
   "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s3",
    "statut": "publie"
   },
@@ -685,72 +651,72 @@
    "statut": "candidat"
   },
   "https://ladybird.org/posts/alpha/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "t7",
    "statut": "candidat"
   },
   "https://langchain.com/blog/langsmith-tool-gateway": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "i5",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n1",
    "statut": "publie"
   },
   "https://learn.microsoft.com/en-us/dotnet/core/compatibility/11": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n1",
    "statut": "publie"
   },
   "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n1",
    "statut": "publie"
   },
   "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n1",
    "statut": "publie"
   },
   "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n1",
    "statut": "publie"
   },
   "https://limpertinentmedia.com/post/cyberattaque-frigos-iran-preuves": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d1",
    "statut": "publie"
   },
   "https://milanjovanovic.tech/blog/csharp-union-types-vs-result-pattern": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n9",
    "statut": "publie"
   },
   "https://milanjovanovic.tech/blog/outbox-pattern-postgres-workers-vs-wal": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "p3",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://mixitconf.org/fr/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c5",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://ndcoslo.com": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c2",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://onurgumus.github.io/zero-csharp/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "t3",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://openjdk.org/groups/vulnerability/advisories/2026-11-17": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s4",
    "statut": "publie"
   },
@@ -760,47 +726,47 @@
    "statut": "candidat"
   },
   "https://reg.devoxx.fr": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c1",
    "statut": "publie"
   },
   "https://replit.com/blog/introducing-replit-missions": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "i7",
    "statut": "candidat"
   },
   "https://securityonline.info/spring-security-vulnerabilities-november-2026/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s5",
    "statut": "publie"
   },
   "https://sessionize.com/aardling27/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c3",
    "statut": "publie"
   },
   "https://sessionize.com/devsum-2027/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c4",
    "statut": "publie"
   },
   "https://sessionize.com/ndc-oslo-2027/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c2",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://shirudo.dev": {
    "date": "2026-11-24",
    "id": "i6",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://spring.io/security": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s5",
    "statut": "publie"
   },
   "https://spring.io/security/cve-2026-59273/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s5",
    "statut": "publie"
   },
@@ -810,52 +776,53 @@
    "statut": "candidat"
   },
   "https://stryker-mutator.io/blog/stryker-net-mtp-runner/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n10",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://thehackernews.com/2026/11/google-researcher-shows-how-single-bit.html": {
    "date": "2026-11-24",
    "id": "s7",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://thehackernews.com/2026/11/hackers-exploit-critical-aspnet-anti.html": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s3",
    "statut": "publie"
   },
   "https://thehackernews.com/2026/11/hackers-found-way-around-github-sha.html": {
    "date": "2026-11-24",
    "id": "s8",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://thehackernews.com/2026/11/microsoft-fixes-azure-api-management.html": {
    "date": "2026-11-24",
    "id": "s9",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://thehackernews.com/2026/11/openai-and-cisco-unveil-ai-assisted.html": {
    "date": "2026-11-24",
    "id": "i6",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html": {
    "date": "2026-11-24",
    "id": "s10",
-   "statut": "candidat"
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
   },
   "https://thenewstack.io/cognition-devin-bots-management/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "i4",
    "statut": "publie"
   },
   "https://threatdefence.com/article/java4shell-cve-2026-114938-openjdk-rce-patching-hunting": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s4",
    "statut": "publie"
   },
   "https://ti.to/dddbv/aardling27": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c3",
    "statut": "publie"
   },
@@ -865,44 +832,44 @@
    "statut": "publie"
   },
   "https://www.boursorama.com/bourse/actualites/carrefour-veut-faire-de-ses-hypermarches-un-moteur-de-croissance-d-ici-2030-b9bd14ca93c90af78ee99d3cbd53d5ec": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d2",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://www.devoxx.fr/presenter": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "c1",
    "statut": "publie"
   },
   "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d1",
    "statut": "publie"
   },
   "https://www.infoq.com/news/2026/11/asp-net-11-release/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "p1",
    "statut": "publie"
   },
   "https://www.infoq.com/news/2026/11/dotnet-11-release": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n1",
    "statut": "publie"
   },
   "https://www.infoq.com/news/2026/11/netflix-sdlc-ai-coding-agents/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "i2",
    "statut": "publie"
   },
   "https://www.it-connect.fr/patch-tuesday-novembre-2026-recapitulatif/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s2",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://www.jimmybogard.com/automapper-17-0-and-mediatr-15-0-released/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n5",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://www.lemagit.fr/actualites/366655137/Ransomware-les-frameworks-offensifs-agentiques-sont-entres-dans-la-danse": {
    "date": "2026-11-24",
@@ -912,65 +879,65 @@
   "https://www.lemagit.fr/actualites/366655435/Cyberattaques-en-Norvege-une-vulnerabilite-affectait-Microsoft-API-Manager": {
    "date": "2026-11-24",
    "id": "s9",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://www.lemondeinformatique.fr/actualites/lire-une-cyberattaque-perturbe-les-installations-frigorifiques-de-centaines-de-supermarches-100850.html": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d1",
    "statut": "publie"
   },
   "https://www.lsa-conso.fr/distributeurs-alimentaires/casino/monoprix/cyberattaque-en-grande-distribution-pres-de-500-magasins-concernes-jusqua-200-000-de-pertes-par-hypermarche.XIAWZQOVLBGVNPXHNFFMIH7OMM.html": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d1",
    "statut": "publie"
   },
   "https://www.nuget.org/packages/AutoFixture": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n12",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://www.nuget.org/packages/AutoMapper/17.0.0": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n5",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://www.nuget.org/packages/AwesomeAssertions": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n11",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://www.nuget.org/packages/MediatR/15.0.0": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n5",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://www.nuget.org/packages/Shouldly": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n11",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://www.nuget.org/packages/stryker": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "n10",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://www.ox.security/blog/breaking-hijacked-releases-of-microsofts-official-agent-framework-steals-azure-and-ci-credentials/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s6",
    "statut": "publie"
   },
   "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s4",
    "statut": "publie"
   },
   "https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "s6",
    "statut": "publie"
   },
   "https://www.zataz.com/cyberattaque-des-frigos-la-piste-iranienne-se-precise/": {
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "id": "d1",
    "statut": "publie"
   }
