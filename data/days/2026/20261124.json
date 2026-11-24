@@ -1,8 +1,8 @@
 {
  "date": "2026-11-24",
  "config": {
-  "commit": null,
-  "note": "jour converti depuis l'ancien format HTML"
+  "commit": "55207a5",
+  "note": "rapport reconstitué : sujets du 24 de la veille d'origine"
  },
  "executions": [
   {
@@ -44,1808 +44,182 @@
    "type": "manuelle",
    "debut": "2026-11-25T02:10+01:00",
    "note": "« À retenir » découpé en sections titrées (urgent, puis par catégorie)"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-25T10:30+01:00",
+   "note": "découpage : les sujets antérieurs au 24 passent dans le rapport reconstitué du lundi 23 ; reprise de candidats datés du 24"
   }
  ],
  "journal": {
+  "recherches": {
+   "non tenues (rapport reconstitué)": 0
+  },
   "hypotheses": [
-   "Journal de recherche non tenu : jour antérieur au fichier du jour, converti depuis les fichiers HTML."
-  ],
-  "verifications_sources": {
-   "lancees": 5,
-   "vrai": 5,
-   "faux": 0,
-   "indetermine": 0
-  }
+   "Rapport reconstitué le 25 novembre 2026 à partir de la veille du 24, qui couvrait une fenêtre de 7 jours : les sujets sont répartis entre le lundi 23 et le mardi 24 selon leur date de survenance, avec les règles de volume (15 sujets au plus hors prioritaires, plafonds par catégorie, fraîcheur)."
+  ]
  },
- "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact · version complétée, publiée après l'échéance de 8h (Paris)",
+ "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact",
  "a_retenir": [
   {
    "section": "urgent",
    "paragraphes": [
-    "Une chose ne peut pas attendre : [Idunno.AntiCsrf](#s3). Cette vieille bibliothèque anti-CSRF pour ASP.NET WebForms est touchée par une faille d'exécution de code à distance, révélée par Mandiant le 18 novembre. Elle est déjà exploitée et ne sera pas corrigée : le projet est abandonné depuis 2008. Si du vieux .NET Framework traîne quelque part, va vérifier sans attendre.",
-    "Pense aussi aux appels à propositions : celui des ateliers de [DDD Europe 2027](#c3) ferme dans six jours, le 30 novembre. Ceux de [DevSum](#c4), [Devoxx France](#c1) et [NDC Oslo](#c2) suivent, entre le 8 décembre et la mi-janvier."
+    "Deux alertes ce matin. Google Project Zero montre qu'un [bit modifié suffit à contourner le contrôle d'intégrité](#s7) de .NET Framework 4 : rien à faire si les correctifs d'octobre sont posés, mais à vérifier sur les postes protégés par WDAC ou AppLocker. On apprend aussi qu'un acteur inconnu fouillait [Azure API Management Classic](#s9) à la recherche de secrets ; Microsoft a fermé la brèche le 19 et publié un guide de rotation des identifiants.",
+    "Côté CFP, celui des ateliers de [DDD Europe 2027](#c3) ferme dans six jours, et celui de [DevSum](#c4) dans deux semaines, le 8 décembre."
    ],
    "sujets": [
-    "s3",
+    "s7",
+    "s9",
     "c3",
-    "c4",
-    "c1",
-    "c2"
+    "c4"
    ]
   },
   {
    "section": "securite",
    "paragraphes": [
-    "La sécurité a dominé la semaine dernière. Le 17 novembre, la faille [Java4Shell](#s4) a frappé OpenJDK ; le lendemain, des [paquets PyPI piégés](#s6) se sont mis à voler des identifiants Azure ; le 19, [Spring](#s5) a publié une salve de correctifs.",
-    "Rien qui touche directement ton code .NET. Mais tes services Java et ta CI méritent un coup d'œil, tout comme le [Patch Tuesday](#s2) du 10, si ce n'est pas déjà fait."
+    "Un rappel utile pour ta CI : [épingler une action GitHub sur un SHA](#s8) garantit que le code ne bouge plus, pas qui l'a écrit."
    ],
    "sujets": [
-    "s4",
-    "s6",
-    "s5",
-    "s2"
-   ]
-  },
-  {
-   "section": "dotnet",
-   "paragraphes": [
-    "Deux semaines après sa sortie, [.NET 11](#n1) a droit à un tour complet : runtime, C# 15, EF Core. Au passage, la [fin de support de .NET 8 et 9](#s1) est effective depuis le 10 novembre : il est temps de migrer."
-   ],
-   "sujets": [
-    "n1",
-    "s1"
+    "s8"
    ]
   },
   {
    "section": "ia",
    "paragraphes": [
-    "Les agents de code occupent une bonne partie du rapport. On y trouve les annonces de la semaine, [Claude Ship](#i1) et [Devin Bots](#i4), et le [retour d'expérience de Netflix](#i2), qui a adapté tout son cycle de développement à ces agents. Côté outils, deux nouveautés repérées aujourd'hui servent justement à les piloter : [chrome-devtools-mcp](#t1) et [CLI-Anything](#t6)."
+    "OpenAI et Cisco publient [Shirudo](#i6) : des agents écrivent des boucliers eBPF qui bloquent une faille le temps de la corriger."
    ],
    "sujets": [
-    "i1",
-    "i4",
-    "i2",
+    "i6"
+   ]
+  },
+  {
+   "section": "outils",
+   "paragraphes": [
+    "Trois outils repérés aujourd'hui : [chrome-devtools-mcp](#t1), qui laisse un agent piloter un vrai Chrome, [CLI-Anything](#t6), qui rend un logiciel pilotable en ligne de commande, et, pour sourire, [worker755](#t4), un jeu où tu es le sous-agent d'un manager IA."
+   ],
+   "sujets": [
     "t1",
-    "t6"
-   ]
-  },
-  {
-   "section": "craftsmanship",
-   "paragraphes": [
-    "Un [article sur la revue de code](#cr1), et un tour des versions qui touchent tes projets, dont les préversions de [Shouldly](#n11) et d'[AutoFixture](#n12), toujours sans version stable depuis cet été."
-   ],
-   "sujets": [
-    "cr1",
-    "n11",
-    "n12"
-   ]
-  },
-  {
-   "section": "architecture",
-   "paragraphes": [
-    "[OpenAPI 3.2](#p1) devient le format par défaut dans ASP.NET Core 11."
-   ],
-   "sujets": [
-    "p1"
-   ]
-  },
-  {
-   "section": "distribution",
-   "paragraphes": [
-    "L'enquête sur les [frigos piratés](#d1) désigne depuis le 9 novembre une unité iranienne, et le dossier continue de faire débat."
-   ],
-   "sujets": [
-    "d1"
+    "t6",
+    "t4"
    ]
   }
  ],
  "sujets": [
   {
-   "id": "s3",
+   "id": "s7",
    "categorie": "securite",
    "statut": "publie",
    "tags": [
     "alerte"
    ],
-   "titre": "Idunno.AntiCsrf : exécution de code à distance exploitée, sans correctif",
-   "resume": "La bibliothèque tierce Idunno.AntiCsrf protège les formulaires ASP.NET WebForms contre les attaques CSRF (falsification de requête inter-sites). Son module HTTP désérialise le jeton envoyé par le client sans clé, donc sans signature ni contrôle d'intégrité. Une seule requête POST non authentifiée suffit à exécuter du code dans le processus IIS (w3wp.exe).\n\nMandiant a publié l'avis MNDT-2026-0048 le 18 novembre (CVE-2026-131914, CVSS 4.0 : 9,3). Il signale une exploitation active, découverte lors d'une réponse à incident. Le projet n'a plus de mainteneur depuis sa dernière version, en décembre 2008 : aucun correctif n'existe. La solution : retirer la bibliothèque et la remplacer par System.Web.Helpers.AntiForgery, par ViewStateUserKey avec un ViewState protégé par MAC, ou par IAntiforgery sous ASP.NET Core.",
+   "titre": ".NET Framework : un bit modifié contourne le contrôle d'intégrité",
+   "resume": "James Forshaw, de Google Project Zero, décrit deux contournements fondés sur un défaut de chargement de .NET Framework 4. Quand le chargement normal d'une image échoue, .NET Framework retombe sur une copie exécutée en mémoire qui saute les contrôles d'image.\n\nCe repli a contourné le durcissement des processus de VirtualBox. Ensuite, effacer un seul bit d'en-tête (IMAGE_FILE_EXECUTABLE_IMAGE) fait rejeter l'image par Windows, alors que .NET l'exécute quand même : la règle UMCI (contrôle d'intégrité du code en mode utilisateur) est contournée. L'attaque est locale et passe par un détournement COM.",
    "details": {
-    "Touché": "Idunno.AntiCsrf.dll 0.9.1.0 (la « 0.9.1 Beta ») et les versions recompilées depuis ses sources, sur .NET Framework / WebForms",
-    "Correctif": "Aucun : retirer la bibliothèque et migrer vers un mécanisme anti-CSRF maintenu",
-    "Gravité": "Critique (CVSS 4.0 : 9,3), exploitation active selon Mandiant",
-    "Action": "Chercher la référence NuGet ou la DLL dans les dépôts et sur les serveurs IIS legacy"
+    "Touché": ".NET Framework 4 sous Windows (CVE-2026-108398, CVSS 8,8) ; VirtualBox 7.2.16 sur hôte Windows (CVE-2026-87268, CVSS 7,8)",
+    "Correctif": ".NET : mises à jour cumulatives du 13 octobre (KB selon la version) ; VirtualBox : 7.2.18, publiée en septembre",
+    "Gravité": "Élevée, mais exploitation locale seulement"
    },
    "pourquoi": {
     "type": "compte",
-    "texte": "toute application WebForms ancienne du parc peut embarquer cette bibliothèque sans que personne s'en souvienne. Te concerne : peut-être."
+    "texte": "rien à faire si les correctifs d'octobre sont posés. À vérifier sur les postes qui s'appuient sur WDAC ou AppLocker. Te concerne : peut-être."
    },
    "sources": [
     {
-     "texte": "Source : Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
-     "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
-    },
-    {
-     "texte": "Source : The Hacker News, 23 nov. 2026",
-     "url": "https://thehackernews.com/2026/11/hackers-exploit-critical-aspnet-anti.html"
+     "texte": "Source : The Hacker News, 24 nov. 2026",
+     "url": "https://thehackernews.com/2026/11/google-researcher-shows-how-single-bit.html"
     }
    ],
-   "meta": "Mandiant · 18 nov. 2026 ; The Hacker News · 23 nov. 2026 · te concerne : peut-être (.NET Framework legacy)",
+   "meta": "The Hacker News · 24 nov. 2026 · te concerne : peut-être (postes Windows)",
    "historique": [
     {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T18:50+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
+     "date": "2026-11-24T16:44+01:00",
+     "statut": "candidat",
+     "par": "tache",
+     "note": "trouvé par la relance de 16h44 (brouillon converti)"
     },
     {
      "date": "2026-11-24T20:30+01:00",
-     "statut": "publie",
+     "statut": "candidat",
      "par": "utilisateur",
-     "note": "titre raccourci à 72 caractères au plus (avant : « Idunno.AntiCsrf : exécution de code à distance exploitée, aucun correctif »)"
+     "note": "titre raccourci à 72 caractères au plus (avant : « .NET Framework : un bit modifié suffit à contourner le contrôle d'intégrité du code Windows »)"
     },
     {
      "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a7 → s7) ; tag Alerte"
+    },
+    {
+     "date": "2026-11-25T10:30+01:00",
      "statut": "publie",
      "par": "utilisateur",
-     "note": "catégorie Alertes → Sécurité (a3 → s3) ; tag Alerte"
+     "note": "découpage du 24 en deux rapports : candidat → publie"
     }
    ],
-   "date": "2026-11-23",
-   "verification": {
-    "date": "2026-11-24T18:50+01:00",
-    "verdict": "vrai",
-    "resume": "La source primaire, l'avis Mandiant MNDT-2026-0048, confirme la faille, son identifiant, son score, l'exploitation active et l'absence de correctif. L'avis GitHub reprend ces éléments en citant Mandiant. Aucun démenti trouvé.",
-    "source": {
-     "nom": "The Hacker News, 23 nov. 2026",
-     "nature": "média spécialisé en cybersécurité, très lu, qui reprend en général les avis des éditeurs ; hors de la liste de référence"
-    },
-    "affirmations": [
-     {
-      "texte": "Idunno.AntiCsrf est une ancienne bibliothèque anti-CSRF tierce pour ASP.NET WebForms, installée comme module HTTP",
-      "preuves": [
-       {
-        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
-        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
-       }
-      ]
-     },
-     {
-      "texte": "Le module désérialise le jeton sans clé ni signature ; une requête POST non authentifiée suffit à exécuter du code dans w3wp.exe",
-      "preuves": [
-       {
-        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
-        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
-       }
-      ]
-     },
-     {
-      "texte": "Mandiant signale une exploitation active, découverte lors d'une réponse à incident le 4 novembre",
-      "preuves": [
-       {
-        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
-        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
-       },
-       {
-        "texte": "GitHub Advisory Database, GHSA-pj2m-2r8v-h9cp, 19 nov. 2026",
-        "url": "https://github.com/advisories/GHSA-pj2m-2r8v-h9cp"
-       }
-      ]
-     },
-     {
-      "texte": "Identifiant CVE-2026-131914, score CVSS 4.0 de 9,3 (critique)",
-      "preuves": [
-       {
-        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
-        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
-       },
-       {
-        "texte": "GitHub Advisory Database, GHSA-pj2m-2r8v-h9cp, 19 nov. 2026",
-        "url": "https://github.com/advisories/GHSA-pj2m-2r8v-h9cp"
-       }
-      ]
-     },
-     {
-      "texte": "Projet sans mainteneur depuis décembre 2008, aucun correctif disponible",
-      "preuves": [
-       {
-        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
-        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
-       }
-      ]
-     },
-     {
-      "texte": "Remplacements recommandés : AntiForgery, ViewStateUserKey avec ViewState protégé par MAC, IAntiforgery",
-      "preuves": [
-       {
-        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
-        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
-       }
-      ]
-     }
-    ],
-    "retirees": [
-     {
-      "texte": "« Il n'y aura jamais de correctif »",
-      "raison": "c'est une prévision : Mandiant constate seulement qu'il n'y a ni mainteneur ni correctif aujourd'hui"
-     },
-     {
-      "texte": "Deux versions touchées, 0.9.1.0 et 0.9.1 Beta",
-      "raison": "c'est une seule et même version ; les recompilations depuis les sources sont aussi touchées"
-     }
-    ],
-    "ecarts": [
-     "Score : 9,3 en CVSS 4.0 selon Mandiant et GitHub ; 7,3 selon VulDB.",
-     "Correctif : quelques agrégateurs évoquent une mise à jour, sans numéro de version ; Mandiant et GitHub n'en listent aucune."
-    ],
-    "recoupements": [
-     {
-      "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
-      "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
-     },
-     {
-      "texte": "GitHub Advisory Database, GHSA-pj2m-2r8v-h9cp, 19 nov. 2026",
-      "url": "https://github.com/advisories/GHSA-pj2m-2r8v-h9cp"
-     }
-    ]
-   }
+   "date": "2026-11-24"
   },
   {
-   "id": "s1",
+   "id": "s9",
    "categorie": "securite",
    "statut": "publie",
    "tags": [
     "alerte"
    ],
-   "titre": "Fin de support de .NET 8 et .NET 9",
-   "resume": "La sortie de .NET 11 a été annoncée le 10 novembre, pendant la .NET Conf (10–13 novembre). Le même jour, .NET 8 (LTS, support à long terme) et .NET 9 (STS, support standard) sont arrivés en fin de support : ils ne reçoivent plus de correctifs de sécurité. Microsoft recommande de migrer vers .NET 10 (LTS, pris en charge jusqu'en novembre 2028) ou vers .NET 11 (STS, 24 mois, jusqu'en novembre 2028).\n\nAvant de migrer vers .NET 11, il faut lire la liste des changements cassants. Les principaux : niveau minimal de processeur relevé, conversions de flottant vers entier saturantes, hôte CLI Native AOT par défaut, OpenAPI 3.2 par défaut et plusieurs changements EF Core (détail dans le résumé .NET 11 plus bas). Passer d'abord par .NET 10 est le chemin le plus sûr pour les services critiques.",
+   "titre": "Azure API Management Classic : des secrets ciblés, Microsoft corrige",
+   "resume": "L'autorité norvégienne NSM a signalé qu'un acteur inconnu cherchait des jetons, des secrets et des valeurs nommées dans des instances Azure API Management du niveau Classic. Equinor et Skagerak Energi figureraient parmi les victimes.\n\nMicrosoft a fermé la voie d'accès vulnérable le 19 novembre et publié le 21 novembre un guide de rotation des identifiants. L'exposition dépend du respect des bonnes pratiques de sécurité documentées. Aucun identifiant CVE n'est cité.",
    "details": {
-    "Touché": ".NET 8 et .NET 9 (runtime et SDK)",
-    "Correctif": "Plus de correctifs de sécurité ; migrer vers .NET 10 (LTS) ou .NET 11",
-    "Gravité": "Moyenne, risque qui grandit avec le temps"
+    "Touché": "API Management, niveau Classic (les niveaux v2 ne le sont pas)",
+    "Correctif": "Côté Microsoft depuis le 19 nov. ; rotation des secrets à faire par le client",
+    "Action": "Repérer les instances Classic ; renouveler les valeurs nommées, secrets OpenID Connect, clés d'abonnement et jetons de gestion"
    },
    "pourquoi": {
     "type": "compte",
-    "texte": "tout service encore en .NET 8 ou 9 ne reçoit plus de correctifs. Te concerne : probablement."
+    "texte": "une passerelle d'API concentre des secrets ; à vérifier si un client utilise APIM. Te concerne : peut-être."
    },
    "sources": [
     {
-     "texte": "Source : annonce .NET 11, .NET Blog",
-     "url": "https://devblogs.microsoft.com/dotnet/announcing-dotnet-11/"
+     "texte": "Source : The Hacker News, 24 nov. 2026",
+     "url": "https://thehackernews.com/2026/11/microsoft-fixes-azure-api-management.html"
+    },
+    {
+     "texte": "LeMagIT",
+     "url": "https://www.lemagit.fr/actualites/366655435/Cyberattaques-en-Norvege-une-vulnerabilite-affectait-Microsoft-API-Manager"
     }
    ],
-   "meta": "Microsoft .NET Blog · 10 nov. 2026 · te concerne : probablement",
+   "meta": "The Hacker News ; LeMagIT · 24 nov. 2026 · te concerne : peut-être (si APIM Classic)",
    "historique": [
     {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
+     "date": "2026-11-24T16:44+01:00",
+     "statut": "candidat",
+     "par": "tache",
+     "note": "trouvé par la relance de 16h44 (brouillon converti)"
+    },
+    {
+     "date": "2026-11-24T20:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "titre raccourci à 72 caractères au plus (avant : « Azure API Management (niveau Classic) : un acteur cherche des secrets, Microsoft corrige »)"
     },
     {
      "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a9 → s9) ; tag Alerte"
+    },
+    {
+     "date": "2026-11-25T10:30+01:00",
      "statut": "publie",
      "par": "utilisateur",
-     "note": "catégorie Alertes → Sécurité (a1 → s1) ; catégorie secondaire .NET ; tag Alerte"
+     "note": "découpage du 24 en deux rapports : candidat → publie"
     }
    ],
-   "date": "2026-11-10",
-   "categorie_secondaire": "dotnet"
-  },
-  {
-   "id": "s4",
-   "categorie": "securite",
-   "statut": "publie",
-   "tags": [
-    "alerte"
-   ],
-   "titre": "Java4Shell : faille critique dans OpenJDK, correctifs disponibles",
-   "resume": "La faille CVE-2026-114938, surnommée « Java4Shell », est une corruption mémoire dans le décodeur Base64 optimisé de la JVM HotSpot. Elle peut mener à une exécution de code à distance sans authentification. Elle touche les lignes 17 (à partir de 17.0.6), 21, 25 et 27, seulement sur les processeurs x86-64 dotés d'AVX-512 VBMI ; ARM64 n'est pas concerné.\n\nOpenJDK et Oracle ont publié les correctifs le 17 novembre : 17.0.21.1, 21.0.13.1, 25.0.5.1 et 27.0.1.1. GraalVM et Corretto ont suivi, et Keycloak a publié des images corrigées. Red Hat propose un contournement provisoire : l'option JVM `-XX:-UseBASE64Intrinsics`. Une preuve de concept qui fait planter la JVM circule, et des tentatives d'exploitation sont observées depuis le 18 novembre, sans compromission confirmée. Pense aux produits qui embarquent leur propre JDK.",
-   "details": {
-    "Touché": "OpenJDK 17.0.6 et plus, 21, 25, 27 et les JDK qui en dérivent, sur x86-64 avec AVX-512 VBMI",
-    "Correctif": "17.0.21.1, 21.0.13.1, 25.0.5.1, 27.0.1.1 (17 nov.) ; GraalVM et Corretto alignés",
-    "Gravité": "CVSS 3.1 : 8,1 selon Oracle et OpenJDK ; 9,2 en CVSS 4.0 selon les chercheurs ; « critique » chez Red Hat",
-    "Action": "Mettre à jour les JDK et les images de conteneurs Java ; à défaut, appliquer le contournement de Red Hat"
-   },
-   "pourquoi": {
-    "type": "compte",
-    "texte": "tu es côté .NET, mais SonarQube, Keycloak ou Kafka tournent souvent à côté de tes applications. Te concerne : peut-être."
-   },
-   "sources": [
-    {
-     "texte": "Source : OpenJDK, avis de vulnérabilité du 17 nov. 2026",
-     "url": "https://openjdk.org/groups/vulnerability/advisories/2026-11-17"
-    },
-    {
-     "texte": "Red Hat, RHSB-2026-018",
-     "url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018"
-    },
-    {
-     "texte": "SecurityWeek, nov. 2026",
-     "url": "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/"
-    },
-    {
-     "texte": "Threat Defence, 21 nov. 2026",
-     "url": "https://threatdefence.com/article/java4shell-cve-2026-114938-openjdk-rce-patching-hunting"
-    }
-   ],
-   "meta": "OpenJDK · 17 nov. 2026 ; Red Hat, SecurityWeek · te concerne : peut-être (services Java)",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T18:50+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
-    },
-    {
-     "date": "2026-11-25T00:15+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie Alertes → Sécurité (a4 → s4) ; tag Alerte"
-    }
-   ],
-   "date": "2026-11-21",
-   "verification": {
-    "date": "2026-11-24T18:50+01:00",
-    "verdict": "vrai",
-    "resume": "La faille, son identifiant, les versions touchées et les correctifs du 17 novembre sont confirmés par l'avis OpenJDK et par plusieurs sources indépendantes (Red Hat, Tenable, SecurityWeek, CERT-EU). Plusieurs détails de l'article d'origine sont faux ou invérifiables et ont été retirés. Réserve : le réseau de la session n'a pas permis d'ouvrir les pages ; la vérification repose sur les avis officiels et les extraits des résultats de recherche.",
-    "source": {
-     "nom": "Threat Defence, 21 nov. 2026",
-     "nature": "blog d'un éditeur de sécurité, hors de la liste de référence ; seule origine de plusieurs chiffres de l'article"
-    },
-    "affirmations": [
-     {
-      "texte": "CVE-2026-114938 (« Java4Shell ») est une corruption mémoire du décodeur Base64 optimisé d'OpenJDK, pouvant mener à une exécution de code à distance sans authentification",
-      "preuves": [
-       {
-        "texte": "OpenJDK, avis de vulnérabilité du 17 nov. 2026",
-        "url": "https://openjdk.org/groups/vulnerability/advisories/2026-11-17"
-       },
-       {
-        "texte": "oss-security (Openwall), 17 nov. 2026",
-        "url": "https://www.openwall.com/lists/oss-security/2026/11/17/31"
-       },
-       {
-        "texte": "Sophos, avis SA-20261118",
-        "url": "https://www.sophos.com/en-us/security-advisories/sophos-sa-20261118-java4shell"
-       }
-      ]
-     },
-     {
-      "texte": "Lignes touchées : 17 (à partir de 17.0.6), 21, 25 et 27, seulement sur x86-64 avec AVX-512 VBMI ; ARM64 non concerné",
-      "preuves": [
-       {
-        "texte": "Tenable, FAQ Java4Shell, nov. 2026",
-        "url": "https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability"
-       },
-       {
-        "texte": "Red Hat, bulletin RHSB-2026-018",
-        "url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018"
-       }
-      ]
-     },
-     {
-      "texte": "Correctifs publiés le 17 novembre : 17.0.21.1, 21.0.13.1, 25.0.5.1, 27.0.1.1 ; GraalVM et Corretto alignés",
-      "preuves": [
-       {
-        "texte": "OpenJDK, avis de vulnérabilité du 17 nov. 2026",
-        "url": "https://openjdk.org/groups/vulnerability/advisories/2026-11-17"
-       },
-       {
-        "texte": "Tenable, FAQ Java4Shell, nov. 2026",
-        "url": "https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability"
-       }
-      ]
-     },
-     {
-      "texte": "Contournement provisoire recommandé par Red Hat : -XX:-UseBASE64Intrinsics",
-      "preuves": [
-       {
-        "texte": "Red Hat, bulletin RHSB-2026-018",
-        "url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018"
-       },
-       {
-        "texte": "Keycloak, nov. 2026",
-        "url": "https://www.keycloak.org/2026/11/java4shell-vulnerability-cve-2026-114938"
-       }
-      ]
-     },
-     {
-      "texte": "Score CVSS 3.1 de 8,1 chez Oracle et OpenJDK ; « critique » chez Red Hat",
-      "preuves": [
-       {
-        "texte": "Tenable, FAQ Java4Shell, nov. 2026",
-        "url": "https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability"
-       }
-      ]
-     },
-     {
-      "texte": "Tentatives d'exploitation observées, sans compromission confirmée au 20 novembre",
-      "preuves": [
-       {
-        "texte": "SecurityWeek, nov. 2026",
-        "url": "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/"
-       }
-      ]
-     }
-    ],
-    "retirees": [
-     {
-      "texte": "Aucun exploit public",
-      "raison": "une preuve de concept publique (plantage de la JVM) est signalée"
-     },
-     {
-      "texte": "Avis publié le 18 novembre",
-      "raison": "l'avis OpenJDK est daté du 17 ; le 18 correspond aux avis de tiers"
-     },
-     {
-      "texte": "261 requêtes depuis 7 adresses IP",
-      "raison": "chiffre propre à l'article d'origine ; les autres sources donnent d'autres chiffres"
-     },
-     {
-      "texte": "Images Keycloak, Atlassian Data Center, SonarQube et Kafka non corrigées",
-      "raison": "Keycloak a publié des images corrigées ; rien de vérifiable pour les autres"
-     },
-     {
-      "texte": "Temurin aligné",
-      "raison": "les sources se contredisent"
-     },
-     {
-      "texte": "Java 8 et OpenJ9 non touchés",
-      "raison": "une seule source pour OpenJ9 ; une version Java 8 d'Oracle serait concernée"
-     },
-     {
-      "texte": "Faux dépôts GitHub d'exploits malveillants",
-      "raison": "seulement affirmé par l'article d'origine"
-     },
-     {
-      "texte": "CVSS 9,8 chez Red Hat",
-      "raison": "score non confirmé"
-     }
-    ],
-    "ecarts": [
-     "CVSS : 8,1 (CVSS 3.1, Oracle et OpenJDK) ; 9,2 (CVSS 4.0, chercheurs) ; 9,8 « préliminaire » chez Red Hat selon une seule source.",
-     "Sondes : 261 requêtes / 7 IP au 21 nov. selon Threat Defence ; plus de 150 / 5 IP au 19 nov. selon SecurityWeek ; 69 / 4 IP selon Precursor."
-    ],
-    "recoupements": [
-     {
-      "texte": "OpenJDK, avis de vulnérabilité du 17 nov. 2026",
-      "url": "https://openjdk.org/groups/vulnerability/advisories/2026-11-17"
-     },
-     {
-      "texte": "oss-security (Openwall), 17 nov. 2026",
-      "url": "https://www.openwall.com/lists/oss-security/2026/11/17/31"
-     },
-     {
-      "texte": "CERT-EU, avis 2026-021",
-      "url": "https://cert.europa.eu/publications/security-advisories/2026-021/pdf"
-     },
-     {
-      "texte": "Red Hat, bulletin RHSB-2026-018",
-      "url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018"
-     },
-     {
-      "texte": "Sophos, avis SA-20261118",
-      "url": "https://www.sophos.com/en-us/security-advisories/sophos-sa-20261118-java4shell"
-     },
-     {
-      "texte": "Tenable, FAQ Java4Shell, nov. 2026",
-      "url": "https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability"
-     },
-     {
-      "texte": "SecurityWeek, nov. 2026",
-      "url": "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/"
-     },
-     {
-      "texte": "Keycloak, nov. 2026",
-      "url": "https://www.keycloak.org/2026/11/java4shell-vulnerability-cve-2026-114938"
-     }
-    ]
-   }
-  },
-  {
-   "id": "s5",
-   "categorie": "securite",
-   "statut": "publie",
-   "tags": [
-    "alerte"
-   ],
-   "titre": "Spring : grosse série de correctifs de sécurité en novembre",
-   "resume": "Spring a publié le 19 novembre une importante série d'avis de sécurité, sur de nombreux projets. Les plus marquants :\n\n- CVE-2026-59367 (critique) : le serveur LDAP de test de spring-ldap-test écoute sur toutes les interfaces, avec un identifiant administrateur fixe ; corrigé en 4.1.3 et 4.0.7.\n- CVE-2026-59378 (haute) : contournement de l'authentification sur les endpoints de santé d'Actuator avec Jersey ; corrigé dans Spring Boot 4.1.3 et 4.0.10.\n- CVE-2026-123886 (haute) : injection SpEL (Spring Expression Language) dans Spring Data Elasticsearch ; corrigé en 6.1.3 et 6.0.9.\n- CVE-2026-59273 : injection SpEL dans l'ELRequestMatcher de Spring Security, corrigée en 7.1.3 et 7.0.9 ; annoncée à 9,8, elle a été reclassée en sévérité moyenne par Spring le 23 novembre.\n- Failles d'isolation entre locataires dans les vector stores de Spring AI, corrigées en 2.0.3.\n\nSpring Integration est corrigé en 7.1.3 et 7.0.8. Le nombre total de failles varie selon les médias (de 50 à 91) : la liste officielle de spring.io fait foi.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "surtout un sujet pour les équipes Java du groupe. Te concerne : peut-être."
-   },
-   "sources": [
-    {
-     "texte": "Source : Spring, avis de sécurité, 19 nov. 2026",
-     "url": "https://spring.io/security"
-    },
-    {
-     "texte": "Spring, CVE-2026-59273 (révisé le 23 nov.)",
-     "url": "https://spring.io/security/cve-2026-59273/"
-    },
-    {
-     "texte": "SecurityOnline, 20 nov. 2026",
-     "url": "https://securityonline.info/spring-security-vulnerabilities-november-2026/"
-    }
-   ],
-   "meta": "Spring · 19 nov. 2026, révisé le 23 · te concerne : peut-être",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T18:50+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
-    },
-    {
-     "date": "2026-11-25T00:15+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie Alertes → Sécurité (a5 → s5) ; tag Alerte"
-    }
-   ],
-   "date": "2026-11-23",
-   "verification": {
-    "date": "2026-11-24T18:50+01:00",
-    "verdict": "vrai",
-    "resume": "Les avis officiels de spring.io confirment la série de correctifs, les failles décrites et les versions corrigées. Le score de 9,8 de la faille SpEL de Spring Security est dépassé : Spring l'a reclassée en sévérité moyenne le 23 novembre. Le total de « 50 failles » et l'absence d'exploitation ne sont pas prouvés.",
-    "source": {
-     "nom": "SecurityOnline (Daily CyberSecurity), 20 nov. 2026",
-     "nature": "agrégateur d'actualités et de CVE, hors de la liste de référence"
-    },
-    "affirmations": [
-     {
-      "texte": "CVE-2026-59273 : injection SpEL dans l'ELRequestMatcher de Spring Security, corrigée en 7.1.3 et 7.0.9",
-      "preuves": [
-       {
-        "texte": "Spring, avis CVE-2026-59273, révisé le 23 nov. 2026",
-        "url": "https://spring.io/security/cve-2026-59273/"
-       }
-      ]
-     },
-     {
-      "texte": "CVE-2026-59367 : identifiant administrateur fixe dans le serveur LDAP de spring-ldap-test (critique), corrigé en 4.1.3 et 4.0.7",
-      "preuves": [
-       {
-        "texte": "Spring, avis CVE-2026-59367, 19 nov. 2026",
-        "url": "https://spring.io/security/cve-2026-59367/"
-       }
-      ]
-     },
-     {
-      "texte": "CVE-2026-59378 : contournement d'authentification Actuator avec Jersey (haute), corrigé dans Spring Boot 4.1.3 et 4.0.10",
-      "preuves": [
-       {
-        "texte": "Spring, avis CVE-2026-59378, 19 nov. 2026",
-        "url": "https://spring.io/security/cve-2026-59378/"
-       }
-      ]
-     },
-     {
-      "texte": "Failles d'isolation entre locataires dans les vector stores de Spring AI, corrigées en 2.0.3",
-      "preuves": [
-       {
-        "texte": "Spring, avis CVE-2026-59369, 19 nov. 2026",
-        "url": "https://spring.io/security/cve-2026-59369/"
-       }
-      ]
-     },
-     {
-      "texte": "Spring Integration corrigé en 7.1.3 et 7.0.8",
-      "preuves": [
-       {
-        "texte": "Spring, avis CVE-2026-59362, 19 nov. 2026",
-        "url": "https://spring.io/security/cve-2026-59362/"
-       }
-      ]
-     },
-     {
-      "texte": "Spring Data Elasticsearch corrigé en 6.1.3 et 6.0.9 (injection SpEL, haute)",
-      "preuves": [
-       {
-        "texte": "Spring, avis CVE-2026-123886, 19 nov. 2026",
-        "url": "https://spring.io/security/cve-2026-123886/"
-       }
-      ]
-     }
-    ],
-    "retirees": [
-     {
-      "texte": "CVE-2026-59273 notée 9,8 (critique)",
-      "raison": "Spring l'a reclassée en sévérité moyenne le 23 novembre (environ 6,6)"
-     },
-     {
-      "texte": "Contournement Actuator noté 8,2",
-      "raison": "Spring donne la sévérité « haute » sans score ; son vecteur donne 8,1"
-     },
-     {
-      "texte": "50 failles corrigées",
-      "raison": "aucune source primaire ne donne ce total ; d'autres médias parlent de 90 ou 91 avis"
-     },
-     {
-      "texte": "Aucune exploitation connue",
-      "raison": "les avis ne l'excluent pas, et des preuves de concept sont signalées pour CVE-2026-59273"
-     }
-    ],
-    "ecarts": [
-     "CVE-2026-59273 : 9,8 selon SecurityOnline et d'autres sites ; sévérité moyenne (environ 6,6) selon Spring depuis le 23 novembre.",
-     "Nombre de failles : 50 selon SecurityOnline ; 90 ou 91 avis selon d'autres médias."
-    ],
-    "recoupements": [
-     {
-      "texte": "Spring, liste des avis de sécurité",
-      "url": "https://spring.io/security"
-     },
-     {
-      "texte": "Spring, avis CVE-2026-59273, révisé le 23 nov. 2026",
-      "url": "https://spring.io/security/cve-2026-59273/"
-     },
-     {
-      "texte": "Spring, avis CVE-2026-59367, 19 nov. 2026",
-      "url": "https://spring.io/security/cve-2026-59367/"
-     },
-     {
-      "texte": "Spring, avis CVE-2026-59378, 19 nov. 2026",
-      "url": "https://spring.io/security/cve-2026-59378/"
-     },
-     {
-      "texte": "Spring, avis CVE-2026-59369, 19 nov. 2026",
-      "url": "https://spring.io/security/cve-2026-59369/"
-     },
-     {
-      "texte": "Spring, avis CVE-2026-59362, 19 nov. 2026",
-      "url": "https://spring.io/security/cve-2026-59362/"
-     },
-     {
-      "texte": "Spring, avis CVE-2026-123886, 19 nov. 2026",
-      "url": "https://spring.io/security/cve-2026-123886/"
-     }
-    ]
-   }
-  },
-  {
-   "id": "s6",
-   "categorie": "securite",
-   "statut": "publie",
-   "tags": [
-    "alerte",
-    "supply-chain"
-   ],
-   "titre": "Paquets PyPI agent-framework piégés : vol d'identifiants Azure et CI",
-   "resume": "Le 17 novembre, deux versions du paquet PyPI officiel agent-framework de Microsoft (1.26.1 et 1.26.2, publiées à environ 33 minutes d'écart) ont été détournées. Elles contiennent un voleur d'identifiants qui s'exécute via un fichier .pth à chaque démarrage de l'interpréteur Python, sans même importer le paquet, et envoie les secrets Azure et CI vers webhook.site.\n\nLes versions ont été mises en quarantaine ; la dernière version saine est la 1.26.0. Les équipes concernées doivent contrôler leurs images CI et leurs environnements, renouveler tous les secrets possiblement exposés et bloquer webhook.site en sortie. Ce n'est pas du .NET, mais cela touche le même écosystème Azure et CI/CD (la gravité « critique » est mon évaluation, pas celle des sources).",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "une attaque de plus sur la chaîne d'approvisionnement logicielle (supply chain), visant un paquet « officiel », d'autant plus pertinent avec la nouvelle publication en deux temps de NuGet. Te concerne : peut-être (rappel, antérieur à la fenêtre de 3 jours)."
-   },
-   "sources": [
-    {
-     "texte": "Source : SecurityWeek, 18 nov. 2026",
-     "url": "https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/"
-    },
-    {
-     "texte": "OX Security",
-     "url": "https://www.ox.security/blog/breaking-hijacked-releases-of-microsofts-official-agent-framework-steals-azure-and-ci-credentials/"
-    }
-   ],
-   "meta": "SecurityWeek · 18 nov. 2026 · te concerne : peut-être (rappel)",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T00:15+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie Alertes → Sécurité (a6 → s6) ; tag Alerte"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : supply-chain"
-    }
-   ],
-   "date": "2026-11-18"
-  },
-  {
-   "id": "s2",
-   "categorie": "securite",
-   "statut": "publie",
-   "tags": [
-    "alerte"
-   ],
-   "titre": "Patch Tuesday de novembre : 1 093 failles, un zero-day Outlook",
-   "resume": "Le lot du 10 novembre corrige 1 093 vulnérabilités, surtout dans Windows (733) et Office (174), plus SQL Server (52), SharePoint (27) et Exchange (9). Une seule faille zero-day, exploitée activement : CVE-2026-124194, une usurpation (spoofing) dans Outlook qui divulgue l'empreinte NTLMv2 quand on ouvre un fichier Office piégé. Deux failles notées 9,8 au CVSS : LDAP (exécution à distance sans authentification) et Windows Search.",
-   "details": {
-    "Touché": "Microsoft 365 Apps, Office LTSC 2021 et 2024 (zero-day) ; Windows, Exchange, SQL Server",
-    ".NET": "L'article source ne cite ni .NET, ni Visual Studio, ni ASP.NET (MSRC non consulté)",
-    "Gravité": "Zero-day modérée (6,5), deux critiques à 9,8"
-   },
-   "pourquoi": {
-    "type": "compte",
-    "texte": "surtout un sujet d'exploitation des postes et serveurs. Te concerne : peut-être (SQL Server)."
-   },
-   "sources": [
-    {
-     "texte": "Source : IT-Connect",
-     "url": "https://www.it-connect.fr/patch-tuesday-novembre-2026-recapitulatif/"
-    }
-   ],
-   "meta": "IT-Connect · 11 nov. 2026 (rattrapage) · te concerne : peut-être",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T00:15+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie Alertes → Sécurité (a2 → s2) ; tag Alerte"
-    }
-   ],
-   "date": "2026-11-11"
-  },
-  {
-   "id": "n9",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "tags": [],
-   "titre": "first-class-errors : unions C# 15 contre Result pattern",
-   "resume": "Le mot-clé `union` de C# 15 déclare un type dont la liste de cas est fermée. Chaque cas se convertit implicitement vers l'union, et le compilateur vérifie l'exhaustivité des `switch`. Les hiérarchies fermées (`closed`) donnent la même garantie aux classes dérivées. Le billet .NET du 10 septembre recommande, pour une nouvelle API, une hiérarchie fermée avec discriminateur `$type` plutôt qu'une union sans discriminateur. Côté JSON, seul le cas actif est écrit, et les cas objets ambigus demandent un classifieur structurel.\n\nLe 21 novembre, Milan Jovanović a posé directement la question : les unions peuvent-elles remplacer le Result pattern ? Son exemple de code utilise un `switch` exhaustif dont le compilateur signale les cas manquants avec l'erreur CS8509, et renvoie les erreurs HTTP par `Results.Problem(...)`. L'article ne parle ni d'ErrorOr ni de FluentResults.",
-   "pourquoi": {
-    "type": "projet",
-    "texte": "des types de retour fermés et vérifiés à la compilation sont un concurrent direct des types d'erreur de ta bibliothèque. Le sujet monte dans la communauté ; à suivre."
-   },
-   "sources": [
-    {
-     "texte": "Source : Milan Jovanović, 21 nov. 2026",
-     "url": "https://milanjovanovic.tech/blog/csharp-union-types-vs-result-pattern"
-    },
-    {
-     "texte": ".NET Blog, 10 sept. 2026",
-     "url": "https://devblogs.microsoft.com/dotnet/unions-and-closed-hierarchies-in-aspnetcore/"
-    }
-   ],
-   "depot": "Reefact/first-class-errors",
-   "meta": "Milan Jovanović · 21 nov. 2026 ; .NET Blog · 10 sept. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T20:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
-    }
-   ],
-   "date": "2026-11-21"
-  },
-  {
-   "id": "n10",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "tags": [],
-   "titre": "kill-mutants : Stryker.NET, exécuteur de tests MTP et paquet 5.1.0",
-   "resume": "Stryker.NET propose depuis la 4.13 (billet du 13 mars 2026) un exécuteur de tests Microsoft Testing Platform (MTP) en préversion, activé par `--test-runner mtp`. Il évite de relancer un processus VSTest à chaque exécution. Limites annoncées : la couverture par test n'est pas finalisée et .NET Framework n'est pas pris en charge.\n\nLe paquet NuGet `stryker` est en 5.1.0, publié le 10 novembre 2026 ; c'est la bibliothèque de mutation, pas l'outil en ligne de commande (`dotnet-stryker`, dont la version n'a pas été relevée précisément). Aucune actualité plus récente sur les tests de mutation n'a été trouvée cette semaine.",
-   "pourquoi": {
-    "type": "projet",
-    "texte": "concurrent direct. La sortie d'une série 5.x et la prise en charge de MTP sont les deux signaux à surveiller."
-   },
-   "sources": [
-    {
-     "texte": "Source : Stryker Mutator",
-     "url": "https://stryker-mutator.io/blog/stryker-net-mtp-runner/"
-    },
-    {
-     "texte": "NuGet",
-     "url": "https://www.nuget.org/packages/stryker"
-    }
-   ],
-   "depot": "Reefact/kill-mutants",
-   "meta": "Stryker blog · 13 mars 2026 ; NuGet · 10 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T20:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
-    },
-    {
-     "date": "2026-11-25T01:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie secondaire Craftsmanship"
-    }
-   ],
-   "date": "2026-11-10",
-   "categorie_secondaire": "craftsmanship"
-  },
-  {
-   "id": "n11",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "tags": [],
-   "titre": "unified-assertions : Shouldly 5 en préversion",
-   "resume": "Relevé des versions sur NuGet (dates lues sur les pages, aucune dans les 7 derniers jours). AwesomeAssertions est à la 9.6.0 (20 août 2026) après la 9.5.0 (19 juillet). Shouldly reste à la 4.3.0 stable (janvier 2025) mais prépare une 5.0.0, avec deux préversions (10 juin et 18 juillet 2026).",
-   "pourquoi": {
-    "type": "projet",
-    "texte": "un concurrent d'assertions prépare une version majeure 5. Si sa version 5 casse la compatibilité, c'est l'occasion de positionner ta bibliothèque. Signal ancien : à relire quand la 5.0.0 stable sort."
-   },
-   "sources": [
-    {
-     "texte": "AwesomeAssertions",
-     "url": "https://www.nuget.org/packages/AwesomeAssertions"
-    },
-    {
-     "texte": "Shouldly",
-     "url": "https://www.nuget.org/packages/Shouldly"
-    }
-   ],
-   "depot": "Reefact/unified-assertions",
-   "meta": "NuGet · 10 juin et 18 juil. 2026 (signal ancien)",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T20:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
-    },
-    {
-     "date": "2026-11-24T21:30+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "date de survenance ajoutée (2026-07-18, lue sur l'API NuGet)"
-    },
-    {
-     "date": "2026-11-25T01:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie secondaire Craftsmanship"
-    }
-   ],
-   "date": "2026-07-18",
-   "categorie_secondaire": "craftsmanship"
-  },
-  {
-   "id": "n12",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "tags": [],
-   "titre": "just-dummies : AutoFixture 5 en préversion",
-   "resume": "Relevé des versions sur NuGet (dates lues sur les pages, aucune dans les 7 derniers jours). AutoFixture reste à la 4.18.1 stable (novembre 2023) avec une 5.0.0-rc.1 du 31 juillet 2026. Bogus est à la 35.6.5 (octobre 2025).",
-   "pourquoi": {
-    "type": "projet",
-    "texte": "un concurrent de génération de données de test prépare sa version majeure 5. Si cette version casse la compatibilité, c'est l'occasion de positionner ta bibliothèque. Signal ancien : à relire quand la 5.0.0 stable sort."
-   },
-   "sources": [
-    {
-     "texte": "AutoFixture",
-     "url": "https://www.nuget.org/packages/AutoFixture"
-    }
-   ],
-   "depot": "Reefact/just-dummies",
-   "meta": "NuGet · 31 juil. 2026 (signal ancien)",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T20:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
-    },
-    {
-     "date": "2026-11-24T21:30+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "date de survenance ajoutée (2026-07-31, lue sur l'API NuGet)"
-    },
-    {
-     "date": "2026-11-25T01:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie secondaire Craftsmanship"
-    }
-   ],
-   "date": "2026-07-31",
-   "categorie_secondaire": "craftsmanship"
-  },
-  {
-   "id": "n1",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "tags": [],
-   "titre": ".NET 11 : toutes les nouveautés",
-   "resume": ".NET 11 est sorti le 10 novembre 2026, pendant la .NET Conf. C'est une version STS (support standard) : 24 mois de support, jusqu'en novembre 2028, comme la LTS .NET 10. C# 15 est le langage par défaut. Les versions 8 et 9 sont hors support depuis ce même jour. Le résumé ci-dessous suit les pages officielles de Microsoft Learn (nouveautés runtime, bibliothèques, SDK, C# 15, ASP.NET Core, EF Core), le billet d'annonce et InfoQ ; ce qui n'a pas pu être lu est marqué « non vérifié ».\n\n**Runtime, JIT et GC**\n\n- **Baseline matérielle relevée (cassant).** x86/x64 passe de x86-64-v1 à v2 (SSE3 à SSE4.2, POPCNT, CX16) ; la cible ReadyToRun passe à v3 (AVX2, BMI, FMA). Sur Arm64 Windows, LSE devient obligatoire. Un processeur trop ancien échoue au démarrage.\n- **Runtime Async (v2).** La gestion de l'asynchronisme passe des machines à états du compilateur au runtime : piles d'appels plus lisibles (5 frames au lieu de 13 sur l'exemple de la doc) et moins de surcharge. Activation par `<Features>runtime-async=on</Features>`, sans mode preview ; les bibliothèques du runtime sont déjà compilées ainsi. Compatible NativeAOT et ReadyToRun.\n- **JIT.** Moins de contrôles de bornes et d'overflow inutiles, switch repliés en tests sans branche, meilleure dévirtualisation (méthodes génériques virtuelles, `Activator.CreateInstance<T>`), comparateurs par défaut spécialisés en ReadyToRun (jusqu'à 20× sur les collections).\n- **Conversions flottant vers petits entiers saturantes (cassant).** Elles ne bouclent plus (wrap).\n- **SIMD et matériel.** AvxVnni.V512, SVE2, `Half` accéléré matériellement, nouvelles API de séquences et de zip sur les types `Vector*`.\n- **Rapport de crash intégré** (pile managée, modules, état) sur Linux et macOS via `DOTNET_EnableCrashReport=1`. WebAssembly : WebCIL V1 par défaut. iOS/tvOS : verrouillage de fichier consultatif désactivé par défaut. Pas de section GC dédiée dans la doc lue, seulement des correctifs (groupes de CPU Windows).\n\n**C# 15**\n\n- **Types union** (`union`) : un type vaut l'un de plusieurs cas, avec `switch` exhaustif vérifié par le compilateur.\n- **Hiérarchies fermées** (`closed`) : dérivation limitée à l'assembly, donc exhaustivité aussi pour les classes.\n- **Collection expression arguments** : un élément `with(...)` passe capacité ou comparer au constructeur.\n- **Indexeurs d'extension**, **`break` et `continue` étiquetés** (sortie d'une boucle externe sans drapeau ni `goto`), membres statiques d'interface non virtuels utilisables sans default interface implementations.\n- **Memory safety (preview)** : sous `LangVersion preview`, pointeurs, `fixed`, `stackalloc` et `sizeof` n'exigent plus un contexte `unsafe` ; nouveaux `unsafe(expr)` et mot-clé `safe`.\n\n**Bibliothèques**\n\n- **System.Text.Json et unions.** Une union s'écrit comme la valeur de son cas actif, sans enveloppe ; à la lecture, le cas est choisi selon le type de token JSON, ou par un classifieur (`[JsonUnion(TypeClassifier=…)]`) pour deux cas objets. Les unions discriminées F# sont gérées par réflexion uniquement (pas de source generation ni de Native AOT).\n- **JSON Lines** en écriture (`SerializeAsyncEnumerable` avec `topLevelValues: true`) et en lecture asynchrone. Polymorphisme inféré pour les hiérarchies `closed`. `JsonNamingPolicy.PascalCase`, `[JsonNamingPolicy]` et `[JsonIgnore]` applicables à un type, convertisseurs pour `Decimal32/64/128` et `BFloat16`.\n- **LINQ** : `FullJoin` et surcharges `Join`/`GroupJoin` renvoyant des tuples. **Process** : exécution avec capture de sortie, `StartSuspended`, signaux POSIX.\n- **Compression et flux** : Zstandard dans `System.IO.Compression`, validation CRC32 des ZIP, quatre flux mémoire sans copie.\n- **Réseau et sécurité** : résolution DNS typée (SRV, MX, TXT), compression des corps de requête HTTP (gzip, brotli, zstd), X25519, AES Key Wrap, ML-KEM composite et HPKE (expérimentaux).\n- **Validation asynchrone** : `AsyncValidationAttribute`, `IAsyncValidatableObject`, `Validator.ValidateObjectAsync`. Métriques OpenTelemetry pour `MemoryCache`. Les méthodes de `String` acceptent des `Rune`.\n\n**SDK, CLI et conteneurs**\n\n- **Hôte CLI Native AOT par défaut** : démarrage quasi instantané de `--version`, `--info`, `--help` ; les autres commandes retombent sur la CLI managée. Désactivable par `DOTNET_CLI_ENABLEAOT=false`. Listé comme changement de comportement.\n- **Nouvelles options** : `dotnet run -e KEY=VAL`, `dotnet test --timeout` et `--maximum-failed-tests`, `dotnet nuget … --min-publish-age-hours`, filtres `.slnf`, `#:include` pour les applications en fichier unique, reprise après crash de `dotnet watch`.\n- **Tests mobiles** : modèles `androidtest`, `iostest`, `macostest`. Un modèle `dotnet new mcpserver` est livré. **dotnetup**, gestionnaire de SDK et runtimes côte à côte, est en aperçu public (non vérifié sur une page dédiée).\n- **Conteneurs** : builds multi-architecture avec Podman, préférence pour les runtimes natifs (`wslc`, `container`) avant Docker, digests reproductibles par `SOURCE_DATE_EPOCH`, push plus rapide.\n\n**ASP.NET Core 11**\n\n- **OpenAPI 3.2 par défaut** (Microsoft.OpenApi 3.x, cassant pour les outils en aval) : opérations HTTP QUERY, flux SSE décrits par `itemSchema`, `[Obsolete]` traduit en `deprecated`, unions en `anyOf`. Détail dans le sujet API & architecture.\n- **Unions C# dans les Minimal APIs, MVC et SignalR** pour les corps JSON (pas pour le binding route, query, header ou form). **Validation asynchrone** de bout en bout avec `AddValidation()` et localisation des messages.\n- **Minimal APIs** : les filtres d'endpoint s'exécutent même si le binding échoue ; attribut `[ShortCircuit]`. **SignalR** : rafraîchissement de l'authentification sans reconnexion.\n- **Blazor** : `CacheView`, validation côté client en SSR statique, pause automatique des circuits, TempData et Session en SSR, `Virtualize` amélioré, QuickGrid avec pagination et tri dans l'URL, composants IA expérimentaux.\n- **Sécurité et divers** : passkeys avec noms conviviaux, Device Bound Session Credentials (expérimental), Zstandard activé par défaut pour la compression, HTTP/3 plus rapide, traçage OpenTelemetry natif.\n- **Changements cassants** (13 entrées) : Microsoft.OpenApi 3.x, middleware ConcurrencyLimiter supprimé, conformité HTTP plus stricte de Kestrel, tags OpenTelemetry émis par défaut, authentification Active Directory de SqlClient dans un package séparé.\n\n**EF Core 11**\n\n- Exige le SDK et le runtime .NET 11. Types complexes et colonnes JSON avec héritage TPT/TPC, moins de jointures inutiles (gains mesurés de 22 à 29 %), `FullJoin` traduit en `FULL JOIN`, `MaxBy` et `MinBy`.\n- **SQL Server** : recherche vectorielle expérimentale (`HasVectorIndex()`, `VectorSearch()`), index full-text dans le modèle, `JSON_CONTAINS`. **Cosmos DB** : types complexes, batches transactionnels, bascule de Newtonsoft vers System.Text.Json.\n- **Migrations** : `ExcludeForeignKeyFromMigrations()`, identifiant de migration dans le snapshot (conflit de merge explicite), `dotnet ef database update --add`, fichier `.config/dotnet-ef.json`.\n- **Cassants à noter** : Cosmos ne conserve plus les propriétés non mappées (impact élevé), Microsoft.Data.SqlClient 7.0 sépare l'authentification Entra ID, niveau de compatibilité SQL Server par défaut à 160, `Migrate()` lève une exception sans migration, Microsoft.Data.Sqlite 11 abandonne .NET Framework.\n\n**MAUI, WinForms, WPF, F# et outils**\n\n- **MAUI 11** : CoreCLR remplace Mono par défaut sur mobile, XAML Incremental Hot Reload en aperçu, `CollectionView2` par défaut sous Windows ; Android x86 n'est plus pris en charge (API 24 minimum). Page détaillée MAUI non lue (non vérifié).\n- **WinForms** : modes de styles visuels, `KioskModeManager`, `CheckBox` en commutateur. **WPF** : correctifs de fiabilité seulement. Les pages lues portaient encore le libellé RC1 (contenu final non confirmé).\n- **F# 11** : spreads de records, délégués directs depuis une fonction nommée, compilation parallèle par défaut, builder `runtimeTask` expérimental pour le runtime async.\n- **Visual Studio** : .NET 11 est annoncé pris en charge par Visual Studio 2026 Insiders et VS Code avec C# Dev Kit ; la version minimale de VS pour la version finale n'a pas été vérifiée.\n\n**À savoir pour migrer depuis .NET 8, 9 ou 10**\n\n- Vérifier le parc de processeurs (baseline), les conversions flottant vers entier, les arrondis (`Math.Round` et conversions `decimal` modifiés ; un artefact signalé par un lecteur est non officiel, non vérifié), `IHost.RunAsync` qui lève une exception si un `BackgroundService` échoue, `TryParse` de `DateOnly`/`TimeOnly` qui lève sur entrée invalide, et la validation CRC32 des ZIP.\n- La liste officielle des changements cassants n'est pas exhaustive : la lire avant toute montée de version. Installer le SDK 11 ne change pas la cible de l'application.",
-   "sources": [
-    {
-     "texte": "Source : annonce .NET 11, .NET Blog, 10 nov. 2026",
-     "url": "https://devblogs.microsoft.com/dotnet/announcing-dotnet-11/"
-    },
-    {
-     "texte": "Nouveautés .NET 11, Microsoft Learn",
-     "url": "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
-    },
-    {
-     "texte": "C# 15",
-     "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
-    },
-    {
-     "texte": "ASP.NET Core 11",
-     "url": "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
-    },
-    {
-     "texte": "EF Core 11",
-     "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew"
-    },
-    {
-     "texte": "Changements cassants",
-     "url": "https://learn.microsoft.com/en-us/dotnet/core/compatibility/11"
-    },
-    {
-     "texte": "InfoQ, 17 nov. 2026",
-     "url": "https://www.infoq.com/news/2026/11/dotnet-11-release"
-    }
-   ],
-   "titre_sommaire": ".NET 11 et C# 15 sont disponibles",
-   "meta": ".NET Blog · 10 nov. 2026 ; InfoQ · 17 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    }
-   ],
-   "date": "2026-11-17"
-  },
-  {
-   "id": "n2",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "tags": [
-    "supply-chain"
-   ],
-   "titre": "NuGet.org : publication en deux temps (staged publishing)",
-   "resume": "NuGet.org propose une fonction optionnelle de publication en deux temps. Un paquet envoyé en zone d'attente (« staging ») passe les contrôles habituels (anti-malware, signatures) mais reste invisible pour la recherche et le restore. Un mainteneur autorisé le promeut ensuite depuis le site web, et plusieurs paquets liés peuvent être promus ensemble par groupe de release. Le contenu non promu finit par expirer.\n\nDes clés API « staging seulement » permettent à un pipeline de téléverser sans pouvoir publier directement : si la clé fuit, l'attaquant ne peut pas mettre un paquet en ligne. Côté CLI, `dotnet package stage push` exige le SDK .NET 11 RC2 (version préliminaire). La promotion se fait pour l'instant uniquement sur le site, sans approbation en ligne de commande, et la promotion d'un groupe n'est pas atomique. Le billet recommande de l'associer à la publication de confiance (Trusted Publishing). L'article ne dit pas si la fonction est en préversion ou disponible pour tous.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "tu peux mettre une validation humaine entre le build CI et la mise en ligne de tes bibliothèques (kill-mutants, first-class-errors, etc.) et limiter les dégâts d'un vol de clé, comme dans l'attaque PyPI citée plus haut."
-   },
-   "sources": [
-    {
-     "texte": "Source : .NET Blog, 17 nov. 2026",
-     "url": "https://devblogs.microsoft.com/dotnet/nuget-staged-publishing/"
-    }
-   ],
-   "meta": ".NET Blog · 17 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : supply-chain"
-    }
-   ],
-   "date": "2026-11-17"
-  },
-  {
-   "id": "n3",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "tags": [],
-   "titre": "Modèles locaux dans une app .NET avec Llama sur Windows",
-   "resume": "Le billet de Luis Quintanilla explique comment faire tourner des modèles ouverts en local sous Windows grâce à l'application de barre système « Llama », bâtie sur llama.cpp (exemple avec Gemma 4). Elle expose un point d'accès compatible OpenAI sur la machine.\n\nL'exemple est une application C# « file-based » qui appelle ce point d'accès via Microsoft.Extensions.AI. Elle liste les modèles disponibles, diffuse les réponses en streaming et donne au modèle des outils (informations sur la machine, modèles téléchargés). Aucun service cloud n'est nécessaire.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "un chemin simple pour prototyper de l'IA dans une application .NET sans clé API, utile pour des essais en équipe sur des données qui ne doivent pas sortir du poste."
-   },
-   "sources": [
-    {
-     "texte": "Source : .NET Blog, 23 nov. 2026",
-     "url": "https://devblogs.microsoft.com/dotnet/local-models-dotnet-llama-windows/"
-    }
-   ],
-   "meta": ".NET Blog · 23 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    }
-   ],
-   "date": "2026-11-23"
-  },
-  {
-   "id": "i1",
-   "categorie": "ia",
-   "statut": "publie",
-   "tags": [
-    "agents"
-   ],
-   "titre": "Claude Ship : des agents qui prennent en charge les PR après ouverture",
-   "resume": "Anthropic lance en bêta une offre qui prend en charge les pull requests après leur ouverture. Elle réunit Code Review (déjà disponible, avec trois niveaux Quick, Standard ou Deep réglables par dépôt) et deux agents en bêta.\n\n- **PR Steward** corrige les échecs de CI, les conflits de merge et traite les retours de revue. Il commente ce qu'il a changé et comment annuler, et il n'approuve ni ne fusionne jamais.\n- **Claude Approvals** applique une politique d'approbation stockée dans le dépôt, un peu comme un CODEOWNERS avancé : il approuve les changements courants et exige un humain pour les changements sensibles.\n\nL'offre est réservée aux plans Team et Enterprise sur GitHub, facturée aux tokens avec des plafonds de dépense. Elle n'est pas disponible avec la rétention zéro des données (ZDR), la conformité HIPAA ni les clés de chiffrement gérées par le client. Une commande `/ship` arrive dans Claude Code.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "une politique d'approbation versionnée avec le code et un agent qui répare la CI touchent directement le flux de PR d'une équipe .NET. Point de vigilance : la compatibilité avec tes contraintes de rétention des données."
-   },
-   "sources": [
-    {
-     "texte": "Source : Claude, 23 nov. 2026",
-     "url": "https://claude.com/resources/articles/introducing-claude-ship"
-    }
-   ],
-   "meta": "Anthropic · 23 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : agents"
-    }
-   ],
-   "date": "2026-11-23"
-  },
-  {
-   "id": "i2",
-   "categorie": "ia",
-   "statut": "publie",
-   "tags": [
-    "agents",
-    "rex"
-   ],
-   "titre": "Netflix : adapter le cycle de développement aux agents de code",
-   "resume": "À QCon SF, un ingénieur de Netflix explique que le gain vient surtout de la documentation, de la cohérence et de la revue, plus que des agents eux-mêmes. L'équipe a rédigé 45 ADR (Architecture Decision Records, fiches de décision d'architecture) lisibles par des humains comme par des agents, plus un fichier AGENTS.md pour naviguer dans plus de 300 documents.\n\nUn agent de revue vérifie les PR par rapport à ces documents ; il a été réglé pour ne poster que des problèmes bloquants vérifiés, après une première version jugée trop bavarde. Pour les changements qui touchent plusieurs services, ils utilisent des graphes GraphRAG par domaine, épinglés sur des commits et exposés par un seul outil MCP (Model Context Protocol). Chiffres rapportés par Netflix : aucun incident Sev 1 sur un service clé en 2026, 32 % de PR en plus sur un an, et un NPS (indice de recommandation) développeur passé de -3 à +25.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "un retour d'expérience chiffré et reproductible (ADR, AGENTS.md, revue par agent, MCP) pour cadrer l'usage des agents dans tes missions. Il rejoint aussi ton sujet des conventions de revue de code."
-   },
-   "sources": [
-    {
-     "texte": "Source : InfoQ, 23 nov. 2026",
-     "url": "https://www.infoq.com/news/2026/11/netflix-sdlc-ai-coding-agents/"
-    }
-   ],
-   "meta": "InfoQ · 23 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : agents, rex"
-    }
-   ],
-   "date": "2026-11-23"
-  },
-  {
-   "id": "i3",
-   "categorie": "ia",
-   "statut": "publie",
-   "tags": [
-    "agents"
-   ],
-   "titre": "GitHub Copilot dans JetBrains : sandbox cloud, accès distant, navigateur",
-   "resume": "Plusieurs fonctions passent en préversion publique dans Copilot pour les IDE JetBrains. Les sessions peuvent tourner dans un sandbox cloud hébergé par GitHub, avec des sessions parallèles. Les conversations sont accessibles depuis d'autres clients (VS Code, application Copilot). Copilot peut piloter le navigateur via l'extension Chrome, la dictée vocale tourne sur l'appareil, et un mode « split » permet le développement à distance.\n\nCôté ergonomie, Entrée permet de réorienter un agent en cours d'exécution et Ctrl/Cmd+Entrée met un suivi en file d'attente. Côté administration, les paramètres entreprise désactivent désormais Claude et Codex sauf exception décidée par un administrateur. JetBrains 2025.2 n'est plus pris en charge.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "si l'équipe .NET utilise Rider, la version minimale passe à 2025.3, et la nouvelle règle entreprise sur Claude et Codex peut bloquer des usages existants."
-   },
-   "sources": [
-    {
-     "texte": "Source : GitHub Changelog, 17 nov. 2026",
-     "url": "https://github.blog/changelog/2026-11-17-github-copilot-in-jetbrains-ignite-releases/"
-    }
-   ],
-   "meta": "GitHub Changelog · 17 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : agents"
-    }
-   ],
-   "date": "2026-11-17"
-  },
-  {
-   "id": "i4",
-   "categorie": "ia",
-   "statut": "publie",
-   "tags": [
-    "agents"
-   ],
-   "titre": "Devin Bots : des agents persistants qui pilotent d'autres agents",
-   "resume": "Cognition lance des agents persistants qui supervisent plusieurs sessions Devin et portent un objectif pendant des jours ou des semaines. Ils créent eux-mêmes les tâches et les assignent, et envoient ce qui demande une validation humaine vers une boîte « Needs You ».\n\nExemple cité : un Bot a produit une version Android de Devin sans ingénieur Android, avec 1 134 PR fusionnées en 44 jours (chiffres de Cognition). The New Stack souligne des questions ouvertes : résolution des conflits entre agents, auto-vérification du code et critère de prêt à fusionner. L'annonce initiale semble dater du 17 novembre (article Fortune repéré, non ouvert).",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "l'orchestration d'agents progresse vite, et la gouvernance de la qualité (revue, critères de fusion) devient le vrai sujet dès qu'on cadre l'usage des agents en équipe."
-   },
-   "sources": [
-    {
-     "texte": "Source : The New Stack, 19 nov. 2026",
-     "url": "https://thenewstack.io/cognition-devin-bots-management/"
-    }
-   ],
-   "meta": "The New Stack · 19 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : agents"
-    }
-   ],
-   "date": "2026-11-19"
-  },
-  {
-   "id": "i5",
-   "categorie": "ia",
-   "statut": "publie",
-   "tags": [
-    "agents"
-   ],
-   "titre": "LangSmith Tool Gateway : une passerelle MCP avec politiques et audit",
-   "resume": "LangChain passe en bêta publique une couche gérée qui centralise identifiants, identité et accès pour les appels d'outils des agents. Tous les appels passent par une URL unique, avec des politiques de refus ou d'approbation et un traçage de chaque appel, exécutable au nom de l'utilisateur ou de l'agent.\n\nOn peut y enregistrer n'importe quel serveur MCP ou activer un serveur intégré (Google, GitHub, Salesforce). Un « tool kit » est un ensemble d'outils publié sur une URL MCP, et un mode recherche charge seulement les outils utiles. Tout client MCP peut s'y connecter, dont Claude Code et Cursor. Les journaux d'audit complets sont réservés à l'offre Enterprise. Le blog officiel MCP n'a rien publié entre le 17 et le 24 novembre.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "une réponse concrète au problème de gouvernance des serveurs MCP (secrets, droits, audit) quand on les déploie à l'échelle d'une équipe."
-   },
-   "sources": [
-    {
-     "texte": "Source : LangChain, 19 nov. 2026",
-     "url": "https://langchain.com/blog/langsmith-tool-gateway"
-    }
-   ],
-   "meta": "LangChain · 19 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : agents"
-    }
-   ],
-   "date": "2026-11-19"
-  },
-  {
-   "id": "p1",
-   "categorie": "architecture",
-   "statut": "publie",
-   "tags": [
-    "api"
-   ],
-   "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf",
-   "resume": "ASP.NET Core 11 génère désormais du OpenAPI 3.2 par défaut, avec Microsoft.OpenApi 3.x, ce qui est signalé comme un changement cassant pour les outils en aval qui ne suivent pas ; une propriété MSBuild (`OpenApiGenerationEnvironment`) permet de revenir à une version antérieure.\n\n- Les unions C# 15 sortent en `anyOf` dans le schéma (corps JSON uniquement).\n- La méthode HTTP QUERY est décrite, les événements SSE ont un schéma de payload (`itemSchema`), `[Obsolete]` devient `deprecated: true` et les fichiers binaires sont décrits.\n- Toutes les annotations `ProducesResponseType` sont conservées par code de statut, et les URL de serveur n'ont plus de slash final : deux changements qui modifient le contrat généré.\n- Les paramètres enum hors corps gardent les noms de membres C#, quelle que soit la politique de nommage JSON.",
-   "pourquoi": {
-    "type": "projet",
-    "texte": "un contrat régénéré en 3.2 au lieu de 3.1 peut produire des différences qui ne sont pas de vraies ruptures, et les unions en `anyOf` sont un nouveau cas de rétrocompatibilité à classer."
-   },
-   "sources": [
-    {
-     "texte": "Source : InfoQ, 19 nov. 2026",
-     "url": "https://www.infoq.com/news/2026/11/asp-net-11-release/"
-    },
-    {
-     "texte": "Microsoft Learn",
-     "url": "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
-    }
-   ],
-   "meta": "InfoQ · 19 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T20:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
-    },
-    {
-     "date": "2026-11-24T23:30+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie API & architecture → Architecture ; tag API"
-    },
-    {
-     "date": "2026-11-25T03:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "ligne « pourquoi » reformulée (avant : « Pourquoi ça compte pour toi : un contrat régénéré en 3.2 au lieu de 3.1 peut produire des différences qui ne sont pas de vraies ruptures, et les unions en `anyOf` sont un nouveau cas de rétrocompatibilité à classer. »)"
-    }
-   ],
-   "date": "2026-11-19",
-   "depot": "Reefact/hypermedia-domain-language"
-  },
-  {
-   "id": "cr1",
-   "categorie": "craftsmanship",
-   "statut": "publie",
-   "tags": [
-    "rex"
-   ],
-   "titre": "Revue de code : « rendre le changement facile d'abord »",
-   "resume": "Oskar Dudycz soutient que la revue de code n'est pas le vrai goulot d'étranglement : il faut d'abord un processus de livraison sain, car accélérer un processus défaillant amplifie ses défauts. Il suggère de fusionner du code « débranché » (non activé), de séparer le refactoring mécanique des changements de comportement, et de relire le code produit par des agents par petits incréments réguliers.\n\nSa conclusion : la bonne question est comment travailler autrement, pas comment relire plus vite ni comment supprimer les revues. L'article date du 16 novembre, à la limite de la fenêtre.",
-   "pourquoi": {
-    "type": "projet",
-    "texte": "directement lié à tes conventions de commentaires de revue (conventional-comments-toolkit) et à la question de relire du code généré."
-   },
-   "sources": [
-    {
-     "texte": "Source : event-driven.io, 16 nov. 2026",
-     "url": "https://event-driven.io/en/make_the_change_easy_make_the_easy_change/"
-    }
-   ],
-   "meta": "event-driven.io · 16 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T20:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
-    },
-    {
-     "date": "2026-11-24T23:30+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie API & architecture → Architecture ; libellé de carte propre supprimé"
-    },
-    {
-     "date": "2026-11-25T01:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "Architecture → Craftsmanship (p2 → cr1)"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : rex"
-    },
-    {
-     "date": "2026-11-25T03:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "ligne « pourquoi » reformulée (avant : « Pourquoi ça compte pour toi : directement lié à tes conventions de commentaires de revue (conventional-comments-toolkit) et à la question de relire du code généré. »)"
-    }
-   ],
-   "date": "2026-11-16",
-   "depot": "Reefact/conventional-comments-toolkit"
-  },
-  {
-   "id": "p3",
-   "categorie": "architecture",
-   "statut": "publie",
-   "tags": [
-    "rex"
-   ],
-   "titre": "Outbox pattern sous Postgres : workers concurrents ou lecture du WAL",
-   "resume": "L'outbox écrit le message dans la même transaction que la donnée métier. Plusieurs workers en polling peuvent vider la table avec des verrous de lignes, au prix d'une latence liée à l'intervalle de polling. Un `NOTIFY` envoyé par trigger dans la transaction provoque une forte contention ; envoyé après le commit, il l'évite mais ajoute de la complexité.\n\nLa lecture du journal WAL (journal des écritures de Postgres) par réplication logique atteint environ 1 ms à faible charge avec le meilleur débit des benchmarks de l'auteur, mais exige un slot de réplication et une surveillance de l'espace disque. Les deux approches peuvent livrer des doublons, donc les consommateurs doivent être idempotents. L'article date du 7 novembre (hors fenêtre), gardé faute de sujet plus récent sur l'événementiel.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "un retour de terrain chiffré pour choisir entre polling et WAL dans une architecture événementielle. Rien de daté et vérifié cette semaine sur le versioning d'API, le modular monolith ou le DDD."
-   },
-   "sources": [
-    {
-     "texte": "Source : milanjovanovic.tech, 7 nov. 2026",
-     "url": "https://milanjovanovic.tech/blog/outbox-pattern-postgres-workers-vs-wal"
-    }
-   ],
-   "meta": "milanjovanovic.tech · 7 nov. 2026 (hors fenêtre, retour de terrain chiffré)",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T23:30+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie API & architecture → Architecture ; libellé de carte propre supprimé"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : rex"
-    }
-   ],
-   "date": "2026-11-07"
-  },
-  {
-   "id": "t1",
-   "categorie": "outils",
-   "statut": "publie",
-   "tags": [
-    "agents"
-   ],
-   "titre": "chrome-devtools-mcp : un agent de code qui pilote un vrai Chrome",
-   "resume": "Serveur MCP et ligne de commande qui laissent un agent de code piloter et inspecter un Chrome en cours d'exécution : traces de performance, réseau, console avec piles d'appels résolues par source maps, et automatisation via Puppeteer.",
-   "details": {
-    "Pourquoi il monte": "Environ 54,7 k étoiles et 5,2 k forks lus sur la page ; présent dans le digest des dépôts en tendance du 24 nov. (rang hebdomadaire et date de dernière release non vérifiés)",
-    "Maturité": "Apache-2.0, open source, 1 550 commits ; Node LTS et Chrome stable requis ; plugins pour Claude Code, Copilot/VS Code et Gemini CLI ; gratuit"
-   },
-   "pourquoi": {
-    "type": "utile",
-    "texte": "un agent peut déboguer et profiler une application Blazor ou ASP.NET dans un vrai navigateur, sans copier-coller des logs."
-   },
-   "sources": [
-    {
-     "texte": "Lien officiel : GitHub",
-     "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp"
-    }
-   ],
-   "meta": "GitHub ChromeDevTools · tendance du 24 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T00:15+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie secondaire IA"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : agents"
-    }
-   ],
-   "date": "2026-11-24",
-   "categorie_secondaire": "ia"
-  },
-  {
-   "id": "t2",
-   "categorie": "outils",
-   "statut": "publie",
-   "tags": [
-    "agents"
-   ],
-   "titre": "open-code-review (Alibaba) : revue de code par pipelines et agent LLM",
-   "resume": "Outil de revue de code qui combine des pipelines déterministes et un agent LLM. `ocr review` travaille sur un diff, une branche ou un commit, et `ocr scan` sur des fichiers entiers. Il fonctionne avec des modèles OpenAI ou Anthropic et se branche en CI (GitHub Actions, GitLab CI, Gerrit).",
-   "details": {
-    "Pourquoi il monte": "Environ 50 k étoiles sur la page du dépôt ; le digest du 24 nov. le donne à 55,7 k, soit +13,5 k sur la semaine. Les deux chiffres ne concordent pas et n'ont pas pu être départagés",
-    "Maturité": "Apache-2.0, open source, 854 commits ; installation par npm, Git 2.41 requis ; gratuit mais les appels au modèle sont à ta charge ; âge et releases non lisibles"
-   },
-   "pourquoi": {
-    "type": "surveiller",
-    "texte": "la page ne mentionne ni C# ni .NET (règles citées : NPE, thread-safety, XSS, injection SQL). À tester sur une PR C# avant toute conclusion ; s'il tient, c'est un filet de qualité en CI et un point de comparaison avec tes conventions de revue."
-   },
-   "sources": [
-    {
-     "texte": "Lien officiel : GitHub",
-     "url": "https://github.com/alibaba/open-code-review"
-    }
-   ],
-   "meta": "GitHub · tendance du 24 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T00:15+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie secondaire IA"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : agents"
-    }
-   ],
-   "date": "2026-11-24",
-   "categorie_secondaire": "ia"
-  },
-  {
-   "id": "t3",
-   "categorie": "outils",
-   "statut": "publie",
-   "tags": [
-    "pepite"
-   ],
-   "titre": "Zero C# : du C# compilé en binaires natifs de 11 à 66 Ko",
-   "resume": "Fork du compilateur bflat qui transforme du C# en petits binaires natifs, de 11 à 66 Ko, sans runtime .NET ni ramasse-miettes : la mémoire passe par des arènes libérées d'un coup. Les cibles vont de Linux, macOS, Windows et WebAssembly jusqu'à DOS 386 et UEFI sans système d'exploitation. Limites : pas de réflexion, pas d'async, et un `throw` (levée d'exception) arrête le programme.",
-   "details": {
-    "Pourquoi il monte": "Show HN du 21 nov. 2026, 178 points et 136 commentaires lus le 24 nov. ; repris dans .NET Ketchup (semaine 47)",
-    "Maturité": "Expérimental : 19 étoiles, 50 commits, aucune release. Bibliothèque centrale sous MIT, mais le fork de bflat est sous AGPL-3.0 ; gratuit ; date de création non vérifiée"
-   },
-   "pourquoi": {
-    "type": "surveiller",
-    "texte": "une idée surprenante (du C# sans runtime, jusqu'au démarrage UEFI) qui montre ce que le langage peut devenir. Pas utilisable en production, et l'AGPL du compilateur est à regarder de près avant tout usage sérieux."
-   },
-   "sources": [
-    {
-     "texte": "Lien officiel",
-     "url": "https://onurgumus.github.io/zero-csharp/"
-    },
-    {
-     "texte": "GitHub",
-     "url": "https://github.com/OnurGumus/zero-csharp"
-    }
-   ],
-   "meta": "Show HN · 21 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    }
-   ],
-   "date": "2026-11-21"
-  },
-  {
-   "id": "t4",
-   "categorie": "outils",
-   "statut": "publie",
-   "tags": [
-    "pepite",
-    "agents"
-   ],
-   "titre": "worker755 : le jeu où tu es le sous-agent d'un manager IA",
-   "resume": "Jeu dans le navigateur où le joueur est le sous-agent d'un manager IA. Le manager, scripté ou piloté par un LLM, distribue des tâches ; le joueur choisit un lieu de travail (bac à sable ou production) et peut autoriser l'échec des tâches. Quelques « shifts » (quarts de travail) gratuits par jour avec la clé du serveur, sinon on apporte sa clé OpenRouter ou Vercel AI Gateway ; une version hors ligne tourne avec `npm run mock`.",
-   "details": {
-    "Pourquoi il monte": "Show HN visible le 24 nov. avec 356 points et 87 commentaires (date de publication précise non lue)",
-    "Maturité": "Très jeune : 1 étoile, 54 commits, licence MIT, serveur TypeScript et interface React ; date de création non vérifiée"
-   },
-   "pourquoi": {
-    "type": "surveiller",
-    "texte": "le renversement de rôle (l'humain subit un manager IA) est une façon inventive de faire sentir ce que vit un sous-agent, et peut servir de support pour parler d'agents en équipe. Le gros score HN contraste avec la faible visibilité GitHub : le buzz est très récent."
-   },
-   "sources": [
-    {
-     "texte": "Lien officiel",
-     "url": "https://worker755.com"
-    },
-    {
-     "texte": "GitHub",
-     "url": "https://github.com/gulivan/worker755"
-    }
-   ],
-   "meta": "Show HN · 24 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T00:15+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "catégorie secondaire IA"
-    },
-    {
-     "date": "2026-11-25T01:20+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "tags ajoutés : agents"
-    }
-   ],
-   "date": "2026-11-24",
-   "categorie_secondaire": "ia"
-  },
-  {
-   "id": "d1",
-   "categorie": "distribution",
-   "statut": "publie",
-   "tags": [
-    "mise-a-jour"
-   ],
-   "titre": "Frigos Danfoss : l'enquête vise des responsables liés à l'Iran",
-   "resume": "**Rappel.** Dans la nuit du 11 au 12 octobre, des régulateurs frigorifiques du fabricant danois Danfoss ont été piratés à distance : dégivrages forcés, températures jusqu'à environ 50 °C. Le Groupement Mousquetaires a confirmé environ 300 magasins Intermarché et Netto touchés. LSA comptait près de 500 magasins dans son premier bilan, avec jusqu'à 200 000 € de pertes par hypermarché.\n\n**Nouveau.** Le 9 novembre, le parquet de Paris a ouvert une information judiciaire visant le chef de l'unité iranienne Shahid Kaveh, rattachée aux Gardiens de la Révolution, et deux adjoints. Il a requis des mandats d'arrêt internationaux. Le CERT-FR a publié un rapport le même jour. Les indices avancés : usage du farsi, adresses IP en Iran, mode opératoire de l'unité. Environ 700 sites ont été ciblés ; le parquet parle d'une vingtaine de départs de feu, l'ANSSI d'au moins 15. L'Iran dément.\n\nL'Impertinent (22 novembre) juge le rapport public pauvre en éléments techniques vérifiables. L'attribution ne porte que sur la nuit du 11 au 12 octobre.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "une attribution étatique d'une attaque contre des équipements OT/IoT (technologies opérationnelles et objets connectés) en magasin, et Intermarché est le plus touché. Cela rappelle d'inventorier les firmwares exposés et les mots de passe par défaut, de segmenter le réseau des magasins et de traiter les fournisseurs d'équipements comme une surface d'attaque."
-   },
-   "sources": [
-    {
-     "texte": "franceinfo, 9 nov. 2026",
-     "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html"
-    },
-    {
-     "texte": "CERT-FR, rapport CERTFR-2026-CTI-009, 9 nov. 2026",
-     "url": "https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-009.pdf"
-    },
-    {
-     "texte": "LSA, oct. 2026",
-     "url": "https://www.lsa-conso.fr/distributeurs-alimentaires/casino/monoprix/cyberattaque-en-grande-distribution-pres-de-500-magasins-concernes-jusqua-200-000-de-pertes-par-hypermarche.XIAWZQOVLBGVNPXHNFFMIH7OMM.html"
-    },
-    {
-     "texte": "L'Impertinent, 22 nov. 2026",
-     "url": "https://limpertinentmedia.com/post/cyberattaque-frigos-iran-preuves"
-    },
-    {
-     "texte": "Le Monde Informatique, 13 oct. 2026",
-     "url": "https://www.lemondeinformatique.fr/actualites/lire-une-cyberattaque-perturbe-les-installations-frigorifiques-de-centaines-de-supermarches-100850.html"
-    },
-    {
-     "texte": "Actu17, 9 nov. 2026",
-     "url": "https://actu17.fr/international/frigos-a-50-degres-dans-700-supermarches-la-justice-francaise-remonte-jusqu-aux-gardiens-de-la-revolution-iraniens.html"
-    },
-    {
-     "texte": "ZATAZ, 9 nov. 2026",
-     "url": "https://www.zataz.com/cyberattaque-des-frigos-la-piste-iranienne-se-precise/"
-    }
-   ],
-   "meta": "franceinfo, CERT-FR · 9 nov. 2026 ; L'Impertinent · 22 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-24T18:50+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
-    }
-   ],
-   "date": "2026-11-22",
-   "verification": {
-    "date": "2026-11-24T18:50+01:00",
-    "verdict": "vrai",
-    "resume": "L'attribution judiciaire à l'unité iranienne Shahid Kaveh est rapportée par plusieurs médias de référence indépendants (franceinfo, Ouest-France, ICI, Radio-Canada) et s'appuie sur un rapport du CERT-FR. Plusieurs détails des articles d'origine n'ont pas été confirmés et ont été retirés. Réserve : le réseau de la session n'a pas permis d'ouvrir les pages ; la vérification repose sur les avis officiels et les extraits des résultats de recherche.",
-    "source": {
-     "nom": "Actu17, ZATAZ, L'Impertinent, Le Monde Informatique",
-     "nature": "site police-justice, blog cyber, média indépendant suisse et presse IT ; aucun n'est une source primaire, et seul Le Monde Informatique (attaque d'octobre) est dans la liste de référence"
-    },
-    "affirmations": [
-     {
-      "texte": "Nuit du 11 au 12 octobre : régulateurs Danfoss piratés à distance, températures jusqu'à environ 50 °C",
-      "preuves": [
-       {
-        "texte": "franceinfo, 12 oct. 2026",
-        "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/des-magasins-systeme-u-et-intermarche-touches-par-une-cyberattaque-contre-leurs-installations-frigorifiques_8233720.html"
-       }
-      ]
-     },
-     {
-      "texte": "Environ 300 magasins Intermarché et Netto touchés selon le Groupement Mousquetaires",
-      "preuves": [
-       {
-        "texte": "franceinfo, 12 oct. 2026",
-        "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/des-magasins-systeme-u-et-intermarche-touches-par-une-cyberattaque-contre-leurs-installations-frigorifiques_8233720.html"
-       }
-      ]
-     },
-     {
-      "texte": "Information judiciaire ouverte le 9 novembre contre le chef de l'unité Shahid Kaveh (Gardiens de la Révolution) et deux adjoints, avec mandats d'arrêt internationaux",
-      "preuves": [
-       {
-        "texte": "franceinfo, 9 nov. 2026",
-        "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html"
-       },
-       {
-        "texte": "ICI, 9 nov. 2026",
-        "url": "https://www.ici.fr/infos/faits-divers-justice/cyberattaque-contre-des-supermarches-le-parquet-de-paris-soupconne-une-attaque-commise-dans-le-but-de-servir-l-Iran-1328699"
-       },
-       {
-        "texte": "Ouest-France, nov. 2026",
-        "url": "https://www.ouest-france.fr/societe/cyberattaque/cyberattaques-visant-des-frigos-de-supermarches-en-france-des-juges-enquetent-sur-un-groupe-iranien-6a6338ba-dc56-11f1-81f5-8e32b0872d76"
-       },
-       {
-        "texte": "CERT-FR, rapport CERTFR-2026-CTI-009, 9 nov. 2026",
-        "url": "https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-009.pdf"
-       }
-      ]
-     },
-     {
-      "texte": "Indices : farsi, adresses IP en Iran, mode opératoire de l'unité",
-      "preuves": [
-       {
-        "texte": "Next, nov. 2026",
-        "url": "https://next.ink/266516/cyberattaque-contre-les-frigos-de-700-supermarches-pourquoi-la-france-accuse-liran/"
-       }
-      ]
-     },
-     {
-      "texte": "Environ 700 sites ciblés ; une vingtaine de départs de feu selon le parquet, au moins 15 selon l'ANSSI",
-      "preuves": [
-       {
-        "texte": "franceinfo, 9 nov. 2026",
-        "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html"
-       }
-      ]
-     },
-     {
-      "texte": "LSA : près de 500 magasins et jusqu'à 200 000 € de pertes par hypermarché (premier bilan)",
-      "preuves": [
-       {
-        "texte": "LSA, oct. 2026",
-        "url": "https://www.lsa-conso.fr/distributeurs-alimentaires/casino/monoprix/cyberattaque-en-grande-distribution-pres-de-500-magasins-concernes-jusqua-200-000-de-pertes-par-hypermarche.XIAWZQOVLBGVNPXHNFFMIH7OMM.html"
-       }
-      ]
-     },
-     {
-      "texte": "L'Impertinent critique le peu d'éléments techniques du rapport public",
-      "preuves": [
-       {
-        "texte": "L'Impertinent, 22 nov. 2026",
-        "url": "https://limpertinentmedia.com/post/cyberattaque-frigos-iran-preuves"
-       }
-      ]
-     },
-     {
-      "texte": "L'Iran rejette l'accusation",
-      "preuves": [
-       {
-        "texte": "franceinfo, démenti iranien, nov. 2026",
-        "url": "https://www.franceinfo.fr/monde/iran/l-iran-rejette-les-accusations-infondees-de-la-france-concernant-la-cyberattaque-contre-des-frigos_8276831.html"
-       }
-      ]
-     }
-    ],
-    "retirees": [
-     {
-      "texte": "Plusieurs millions d'euros de pertes chez Mousquetaires",
-      "raison": "chiffre de seconde main, sans bilan consolidé"
-     },
-     {
-      "texte": "Visées : les versions du régulateur antérieures à la version 4",
-      "raison": "affirmé seulement par des sites secondaires"
-     },
-     {
-      "texte": "Enquête menée par l'OFAC et la DGSI",
-      "raison": "plausible, mais aucun communiqué du parquet consulté ne le dit"
-     },
-     {
-      "texte": "Serveurs aussi utilisés pour repérer de petites centrales hydroélectriques",
-      "raison": "une seule source, non confirmée par le rapport du CERT-FR"
-     },
-     {
-      "texte": "700 magasins touchés",
-      "raison": "les sources officielles parlent de 700 sites ciblés, pas de 700 magasins endommagés"
-     },
-     {
-      "texte": "« Première » attribution étatique de ce type",
-      "raison": "non vérifiable"
-     }
-    ],
-    "ecarts": [
-     "Magasins : environ 300 Intermarché et Netto selon Mousquetaires ; près de 500 selon LSA (octobre) ; environ 700 sites ciblés selon le parquet.",
-     "Départs de feu : une vingtaine selon le parquet ; au moins 15 selon l'ANSSI."
-    ],
-    "recoupements": [
-     {
-      "texte": "franceinfo, 9 nov. 2026",
-      "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html"
-     },
-     {
-      "texte": "Ouest-France, nov. 2026",
-      "url": "https://www.ouest-france.fr/societe/cyberattaque/cyberattaques-visant-des-frigos-de-supermarches-en-france-des-juges-enquetent-sur-un-groupe-iranien-6a6338ba-dc56-11f1-81f5-8e32b0872d76"
-     },
-     {
-      "texte": "ICI, 9 nov. 2026",
-      "url": "https://www.ici.fr/infos/faits-divers-justice/cyberattaque-contre-des-supermarches-le-parquet-de-paris-soupconne-une-attaque-commise-dans-le-but-de-servir-l-Iran-1328699"
-     },
-     {
-      "texte": "Radio-Canada, nov. 2026",
-      "url": "https://ici.radio-canada.ca/nouvelle/2299376/cyberattaque-refrigerateurs-france-accuse-iran"
-     },
-     {
-      "texte": "CERT-FR, rapport CERTFR-2026-CTI-009, 9 nov. 2026",
-      "url": "https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-009.pdf"
-     },
-     {
-      "texte": "franceinfo, démenti iranien, nov. 2026",
-      "url": "https://www.franceinfo.fr/monde/iran/l-iran-rejette-les-accusations-infondees-de-la-france-concernant-la-cyberattaque-contre-des-frigos_8276831.html"
-     }
-    ]
-   }
-  },
-  {
-   "id": "d2",
-   "categorie": "distribution",
-   "statut": "publie",
-   "tags": [],
-   "titre": "Carrefour : plan hypermarchés 2030, étiquettes Vusion, retail media",
-   "resume": "Carrefour veut faire de ses 302 hypermarchés français (près de 20 Md€ de chiffre d'affaires) un moteur de croissance d'ici 2030. Le groupe prévoit de rénover plus de 100 magasins et de réaffecter 5 à 10 % des surfaces de vente. La solution Vusion (étiquettes électroniques et suivi de disponibilité en rayon) sera généralisée à tous les hypermarchés français d'ici 2029.\n\nLe plan inclut aussi le retail media et d'autres services, avec 200 M€ par an d'investissement supplémentaire et des objectifs de 20 % du Drive et 40 % de la livraison à domicile. En contexte (Digipote, 20 février 2026, hors fenêtre) : 150 M€ d'IA en magasin avec Vusion et un partenariat avec Google Gemini pour des courses par agents IA.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "un benchmark concurrent sur l'IA en magasin, les agents de courses et le retail media, qui peut orienter les choix d'API et de plateforme de données côté Intermarché."
-   },
-   "sources": [
-    {
-     "texte": "Source : Zonebourse via Boursorama, 17 nov. 2026",
-     "url": "https://www.boursorama.com/bourse/actualites/carrefour-veut-faire-de-ses-hypermarches-un-moteur-de-croissance-d-ici-2030-b9bd14ca93c90af78ee99d3cbd53d5ec"
-    }
-   ],
-   "meta": "Zonebourse / Boursorama · 17 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    }
-   ],
-   "date": "2026-11-17"
+   "date": "2026-11-24"
   },
   {
    "id": "c3",
    "categorie": "conferences",
    "statut": "publie",
    "tags": [
-    "nouveau",
     "ddd",
     {
      "tag": "rappel",
@@ -1912,7 +286,10 @@
    "categorie": "conferences",
    "statut": "publie",
    "tags": [
-    "nouveau"
+    {
+     "tag": "rappel",
+     "seuil": "J-14"
+    }
    ],
    "titre": "DevSum 2027",
    "resume": "Conférence de développeurs à Stockholm, avec une journée d'ateliers la veille. Le CFP est ouvert depuis le 8 octobre 2026.",
@@ -1922,7 +299,7 @@
    },
    "pourquoi": {
     "type": "surveiller",
-    "texte": "le CFP ferme le 8 décembre, avec des rappels prévus à J-14, J-7 et J-3."
+    "texte": "le CFP ferme dans deux semaines, le 8 décembre."
    },
    "sources": [
     {
@@ -1950,221 +327,9 @@
    ]
   },
   {
-   "id": "c1",
-   "categorie": "conferences",
-   "statut": "publie",
-   "tags": [],
-   "titre": "Devoxx France 2027",
-   "resume": "15e édition, thème « L'Humain dans la boucle », environ 240 présentations annoncées. Le site indique que le CFP ouvre le lundi 23 novembre 2026 et que la billetterie a ouvert le 2 novembre.",
-   "details": {
-    "Dates et lieu": "7–9 avril 2027, Palais des Congrès, Paris",
-    "CFP": "clôture le 10 janvier 2027 (heure non publiée) · [devoxxfr2027.cfp.dev](https://devoxxfr2027.cfp.dev)",
-    "Inscription": "[reg.devoxx.fr](https://reg.devoxx.fr)"
-   },
-   "pourquoi": {
-    "type": "surveiller",
-    "texte": "le CFP ferme le 10 janvier ; son ouverture effective et l'heure limite restent à confirmer."
-   },
-   "sources": [
-    {
-     "texte": "Source : devoxx.fr",
-     "url": "https://www.devoxx.fr/presenter"
-    }
-   ],
-   "conference": {
-    "dates": "7–9 avril 2027",
-    "lieu": "Palais des Congrès, Paris",
-    "cfp": "10 janv. 2027 (heure non publiée)"
-   },
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T03:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "ligne « pourquoi » reformulée (avant : « À vérifier : la page du CFP n'a pas pu être chargée (application JavaScript), donc l'ouverture effective et l'heure limite restent à confirmer. Rappel prévu 30 jours avant la clôture, le 11 déc. 2026. »)"
-    }
-   ]
-  },
-  {
-   "id": "c2",
-   "categorie": "conferences",
-   "statut": "publie",
-   "tags": [],
-   "titre": "NDC Oslo 2027",
-   "resume": "Conférence généraliste centrée sur .NET, l'architecture et les pratiques de développement. Le CFP est ouvert depuis le 2 novembre 2026.",
-   "details": {
-    "Dates et lieu": "31 mai – 4 juin 2027, Oslo Spektrum, Oslo (Norvège)",
-    "CFP": "clôture le 17 janvier 2027, 23h59 CET · [Sessionize](https://sessionize.com/ndc-oslo-2027/)",
-    "Site": "[ndcoslo.com](https://ndcoslo.com)"
-   },
-   "pourquoi": {
-    "type": "surveiller",
-    "texte": "le CFP ferme le 17 janvier ; celui de NDC London 2027 est déjà clos depuis le 30 août."
-   },
-   "sources": [
-    {
-     "texte": "Source : Sessionize",
-     "url": "https://sessionize.com/ndc-oslo-2027/"
-    }
-   ],
-   "conference": {
-    "dates": "31 mai – 4 juin 2027",
-    "lieu": "Oslo Spektrum, Oslo",
-    "cfp": "17 janv. 2027, 23h59 CET"
-   },
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T03:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "ligne « pourquoi » reformulée (avant : « Rappel prévu : J-30 le 18 déc. 2026. NDC London 2027 (25–29 janv. 2027) a son CFP clos depuis le 30 août. »)"
-    }
-   ]
-  },
-  {
-   "id": "c5",
-   "categorie": "conferences",
-   "statut": "publie",
-   "tags": [
-    "nouveau"
-   ],
-   "titre": "MiXiT 2027",
-   "resume": "Conférence lyonnaise sur le développement et les pratiques d'équipe. D'après le site, le CFP ouvrirait le 30 novembre et clôturerait le 23 janvier, la billetterie étant annoncée à partir du 22 février.",
-   "details": {
-    "Dates et lieu": "22–23 avril 2027, CPE Lyon, Villeurbanne",
-    "CFP": "ouverture le 30 nov., clôture le 23 janv. (années non précisées, 2026-2027 probable ; lien de CFP non trouvé)"
-   },
-   "pourquoi": {
-    "type": "surveiller",
-    "texte": "le CFP ouvre le 30 novembre ; les dates, lues sur un agrégateur et sur le site, restent à confirmer."
-   },
-   "sources": [
-    {
-     "texte": "Source : mixitconf.org",
-     "url": "https://mixitconf.org/fr/"
-    }
-   ],
-   "conference": {
-    "dates": "22–23 avril 2027",
-    "lieu": "CPE Lyon, Villeurbanne",
-    "cfp": "ouverture 30 nov., clôture 23 janv. (années à confirmer)"
-   },
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T03:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "ligne « pourquoi » reformulée (avant : « Incertain : informations lues sur un agrégateur et sur le site, à confirmer à l'ouverture du CFP. »)"
-    }
-   ]
-  },
-  {
-   "id": "c6",
-   "categorie": "conferences",
-   "statut": "publie",
-   "tags": [
-    "nouveau"
-   ],
-   "titre": "Devoxx Belgium 2027",
-   "resume": "La grande édition belge de Devoxx, à Anvers. Le CFP n'est pas encore ouvert : il ouvrira le 1er juin 2027 et clôturera le 16 juillet 2027 à 23h59 CEST. La billetterie ouvrira le 16 août 2027.",
-   "details": {
-    "Dates et lieu": "4–8 octobre 2027, Kinepolis, Anvers"
-   },
-   "pourquoi": {
-    "type": "surveiller",
-    "texte": "le CFP n'ouvrira que l'été prochain, du 1er juin au 16 juillet 2027."
-   },
-   "sources": [
-    {
-     "texte": "Source : devoxx.be",
-     "url": "https://devoxx.be/"
-    }
-   ],
-   "conference": {
-    "dates": "4–8 oct. 2027",
-    "lieu": "Kinepolis, Anvers",
-    "cfp": "CFP du 1er juin au 16 juil. 2027"
-   },
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "tache"
-    },
-    {
-     "date": "2026-11-25T03:00+01:00",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "ligne « pourquoi » reformulée (avant : « À garder en tête pour 2027 ; dates lues sur le site officiel. »)"
-    }
-   ]
-  },
-  {
-   "id": "s7",
-   "categorie": "securite",
-   "statut": "candidat",
-   "tags": [
-    "alerte"
-   ],
-   "titre": ".NET Framework : un bit modifié contourne le contrôle d'intégrité",
-   "resume": "James Forshaw, de Google Project Zero, décrit deux contournements fondés sur un défaut de chargement de .NET Framework 4. Quand le chargement normal d'une image échoue, .NET Framework retombe sur une copie exécutée en mémoire qui saute les contrôles d'image.\n\nCe repli a contourné le durcissement des processus de VirtualBox. Ensuite, effacer un seul bit d'en-tête (IMAGE_FILE_EXECUTABLE_IMAGE) fait rejeter l'image par Windows, alors que .NET l'exécute quand même : la règle UMCI (contrôle d'intégrité du code en mode utilisateur) est contournée. L'attaque est locale et passe par un détournement COM.",
-   "details": {
-    "Touché": ".NET Framework 4 sous Windows (CVE-2026-108398, CVSS 8,8) ; VirtualBox 7.2.16 sur hôte Windows (CVE-2026-87268, CVSS 7,8)",
-    "Correctif": ".NET : mises à jour cumulatives du 13 octobre (KB selon la version) ; VirtualBox : 7.2.18, publiée en septembre",
-    "Gravité": "Élevée, mais exploitation locale seulement"
-   },
-   "pourquoi": {
-    "type": "compte",
-    "texte": "rien à faire si les correctifs d'octobre sont posés. À vérifier sur les postes qui s'appuient sur WDAC ou AppLocker. Te concerne : peut-être."
-   },
-   "sources": [
-    {
-     "texte": "Source : The Hacker News, 24 nov. 2026",
-     "url": "https://thehackernews.com/2026/11/google-researcher-shows-how-single-bit.html"
-    }
-   ],
-   "meta": "The Hacker News · 24 nov. 2026 · te concerne : peut-être (postes Windows)",
-   "historique": [
-    {
-     "date": "2026-11-24T16:44+01:00",
-     "statut": "candidat",
-     "par": "tache",
-     "note": "trouvé par la relance de 16h44 (brouillon converti)"
-    },
-    {
-     "date": "2026-11-24T20:30+01:00",
-     "statut": "candidat",
-     "par": "utilisateur",
-     "note": "titre raccourci à 72 caractères au plus (avant : « .NET Framework : un bit modifié suffit à contourner le contrôle d'intégrité du code Windows »)"
-    },
-    {
-     "date": "2026-11-25T00:15+01:00",
-     "statut": "candidat",
-     "par": "utilisateur",
-     "note": "catégorie Alertes → Sécurité (a7 → s7) ; tag Alerte"
-    }
-   ],
-   "date": "2026-11-24"
-  },
-  {
    "id": "s8",
    "categorie": "securite",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [
     "supply-chain"
    ],
@@ -2204,99 +369,26 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "tags ajoutés : supply-chain"
+    },
+    {
+     "date": "2026-11-25T10:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "découpage du 24 en deux rapports : candidat → publie"
     }
    ],
    "date": "2026-11-24"
-  },
-  {
-   "id": "s9",
-   "categorie": "securite",
-   "statut": "candidat",
-   "tags": [
-    "alerte"
-   ],
-   "titre": "Azure API Management Classic : des secrets ciblés, Microsoft corrige",
-   "resume": "L'autorité norvégienne NSM a signalé qu'un acteur inconnu cherchait des jetons, des secrets et des valeurs nommées dans des instances Azure API Management du niveau Classic. Equinor et Skagerak Energi figureraient parmi les victimes.\n\nMicrosoft a fermé la voie d'accès vulnérable le 19 novembre et publié le 21 novembre un guide de rotation des identifiants. L'exposition dépend du respect des bonnes pratiques de sécurité documentées. Aucun identifiant CVE n'est cité.",
-   "details": {
-    "Touché": "API Management, niveau Classic (les niveaux v2 ne le sont pas)",
-    "Correctif": "Côté Microsoft depuis le 19 nov. ; rotation des secrets à faire par le client",
-    "Action": "Repérer les instances Classic ; renouveler les valeurs nommées, secrets OpenID Connect, clés d'abonnement et jetons de gestion"
-   },
-   "pourquoi": {
-    "type": "compte",
-    "texte": "une passerelle d'API concentre des secrets ; à vérifier si un client utilise APIM. Te concerne : peut-être."
-   },
-   "sources": [
-    {
-     "texte": "Source : The Hacker News, 24 nov. 2026",
-     "url": "https://thehackernews.com/2026/11/microsoft-fixes-azure-api-management.html"
-    },
-    {
-     "texte": "LeMagIT",
-     "url": "https://www.lemagit.fr/actualites/366655435/Cyberattaques-en-Norvege-une-vulnerabilite-affectait-Microsoft-API-Manager"
-    }
-   ],
-   "meta": "The Hacker News ; LeMagIT · 24 nov. 2026 · te concerne : peut-être (si APIM Classic)",
-   "historique": [
-    {
-     "date": "2026-11-24T16:44+01:00",
-     "statut": "candidat",
-     "par": "tache",
-     "note": "trouvé par la relance de 16h44 (brouillon converti)"
-    },
-    {
-     "date": "2026-11-24T20:30+01:00",
-     "statut": "candidat",
-     "par": "utilisateur",
-     "note": "titre raccourci à 72 caractères au plus (avant : « Azure API Management (niveau Classic) : un acteur cherche des secrets, Microsoft corrige »)"
-    },
-    {
-     "date": "2026-11-25T00:15+01:00",
-     "statut": "candidat",
-     "par": "utilisateur",
-     "note": "catégorie Alertes → Sécurité (a9 → s9) ; tag Alerte"
-    }
-   ],
-   "date": "2026-11-24"
-  },
-  {
-   "id": "n4",
-   "categorie": "dotnet",
-   "statut": "candidat",
-   "tags": [],
-   "titre": "Blazor : Syncfusion contribue et publie un kit de composants libre (MIT)",
-   "resume": "Microsoft et Syncfusion annoncent une collaboration sur Blazor. Syncfusion publie le « Syncfusion Toolkit for Blazor », un jeu de composants libre sous licence MIT : graphiques, boutons, calendriers, sélecteurs de date, champs de saisie, boîtes de dialogue, infobulles et indicateurs de chargement. Aucune clé de licence n'est requise et l'usage commercial est permis.\n\nLes ingénieurs de Syncfusion ont aussi fusionné des correctifs et des tests dans ASP.NET Core et les outils de génération de code : état préservé sur les pages « introuvable » interactives, validation de formulaire avec des modèles hérités, diagnostics de QuickGrid plus clairs. Plus de 60 scénarios de bout en bout couvrent les nouveautés Blazor de .NET 11. Un assistant d'installation et une « skill » IA restent en cours de revue.",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "des composants Blazor gratuits et sous licence permissive, sans clé, changent le calcul pour un projet qui hésitait à payer une suite."
-   },
-   "sources": [
-    {
-     "texte": "Source : .NET Blog, 29 oct. 2026 (hors fenêtre habituelle, ajouté pour son intérêt)",
-     "url": "https://devblogs.microsoft.com/dotnet/blazor-welcomes-syncfusion/"
-    }
-   ],
-   "meta": ".NET Blog · 29 oct. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24T16:44+01:00",
-     "statut": "candidat",
-     "par": "tache",
-     "note": "trouvé par la relance de 16h44 (brouillon converti)"
-    }
-   ],
-   "date": "2026-10-29"
   },
   {
    "id": "i6",
    "categorie": "ia",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [],
    "titre": "Shirudo (OpenAI, Cisco) : des agents qui écrivent des boucliers eBPF",
    "resume": "OpenAI et Cisco publient Shirudo, un environnement d'exécution Linux libre bâti sur Tetragon (plateforme de sécurité eBPF d'Isovalent). Un agent reproduit et valide une faille, puis écrit un « bouclier » eBPF ciblé qui bloque l'exploitation pendant que le vrai correctif est testé.\n\nLes boucliers sont signés, distribués en paquets .bee via un registre compatible OCI et vérifiés par TPM avant chargement. L'opérateur peut mesurer l'effet avant d'activer le blocage ; le bouclier s'efface quand le correctif arrive. Dans un test unique, un bouclier généré par Codex a bloqué l'exploit Java4Shell sur un Elasticsearch en marche. La licence n'est pas précisée dans l'article.",
    "pourquoi": {
     "type": "compte",
-    "texte": "une illustration concrète d'agents de code appliqués à la sécurité opérationnelle, liée à l'alerte Java4Shell de ce brief. Expérience encore isolée, à suivre."
+    "texte": "une illustration concrète d'agents de code appliqués à la sécurité opérationnelle, liée à l'alerte Java4Shell d'hier. Expérience encore isolée, à suivre."
    },
    "sources": [
     {
@@ -2321,54 +413,60 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "titre raccourci à 72 caractères au plus (avant : « Shirudo (OpenAI et Cisco) : des agents qui écrivent des boucliers eBPF avant le correctif »)"
+    },
+    {
+     "date": "2026-11-25T10:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "découpage du 24 en deux rapports : candidat → publie"
     }
    ],
    "date": "2026-11-24"
   },
   {
-   "id": "t5",
+   "id": "t1",
    "categorie": "outils",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [
     "agents"
    ],
-   "titre": "Superpowers : une méthode complète de développement pour agents de code",
-   "resume": "Framework de « skills » (compétences) composables qui impose à l'agent une méthode : clarifier l'intention, rédiger une conception par sections, écrire un plan détaillé, puis implémenter par tâches avec des sous-agents et une revue après chaque étape. Les skills se déclenchent seules une fois installées.",
+   "titre": "chrome-devtools-mcp : un agent de code qui pilote un vrai Chrome",
+   "resume": "Serveur MCP et ligne de commande qui laissent un agent de code piloter et inspecter un Chrome en cours d'exécution : traces de performance, réseau, console avec piles d'appels résolues par source maps, et automatisation via Puppeteer.",
    "details": {
-    "Pourquoi il monte": "Deuxième du classement quotidien de GitHub Trending le 24 nov. (environ 1 000 étoiles en un jour) ; environ 325 000 étoiles au total",
-    "Maturité": "MIT ; gratuit ; compatible Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI et d'autres ; date de création non vérifiée"
+    "Pourquoi il monte": "Environ 54,7 k étoiles et 5,2 k forks lus sur la page ; présent dans le digest des dépôts en tendance du 24 nov. (rang hebdomadaire et date de dernière release non vérifiés)",
+    "Maturité": "Apache-2.0, open source, 1 550 commits ; Node LTS et Chrome stable requis ; plugins pour Claude Code, Copilot/VS Code et Gemini CLI ; gratuit"
    },
    "pourquoi": {
     "type": "utile",
-    "texte": "il formalise le cycle conception, plan, TDD, revue avec un agent, proche de tes sujets de tests et de revue de code."
+    "texte": "un agent peut déboguer et profiler une application Blazor ou ASP.NET dans un vrai navigateur, sans copier-coller des logs."
    },
    "sources": [
     {
      "texte": "Lien officiel : GitHub",
-     "url": "https://github.com/obra/superpowers"
+     "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp"
     }
    ],
-   "meta": "GitHub · Jesse Vincent / Prime Radiant",
+   "meta": "GitHub ChromeDevTools · tendance du 24 nov. 2026",
    "historique": [
     {
-     "date": "2026-11-24T16:44+01:00",
-     "statut": "candidat",
-     "par": "tache",
-     "note": "trouvé par la relance de 16h44 (brouillon converti)"
+     "date": "2026-11-24",
+     "statut": "publie",
+     "par": "tache"
     },
     {
      "date": "2026-11-25T00:15+01:00",
-     "statut": "candidat",
+     "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie secondaire IA"
     },
     {
      "date": "2026-11-25T01:20+01:00",
-     "statut": "candidat",
+     "statut": "publie",
      "par": "utilisateur",
      "note": "tags ajoutés : agents"
     }
    ],
+   "date": "2026-11-24",
    "categorie_secondaire": "ia"
   },
   {
@@ -2420,251 +518,112 @@
      "note": "tags ajoutés : agents"
     }
    ],
+   "categorie_secondaire": "ia",
+   "date": "2026-11-24",
+   "note": "date d'observation (pas de date de publication)"
+  },
+  {
+   "id": "t4",
+   "categorie": "outils",
+   "statut": "publie",
+   "tags": [
+    "pepite",
+    "agents"
+   ],
+   "titre": "worker755 : le jeu où tu es le sous-agent d'un manager IA",
+   "resume": "Jeu dans le navigateur où le joueur est le sous-agent d'un manager IA. Le manager, scripté ou piloté par un LLM, distribue des tâches ; le joueur choisit un lieu de travail (bac à sable ou production) et peut autoriser l'échec des tâches. Quelques « shifts » (quarts de travail) gratuits par jour avec la clé du serveur, sinon on apporte sa clé OpenRouter ou Vercel AI Gateway ; une version hors ligne tourne avec `npm run mock`.",
+   "details": {
+    "Pourquoi il monte": "Show HN visible le 24 nov. avec 356 points et 87 commentaires (date de publication précise non lue)",
+    "Maturité": "Très jeune : 1 étoile, 54 commits, licence MIT, serveur TypeScript et interface React ; date de création non vérifiée"
+   },
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "le renversement de rôle (l'humain subit un manager IA) est une façon inventive de faire sentir ce que vit un sous-agent, et peut servir de support pour parler d'agents en équipe. Le gros score HN contraste avec la faible visibilité GitHub : le buzz est très récent."
+   },
+   "sources": [
+    {
+     "texte": "Lien officiel",
+     "url": "https://worker755.com"
+    },
+    {
+     "texte": "GitHub",
+     "url": "https://github.com/gulivan/worker755"
+    }
+   ],
+   "meta": "Show HN · 24 nov. 2026",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "publie",
+     "par": "tache"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "catégorie secondaire IA"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
+    }
+   ],
+   "date": "2026-11-24",
    "categorie_secondaire": "ia"
   },
   {
-   "id": "t7",
+   "id": "t2",
    "categorie": "outils",
-   "statut": "candidat",
-   "tags": [
-    "pepite"
-   ],
-   "titre": "Ladybird : un navigateur à moteur indépendant passe en alpha",
-   "resume": "Andreas Kling annonce l'alpha de Ladybird, navigateur dont le moteur est écrit de zéro (« pas un fork »). Disponible sur macOS et Linux, en canal glissant avec mises à jour automatiques. Certains sites ne fonctionneront pas, des plantages sont possibles, et l'équipe ne promet rien en matière de sécurité. WebDriver et le protocole de DevTools de Firefox sont pris en charge.",
-   "details": {
-    "Pourquoi il monte": "2 251 points sur la page d'accueil de Hacker News le 24 nov.",
-    "Maturité": "Alpha ; licence non indiquée dans l'annonce ; financé par des sponsors et des dons"
-   },
-   "pourquoi": {
-    "type": "surveiller",
-    "texte": "un troisième moteur web indépendant intéresse quiconque teste des applications web ; WebDriver est déjà là."
-   },
-   "sources": [
-    {
-     "texte": "Lien officiel : ladybird.org",
-     "url": "https://ladybird.org/posts/alpha/"
-    }
-   ],
-   "meta": "ladybird.org · 23 nov. 2026",
-   "historique": [
-    {
-     "date": "2026-11-24T16:44+01:00",
-     "statut": "candidat",
-     "par": "tache",
-     "note": "trouvé par la relance de 16h44 (brouillon converti)"
-    }
-   ],
-   "date": "2026-11-23"
-  },
-  {
-   "id": "t8",
-   "categorie": "outils",
-   "statut": "candidat",
-   "tags": [],
-   "titre": "Stalwart 1.2 : un serveur de messagerie qui parle le protocole Exchange",
-   "resume": "Stalwart 1.2.0 implémente MAPI sur HTTP, EWS, Exchange ActiveSync et Autodiscover : Outlook, Apple Mail et les mobiles s'y connectent comme à Exchange, avec courrier, agendas, contacts, tâches et notes. Ces protocoles sont désactivés par défaut et isolés dans une fonctionnalité Cargo « exchange ». La migration des boîtes passe par l'outil Vandelay. Non pris en charge : dossiers publics, boîtes d'archive, MDM, NTLM et Kerberos.",
-   "details": {
-    "Pourquoi il monte": "600 points sur la page d'accueil de Hacker News le 24 nov.",
-    "Maturité": "Édition Community sous AGPL ; écrit en Rust ; le nouveau Outlook est déconseillé avec un serveur auto-hébergé"
-   },
-   "pourquoi": {
-    "type": "surveiller",
-    "texte": "surtout un sujet d'infrastructure, hors de ton quotidien .NET, mais une alternative sérieuse à Exchange auto-hébergé."
-   },
-   "sources": [
-    {
-     "texte": "Lien officiel : stalw.art",
-     "url": "https://stalw.art/blog/microsoft-exchange-replacement/"
-    }
-   ],
-   "meta": "stalw.art",
-   "historique": [
-    {
-     "date": "2026-11-24T16:44+01:00",
-     "statut": "candidat",
-     "par": "tache",
-     "note": "trouvé par la relance de 16h44 (brouillon converti)"
-    },
-    {
-     "date": "2026-11-24T20:30+01:00",
-     "statut": "candidat",
-     "par": "utilisateur",
-     "note": "titre raccourci à 72 caractères au plus (avant : « Stalwart 1.2 : un serveur de messagerie qui parle le protocole d'Exchange »)"
-    }
-   ]
-  },
-  {
-   "id": "n5",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "tags": [],
-   "titre": "AutoMapper 17.0 et MediatR 15.0 publiés",
-   "resume": "Jimmy Bogard a publié le 12 novembre deux versions majeures : AutoMapper 17.0.0 et MediatR 15.0.0, toutes deux disponibles sur NuGet le jour même. Le billet d'annonce n'a pas pu être lu : le détail des changements n'est pas vérifié ici.\n\nCes deux bibliothèques sont distribuées sous licence commerciale depuis 2025 (Lucky Penny Software).",
-   "sources": [
-    {
-     "texte": "Source : annonce, jimmybogard.com, 12 nov. 2026",
-     "url": "https://www.jimmybogard.com/automapper-17-0-and-mediatr-15-0-released/"
-    },
-    {
-     "texte": "AutoMapper sur NuGet",
-     "url": "https://www.nuget.org/packages/AutoMapper/17.0.0"
-    },
-    {
-     "texte": "MediatR sur NuGet",
-     "url": "https://www.nuget.org/packages/MediatR/15.0.0"
-    }
-   ],
-   "meta": "jimmybogard.com, NuGet · 12 nov. 2026",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "deux dépendances très répandues dans les projets .NET ; une montée de version majeure peut casser du code et vérifie au passage la licence."
-   },
-   "date": "2026-11-12",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "ancienne ligne « En bref » convertie en sujet"
-    }
-   ]
-  },
-  {
-   "id": "n6",
-   "categorie": "dotnet",
-   "statut": "publie",
-   "tags": [],
-   "titre": "EF Core 11 : migrations plus faciles en équipe",
-   "resume": "Avec EF Core 11, deux développeurs qui ajoutent chacun une migration sur leur branche obtiennent désormais un conflit de merge explicite dans le fichier snapshot du modèle, au lieu d'un snapshot silencieusement incohérent. Le conflit se règle en régénérant la migration après la fusion.",
-   "sources": [
-    {
-     "texte": "Source : NimblePros, 5 nov. 2026",
-     "url": "https://blog.nimblepros.com/blogs/ef-core-11-migrations/"
-    }
-   ],
-   "meta": "NimblePros · 5 nov. 2026",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "moins de migrations cassées découvertes tard, dès qu'une équipe travaille à plusieurs sur le même DbContext."
-   },
-   "date": "2026-11-05",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "ancienne ligne « En bref » convertie en sujet"
-    }
-   ]
-  },
-  {
-   "id": "n7",
-   "categorie": "dotnet",
-   "statut": "candidat",
-   "tags": [],
-   "titre": "IA et choix d'interface multiplateforme avec MAUI",
-   "resume": "Le .NET Blog décrit une matrice de décision pour choisir l'interface d'une app multiplateforme, et un essai où des agents reconstruisent une app en interface native en moins de 4 h de travail humain.",
-   "sources": [
-    {
-     "texte": "Source : .NET Blog, 20 nov. 2026",
-     "url": "https://devblogs.microsoft.com/dotnet/ai-cross-platform-decision-matrix/"
-    }
-   ],
-   "meta": ".NET Blog · 20 nov. 2026",
-   "date": "2026-11-20",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "candidat",
-     "par": "utilisateur",
-     "note": "ancienne ligne « En bref » convertie en sujet"
-    }
-   ]
-  },
-  {
-   "id": "n8",
-   "categorie": "dotnet",
    "statut": "candidat",
    "tags": [
     "agents"
    ],
-   "titre": "Skills d'agents livrés dans des paquets NuGet",
-   "resume": "Richard Lander présente la livraison de skills d'agents (instructions et outils pour les assistants de code) à l'intérieur de paquets NuGet, pour qu'une bibliothèque apporte avec elle le mode d'emploi destiné aux agents.",
+   "titre": "open-code-review (Alibaba) : revue de code par pipelines et agent LLM",
+   "resume": "Outil de revue de code qui combine des pipelines déterministes et un agent LLM. `ocr review` travaille sur un diff, une branche ou un commit, et `ocr scan` sur des fichiers entiers. Il fonctionne avec des modèles OpenAI ou Anthropic et se branche en CI (GitHub Actions, GitLab CI, Gerrit).",
+   "details": {
+    "Pourquoi il monte": "Environ 50 k étoiles sur la page du dépôt ; le digest du 24 nov. le donne à 55,7 k, soit +13,5 k sur la semaine. Les deux chiffres ne concordent pas et n'ont pas pu être départagés",
+    "Maturité": "Apache-2.0, open source, 854 commits ; installation par npm, Git 2.41 requis ; gratuit mais les appels au modèle sont à ta charge ; âge et releases non lisibles"
+   },
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "la page ne mentionne ni C# ni .NET (règles citées : NPE, thread-safety, XSS, injection SQL). À tester sur une PR C# avant toute conclusion ; s'il tient, c'est un filet de qualité en CI et un point de comparaison avec tes conventions de revue."
+   },
    "sources": [
     {
-     "texte": "Source : .NET Blog, 3 nov. 2026",
-     "url": "https://devblogs.microsoft.com/dotnet/delivering-skills-in-nuget-packages/"
+     "texte": "Lien officiel : GitHub",
+     "url": "https://github.com/alibaba/open-code-review"
     }
    ],
-   "meta": ".NET Blog · 3 nov. 2026",
-   "date": "2026-11-03",
+   "meta": "GitHub · tendance du 24 nov. 2026",
    "historique": [
     {
      "date": "2026-11-24",
-     "statut": "candidat",
+     "statut": "publie",
+     "par": "tache"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "publie",
      "par": "utilisateur",
-     "note": "ancienne ligne « En bref » convertie en sujet"
+     "note": "catégorie secondaire IA"
     },
     {
      "date": "2026-11-25T01:20+01:00",
-     "statut": "candidat",
+     "statut": "publie",
      "par": "utilisateur",
      "note": "tags ajoutés : agents"
-    }
-   ]
-  },
-  {
-   "id": "i7",
-   "categorie": "ia",
-   "statut": "candidat",
-   "tags": [
-    "agents"
-   ],
-   "titre": "Replit Missions : un essaim d'agents jusqu'à l'objectif",
-   "resume": "Replit lance Missions : un essaim d'agents travaille jusqu'à ce qu'un objectif soit atteint, avec un budget plafonné et un juge indépendant qui valide le résultat. Les chiffres annoncés par Replit ne sont pas vérifiés.",
-   "sources": [
-    {
-     "texte": "Source : Replit, 17 nov. 2026",
-     "url": "https://replit.com/blog/introducing-replit-missions"
-    }
-   ],
-   "meta": "Replit · 17 nov. 2026",
-   "date": "2026-11-17",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "candidat",
-     "par": "utilisateur",
-     "note": "ancienne ligne « En bref » convertie en sujet"
     },
     {
-     "date": "2026-11-25T01:20+01:00",
+     "date": "2026-11-25T10:30+01:00",
      "statut": "candidat",
      "par": "utilisateur",
-     "note": "tags ajoutés : agents"
+     "note": "découpage du 24 en deux rapports : publie → candidat"
     }
-   ]
-  },
-  {
-   "id": "i8",
-   "categorie": "ia",
-   "statut": "ecarte",
-   "tags": [],
-   "titre": "Rider 2025.2 n'est plus pris en charge par Copilot",
-   "resume": "Version minimale 2025.3.",
-   "sources": [],
-   "meta": "GitHub Changelog · 17 nov. 2026",
-   "date": "2026-11-17",
-   "motif": "doublon",
-   "note": "déjà dit dans i3",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "ecarte",
-     "par": "utilisateur",
-     "note": "ancienne ligne « En bref » convertie en sujet"
-    }
-   ]
+   ],
+   "date": "2026-11-24",
+   "categorie_secondaire": "ia"
   },
   {
    "id": "t9",
@@ -2730,104 +689,91 @@
    ]
   },
   {
-   "id": "d3",
-   "categorie": "distribution",
-   "statut": "publie",
-   "tags": [],
-   "titre": "Fuite revendiquée : 46 600 lignes sur des salariés de supermarchés",
-   "resume": "Le 11 novembre, un vendeur a mis en vente sur un forum cybercriminel un fichier d'environ 46 600 lignes sur des salariés de supermarchés français. Deux sites de veille l'ont constaté et analysé chacun de leur côté : FrenchBreaches et Fuites Infos.\n\nSelon Fuites Infos, le fichier compte 42 406 salariés, dont environ 9 sur 10 dans des magasins U, avec quelques Leclerc, Darty, Mr.Bricolage, Weldom, Auchan et trois magasins des Mousquetaires ; Carrefour n'y apparaît pas, contrairement à ce qu'annonce le vendeur. Les données : nom, prénom, poste, magasin, et un e-mail pour environ un quart des lignes. Fuites Infos attribue le fichier au logiciel de planning Gestool (éditeur Lixora). Aucune confirmation de l'éditeur, d'une enseigne ou d'un média de référence n'a été trouvée.",
+   "id": "t5",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Superpowers : une méthode complète de développement pour agents de code",
+   "resume": "Framework de « skills » (compétences) composables qui impose à l'agent une méthode : clarifier l'intention, rédiger une conception par sections, écrire un plan détaillé, puis implémenter par tâches avec des sous-agents et une revue après chaque étape. Les skills se déclenchent seules une fois installées.",
+   "details": {
+    "Pourquoi il monte": "Deuxième du classement quotidien de GitHub Trending le 24 nov. (environ 1 000 étoiles en un jour) ; environ 325 000 étoiles au total",
+    "Maturité": "MIT ; gratuit ; compatible Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI et d'autres ; date de création non vérifiée"
+   },
+   "pourquoi": {
+    "type": "utile",
+    "texte": "il formalise le cycle conception, plan, TDD, revue avec un agent, proche de tes sujets de tests et de revue de code."
+   },
    "sources": [
     {
-     "texte": "FrenchBreaches, 11 nov. 2026",
-     "url": "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees"
-    },
-    {
-     "texte": "Fuites Infos, 11 nov. 2026",
-     "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
+     "texte": "Lien officiel : GitHub",
+     "url": "https://github.com/obra/superpowers"
     }
    ],
-   "meta": "FrenchBreaches, Fuites Infos · 11 nov. 2026 · revendication non confirmée",
-   "pourquoi": {
-    "type": "compte",
-    "texte": "un logiciel RH partagé par des magasins de plusieurs enseignes est un point de fuite commun ; à faire remonter pour qualification, pas comme incident avéré."
-   },
-   "date": "2026-11-11",
+   "meta": "GitHub · Jesse Vincent / Prime Radiant",
    "historique": [
     {
-     "date": "2026-11-24",
-     "statut": "publie",
-     "par": "utilisateur",
-     "note": "ancienne ligne « En bref » convertie en sujet"
+     "date": "2026-11-24T16:44+01:00",
+     "statut": "candidat",
+     "par": "tache",
+     "note": "trouvé par la relance de 16h44 (brouillon converti)"
     },
     {
-     "date": "2026-11-24T18:50+01:00",
-     "statut": "mis-de-cote",
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
      "par": "utilisateur",
-     "note": "vérification non tranchée : retiré du rapport, à revérifier"
+     "note": "catégorie secondaire IA"
     },
     {
-     "date": "2026-11-24T19:10+01:00",
-     "statut": "publie",
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "candidat",
      "par": "utilisateur",
-     "note": "republié comme revendication (constatée par deux sources indépendantes)"
+     "note": "tags ajoutés : agents"
     }
    ],
-   "verification": {
-    "date": "2026-11-24T19:10+01:00",
-    "verdict": "vrai",
-    "resume": "Aucune source fiable (éditeur, enseigne, CNIL, presse de référence) ne confirme l'incident : le sujet est publié comme revendication. L'annonce elle-même a été constatée et analysée par deux sites de veille indépendants, dont les chiffres diffèrent. Un titre de Fuites Infos du 12 novembre annonce une confirmation de l'éditeur Lixora, mais l'article n'a pas pu être lu. Réserve : le réseau de la session n'a pas permis d'ouvrir les pages ; la vérification repose sur les extraits des résultats de recherche.",
-    "source": {
-     "nom": "FrenchBreaches",
-     "nature": "site bénévole de veille sur les fuites de données ; relaie surtout des revendications « crédibles mais non confirmées »"
+   "categorie_secondaire": "ia",
+   "date": "2026-11-24",
+   "note": "date d'observation (pas de date de publication)"
+  },
+  {
+   "id": "t8",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Stalwart 1.2 : un serveur de messagerie qui parle le protocole Exchange",
+   "resume": "Stalwart 1.2.0 implémente MAPI sur HTTP, EWS, Exchange ActiveSync et Autodiscover : Outlook, Apple Mail et les mobiles s'y connectent comme à Exchange, avec courrier, agendas, contacts, tâches et notes. Ces protocoles sont désactivés par défaut et isolés dans une fonctionnalité Cargo « exchange ». La migration des boîtes passe par l'outil Vandelay. Non pris en charge : dossiers publics, boîtes d'archive, MDM, NTLM et Kerberos.",
+   "details": {
+    "Pourquoi il monte": "600 points sur la page d'accueil de Hacker News le 24 nov.",
+    "Maturité": "Édition Community sous AGPL ; écrit en Rust ; le nouveau Outlook est déconseillé avec un serveur auto-hébergé"
+   },
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "surtout un sujet d'infrastructure, hors de ton quotidien .NET, mais une alternative sérieuse à Exchange auto-hébergé."
+   },
+   "sources": [
+    {
+     "texte": "Lien officiel : stalw.art",
+     "url": "https://stalw.art/blog/microsoft-exchange-replacement/"
+    }
+   ],
+   "meta": "stalw.art",
+   "historique": [
+    {
+     "date": "2026-11-24T16:44+01:00",
+     "statut": "candidat",
+     "par": "tache",
+     "note": "trouvé par la relance de 16h44 (brouillon converti)"
     },
-    "affirmations": [
-     {
-      "texte": "Le 11 novembre, un fichier d'environ 46 600 lignes sur des salariés de supermarchés français est mis en vente sur un forum cybercriminel (revendication)",
-      "preuves": [
-       {
-        "texte": "FrenchBreaches, 11 nov. 2026",
-        "url": "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees"
-       },
-       {
-        "texte": "Fuites Infos, 11 nov. 2026",
-        "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
-       }
-      ]
-     },
-     {
-      "texte": "Selon l'analyse de Fuites Infos : 42 406 salariés, surtout des magasins U, pas de Carrefour, attribution au logiciel Gestool (Lixora)",
-      "preuves": [
-       {
-        "texte": "Fuites Infos, 11 nov. 2026",
-        "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
-       }
-      ]
-     }
-    ],
-    "retirees": [
-     {
-      "texte": "Six enseignes touchées : Carrefour, Intermarché, Leclerc, U, Darty, Mr.Bricolage",
-      "raison": "liste du vendeur ; selon Fuites Infos, surtout des magasins U et aucune trace de Carrefour"
-     },
-     {
-      "texte": "Origine inconnue, piste d'un prestataire commun",
-      "raison": "Fuites Infos désigne Gestool (Lixora) ; la confirmation de l'éditeur n'a pas pu être lue"
-     },
-     {
-      "texte": "Les 46 600 enregistrements concernent des hôtesses de caisse",
-      "raison": "seulement environ 16 800 lignes concernent des postes de caisse"
-     }
-    ],
-    "ecarts": [
-     "46 619 lignes selon l'annonce, 42 406 salariés selon Fuites Infos : les lignes ne correspondent pas à des personnes distinctes."
-    ],
-    "recoupements": [
-     {
-      "texte": "Fuites Infos, 11 nov. 2026",
-      "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
-     }
-    ]
-   }
+    {
+     "date": "2026-11-24T20:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "titre raccourci à 72 caractères au plus (avant : « Stalwart 1.2 : un serveur de messagerie qui parle le protocole d'Exchange »)"
+    }
+   ],
+   "date": "2026-11-24",
+   "note": "date d'observation (pas de date de publication)"
   },
   {
    "id": "d4",
@@ -2850,39 +796,9 @@
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
     }
-   ]
-  },
-  {
-   "id": "s10",
-   "categorie": "securite",
-   "statut": "candidat",
-   "tags": [
-    "alerte"
    ],
-   "titre": "VMware vCenter : nouvelle faille critique d'authentification",
-   "resume": "Nouvelle faille critique d'authentification dans vCenter (CVSS 9,8), après un zero-day déjà exploité ; Broadcom corrige 23 failles.",
-   "sources": [
-    {
-     "texte": "Source : The Hacker News, 24 nov. 2026",
-     "url": "https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html"
-    }
-   ],
-   "meta": "The Hacker News · 24 nov. 2026 · te concerne : peu probable",
    "date": "2026-11-24",
-   "historique": [
-    {
-     "date": "2026-11-24",
-     "statut": "candidat",
-     "par": "utilisateur",
-     "note": "ancienne ligne « En bref » convertie en sujet"
-    },
-    {
-     "date": "2026-11-25T00:15+01:00",
-     "statut": "candidat",
-     "par": "utilisateur",
-     "note": "catégorie Alertes → Sécurité (a10 → s10) ; tag Alerte"
-    }
-   ]
+   "note": "date d'observation (pas de date de publication)"
   },
   {
    "id": "s11",
@@ -2911,12 +827,53 @@
      "par": "utilisateur",
      "note": "catégorie Alertes → Sécurité (a11 → s11)"
     }
-   ]
+   ],
+   "date": "2026-11-24",
+   "note": "date d'observation (pas de date de publication)"
+  },
+  {
+   "id": "s10",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "tags": [
+    "alerte"
+   ],
+   "titre": "VMware vCenter : nouvelle faille critique d'authentification",
+   "resume": "Nouvelle faille critique d'authentification dans vCenter (CVSS 9,8), après un zero-day déjà exploité ; Broadcom corrige 23 failles.",
+   "sources": [
+    {
+     "texte": "Source : The Hacker News, 24 nov. 2026",
+     "url": "https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html"
+    }
+   ],
+   "meta": "The Hacker News · 24 nov. 2026 · te concerne : peu probable",
+   "date": "2026-11-24",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    },
+    {
+     "date": "2026-11-25T00:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "catégorie Alertes → Sécurité (a10 → s10) ; tag Alerte"
+    },
+    {
+     "date": "2026-11-25T10:30+01:00",
+     "statut": "ecarte",
+     "par": "utilisateur",
+     "note": "hors périmètre : infrastructure, sans lien avec le développement .NET"
+    }
+   ],
+   "motif": "hors-perimetre"
   }
  ],
  "pied": [
   "**Sources :** Microsoft .NET Blog et Microsoft Learn, InfoQ, The Hacker News, Threat Defence, SecurityOnline, SecurityWeek, OX Security, IT-Connect, Le Monde Informatique, Actu17, ZATAZ, L'Impertinent, FrenchBreaches, Boursorama, Claude, GitHub Changelog, The New Stack, LangChain, Replit, event-driven.io, milanjovanovic.tech, Stryker Mutator, NuGet, GitHub, Hacker News, devoxx.fr, Sessionize, dddeurope.com, mixitconf.org, devoxx.be.",
-  "**Hypothèses :** exécution complétée après l'échéance de 8h : la version du matin ne couvrait ni l'IA, ni les outils, ni l'API et l'architecture, ni les alertes complémentaires. L'effort de recherche a été réparti entre plusieurs recherches parallèles ; la fenêtre est de 7 jours faute de brief de la veille. La catégorie DDD est omise : rien de daté et vérifié. Les README des dépôts Reefact restent inaccessibles (erreur 403) : la liste de veille des projets est provisoire. Les résumés ont été allongés à la demande de l'utilisateur. Reddit, Product Hunt, Lobsters, dev.to, TLDR et Console.dev n'ont pas pu être consultés pour la découverte d'outils, et LSA, LeMagIT, Silicon.fr et ZDNet n'étaient pas lisibles.",
-  "Généré le 24 novembre 2026, après l'échéance de 8h (Paris)."
+  "**Hypothèses :** rapport reconstitué le 25 novembre : seuls les sujets datés du 24 restent ici, les plus anciens sont dans le rapport du lundi 23. VMware vCenter est écarté (infrastructure, hors périmètre).",
+  "Reconstitué le 25 novembre 2026 (Paris)."
  ]
 }

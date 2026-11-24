@@ -175,7 +175,8 @@ def check(path, contre=None, partiel=False):
         for s in pub:
             if s["categorie"] == "conferences" or s.get("hors_fenetre") or not s.get("date"):
                 continue
-            limite = (Date.fromisoformat(day["date"]) - timedelta(days=7)).isoformat() if s["categorie"] == "distribution" else min(seuil, (Date.fromisoformat(day["date"]) - timedelta(days=2)).isoformat())
+            premier = not any(p.stem < day["date"].replace("-", "") for p in day_files())   # premier rapport : fenêtre de 7 jours
+            limite = (Date.fromisoformat(day["date"]) - timedelta(days=7)).isoformat() if premier or s["categorie"] == "distribution" else min(seuil, (Date.fromisoformat(day["date"]) - timedelta(days=2)).isoformat())
             if s["date"] < limite: E(f"{s['id']} : publié mais daté du {s['date']}, hors fenêtre (depuis le {limite}) : candidat, ou raison dans « hors_fenetre »")
     rap = per.get("rapport", {})
     ar = day.get("a_retenir", [])

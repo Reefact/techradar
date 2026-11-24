@@ -19,8 +19,26 @@ from veille_lib import config, day_files, load_json  # noqa: E402
 
 
 def jour():
-    """Un jour de test : le plus récent, avec au moins un sujet à tag emoji, à tag texte et à projet."""
-    return load_json(day_files()[-1])
+    """Un jour de test : celui qui a le plus de sujets publiés (catégories, tags et projets variés)."""
+    return max((load_json(p) for p in day_files()), key=lambda d: sum(s["statut"] == "publie" for s in d["sujets"]))
+
+
+def avec_publies(day, n_autres, n_prio=0):
+    """Remplace les sujets publiés du jour par n_autres sujets ordinaires et n_prio alertes récentes (clones numérotés)."""
+    import copy as cp
+    modele = next(s for s in day["sujets"] if s["statut"] == "publie" and s["categorie"] not in ("conferences",) and not s.get("depot"))
+    cat = day["sujets"]
+    day["sujets"] = [s for s in cat if s["statut"] != "publie"]
+    prefixes = {"dotnet": "n", "ia": "i", "craftsmanship": "cr", "architecture": "p", "securite": "s"}
+    repartition = ["dotnet"] * 4 + ["ia"] * 4 + ["craftsmanship"] * 4 + ["architecture"] * 3 + ["securite"] * 2
+    for k in range(n_autres + n_prio):
+        s = cp.deepcopy(modele)
+        c = "securite" if k >= n_autres else repartition[k % len(repartition)]
+        s.update({"id": f"{prefixes[c]}{900 + k}", "categorie": c, "date": day["date"], "tags": ["alerte"] if k >= n_autres else []})
+        s.pop("categorie_secondaire", None); s.pop("verification", None); s.pop("verification_non_requise", None)
+        day["sujets"].append(s)
+    day["a_retenir"] = [{"section": "urgent", "paragraphes": ["x"], "sujets": []}]
+    return day
 
 
 class Front(unittest.TestCase):
@@ -217,18 +235,13 @@ class Donnees(unittest.TestCase):
         return day
 
     def test_plus_de_15_publies_hors_prioritaires_refuse(self):
-        day = self.jour_recent()
-        for s in day["sujets"]: s["tags"] = [t for t in s.get("tags", []) if (t if isinstance(t, str) else t["tag"]) not in ("alerte", "rappel")]
+        day = avec_publies(self.jour_recent(), 16)
         self.assertTrue(any("15 au plus" in e for e in self.valider(day)))
 
     def test_prioritaires_en_plus_des_15(self):
-        day = self.jour_recent()
-        pub = [s for s in day["sujets"] if s["statut"] == "publie"]
-        for s in pub: s["tags"] = [t for t in s.get("tags", []) if (t if isinstance(t, str) else t["tag"]) not in ("alerte", "rappel")]
-        for s in pub[:5]: s["tags"], s["date"] = ["alerte"], day["date"]      # 5 prioritaires
-        for s in pub[20:]: s["statut"] = "candidat"                           # 15 autres : 20 publiés au total
-        self.assertFalse(any("15 au plus" in e for e in self.valider(day)))
-        pub[20]["statut"] = "publie"                                           # 16 autres : refusé
+        day = avec_publies(self.jour_recent(), 15, n_prio=5)                  # 15 autres + 5 alertes récentes = 20 publiés
+        self.assertFalse(any("15 au plus" in e or "plafond" in e for e in self.valider(day)))
+        day = avec_publies(self.jour_recent(), 16, n_prio=5)                  # 16 autres : refusé
         self.assertTrue(any("15 au plus" in e for e in self.valider(day)))
 
     def test_sujet_ancien_publie_refuse(self):
