@@ -159,43 +159,43 @@
  "topics": [
   {
    "date": "2026-11-24",
-   "id": "a3",
-   "categorie": "alertes",
+   "id": "s3",
+   "categorie": "securite",
    "statut": "publie",
    "titre": "Idunno.AntiCsrf : exécution de code à distance exploitée, sans correctif"
   },
   {
    "date": "2026-11-24",
-   "id": "a1",
-   "categorie": "alertes",
+   "id": "s1",
+   "categorie": "securite",
    "statut": "publie",
    "titre": "Fin de support de .NET 8 et .NET 9"
   },
   {
    "date": "2026-11-24",
-   "id": "a4",
-   "categorie": "alertes",
+   "id": "s4",
+   "categorie": "securite",
    "statut": "publie",
    "titre": "Java4Shell : faille critique dans OpenJDK, correctifs disponibles"
   },
   {
    "date": "2026-11-24",
-   "id": "a5",
-   "categorie": "alertes",
+   "id": "s5",
+   "categorie": "securite",
    "statut": "publie",
    "titre": "Spring : grosse série de correctifs de sécurité en novembre"
   },
   {
    "date": "2026-11-24",
-   "id": "a6",
-   "categorie": "alertes",
+   "id": "s6",
+   "categorie": "securite",
    "statut": "publie",
    "titre": "Paquets PyPI agent-framework piégés : vol d'identifiants Azure et CI"
   },
   {
    "date": "2026-11-24",
-   "id": "a2",
-   "categorie": "alertes",
+   "id": "s2",
+   "categorie": "securite",
    "statut": "publie",
    "titre": "Patch Tuesday de novembre : 1 093 failles, un zero-day Outlook"
   },
@@ -396,22 +396,22 @@
   },
   {
    "date": "2026-11-24",
-   "id": "a7",
-   "categorie": "alertes",
+   "id": "s7",
+   "categorie": "securite",
    "statut": "candidat",
    "titre": ".NET Framework : un bit modifié contourne le contrôle d'intégrité"
   },
   {
    "date": "2026-11-24",
-   "id": "a8",
-   "categorie": "alertes",
+   "id": "s8",
+   "categorie": "securite",
    "statut": "candidat",
    "titre": "Actions GitHub : épingler un SHA ne garantit pas l'auteur du code"
   },
   {
    "date": "2026-11-24",
-   "id": "a9",
-   "categorie": "alertes",
+   "id": "s9",
+   "categorie": "securite",
    "statut": "candidat",
    "titre": "Azure API Management Classic : des secrets ciblés, Microsoft corrige"
   },
@@ -530,15 +530,15 @@
   },
   {
    "date": "2026-11-24",
-   "id": "a10",
-   "categorie": "alertes",
+   "id": "s10",
+   "categorie": "securite",
    "statut": "candidat",
    "titre": "VMware vCenter : nouvelle faille critique d'authentification"
   },
   {
    "date": "2026-11-24",
-   "id": "a11",
-   "categorie": "alertes",
+   "id": "s11",
+   "categorie": "securite",
    "statut": "candidat",
    "titre": "Rançongiciels : les frameworks offensifs pilotés par agents arrivent"
   }
@@ -551,7 +551,7 @@
   },
   "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018": {
    "date": "2026-11-24",
-   "id": "a4",
+   "id": "s4",
    "statut": "publie"
   },
   "https://actu17.fr/international/frigos-a-50-degres-dans-700-supermarches-la-justice-francaise-remonte-jusqu-aux-gardiens-de-la-revolution-iraniens.html": {
@@ -581,7 +581,7 @@
   },
   "https://devblogs.microsoft.com/dotnet/announcing-dotnet-11/": {
    "date": "2026-11-24",
-   "id": "a1",
+   "id": "s1",
    "statut": "publie"
   },
   "https://devblogs.microsoft.com/dotnet/blazor-welcomes-syncfusion/": {
@@ -671,7 +671,7 @@
   },
   "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md": {
    "date": "2026-11-24",
-   "id": "a3",
+   "id": "s3",
    "statut": "publie"
   },
   "https://github.com/obra/superpowers": {
@@ -751,7 +751,7 @@
   },
   "https://openjdk.org/groups/vulnerability/advisories/2026-11-17": {
    "date": "2026-11-24",
-   "id": "a4",
+   "id": "s4",
    "statut": "publie"
   },
   "https://pointsdevente.fr/pdv-business/supermarches-pirates-les-deux-tiers-des-visites-perdues-deja-reconquis/": {
@@ -771,7 +771,7 @@
   },
   "https://securityonline.info/spring-security-vulnerabilities-november-2026/": {
    "date": "2026-11-24",
-   "id": "a5",
+   "id": "s5",
    "statut": "publie"
   },
   "https://sessionize.com/aardling27/": {
@@ -796,12 +796,12 @@
   },
   "https://spring.io/security": {
    "date": "2026-11-24",
-   "id": "a5",
+   "id": "s5",
    "statut": "publie"
   },
   "https://spring.io/security/cve-2026-59273/": {
    "date": "2026-11-24",
-   "id": "a5",
+   "id": "s5",
    "statut": "publie"
   },
   "https://stalw.art/blog/microsoft-exchange-replacement/": {
@@ -816,22 +816,22 @@
   },
   "https://thehackernews.com/2026/11/google-researcher-shows-how-single-bit.html": {
    "date": "2026-11-24",
-   "id": "a7",
+   "id": "s7",
    "statut": "candidat"
   },
   "https://thehackernews.com/2026/11/hackers-exploit-critical-aspnet-anti.html": {
    "date": "2026-11-24",
-   "id": "a3",
+   "id": "s3",
    "statut": "publie"
   },
   "https://thehackernews.com/2026/11/hackers-found-way-around-github-sha.html": {
    "date": "2026-11-24",
-   "id": "a8",
+   "id": "s8",
    "statut": "candidat"
   },
   "https://thehackernews.com/2026/11/microsoft-fixes-azure-api-management.html": {
    "date": "2026-11-24",
-   "id": "a9",
+   "id": "s9",
    "statut": "candidat"
   },
   "https://thehackernews.com/2026/11/openai-and-cisco-unveil-ai-assisted.html": {
@@ -841,7 +841,7 @@
   },
   "https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html": {
    "date": "2026-11-24",
-   "id": "a10",
+   "id": "s10",
    "statut": "candidat"
   },
   "https://thenewstack.io/cognition-devin-bots-management/": {
@@ -851,7 +851,7 @@
   },
   "https://threatdefence.com/article/java4shell-cve-2026-114938-openjdk-rce-patching-hunting": {
    "date": "2026-11-24",
-   "id": "a4",
+   "id": "s4",
    "statut": "publie"
   },
   "https://ti.to/dddbv/aardling27": {
@@ -896,7 +896,7 @@
   },
   "https://www.it-connect.fr/patch-tuesday-novembre-2026-recapitulatif/": {
    "date": "2026-11-24",
-   "id": "a2",
+   "id": "s2",
    "statut": "publie"
   },
   "https://www.jimmybogard.com/automapper-17-0-and-mediatr-15-0-released/": {
@@ -906,12 +906,12 @@
   },
   "https://www.lemagit.fr/actualites/366655137/Ransomware-les-frameworks-offensifs-agentiques-sont-entres-dans-la-danse": {
    "date": "2026-11-24",
-   "id": "a11",
+   "id": "s11",
    "statut": "candidat"
   },
   "https://www.lemagit.fr/actualites/366655435/Cyberattaques-en-Norvege-une-vulnerabilite-affectait-Microsoft-API-Manager": {
    "date": "2026-11-24",
-   "id": "a9",
+   "id": "s9",
    "statut": "candidat"
   },
   "https://www.lemondeinformatique.fr/actualites/lire-une-cyberattaque-perturbe-les-installations-frigorifiques-de-centaines-de-supermarches-100850.html": {
@@ -956,17 +956,17 @@
   },
   "https://www.ox.security/blog/breaking-hijacked-releases-of-microsofts-official-agent-framework-steals-azure-and-ci-credentials/": {
    "date": "2026-11-24",
-   "id": "a6",
+   "id": "s6",
    "statut": "publie"
   },
   "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/": {
    "date": "2026-11-24",
-   "id": "a4",
+   "id": "s4",
    "statut": "publie"
   },
   "https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/": {
    "date": "2026-11-24",
-   "id": "a6",
+   "id": "s6",
    "statut": "publie"
   },
   "https://www.zataz.com/cyberattaque-des-frigos-la-piste-iranienne-se-precise/": {
