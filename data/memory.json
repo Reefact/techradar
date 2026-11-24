@@ -3,7 +3,7 @@
   {
    "date": "2026-11-24",
    "path": "reports/2026/20261124.html",
-   "publies": 33
+   "publies": 34
   }
  ],
  "radar": {
@@ -56,6 +56,11 @@
    "date": "2026-11-24",
    "titre": "worker755 : le jeu où tu es le sous-agent d'un manager IA",
    "url": "https://worker755.com"
+  },
+  {
+   "date": "2026-11-24",
+   "titre": "CLI-Anything : rendre n'importe quel logiciel pilotable par un agent",
+   "url": "https://github.com/HKUDS/CLI-Anything"
   }
  ],
  "conferences": [
@@ -419,7 +424,7 @@
    "date": "2026-11-24",
    "id": "t6",
    "categorie": "outils",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "CLI-Anything : rendre n'importe quel logiciel pilotable par un agent"
   },
   {
@@ -526,7 +531,7 @@
   "https://github.com/HKUDS/CLI-Anything": {
    "date": "2026-11-24",
    "id": "t6",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://github.com/OnurGumus/zero-csharp": {
    "date": "2026-11-24",
