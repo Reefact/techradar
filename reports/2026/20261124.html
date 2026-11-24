@@ -150,7 +150,7 @@
 
 <h3 style="margin-top:12px"><span class="badge b-radar">Radar de tes projets</span></h3>
 
-<article class="card" id="r2">
+<article class="card" id="r2" data-repo="Reefact/first-class-errors">
   <div class="head"><span class="badge b-radar">Radar</span><span class="badge b-star">⭐ Tes sujets</span><h3>first-class-errors : unions C# 15 contre Result pattern</h3></div>
   <p>Le mot-clé <code>union</code> de C# 15 déclare un type à liste fermée de cas, avec conversions implicites depuis chaque cas et vérification d'exhaustivité des <code>switch</code> par le compilateur. Les hiérarchies fermées (<code>closed</code>) donnent la même garantie aux classes dérivées. Le billet .NET du 10 septembre recommande, pour une nouvelle API, une hiérarchie fermée avec discriminateur <code>$type</code> plutôt qu'une union sans discriminateur. Côté JSON, seul le cas actif est écrit, et les cas objets ambigus demandent un classifieur structurel.</p>
   <p>Le 21 novembre, Milan Jovanović a posé la question frontalement : les unions peuvent-elles remplacer le Result pattern ? Son exemple de code utilise un <code>switch</code> exhaustif dont le compilateur signale les cas manquants par l'erreur CS8509, et renvoie les erreurs HTTP par <code>Results.Problem(...)</code>. L'article ne parle ni d'ErrorOr ni de FluentResults.</p>
@@ -158,7 +158,7 @@
   <a href="https://milanjovanovic.tech/blog/csharp-union-types-vs-result-pattern">Source : Milan Jovanović, 21 nov. 2026</a> · <a href="https://devblogs.microsoft.com/dotnet/unions-and-closed-hierarchies-in-aspnetcore/">.NET Blog, 10 sept. 2026</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
-<article class="card" id="r3">
+<article class="card" id="r3" data-repo="Reefact/kill-mutants">
   <div class="head"><span class="badge b-radar">Radar</span><span class="badge b-star">⭐ Tes sujets</span><h3>kill-mutants : Stryker.NET, lecteur MTP et paquet 5.1.0</h3></div>
   <p>Stryker.NET propose depuis la 4.13 (billet du 13 mars 2026) un lecteur Microsoft Testing Platform en preview, activé par <code>--test-runner mtp</code>. Il évite de relancer un processus VSTest à chaque exécution de tests. Limites annoncées : la couverture par test n'est pas finalisée et .NET Framework n'est pas pris en charge.</p>
   <p>Le paquet NuGet <code>stryker</code> est en 5.1.0, publié le 10 novembre 2026 ; c'est la bibliothèque de mutation, pas l'outil en ligne de commande (<code>dotnet-stryker</code>, dont la version n'a pas été relevée précisément). Aucune actualité plus récente sur les tests de mutation n'a été trouvée cette semaine.</p>
@@ -166,7 +166,7 @@
   <a href="https://stryker-mutator.io/blog/stryker-net-mtp-runner/">Source : Stryker Mutator</a> · <a href="https://www.nuget.org/packages/stryker">NuGet</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
-<article class="card" id="r4">
+<article class="card" id="r4" data-repo="Reefact/unified-assertions,Reefact/just-dummies">
   <div class="head"><span class="badge b-radar">Radar</span><span class="badge b-star">⭐ Tes sujets</span><h3>unified-assertions et just-dummies : Shouldly 5 et AutoFixture 5 en préversion</h3></div>
   <p>Relevé des versions sur NuGet (dates lues sur les pages, aucune dans les 7 derniers jours). Assertions : AwesomeAssertions est à la 9.6.0 (20 août 2026) après la 9.5.0 (19 juillet) ; Shouldly reste à la 4.3.0 stable (janvier 2025) mais prépare une 5.0.0 avec deux préversions (10 juin et 18 juillet 2026). Données de test : Bogus est à la 35.6.5 (octobre 2025) ; AutoFixture reste à la 4.18.1 stable (novembre 2023) avec une 5.0.0-rc.1 du 31 juillet 2026.</p>
   <p>Hors périmètre direct mais utile pour first-class-errors : ErrorOr est à la 2.1.1 (15 mai 2026) et FluentResults à la 4.0.0 (juin 2025). Pour slugger : Slugify.Core 5.2.0, dernière mise à jour le 26 octobre 2026, sans notes de version pour cette version ; la dernière entrée détaillée (5.1.1) corrige le « i » turc, et la page ne mentionne pas la normalisation Unicode.</p>
