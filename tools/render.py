@@ -11,6 +11,7 @@ Produit dans le dossier de sortie :
 """
 import html
 import json
+import re
 import sys
 from datetime import date as Date, datetime, timedelta, timezone
 from pathlib import Path
@@ -68,9 +69,16 @@ def tag_key(t):
     return t if isinstance(t, str) else t["tag"]
 
 
-def tag_html(t, tags):
+def tag_html(t, tags, icone=False):
+    """Badge d'un tag. Avec icone=True (en-tête d'un sujet), un tag dont le libellé commence par un emoji
+    (« 🧪 Pépite », « ⏰ J-7 ») s'affiche comme l'emoji seul, comme ☄️ et 📦 ; le texte passe dans l'infobulle."""
     d = tags[tag_key(t)]
-    return badge(d["classe"], (None if isinstance(t, str) else t.get("texte")) or d["label"], d["description"])
+    txt = (None if isinstance(t, str) else t.get("texte")) or d["label"]
+    m = re.match(r"^(\S+)\s+(.+)$", txt)
+    if icone and m and not re.match(r"[\w«(]", m.group(1)):
+        aide = f"{m.group(2)} : {d['description']}"
+        return f'<span class="ico" title="{E(aide)}" aria-label="{E(aide)}">{E(m.group(1))}</span>'
+    return badge(d["classe"], txt, d["description"])
 
 
 def statut_badge(s):
@@ -171,7 +179,7 @@ def projet_badge(s, cfg):
     nom = p.get("nom") or s["depot"].split("/")[-1]
     # sur la carte, seule l'icône : le nom du projet est dans l'infobulle (le filtre « Projet » affiche les noms)
     aide = f"Projet {nom}" + (f" ({p['theme']})" if p.get("theme") else "") + f" : dépôt {s['depot']}"
-    return f'<span class="projet" title="{E(aide)}" aria-label="{E(aide)}">📦</span>'   # icône seule, comme ☄️
+    return f'<span class="ico projet" title="{E(aide)}" aria-label="{E(aide)}">📦</span>'   # icône seule, comme ☄️
 
 
 def card(s, cfg, seuil, dossier=False, date_jour=""):
@@ -185,7 +193,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     if s.get("depot"): attrs += f' data-repo="{E(s["depot"])}"'
     attrs += f' data-ordre="{list(ordered_categories(cats)).index(s["categorie"])}" data-date="{E(s.get("date") or "")}"'
     badges = (statut_badge(s) if dossier else "") + badge(c["classe"], s.get("etiquette") or c["carte"], c["label"] + " : " + c["description"]) \
-        + "".join(tag_html(t, tags) for t in s.get("tags", [])) + projet_badge(s, cfg)   # catégorie, tags (0 à N), projet (0 ou 1)
+        + "".join(tag_html(t, tags, icone=True) for t in s.get("tags", [])) + projet_badge(s, cfg)   # catégorie, tags (0 à N), projet (0 ou 1)
     blip = (f'<span class="fresh" title="Récent : paru le {date_courte(s["date"])}, depuis le brief précédent ({date_courte(seuil)}, jour compris)" '
             'aria-label="Récent">☄️</span>') if frais else ""
     meta = meta_of(s)
