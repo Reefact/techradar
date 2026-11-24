@@ -3,7 +3,7 @@
   {
    "date": "2026-11-24",
    "path": "reports/2026/20261124.html",
-   "publies": 34
+   "publies": 37
   }
  ],
  "radar": {
@@ -440,6 +440,91 @@
    "categorie": "outils",
    "statut": "candidat",
    "titre": "Stalwart 1.2 : un serveur de messagerie qui parle le protocole d'Exchange"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "n5",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "AutoMapper 17.0 et MediatR 15.0 publiés"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "n6",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "EF Core 11 : migrations plus faciles en équipe"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "n7",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "IA et choix d'interface multiplateforme avec MAUI"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "n8",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "Skills d'agents livrés dans des paquets NuGet"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "i7",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "Replit Missions : un essaim d'agents jusqu'à l'objectif"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "i8",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Rider 2025.2 n'est plus pris en charge par Copilot",
+   "motif": "doublon"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "t9",
+   "categorie": "outils",
+   "statut": "candidat",
+   "titre": "Plannotator : revue de plans et de diffs d'agents"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "t10",
+   "categorie": "outils",
+   "statut": "candidat",
+   "titre": "GPUI : le cadre d'interface Rust de Zed a son propre dépôt"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "d3",
+   "categorie": "distribution",
+   "statut": "publie",
+   "titre": "Fuite de 46 600 enregistrements d'hôtesses de caisse"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "d4",
+   "categorie": "distribution",
+   "statut": "candidat",
+   "titre": "Cyberattaque des frigos : l'effet sur la fréquentation"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "a10",
+   "categorie": "alertes",
+   "statut": "candidat",
+   "titre": "VMware vCenter : nouvelle faille critique d'authentification"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "a11",
+   "categorie": "alertes",
+   "statut": "candidat",
+   "titre": "Rançongiciels : les frameworks offensifs pilotés par agents arrivent"
   }
  ],
  "urls": {
@@ -455,7 +540,7 @@
   },
   "https://blog.nimblepros.com/blogs/ef-core-11-migrations/": {
    "date": "2026-11-24",
-   "id": "en-bref",
+   "id": "n6",
    "statut": "publie"
   },
   "https://claude.com/resources/articles/introducing-claude-ship": {
@@ -465,8 +550,8 @@
   },
   "https://devblogs.microsoft.com/dotnet/ai-cross-platform-decision-matrix/": {
    "date": "2026-11-24",
-   "id": "en-bref",
-   "statut": "publie"
+   "id": "n7",
+   "statut": "candidat"
   },
   "https://devblogs.microsoft.com/dotnet/announcing-dotnet-11/": {
    "date": "2026-11-24",
@@ -480,8 +565,8 @@
   },
   "https://devblogs.microsoft.com/dotnet/delivering-skills-in-nuget-packages/": {
    "date": "2026-11-24",
-   "id": "en-bref",
-   "statut": "publie"
+   "id": "n8",
+   "statut": "candidat"
   },
   "https://devblogs.microsoft.com/dotnet/local-models-dotnet-llama-windows/": {
    "date": "2026-11-24",
@@ -515,7 +600,7 @@
   },
   "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees": {
    "date": "2026-11-24",
-   "id": "en-bref",
+   "id": "d3",
    "statut": "publie"
   },
   "https://github.blog/changelog/2026-11-17-github-copilot-in-jetbrains-ignite-releases/": {
@@ -545,8 +630,8 @@
   },
   "https://github.com/backnotprop/plannotator": {
    "date": "2026-11-24",
-   "id": "en-bref",
-   "statut": "publie"
+   "id": "t9",
+   "statut": "candidat"
   },
   "https://github.com/gulivan/worker755": {
    "date": "2026-11-24",
@@ -560,7 +645,7 @@
   },
   "https://github.com/zed-industries/gpui": {
    "date": "2026-11-24",
-   "id": "en-bref",
+   "id": "t10",
    "statut": "candidat"
   },
   "https://ladybird.org/posts/alpha/": {
@@ -630,7 +715,7 @@
   },
   "https://pointsdevente.fr/pdv-business/supermarches-pirates-les-deux-tiers-des-visites-perdues-deja-reconquis/": {
    "date": "2026-11-24",
-   "id": "en-bref",
+   "id": "d4",
    "statut": "candidat"
   },
   "https://reg.devoxx.fr": {
@@ -640,8 +725,8 @@
   },
   "https://replit.com/blog/introducing-replit-missions": {
    "date": "2026-11-24",
-   "id": "en-bref",
-   "statut": "publie"
+   "id": "i7",
+   "statut": "candidat"
   },
   "https://securityonline.info/spring-security-vulnerabilities-november-2026/": {
    "date": "2026-11-24",
@@ -705,7 +790,7 @@
   },
   "https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html": {
    "date": "2026-11-24",
-   "id": "en-bref",
+   "id": "a10",
    "statut": "candidat"
   },
   "https://thenewstack.io/cognition-devin-bots-management/": {
@@ -760,12 +845,12 @@
   },
   "https://www.jimmybogard.com/automapper-17-0-and-mediatr-15-0-released/": {
    "date": "2026-11-24",
-   "id": "en-bref",
+   "id": "n5",
    "statut": "publie"
   },
   "https://www.lemagit.fr/actualites/366655137/Ransomware-les-frameworks-offensifs-agentiques-sont-entres-dans-la-danse": {
    "date": "2026-11-24",
-   "id": "en-bref",
+   "id": "a11",
    "statut": "candidat"
   },
   "https://www.lemagit.fr/actualites/366655435/Cyberattaques-en-Norvege-une-vulnerabilite-affectait-Microsoft-API-Manager": {
@@ -783,9 +868,19 @@
    "id": "r5",
    "statut": "publie"
   },
+  "https://www.nuget.org/packages/AutoMapper/17.0.0": {
+   "date": "2026-11-24",
+   "id": "n5",
+   "statut": "publie"
+  },
   "https://www.nuget.org/packages/AwesomeAssertions": {
    "date": "2026-11-24",
    "id": "r4",
+   "statut": "publie"
+  },
+  "https://www.nuget.org/packages/MediatR/15.0.0": {
+   "date": "2026-11-24",
+   "id": "n5",
    "statut": "publie"
   },
   "https://www.nuget.org/packages/Shouldly": {

@@ -32,10 +32,6 @@
       "min": 3,
       "max": 5
     },
-    "en_bref": {
-      "min": 5,
-      "max": 10
-    },
     "regle": "Ne jamais remplir une catégorie avec du bruit, mais respecter les minimums de config/categories.json en cherchant davantage.",
     "analyses_min": 30,
     "analyses_regle": "Nombre minimal de sujets analysés (tous statuts) consignés dans le fichier du jour lors d'une exécution complète."

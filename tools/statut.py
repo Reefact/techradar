@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Change le statut de sujets (ou de lignes « En bref ») dans un fichier du jour. Utilisé par le skill veille-publier.
+"""Change le statut de sujets dans un fichier du jour. Utilisé par le skill veille-publier.
 
   python3 tools/statut.py list AAAA-MM-JJ
   python3 tools/statut.py set  AAAA-MM-JJ <id>[,<id>…] <publie|candidat|mis-de-cote|ecarte> [--motif M] [--note "…"]
-  python3 tools/statut.py bref AAAA-MM-JJ <n>[,<n>…] <publie|candidat>
 
 Chaque changement ajoute une entrée à l'historique du sujet (« par » : utilisateur). Le fichier est ensuite
 validé par tools/check_day.py (--partiel) ; en cas d'erreur, rien n'est écrit.
@@ -34,9 +33,6 @@ def main(a):
             print(f"\n{st.upper()} ({len(sel)})")
             for s in sel:
                 print(f"  {s['id']:<5} [{s['categorie']}] {plain(s['titre'])[:95]}" + (f"  — {s['motif']}" if s.get("motif") else ""))
-        print("\nEN BREF")
-        for n, b in enumerate(day.get("en_bref", []), 1):
-            print(f"  {n:<3} [{b.get('statut')}] {plain(b['texte'])[:100]}")
         return
     now = datetime.now(timezone.utc).astimezone().isoformat(timespec="minutes")
     note = a[a.index("--note") + 1] if "--note" in a else None
@@ -54,13 +50,6 @@ def main(a):
             else: s.pop("motif", None)
             s.setdefault("historique", []).append({"date": now, "statut": st, "par": "utilisateur", **({"note": note} if note else {})})
             print(f"{i} → {st}")
-    elif cmd == "bref":
-        nums, st = [int(x) for x in a[2].split(",")], a[3]
-        if st not in ("publie", "candidat"): sys.exit("Statut d'une ligne « En bref » : publie ou candidat.")
-        for n in nums:
-            if not 1 <= n <= len(day.get("en_bref", [])): sys.exit(f"Ligne {n} inexistante.")
-            day["en_bref"][n - 1]["statut"] = st
-            print(f"en bref n°{n} → {st}")
     else:
         sys.exit(__doc__)
     with tempfile.TemporaryDirectory() as d:

@@ -1,6 +1,6 @@
 ---
 name: veille-publier
-description: Change le statut des sujets d'un jour de veille (publier un candidat, retirer un sujet publié, mettre de côté, écarter avec un motif) et des lignes « En bref », puis valide, commite et déploie. À utiliser quand l'utilisateur veut ajouter au rapport un sujet du dossier du jour, en retirer un, ou réviser la sélection.
+description: Change le statut des sujets d'un jour de veille (publier un candidat, retirer un sujet publié, mettre de côté, écarter avec un motif), puis valide, commite et déploie. À utiliser quand l'utilisateur veut ajouter au rapport un sujet du dossier du jour, en retirer un, ou réviser la sélection.
 ---
 
 # Publier ou retirer des sujets
@@ -21,7 +21,6 @@ python3 tools/statut.py list AAAA-MM-JJ
 python3 tools/statut.py set AAAA-MM-JJ n4,i6 publie [--note "pourquoi"]
 python3 tools/statut.py set AAAA-MM-JJ t3 candidat              # retirer du rapport
 python3 tools/statut.py set AAAA-MM-JJ a8 ecarte --motif doublon
-python3 tools/statut.py bref AAAA-MM-JJ 13,14 publie            # lignes « En bref »
 ```
 Le script refuse un changement qui rendrait le jour invalide (plafond ou minimum d'une catégorie, sujet sans résumé, radar avec deux sujets pour un dépôt…) : rapporter le refus tel quel et proposer une solution (retirer un autre sujet de la catégorie, par exemple), sans contourner.
 
@@ -36,7 +35,7 @@ Si un sujet publié ou retiré change ce qui compte le plus ce jour-là, propose
 1. `python3 tools/check_day.py data/days/AAAA/AAAAMMJJ.json --partiel` : aucune erreur.
 2. Aperçu facultatif : `python3 tools/render.py /tmp/apercu`, puis ouvrir `/tmp/apercu/reports/AAAA/AAAAMMJJ.html`.
 3. Commit sur `main` (pas de branche ni de PR) : « Veille AAAA-MM-JJ : publication de n4, i6 » ; push.
-4. Après le déploiement (1 à 3 minutes), vérifier en ligne que le sujet apparaît dans le sommaire et les résumés.
+4. Après le déploiement (1 à 3 minutes), vérifier en ligne que le sujet apparaît dans la liste des sujets du rapport.
 
 ## Règles
 

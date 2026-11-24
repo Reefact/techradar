@@ -46,6 +46,7 @@ Règles :
 - **Minimums et plafonds** par catégorie : `config/categories.json` (sur les sujets publiés). Ne remplis jamais une catégorie avec du bruit : cherche davantage.
 - **Radar** : règles de `config/sujets/radar.json` (un sujet publié par dépôt, seulement avec un vrai signal, `depot` obligatoire).
 - **Conférences** : affichées seulement en cas de déclencheur (`config/sujets/conferences.json`) ; rappels de CFP avec le tag `rappel-cfp` et le texte du seuil (« ⏰ J-7 »).
+- **Pas de brèves** : une actualité qui mérite d'être signalée est un sujet de sa catégorie, avec un résumé même court ; sinon elle reste candidate ou est écartée.
 - **Tags** : `config/tags.json` (leur description dit quand les appliquer) ; les sujets prioritaires de `perimetre.json` portent `tes-sujets` et passent en tête de leur catégorie.
 
 ## 4. Le fichier du jour
@@ -60,11 +61,10 @@ Chemin : `data/days/AAAA/AAAAMMJJ.json`. Exemple et référence : les fichiers e
 - `sujets` : liste de sujets (ordre = ordre d'affichage dans sa catégorie) :
   - `id` : préfixe de la catégorie (`config/categories.json`, champ `prefixe`) + numéro, unique dans le jour (ex. `a1`, `n3`, `dd1`) ;
   - `categorie` (clé), `statut`, `motif` (si écarté), `tags` (clés, ou `{"tag": "rappel-cfp", "texte": "⏰ J-7"}`), `titre` (Markdown) ;
-  - pour `publie`, `candidat`, `mis-de-cote` : `resume` (Markdown : 4 à 6 lignes ; paragraphes séparés par une ligne vide ; lignes « - » pour une liste), `pourquoi` (une ligne, préfixe compris : « Pourquoi ça compte pour toi : … », « Recoupement avec <projet> : … », « Utile pour toi parce que : … », « À surveiller parce que : … »), `sources` (`[{"texte": "Source : <nom>, <date>", "url": "https://…"}]`), `meta` (ligne du sommaire : « <source> · <date> · te concerne : oui|peut-être|non »), `details` facultatif (objet « Touché », « Correctif », « Gravité », « Action » pour une alerte ; « Pourquoi il monte », « Maturité » pour un outil ; « Dates et lieu », « CFP », « Inscription » pour une conférence), `titre_sommaire` facultatif (titre plus court pour le sommaire), `etiquette` facultatif (libellé de carte différent de celui de la catégorie) ;
+  - pour `publie`, `candidat`, `mis-de-cote` : `resume` (Markdown : 4 à 6 lignes ; paragraphes séparés par une ligne vide ; lignes « - » pour une liste), `pourquoi` (une ligne, préfixe compris : « Pourquoi ça compte pour toi : … », « Recoupement avec <projet> : … », « Utile pour toi parce que : … », « À surveiller parce que : … »), `sources` (`[{"texte": "Source : <nom>, <date>", "url": "https://…"}]`), `meta` (ligne affichée sous le titre, bloc replié : « <source> · <date> · te concerne : oui|peut-être|non » ; facultatif pour une conférence, dont la ligne est faite des dates, du lieu et du CFP), `date` (AAAA-MM-JJ : date de parution de la source la plus récente du sujet ; obligatoire pour `publie` et `candidat` hors conférences ; pour un dépôt en tendance sans date de publication, la date où tu l'as observé ; elle sert au repère « frais » : un sujet paru depuis le brief précédent est marqué d'un point vert), `details` facultatif (objet « Touché », « Correctif », « Gravité », « Action » pour une alerte ; « Pourquoi il monte », « Maturité » pour un outil ; « Dates et lieu », « CFP », « Inscription » pour une conférence), `etiquette` facultatif (libellé de carte différent de celui de la catégorie) ;
   - radar : `depot` (« Reefact/<nom> », un seul) ; conférence : `conference` = `{"dates": …, "lieu": …, "cfp": "<date limite avec l'année>"}` ;
   - pour `ecarte` : au minimum `titre`, `motif`, `sources` (si une URL existe) et une courte `note` si utile ;
   - `historique` : ajoute `{"date": "<ISO>", "statut": "<statut>", "par": "tache"}` à chaque changement.
-- `en_bref` : `[{"texte": "<Markdown avec le lien>", "statut": "publie"|"candidat"}]` ; 5 à 10 lignes publiées.
 - `pied` : paragraphes Markdown : « **Sources :** … », « **Hypothèses :** … », « Généré le … à HH:MM (Paris). ».
 
 Markdown accepté : `**gras**`, `` `code` ``, `[texte](https://…)`. Pas de HTML. Paraphrase toujours (citations de moins de 15 mots, une seule par source) ; ne prétends jamais ce que tu n'as pas pu vérifier.
@@ -74,7 +74,7 @@ Markdown accepté : `**gras**`, `` `code` ``, `[texte](https://…)`. Pas de HTM
 
 ## 5. Relecture du français (obligatoire)
 
-Relis tout le texte (titres, `a_retenir`, résumés, `pourquoi`, `en_bref`, `meta`) des sujets publiés et candidats : français naturel de développeur francophone (pas de calques : « supporter » au sens anglais → « prendre en charge », « adresser » un problème → « traiter », « impacter » → « toucher », « opportunité » → « occasion », « définitivement » → « clairement ») ; phrases courtes (moins de 25 mots idéalement, jamais plus de 40) ; compréhensible seul (sigles et jargon définis à la première occurrence, qui fait quoi et pourquoi) ; ton neutre, tutoiement cohérent ; aucun fait, chiffre, date ni lien modifié.
+Relis tout le texte (titres, `a_retenir`, résumés, `pourquoi`, `meta`) des sujets publiés et candidats : français naturel de développeur francophone (pas de calques : « supporter » au sens anglais → « prendre en charge », « adresser » un problème → « traiter », « impacter » → « toucher », « opportunité » → « occasion », « définitivement » → « clairement ») ; phrases courtes (moins de 25 mots idéalement, jamais plus de 40) ; compréhensible seul (sigles et jargon définis à la première occurrence, qui fait quoi et pourquoi) ; ton neutre, tutoiement cohérent ; aucun fait, chiffre, date ni lien modifié.
 Procédure : (1) ta relecture ; (2) **lance UN sous-agent relecteur indépendant** (outil Agent) avec uniquement ces textes et ces critères, et applique ses corrections pertinentes ; s'il n'est pas disponible, dis-le dans la notification et fais une seconde lecture à froid. Consigne dans la note de l'exécution le nombre de corrections.
 
 ## 6. Validation

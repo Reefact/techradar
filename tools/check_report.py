@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Valide qu'un rapport (reports/** ou drafts/**) respecte le gabarit et les règles de la veille.
+"""Valide qu'un rapport rendu (reports/**) respecte le gabarit et les règles de la veille.
 
 Usage : python3 tools/check_report.py <fichier.html> [...]      (code retour 1 s'il y a des erreurs)
 Les lignes « ? (langue) » sont des avertissements non bloquants (anglais résiduel, calques, phrases trop longues) :
@@ -16,14 +16,10 @@ class Report(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.title = self.date = None
-        self.articles, self.rows, self.brief = [], [], []
-        self._cat = None            # catégorie courante (badge du <h3> hors article)
+        self.articles = []
         self._art = None            # article en cours
         self._h3 = None             # ("cat"|"title", [textes])
         self._in_title = False
-        self._tr = self._td = None  # ligne / cellule de tableau
-        self._li = None             # <li> de « En bref »
-        self._brief_ul = False
         self._a = None              # lien en cours : [href, [textes]]
         self._badge = None          # badge en cours : [classes, [textes]]
         self._in_text = False       # dans un <p>/<dt>/<dd> d'un article
@@ -33,17 +29,13 @@ class Report(HTMLParser):
         cls = a.get("class", "")
         if tag == "title": self._in_title = True
         elif tag == "meta" and a.get("name") == "date": self.date = a.get("content")
-        elif tag == "article" and "card" in cls.split():
-            self._art = {"id": a.get("id"), "repo": a.get("data-repo"), "category": self._cat, "title": "", "badges": [], "sources": [], "text": []}
-        elif tag == "h3":
-            self._h3 = ("title" if self._art else "cat", [])
+        elif tag == "details" and "card" in cls.split():
+            self._art = {"id": a.get("id"), "repo": a.get("data-repo"), "category": a.get("data-classe"), "title": "", "badges": [], "sources": [], "text": []}
+        elif tag == "h3" and self._art is not None:
+            self._h3 = ("title", [])
         elif tag == "span" and "badge" in cls.split():
             self._badge = [[c for c in cls.split() if c.startswith("b-")], []]
-        elif tag == "ul" and "brief" in cls.split(): self._brief_ul = True
-        elif tag == "li" and self._brief_ul: self._li = {"text": [], "links": []}
-        elif tag == "tr": self._tr = []
-        elif tag == "td" and self._tr is not None: self._td = {"text": [], "badges": [], "link": None}
-        elif tag in ("p", "dt", "dd") and self._art is not None:
+        elif tag in ("p", "dt", "dd") and self._art is not None and "src" not in cls.split():
             self._art["text"].append(""); self._in_text = True
         elif tag == "a":
             self._a = [a.get("href", ""), []]
@@ -56,28 +48,15 @@ class Report(HTMLParser):
         elif tag == "span" and self._badge:
             classes, parts = self._badge; self._badge = None
             text = norm("".join(parts))
-            if self._h3 and self._h3[0] == "cat" and classes: self._cat = classes[0]
-            elif self._td is not None: self._td["badges"].append(text)
-            elif self._art is not None: self._art["badges"].append({"class": classes, "text": text})
+            if self._art is not None: self._art["badges"].append({"class": classes, "text": text})
         elif tag == "a" and self._a:
             href, parts = self._a; self._a = None
             text = norm("".join(parts))
             if href.startswith("http"):
                 link = {"text": text, "url": href}
                 if self._art is not None: self._art["sources"].append(link)
-                if self._li is not None: self._li["links"].append(link)
-            elif self._td is not None and href.startswith("#") and not self._td["link"]:
-                self._td["link"] = text
-        elif tag == "td" and self._td is not None:
-            self._tr.append(self._td); self._td = None
-        elif tag == "tr" and self._tr:
-            if len(self._tr) >= 4: self.rows.append(self._tr)
-            self._tr = None
-        elif tag == "li" and self._li is not None:
-            self.brief.append({"text": norm("".join(self._li["text"])), "links": self._li["links"]}); self._li = None
         elif tag in ("p", "dt", "dd"): self._in_text = False
-        elif tag == "ul": self._brief_ul = False
-        elif tag == "article" and self._art is not None:
+        elif tag == "details" and self._art is not None:
             art = self._art; art["paras"] = [norm(x) for x in art["text"] if norm(x)]; art["text"] = norm(" ".join(art["paras"])); self.articles.append(art); self._art = None
 
     def handle_data(self, d):
@@ -85,8 +64,6 @@ class Report(HTMLParser):
         if self._h3: self._h3[1].append(d)
         if self._badge: self._badge[1].append(d)
         if self._a: self._a[1].append(d)
-        if self._td is not None: self._td["text"].append(d)
-        if self._li is not None: self._li["text"].append(d)
         if self._art is not None and self._in_text and self._h3 is None and self._badge is None and self._art["text"]:
             self._art["text"][-1] += d
 
@@ -145,7 +122,7 @@ def check(path):
         if r.date != f"{int(m.group(4)):04d}-{mois:02d}-{jour:02d}": add(f"date meta {r.date} incohérente avec le titre")
     # structure
     if 'href="../../assets/report.css"' not in raw: add("lien vers ../../assets/report.css manquant")
-    if re.search(r"<style|<script", raw, re.I): add("<style> ou <script> interdit")
+    if re.search(r"<style|<script(?! src=\"\.\./\.\./assets/report\.js\" defer></script>)", raw, re.I): add("<style> ou <script> en ligne interdit (seul ../../assets/report.js est chargé)")
     tl = re.search(r'<div class="card tldr">(.*?)</div>', raw, re.S)
     n = len(re.findall(r"<li>", tl.group(1))) if tl else 0
     if not tl: add("bloc card tldr manquant")
@@ -157,9 +134,9 @@ def check(path):
         if href and href.group(1).startswith("http") and not ('target="_blank"' in tag and "noopener" in tag): add(f"lien externe sans target=_blank/noopener : {href.group(1)[:70]}")
     ids = [a["id"] for a in r.articles]
     for a in r.articles:
-        if not a["id"]: add(f"article sans id : {a['title'][:50]}")
-        if not a["title"]: add(f"article sans <h3> : {a['id']}")
-    if len(ids) != len(set(ids)): add("ids d'articles en double")
+        if not a["id"]: add(f"sujet sans id : {a['title'][:50]}")
+        if not a["title"]: add(f"sujet sans <h3> : {a['id']}")
+    if len(ids) != len(set(ids)): add("ids de sujets en double")
     for href in set(re.findall(r'href="#([^"]+)"', raw)):
         if href != "top" and href not in ids and f'id="{href}"' not in raw: add(f"ancre #{href} sans cible")
     if 'id="top"' not in raw: add('ancre id="top" manquante')
@@ -170,7 +147,7 @@ def check(path):
         if radar and not (repo and re.fullmatch(r"Reefact/[\w.-]+", repo)): add(f"radar sans data-repo unique valide : {a['id']}")
         if radar and repo and "," in repo: add(f"radar avec plusieurs dépôts (un article par dépôt) : {a['id']}")
         if not radar and repo: add(f"data-repo sur un article hors radar : {a['id']}")
-    if not r.articles: add("aucun article de résumé")
+    if not r.articles: add("aucun sujet")
     return errs, prose_warnings(r)
 
 

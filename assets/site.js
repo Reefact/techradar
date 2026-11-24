@@ -163,9 +163,9 @@ const Radar = (() => {
   const clip = (s, n) => s.length > n ? s.slice(0, n - 1).trimEnd() + '…' : s;
   function topicPrompt(card, date, repos) {
     const title = card.querySelector('h3').textContent.trim();
-    const paras = [...card.querySelectorAll(':scope > p:not(.why)')].map(p => p.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
-    const why = (card.querySelector(':scope > p.why') || {}).textContent;
-    const src = [...card.querySelectorAll(':scope > a[href^="http"]')].map(a => `${a.textContent.trim()} : ${a.href}`);
+    const paras = [...card.querySelectorAll('.body > p:not(.why):not(.src), .body > ul')].map(p => p.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
+    const why = (card.querySelector('.body > p.why') || {}).textContent;
+    const src = [...card.querySelectorAll('.body > .src a[href^="http"]')].map(a => `${a.textContent.trim()} : ${a.href}`);
     let t = `Je souhaite travailler autour de ce sujet issu de ma veille TechRadar du ${date} : « ${title} ».\n\n`;
     if (repos.length) t += `Il concerne ${repos.length > 1 ? 'mes projets' : 'mon projet'} ${repos.join(', ')} (le dépôt est présélectionné).\n\n`;
     t += `Résumé du brief :\n${clip(paras.join('\n'), 1800)}\n`;
@@ -177,16 +177,16 @@ const Radar = (() => {
   }
   function addActions(doc, date) {
     const st = doc.createElement('style');
-    st.textContent = '.tr-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}'
-      + '.tr-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid currentColor;text-decoration:none;font:600 .74rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:box-shadow .2s,background .2s}'
+    st.textContent = '.tr-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid currentColor;text-decoration:none;font:600 .74rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:box-shadow .2s,background .2s}'
       + '.tr-btn.chat{color:var(--accent)}.tr-btn.code{color:var(--dotnet)}'
       + '.tr-btn:hover{background:rgba(255,255,255,.06);box-shadow:0 0 14px currentColor}'
       + '.tr-btn svg{width:14px;height:14px;flex:none}';
     doc.head.appendChild(st);
     const ICON = {chat: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M2 3h12v8H7l-3 3v-3H2z"/></svg>',
                   code: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>'};
-    doc.querySelectorAll('article.card[id]').forEach(card => {
-      if (!card.querySelector('h3')) return;
+    doc.querySelectorAll('details.card[id]').forEach(card => {
+      const slot = card.querySelector('.foot .actions');
+      if (!card.querySelector('h3') || !slot) return;
       const repos = (card.dataset.repo || '').split(',').map(x => x.trim()).filter(x => /^[\w.-]+\/[\w.-]+$/.test(x));
       const prompt = topicPrompt(card, date, repos);
       const a = doc.createElement('a');
@@ -201,7 +201,7 @@ const Radar = (() => {
         a.href = 'https://claude.ai/new?q=' + encodeURIComponent(prompt);   // pré-remplissage non documenté : on copie aussi le prompt
         a.addEventListener('click', async () => { say((await copy(prompt)) ? 'Prompt copié : si la conversation s\'ouvre vide, colle-le (Ctrl/Cmd+V).' : 'Conversation ouverte (copie du prompt impossible).'); });
       }
-      const box = doc.createElement('div'); box.className = 'tr-actions'; box.appendChild(a); card.appendChild(box);
+      slot.appendChild(a);
     });
   }
 
@@ -212,12 +212,7 @@ const Radar = (() => {
       const st = doc.createElement('style');
       st.textContent = 'html,body{background:transparent!important}body::before{display:none!important}';
       doc.head.appendChild(st);
-      const items = [];
-      let cat = '';
-      doc.querySelectorAll('.toc > .badge, .toc > a.item').forEach(el => {
-        if (el.classList.contains('badge')) cat = ([...el.classList].find(c => c.startsWith('b-')) || '').slice(2);
-        else items.push({title: el.textContent, cat});
-      });
+      const items = [...doc.querySelectorAll('details.card[data-classe]')].map(el => ({title: el.querySelector('h3').textContent, cat: el.dataset.classe.slice(2)}));
       Radar.setItems(items);
       // Liens externes : toujours dans un nouvel onglet (les ancres #… restent dans le rapport).
       doc.querySelectorAll('a[href]').forEach(l => {

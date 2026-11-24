@@ -13,7 +13,12 @@
   {
    "type": "manuelle",
    "debut": "2026-11-24T16:44+01:00",
-   "note": "relance : 9 sujets et 4 lignes « En bref » ajoutés en candidats (brouillon converti)"
+   "note": "relance : 9 sujets et 4 brèves ajoutés en candidats (brouillon converti)"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-24T18:00+01:00",
+   "note": "brèves supprimées : les 12 lignes « En bref » converties en sujets (3 publiés, 8 candidats, 1 écarté)"
   }
  ],
  "journal": {
@@ -73,7 +78,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-23"
   },
   {
    "id": "a1",
@@ -101,7 +107,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-10"
   },
   {
    "id": "a4",
@@ -128,7 +135,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-21"
   },
   {
    "id": "a5",
@@ -151,7 +159,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-20"
   },
   {
    "id": "a6",
@@ -178,7 +187,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-18"
   },
   {
    "id": "a2",
@@ -206,7 +216,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-11"
   },
   {
    "id": "r2",
@@ -236,7 +247,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-21"
   },
   {
    "id": "r3",
@@ -266,7 +278,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-10"
   },
   {
    "id": "r4",
@@ -369,7 +382,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-17"
   },
   {
    "id": "n2",
@@ -392,7 +406,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-17"
   },
   {
    "id": "n3",
@@ -415,7 +430,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-23"
   },
   {
    "id": "i1",
@@ -438,7 +454,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-23"
   },
   {
    "id": "i2",
@@ -461,7 +478,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-23"
   },
   {
    "id": "i3",
@@ -484,7 +502,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-17"
   },
   {
    "id": "i4",
@@ -507,7 +526,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-19"
   },
   {
    "id": "i5",
@@ -530,7 +550,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-19"
   },
   {
    "id": "p1",
@@ -559,7 +580,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-19"
   },
   {
    "id": "p2",
@@ -585,7 +607,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-16"
   },
   {
    "id": "p3",
@@ -609,7 +632,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-07"
   },
   {
    "id": "t1",
@@ -636,7 +660,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-24"
   },
   {
    "id": "t2",
@@ -663,7 +688,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-24"
   },
   {
    "id": "t3",
@@ -696,7 +722,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-21"
   },
   {
    "id": "t4",
@@ -729,7 +756,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-24"
   },
   {
    "id": "d1",
@@ -766,7 +794,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-22"
   },
   {
    "id": "d2",
@@ -789,7 +818,8 @@
      "statut": "publie",
      "par": "tache"
     }
-   ]
+   ],
+   "date": "2026-11-17"
   },
   {
    "id": "c3",
@@ -1018,7 +1048,8 @@
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
     }
-   ]
+   ],
+   "date": "2026-11-24"
   },
   {
    "id": "a8",
@@ -1047,7 +1078,8 @@
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
     }
-   ]
+   ],
+   "date": "2026-11-24"
   },
   {
    "id": "a9",
@@ -1080,7 +1112,8 @@
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
     }
-   ]
+   ],
+   "date": "2026-11-24"
   },
   {
    "id": "n4",
@@ -1104,7 +1137,8 @@
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
     }
-   ]
+   ],
+   "date": "2026-10-29"
   },
   {
    "id": "i6",
@@ -1132,7 +1166,8 @@
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
     }
-   ]
+   ],
+   "date": "2026-11-24"
   },
   {
    "id": "t5",
@@ -1223,7 +1258,8 @@
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
     }
-   ]
+   ],
+   "date": "2026-11-23"
   },
   {
    "id": "t8",
@@ -1252,56 +1288,300 @@
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
     }
    ]
-  }
- ],
- "en_bref": [
-  {
-   "texte": "**Replit Missions :** un essaim d'agents travaille jusqu'à ce qu'un objectif soit atteint, avec budget plafonné et juge indépendant ; chiffres de Replit non vérifiés. [Replit, 17 nov.](https://replit.com/blog/introducing-replit-missions)",
-   "statut": "publie"
   },
   {
-   "texte": "**Fuite de 46 600 enregistrements d'hôtesses de caisse** (Carrefour, Intermarché, Leclerc, U, Darty, Mr.Bricolage), origine inconnue, possiblement un prestataire commun. [FrenchBreaches, 11 nov.](https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees)",
-   "statut": "publie"
+   "id": "n5",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [],
+   "titre": "AutoMapper 17.0 et MediatR 15.0 publiés",
+   "resume": "Jimmy Bogard a publié le 12 novembre deux versions majeures : AutoMapper 17.0.0 et MediatR 15.0.0, toutes deux disponibles sur NuGet le jour même. Le billet d'annonce n'a pas pu être lu : le détail des changements n'est pas vérifié ici.\n\nCes deux bibliothèques sont distribuées sous licence commerciale depuis 2025 (Lucky Penny Software).",
+   "sources": [
+    {
+     "texte": "Source : annonce, jimmybogard.com, 12 nov. 2026",
+     "url": "https://www.jimmybogard.com/automapper-17-0-and-mediatr-15-0-released/"
+    },
+    {
+     "texte": "AutoMapper sur NuGet",
+     "url": "https://www.nuget.org/packages/AutoMapper/17.0.0"
+    },
+    {
+     "texte": "MediatR sur NuGet",
+     "url": "https://www.nuget.org/packages/MediatR/15.0.0"
+    }
+   ],
+   "meta": "jimmybogard.com, NuGet · 12 nov. 2026",
+   "pourquoi": "Pourquoi ça compte pour toi : deux dépendances très répandues dans les projets .NET ; une montée de version majeure peut casser du code et vérifie au passage la licence.",
+   "date": "2026-11-12",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   },
   {
-   "texte": "**IA et choix d'interface multiplateforme avec MAUI :** des agents reconstruisent une app en interface native en moins de 4 h de travail humain. [.NET Blog, 20 nov.](https://devblogs.microsoft.com/dotnet/ai-cross-platform-decision-matrix/)",
-   "statut": "publie"
+   "id": "n6",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [],
+   "titre": "EF Core 11 : migrations plus faciles en équipe",
+   "resume": "Avec EF Core 11, deux développeurs qui ajoutent chacun une migration sur leur branche obtiennent désormais un conflit de merge explicite dans le fichier snapshot du modèle, au lieu d'un snapshot silencieusement incohérent. Le conflit se règle en régénérant la migration après la fusion.",
+   "sources": [
+    {
+     "texte": "Source : NimblePros, 5 nov. 2026",
+     "url": "https://blog.nimblepros.com/blogs/ef-core-11-migrations/"
+    }
+   ],
+   "meta": "NimblePros · 5 nov. 2026",
+   "pourquoi": "Pourquoi ça compte pour toi : moins de migrations cassées découvertes tard, dès qu'une équipe travaille à plusieurs sur le même DbContext.",
+   "date": "2026-11-05",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   },
   {
-   "texte": "**Skills d'agents livrés dans des paquets NuGet** (Richard Lander). [.NET Blog, 3 nov.](https://devblogs.microsoft.com/dotnet/delivering-skills-in-nuget-packages/)",
-   "statut": "publie"
+   "id": "n7",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "IA et choix d'interface multiplateforme avec MAUI",
+   "resume": "Le .NET Blog décrit une matrice de décision pour choisir l'interface d'une app multiplateforme, et un essai où des agents reconstruisent une app en interface native en moins de 4 h de travail humain.",
+   "sources": [
+    {
+     "texte": "Source : .NET Blog, 20 nov. 2026",
+     "url": "https://devblogs.microsoft.com/dotnet/ai-cross-platform-decision-matrix/"
+    }
+   ],
+   "meta": ".NET Blog · 20 nov. 2026",
+   "date": "2026-11-20",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   },
   {
-   "texte": "**EF Core 11 :** migrations plus faciles en équipe (conflit de merge explicite dans le snapshot). [NimblePros, 5 nov.](https://blog.nimblepros.com/blogs/ef-core-11-migrations/)",
-   "statut": "publie"
+   "id": "n8",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Skills d'agents livrés dans des paquets NuGet",
+   "resume": "Richard Lander présente la livraison de skills d'agents (instructions et outils pour les assistants de code) à l'intérieur de paquets NuGet, pour qu'une bibliothèque apporte avec elle le mode d'emploi destiné aux agents.",
+   "sources": [
+    {
+     "texte": "Source : .NET Blog, 3 nov. 2026",
+     "url": "https://devblogs.microsoft.com/dotnet/delivering-skills-in-nuget-packages/"
+    }
+   ],
+   "meta": ".NET Blog · 3 nov. 2026",
+   "date": "2026-11-03",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   },
   {
-   "texte": "**AutoMapper 17.0 et MediatR 15.0** publiés par Jimmy Bogard (seul le titre a été lu). [12 nov.](https://www.jimmybogard.com/automapper-17-0-and-mediatr-15-0-released/)",
-   "statut": "publie"
+   "id": "i7",
+   "categorie": "ia",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Replit Missions : un essaim d'agents jusqu'à l'objectif",
+   "resume": "Replit lance Missions : un essaim d'agents travaille jusqu'à ce qu'un objectif soit atteint, avec un budget plafonné et un juge indépendant qui valide le résultat. Les chiffres annoncés par Replit ne sont pas vérifiés.",
+   "sources": [
+    {
+     "texte": "Source : Replit, 17 nov. 2026",
+     "url": "https://replit.com/blog/introducing-replit-missions"
+    }
+   ],
+   "meta": "Replit · 17 nov. 2026",
+   "date": "2026-11-17",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   },
   {
-   "texte": "**Rider 2025.2 n'est plus pris en charge par Copilot** ; version minimale 2025.3 (voir le sujet Copilot ci-dessus).",
-   "statut": "publie"
+   "id": "i8",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "Rider 2025.2 n'est plus pris en charge par Copilot",
+   "resume": "Version minimale 2025.3.",
+   "sources": [],
+   "meta": "GitHub Changelog · 17 nov. 2026",
+   "date": "2026-11-17",
+   "motif": "doublon",
+   "note": "déjà dit dans i3",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "ecarte",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   },
   {
-   "texte": "**Plannotator :** revue de plans et de diffs d'agents (Claude Code, Codex, Copilot CLI), environ 9,6 k étoiles. [GitHub](https://github.com/backnotprop/plannotator)",
-   "statut": "publie"
+   "id": "t9",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Plannotator : revue de plans et de diffs d'agents",
+   "resume": "Outil de revue des plans et des diffs produits par des agents de code (Claude Code, Codex, Copilot CLI), environ 9 600 étoiles sur GitHub.",
+   "sources": [
+    {
+     "texte": "Source : GitHub",
+     "url": "https://github.com/backnotprop/plannotator"
+    }
+   ],
+   "meta": "GitHub · backnotprop",
+   "date": "2026-11-24",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   },
   {
-   "texte": "**Distribution :** la cyberattaque d'octobre sur les frigos a touché environ 700 supermarchés ; Intermarché et Leclerc ont perdu 0,3 point de part de visites en une semaine, dont deux tiers déjà regagnés. [Points de Vente](https://pointsdevente.fr/pdv-business/supermarches-pirates-les-deux-tiers-des-visites-perdues-deja-reconquis/)",
-   "statut": "candidat"
+   "id": "t10",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "GPUI : le cadre d'interface Rust de Zed a son propre dépôt",
+   "resume": "GPUI, le cadre d'interface en Rust de l'éditeur Zed, obtient son propre dépôt (342 points sur Hacker News).",
+   "sources": [
+    {
+     "texte": "Source : GitHub",
+     "url": "https://github.com/zed-industries/gpui"
+    }
+   ],
+   "meta": "GitHub · zed-industries",
+   "date": "2026-11-24",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   },
   {
-   "texte": "**VMware vCenter :** nouvelle faille critique d'authentification (9,8) après un zero-day exploité ; Broadcom corrige 23 failles. [The Hacker News, 24 nov.](https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html)",
-   "statut": "candidat"
+   "id": "d3",
+   "categorie": "distribution",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Fuite de 46 600 enregistrements d'hôtesses de caisse",
+   "resume": "Un jeu de données de 46 600 enregistrements concernant des employés de caisse de plusieurs enseignes (Carrefour, Intermarché, Leclerc, U, Darty, Mr.Bricolage) circule. L'origine est inconnue ; un prestataire commun aux enseignes est la piste évoquée.",
+   "sources": [
+    {
+     "texte": "Source : FrenchBreaches, 11 nov. 2026",
+     "url": "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees"
+    }
+   ],
+   "meta": "FrenchBreaches · 11 nov. 2026",
+   "pourquoi": "Pourquoi ça compte pour toi : un prestataire partagé par plusieurs enseignes est un point de fuite commun à surveiller.",
+   "date": "2026-11-11",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   },
   {
-   "texte": "**Rançongiciels :** les frameworks offensifs pilotés par agents arrivent. [LeMagIT](https://www.lemagit.fr/actualites/366655137/Ransomware-les-frameworks-offensifs-agentiques-sont-entres-dans-la-danse)",
-   "statut": "candidat"
+   "id": "d4",
+   "categorie": "distribution",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Cyberattaque des frigos : l'effet sur la fréquentation",
+   "resume": "La cyberattaque d'octobre sur les régulateurs frigorifiques a touché environ 700 supermarchés. Intermarché et Leclerc ont perdu 0,3 point de part de visites en une semaine, dont deux tiers déjà regagnés.",
+   "sources": [
+    {
+     "texte": "Source : Points de Vente",
+     "url": "https://pointsdevente.fr/pdv-business/supermarches-pirates-les-deux-tiers-des-visites-perdues-deja-reconquis/"
+    }
+   ],
+   "meta": "Points de Vente",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   },
   {
-   "texte": "**GPUI :** le cadre d'interface Rust de Zed obtient son propre dépôt (342 points sur Hacker News). [GitHub](https://github.com/zed-industries/gpui)",
-   "statut": "candidat"
+   "id": "a10",
+   "categorie": "alertes",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "VMware vCenter : nouvelle faille critique d'authentification",
+   "resume": "Nouvelle faille critique d'authentification dans vCenter (CVSS 9,8), après un zero-day déjà exploité ; Broadcom corrige 23 failles.",
+   "sources": [
+    {
+     "texte": "Source : The Hacker News, 24 nov. 2026",
+     "url": "https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html"
+    }
+   ],
+   "meta": "The Hacker News · 24 nov. 2026 · te concerne : peu probable",
+   "date": "2026-11-24",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
+  },
+  {
+   "id": "a11",
+   "categorie": "alertes",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Rançongiciels : les frameworks offensifs pilotés par agents arrivent",
+   "resume": "LeMagIT décrit l'arrivée de frameworks offensifs pilotés par des agents d'IA chez les opérateurs de rançongiciels.",
+   "sources": [
+    {
+     "texte": "Source : LeMagIT",
+     "url": "https://www.lemagit.fr/actualites/366655137/Ransomware-les-frameworks-offensifs-agentiques-sont-entres-dans-la-danse"
+    }
+   ],
+   "meta": "LeMagIT",
+   "historique": [
+    {
+     "date": "2026-11-24",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ancienne ligne « En bref » convertie en sujet"
+    }
+   ]
   }
  ],
  "pied": [

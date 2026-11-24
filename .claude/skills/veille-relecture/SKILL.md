@@ -1,11 +1,11 @@
 ---
 name: veille-relecture
-description: Relit le français d'un jour de veille TechRadar (champs de texte du fichier data/days/AAAA/AAAAMMJJ.json : titres, résumés, « pourquoi », « À retenir », « En bref ») avec un relecteur indépendant, propose les corrections avant/après et les applique après accord. À utiliser pour vérifier la qualité rédactionnelle d'un rapport.
+description: Relit le français d'un jour de veille TechRadar (champs de texte du fichier data/days/AAAA/AAAAMMJJ.json : titres, résumés, « pourquoi », « À retenir ») avec un relecteur indépendant, propose les corrections avant/après et les applique après accord. À utiliser pour vérifier la qualité rédactionnelle d'un rapport.
 ---
 
 # Relire le français d'un jour de veille
 
-Cible : `data/days/AAAA/AAAAMMJJ.json` (par défaut le jour le plus récent). Le texte est en Markdown simple (`**gras**`, `` `code` ``, `[texte](url)`) dans les champs `titre`, `titre_sommaire`, `resume`, `pourquoi`, `meta`, `details`, `a_retenir[].texte`, `en_bref[].texte`. Relire les sujets `publie` (et `candidat` si l'utilisateur le demande).
+Cible : `data/days/AAAA/AAAAMMJJ.json` (par défaut le jour le plus récent). Le texte est en Markdown simple (`**gras**`, `` `code` ``, `[texte](url)`) dans les champs `titre`, `resume`, `pourquoi`, `meta`, `details`, `a_retenir[].texte`. Relire les sujets `publie` (et `candidat` si l'utilisateur le demande).
 
 ## 1. Signaux automatiques
 
@@ -16,7 +16,7 @@ Les erreurs (structure) sont à traiter d'abord. Les lignes `? (langue)` sont de
 
 ## 2. Relecture indépendante
 
-Lancer UN sous-agent (outil Agent, type `general-purpose`) avec **uniquement** le texte du rapport (titres, entrées de sommaire, puces « À retenir », résumés, lignes « pourquoi ça compte », « En bref »), extrait du fichier du jour (identifiant du sujet, champ, texte), et ces critères :
+Lancer UN sous-agent (outil Agent, type `general-purpose`) avec **uniquement** le texte du rapport (titres, lignes sous le titre, puces « À retenir », résumés, lignes « pourquoi ça compte »), extrait du fichier du jour (identifiant du sujet, champ, texte), et ces critères :
 
 - français naturel de développeur francophone, pas une traduction mot à mot ; calques à corriger : « supporter » (anglais) → « prendre en charge », « adresser un problème » → « traiter », « impacter » → « toucher », « opportunité » → « occasion », « définitivement » → « clairement » ; termes techniques d'usage et noms propres conservés ;
 - phrases courtes (idéalement < 25 mots, jamais > 40), une idée par phrase ;

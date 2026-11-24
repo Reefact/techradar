@@ -76,11 +76,6 @@ def build():
                         m = re.search(r"J-(\d+)", t.get("texte", ""))
                         if m:
                             c["reminders_seen"].append({"date": d["date"], "label": t["texte"], "n": int(m.group(1))})
-        for b in d.get("en_bref", []):
-            for u in re.findall(r"\]\((https?://[^)\s]+)\)", b.get("texte", "")):
-                cur = url_index.get(u)
-                if cur is None or (b.get("statut") == "publie" and cur["statut"] != "publie"):
-                    url_index[u] = {"date": d["date"], "id": "en-bref", "statut": b.get("statut", "candidat")}
     return {"reports": reports, "radar": radar, "tools_proposed": tools, "conferences": sorted(confs.values(), key=lambda c: c["name"]),
             "topics": topics, "urls": dict(sorted(url_index.items()))}
 

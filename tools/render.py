@@ -12,7 +12,7 @@ Produit dans le dossier de sortie :
 import html
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import date as Date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -37,137 +37,165 @@ HEAD = """<!doctype html>
 
 
 # ---------- briques ----------
+MOIS_COURT = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
+STATUT_LABEL = {"publie": "Publié", "candidat": "Candidat", "mis-de-cote": "Mis de côté", "ecarte": "Écarté"}
+STATUT_CLASSE = {"publie": "b-tool", "candidat": "b-api", "mis-de-cote": "b-ia", "ecarte": "b-alert"}
+STATUT_AIDE = {"publie": "Publié dans le rapport du jour.",
+               "candidat": "Analysé et rédigé, mais pas publié : peut être ajouté au rapport.",
+               "mis-de-cote": "Intéressant mais pas retenu aujourd'hui ; peut revenir un autre jour.",
+               "ecarte": "Écarté après analyse ; le motif est indiqué."}
+FRAIS_AIDE = "Frais : paru depuis le brief précédent"
+
+
+def date_courte(iso):
+    d = Date.fromisoformat(iso)
+    return f"{d.day} {MOIS_COURT[d.month - 1]} {d.year}"
+
+
+def seuil_frais(day, days=()):
+    """Un sujet est « frais » si sa date est postérieure ou égale à celle du brief précédent (sinon : la veille)."""
+    avant = [d["date"] for d in days if d["date"] < day["date"]]
+    return max(avant) if avant else (Date.fromisoformat(day["date"]) - timedelta(days=1)).isoformat()
+
+
+def badge(classe, texte, aide):
+    return f'<span class="badge {classe}" title="{E(aide)}">{E(texte)}</span>'
+
+
+def tag_key(t):
+    return t if isinstance(t, str) else t["tag"]
+
+
 def tag_html(t, tags):
-    key, txt = (t, None) if isinstance(t, str) else (t["tag"], t.get("texte"))
-    d = tags[key]
-    return f'<span class="badge {d["classe"]}">{E(txt or d["label"])}</span>'
+    d = tags[tag_key(t)]
+    return badge(d["classe"], (None if isinstance(t, str) else t.get("texte")) or d["label"], d["description"])
 
 
-def card(s, cfg, statut_badge=None):
+def statut_badge(s):
+    st = s.get("statut", "candidat")
+    return badge(STATUT_CLASSE[st], STATUT_LABEL[st], STATUT_AIDE[st])
+
+
+def meta_of(s):
+    if s.get("meta"):
+        return s["meta"]
+    k = s.get("conference") or {}
+    parts = [k.get("dates"), k.get("lieu")] + ([f"CFP : {k['cfp']}"] if k.get("cfp") else [])
+    return " · ".join(p for p in parts if p)
+
+
+def card(s, cfg, seuil, dossier=False, date_jour=""):
+    """Un sujet = un bloc dépliant : en-tête (badges, titre, ligne source · date) ; corps (résumé, détails, sources, actions)."""
     cats, tags = cfg["categories"], cfg["tags"]
     c = cats[s["categorie"]]
-    repo = f' data-repo="{E(s["depot"])}"' if s.get("depot") else ""
-    badges = f'<span class="badge {c["classe"]}">{E(s.get("etiquette") or c["carte"])}</span>' + "".join(tag_html(t, tags) for t in s.get("tags", []))
-    if statut_badge:
-        badges = statut_badge + badges
-    out = [f'<article class="card" id="{E(s["id"])}"{repo}>', f'  <div class="head">{badges}<h3>{inline(s["titre"])}</h3></div>']
-    out += blocks(s.get("resume", ""))
+    st = s.get("statut", "candidat")
+    frais = bool(s.get("date")) and s["date"] >= seuil
+    attrs = f' data-cat="{E(s["categorie"])}" data-classe="{E(c["classe"])}" data-tags="{E(" ".join(tag_key(t) for t in s.get("tags", [])))}" data-statut="{st}"'
+    if frais: attrs += " data-frais"
+    if s.get("depot"): attrs += f' data-repo="{E(s["depot"])}"'
+    badges = (statut_badge(s) if dossier else "") + badge(c["classe"], s.get("etiquette") or c["carte"], c["label"] + " : " + c["description"]) \
+        + "".join(tag_html(t, tags) for t in s.get("tags", []))
+    blip = f'<span class="blip" title="{E(FRAIS_AIDE)} (paru le {date_courte(s["date"])})"></span>' if frais else ""
+    meta = meta_of(s)
+    out = [f'<details class="card" id="{E(s["id"])}"{attrs}>',
+           f'  <summary class="head"><span class="badges">{badges}</span><h3>{blip}{inline(s["titre"])}</h3>'
+           + (f'<span class="meta">{inline(meta)}</span>' if meta else "") + "</summary>",
+           '  <div class="body">']
+    out += ["  " + b for b in blocks(s.get("resume", ""))]
     if s.get("details"):
         out.append('  <dl class="kv">' + "".join(f"<dt>{E(k)}</dt><dd>{inline(v)}</dd>" for k, v in s["details"].items()) + "</dl>")
-    if s.get("pourquoi"):
+    if dossier and st == "ecarte":
+        motif = MOTIF_LABEL.get(s.get("motif"), s.get("motif") or "")
+        out.append(f'  <p class="why">Écarté : {E(motif)}{" · " + inline(s["note"]) if s.get("note") else ""}</p>')
+    elif s.get("pourquoi"):
         out.append(f'  <p class="why">{inline(s["pourquoi"])}</p>')
-    links = [f'<a href="{E(x["url"])}" target="_blank" rel="noopener">{inline(x["texte"])}</a>' for x in s.get("sources", [])]
-    links.append('<a class="back" href="#top">↑ sommaire</a>')
-    out.append("  " + " · ".join(links))
-    out.append("</article>")
+    links = " · ".join(f'<a href="{E(x["url"])}" target="_blank" rel="noopener">{inline(x["texte"])}</a>' for x in s.get("sources", []))
+    ask = ""
+    if dossier and st != "publie":
+        ask = (f'<button type="button" class="ask" data-ask="Publie le sujet {E(s["id"])} (« {E(plain(s["titre"]))} ») du {date_jour} dans le rapport.">'
+               "Demander la publication</button>")
+    if links:
+        out.append(f'  <p class="src">{links}</p>')
+    out.append(f'  <div class="foot">{ask}<span class="actions"></span>'
+               f'<a class="fold" href="#{E(s["id"])}" title="Replier ce sujet" aria-label="Replier ce sujet">⌃</a></div>')
+    out += ["  </div>", "</details>"]
     return "\n".join(out)
 
 
-def toc_item(s, cfg):
-    tags = "".join(tag_html(t, cfg["tags"]) + " " for t in s.get("tags", []))
-    meta = f'<span class="meta">{inline(s["meta"])}</span>' if s.get("meta") else ""
-    return f'  <a class="item" href="#{E(s["id"])}">{tags}<strong>{inline(s.get("titre_sommaire") or s["titre"])}</strong>{meta}</a>'
+def ordered(sujets, cfg):
+    order = {k: i for i, k in enumerate(ordered_categories(cfg["categories"]))}
+    return sorted(sujets, key=lambda s: order.get(s["categorie"], 99))   # tri stable : l'ordre du fichier est gardé dans une catégorie
 
 
-def by_category(sujets, cfg):
-    cats = cfg["categories"]
-    order = {k: i for i, k in enumerate(ordered_categories(cats))}
-    groups = {}
-    for s in sujets:
-        groups.setdefault(s["categorie"], []).append(s)
-    return [(k, groups[k]) for k in sorted(groups, key=lambda k: order.get(k, 99))]
+def filters(sujets, cfg, seuil, dossier=False):
+    """Barre de filtres (masquée sans JavaScript) : catégories, tags (dont « frais »), statuts dans le dossier."""
+    cats, tags = cfg["categories"], cfg["tags"]
+    def chip(group_val, classe, label, aide, n):
+        return f'<button type="button" class="chip {classe}" data-v="{E(group_val)}" aria-pressed="false" title="{E(aide)}">{E(label)} <span class="n">{n}</span></button>'
+    groups = []
+    if dossier:
+        groups.append(("statut", "Statut", [chip(st, STATUT_CLASSE[st], STATUT_LABEL[st], STATUT_AIDE[st], n)
+                                            for st in STATUTS if (n := sum(1 for s in sujets if s.get("statut") == st))]))
+    present = [k for k in ordered_categories(cats) if any(s["categorie"] == k for s in sujets)]
+    groups.append(("cat", "Catégorie", [chip(k, cats[k]["classe"], cats[k]["label"], cats[k]["description"], sum(1 for s in sujets if s["categorie"] == k)) for k in present]))
+    tchips = []
+    nf = sum(1 for s in sujets if s.get("date") and s["date"] >= seuil)
+    if nf: tchips.append(chip("frais", "b-fresh", "● Frais", FRAIS_AIDE + ".", nf))
+    for k, t in tags.items():
+        n = sum(1 for s in sujets if k in [tag_key(x) for x in s.get("tags", [])])
+        if n: tchips.append(chip(k, t["classe"], (t["label"].replace("J-{n}", "Rappel CFP") if "{n}" in t["label"] else t["label"]), t["description"], n))
+    if tchips: groups.append(("tag", "Tag", tchips))
+    o = ['<div class="filters" id="filtres" hidden>']
+    for g, label, chips in groups:
+        o.append(f'  <div class="fgroup" data-g="{g}" role="group" aria-label="{label}"><span class="flabel">{label}</span>{"".join(chips)}</div>')
+    o.append('  <div class="fbar"><span class="count" aria-live="polite"></span><button type="button" class="reset" hidden>Réinitialiser</button>'
+             '<button type="button" class="expand">Tout déplier</button></div>')
+    o.append("</div>")
+    return o
+
+
+TOTOP = '<a class="totop" href="#top" title="Revenir en haut" aria-label="Revenir en haut">⌃</a>'
+SCRIPT = '<script src="../../assets/report.js" defer></script>'
 
 
 # ---------- rapport publié ----------
-def render_report(day, cfg):
-    cats = cfg["categories"]
-    pub = published(day)
-    conf = [s for s in pub if s["categorie"] == "conferences"]
-    rest = [s for s in pub if s["categorie"] != "conferences"]
+def render_report(day, cfg, seuil=None):
+    seuil = seuil or seuil_frais(day)
+    pub = ordered(published(day), cfg)
     h1 = titre_jour(day["date"])
-    o = [HEAD.format(title=E(h1 + SUFFIX), date=day["date"], extra_head=""), '<div class="wrap">', "<header>",
+    o = [HEAD.format(title=E(h1 + SUFFIX), date=day["date"], extra_head=""), '<div class="wrap">', '<header id="top">',
          f"  <h1>{E(h1)}</h1>", f'  <p class="sub">{inline(day.get("sous_titre", ""))}</p>', "</header>", "",
-         '<h2 id="top">À retenir aujourd\'hui</h2>', '<div class="card tldr"><ul>']
+         "<h2>À retenir aujourd'hui</h2>", '<div class="card tldr"><ul>']
     o += [f"  <li>{inline(x['texte'])}</li>" for x in day.get("a_retenir", [])]
-    o += ["</ul></div>", "", "<h2>Sommaire</h2>", '<div class="toc">']
-    groups = by_category(rest, cfg)
-    for i, (k, items) in enumerate(groups):
-        o.append(f'  <span class="badge {cats[k]["classe"]}">{E(cats[k]["label"])}</span>')
-        o += [toc_item(s, cfg) for s in items]
-        if i < len(groups) - 1:
-            o.append("")
-    o += ["</div>", ""]
-    if conf:
-        o += [f"<h2>{E(cats['conferences']['label'])}</h2>", '<div class="tablewrap"><table>',
-              "<thead><tr><th>Événement</th><th>Dates</th><th>Lieu</th><th>Date limite CFP</th></tr></thead>", "<tbody>"]
-        for s in conf:
-            k = s.get("conference", {})
-            tags = "".join(" " + tag_html(t, cfg["tags"]) for t in s.get("tags", []))
-            o.append(f'<tr><td><a href="#{E(s["id"])}">{inline(s.get("titre_sommaire") or s["titre"])}</a>{tags}</td>'
-                     f'<td>{inline(k.get("dates", ""))}</td><td>{inline(k.get("lieu", ""))}</td><td>{inline(k.get("cfp", ""))}</td></tr>')
-        o += ["</tbody></table></div>", ""]
-    brief = published(day, "en_bref")
-    if brief:
-        o += ["<h2>En bref</h2>", '<ul class="brief">'] + [f"  <li>{inline(b['texte'])}</li>" for b in brief] + ["</ul>", ""]
-    o += ["<h2>Résumés</h2>", '<div class="sum">']
-    for i, (k, items) in enumerate(by_category(pub, cfg)):
-        o.append(f'<h3 style="margin-top:{8 if i == 0 else 12}px"><span class="badge {cats[k]["classe"]}">{E(cats[k]["label"])}</span></h3>')
-        for s in items:
-            o += ["", card(s, cfg)]
-        o.append("")
-    o += ["</div>", "", "<footer>"] + [f"  <p>{inline(p)}</p>" for p in day.get("pied", [])] + ["</footer>", "</div>", "", "</body></html>", ""]
+    o += ["</ul></div>", "", "<h2>Sujets</h2>"] + filters(pub, cfg, seuil) + ['<div class="sum">']
+    for s in pub:
+        o += ["", card(s, cfg, seuil)]
+    o += ["</div>", "", "<footer>"] + [f"  <p>{inline(p)}</p>" for p in day.get("pied", [])] + ["</footer>", "</div>", TOTOP, SCRIPT, "</body></html>", ""]
     return "\n".join(o)
 
 
 # ---------- dossier du jour ----------
 EXEC_LABEL = {"planifiee": "planifiée", "manuelle": "manuelle"}
-STATUT_LABEL = {"publie": "Publié", "candidat": "Candidat", "mis-de-cote": "Mis de côté", "ecarte": "Écarté"}
-STATUT_CLASSE = {"publie": "b-tool", "candidat": "b-api", "mis-de-cote": "b-ia", "ecarte": "b-alert"}
 MOTIF_LABEL = {"deja-publie": "déjà publié", "hors-fenetre": "hors fenêtre de dates", "hors-perimetre": "hors périmètre",
                "non-verifiable": "source non vérifiable", "doublon": "doublon", "trop-mineur": "trop mineur",
                "plafond-atteint": "plafond de la catégorie atteint", "exclu-config": "exclu par la configuration",
                "rien-de-neuf": "vérifié, rien de neuf"}
 
-DOSSIER_STYLE = """<style>
-.dz-stats{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
-.dz-stats .badge{font-size:.72rem}
-.dz-filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 20px}
-.dz-filters button{font:600 .72rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--mute);cursor:pointer}
-.dz-filters button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
-.dz-journal{font-size:.88rem}
-.dz-journal dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:6px 0 0}
-.dz-journal dt{color:var(--mute)}
-.dz-line{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;padding:9px 12px;margin:6px 0;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
-.dz-line .t{font-weight:600}.dz-line .m{color:var(--mute);font-size:.82rem}
-.dz-legend{font-size:.85rem;color:var(--mute)}.dz-legend dt{color:var(--fg)}
-.dz-ask{display:flex;width:max-content;margin-top:12px;font:600 .72rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:999px;border:1px dashed currentColor;background:transparent;color:var(--accent);cursor:pointer}
-details.card>summary{cursor:pointer;list-style:none}details.card>summary::-webkit-details-marker{display:none}
-details.card[open]>summary{margin-bottom:8px}
-</style>
-"""
 
-
-def statut_badge(s):
-    st = s.get("statut", "candidat")
-    return f'<span class="badge {STATUT_CLASSE[st]}" data-statut="{st}">{STATUT_LABEL[st]}</span>'
-
-
-def render_dossier(day, cfg):
-    cats, tags = cfg["categories"], cfg["tags"]
-    allt = day.get("sujets", [])
+def render_dossier(day, cfg, seuil=None):
+    seuil = seuil or seuil_frais(day)
+    allt = ordered(day.get("sujets", []), cfg)
     count = {st: sum(1 for s in allt if s.get("statut") == st) for st in STATUTS}
-    h1 = titre_jour(day["date"])
-    o = [HEAD.format(title=E("Dossier du " + h1.removeprefix("Veille technologique du ") + SUFFIX), date=day["date"],
-                     extra_head='\n<meta name="robots" content="noindex, nofollow">').replace("<body>", "<body>\n" + DOSSIER_STYLE.rstrip()),
-         '<div class="wrap">', "<header>", f"  <h1>Dossier du {E(h1.removeprefix('Veille technologique du '))}</h1>",
+    jour = titre_jour(day["date"]).removeprefix("Veille technologique du ")
+    o = [HEAD.format(title=E("Dossier du " + jour + SUFFIX), date=day["date"], extra_head='\n<meta name="robots" content="noindex, nofollow">'),
+         '<div class="wrap dossier">', '<header id="top">', f"  <h1>Dossier du {E(jour)}</h1>",
          '  <p class="sub">Tous les sujets analysés pour ce jour : publiés, candidats, mis de côté, écartés (avec leur motif).</p>',
-         '  <div class="dz-stats">' + "".join(f'<span class="badge {STATUT_CLASSE[st]}">{STATUT_LABEL[st]} : {count[st]}</span>' for st in STATUTS) + "</div>",
+         '  <div class="dz-stats">' + "".join(badge(STATUT_CLASSE[st], f"{STATUT_LABEL[st]} : {count[st]}", STATUT_AIDE[st]) for st in STATUTS) + "</div>",
          "</header>", ""]
-    # journal de recherche
     j = day.get("journal", {})
     rows = []
     if j.get("recherches"):
-        rows.append(("Recherches", ", ".join(f"{cats.get(k, {}).get('label', k)} : {v}" for k, v in j["recherches"].items())))
+        rows.append(("Recherches", ", ".join(f"{cfg['categories'].get(k, {}).get('label', k)} : {v}" for k, v in j["recherches"].items())))
     if j.get("pages_ouvertes") is not None:
         rows.append(("Pages ouvertes", str(j["pages_ouvertes"])))
     if j.get("sources_illisibles"):
@@ -176,53 +204,13 @@ def render_dossier(day, cfg):
         rows.append(("Hypothèse", h))
     for x in day.get("executions", []):
         rows.append(("Exécution", f"{EXEC_LABEL.get(x.get('type'), x.get('type', '?'))} · {x.get('debut', '?')}" + (f" · {x['note']}" if x.get("note") else "")))
-    o += ['<h2 id="top">Journal de recherche</h2>', '<div class="card dz-journal">']
-    o.append("  <dl>" + "".join(f"<dt>{E(k)}</dt><dd>{inline(v)}</dd>" for k, v in rows) + "</dl>" if rows else "  <p>Pas de journal pour ce jour (rapport antérieur au dossier).</p>")
-    o += ["</div>", ""]
-    # filtres
-    o += ['<div class="dz-filters" role="group" aria-label="Filtrer par statut">',
-          '  <button type="button" data-f="tous" aria-pressed="true">Tous</button>'] + \
-         [f'  <button type="button" data-f="{st}" aria-pressed="false">{STATUT_LABEL[st]}</button>' for st in STATUTS] + ["</div>", ""]
-    # sujets par catégorie
-    o += ["<h2>Sujets</h2>", '<div class="sum">']
-    for i, (k, items) in enumerate(by_category(allt, cfg)):
-        o.append(f'<h3 style="margin-top:{8 if i == 0 else 12}px"><span class="badge {cats[k]["classe"]}">{E(cats[k]["label"])}</span></h3>')
-        for s in items:
-            st = s.get("statut", "candidat")
-            if st == "ecarte" or (not s.get("resume") and st != "publie"):
-                motif = MOTIF_LABEL.get(s.get("motif"), s.get("motif") or "")
-                src = " · ".join(f'<a href="{E(x["url"])}" target="_blank" rel="noopener">{inline(x["texte"])}</a>' for x in s.get("sources", []))
-                o += ["", f'<div class="dz-line" data-statut="{st}" id="{E(s["id"])}">{statut_badge(s)}<span class="t">{inline(s["titre"])}</span>'
-                          f'<span class="m">{E(motif)}{" · " + inline(s["note"]) if s.get("note") else ""}</span>{(" " + src) if src else ""}</div>']
-            else:
-                body = card(s, cfg, statut_badge(s)).replace(' · <a class="back" href="#top">↑ sommaire</a>', "")
-                ask = "" if st == "publie" else f'\n  <button type="button" class="dz-ask" data-ask="Publie le sujet {E(s["id"])} (« {E(plain(s["titre"]))} ») du {day["date"]} dans le rapport.">Demander la publication</button>'
-                body = body.replace(f'<article class="card" id="{E(s["id"])}"', f'<article class="card" data-statut="{st}" id="{E(s["id"])}"', 1)
-                o += ["", body.replace("\n</article>", ask + "\n</article>")]
-        o.append("")
-    o += ["</div>", ""]
-    # « En bref » et légende
-    if day.get("en_bref"):
-        o += ["<h2>En bref</h2>", '<ul class="brief">'] + [f'  <li data-statut="{b.get("statut", "candidat")}">{statut_badge(b)} {inline(b["texte"])}</li>' for b in day["en_bref"]] + ["</ul>", ""]
-    o += ["<h2>Légende</h2>", '<div class="card dz-legend"><dl class="kv">']
-    o += [f'  <dt><span class="badge {c["classe"]}">{E(c["label"])}</span></dt><dd>{E(c["description"])}</dd>' for c in (cats[k] for k in ordered_categories(cats))]
-    o += [f'  <dt><span class="badge {t["classe"]}">{E(t["label"])}</span></dt><dd>{E(t["description"])}</dd>' for t in tags.values()]
-    o += ["</dl></div>", "</div>", "", DOSSIER_SCRIPT, "</body></html>", ""]
+    o += ["<h2>Journal de recherche</h2>", '<details class="card dz-journal">', "  <summary>Recherches, sources illisibles, exécutions</summary>"]
+    o.append("  <dl>" + "".join(f"<dt>{E(k)}</dt><dd>{inline(v)}</dd>" for k, v in rows) + "</dl>" if rows else "  <p>Pas de journal pour ce jour.</p>")
+    o += ["</details>", "", "<h2>Sujets</h2>"] + filters(allt, cfg, seuil, dossier=True) + ['<div class="sum">']
+    for s in allt:
+        o += ["", card(s, cfg, seuil, dossier=True, date_jour=day["date"])]
+    o += ["</div>", "</div>", TOTOP, SCRIPT, "</body></html>", ""]
     return "\n".join(o)
-
-
-DOSSIER_SCRIPT = """<script>
-// Filtres par statut, et boutons qui préparent la demande à coller dans Claude (une page statique ne peut pas écrire dans Git).
-document.querySelectorAll('.dz-filters button').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('.dz-filters button').forEach(x => x.setAttribute('aria-pressed', x === b));
-  const f = b.dataset.f;
-  document.querySelectorAll('[data-statut]').forEach(el => { if (el.classList.contains('badge')) return; el.hidden = f !== 'tous' && el.dataset.statut !== f; });
-}));
-document.querySelectorAll('.dz-ask').forEach(b => b.addEventListener('click', async () => {
-  try { await navigator.clipboard.writeText(b.dataset.ask); b.textContent = 'Demande copiée : colle-la dans Claude'; }
-  catch (e) { prompt('Copie cette demande et colle-la dans Claude :', b.dataset.ask); }
-}));
-</script>"""
 
 
 # ---------- flux ----------
@@ -254,12 +242,13 @@ def main(out, site=""):
     listing = []
     for d in days:
         y, stem = d["date"][:4], d["date"].replace("-", "")
+        seuil = seuil_frais(d, days)
         for sub, fn in (("reports", render_report), ("dossier", render_dossier)):
             if sub == "reports" and not published(d):
                 continue
             p = out / sub / y / f"{stem}.html"
             p.parent.mkdir(parents=True, exist_ok=True)
-            p.write_text(fn(d, cfg), encoding="utf-8")
+            p.write_text(fn(d, cfg, seuil), encoding="utf-8")
         st = {k: sum(1 for s in d.get("sujets", []) if s.get("statut") == k) for k in STATUTS}
         listing.append({"date": d["date"], "href": f"{y}/{stem}.html", "titre": titre_jour(d["date"]), "statuts": st})
     (out / "dossier").mkdir(parents=True, exist_ok=True)

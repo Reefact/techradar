@@ -21,7 +21,7 @@ Tous commitent directement sur `main` (pas de branche ni de PR) après ton accor
 
 **But** : choisir ce qui est publié. Le rapport d'un jour = ses sujets au statut `publie`.
 
-**Déroulé** : liste les sujets par statut (`tools/statut.py list`) ; applique ta demande (`set … publie|candidat|mis-de-cote|ecarte`, `bref … publie|candidat`) ; refuse un changement qui casserait une règle (plafond ou minimum d'une catégorie, deux sujets du radar pour un dépôt, sujet sans résumé) ; propose d'ajuster « À retenir » ; valide, commite, vérifie en ligne.
+**Déroulé** : liste les sujets par statut (`tools/statut.py list`) ; applique ta demande (`set … publie|candidat|mis-de-cote|ecarte`) ; refuse un changement qui casserait une règle (plafond ou minimum d'une catégorie, deux sujets du radar pour un dépôt, sujet sans résumé) ; propose d'ajuster « À retenir » ; valide, commite, vérifie en ligne.
 
 **Raccourci** : sur https://techradar.reefact.net/dossier/, le bouton « Demander la publication » d'un candidat copie la demande ; colle-la dans Claude.
 

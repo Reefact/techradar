@@ -9,7 +9,7 @@
                 le nombre minimal de sujets analysés n'est pas exigé.
 
 Contrôles : schéma, clés de catégories et de tags, dépôts du radar, minimums et plafonds (config/categories.json),
-« À retenir » et « En bref » (config/sujets/perimetre.json), un sujet publié par dépôt, journal (motifs, éléments
+« À retenir » (config/sujets/perimetre.json), dates des sujets, un sujet publié par dépôt, journal (motifs, éléments
 toujours suivis vérifiés, exclusions respectées), puis rendu du rapport et contrôle du HTML produit
 (tools/check_report.py : structure et signaux de langue).
 """
@@ -44,8 +44,9 @@ def check(path, contre=None, partiel=False):
     # ----- schéma
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", day.get("date", "")): E("champ « date » absent ou invalide (AAAA-MM-JJ)")
     elif Path(path).stem != day["date"].replace("-", ""): E(f"le nom du fichier ne correspond pas à la date {day['date']}")
-    for f in ("sous_titre", "a_retenir", "sujets", "en_bref", "pied", "executions", "journal"):
+    for f in ("sous_titre", "a_retenir", "sujets", "pied", "executions", "journal"):
         if f not in day: E(f"champ « {f} » manquant")
+    if "en_bref" in day: E("champ « en_bref » supprimé : chaque brève devient un sujet de sa catégorie")
     ids, repos_pub = set(), {}
     projets = {p["depot"]: p["nom"] for p in radar.get("projets", [])}
     for i, s in enumerate(day.get("sujets", [])):
@@ -60,6 +61,11 @@ def check(path, contre=None, partiel=False):
         if s.get("id") and not re.fullmatch(re.escape(c["prefixe"]) + r"\d+", s["id"]): E(f"{where} : l'identifiant doit être « {c['prefixe']} » suivi d'un numéro (catégorie {s['categorie']})")
         st = s.get("statut")
         if st not in STATUTS: E(f"{where} : statut inconnu « {st} »")
+        if s.get("date"):
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", s["date"]): E(f"{where} : « date » invalide (AAAA-MM-JJ)")
+            elif s["date"] > day.get("date", "9999"): E(f"{where} : « date » {s['date']} postérieure au jour du rapport")
+        elif not legacy and st in ("publie", "candidat") and s.get("categorie") != "conferences":
+            E(f"{where} : « date » manquante (date de parution de la source la plus récente, AAAA-MM-JJ)")
         if st == "ecarte" and s.get("motif") not in MOTIFS: E(f"{where} : un sujet écarté doit avoir un motif parmi {', '.join(MOTIFS)}")
         if st != "ecarte" and s.get("motif"): W(f"{where} : motif « {s['motif']} » sur un sujet non écarté")
         for t in s.get("tags", []):
@@ -88,16 +94,14 @@ def check(path, contre=None, partiel=False):
         if c.get("min") and n < c["min"]: E(f"catégorie « {c['label']} » : {n} sujet(s) publié(s), minimum {c['min']}")
         if c.get("max") is not None and n > c["max"]: E(f"catégorie « {c['label']} » : {n} sujet(s) publié(s), plafond {c['max']}")
     rap = per.get("rapport", {})
-    ar, eb = day.get("a_retenir", []), published(day, "en_bref")
-    for name, lst, rule in (("À retenir", ar, rap.get("a_retenir", {})), ("En bref", eb, rap.get("en_bref", {}))):
+    ar = day.get("a_retenir", [])
+    for name, lst, rule in (("À retenir", ar, rap.get("a_retenir", {})),):
         if rule.get("min") and len(lst) < rule["min"]: E(f"« {name} » : {len(lst)} élément(s), minimum {rule['min']}")
         if rule.get("max") and len(lst) > rule["max"]: E(f"« {name} » : {len(lst)} élément(s), maximum {rule['max']}")
     pub_ids = {s["id"] for s in pub}
     for x in ar:
         for ref in x.get("sujets", []):
             if ref not in pub_ids: E(f"« À retenir » référence {ref}, qui n'est pas un sujet publié")
-    for b in day.get("en_bref", []):
-        if b.get("statut") not in STATUTS: E(f"« En bref » : statut inconnu « {b.get('statut')} »")
 
     # ----- journal (pas exigé pour un jour converti depuis l'ancien format)
     j = day.get("journal", {})
