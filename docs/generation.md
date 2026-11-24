@@ -50,3 +50,22 @@ Les brouillons (`drafts/`) n'apparaissent ni dans l'index ni dans le flux. Pour 
 - **À la main** : copier le fichier vers `reports/AAAA/AAAAMMJJ.html`, lancer `python3 tools/build_feed.py`, commiter.
 
 L'ancienne version reste dans l'historique Git.
+
+## Mémoire côté dépôt (outillage prêt, pas encore branché sur la tâche)
+
+Aujourd'hui la tâche s'appuie sur l'artefact « Veille — registre ». En parallèle, le dépôt sait reconstruire cette mémoire à partir des rapports eux-mêmes :
+
+- `tools/build_memory.py` lit tous les `reports/**/*.html` et écrit `data/memory.json` (déterministe, sans horodatage) :
+  - `topics` : chaque sujet publié (date, catégorie, titre, sources, dépôt du radar) et chaque ligne « En bref » ;
+  - `urls` : toutes les URL déjà citées, avec date et rapport de première apparition (anti-doublon) ;
+  - `tools_proposed` : les outils déjà proposés ;
+  - `conferences` : tableau (dates, lieu, dates limites de CFP lues quand elles ont une année) et rappels ⏰ déjà émis, déduits des badges des rapports ;
+  - `radar` : les signaux publiés par dépôt.
+- `--seen <URL>` répond « déjà publié ? » ; `--due [date]` liste les rappels J-30/14/7/3 à émettre (seuil atteint et aucun badge ⏰ du même seuil dans un rapport).
+- `data/notes.md` garde ce qui n'est pas déductible : préférences, dernières versions vues, liste de surveillance du radar, vérifications en attente. Repris du registre au 24/11/2026.
+- L'Action `feed.yml` régénère `data/memory.json` à chaque push dans `reports/`.
+- Le skill Claude Code `veille-memoire` interroge et met à jour tout cela.
+
+Écart connu avec l'artefact : celui-ci indiquait un rappel DevSum « J-14 » envoyé le 24/11 alors que le rapport du jour n'affiche pas de badge ⏰ pour DevSum. La mémoire du dépôt ne connaît que ce que les rapports montrent, donc elle considère ce rappel comme non émis.
+
+Pour basculer la tâche sur cette mémoire : lui faire lire `data/memory.json` et `data/notes.md` à la place de l'artefact (dépend du même accès au dépôt que la publication), puis arrêter de republier l'artefact.

@@ -26,6 +26,8 @@ Tout est **statique** : pas de base de données, pas de code serveur. Le « back
 | `feed.xml` | Flux Atom **généré** ; sert aussi de liste de découverte pour l'index |
 | `tools/build_feed.py` | Génère `feed.xml` à partir des rapports |
 | `tools/build_site.sh` | Assemble `dist/` (ce qui est réellement déployé) |
+| `data/memory.json`, `data/notes.md` | Mémoire de la veille côté dépôt (dérivée des rapports) et notes manuelles |
+| `tools/build_memory.py` | Génère `data/memory.json` ; interroge les rappels de CFP et les URL déjà publiées |
 | `tools/report-template.html` | Gabarit que la tâche de veille doit suivre |
 | `wrangler.jsonc` | Config Cloudflare (Worker `techradar`, assets dans `dist/`) |
 | `.github/workflows/` | `feed.yml` (flux automatique), `promote.yml` (promotion manuelle) |

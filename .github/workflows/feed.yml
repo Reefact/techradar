@@ -1,4 +1,4 @@
-name: Regenerate Atom feed
+name: Regenerate feed and memory
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
     paths:
       - "reports/**"
       - "tools/build_feed.py"
+      - "tools/build_memory.py"
   workflow_dispatch:
 
 permissions:
@@ -19,12 +20,14 @@ jobs:
       - name: Build feed.xml
         # Définir la variable de dépôt SITE_URL (Settings > Variables) pour des liens absolus dans le flux.
         run: python3 tools/build_feed.py "${{ vars.SITE_URL }}"
-      - name: Commit feed.xml if changed
+      - name: Build data/memory.json
+        run: python3 tools/build_memory.py
+      - name: Commit feed.xml and data/memory.json if changed
         run: |
-          if ! git diff --quiet -- feed.xml; then
+          if [ -n "$(git status --porcelain -- feed.xml data/memory.json)" ]; then
             git config user.name "techradar-bot"
             git config user.email "techradar-bot@users.noreply.github.com"
-            git add feed.xml
-            git commit -m "Update feed.xml"
+            git add feed.xml data/memory.json
+            git commit -m "Update feed.xml and data/memory.json"
             git push
           fi
