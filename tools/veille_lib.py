@@ -42,6 +42,20 @@ def categories_de(sujet):
     return [sujet["categorie"]] + ([sujet["categorie_secondaire"]] if sujet.get("categorie_secondaire") else [])
 
 
+def pourquoi_types(cfg):
+    """Types de ligne « pourquoi » (config/sujets/perimetre.json → pourquoi.types) : clé → {emoji, prefixe, definition}."""
+    return ((cfg["sujets"].get("sujets/perimetre.json") or {}).get("pourquoi") or {}).get("types", {})
+
+
+def pourquoi_prefixe(s, cfg):
+    """(emoji, préfixe) affichés devant la ligne « pourquoi » d'un sujet, ou None si le type est inconnu."""
+    t = pourquoi_types(cfg).get((s.get("pourquoi") or {}).get("type") if isinstance(s.get("pourquoi"), dict) else None)
+    if not t:
+        return None
+    nom = (projets(cfg).get(s.get("depot")) or {}).get("nom") or (s.get("depot") or "").split("/")[-1]
+    return t["emoji"], t["prefixe"].replace("{projet}", nom)
+
+
 def sections_resume(cfg):
     """Sections possibles de « À retenir », dans l'ordre d'affichage : clé → (emoji, titre)."""
     rap = (cfg["sujets"].get("sujets/perimetre.json") or {}).get("rapport", {}).get("a_retenir", {})
@@ -166,7 +180,9 @@ def urls(sujet):
     """Toutes les URL d'un sujet (sources + liens dans le texte)."""
     found = [s["url"] for s in sujet.get("sources", [])]
     for field in ("resume", "pourquoi", "texte"):
-        found += re.findall(r"\]\((https?://[^)\s]+)\)", sujet.get(field) or "")
+        v = sujet.get(field)
+        v = v.get("texte") if isinstance(v, dict) else v
+        found += re.findall(r"\]\((https?://[^)\s]+)\)", v or "")
     for v in (sujet.get("details") or {}).values():
         found += re.findall(r"\]\((https?://[^)\s]+)\)", v)
     return found

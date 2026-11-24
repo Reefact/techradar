@@ -23,7 +23,7 @@ import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, sections_resume, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
+from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, pourquoi_types, sections_resume, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
 import check_front  # noqa: E402
 import check_report  # noqa: E402
 import render  # noqa: E402
@@ -103,6 +103,19 @@ def check(path, contre=None, partiel=False):
         if not c:
             E(f"{where} : catégorie inconnue « {s.get('categorie')} »"); continue
         if s.get("id") and not re.fullmatch(re.escape(c["prefixe"]) + r"\d+", s["id"]): E(f"{where} : l'identifiant doit être « {c['prefixe']} » suivi d'un numéro (catégorie {s['categorie']})")
+        pq = s.get("pourquoi")
+        if pq is not None:
+            types = pourquoi_types(cfg)
+            if not isinstance(pq, dict) or set(pq) != {"type", "texte"} or not str(pq.get("texte", "")).strip():
+                E(f"{where} : « pourquoi » doit être {{\"type\": …, \"texte\": …}} (le préfixe vient de la configuration)")
+            elif pq["type"] not in types:
+                E(f"{where} : type de « pourquoi » inconnu « {pq['type']} » ({', '.join(types)})")
+            else:
+                if pq["type"] == "projet" and not s.get("depot"): E(f"{where} : « pourquoi » de type projet sans « depot »")
+                if s.get("depot") and pq["type"] != "projet": E(f"{where} : sujet rattaché à un projet : le « pourquoi » est de type projet")
+                debut = plain(pq["texte"]).lower()
+                for t in types.values():
+                    if debut.startswith(t["prefixe"].split("{")[0].strip().lower()): E(f"{where} : le texte du « pourquoi » reprend le préfixe « {t['prefixe']} », que le rendu ajoute déjà")
         sec = s.get("categorie_secondaire")
         if sec is not None:
             if not isinstance(sec, str) or sec not in cats: E(f"{where} : catégorie secondaire « {sec} » absente de config/categories.json (une seule, 2 catégories au plus)")

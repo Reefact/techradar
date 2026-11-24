@@ -42,7 +42,7 @@ th{color:var(--mute);font:600 .72rem var(--font-m);text-transform:uppercase;lett
 td{font-variant-numeric:tabular-nums}
 .sum{display:flex;flex-direction:column;gap:14px}
 .sum p{margin:8px 0}
-.why{color:var(--accent);font-size:.9rem}
+.why{color:var(--accent);font-size:.9rem}.why-e{margin-right:2px}
 .kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:.88rem;margin:8px 0}
 .kv dt{color:var(--mute)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
 footer{margin-top:48px;color:var(--mute);font-size:.82rem}

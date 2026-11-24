@@ -80,6 +80,12 @@ class Front(unittest.TestCase):
         faux = rapport.replace("À ne pas manquer</h3>", "Urgentissime</h3>", 1)
         self.assertTrue(any("titrée" in e for e in self.erreurs([faux])))
 
+    def test_prefixe_de_pourquoi_invente(self):
+        rapport, _ = self.rendu()
+        self.assertIn('class="why" data-type="compte"', rapport)
+        faux = rapport.replace("Pourquoi ça compte pour toi :", "Ça te parle :", 1)
+        self.assertTrue(any("ne commence pas par" in e for e in self.erreurs([faux])))
+
     def test_tag_non_declare(self):
         rapport, _ = self.rendu()
         faux = rapport.replace('data-tags="', 'data-tags="invente ', 1)
@@ -179,6 +185,30 @@ class Donnees(unittest.TestCase):
         day = jour()
         day["a_retenir"] = [{"section": "urgent", "paragraphes": ["**" + "x" * 1900 + "**"], "sujets": []}]
         self.assertFalse(any("caractères" in e for e in self.valider(day)))
+
+    def test_pourquoi_sans_type_refuse(self):
+        day = jour()
+        s = next(x for x in day["sujets"] if x.get("pourquoi"))
+        s["pourquoi"] = "Pourquoi ça compte pour toi : texte libre"
+        self.assertTrue(any("« pourquoi » doit être" in e for e in self.valider(day)))
+
+    def test_pourquoi_type_inconnu_refuse(self):
+        day = jour()
+        s = next(x for x in day["sujets"] if x.get("pourquoi"))
+        s["pourquoi"] = {"type": "important", "texte": "x"}
+        self.assertTrue(any("type de « pourquoi » inconnu" in e for e in self.valider(day)))
+
+    def test_pourquoi_qui_repete_le_prefixe_refuse(self):
+        day = jour()
+        s = next(x for x in day["sujets"] if x.get("pourquoi") and not x.get("depot"))
+        s["pourquoi"] = {"type": "compte", "texte": "Pourquoi ça compte pour toi : x"}
+        self.assertTrue(any("reprend le préfixe" in e for e in self.valider(day)))
+
+    def test_pourquoi_projet_sans_depot_refuse(self):
+        day = jour()
+        s = next(x for x in day["sujets"] if x.get("pourquoi") and not x.get("depot"))
+        s["pourquoi"] = {"type": "projet", "texte": "x"}
+        self.assertTrue(any("type projet sans « depot »" in e for e in self.valider(day)))
 
     def test_projet_inconnu_refuse(self):
         day = jour()

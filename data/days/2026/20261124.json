@@ -155,7 +155,10 @@
     "Gravité": "Critique (CVSS 4.0 : 9,3), exploitation active selon Mandiant",
     "Action": "Chercher la référence NuGet ou la DLL dans les dépôts et sur les serveurs IIS legacy"
    },
-   "pourquoi": "Pourquoi ça compte pour toi : toute application WebForms ancienne du parc peut embarquer cette bibliothèque sans que personne s'en souvienne. Te concerne : peut-être.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "toute application WebForms ancienne du parc peut embarquer cette bibliothèque sans que personne s'en souvienne. Te concerne : peut-être."
+   },
    "sources": [
     {
      "texte": "Source : Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
@@ -305,7 +308,10 @@
     "Correctif": "Plus de correctifs de sécurité ; migrer vers .NET 10 (LTS) ou .NET 11",
     "Gravité": "Moyenne, risque qui grandit avec le temps"
    },
-   "pourquoi": "Pourquoi ça compte pour toi : tout service encore en .NET 8 ou 9 ne reçoit plus de correctifs. Te concerne : probablement.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "tout service encore en .NET 8 ou 9 ne reçoit plus de correctifs. Te concerne : probablement."
+   },
    "sources": [
     {
      "texte": "Source : annonce .NET 11, .NET Blog",
@@ -344,7 +350,10 @@
     "Gravité": "CVSS 3.1 : 8,1 selon Oracle et OpenJDK ; 9,2 en CVSS 4.0 selon les chercheurs ; « critique » chez Red Hat",
     "Action": "Mettre à jour les JDK et les images de conteneurs Java ; à défaut, appliquer le contournement de Red Hat"
    },
-   "pourquoi": "Pourquoi ça compte pour toi : tu es côté .NET, mais SonarQube, Keycloak ou Kafka tournent souvent à côté de tes applications. Te concerne : peut-être.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "tu es côté .NET, mais SonarQube, Keycloak ou Kafka tournent souvent à côté de tes applications. Te concerne : peut-être."
+   },
    "sources": [
     {
      "texte": "Source : OpenJDK, avis de vulnérabilité du 17 nov. 2026",
@@ -551,7 +560,10 @@
    ],
    "titre": "Spring : grosse série de correctifs de sécurité en novembre",
    "resume": "Spring a publié le 19 novembre une importante série d'avis de sécurité, sur de nombreux projets. Les plus marquants :\n\n- CVE-2026-59367 (critique) : le serveur LDAP de test de spring-ldap-test écoute sur toutes les interfaces, avec un identifiant administrateur fixe ; corrigé en 4.1.3 et 4.0.7.\n- CVE-2026-59378 (haute) : contournement de l'authentification sur les endpoints de santé d'Actuator avec Jersey ; corrigé dans Spring Boot 4.1.3 et 4.0.10.\n- CVE-2026-123886 (haute) : injection SpEL (Spring Expression Language) dans Spring Data Elasticsearch ; corrigé en 6.1.3 et 6.0.9.\n- CVE-2026-59273 : injection SpEL dans l'ELRequestMatcher de Spring Security, corrigée en 7.1.3 et 7.0.9 ; annoncée à 9,8, elle a été reclassée en sévérité moyenne par Spring le 23 novembre.\n- Failles d'isolation entre locataires dans les vector stores de Spring AI, corrigées en 2.0.3.\n\nSpring Integration est corrigé en 7.1.3 et 7.0.8. Le nombre total de failles varie selon les médias (de 50 à 91) : la liste officielle de spring.io fait foi.",
-   "pourquoi": "Pourquoi ça compte pour toi : surtout un sujet pour les équipes Java du groupe. Te concerne : peut-être.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "surtout un sujet pour les équipes Java du groupe. Te concerne : peut-être."
+   },
    "sources": [
     {
      "texte": "Source : Spring, avis de sécurité, 19 nov. 2026",
@@ -715,7 +727,10 @@
    ],
    "titre": "Paquets PyPI agent-framework piégés : vol d'identifiants Azure et CI",
    "resume": "Le 17 novembre, deux versions du paquet PyPI officiel agent-framework de Microsoft (1.26.1 et 1.26.2, publiées à environ 33 minutes d'écart) ont été détournées. Elles contiennent un voleur d'identifiants qui s'exécute via un fichier .pth à chaque démarrage de l'interpréteur Python, sans même importer le paquet, et envoie les secrets Azure et CI vers webhook.site.\n\nLes versions ont été mises en quarantaine ; la dernière version saine est la 1.26.0. Les équipes concernées doivent contrôler leurs images CI et leurs environnements, renouveler tous les secrets possiblement exposés et bloquer webhook.site en sortie. Ce n'est pas du .NET, mais cela touche le même écosystème Azure et CI/CD (la gravité « critique » est mon évaluation, pas celle des sources).",
-   "pourquoi": "Pourquoi ça compte pour toi : une attaque de plus sur la chaîne d'approvisionnement logicielle (supply chain), visant un paquet « officiel », d'autant plus pertinent avec la nouvelle publication en deux temps de NuGet. Te concerne : peut-être (rappel, antérieur à la fenêtre de 3 jours).",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "une attaque de plus sur la chaîne d'approvisionnement logicielle (supply chain), visant un paquet « officiel », d'autant plus pertinent avec la nouvelle publication en deux temps de NuGet. Te concerne : peut-être (rappel, antérieur à la fenêtre de 3 jours)."
+   },
    "sources": [
     {
      "texte": "Source : SecurityWeek, 18 nov. 2026",
@@ -762,7 +777,10 @@
     ".NET": "L'article source ne cite ni .NET, ni Visual Studio, ni ASP.NET (MSRC non consulté)",
     "Gravité": "Zero-day modérée (6,5), deux critiques à 9,8"
    },
-   "pourquoi": "Pourquoi ça compte pour toi : surtout un sujet d'exploitation des postes et serveurs. Te concerne : peut-être (SQL Server).",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "surtout un sujet d'exploitation des postes et serveurs. Te concerne : peut-être (SQL Server)."
+   },
    "sources": [
     {
      "texte": "Source : IT-Connect",
@@ -792,7 +810,10 @@
    "tags": [],
    "titre": "first-class-errors : unions C# 15 contre Result pattern",
    "resume": "Le mot-clé `union` de C# 15 déclare un type dont la liste de cas est fermée. Chaque cas se convertit implicitement vers l'union, et le compilateur vérifie l'exhaustivité des `switch`. Les hiérarchies fermées (`closed`) donnent la même garantie aux classes dérivées. Le billet .NET du 10 septembre recommande, pour une nouvelle API, une hiérarchie fermée avec discriminateur `$type` plutôt qu'une union sans discriminateur. Côté JSON, seul le cas actif est écrit, et les cas objets ambigus demandent un classifieur structurel.\n\nLe 21 novembre, Milan Jovanović a posé directement la question : les unions peuvent-elles remplacer le Result pattern ? Son exemple de code utilise un `switch` exhaustif dont le compilateur signale les cas manquants avec l'erreur CS8509, et renvoie les erreurs HTTP par `Results.Problem(...)`. L'article ne parle ni d'ErrorOr ni de FluentResults.",
-   "pourquoi": "Recoupement avec first-class-errors : des types de retour fermés et vérifiés à la compilation sont un concurrent direct des types d'erreur de ta bibliothèque. Le sujet monte dans la communauté ; à suivre.",
+   "pourquoi": {
+    "type": "projet",
+    "texte": "des types de retour fermés et vérifiés à la compilation sont un concurrent direct des types d'erreur de ta bibliothèque. Le sujet monte dans la communauté ; à suivre."
+   },
    "sources": [
     {
      "texte": "Source : Milan Jovanović, 21 nov. 2026",
@@ -827,7 +848,10 @@
    "tags": [],
    "titre": "kill-mutants : Stryker.NET, exécuteur de tests MTP et paquet 5.1.0",
    "resume": "Stryker.NET propose depuis la 4.13 (billet du 13 mars 2026) un exécuteur de tests Microsoft Testing Platform (MTP) en préversion, activé par `--test-runner mtp`. Il évite de relancer un processus VSTest à chaque exécution. Limites annoncées : la couverture par test n'est pas finalisée et .NET Framework n'est pas pris en charge.\n\nLe paquet NuGet `stryker` est en 5.1.0, publié le 10 novembre 2026 ; c'est la bibliothèque de mutation, pas l'outil en ligne de commande (`dotnet-stryker`, dont la version n'a pas été relevée précisément). Aucune actualité plus récente sur les tests de mutation n'a été trouvée cette semaine.",
-   "pourquoi": "Recoupement avec kill-mutants : concurrent direct. La sortie d'une série 5.x et la prise en charge de MTP sont les deux signaux à surveiller.",
+   "pourquoi": {
+    "type": "projet",
+    "texte": "concurrent direct. La sortie d'une série 5.x et la prise en charge de MTP sont les deux signaux à surveiller."
+   },
    "sources": [
     {
      "texte": "Source : Stryker Mutator",
@@ -869,7 +893,10 @@
    "tags": [],
    "titre": "unified-assertions : Shouldly 5 en préversion",
    "resume": "Relevé des versions sur NuGet (dates lues sur les pages, aucune dans les 7 derniers jours). AwesomeAssertions est à la 9.6.0 (20 août 2026) après la 9.5.0 (19 juillet). Shouldly reste à la 4.3.0 stable (janvier 2025) mais prépare une 5.0.0, avec deux préversions (10 juin et 18 juillet 2026).",
-   "pourquoi": "Recoupement avec unified-assertions : un concurrent d'assertions prépare une version majeure 5. Si sa version 5 casse la compatibilité, c'est l'occasion de positionner ta bibliothèque. Signal ancien : à relire quand la 5.0.0 stable sort.",
+   "pourquoi": {
+    "type": "projet",
+    "texte": "un concurrent d'assertions prépare une version majeure 5. Si sa version 5 casse la compatibilité, c'est l'occasion de positionner ta bibliothèque. Signal ancien : à relire quand la 5.0.0 stable sort."
+   },
    "sources": [
     {
      "texte": "AwesomeAssertions",
@@ -917,7 +944,10 @@
    "tags": [],
    "titre": "just-dummies : AutoFixture 5 en préversion",
    "resume": "Relevé des versions sur NuGet (dates lues sur les pages, aucune dans les 7 derniers jours). AutoFixture reste à la 4.18.1 stable (novembre 2023) avec une 5.0.0-rc.1 du 31 juillet 2026. Bogus est à la 35.6.5 (octobre 2025).",
-   "pourquoi": "Recoupement avec just-dummies : un concurrent de génération de données de test prépare sa version majeure 5. Si cette version casse la compatibilité, c'est l'occasion de positionner ta bibliothèque. Signal ancien : à relire quand la 5.0.0 stable sort.",
+   "pourquoi": {
+    "type": "projet",
+    "texte": "un concurrent de génération de données de test prépare sa version majeure 5. Si cette version casse la compatibilité, c'est l'occasion de positionner ta bibliothèque. Signal ancien : à relire quand la 5.0.0 stable sort."
+   },
    "sources": [
     {
      "texte": "AutoFixture",
@@ -1011,7 +1041,10 @@
    ],
    "titre": "NuGet.org : publication en deux temps (staged publishing)",
    "resume": "NuGet.org propose une fonction optionnelle de publication en deux temps. Un paquet envoyé en zone d'attente (« staging ») passe les contrôles habituels (anti-malware, signatures) mais reste invisible pour la recherche et le restore. Un mainteneur autorisé le promeut ensuite depuis le site web, et plusieurs paquets liés peuvent être promus ensemble par groupe de release. Le contenu non promu finit par expirer.\n\nDes clés API « staging seulement » permettent à un pipeline de téléverser sans pouvoir publier directement : si la clé fuit, l'attaquant ne peut pas mettre un paquet en ligne. Côté CLI, `dotnet package stage push` exige le SDK .NET 11 RC2 (version préliminaire). La promotion se fait pour l'instant uniquement sur le site, sans approbation en ligne de commande, et la promotion d'un groupe n'est pas atomique. Le billet recommande de l'associer à la publication de confiance (Trusted Publishing). L'article ne dit pas si la fonction est en préversion ou disponible pour tous.",
-   "pourquoi": "Pourquoi ça compte pour toi : tu peux mettre une validation humaine entre le build CI et la mise en ligne de tes bibliothèques (kill-mutants, first-class-errors, etc.) et limiter les dégâts d'un vol de clé, comme dans l'attaque PyPI citée plus haut.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "tu peux mettre une validation humaine entre le build CI et la mise en ligne de tes bibliothèques (kill-mutants, first-class-errors, etc.) et limiter les dégâts d'un vol de clé, comme dans l'attaque PyPI citée plus haut."
+   },
    "sources": [
     {
      "texte": "Source : .NET Blog, 17 nov. 2026",
@@ -1041,7 +1074,10 @@
    "tags": [],
    "titre": "Modèles locaux dans une app .NET avec Llama sur Windows",
    "resume": "Le billet de Luis Quintanilla explique comment faire tourner des modèles ouverts en local sous Windows grâce à l'application de barre système « Llama », bâtie sur llama.cpp (exemple avec Gemma 4). Elle expose un point d'accès compatible OpenAI sur la machine.\n\nL'exemple est une application C# « file-based » qui appelle ce point d'accès via Microsoft.Extensions.AI. Elle liste les modèles disponibles, diffuse les réponses en streaming et donne au modèle des outils (informations sur la machine, modèles téléchargés). Aucun service cloud n'est nécessaire.",
-   "pourquoi": "Pourquoi ça compte pour toi : un chemin simple pour prototyper de l'IA dans une application .NET sans clé API, utile pour des essais en équipe sur des données qui ne doivent pas sortir du poste.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un chemin simple pour prototyper de l'IA dans une application .NET sans clé API, utile pour des essais en équipe sur des données qui ne doivent pas sortir du poste."
+   },
    "sources": [
     {
      "texte": "Source : .NET Blog, 23 nov. 2026",
@@ -1067,7 +1103,10 @@
    ],
    "titre": "Claude Ship : des agents qui prennent en charge les PR après ouverture",
    "resume": "Anthropic lance en bêta une offre qui prend en charge les pull requests après leur ouverture. Elle réunit Code Review (déjà disponible, avec trois niveaux Quick, Standard ou Deep réglables par dépôt) et deux agents en bêta.\n\n- **PR Steward** corrige les échecs de CI, les conflits de merge et traite les retours de revue. Il commente ce qu'il a changé et comment annuler, et il n'approuve ni ne fusionne jamais.\n- **Claude Approvals** applique une politique d'approbation stockée dans le dépôt, un peu comme un CODEOWNERS avancé : il approuve les changements courants et exige un humain pour les changements sensibles.\n\nL'offre est réservée aux plans Team et Enterprise sur GitHub, facturée aux tokens avec des plafonds de dépense. Elle n'est pas disponible avec la rétention zéro des données (ZDR), la conformité HIPAA ni les clés de chiffrement gérées par le client. Une commande `/ship` arrive dans Claude Code.",
-   "pourquoi": "Pourquoi ça compte pour toi : une politique d'approbation versionnée avec le code et un agent qui répare la CI touchent directement le flux de PR d'une équipe .NET. Point de vigilance : la compatibilité avec tes contraintes de rétention des données.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "une politique d'approbation versionnée avec le code et un agent qui répare la CI touchent directement le flux de PR d'une équipe .NET. Point de vigilance : la compatibilité avec tes contraintes de rétention des données."
+   },
    "sources": [
     {
      "texte": "Source : Claude, 23 nov. 2026",
@@ -1100,7 +1139,10 @@
    ],
    "titre": "Netflix : adapter le cycle de développement aux agents de code",
    "resume": "À QCon SF, un ingénieur de Netflix explique que le gain vient surtout de la documentation, de la cohérence et de la revue, plus que des agents eux-mêmes. L'équipe a rédigé 45 ADR (Architecture Decision Records, fiches de décision d'architecture) lisibles par des humains comme par des agents, plus un fichier AGENTS.md pour naviguer dans plus de 300 documents.\n\nUn agent de revue vérifie les PR par rapport à ces documents ; il a été réglé pour ne poster que des problèmes bloquants vérifiés, après une première version jugée trop bavarde. Pour les changements qui touchent plusieurs services, ils utilisent des graphes GraphRAG par domaine, épinglés sur des commits et exposés par un seul outil MCP (Model Context Protocol). Chiffres rapportés par Netflix : aucun incident Sev 1 sur un service clé en 2026, 32 % de PR en plus sur un an, et un NPS (indice de recommandation) développeur passé de -3 à +25.",
-   "pourquoi": "Pourquoi ça compte pour toi : un retour d'expérience chiffré et reproductible (ADR, AGENTS.md, revue par agent, MCP) pour cadrer l'usage des agents dans tes missions. Il rejoint aussi ton sujet des conventions de revue de code.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un retour d'expérience chiffré et reproductible (ADR, AGENTS.md, revue par agent, MCP) pour cadrer l'usage des agents dans tes missions. Il rejoint aussi ton sujet des conventions de revue de code."
+   },
    "sources": [
     {
      "texte": "Source : InfoQ, 23 nov. 2026",
@@ -1132,7 +1174,10 @@
    ],
    "titre": "GitHub Copilot dans JetBrains : sandbox cloud, accès distant, navigateur",
    "resume": "Plusieurs fonctions passent en préversion publique dans Copilot pour les IDE JetBrains. Les sessions peuvent tourner dans un sandbox cloud hébergé par GitHub, avec des sessions parallèles. Les conversations sont accessibles depuis d'autres clients (VS Code, application Copilot). Copilot peut piloter le navigateur via l'extension Chrome, la dictée vocale tourne sur l'appareil, et un mode « split » permet le développement à distance.\n\nCôté ergonomie, Entrée permet de réorienter un agent en cours d'exécution et Ctrl/Cmd+Entrée met un suivi en file d'attente. Côté administration, les paramètres entreprise désactivent désormais Claude et Codex sauf exception décidée par un administrateur. JetBrains 2025.2 n'est plus pris en charge.",
-   "pourquoi": "Pourquoi ça compte pour toi : si l'équipe .NET utilise Rider, la version minimale passe à 2025.3, et la nouvelle règle entreprise sur Claude et Codex peut bloquer des usages existants.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si l'équipe .NET utilise Rider, la version minimale passe à 2025.3, et la nouvelle règle entreprise sur Claude et Codex peut bloquer des usages existants."
+   },
    "sources": [
     {
      "texte": "Source : GitHub Changelog, 17 nov. 2026",
@@ -1164,7 +1209,10 @@
    ],
    "titre": "Devin Bots : des agents persistants qui pilotent d'autres agents",
    "resume": "Cognition lance des agents persistants qui supervisent plusieurs sessions Devin et portent un objectif pendant des jours ou des semaines. Ils créent eux-mêmes les tâches et les assignent, et envoient ce qui demande une validation humaine vers une boîte « Needs You ».\n\nExemple cité : un Bot a produit une version Android de Devin sans ingénieur Android, avec 1 134 PR fusionnées en 44 jours (chiffres de Cognition). The New Stack souligne des questions ouvertes : résolution des conflits entre agents, auto-vérification du code et critère de prêt à fusionner. L'annonce initiale semble dater du 17 novembre (article Fortune repéré, non ouvert).",
-   "pourquoi": "Pourquoi ça compte pour toi : l'orchestration d'agents progresse vite, et la gouvernance de la qualité (revue, critères de fusion) devient le vrai sujet dès qu'on cadre l'usage des agents en équipe.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "l'orchestration d'agents progresse vite, et la gouvernance de la qualité (revue, critères de fusion) devient le vrai sujet dès qu'on cadre l'usage des agents en équipe."
+   },
    "sources": [
     {
      "texte": "Source : The New Stack, 19 nov. 2026",
@@ -1196,7 +1244,10 @@
    ],
    "titre": "LangSmith Tool Gateway : une passerelle MCP avec politiques et audit",
    "resume": "LangChain passe en bêta publique une couche gérée qui centralise identifiants, identité et accès pour les appels d'outils des agents. Tous les appels passent par une URL unique, avec des politiques de refus ou d'approbation et un traçage de chaque appel, exécutable au nom de l'utilisateur ou de l'agent.\n\nOn peut y enregistrer n'importe quel serveur MCP ou activer un serveur intégré (Google, GitHub, Salesforce). Un « tool kit » est un ensemble d'outils publié sur une URL MCP, et un mode recherche charge seulement les outils utiles. Tout client MCP peut s'y connecter, dont Claude Code et Cursor. Les journaux d'audit complets sont réservés à l'offre Enterprise. Le blog officiel MCP n'a rien publié entre le 17 et le 24 novembre.",
-   "pourquoi": "Pourquoi ça compte pour toi : une réponse concrète au problème de gouvernance des serveurs MCP (secrets, droits, audit) quand on les déploie à l'échelle d'une équipe.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "une réponse concrète au problème de gouvernance des serveurs MCP (secrets, droits, audit) quand on les déploie à l'échelle d'une équipe."
+   },
    "sources": [
     {
      "texte": "Source : LangChain, 19 nov. 2026",
@@ -1228,7 +1279,10 @@
    ],
    "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf",
    "resume": "ASP.NET Core 11 génère désormais du OpenAPI 3.2 par défaut, avec Microsoft.OpenApi 3.x, ce qui est signalé comme un changement cassant pour les outils en aval qui ne suivent pas ; une propriété MSBuild (`OpenApiGenerationEnvironment`) permet de revenir à une version antérieure.\n\n- Les unions C# 15 sortent en `anyOf` dans le schéma (corps JSON uniquement).\n- La méthode HTTP QUERY est décrite, les événements SSE ont un schéma de payload (`itemSchema`), `[Obsolete]` devient `deprecated: true` et les fichiers binaires sont décrits.\n- Toutes les annotations `ProducesResponseType` sont conservées par code de statut, et les URL de serveur n'ont plus de slash final : deux changements qui modifient le contrat généré.\n- Les paramètres enum hors corps gardent les noms de membres C#, quelle que soit la politique de nommage JSON.",
-   "pourquoi": "Pourquoi ça compte pour toi : un contrat régénéré en 3.2 au lieu de 3.1 peut produire des différences qui ne sont pas de vraies ruptures, et les unions en `anyOf` sont un nouveau cas de rétrocompatibilité à classer.",
+   "pourquoi": {
+    "type": "projet",
+    "texte": "un contrat régénéré en 3.2 au lieu de 3.1 peut produire des différences qui ne sont pas de vraies ruptures, et les unions en `anyOf` sont un nouveau cas de rétrocompatibilité à classer."
+   },
    "sources": [
     {
      "texte": "Source : InfoQ, 19 nov. 2026",
@@ -1257,6 +1311,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie API & architecture → Architecture ; tag API"
+    },
+    {
+     "date": "2026-11-25T03:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ligne « pourquoi » reformulée (avant : « Pourquoi ça compte pour toi : un contrat régénéré en 3.2 au lieu de 3.1 peut produire des différences qui ne sont pas de vraies ruptures, et les unions en `anyOf` sont un nouveau cas de rétrocompatibilité à classer. »)"
     }
    ],
    "date": "2026-11-19",
@@ -1271,7 +1331,10 @@
    ],
    "titre": "Revue de code : « rendre le changement facile d'abord »",
    "resume": "Oskar Dudycz soutient que la revue de code n'est pas le vrai goulot d'étranglement : il faut d'abord un processus de livraison sain, car accélérer un processus défaillant amplifie ses défauts. Il suggère de fusionner du code « débranché » (non activé), de séparer le refactoring mécanique des changements de comportement, et de relire le code produit par des agents par petits incréments réguliers.\n\nSa conclusion : la bonne question est comment travailler autrement, pas comment relire plus vite ni comment supprimer les revues. L'article date du 16 novembre, à la limite de la fenêtre.",
-   "pourquoi": "Pourquoi ça compte pour toi : directement lié à tes conventions de commentaires de revue (conventional-comments-toolkit) et à la question de relire du code généré.",
+   "pourquoi": {
+    "type": "projet",
+    "texte": "directement lié à tes conventions de commentaires de revue (conventional-comments-toolkit) et à la question de relire du code généré."
+   },
    "sources": [
     {
      "texte": "Source : event-driven.io, 16 nov. 2026",
@@ -1308,6 +1371,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "tags ajoutés : rex"
+    },
+    {
+     "date": "2026-11-25T03:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ligne « pourquoi » reformulée (avant : « Pourquoi ça compte pour toi : directement lié à tes conventions de commentaires de revue (conventional-comments-toolkit) et à la question de relire du code généré. »)"
     }
    ],
    "date": "2026-11-16",
@@ -1322,7 +1391,10 @@
    ],
    "titre": "Outbox pattern sous Postgres : workers concurrents ou lecture du WAL",
    "resume": "L'outbox écrit le message dans la même transaction que la donnée métier. Plusieurs workers en polling peuvent vider la table avec des verrous de lignes, au prix d'une latence liée à l'intervalle de polling. Un `NOTIFY` envoyé par trigger dans la transaction provoque une forte contention ; envoyé après le commit, il l'évite mais ajoute de la complexité.\n\nLa lecture du journal WAL (journal des écritures de Postgres) par réplication logique atteint environ 1 ms à faible charge avec le meilleur débit des benchmarks de l'auteur, mais exige un slot de réplication et une surveillance de l'espace disque. Les deux approches peuvent livrer des doublons, donc les consommateurs doivent être idempotents. L'article date du 7 novembre (hors fenêtre), gardé faute de sujet plus récent sur l'événementiel.",
-   "pourquoi": "Pourquoi ça compte pour toi : un retour de terrain chiffré pour choisir entre polling et WAL dans une architecture événementielle. Rien de daté et vérifié cette semaine sur le versioning d'API, le modular monolith ou le DDD.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un retour de terrain chiffré pour choisir entre polling et WAL dans une architecture événementielle. Rien de daté et vérifié cette semaine sur le versioning d'API, le modular monolith ou le DDD."
+   },
    "sources": [
     {
      "texte": "Source : milanjovanovic.tech, 7 nov. 2026",
@@ -1364,7 +1436,10 @@
     "Pourquoi il monte": "Environ 54,7 k étoiles et 5,2 k forks lus sur la page ; présent dans le digest des dépôts en tendance du 24 nov. (rang hebdomadaire et date de dernière release non vérifiés)",
     "Maturité": "Apache-2.0, open source, 1 550 commits ; Node LTS et Chrome stable requis ; plugins pour Claude Code, Copilot/VS Code et Gemini CLI ; gratuit"
    },
-   "pourquoi": "Utile pour toi parce que : un agent peut déboguer et profiler une application Blazor ou ASP.NET dans un vrai navigateur, sans copier-coller des logs.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "un agent peut déboguer et profiler une application Blazor ou ASP.NET dans un vrai navigateur, sans copier-coller des logs."
+   },
    "sources": [
     {
      "texte": "Lien officiel : GitHub",
@@ -1407,7 +1482,10 @@
     "Pourquoi il monte": "Environ 50 k étoiles sur la page du dépôt ; le digest du 24 nov. le donne à 55,7 k, soit +13,5 k sur la semaine. Les deux chiffres ne concordent pas et n'ont pas pu être départagés",
     "Maturité": "Apache-2.0, open source, 854 commits ; installation par npm, Git 2.41 requis ; gratuit mais les appels au modèle sont à ta charge ; âge et releases non lisibles"
    },
-   "pourquoi": "À surveiller parce que : la page ne mentionne ni C# ni .NET (règles citées : NPE, thread-safety, XSS, injection SQL). À tester sur une PR C# avant toute conclusion ; s'il tient, c'est un filet de qualité en CI et un point de comparaison avec tes conventions de revue.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "la page ne mentionne ni C# ni .NET (règles citées : NPE, thread-safety, XSS, injection SQL). À tester sur une PR C# avant toute conclusion ; s'il tient, c'est un filet de qualité en CI et un point de comparaison avec tes conventions de revue."
+   },
    "sources": [
     {
      "texte": "Lien officiel : GitHub",
@@ -1450,7 +1528,10 @@
     "Pourquoi il monte": "Show HN du 21 nov. 2026, 178 points et 136 commentaires lus le 24 nov. ; repris dans .NET Ketchup (semaine 47)",
     "Maturité": "Expérimental : 19 étoiles, 50 commits, aucune release. Bibliothèque centrale sous MIT, mais le fork de bflat est sous AGPL-3.0 ; gratuit ; date de création non vérifiée"
    },
-   "pourquoi": "À surveiller parce que : une idée surprenante (du C# sans runtime, jusqu'au démarrage UEFI) qui montre ce que le langage peut devenir. Pas utilisable en production, et l'AGPL du compilateur est à regarder de près avant tout usage sérieux.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "une idée surprenante (du C# sans runtime, jusqu'au démarrage UEFI) qui montre ce que le langage peut devenir. Pas utilisable en production, et l'AGPL du compilateur est à regarder de près avant tout usage sérieux."
+   },
    "sources": [
     {
      "texte": "Lien officiel",
@@ -1485,7 +1566,10 @@
     "Pourquoi il monte": "Show HN visible le 24 nov. avec 356 points et 87 commentaires (date de publication précise non lue)",
     "Maturité": "Très jeune : 1 étoile, 54 commits, licence MIT, serveur TypeScript et interface React ; date de création non vérifiée"
    },
-   "pourquoi": "À surveiller parce que : le renversement de rôle (l'humain subit un manager IA) est une façon inventive de faire sentir ce que vit un sous-agent, et peut servir de support pour parler d'agents en équipe. Le gros score HN contraste avec la faible visibilité GitHub : le buzz est très récent.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "le renversement de rôle (l'humain subit un manager IA) est une façon inventive de faire sentir ce que vit un sous-agent, et peut servir de support pour parler d'agents en équipe. Le gros score HN contraste avec la faible visibilité GitHub : le buzz est très récent."
+   },
    "sources": [
     {
      "texte": "Lien officiel",
@@ -1528,7 +1612,10 @@
    ],
    "titre": "Frigos Danfoss : l'enquête vise des responsables liés à l'Iran",
    "resume": "**Rappel.** Dans la nuit du 11 au 12 octobre, des régulateurs frigorifiques du fabricant danois Danfoss ont été piratés à distance : dégivrages forcés, températures jusqu'à environ 50 °C. Le Groupement Mousquetaires a confirmé environ 300 magasins Intermarché et Netto touchés. LSA comptait près de 500 magasins dans son premier bilan, avec jusqu'à 200 000 € de pertes par hypermarché.\n\n**Nouveau.** Le 9 novembre, le parquet de Paris a ouvert une information judiciaire visant le chef de l'unité iranienne Shahid Kaveh, rattachée aux Gardiens de la Révolution, et deux adjoints. Il a requis des mandats d'arrêt internationaux. Le CERT-FR a publié un rapport le même jour. Les indices avancés : usage du farsi, adresses IP en Iran, mode opératoire de l'unité. Environ 700 sites ont été ciblés ; le parquet parle d'une vingtaine de départs de feu, l'ANSSI d'au moins 15. L'Iran dément.\n\nL'Impertinent (22 novembre) juge le rapport public pauvre en éléments techniques vérifiables. L'attribution ne porte que sur la nuit du 11 au 12 octobre.",
-   "pourquoi": "Pourquoi ça compte pour toi : une attribution étatique d'une attaque contre des équipements OT/IoT (technologies opérationnelles et objets connectés) en magasin, et Intermarché est le plus touché. Cela rappelle d'inventorier les firmwares exposés et les mots de passe par défaut, de segmenter le réseau des magasins et de traiter les fournisseurs d'équipements comme une surface d'attaque.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "une attribution étatique d'une attaque contre des équipements OT/IoT (technologies opérationnelles et objets connectés) en magasin, et Intermarché est le plus touché. Cela rappelle d'inventorier les firmwares exposés et les mots de passe par défaut, de segmenter le réseau des magasins et de traiter les fournisseurs d'équipements comme une surface d'attaque."
+   },
    "sources": [
     {
      "texte": "franceinfo, 9 nov. 2026",
@@ -1733,7 +1820,10 @@
    "tags": [],
    "titre": "Carrefour : plan hypermarchés 2030, étiquettes Vusion, retail media",
    "resume": "Carrefour veut faire de ses 302 hypermarchés français (près de 20 Md€ de chiffre d'affaires) un moteur de croissance d'ici 2030. Le groupe prévoit de rénover plus de 100 magasins et de réaffecter 5 à 10 % des surfaces de vente. La solution Vusion (étiquettes électroniques et suivi de disponibilité en rayon) sera généralisée à tous les hypermarchés français d'ici 2029.\n\nLe plan inclut aussi le retail media et d'autres services, avec 200 M€ par an d'investissement supplémentaire et des objectifs de 20 % du Drive et 40 % de la livraison à domicile. En contexte (Digipote, 20 février 2026, hors fenêtre) : 150 M€ d'IA en magasin avec Vusion et un partenariat avec Google Gemini pour des courses par agents IA.",
-   "pourquoi": "Pourquoi ça compte pour toi : un benchmark concurrent sur l'IA en magasin, les agents de courses et le retail media, qui peut orienter les choix d'API et de plateforme de données côté Intermarché.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un benchmark concurrent sur l'IA en magasin, les agents de courses et le retail media, qui peut orienter les choix d'API et de plateforme de données côté Intermarché."
+   },
    "sources": [
     {
      "texte": "Source : Zonebourse via Boursorama, 17 nov. 2026",
@@ -1769,7 +1859,10 @@
     "CFP": "ateliers : 30 nov. 2026 ; conférence : 16 janv. 2027 · [Sessionize](https://sessionize.com/aardling27/)",
     "Inscription": "lien de billetterie présent ([ti.to](https://ti.to/dddbv/aardling27)), mais ouverture non confirmée"
    },
-   "pourquoi": "Pourquoi ça compte pour toi : thème central de tes sujets (DDD, first-class-errors). Dates vérifiées sur la page du CFP.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "thème central de tes sujets (DDD, first-class-errors). Dates vérifiées sur la page du CFP."
+   },
    "sources": [
     {
      "texte": "Source : dddeurope.com",
@@ -1827,7 +1920,10 @@
     "Dates et lieu": "27–28 mai 2027 (ateliers le 26), Södra Teatern, Stockholm",
     "CFP": "clôture le 8 déc. 2026 à 23h59 · [Sessionize](https://sessionize.com/devsum-2027/)"
    },
-   "pourquoi": "Date vérifiée sur la page Sessionize. Rappels prévus 14, 7 et 3 jours avant la clôture : le 24 nov. (aujourd'hui), le 1er déc. et le 5 déc.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "le CFP ferme le 8 décembre, avec des rappels prévus à J-14, J-7 et J-3."
+   },
    "sources": [
     {
      "texte": "Source : Sessionize",
@@ -1844,6 +1940,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T03:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ligne « pourquoi » reformulée (avant : « Date vérifiée sur la page Sessionize. Rappels prévus 14, 7 et 3 jours avant la clôture : le 24 nov. (aujourd'hui), le 1er déc. et le 5 déc. »)"
     }
    ]
   },
@@ -1859,7 +1961,10 @@
     "CFP": "clôture le 10 janvier 2027 (heure non publiée) · [devoxxfr2027.cfp.dev](https://devoxxfr2027.cfp.dev)",
     "Inscription": "[reg.devoxx.fr](https://reg.devoxx.fr)"
    },
-   "pourquoi": "À vérifier : la page du CFP n'a pas pu être chargée (application JavaScript), donc l'ouverture effective et l'heure limite restent à confirmer. Rappel prévu 30 jours avant la clôture, le 11 déc. 2026.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "le CFP ferme le 10 janvier ; son ouverture effective et l'heure limite restent à confirmer."
+   },
    "sources": [
     {
      "texte": "Source : devoxx.fr",
@@ -1876,6 +1981,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T03:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ligne « pourquoi » reformulée (avant : « À vérifier : la page du CFP n'a pas pu être chargée (application JavaScript), donc l'ouverture effective et l'heure limite restent à confirmer. Rappel prévu 30 jours avant la clôture, le 11 déc. 2026. »)"
     }
    ]
   },
@@ -1891,7 +2002,10 @@
     "CFP": "clôture le 17 janvier 2027, 23h59 CET · [Sessionize](https://sessionize.com/ndc-oslo-2027/)",
     "Site": "[ndcoslo.com](https://ndcoslo.com)"
    },
-   "pourquoi": "Rappel prévu : J-30 le 18 déc. 2026. NDC London 2027 (25–29 janv. 2027) a son CFP clos depuis le 30 août.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "le CFP ferme le 17 janvier ; celui de NDC London 2027 est déjà clos depuis le 30 août."
+   },
    "sources": [
     {
      "texte": "Source : Sessionize",
@@ -1908,6 +2022,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T03:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ligne « pourquoi » reformulée (avant : « Rappel prévu : J-30 le 18 déc. 2026. NDC London 2027 (25–29 janv. 2027) a son CFP clos depuis le 30 août. »)"
     }
    ]
   },
@@ -1924,7 +2044,10 @@
     "Dates et lieu": "22–23 avril 2027, CPE Lyon, Villeurbanne",
     "CFP": "ouverture le 30 nov., clôture le 23 janv. (années non précisées, 2026-2027 probable ; lien de CFP non trouvé)"
    },
-   "pourquoi": "Incertain : informations lues sur un agrégateur et sur le site, à confirmer à l'ouverture du CFP.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "le CFP ouvre le 30 novembre ; les dates, lues sur un agrégateur et sur le site, restent à confirmer."
+   },
    "sources": [
     {
      "texte": "Source : mixitconf.org",
@@ -1941,6 +2064,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T03:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ligne « pourquoi » reformulée (avant : « Incertain : informations lues sur un agrégateur et sur le site, à confirmer à l'ouverture du CFP. »)"
     }
    ]
   },
@@ -1956,7 +2085,10 @@
    "details": {
     "Dates et lieu": "4–8 octobre 2027, Kinepolis, Anvers"
    },
-   "pourquoi": "À garder en tête pour 2027 ; dates lues sur le site officiel.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "le CFP n'ouvrira que l'été prochain, du 1er juin au 16 juillet 2027."
+   },
    "sources": [
     {
      "texte": "Source : devoxx.be",
@@ -1973,6 +2105,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T03:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ligne « pourquoi » reformulée (avant : « À garder en tête pour 2027 ; dates lues sur le site officiel. »)"
     }
    ]
   },
@@ -1990,7 +2128,10 @@
     "Correctif": ".NET : mises à jour cumulatives du 13 octobre (KB selon la version) ; VirtualBox : 7.2.18, publiée en septembre",
     "Gravité": "Élevée, mais exploitation locale seulement"
    },
-   "pourquoi": "Pourquoi ça compte pour toi : rien à faire si les correctifs d'octobre sont posés. À vérifier sur les postes qui s'appuient sur WDAC ou AppLocker. Te concerne : peut-être.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "rien à faire si les correctifs d'octobre sont posés. À vérifier sur les postes qui s'appuient sur WDAC ou AppLocker. Te concerne : peut-être."
+   },
    "sources": [
     {
      "texte": "Source : The Hacker News, 24 nov. 2026",
@@ -2034,7 +2175,10 @@
     "Parade": "Fichiers de verrouillage de workflow (disponibles depuis le 28 octobre 2026, absents de GitHub Enterprise Server) ; versions immuables si le mainteneur les active",
     "Gravité": "Élevée pour la chaîne d'approvisionnement"
    },
-   "pourquoi": "Pourquoi ça compte pour toi : si tes dépôts publient des paquets NuGet depuis GitHub Actions, un SHA épinglé ne suffit plus. Te concerne : oui.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si tes dépôts publient des paquets NuGet depuis GitHub Actions, un SHA épinglé ne suffit plus. Te concerne : oui."
+   },
    "sources": [
     {
      "texte": "Source : The Hacker News, 24 nov. 2026",
@@ -2078,7 +2222,10 @@
     "Correctif": "Côté Microsoft depuis le 19 nov. ; rotation des secrets à faire par le client",
     "Action": "Repérer les instances Classic ; renouveler les valeurs nommées, secrets OpenID Connect, clés d'abonnement et jetons de gestion"
    },
-   "pourquoi": "Pourquoi ça compte pour toi : une passerelle d'API concentre des secrets ; à vérifier si un client utilise APIM. Te concerne : peut-être.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "une passerelle d'API concentre des secrets ; à vérifier si un client utilise APIM. Te concerne : peut-être."
+   },
    "sources": [
     {
      "texte": "Source : The Hacker News, 24 nov. 2026",
@@ -2119,7 +2266,10 @@
    "tags": [],
    "titre": "Blazor : Syncfusion contribue et publie un kit de composants libre (MIT)",
    "resume": "Microsoft et Syncfusion annoncent une collaboration sur Blazor. Syncfusion publie le « Syncfusion Toolkit for Blazor », un jeu de composants libre sous licence MIT : graphiques, boutons, calendriers, sélecteurs de date, champs de saisie, boîtes de dialogue, infobulles et indicateurs de chargement. Aucune clé de licence n'est requise et l'usage commercial est permis.\n\nLes ingénieurs de Syncfusion ont aussi fusionné des correctifs et des tests dans ASP.NET Core et les outils de génération de code : état préservé sur les pages « introuvable » interactives, validation de formulaire avec des modèles hérités, diagnostics de QuickGrid plus clairs. Plus de 60 scénarios de bout en bout couvrent les nouveautés Blazor de .NET 11. Un assistant d'installation et une « skill » IA restent en cours de revue.",
-   "pourquoi": "Pourquoi ça compte pour toi : des composants Blazor gratuits et sous licence permissive, sans clé, changent le calcul pour un projet qui hésitait à payer une suite.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "des composants Blazor gratuits et sous licence permissive, sans clé, changent le calcul pour un projet qui hésitait à payer une suite."
+   },
    "sources": [
     {
      "texte": "Source : .NET Blog, 29 oct. 2026 (hors fenêtre habituelle, ajouté pour son intérêt)",
@@ -2144,7 +2294,10 @@
    "tags": [],
    "titre": "Shirudo (OpenAI, Cisco) : des agents qui écrivent des boucliers eBPF",
    "resume": "OpenAI et Cisco publient Shirudo, un environnement d'exécution Linux libre bâti sur Tetragon (plateforme de sécurité eBPF d'Isovalent). Un agent reproduit et valide une faille, puis écrit un « bouclier » eBPF ciblé qui bloque l'exploitation pendant que le vrai correctif est testé.\n\nLes boucliers sont signés, distribués en paquets .bee via un registre compatible OCI et vérifiés par TPM avant chargement. L'opérateur peut mesurer l'effet avant d'activer le blocage ; le bouclier s'efface quand le correctif arrive. Dans un test unique, un bouclier généré par Codex a bloqué l'exploit Java4Shell sur un Elasticsearch en marche. La licence n'est pas précisée dans l'article.",
-   "pourquoi": "Pourquoi ça compte pour toi : une illustration concrète d'agents de code appliqués à la sécurité opérationnelle, liée à l'alerte Java4Shell de ce brief. Expérience encore isolée, à suivre.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "une illustration concrète d'agents de code appliqués à la sécurité opérationnelle, liée à l'alerte Java4Shell de ce brief. Expérience encore isolée, à suivre."
+   },
    "sources": [
     {
      "texte": "Source : The Hacker News, 24 nov. 2026",
@@ -2185,7 +2338,10 @@
     "Pourquoi il monte": "Deuxième du classement quotidien de GitHub Trending le 24 nov. (environ 1 000 étoiles en un jour) ; environ 325 000 étoiles au total",
     "Maturité": "MIT ; gratuit ; compatible Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI et d'autres ; date de création non vérifiée"
    },
-   "pourquoi": "Utile pour toi parce que : il formalise le cycle conception, plan, TDD, revue avec un agent, proche de tes sujets de tests et de revue de code.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "il formalise le cycle conception, plan, TDD, revue avec un agent, proche de tes sujets de tests et de revue de code."
+   },
    "sources": [
     {
      "texte": "Lien officiel : GitHub",
@@ -2228,7 +2384,10 @@
     "Pourquoi il monte": "Troisième de GitHub Trending le 24 nov. (+1 075 étoiles en 24 h, environ 64 400 au total)",
     "Maturité": "Apache-2.0 ; 893 commits ; certaines intégrations d'agents sont expérimentales ou communautaires ; les nombres de tests sont déclarés par le projet"
    },
-   "pourquoi": "À surveiller parce que : l'idée « une CLI JSON plutôt qu'un serveur MCP » est une alternative à comparer pour exposer tes propres outils .NET aux agents.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "l'idée « une CLI JSON plutôt qu'un serveur MCP » est une alternative à comparer pour exposer tes propres outils .NET aux agents."
+   },
    "sources": [
     {
      "texte": "Lien officiel : GitHub",
@@ -2276,7 +2435,10 @@
     "Pourquoi il monte": "2 251 points sur la page d'accueil de Hacker News le 24 nov.",
     "Maturité": "Alpha ; licence non indiquée dans l'annonce ; financé par des sponsors et des dons"
    },
-   "pourquoi": "À surveiller parce que : un troisième moteur web indépendant intéresse quiconque teste des applications web ; WebDriver est déjà là.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "un troisième moteur web indépendant intéresse quiconque teste des applications web ; WebDriver est déjà là."
+   },
    "sources": [
     {
      "texte": "Lien officiel : ladybird.org",
@@ -2305,7 +2467,10 @@
     "Pourquoi il monte": "600 points sur la page d'accueil de Hacker News le 24 nov.",
     "Maturité": "Édition Community sous AGPL ; écrit en Rust ; le nouveau Outlook est déconseillé avec un serveur auto-hébergé"
    },
-   "pourquoi": "À surveiller parce que : surtout un sujet d'infrastructure, hors de ton quotidien .NET, mais une alternative sérieuse à Exchange auto-hébergé.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "surtout un sujet d'infrastructure, hors de ton quotidien .NET, mais une alternative sérieuse à Exchange auto-hébergé."
+   },
    "sources": [
     {
      "texte": "Lien officiel : stalw.art",
@@ -2350,7 +2515,10 @@
     }
    ],
    "meta": "jimmybogard.com, NuGet · 12 nov. 2026",
-   "pourquoi": "Pourquoi ça compte pour toi : deux dépendances très répandues dans les projets .NET ; une montée de version majeure peut casser du code et vérifie au passage la licence.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "deux dépendances très répandues dans les projets .NET ; une montée de version majeure peut casser du code et vérifie au passage la licence."
+   },
    "date": "2026-11-12",
    "historique": [
     {
@@ -2375,7 +2543,10 @@
     }
    ],
    "meta": "NimblePros · 5 nov. 2026",
-   "pourquoi": "Pourquoi ça compte pour toi : moins de migrations cassées découvertes tard, dès qu'une équipe travaille à plusieurs sur le même DbContext.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "moins de migrations cassées découvertes tard, dès qu'une équipe travaille à plusieurs sur le même DbContext."
+   },
    "date": "2026-11-05",
    "historique": [
     {
@@ -2576,7 +2747,10 @@
     }
    ],
    "meta": "FrenchBreaches, Fuites Infos · 11 nov. 2026 · revendication non confirmée",
-   "pourquoi": "Pourquoi ça compte pour toi : un logiciel RH partagé par des magasins de plusieurs enseignes est un point de fuite commun ; à faire remonter pour qualification, pas comme incident avéré.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un logiciel RH partagé par des magasins de plusieurs enseignes est un point de fuite commun ; à faire remonter pour qualification, pas comme incident avéré."
+   },
    "date": "2026-11-11",
    "historique": [
     {

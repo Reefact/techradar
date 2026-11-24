@@ -37,5 +37,36 @@
     "regle": "Ne jamais remplir une catégorie avec du bruit, mais respecter les minimums de config/categories.json en cherchant davantage.",
     "analyses_min": 30,
     "analyses_regle": "Nombre minimal de sujets analysés (tous statuts) consignés dans le fichier du jour lors d'une exécution complète."
+  },
+  "pourquoi": {
+    "description": "Ligne « pourquoi » d'un sujet : un type (clé ci-dessous) et un texte. Le rendu affiche l'emoji et le préfixe déclarés ici, puis le texte ; la tâche n'écrit jamais le préfixe. Un seul type par sujet ; si plusieurs conviennent, l'ordre de priorité est : projet, utile, compte, surveiller.",
+    "priorite": [
+      "projet",
+      "utile",
+      "compte",
+      "surveiller"
+    ],
+    "types": {
+      "compte": {
+        "emoji": "💡",
+        "prefixe": "Pourquoi ça compte pour toi",
+        "definition": "Le sujet te concerne : il touche ton périmètre (.NET, ton outillage, tes clients, tes services), un risque ou une décision qui te revient. Test : est-ce que ça me touche ?"
+      },
+      "projet": {
+        "emoji": "📦",
+        "prefixe": "Recoupement avec {projet}",
+        "definition": "Le sujet touche un de tes dépôts (concurrent, dépendance, évolution de l'écosystème, idée à reprendre) ; le texte dit en quoi. Réservé aux sujets qui ont un « depot » : {projet} est le nom du projet. Test : est-ce que ça change quelque chose pour un de mes projets ?"
+      },
+      "utile": {
+        "emoji": "🔧",
+        "prefixe": "Utile pour toi parce que",
+        "definition": "Le sujet est directement utilisable : un outil, une technique ou une pratique à adopter tout de suite ; le texte dit ce que ça t'apporterait. Test : est-ce que je peux m'en servir dès demain ?"
+      },
+      "surveiller": {
+        "emoji": "👀",
+        "prefixe": "À surveiller parce que",
+        "definition": "Rien à faire maintenant, mais le sujet peut évoluer et te concerner plus tard (tendance, préversion, enquête en cours, annonce à confirmer, CFP pas encore ouvert) ; le texte dit ce qu'il faut guetter. Test : rien à faire aujourd'hui, mais à garder à l'œil ?"
+      }
+    }
   }
 }

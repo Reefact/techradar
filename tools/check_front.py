@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import ROOT, STATUTS, config, projets, sections_resume  # noqa: E402
+from veille_lib import ROOT, STATUTS, config, pourquoi_types, projets, sections_resume  # noqa: E402
 
 STATUT_LABEL = {"publie": "Publié", "candidat": "Candidat", "mis-de-cote": "Mis de côté", "ecarte": "Écarté"}
 SPAN = re.compile(r'<span class="([^"]*)"(?: title="([^"]*)")?[^>]*>(.*?)</span>', re.S)
@@ -77,6 +77,16 @@ def check(raw, cfg, nom="page"):
             E(f"{sid} : icône de projet sans dépôt déclaré")
         for x in rest:
             if x not in pj: E(f"{sid} : élément non déclaré dans l'en-tête : « {x[2]} » ({' '.join(x[0])})")
+    # ---------- lignes « pourquoi » : emoji et préfixe déclarés ----------
+    types, proj = pourquoi_types(cfg), projets(cfg)
+    for m in re.finditer(r'<details class="card"([^>]*)>(.*?)</details>', raw, re.S):
+        sid, repo = ATTR(m.group(1), "id") or "?", ATTR(m.group(1), "data-repo")
+        for t, inner in re.findall(r'<p class="why" data-type="([^"]*)">(.*?)</p>', m.group(2), re.S):
+            if t not in types: E(f"{sid} : type de « pourquoi » « {t} » non déclaré"); continue
+            nom = (proj.get(repo) or {}).get("nom", "")
+            attendu = f"{types[t]['emoji']} {types[t]['prefixe'].replace('{projet}', nom)} :"
+            if not texte(inner).startswith(attendu): E(f"{sid} : « pourquoi » qui ne commence pas par « {attendu} »")
+        if re.search(r'<p class="why">', m.group(2)): E(f"{sid} : ligne « pourquoi » sans type déclaré")
     # ---------- « À retenir » : titres de sections déclarés ----------
     titres = sections_resume(cfg)
     for k, inner in re.findall(r'<h3 class="tl-h" data-section="([^"]*)">(.*?)</h3>', raw, re.S):

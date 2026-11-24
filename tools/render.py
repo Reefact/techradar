@@ -17,7 +17,7 @@ from datetime import date as Date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import (SUFFIX, STATUTS, blocks, config, day_files, inline, load_json, ordered_categories, projets, categories_de, sections_resume,  # noqa: E402
+from veille_lib import (SUFFIX, STATUTS, blocks, config, day_files, inline, load_json, ordered_categories, projets, categories_de, sections_resume, pourquoi_prefixe,  # noqa: E402
                         plain, published, titre_jour)
 
 E = lambda s: html.escape(s or "", quote=True)
@@ -210,9 +210,11 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
         out.append('  <dl class="kv">' + "".join(f"<dt>{E(k)}</dt><dd>{inline(v)}</dd>" for k, v in s["details"].items()) + "</dl>")
     if dossier and st == "ecarte":
         motif = MOTIF_LABEL.get(s.get("motif"), s.get("motif") or "")
-        out.append(f'  <p class="why">Écarté : {E(motif)}{" · " + inline(s["note"]) if s.get("note") else ""}</p>')
+        out.append(f'  <p class="why ecarte">Écarté : {E(motif)}{" · " + inline(s["note"]) if s.get("note") else ""}</p>')
     elif s.get("pourquoi"):
-        out.append(f'  <p class="why">{inline(s["pourquoi"])}</p>')
+        emoji, prefixe = pourquoi_prefixe(s, cfg)
+        out.append(f'  <p class="why" data-type="{E(s["pourquoi"]["type"])}"><span class="why-e" aria-hidden="true">{E(emoji)}</span> '
+                   f'{E(prefixe)} : {inline(s["pourquoi"]["texte"])}</p>')
     links = " · ".join(f'<a href="{E(x["url"])}" target="_blank" rel="noopener">{inline(x["texte"])}</a>' for x in s.get("sources", []))
     ask = ""
     if dossier and st != "publie":
