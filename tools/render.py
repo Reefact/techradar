@@ -44,7 +44,7 @@ STATUT_AIDE = {"publie": "Publié dans le rapport du jour.",
                "candidat": "Analysé et rédigé, mais pas publié : peut être ajouté au rapport.",
                "mis-de-cote": "Intéressant mais pas retenu aujourd'hui ; peut revenir un autre jour.",
                "ecarte": "Écarté après analyse ; le motif est indiqué."}
-FRAIS_AIDE = "Frais : paru depuis le brief précédent"
+FRAIS_AIDE = "Du jour : vient de tomber, paru depuis le brief précédent"
 
 
 def date_courte(iso):
@@ -53,7 +53,7 @@ def date_courte(iso):
 
 
 def seuil_frais(day, days=()):
-    """Un sujet est « frais » si sa date est postérieure ou égale à celle du brief précédent (sinon : la veille)."""
+    """Un sujet est « du jour » si sa date est postérieure ou égale à celle du brief précédent (sinon : la veille)."""
     avant = [d["date"] for d in days if d["date"] < day["date"]]
     return max(avant) if avant else (Date.fromisoformat(day["date"]) - timedelta(days=1)).isoformat()
 
@@ -95,7 +95,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     if s.get("depot"): attrs += f' data-repo="{E(s["depot"])}"'
     badges = (statut_badge(s) if dossier else "") + badge(c["classe"], s.get("etiquette") or c["carte"], c["label"] + " : " + c["description"]) \
         + "".join(tag_html(t, tags) for t in s.get("tags", []))
-    blip = f'<span class="blip" title="{E(FRAIS_AIDE)} (paru le {date_courte(s["date"])})"></span>' if frais else ""
+    blip = f'<span class="fresh" title="{E(FRAIS_AIDE)} (le {date_courte(s["date"])})" aria-label="Du jour">☄️</span>' if frais else ""
     meta = meta_of(s)
     out = [f'<details class="card" id="{E(s["id"])}"{attrs}>',
            f'  <summary class="head"><span class="badges">{badges}</span><h3>{blip}{inline(s["titre"])}</h3>'
@@ -128,7 +128,7 @@ def ordered(sujets, cfg):
 
 
 def filters(sujets, cfg, seuil, dossier=False):
-    """Barre de filtres (masquée sans JavaScript) : catégories, tags (dont « frais »), statuts dans le dossier."""
+    """Barre de filtres (masquée sans JavaScript) : catégories, tags (dont « du jour »), statuts dans le dossier."""
     cats, tags = cfg["categories"], cfg["tags"]
     def chip(group_val, classe, label, aide, n):
         return f'<button type="button" class="chip {classe}" data-v="{E(group_val)}" aria-pressed="false" title="{E(aide)}">{E(label)} <span class="n">{n}</span></button>'
@@ -140,7 +140,7 @@ def filters(sujets, cfg, seuil, dossier=False):
     groups.append(("cat", "Catégorie", [chip(k, cats[k]["classe"], cats[k]["label"], cats[k]["description"], sum(1 for s in sujets if s["categorie"] == k)) for k in present]))
     tchips = []
     nf = sum(1 for s in sujets if s.get("date") and s["date"] >= seuil)
-    if nf: tchips.append(chip("frais", "b-fresh", "● Frais", FRAIS_AIDE + ".", nf))
+    if nf: tchips.append(chip("frais", "b-fresh", "☄️ Du jour", FRAIS_AIDE + ".", nf))
     for k, t in tags.items():
         n = sum(1 for s in sujets if k in [tag_key(x) for x in s.get("tags", [])])
         if n: tchips.append(chip(k, t["classe"], (t["label"].replace("J-{n}", "Rappel CFP") if "{n}" in t["label"] else t["label"]), t["description"], n))

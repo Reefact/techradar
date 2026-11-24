@@ -2,7 +2,7 @@
 
 Statut : **réalisée le 24 novembre 2026**. Ce document garde le raisonnement et les choix ; le fonctionnement est décrit dans [architecture.md](architecture.md), [generation.md](generation.md), [deploiement.md](deploiement.md) et [skills.md](skills.md).
 
-> **Évolution après la mise en place** : la section « En bref » a été supprimée (chaque brève devient un sujet), le sommaire et le tableau des conférences ont laissé place à des blocs dépliants avec filtres, et chaque sujet porte une `date` qui alimente le repère « frais ». L'état courant est décrit dans [architecture.md](architecture.md).
+> **Évolution après la mise en place** : la section « En bref » a été supprimée (chaque brève devient un sujet), le sommaire et le tableau des conférences ont laissé place à des blocs dépliants avec filtres, et chaque sujet porte une `date` qui alimente le repère « ☄️ du jour ». L'état courant est décrit dans [architecture.md](architecture.md).
 
 ## 1. Pourquoi changer
 

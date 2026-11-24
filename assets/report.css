@@ -46,7 +46,7 @@ footer p{margin:8px 0}
 
 /* ---------- Sujets en blocs dépliants (accordéon) ---------- */
 .badge{cursor:default}
-.b-fresh{color:var(--tool)}
+.b-fresh{color:var(--retail)}
 .sum{gap:10px}
 details.card{padding:0;scroll-margin-top:16px}
 details.card>summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:12px 40px 12px 16px;position:relative;border-radius:10px}
@@ -62,9 +62,7 @@ details.card[open]{border-color:#2a4b50}
 .head .meta{flex-basis:100%;color:var(--mute);font-size:.8rem}
 .body{padding:0 18px 14px}
 .body>p:first-child{margin-top:2px}
-.blip{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--tool);box-shadow:0 0 8px var(--tool);margin:0 8px 2px 0;vertical-align:middle;cursor:default;animation:blip 2.4s ease-in-out infinite}
-@keyframes blip{50%{box-shadow:0 0 2px var(--tool);opacity:.6}}
-@media (prefers-reduced-motion:reduce){.blip{animation:none}}
+.fresh{margin-right:6px;cursor:default;font-size:1.05em}
 .src{font-size:.88rem;overflow-wrap:anywhere}
 .foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:12px}
 .foot .actions{display:flex;flex-wrap:wrap;gap:10px;margin-left:auto}
