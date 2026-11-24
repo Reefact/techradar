@@ -1,6 +1,6 @@
 ---
 name: veille-regenerer
-description: Régénère le rapport de veille du jour avec la tâche planifiée « Tech Radar (Reefact) », au choix en brouillon (le rapport publié reste intact) ou en écrasant le rapport publié (brouillon puis promotion, l'ancienne version restant dans l'historique Git). À utiliser quand le rapport du jour est à refaire ou à enrichir.
+description: Régénère le rapport de veille d'une date choisie (par défaut aujourd'hui) avec la tâche planifiée « Tech Radar (Reefact) », au choix en brouillon (le rapport publié reste intact) ou en écrasant le rapport publié (brouillon puis promotion, l'ancienne version restant dans l'historique Git). À utiliser quand le rapport du jour est à refaire ou à enrichir.
 ---
 
 # Régénérer le rapport du jour
@@ -12,25 +12,29 @@ Deux modes. Dans les deux cas la tâche **commence par écrire un brouillon** ; 
 | **brouillon** (par défaut) | `drafts/AAAA/AAAAMMJJ-HHMM.html` est créé ; `reports/` et le site restent inchangés. L'utilisateur choisit plus tard (skill `promote-draft`). |
 | **écraser** | même chose, puis, après contrôle et **accord explicite**, le brouillon remplace `reports/AAAA/AAAAMMJJ.html`, le flux et la mémoire sont régénérés, le site se redéploie. |
 
-Limite : on ne régénère que **le jour courant** (la recherche porte sur les 24 à 48 dernières heures, relatives à l'exécution). Pour une autre date, refuser et l'expliquer.
+**Date** : par défaut aujourd'hui, mais l'utilisateur peut choisir une autre date (jour manqué à rattraper, rapport passé à refaire). Pour une date passée, la recherche web reste **best effort** : la tâche cherche des actualités de la fenêtre voulue, mais les moteurs favorisent les contenus récents et les « dernières versions » vues seront celles d'aujourd'hui. Le dire à l'utilisateur. Une date future est refusée.
 
 ## 1. Cadrer avec l'utilisateur
 
-Demander (en une question) si ce n'est pas déjà dit :
-1. **Mode** : brouillon ou écraser ?
-2. **Consignes particulières** éventuelles (« résumés plus détaillés », « ajoute telle catégorie », « corrige tel sujet »…).
+Demander (en une question) ce qui n'est pas déjà dit :
+1. **Date** du rapport à régénérer (défaut : aujourd'hui, date de Paris ; format AAAA-MM-JJ).
+2. **Mode** : brouillon ou écraser ? (sans objet si aucun rapport n'existe pour cette date)
+3. **Consignes particulières** éventuelles (« résumés plus détaillés », « ajoute telle catégorie », « corrige tel sujet »…).
 
 Rappeler qu'une régénération consomme une exécution complète de la tâche (10 minutes environ, recherche approfondie).
 
 ## 2. Vérifier l'état
 
-`git fetch origin main`, puis regarder si `reports/AAAA/AAAAMMJJ.html` existe pour aujourd'hui (date de Paris). S'il n'existe pas, il n'y a rien à régénérer : la tâche publiera le rapport officiel (le dire à l'utilisateur ; le mode devient sans objet). Noter `git rev-parse origin/main`.
+`git fetch origin main`, puis regarder si `reports/AAAA/AAAAMMJJ.html` existe pour la **date choisie**.
+- **Il existe** : la tâche écrira un brouillon ; le mode brouillon/écraser s'applique.
+- **Il n'existe pas** (jour manqué) : la tâche publiera le **rapport officiel** de cette date directement sur `main` (rattrapage). Le dire à l'utilisateur et obtenir son accord ; le mode est sans objet.
+Noter `git rev-parse origin/main`.
 
 ## 3. Lancer
 
 Retrouver la tâche **« Tech Radar (Reefact) »** (`list_triggers`, identifiant `trig_01LAptLYqsefHr97oCdi9AiY` à la date de rédaction) et appeler `fire_trigger` avec un `text` du type :
 
-> Régénération demandée par l'utilisateur pour le rapport du jour. Le rapport officiel existe déjà : ne le modifie pas, écris ta version en brouillon dans drafts/ selon le §6. Recherche complète. [Consignes de l'utilisateur, recopiées telles quelles.] Dans ta notification finale, donne le chemin exact du brouillon et le mode de publication.
+> Régénération demandée par l'utilisateur. DATE CIBLE : AAAA-MM-JJ. Pour cette exécution, cette date remplace partout « la date du jour » : fenêtre de recherche (les 24 à 48 h qui précèdent cette date), titre, `<meta name="date">`, nom de fichier, rappels de CFP (`python3 tools/build_memory.py --due AAAA-MM-JJ`). [Si le rapport existe : « Le rapport officiel de cette date existe déjà : ne le modifie pas, écris ta version en brouillon dans drafts/ selon le §6. » Sinon : « Aucun rapport n'existe pour cette date : publie-le comme rapport officiel selon le §6. »] Recherche complète. [Consignes de l'utilisateur, recopiées telles quelles.] Dans ta notification finale, donne le chemin exact du fichier écrit et le mode de publication.
 
 Garder le `session_id`.
 
@@ -52,3 +56,5 @@ Pas de `sleep` : `get_session` (`status_bucket` : `working` → `review_ready`/`
 - Ne jamais éditer `reports/` à la main pour « écraser » : passer par le workflow.
 - Ne pas modifier le prompt de la tâche pour autoriser l'écrasement.
 - Un seul rapport à la fois ; pas de lancement multiple en parallèle.
+- Ne jamais régénérer une date future.
+- Pour une date passée, `HHMM` du brouillon reste l'heure de génération réelle (pas celle de la date cible).
