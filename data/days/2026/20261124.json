@@ -39,6 +39,11 @@
    "type": "manuelle",
    "debut": "2026-11-25T01:45+01:00",
    "note": "« À retenir » réécrit : résumé rédigé du rapport (urgent, rappels, panorama), repères de temps justes"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-25T02:10+01:00",
+   "note": "« À retenir » découpé en sections titrées (urgent, puis par catégorie)"
   }
  ],
  "journal": {
@@ -55,14 +60,13 @@
  "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact · version complétée, publiée après l'échéance de 8h (Paris)",
  "a_retenir": [
   {
-   "texte": "Une chose ne peut pas attendre : [Idunno.AntiCsrf](#s3). Cette vieille bibliothèque anti-CSRF pour ASP.NET WebForms est touchée par une faille d'exécution de code à distance, révélée par Mandiant le 18 novembre. Elle est déjà exploitée et ne sera pas corrigée : le projet est abandonné depuis 2008. Si du vieux .NET Framework traîne quelque part, va vérifier sans attendre.",
+   "section": "urgent",
+   "paragraphes": [
+    "Une chose ne peut pas attendre : [Idunno.AntiCsrf](#s3). Cette vieille bibliothèque anti-CSRF pour ASP.NET WebForms est touchée par une faille d'exécution de code à distance, révélée par Mandiant le 18 novembre. Elle est déjà exploitée et ne sera pas corrigée : le projet est abandonné depuis 2008. Si du vieux .NET Framework traîne quelque part, va vérifier sans attendre.",
+    "Pense aussi aux appels à propositions : celui des ateliers de [DDD Europe 2027](#c3) ferme dans six jours, le 30 novembre. Ceux de [DevSum](#c4), [Devoxx France](#c1) et [NDC Oslo](#c2) suivent, entre le 8 décembre et la mi-janvier."
+   ],
    "sujets": [
-    "s3"
-   ]
-  },
-  {
-   "texte": "Pense aussi aux appels à propositions : celui des ateliers de [DDD Europe 2027](#c3) ferme dans six jours, le 30 novembre. Ceux de [DevSum](#c4), [Devoxx France](#c1) et [NDC Oslo](#c2) suivent, entre le 8 décembre et la mi-janvier.",
-   "sujets": [
+    "s3",
     "c3",
     "c4",
     "c1",
@@ -70,7 +74,11 @@
    ]
   },
   {
-   "texte": "La sécurité a dominé la semaine dernière. Le 17 novembre, la faille [Java4Shell](#s4) a frappé OpenJDK ; le lendemain, des [paquets PyPI piégés](#s6) se sont mis à voler des identifiants Azure ; le 19, [Spring](#s5) a publié une salve de correctifs. Rien qui touche directement ton code .NET. Mais tes services Java et ta CI méritent un coup d'œil, tout comme le [Patch Tuesday](#s2) du 10, si ce n'est pas déjà fait.",
+   "section": "securite",
+   "paragraphes": [
+    "La sécurité a dominé la semaine dernière. Le 17 novembre, la faille [Java4Shell](#s4) a frappé OpenJDK ; le lendemain, des [paquets PyPI piégés](#s6) se sont mis à voler des identifiants Azure ; le 19, [Spring](#s5) a publié une salve de correctifs.",
+    "Rien qui touche directement ton code .NET. Mais tes services Java et ta CI méritent un coup d'œil, tout comme le [Patch Tuesday](#s2) du 10, si ce n'est pas déjà fait."
+   ],
    "sujets": [
     "s4",
     "s6",
@@ -79,17 +87,54 @@
    ]
   },
   {
-   "texte": "Deux semaines après sa sortie, [.NET 11](#n1) a droit à un tour complet : runtime, C# 15, EF Core. Au passage, la [fin de support de .NET 8 et 9](#s1) est effective depuis le 10 novembre : il est temps de migrer. Les agents de code occupent une bonne partie du reste, entre les outils repérés aujourd'hui pour les piloter ([chrome-devtools-mcp](#t1), [CLI-Anything](#t6)), les annonces de la semaine ([Claude Ship](#i1), [Devin Bots](#i4)) et le [retour d'expérience de Netflix](#i2). Côté craftsmanship, tu trouveras un [article sur la revue de code](#cr1) et un tour des versions qui touchent tes projets, dont les préversions de Shouldly et AutoFixture, toujours sans version stable depuis cet été. Il est aussi question d'architecture, avec [OpenAPI 3.2](#p1) dans ASP.NET Core 11, et de distribution : l'enquête sur les [frigos piratés](#d1) désigne depuis le 9 novembre une unité iranienne, et le dossier continue de faire débat.",
+   "section": "dotnet",
+   "paragraphes": [
+    "Deux semaines après sa sortie, [.NET 11](#n1) a droit à un tour complet : runtime, C# 15, EF Core. Au passage, la [fin de support de .NET 8 et 9](#s1) est effective depuis le 10 novembre : il est temps de migrer."
+   ],
    "sujets": [
     "n1",
-    "s1",
-    "t1",
-    "t6",
+    "s1"
+   ]
+  },
+  {
+   "section": "ia",
+   "paragraphes": [
+    "Les agents de code occupent une bonne partie du rapport. On y trouve les annonces de la semaine, [Claude Ship](#i1) et [Devin Bots](#i4), et le [retour d'expérience de Netflix](#i2), qui a adapté tout son cycle de développement à ces agents. Côté outils, deux nouveautés repérées aujourd'hui servent justement à les piloter : [chrome-devtools-mcp](#t1) et [CLI-Anything](#t6)."
+   ],
+   "sujets": [
     "i1",
     "i4",
     "i2",
+    "t1",
+    "t6"
+   ]
+  },
+  {
+   "section": "craftsmanship",
+   "paragraphes": [
+    "Un [article sur la revue de code](#cr1), et un tour des versions qui touchent tes projets, dont les préversions de [Shouldly](#n11) et d'[AutoFixture](#n12), toujours sans version stable depuis cet été."
+   ],
+   "sujets": [
     "cr1",
-    "p1",
+    "n11",
+    "n12"
+   ]
+  },
+  {
+   "section": "architecture",
+   "paragraphes": [
+    "[OpenAPI 3.2](#p1) devient le format par défaut dans ASP.NET Core 11."
+   ],
+   "sujets": [
+    "p1"
+   ]
+  },
+  {
+   "section": "distribution",
+   "paragraphes": [
+    "L'enquête sur les [frigos piratés](#d1) désigne depuis le 9 novembre une unité iranienne, et le dossier continue de faire débat."
+   ],
+   "sujets": [
     "d1"
    ]
   }

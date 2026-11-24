@@ -23,6 +23,7 @@ def check():
         for f in ("label", "classe", "prefixe", "ordre", "description"):
             if f not in c: add(f"categories.json : {k} sans « {f} »")
         if c.get("max") is not None and c.get("min", 0) > c["max"]: add(f"categories.json : {k} a min > max")
+        if not c.get("emoji"): add(f"categories.json : {k} sans « emoji » (titre de sa section dans « À retenir »)")
     if len({c.get("ordre") for c in cats.values()}) != len(cats): add("categories.json : deux catégories ont le même ordre")
     if len({c.get("prefixe") for c in cats.values()}) != len(cats): add("categories.json : deux catégories ont le même préfixe d'identifiant")
     for k, t in tags.items():

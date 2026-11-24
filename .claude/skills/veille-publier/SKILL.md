@@ -37,7 +37,7 @@ Le script refuse un changement qui rendrait le jour invalide (plafond ou minimum
 
 ## 4. « À retenir »
 
-Si un sujet publié ou retiré change ce qui compte le plus ce jour-là, proposer la modification de `a_retenir` (3 à 5 entrées, Markdown, avec les `sujets` concernés) ; l'appliquer seulement après accord, en éditant le fichier JSON.
+Si un sujet publié ou retiré change ce qui compte le plus ce jour-là, proposer la modification de `a_retenir` (sections rédigées, voir `tools/veille-prompt.md` §4, avec les `sujets` cités) ; l'appliquer seulement après accord, en éditant le fichier JSON.
 
 ## 5. Valider, publier, vérifier
 

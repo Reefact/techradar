@@ -126,7 +126,7 @@ def check(path):
     tl = re.search(r'<div class="card tldr">(.*?)</div>', raw, re.S)
     n = len(re.findall(r"<p>", tl.group(1))) if tl else 0
     if not tl: add("bloc card tldr manquant")
-    elif not 1 <= n <= 4: add(f"« À retenir » : {n} paragraphe(s), 1 à 4 attendus")
+    elif n < 1: add("« À retenir » : aucun paragraphe")
     if FORBIDDEN.search(raw): add("mention interdite (chapter / STIME)")
     # liens
     for tag in re.findall(r"<a\b[^>]*>", raw):

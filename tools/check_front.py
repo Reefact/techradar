@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import ROOT, STATUTS, config, projets  # noqa: E402
+from veille_lib import ROOT, STATUTS, config, projets, sections_resume  # noqa: E402
 
 STATUT_LABEL = {"publie": "Publié", "candidat": "Candidat", "mis-de-cote": "Mis de côté", "ecarte": "Écarté"}
 SPAN = re.compile(r'<span class="([^"]*)"(?: title="([^"]*)")?[^>]*>(.*?)</span>', re.S)
@@ -77,6 +77,11 @@ def check(raw, cfg, nom="page"):
             E(f"{sid} : icône de projet sans dépôt déclaré")
         for x in rest:
             if x not in pj: E(f"{sid} : élément non déclaré dans l'en-tête : « {x[2]} » ({' '.join(x[0])})")
+    # ---------- « À retenir » : titres de sections déclarés ----------
+    titres = sections_resume(cfg)
+    for k, inner in re.findall(r'<h3 class="tl-h" data-section="([^"]*)">(.*?)</h3>', raw, re.S):
+        if k not in titres: E(f"« À retenir » : section « {k} » non déclarée"); continue
+        if texte(inner) != f"{titres[k][0]} {titres[k][1]}": E(f"« À retenir » : section « {k} » titrée « {texte(inner)} » au lieu de « {titres[k][0]} {titres[k][1]} »")
     # ---------- filtres ----------
     allowed = {"statut": {k: STATUT_LABEL[k] for k in STATUTS},
                "cat": {k: v["label"] for k, v in cats.items()},

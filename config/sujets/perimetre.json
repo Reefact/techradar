@@ -18,9 +18,20 @@
   "rapport": {
     "volume": "15 à 25 sujets publiés en général, plafond souple d'environ 30.",
     "a_retenir": {
-      "min": 1,
-      "max": 4,
-      "description": "Nombre de paragraphes du texte « À retenir aujourd'hui » (voir tools/veille-prompt.md, §4)."
+      "description": "« À retenir aujourd'hui » : résumé rédigé du rapport, en sections (voir tools/veille-prompt.md, §4). Une section par clé : « urgent » d'abord, puis des catégories (titre = emoji et libellé de config/categories.json), puis « aussi » ; chaque clé une fois au plus.",
+      "min_sections": 1,
+      "sections_speciales": {
+        "urgent": {
+          "emoji": "🚨",
+          "titre": "À ne pas manquer",
+          "description": "Ce qui demande ton attention maintenant : nouveau et urgent depuis le dernier rapport, puis les rappels importants (CFP qui ferment bientôt…)."
+        },
+        "aussi": {
+          "emoji": "📌",
+          "titre": "Aussi au sommaire",
+          "description": "Facultatif : regroupe en quelques phrases des thèmes trop minces pour une section à eux."
+        }
+      }
     },
     "regle": "Ne jamais remplir une catégorie avec du bruit, mais respecter les minimums de config/categories.json en cherchant davantage.",
     "analyses_min": 30,

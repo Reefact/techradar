@@ -23,7 +23,7 @@ import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
+from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, sections_resume, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
 import check_front  # noqa: E402
 import check_report  # noqa: E402
 import render  # noqa: E402
@@ -136,10 +136,20 @@ def check(path, contre=None, partiel=False):
         if c.get("max") is not None and hors_projets > c["max"]: E(f"catégorie « {c['label']} » : {hors_projets} sujet(s) publié(s) hors projets, plafond {c['max']}")
     rap = per.get("rapport", {})
     ar = day.get("a_retenir", [])
-    for name, lst, rule in (("À retenir", ar, rap.get("a_retenir", {})),):
-        if rule.get("min") and len(lst) < rule["min"]: E(f"« {name} » : {len(lst)} élément(s), minimum {rule['min']}")
-        if rule.get("max") and len(lst) > rule["max"]: E(f"« {name} » : {len(lst)} élément(s), maximum {rule['max']}")
+    rule = rap.get("a_retenir", {})
     pub_ids = {s["id"] for s in pub}
+    if not legacy or ar and "section" in ar[0]:
+        ordre = list(sections_resume(cfg))
+        if len(ar) < rule.get("min_sections", 1): E(f"« À retenir » : {len(ar)} section(s), minimum {rule.get('min_sections', 1)}")
+        vues = []
+        for x in ar:
+            k = x.get("section")
+            if k not in ordre: E(f"« À retenir » : section « {k} » inconnue (urgent, aussi ou une clé de config/categories.json)"); continue
+            if k in vues: E(f"« À retenir » : section « {k} » en double")
+            vues.append(k)
+            if not x.get("paragraphes") or not all(isinstance(p, str) and p.strip() for p in x["paragraphes"]): E(f"« À retenir » : section « {k} » sans paragraphe")
+            if set(x) - {"section", "paragraphes", "sujets"}: E(f"« À retenir » : section « {k} » avec un champ inconnu ({', '.join(sorted(set(x) - {'section', 'paragraphes', 'sujets'}))})")
+        if vues != sorted(vues, key=ordre.index): E("« À retenir » : sections dans le désordre (urgent, puis l'ordre des catégories, puis aussi)")
     for x in ar:
         for ref in x.get("sujets", []):
             if ref not in pub_ids: E(f"« À retenir » référence {ref}, qui n'est pas un sujet publié")

@@ -42,6 +42,18 @@ def categories_de(sujet):
     return [sujet["categorie"]] + ([sujet["categorie_secondaire"]] if sujet.get("categorie_secondaire") else [])
 
 
+def sections_resume(cfg):
+    """Sections possibles de « À retenir », dans l'ordre d'affichage : clé → (emoji, titre)."""
+    rap = (cfg["sujets"].get("sujets/perimetre.json") or {}).get("rapport", {}).get("a_retenir", {})
+    spe = rap.get("sections_speciales", {})
+    out = {}
+    if "urgent" in spe: out["urgent"] = (spe["urgent"]["emoji"], spe["urgent"]["titre"])
+    for k in ordered_categories(cfg["categories"]):
+        out[k] = (cfg["categories"][k].get("emoji", ""), cfg["categories"][k]["label"])
+    if "aussi" in spe: out["aussi"] = (spe["aussi"]["emoji"], spe["aussi"]["titre"])
+    return out
+
+
 def ordered_categories(cats):
     return sorted(cats, key=lambda k: cats[k]["ordre"])
 

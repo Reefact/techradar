@@ -1,6 +1,7 @@
 {
   "securite": {
     "label": "Sécurité",
+    "emoji": "🛡️",
     "classe": "b-alert",
     "prefixe": "s",
     "ordre": 1,
@@ -10,6 +11,7 @@
   },
   "dotnet": {
     "label": ".NET",
+    "emoji": "⚙️",
     "classe": "b-dotnet",
     "prefixe": "n",
     "ordre": 3,
@@ -19,6 +21,7 @@
   },
   "ia": {
     "label": "IA",
+    "emoji": "🤖",
     "classe": "b-ia",
     "prefixe": "i",
     "ordre": 4,
@@ -28,6 +31,7 @@
   },
   "craftsmanship": {
     "label": "Craftsmanship",
+    "emoji": "🛠️",
     "classe": "b-ddd",
     "prefixe": "cr",
     "ordre": 5,
@@ -37,6 +41,7 @@
   },
   "architecture": {
     "label": "Architecture",
+    "emoji": "🏛️",
     "classe": "b-api",
     "prefixe": "p",
     "ordre": 6,
@@ -46,6 +51,7 @@
   },
   "outils": {
     "label": "Outils",
+    "emoji": "🧰",
     "classe": "b-tool",
     "prefixe": "t",
     "ordre": 7,
@@ -55,6 +61,7 @@
   },
   "distribution": {
     "label": "Distribution",
+    "emoji": "🛒",
     "classe": "b-retail",
     "prefixe": "d",
     "ordre": 8,
@@ -64,6 +71,7 @@
   },
   "conferences": {
     "label": "Conférences & CFP",
+    "emoji": "🎤",
     "classe": "b-conf",
     "prefixe": "c",
     "ordre": 9,

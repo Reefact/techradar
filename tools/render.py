@@ -17,7 +17,7 @@ from datetime import date as Date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import (SUFFIX, STATUTS, blocks, config, day_files, inline, load_json, ordered_categories, projets, categories_de,  # noqa: E402
+from veille_lib import (SUFFIX, STATUTS, blocks, config, day_files, inline, load_json, ordered_categories, projets, categories_de, sections_resume,  # noqa: E402
                         plain, published, titre_jour)
 
 E = lambda s: html.escape(s or "", quote=True)
@@ -300,6 +300,26 @@ SCRIPT = SCRIPT.replace('assets/report.js"', f'assets/report.js?v={_version("rep
 
 
 # ---------- rapport publié ----------
+def resume_html(day, cfg):
+    """« À retenir » : sections titrées (emoji et titre déclarés dans la config), chacune d'un ou plusieurs paragraphes."""
+    titres, o = sections_resume(cfg), []
+    for x in day.get("a_retenir", []):
+        if "section" not in x:                                   # ancien format : une entrée = un paragraphe
+            o.append(f"  <p>{inline(x['texte'])}</p>"); continue
+        emoji, titre = titres[x["section"]]
+        o.append(f'  <h3 class="tl-h" data-section="{E(x["section"])}"><span class="tl-e" aria-hidden="true">{E(emoji)}</span> {E(titre)}</h3>')
+        o += [f"  <p>{inline(p)}</p>" for p in x["paragraphes"]]
+    return o
+
+
+def plain_resume(day):
+    """Texte brut de « À retenir » (flux), une ligne par paragraphe."""
+    out = []
+    for x in day.get("a_retenir", []):
+        out += [plain(p) for p in x.get("paragraphes", [])] if "section" in x else [plain(x["texte"])]
+    return out
+
+
 def render_report(day, cfg, seuil=None):
     seuil = seuil or seuil_frais(day)
     pub = ordered(published(day), cfg)
@@ -307,7 +327,7 @@ def render_report(day, cfg, seuil=None):
     o = [HEAD.format(title=E(h1 + SUFFIX), date=day["date"], extra_head=""), '<div class="wrap">', '<header id="top">',
          f"  <h1>{E(h1)}</h1>", f'  <p class="sub">{inline(day.get("sous_titre", ""))}</p>', "</header>", "",
          "<h2>À retenir aujourd'hui</h2>", '<div class="card tldr">']
-    o += [f"  <p>{inline(x['texte'])}</p>" for x in day.get("a_retenir", [])]
+    o += resume_html(day, cfg)
     o += ["</div>", "", "<h2>Sujets</h2>"] + filters(pub, cfg, seuil) + ['<div class="sum">']
     for s in pub:
         o += ["", card(s, cfg, seuil)]
@@ -370,7 +390,7 @@ def render_feed(days, site):
          f"  <id>{E(href('feed.xml') if site else 'urn:techradar:feed')}</id>", f"  <updated>{upd}</updated>"]
     for d in entries:
         rel = f"reports/{d['date'][:4]}/{d['date'].replace('-', '')}.html"
-        items = [plain(x["texte"]) for x in d.get("a_retenir", [])]
+        items = plain_resume(d)
         content = "<ul>" + "".join(f"<li>{E(i)}</li>" for i in items) + "</ul>" if items else ""
         o += ["  <entry>", f"    <title>{E(titre_jour(d['date']))}</title>", f'    <link rel="alternate" href="{E(href(rel))}"/>',
               f"    <id>{E(href(rel) if site else 'urn:techradar:' + d['date'])}</id>", f"    <updated>{d['date']}T08:00:00Z</updated>",

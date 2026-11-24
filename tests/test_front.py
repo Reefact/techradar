@@ -74,6 +74,12 @@ class Front(unittest.TestCase):
         faux = rapport.replace(f'data-cat="{s["categorie"]} {autre}"', f'data-cat="{s["categorie"]} {autre} ia"', 1)
         self.assertTrue(any("1 ou 2 attendues" in e for e in self.erreurs([faux])))
 
+    def test_titre_de_section_invente(self):
+        rapport, _ = self.rendu()
+        self.assertIn('class="tl-h"', rapport)
+        faux = rapport.replace("À ne pas manquer</h3>", "Urgentissime</h3>", 1)
+        self.assertTrue(any("titrée" in e for e in self.erreurs([faux])))
+
     def test_tag_non_declare(self):
         rapport, _ = self.rendu()
         faux = rapport.replace('data-tags="', 'data-tags="invente ', 1)
@@ -153,6 +159,16 @@ class Donnees(unittest.TestCase):
         day = jour()
         day["sujets"][0]["categorie_secondaire"] = ["ia", "dotnet"]
         self.assertTrue(any("catégorie secondaire" in e for e in self.valider(day)))
+
+    def test_section_de_resume_inconnue_refusee(self):
+        day = jour()
+        day["a_retenir"] = [{"section": "divers", "paragraphes": ["x"], "sujets": []}]
+        self.assertTrue(any("section « divers » inconnue" in e for e in self.valider(day)))
+
+    def test_sections_de_resume_dans_le_desordre(self):
+        day = jour()
+        day["a_retenir"] = [{"section": "ia", "paragraphes": ["x"], "sujets": []}, {"section": "urgent", "paragraphes": ["y"], "sujets": []}]
+        self.assertTrue(any("désordre" in e for e in self.valider(day)))
 
     def test_projet_inconnu_refuse(self):
         day = jour()
