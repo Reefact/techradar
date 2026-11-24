@@ -119,7 +119,7 @@ def card(s, cfg, statut_badge=None):
     badges = f'<span class="badge {c["classe"]}">{E(s.get("etiquette") or c["carte"])}</span>' + "".join(tag_html(t, tags) for t in s.get("tags", []))
     if statut_badge:
         badges = statut_badge + badges
-    out = [f'<article class="card" id="{E(s["id"])}"{repo}>', f'  <div class="head">{badges}<h3>{inline(s["titre"])}</h3>{verif_button(s)}</div>']
+    out = [f'<article class="card" id="{E(s["id"])}"{repo}>', f'  <div class="head">{verif_button(s)}{badges}<h3>{inline(s["titre"])}</h3></div>']
     out += blocks(s.get("resume", ""))
     if s.get("details"):
         out.append('  <dl class="kv">' + "".join(f"<dt>{E(k)}</dt><dd>{inline(v)}</dd>" for k, v in s["details"].items()) + "</dl>")
@@ -266,8 +266,8 @@ def render_dossier(day, cfg):
             if st == "ecarte" or (not s.get("resume") and st != "publie"):
                 motif = MOTIF_LABEL.get(s.get("motif"), s.get("motif") or "")
                 src = " · ".join(f'<a href="{E(x["url"])}" target="_blank" rel="noopener">{inline(x["texte"])}</a>' for x in s.get("sources", []))
-                o += ["", f'<div class="dz-line" data-statut="{st}" id="{E(s["id"])}">{statut_badge(s)}<span class="t">{inline(s["titre"])}</span>'
-                          f'<span class="m">{E(motif)}{" · " + inline(s["note"]) if s.get("note") else ""}</span>{(" " + src) if src else ""}{verif_button(s)}</div>']
+                o += ["", f'<div class="dz-line" data-statut="{st}" id="{E(s["id"])}">{statut_badge(s)}{verif_button(s)}<span class="t">{inline(s["titre"])}</span>'
+                          f'<span class="m">{E(motif)}{" · " + inline(s["note"]) if s.get("note") else ""}</span>{(" " + src) if src else ""}</div>']
                 if s.get("verification"):
                     o.append(verif_popover(s))
             else:
