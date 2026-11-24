@@ -290,7 +290,7 @@
   {
    "date": "2026-11-24",
    "id": "p1",
-   "categorie": "api",
+   "categorie": "architecture",
    "statut": "publie",
    "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf",
    "depot": "Reefact/hypermedia-domain-language"
@@ -298,7 +298,7 @@
   {
    "date": "2026-11-24",
    "id": "p2",
-   "categorie": "api",
+   "categorie": "architecture",
    "statut": "publie",
    "titre": "Revue de code : « rendre le changement facile d'abord »",
    "depot": "Reefact/conventional-comments-toolkit"
@@ -306,7 +306,7 @@
   {
    "date": "2026-11-24",
    "id": "p3",
-   "categorie": "api",
+   "categorie": "architecture",
    "statut": "publie",
    "titre": "Outbox pattern sous Postgres : workers concurrents ou lecture du WAL"
   },
