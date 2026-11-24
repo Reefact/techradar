@@ -1,6 +1,6 @@
 {
   "alertes": {
-    "label": "Alertes & incidents",
+    "label": "Alertes",
     "classe": "b-alert",
     "prefixe": "a",
     "ordre": 1,
