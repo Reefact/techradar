@@ -6,33 +6,47 @@
    "publies": 37
   }
  ],
- "radar": {
+ "projets": {
   "Reefact/first-class-errors": [
    {
     "date": "2026-11-24",
-    "id": "r2",
+    "id": "n9",
     "titre": "first-class-errors : unions C# 15 contre Result pattern"
    }
   ],
   "Reefact/kill-mutants": [
    {
     "date": "2026-11-24",
-    "id": "r3",
+    "id": "n10",
     "titre": "kill-mutants : Stryker.NET, exécuteur de tests MTP et paquet 5.1.0"
    }
   ],
   "Reefact/unified-assertions": [
    {
     "date": "2026-11-24",
-    "id": "r4",
+    "id": "n11",
     "titre": "unified-assertions : Shouldly 5 en préversion"
    }
   ],
   "Reefact/just-dummies": [
    {
     "date": "2026-11-24",
-    "id": "r5",
+    "id": "n12",
     "titre": "just-dummies : AutoFixture 5 en préversion"
+   }
+  ],
+  "Reefact/hypermedia-domain-language": [
+   {
+    "date": "2026-11-24",
+    "id": "p1",
+    "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf"
+   }
+  ],
+  "Reefact/conventional-comments-toolkit": [
+   {
+    "date": "2026-11-24",
+    "id": "p2",
+    "titre": "Revue de code : « rendre le changement facile d'abord »"
    }
   ]
  },
@@ -187,32 +201,32 @@
   },
   {
    "date": "2026-11-24",
-   "id": "r2",
-   "categorie": "radar",
+   "id": "n9",
+   "categorie": "dotnet",
    "statut": "publie",
    "titre": "first-class-errors : unions C# 15 contre Result pattern",
    "depot": "Reefact/first-class-errors"
   },
   {
    "date": "2026-11-24",
-   "id": "r3",
-   "categorie": "radar",
+   "id": "n10",
+   "categorie": "dotnet",
    "statut": "publie",
    "titre": "kill-mutants : Stryker.NET, exécuteur de tests MTP et paquet 5.1.0",
    "depot": "Reefact/kill-mutants"
   },
   {
    "date": "2026-11-24",
-   "id": "r4",
-   "categorie": "radar",
+   "id": "n11",
+   "categorie": "dotnet",
    "statut": "publie",
    "titre": "unified-assertions : Shouldly 5 en préversion",
    "depot": "Reefact/unified-assertions"
   },
   {
    "date": "2026-11-24",
-   "id": "r5",
-   "categorie": "radar",
+   "id": "n12",
+   "categorie": "dotnet",
    "statut": "publie",
    "titre": "just-dummies : AutoFixture 5 en préversion",
    "depot": "Reefact/just-dummies"
@@ -278,14 +292,16 @@
    "id": "p1",
    "categorie": "api",
    "statut": "publie",
-   "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf"
+   "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf",
+   "depot": "Reefact/hypermedia-domain-language"
   },
   {
    "date": "2026-11-24",
    "id": "p2",
    "categorie": "api",
    "statut": "publie",
-   "titre": "Revue de code : « rendre le changement facile d'abord »"
+   "titre": "Revue de code : « rendre le changement facile d'abord »",
+   "depot": "Reefact/conventional-comments-toolkit"
   },
   {
    "date": "2026-11-24",
@@ -590,7 +606,7 @@
   },
   "https://devblogs.microsoft.com/dotnet/unions-and-closed-hierarchies-in-aspnetcore/": {
    "date": "2026-11-24",
-   "id": "r2",
+   "id": "n9",
    "statut": "publie"
   },
   "https://devoxx.be/": {
@@ -710,7 +726,7 @@
   },
   "https://milanjovanovic.tech/blog/csharp-union-types-vs-result-pattern": {
    "date": "2026-11-24",
-   "id": "r2",
+   "id": "n9",
    "statut": "publie"
   },
   "https://milanjovanovic.tech/blog/outbox-pattern-postgres-workers-vs-wal": {
@@ -795,7 +811,7 @@
   },
   "https://stryker-mutator.io/blog/stryker-net-mtp-runner/": {
    "date": "2026-11-24",
-   "id": "r3",
+   "id": "n10",
    "statut": "publie"
   },
   "https://thehackernews.com/2026/11/google-researcher-shows-how-single-bit.html": {
@@ -910,7 +926,7 @@
   },
   "https://www.nuget.org/packages/AutoFixture": {
    "date": "2026-11-24",
-   "id": "r5",
+   "id": "n12",
    "statut": "publie"
   },
   "https://www.nuget.org/packages/AutoMapper/17.0.0": {
@@ -920,7 +936,7 @@
   },
   "https://www.nuget.org/packages/AwesomeAssertions": {
    "date": "2026-11-24",
-   "id": "r4",
+   "id": "n11",
    "statut": "publie"
   },
   "https://www.nuget.org/packages/MediatR/15.0.0": {
@@ -930,12 +946,12 @@
   },
   "https://www.nuget.org/packages/Shouldly": {
    "date": "2026-11-24",
-   "id": "r4",
+   "id": "n11",
    "statut": "publie"
   },
   "https://www.nuget.org/packages/stryker": {
    "date": "2026-11-24",
-   "id": "r3",
+   "id": "n10",
    "statut": "publie"
   },
   "https://www.ox.security/blog/breaking-hijacked-releases-of-microsofts-official-agent-framework-steals-azure-and-ci-credentials/": {
