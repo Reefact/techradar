@@ -162,7 +162,7 @@
    "id": "a3",
    "categorie": "alertes",
    "statut": "publie",
-   "titre": "Idunno.AntiCsrf : exécution de code à distance exploitée, aucun correctif"
+   "titre": "Idunno.AntiCsrf : exécution de code à distance exploitée, sans correctif"
   },
   {
    "date": "2026-11-24",
@@ -399,7 +399,7 @@
    "id": "a7",
    "categorie": "alertes",
    "statut": "candidat",
-   "titre": ".NET Framework : un bit modifié suffit à contourner le contrôle d'intégrité du code Windows"
+   "titre": ".NET Framework : un bit modifié contourne le contrôle d'intégrité"
   },
   {
    "date": "2026-11-24",
@@ -413,7 +413,7 @@
    "id": "a9",
    "categorie": "alertes",
    "statut": "candidat",
-   "titre": "Azure API Management (niveau Classic) : un acteur cherche des secrets, Microsoft corrige"
+   "titre": "Azure API Management Classic : des secrets ciblés, Microsoft corrige"
   },
   {
    "date": "2026-11-24",
@@ -427,7 +427,7 @@
    "id": "i6",
    "categorie": "ia",
    "statut": "candidat",
-   "titre": "Shirudo (OpenAI et Cisco) : des agents qui écrivent des boucliers eBPF avant le correctif"
+   "titre": "Shirudo (OpenAI, Cisco) : des agents qui écrivent des boucliers eBPF"
   },
   {
    "date": "2026-11-24",
@@ -455,7 +455,7 @@
    "id": "t8",
    "categorie": "outils",
    "statut": "candidat",
-   "titre": "Stalwart 1.2 : un serveur de messagerie qui parle le protocole d'Exchange"
+   "titre": "Stalwart 1.2 : un serveur de messagerie qui parle le protocole Exchange"
   },
   {
    "date": "2026-11-24",
