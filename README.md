@@ -16,3 +16,7 @@ Veille quotidienne : un brief HTML publié chaque matin (alertes de sécurité, 
 3. Déployer.
 
 Pour tester en local : `python3 -m http.server` (l'index lit `feed.xml` via `fetch`, ce qui ne fonctionne pas en `file://`).
+
+## Déploiement (Cloudflare Workers)
+Site statique déployé par Workers Builds sur le Worker `techradar` : `tools/build_site.sh` assemble `dist/` (index, flux, `assets/`, `reports/` ; jamais `drafts/`, `tools/`, etc.), puis `npx wrangler deploy` (config dans `wrangler.jsonc`).
+Réglages dans Cloudflare (Workers & Pages > techradar > Settings > Build) : build command `bash tools/build_site.sh`, deploy command `npx wrangler deploy`, branche `main`. Variable de build optionnelle `SITE_URL` (liens absolus du flux).

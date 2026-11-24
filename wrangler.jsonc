@@ -1,0 +1,9 @@
+{
+  // Le nom doit correspondre au Worker "techradar" du tableau de bord Cloudflare.
+  "name": "techradar",
+  "compatibility_date": "2026-11-24",
+  // Site 100 % statique : pas de code de Worker, seulement des assets (générés par tools/build_site.sh).
+  "assets": {
+    "directory": "./dist"
+  }
+}
