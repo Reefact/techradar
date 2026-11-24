@@ -2,9 +2,9 @@
 
 ## La tâche planifiée
 
-- **Nom** : « Veille quotidienne dev .NET » — identifiant `trig_01AnnpgLeWuVJx74hwcCpTg1`.
+- **Nom** : « Veille technologique quotidienne » — identifiant `trig_01AnnpgLeWuVJx74hwcCpTg1`.
 - **Planning** : du lundi au vendredi, 6h06 heure de Paris. Le brief doit être publié avant 8h.
-- **Nature** : une tâche planifiée Claude (session cloud « Cowork »), modèle Sonnet, mode non surveillé. Elle fait de la recherche web, rédige en français et publie.
+- **Nature** : ta veille technologique personnelle, menée dans le cadre de tes missions Reefact ; une tâche planifiée Claude (session cloud « Cowork »), modèle Sonnet, mode non surveillé. Elle fait de la recherche web, rédige en français et publie.
 - **Où vit son prompt** : *uniquement dans la tâche* (pas versionné dans Git). Pour le relire : demander à Claude de lister les tâches planifiées, ou consulter la tâche dans claude.ai.
 - **Mémoire** : un artefact privé « Veille — registre » (anti-doublons, suivi des CFP, outils déjà proposés, outils du radar).
 

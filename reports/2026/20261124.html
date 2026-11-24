@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Veille dev .NET — 2026-11-24</title>
+<title>Veille technologique du mardi 24 novembre 2026</title>
 <meta name="date" content="2026-11-24">
 <link rel="stylesheet" href="../../assets/report.css">
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
@@ -13,8 +13,8 @@
 <body>
 <div class="wrap">
 <header>
-  <h1>Veille dev .NET — mardi 24 novembre 2026</h1>
-  <p class="sub">Brief du Chapter Dev .NET · version complétée, publiée après l'échéance de 8h (Paris)</p>
+  <h1>Veille technologique du mardi 24 novembre 2026</h1>
+  <p class="sub">Ta veille technologique, dans le cadre de tes missions Reefact · version complétée, publiée après l'échéance de 8h (Paris)</p>
 </header>
 
 <h2 id="top">À retenir aujourd'hui</h2>
@@ -111,7 +111,7 @@
   <p>La sortie de .NET 11 a été annoncée le 10 novembre, pendant la .NET Conf (10–13 novembre). Le même jour, .NET 8 (LTS) et .NET 9 (STS) sont arrivés en fin de support : ils ne reçoivent plus de correctifs de sécurité. Microsoft recommande de migrer vers .NET 10 (LTS, supporté jusqu'en novembre 2028) ou vers .NET 11 (STS, 24 mois, jusqu'en novembre 2028).</p>
   <p>Avant de migrer vers .NET 11, il faut lire la liste des changements cassants : baseline CPU relevée, conversions flottant vers entier saturantes, hôte CLI Native AOT par défaut, OpenAPI 3.2 par défaut et plusieurs changements EF Core (détail dans le résumé .NET 11 plus bas). Passer d'abord par .NET 10 est le chemin le plus sûr pour les services critiques.</p>
   <dl class="kv"><dt>Touché</dt><dd>.NET 8 et .NET 9 (runtime et SDK)</dd><dt>Correctif</dt><dd>Plus de correctifs de sécurité ; migrer vers .NET 10 (LTS) ou .NET 11</dd><dt>Gravité</dt><dd>Moyenne, risque qui grandit avec le temps</dd></dl>
-  <p class="why">Pourquoi ça compte pour toi : tout service STIME encore en 8 ou 9 n'est plus patché. Te concerne : probablement.</p>
+  <p class="why">Pourquoi ça compte pour toi : tout service encore en .NET 8 ou 9 n'est plus patché. Te concerne : probablement.</p>
   <a href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-11/" target="_blank" rel="noopener">Source : annonce .NET 11, .NET Blog</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
@@ -285,7 +285,7 @@
   <div class="head"><span class="badge b-ia">IA</span><h3>Netflix : adapter le cycle de développement aux agents de code</h3></div>
   <p>À QCon SF, un ingénieur de Netflix explique que le gain vient surtout de la documentation, de la cohérence et de la revue, plus que des agents eux-mêmes. L'équipe a rédigé 45 ADR lisibles par des humains comme par des agents, plus un fichier AGENTS.md pour naviguer dans plus de 300 documents.</p>
   <p>Un agent de revue vérifie les PR par rapport à ces documents ; il a été réglé pour ne poster que des problèmes bloquants vérifiés, après une première version jugée trop bavarde. Pour les changements qui touchent plusieurs services, ils utilisent des graphes GraphRAG par domaine, épinglés sur des commits et exposés par un seul outil MCP. Chiffres rapportés par Netflix : aucun incident Sev 1 sur un service clé en 2026, 32 % de PR en plus sur un an, et un NPS développeur passé de -3 à +25.</p>
-  <p class="why">Pourquoi ça compte pour toi : un retour d'expérience chiffré et reproductible (ADR, AGENTS.md, revue par agent, MCP) pour cadrer l'usage des agents dans ton chapter. Il rejoint aussi ton sujet des conventions de revue de code.</p>
+  <p class="why">Pourquoi ça compte pour toi : un retour d'expérience chiffré et reproductible (ADR, AGENTS.md, revue par agent, MCP) pour cadrer l'usage des agents dans tes missions. Il rejoint aussi ton sujet des conventions de revue de code.</p>
   <a href="https://www.infoq.com/news/2026/11/netflix-sdlc-ai-coding-agents/" target="_blank" rel="noopener">Source : InfoQ, 23 nov. 2026</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
@@ -301,7 +301,7 @@
   <div class="head"><span class="badge b-ia">IA</span><h3>Devin Bots : des agents persistants qui pilotent d'autres agents</h3></div>
   <p>Cognition lance des agents persistants qui supervisent plusieurs sessions Devin et portent un objectif pendant des jours ou des semaines. Ils créent et assignent eux-mêmes les tâches, et envoient ce qui demande une validation humaine vers une boîte « Needs You ».</p>
   <p>Exemple cité : un Bot a produit une version Android de Devin sans ingénieur Android, avec 1 134 PR fusionnées en 44 jours (chiffres de Cognition). The New Stack souligne des questions ouvertes : résolution des conflits entre agents, auto-vérification du code et critère de prêt à fusionner. L'annonce initiale semble dater du 17 novembre (article Fortune repéré, non ouvert).</p>
-  <p class="why">Pourquoi ça compte pour toi : l'orchestration d'agents progresse vite, et la gouvernance de la qualité (revue, critères de fusion) devient le vrai sujet pour un chapter lead.</p>
+  <p class="why">Pourquoi ça compte pour toi : l'orchestration d'agents progresse vite, et la gouvernance de la qualité (revue, critères de fusion) devient le vrai sujet dès qu'on cadre l'usage des agents en équipe.</p>
   <a href="https://thenewstack.io/cognition-devin-bots-management/" target="_blank" rel="noopener">Source : The New Stack, 19 nov. 2026</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
@@ -385,7 +385,7 @@
   <p><strong>Rappel.</strong> Dans la nuit du 11 au 12 octobre, des régulateurs frigorifiques du fabricant danois Danfoss ont été attaqués à distance : températures modifiées, dégivrages forcés, jusqu'à 50 °C. Au moins 300 magasins Intermarché et Netto sont touchés, selon Mousquetaires, pour plusieurs millions d'euros de pertes. Les attaquants visaient d'anciennes versions du régulateur (avant la version 4).</p>
   <p><strong>Nouveau.</strong> Le parquet de Paris a ouvert le 9 novembre une information judiciaire visant le chef de l'unité Shahid Kaveh, liée aux Gardiens de la Révolution iraniens, et deux adjoints, avec demande de mandats d'arrêt internationaux ; l'enquête est menée par l'OFAC et la DGSI. Les indices avancés : l'usage du farsi, des adresses IP situées en Iran, un mode opératoire associé à l'unité, et des serveurs aussi utilisés pour repérer des équipements de petites centrales hydroélectriques. Le bilan donne environ 700 magasins touchés en tout et une vingtaine de départs de feu (ZATAZ parle d'au moins 15).</p>
   <p>Un article de L'Impertinent du 22 novembre (partiellement payant) critique le dossier : le rapport public de 5 pages ne contient pas de données vérifiables, et l'ANSSI limite son attribution aux incidents des 11 et 12 octobre. Un bilan de LSA évoque près de 500 magasins et jusqu'à 200 000 € de pertes par hypermarché, mais la page n'a pas pu être lue (non vérifié). Le titre de franceinfo annonçant l'accusation de l'Iran n'a pas pu être ouvert non plus.</p>
-  <p class="why">Pourquoi ça t'intéresse : première attribution étatique d'une attaque sur des équipements OT/IoT en magasin, et Intermarché est le plus touché. Pour un chapter lead, cela rappelle d'inventorier les firmwares exposés et les mots de passe par défaut, de segmenter le réseau des magasins et de traiter les fournisseurs d'équipements comme une surface d'attaque.</p>
+  <p class="why">Pourquoi ça t'intéresse : première attribution étatique d'une attaque sur des équipements OT/IoT en magasin, et Intermarché est le plus touché. Cela rappelle d'inventorier les firmwares exposés et les mots de passe par défaut, de segmenter le réseau des magasins et de traiter les fournisseurs d'équipements comme une surface d'attaque.</p>
   <a href="https://actu17.fr/international/frigos-a-50-degres-dans-700-supermarches-la-justice-francaise-remonte-jusqu-aux-gardiens-de-la-revolution-iraniens.html" target="_blank" rel="noopener">Actu17, 9 nov. 2026</a> · <a href="https://www.zataz.com/cyberattaque-des-frigos-la-piste-iranienne-se-precise/" target="_blank" rel="noopener">ZATAZ, 9 nov. 2026</a> · <a href="https://limpertinentmedia.com/post/cyberattaque-frigos-iran-preuves" target="_blank" rel="noopener">L'Impertinent, 22 nov. 2026</a> · <a href="https://www.lemondeinformatique.fr/actualites/lire-une-cyberattaque-perturbe-les-installations-frigorifiques-de-centaines-de-supermarches-100850.html" target="_blank" rel="noopener">Le Monde Informatique, 13 oct. 2026</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
@@ -403,7 +403,7 @@
   <div class="head"><span class="badge b-conf">Conférence</span><span class="badge b-new">Nouveau</span><span class="badge b-up">⏰ J-6</span><h3>DDD Europe 2027</h3></div>
   <p>Conférence de référence sur le Domain-Driven Design, avec deux jours de conférence précédés d'ateliers. Le CFP des ateliers clôt dans six jours ; celui de la conférence principale reste ouvert jusqu'en janvier.</p>
   <dl class="kv"><dt>Dates et lieu</dt><dd>Ateliers 31 mai – 2 juin, conférence 3–4 juin 2027, Meervaart, Amsterdam</dd><dt>CFP</dt><dd>ateliers : 30 nov. 2026 ; conférence : 16 janv. 2027 · <a href="https://sessionize.com/aardling27/" target="_blank" rel="noopener">Sessionize</a></dd><dt>Inscription</dt><dd>lien de billetterie présent (<a href="https://ti.to/dddbv/aardling27" target="_blank" rel="noopener">ti.to</a>), ouverture non confirmée</dd></dl>
-  <p class="why">Pourquoi ça compte pour toi : thème central de ton chapter (sensibilisation au DDD, first-class-errors). Dates vérifiées sur la page du CFP.</p>
+  <p class="why">Pourquoi ça compte pour toi : thème central de tes sujets (DDD, first-class-errors). Dates vérifiées sur la page du CFP.</p>
   <a href="https://2027.dddeurope.com/" target="_blank" rel="noopener">Source : dddeurope.com</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
