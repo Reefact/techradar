@@ -9,7 +9,8 @@
   - branche de production : `main`
   - build command : `bash tools/build_site.sh`
   - deploy command : `npx wrangler deploy`
-  - variable de build optionnelle `SITE_URL` (liens absolus du flux)
+  - variable de build `SITE_URL` = `https://techradar.reefact.net` (texte, pas un secret ; sans elle, les liens du flux restent relatifs) ;
+  - **Build watch paths**, inclusions : `index.html, assets/*, reports/*, wrangler.jsonc, tools/build_site.sh, tools/build_feed.py` (exclusions : aucune). Un push qui ne touche aucun de ces fichiers (docs, drafts, data, skills, workflows…) ne déclenche pas de build. Un push **sans aucun fichier modifié** (commit vide) en déclenche toujours un : c'est le moyen de forcer un déploiement ;
 
 ```mermaid
 flowchart LR
@@ -19,7 +20,7 @@ flowchart LR
     D --> W["Worker techradar<br/>*.workers.dev"]
 ```
 
-Un brief provoque **deux déploiements** : le push du rapport, puis le commit de `feed.xml` par l'Action (volontairement sans `[skip ci]`, pour que le flux déployé soit à jour).
+Un brief provoque **un seul déploiement** (le push du rapport) : le commit de l'Action sur `feed.xml` et `data/memory.json` ne touche aucun chemin surveillé, et le flux servi est régénéré pendant le build.
 
 ## GitHub Actions
 
@@ -28,7 +29,7 @@ Un brief provoque **deux déploiements** : le push du rapport, puis le commit de
 | `feed.yml` | push sur `main` touchant `reports/**`, `tools/build_feed.py` ou `tools/build_memory.py` ; lancement manuel | régénère `feed.xml` **et** `data/memory.json`, et les commit s'ils ont changé |
 | `promote.yml` | lancement manuel (entrée : chemin du brouillon) | promeut un brouillon vers `reports/`, régénère le flux et la mémoire, commit |
 
-Variable de dépôt optionnelle : `SITE_URL` (Settings → Variables) pour des liens absolus dans le flux.
+Variable de dépôt `SITE_URL` (Settings → Secrets and variables → Actions → Variables) = `https://techradar.reefact.net`, pour les liens absolus du `feed.xml` commité. Le flux réellement servi est celui régénéré par le build Cloudflare, qui lit sa propre variable `SITE_URL` (voir plus haut) : les deux doivent être définies.
 
 ## Outils locaux
 
@@ -42,3 +43,7 @@ bash tools/build_site.sh                    # assemble dist/
 python3 -m http.server                      # sert le dépôt (l'index lit feed.xml par fetch)
 npx wrangler deploy --dry-run               # valide la config Cloudflare sans déployer
 ```
+
+## Adresse du site
+
+Le site est servi sur https://techradar.reefact.net/ (domaine attaché au Worker). Les URL `…/reports/AAAA/AAAAMMJJ.html` redirigent (307) vers la même adresse sans `.html` : comportement par défaut de Cloudflare (`html_handling`), sans conséquence ; l'index et le CSS se chargent normalement. Ne pas passer `html_handling` à `none` sans test : la gestion de la racine `/` en dépend.
