@@ -261,8 +261,9 @@ def filters(sujets, cfg, seuil, dossier=False):
         o.append(f'  <div class="fgroup" data-g="{g}" role="group" aria-label="{label}"><span class="flabel">{label}</span><span class="chips">{"".join(chips)}</span></div>')
     keys = SORT_KEYS if dossier else SORT_KEYS[1:]
     o.append('  <div class="fsort" role="group" aria-label="Trier par"><span class="flabel">Trier par</span><span class="chips">'
-             + "".join(f'<button type="button" class="chip" data-k="{k}" aria-pressed="{str(i == 0).lower()}" '
-                       f'title="Trier d\'abord par {SORT_LABEL[k].lower()}, puis dans l\'ordre par défaut">{SORT_LABEL[k]}</button>' for i, k in enumerate(keys))
+             + "".join(f'<button type="button" class="chip" data-k="{k}" aria-pressed="false" '
+                       f'title="Ajouter « {SORT_LABEL[k]} » à l\'ordre de tri (cliquer à nouveau pour le retirer)"><span class="rank"></span>{SORT_LABEL[k]}</button>' for k in keys)
+             + '<button type="button" class="sdefault" hidden>Ordre par défaut</button>'
              + f'<span class="sorder">{" › ".join(SORT_LABEL[k] for k in keys)}</span></span></div>')
     o.append('  <div class="fbar"><span class="count" aria-live="polite"></span><button type="button" class="reset" hidden>Réinitialiser</button>'
              '<button type="button" class="expand">Tout déplier</button></div>')

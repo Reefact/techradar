@@ -39,27 +39,33 @@
     items.forEach(el => el.addEventListener('toggle', syncExpand));
     apply();
 
-    // ---------- Tri : une clé choisie passe en premier, les autres suivent dans l'ordre par défaut ----------
+    // ---------- Tri : les clés choisies, dans l'ordre des clics (rang 1, 2…), puis les autres dans l'ordre par défaut ----------
     const sortBar = bar.querySelector('.fsort');
     if (sortBar) {
       const chips = [...sortBar.querySelectorAll('.chip')], all = chips.map(c => c.dataset.k), LABEL = {};
-      chips.forEach(c => { LABEL[c.dataset.k] = c.textContent; });
+      chips.forEach(c => { LABEL[c.dataset.k] = c.textContent.trim(); });
+      const def = sortBar.querySelector('.sdefault');
       const STATUTS = ['publie', 'candidat', 'mis-de-cote', 'ecarte'];
       const val = {statut: el => STATUTS.indexOf(el.dataset.statut), cat: el => +el.dataset.ordre,
                    date: el => -(+(el.dataset.date || '').replace(/-/g, '') || 0), projet: el => el.dataset.repo ? '0' + el.dataset.repo : '1'};
-      const store = 'techradar-tri-' + (document.querySelector('.dossier') ? 'dossier' : 'rapport');
-      function sortBy(first, save) {
-        const keys = [first, ...all.filter(k => k !== first)];
+      const store = 'techradar-tri2-' + (document.querySelector('.dossier') ? 'dossier' : 'rapport');
+      let chosen = [];
+      function sortNow(save) {
+        const keys = [...chosen, ...all.filter(k => !chosen.includes(k))];
         items.sort((a, b) => { for (const k of keys) { const x = val[k](a), y = val[k](b); if (x < y) return -1; if (x > y) return 1; } return 0; });
         items.forEach(el => sum.appendChild(el));
-        chips.forEach(c => c.setAttribute('aria-pressed', c.dataset.k === first));
+        chips.forEach(c => { const r = chosen.indexOf(c.dataset.k); c.setAttribute('aria-pressed', r >= 0); c.querySelector('.rank').textContent = r >= 0 ? r + 1 : ''; });
+        def.hidden = !chosen.length;
         sortBar.querySelector('.sorder').textContent = keys.map(k => LABEL[k]).join(' › ');
-        if (save) { try { localStorage.setItem(store, first); } catch (e) { /* stockage indisponible : tri non retenu */ } }
+        if (save) { try { localStorage.setItem(store, JSON.stringify(chosen)); } catch (e) { /* stockage indisponible : tri non retenu */ } }
       }
-      sortBar.addEventListener('click', e => { const c = e.target.closest('.chip'); if (c) sortBy(c.dataset.k, true); });
-      let saved = null;
-      try { saved = localStorage.getItem(store); } catch (e) { /* stockage indisponible */ }
-      if (saved && all.includes(saved) && saved !== all[0]) sortBy(saved, false);
+      sortBar.addEventListener('click', e => {
+        const c = e.target.closest('.chip');
+        if (c) { const k = c.dataset.k; chosen = chosen.includes(k) ? chosen.filter(x => x !== k) : [...chosen, k]; sortNow(true); }
+      });
+      def.addEventListener('click', () => { chosen = []; sortNow(true); });
+      try { const s = JSON.parse(localStorage.getItem(store) || '[]'); if (Array.isArray(s)) chosen = s.filter(k => all.includes(k)); } catch (e) { /* stockage indisponible */ }
+      if (chosen.length) sortNow(false);
     }
   }
 

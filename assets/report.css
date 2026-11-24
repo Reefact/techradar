@@ -80,6 +80,10 @@ details.card[open]{border-color:#2a4b50}
 .fgroup,.fsort{display:grid;grid-template-columns:max-content 1fr;align-items:start;gap:6px 10px}
 .fgroup .flabel,.fsort .flabel{padding-top:7px}
 .fsort .chip{color:var(--accent)}
+.fsort .rank{display:inline-grid;place-items:center;min-width:1.5em;height:1.5em;margin:-3px 6px -3px -3px;border-radius:50%;background:var(--accent);color:var(--bg);font-size:.62rem}
+.fsort .rank:empty{display:none}
+.sdefault{font:600 .68rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:999px;border:1px dashed var(--line);background:transparent;color:var(--mute);cursor:pointer}
+.sdefault:hover{color:var(--accent);border-color:var(--accent)}
 .sorder{align-self:center;color:var(--mute);font-size:.8rem;margin-left:6px}
 .chips{display:flex;flex-wrap:wrap;gap:8px 6px;min-width:0}
 .flabel{font:600 .68rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;color:var(--mute);min-width:74px}
