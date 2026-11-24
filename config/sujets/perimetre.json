@@ -18,7 +18,7 @@
   "rapport": {
     "volume": "15 à 25 sujets publiés en général, plafond souple d'environ 30.",
     "a_retenir": {
-      "description": "« À retenir aujourd'hui » : résumé rédigé du rapport, en sections (voir tools/veille-prompt.md, §4). Une section par clé : « urgent » d'abord, puis des catégories (titre = emoji et libellé de config/categories.json), puis « aussi » ; chaque clé une fois au plus.",
+      "description": "« À retenir aujourd'hui » : résumé rédigé du rapport, en sections (voir tools/veille-prompt.md, §4). cible_caracteres est la consigne donnée à la tâche (un maximum, pas un objectif) ; max_caracteres est le plafond vérifié par check_day.py, volontairement absent du prompt (marge de sécurité).",
       "min_sections": 1,
       "cible_caracteres": 1700,
       "max_caracteres": 1900,
