@@ -9,7 +9,8 @@
                 le nombre minimal de sujets analysés n'est pas exigé.
 
 Contrôles : schéma, clés de catégories et de tags, dépôts du radar, minimums et plafonds (config/categories.json),
-« À retenir » et « En bref » (config/sujets/perimetre.json), un sujet publié par dépôt, journal (motifs, éléments
+« À retenir » et « En bref » (config/sujets/perimetre.json), un sujet publié par dépôt, vérification des sources
+(bloc « verification », config/sujets/sources.json), journal (motifs, éléments
 toujours suivis vérifiés, exclusions respectées), puis rendu du rapport et contrôle du HTML produit
 (tools/check_report.py : structure et signaux de langue).
 """
@@ -21,9 +22,38 @@ import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import MOTIFS, ROOT, STATUTS, config, load_json, plain, published  # noqa: E402
+from veille_lib import MOTIFS, ROOT, STATUTS, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
 import check_report  # noqa: E402
 import render  # noqa: E402
+
+
+def check_verification(s, where, day, cfg):
+    """Bloc « verification » d'un sujet (voir tools/veille-verification.md)."""
+    errs, st, v = [], s.get("statut"), s.get("verification")
+    E = errs.append
+    if v is None:
+        if st == "publie" and verification_requise(s, day, cfg) and not s.get("verification_non_requise"):
+            E(f"{where} : sujet publié sans source de référence dans une catégorie à risque : il faut une vérification au verdict « vrai » (tools/veille-verification.md), ou « verification_non_requise » avec la raison si le fait est annoncé par son auteur")
+        return errs
+    verdict = v.get("verdict")
+    if verdict not in VERDICTS: return [f"{where} : verdict de vérification inconnu « {verdict} » ({', '.join(VERDICTS)})"]
+    if not v.get("date"): E(f"{where} : vérification sans date")
+    if not v.get("resume"): E(f"{where} : vérification sans « resume »")
+    if st == "publie" and verdict != "vrai": E(f"{where} : seul un sujet vérifié « vrai » peut être publié (verdict : {verdict})")
+    if verdict == "faux" and (st != "ecarte" or s.get("motif") != "infirme"): E(f"{where} : un sujet vérifié « faux » doit être écarté avec le motif « infirme »")
+    if verdict == "vrai":
+        src = v.get("source") or {}
+        if not src.get("nom") or not src.get("nature"): E(f"{where} : vérification sans « source » (nom, nature)")
+        aff = v.get("affirmations") or []
+        if not aff: E(f"{where} : vérification « vrai » sans affirmation vérifiée")
+        for a in aff:
+            if not a.get("texte"): E(f"{where} : affirmation vérifiée sans texte")
+            if not any(re.match(r"https?://", p.get("url", "")) for p in a.get("preuves", [])): E(f"{where} : affirmation « {plain(a.get('texte', ''))[:50]} » sans preuve (URL)")
+    for r in v.get("retirees", []):
+        if not r.get("texte") or not r.get("raison"): E(f"{where} : affirmation retirée sans « texte » ou sans « raison »")
+    for r in v.get("recoupements", []):
+        if not re.match(r"https?://", r.get("url", "")) or not r.get("texte"): E(f"{where} : recoupement sans texte ou sans URL http(s)")
+    return errs
 
 
 def check(path, contre=None, partiel=False):
@@ -78,6 +108,7 @@ def check(path, contre=None, partiel=False):
                 if not s.get("depot"): E(f"{where} : sujet du radar publié sans « depot »")
                 else: repos_pub.setdefault(s["depot"], []).append(where)
             if s["categorie"] == "conferences" and not s.get("conference"): E(f"{where} : conférence publiée sans bloc « conference » (dates, lieu, cfp)")
+        errs.extend(check_verification(s, where, day, cfg))
     for depot, w in repos_pub.items():
         if len(w) > 1: E(f"radar : plusieurs sujets publiés pour {depot} ({', '.join(w)}) ; un seul par dépôt")
 

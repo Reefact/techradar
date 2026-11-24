@@ -15,7 +15,16 @@ python3 tools/statut.py list AAAA-MM-JJ
 ```
 (par défaut le jour le plus récent de `data/days/`). Présenter à l'utilisateur, en clair, les candidats et mis de côté (titre, catégorie), et ce qu'il a demandé. La page https://techradar.reefact.net/dossier/ montre la même chose avec les résumés ; ses boutons « Demander la publication » produisent une phrase du type « Publie le sujet n4 (« … ») du 2026-11-24 dans le rapport ».
 
-## 2. Appliquer
+## 2. Vérifier les affirmations avant de publier
+
+Avant de publier un candidat ou un sujet mis de côté, applique `tools/veille-verification.md` : s'il contient une affirmation qui pourrait être fausse, portée ni par l'auteur du fait ni par une source de référence (`config/sujets/sources.json`), et qu'il n'a pas de `verification` au verdict `vrai`, lance d'abord le sous-agent vérificateur (brief du fichier, sans ton avis). Puis :
+- `vrai` : écris le bloc `verification`, réduis le résumé aux affirmations prouvées, montre le résultat à l'utilisateur et publie ;
+- `faux` : ne publie pas ; propose d'écarter le sujet (`--motif infirme`) ;
+- `indetermine` : ne publie pas ; propose de le mettre de côté, il sera revérifié à la prochaine exécution.
+
+Le validateur refuse un sujet publié dans une catégorie à risque sans source de référence ni vérification `vrai`, et tout sujet publié dont le verdict n'est pas `vrai`.
+
+## 3. Appliquer
 
 ```bash
 python3 tools/statut.py set AAAA-MM-JJ n4,i6 publie [--note "pourquoi"]
@@ -27,11 +36,11 @@ Le script refuse un changement qui rendrait le jour invalide (plafond ou minimum
 
 **Retirer un sujet publié** change le rapport en ligne : demander une confirmation explicite.
 
-## 3. « À retenir »
+## 4. « À retenir »
 
 Si un sujet publié ou retiré change ce qui compte le plus ce jour-là, proposer la modification de `a_retenir` (3 à 5 entrées, Markdown, avec les `sujets` concernés) ; l'appliquer seulement après accord, en éditant le fichier JSON.
 
-## 4. Valider, publier, vérifier
+## 5. Valider, publier, vérifier
 
 1. `python3 tools/check_day.py data/days/AAAA/AAAAMMJJ.json --partiel` : aucune erreur.
 2. Aperçu facultatif : `python3 tools/render.py /tmp/apercu`, puis ouvrir `/tmp/apercu/reports/AAAA/AAAAMMJJ.html`.
@@ -41,4 +50,4 @@ Si un sujet publié ou retiré change ce qui compte le plus ce jour-là, propose
 ## Règles
 
 - L'historique Git du fichier du jour garde toutes les versions : un retour en arrière se fait par `git revert`.
-- Ne jamais modifier le texte d'un sujet dans ce skill (c'est le rôle de `veille-relecture`).
+- Ne jamais modifier le texte d'un sujet dans ce skill (c'est le rôle de `veille-relecture`), sauf pour l'aligner sur sa vérification (§2) : bloc `verification` et retrait des affirmations non prouvées.

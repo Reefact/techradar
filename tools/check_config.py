@@ -47,6 +47,15 @@ def check():
         if p.resolve() not in listed: add(f"{p.relative_to(CONFIG)} : présent mais absent de l'index sujets.json")
     per = CONFIG / "sujets" / "perimetre.json"
     if per.exists() and load_json(per).get("priorites", {}).get("tag") not in tags: add("perimetre.json : le tag des priorités n'existe pas dans tags.json")
+    src = CONFIG / "sujets" / "sources.json"
+    v = load_json(src).get("verification") if src.exists() else None
+    if v:
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", v.get("depuis", "")): add("sources.json : verification.depuis doit être une date AAAA-MM-JJ")
+        for k in v.get("categories_a_risque", {}).get("categories", []):
+            if k not in cats: add(f"sources.json : catégorie à risque inconnue « {k} »")
+        for g, d in v.get("references", {}).items():
+            for dom in d.get("domaines", []):
+                if not re.fullmatch(r"[a-z0-9.-]+\.[a-z]{2,}(/[\w./-]+)?", dom): add(f"sources.json : référence « {g} » : domaine invalide « {dom} » (sans https://, ex. lemonde.fr ou github.com/dotnet)")
     radar = CONFIG / "sujets" / "radar.json"
     if radar.exists():
         for pr in load_json(radar).get("projets", []):

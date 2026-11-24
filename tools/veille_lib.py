@@ -11,7 +11,8 @@ DAYS = ROOT / "data" / "days"
 SUFFIX = " – Reefact"          # suffixe des <title> (tiret demi-cadratin, comme reefact.net)
 STATUTS = ("publie", "candidat", "mis-de-cote", "ecarte")
 MOTIFS = ("deja-publie", "hors-fenetre", "hors-perimetre", "non-verifiable", "doublon", "trop-mineur",
-          "plafond-atteint", "exclu-config", "rien-de-neuf")
+          "plafond-atteint", "exclu-config", "rien-de-neuf", "infirme")
+VERDICTS = ("vrai", "faux", "indetermine")   # « indetermine » : seulement sur un sujet non publié, à revérifier
 JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
 
@@ -32,6 +33,40 @@ def config():
 
 def ordered_categories(cats):
     return sorted(cats, key=lambda k: cats[k]["ordre"])
+
+
+# ---------- vérification des sources ----------
+def verif_config(cfg):
+    return (cfg["sujets"].get("sujets/sources.json") or {}).get("verification") or {}
+
+
+def est_reference(url, cfg):
+    """L'URL relève-t-elle d'une source de référence (config/sujets/sources.json → verification.references) ?
+    Une entrée « domaine » couvre le domaine et ses sous-domaines ; une entrée « domaine/chemin » couvre ce chemin."""
+    m = re.match(r"https?://([^/?#]+)([^?#]*)", url or "")
+    if not m:
+        return False
+    host = m.group(1).lower().split(":")[0].removeprefix("www.")
+    path = m.group(2).rstrip("/")
+    for groupe in verif_config(cfg).get("references", {}).values():
+        for d in groupe.get("domaines", []):
+            dom, _, chemin = d.lower().partition("/")
+            if host != dom and not host.endswith("." + dom):
+                continue
+            if not chemin or path == "/" + chemin or path.startswith("/" + chemin + "/"):
+                return True
+    return False
+
+
+def verification_requise(sujet, day, cfg):
+    """Vrai si la règle automatique impose une vérification : jour postérieur à la mise en place, catégorie à risque,
+    aucune source de référence. (L'agent de veille peut en demander une dans d'autres cas : c'est son jugement.)"""
+    v = verif_config(cfg)
+    if not v or day.get("date", "") < v.get("depuis", "9999"):
+        return False
+    if sujet.get("categorie") not in v.get("categories_a_risque", {}).get("categories", []):
+        return False
+    return not any(est_reference(s.get("url"), cfg) for s in sujet.get("sources", []))
 
 
 # ---------- fichiers du jour ----------

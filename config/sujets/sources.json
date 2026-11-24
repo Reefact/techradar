@@ -13,5 +13,42 @@
   },
   "toujours_consulter": [],
   "ignorer": [],
-  "verification": "Ouvrir la page source (WebFetch) avant de résumer ; ne jamais affirmer ce qui n'a pas pu être vérifié. Lister dans le journal les sources illisibles."
+  "lecture": "Ouvrir la page source (WebFetch) avant de résumer ; ne jamais affirmer ce qui n'a pas pu être vérifié. Lister dans le journal les sources illisibles.",
+  "verification": {
+    "depuis": "2026-11-25",
+    "consigne": "Un sujet passe par l'agent vérificateur (tools/veille-verification.md) quand il contient une affirmation qui pourrait être fausse (faille, incident, attaque, fuite, attribution, rumeur, chiffre) ET que cette affirmation n'est portée ni par l'auteur du fait (l'éditeur qui annonce sa propre version, le projet qui présente son outil) ni par une source de référence ci-dessous. Ce qui compte, c'est la source qui porte l'affirmation, pas la présence d'une source fiable ailleurs dans la liste. Un chiffre central d'un incident est toujours recoupé, même entre sources de référence. Les outils présentés par leur propre dépôt, les annonces d'un éditeur sur son produit et les dates d'une conférence sur son site ne se vérifient pas.",
+    "categories_a_risque": {
+      "consigne": "Dans ces catégories, un sujet publié dont aucune source n'est une référence doit porter une vérification au verdict « vrai » (contrôlé par tools/check_day.py).",
+      "categories": ["alertes", "distribution"]
+    },
+    "references": {
+      "officiel": {
+        "description": "Éditeurs (sur leurs propres produits) et organismes officiels",
+        "domaines": [
+          "cert.ssi.gouv.fr", "cyber.gouv.fr", "cybermalveillance.gouv.fr", "cnil.fr",
+          "nvd.nist.gov", "cve.org", "cisa.gov",
+          "msrc.microsoft.com", "devblogs.microsoft.com", "learn.microsoft.com", "techcommunity.microsoft.com", "azure.status.microsoft",
+          "github.blog", "github.com/advisories", "githubstatus.com", "github.com/dotnet", "github.com/microsoft",
+          "nuget.org", "openjdk.org", "oracle.com", "spring.io", "nodejs.org",
+          "blog.cloudflare.com", "cloudflarestatus.com", "anthropic.com", "claude.com", "openai.com", "jetbrains.com"
+        ]
+      },
+      "cyber": {
+        "description": "Presse spécialisée en cybersécurité",
+        "domaines": ["bleepingcomputer.com", "securityweek.com", "therecord.media", "krebsonsecurity.com"]
+      },
+      "presse": {
+        "description": "Presse générale et agences",
+        "domaines": ["afp.com", "lemonde.fr", "lefigaro.fr", "lesechos.fr", "reuters.com", "francetvinfo.fr", "liberation.fr"]
+      },
+      "tech": {
+        "description": "Presse informatique et développement",
+        "domaines": ["lemagit.fr", "lemondeinformatique.fr", "silicon.fr", "zdnet.fr", "it-connect.fr", "infoq.com", "thenewstack.io", "arstechnica.com", "theregister.com"]
+      },
+      "distribution": {
+        "description": "Presse de la grande distribution",
+        "domaines": ["lsa-conso.fr"]
+      }
+    }
+  }
 }
