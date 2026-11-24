@@ -124,9 +124,9 @@ def check(path):
     if not re.search(r'href="\.\./\.\./assets/report\.css(\?v=[0-9a-f]+)?"', raw): add("lien vers ../../assets/report.css manquant")
     if re.search(r"<style|<script(?! src=\"\.\./\.\./assets/report\.js(\?v=[0-9a-f]+)?\" defer></script>)", raw, re.I): add("<style> ou <script> en ligne interdit (seul ../../assets/report.js est chargé)")
     tl = re.search(r'<div class="card tldr">(.*?)</div>', raw, re.S)
-    n = len(re.findall(r"<li>", tl.group(1))) if tl else 0
+    n = len(re.findall(r"<p>", tl.group(1))) if tl else 0
     if not tl: add("bloc card tldr manquant")
-    elif not 3 <= n <= 5: add(f"tldr : {n} puce(s), 3 à 5 attendues")
+    elif not 1 <= n <= 4: add(f"« À retenir » : {n} paragraphe(s), 1 à 4 attendus")
     if FORBIDDEN.search(raw): add("mention interdite (chapter / STIME)")
     # liens
     for tag in re.findall(r"<a\b[^>]*>", raw):

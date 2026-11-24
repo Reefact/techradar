@@ -28,7 +28,7 @@ h3{font-family:var(--font-b);font-weight:700;font-size:1.05rem}
 .b-alert{color:var(--alert)}.b-projet{color:var(--radar)}.b-dotnet{color:var(--dotnet)}.b-ia{color:var(--ia)}.b-api{color:var(--api)}.b-tool{color:var(--tool)}.b-retail{color:var(--retail)}.b-conf{color:var(--conf)}.b-radar{color:var(--radar)}.b-star{color:var(--accent)}.b-new{color:var(--accent)}.b-up{color:var(--api)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;min-width:0}
 .tldr{border-color:var(--accent)}
-.tldr ul{margin:8px 0 0;padding-left:1.1em}
+.tldr p{margin:0 0 10px;line-height:1.65}.tldr p:last-child{margin-bottom:0}
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
 table{border-collapse:collapse;width:100%;min-width:640px;font-size:.88rem}
 th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}

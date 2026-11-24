@@ -306,9 +306,9 @@ def render_report(day, cfg, seuil=None):
     h1 = titre_jour(day["date"])
     o = [HEAD.format(title=E(h1 + SUFFIX), date=day["date"], extra_head=""), '<div class="wrap">', '<header id="top">',
          f"  <h1>{E(h1)}</h1>", f'  <p class="sub">{inline(day.get("sous_titre", ""))}</p>', "</header>", "",
-         "<h2>À retenir aujourd'hui</h2>", '<div class="card tldr"><ul>']
-    o += [f"  <li>{inline(x['texte'])}</li>" for x in day.get("a_retenir", [])]
-    o += ["</ul></div>", "", "<h2>Sujets</h2>"] + filters(pub, cfg, seuil) + ['<div class="sum">']
+         "<h2>À retenir aujourd'hui</h2>", '<div class="card tldr">']
+    o += [f"  <p>{inline(x['texte'])}</p>" for x in day.get("a_retenir", [])]
+    o += ["</div>", "", "<h2>Sujets</h2>"] + filters(pub, cfg, seuil) + ['<div class="sum">']
     for s in pub:
         o += ["", card(s, cfg, seuil)]
     o += ["</div>", "", "<footer>"] + [f"  <p>{inline(p)}</p>" for p in day.get("pied", [])] + ["</footer>", "</div>", TOTOP, SCRIPT, "</body></html>", ""]
