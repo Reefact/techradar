@@ -261,6 +261,20 @@ class Donnees(unittest.TestCase):
         s["tags"] = [t for t in s.get("tags", []) if (t if isinstance(t, str) else t["tag"]) not in ("mise-a-jour", "rappel")]
         self.assertTrue(any("déjà publié" in e for e in self.valider(apres)))
 
+    def test_fenetres_de_fraicheur(self):
+        day = self.jour_recent()
+        s = next(x for x in day["sujets"] if x["statut"] == "publie" and x["categorie"] not in ("conferences", "distribution"))
+        s.pop("categorie_secondaire", None); s["tags"] = []; s.pop("depot", None)
+        s["pourquoi"] = {"type": "compte", "texte": "x"} if s.get("pourquoi") else s.get("pourquoi")
+        il_y_a = lambda j: (__import__("datetime").date.fromisoformat(day["date"]) - __import__("datetime").timedelta(days=j)).isoformat()
+        perime = lambda: any(f"{s['id']} : publié mais daté" in e for e in self.valider(day))
+        s["categorie"], s["date"] = "craftsmanship", il_y_a(60)          # fond : 3 mois
+        self.assertFalse(perime())
+        s["date"] = il_y_a(100)
+        self.assertTrue(perime())
+        s["date"], s["tags"] = il_y_a(60), ["agents"]                    # agents : jamais de fond
+        self.assertTrue(perime())
+
     def test_projet_inconnu_refuse(self):
         day = jour()
         day["sujets"][0]["depot"] = "Reefact/inconnu"
