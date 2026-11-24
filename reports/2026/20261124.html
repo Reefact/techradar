@@ -255,12 +255,6 @@
     <li>La liste officielle des changements cassants n'est pas exhaustive : la lire avant toute montée de version. Installer le SDK 11 ne change pas la cible de l'application.</li>
   </ul>
 
-  <p class="why">Recoupement avec tes projets :</p>
-  <ul>
-    <li><strong>enum-member-name-binding :</strong> aucune nouveauté de sérialisation ou de binding d'enums dans System.Text.Json. Côté ASP.NET Core, les paramètres enum hors corps (query, route, header, form) gardent les noms de membres C# et se lient par <code>Enum.TryParse</code>, même si une politique de nommage JSON est configurée. Aucun recoupement détecté avec ton projet, mais c'est un comportement à connaître.</li>
-    <li><strong>slugger :</strong> aucune nouveauté de normalisation Unicode ; seules les surcharges <code>Rune</code> et les validateurs UTF sont nouveaux. La fin de la page des bibliothèques n'a pas été lue entièrement : « non trouvé » ne veut donc pas dire « inexistant ».</li>
-    <li><strong>first-class-errors :</strong> voir le sujet radar sur les unions.</li>
-  </ul>
   <a href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-11/" target="_blank" rel="noopener">Source : annonce .NET 11, .NET Blog, 10 nov. 2026</a> · <a href="https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview" target="_blank" rel="noopener">Nouveautés .NET 11, Microsoft Learn</a> · <a href="https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15" target="_blank" rel="noopener">C# 15</a> · <a href="https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11" target="_blank" rel="noopener">ASP.NET Core 11</a> · <a href="https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew" target="_blank" rel="noopener">EF Core 11</a> · <a href="https://learn.microsoft.com/en-us/dotnet/core/compatibility/11" target="_blank" rel="noopener">Changements cassants</a> · <a href="https://www.infoq.com/news/2026/11/dotnet-11-release" target="_blank" rel="noopener">InfoQ, 17 nov. 2026</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
