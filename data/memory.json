@@ -8,7 +8,7 @@
   {
    "date": "2026-11-24",
    "path": "reports/2026/20261124.html",
-   "publies": 9
+   "publies": 19
   }
  ],
  "projets": {
@@ -490,15 +490,15 @@
    "date": "2026-11-24",
    "id": "d4",
    "categorie": "distribution",
-   "statut": "candidat",
-   "titre": "Cyberattaque des frigos : l'effet sur la fréquentation"
+   "statut": "publie",
+   "titre": "Frigos piratés : les deux tiers des visites perdues déjà regagnées"
   },
   {
    "date": "2026-11-24",
    "id": "s11",
    "categorie": "securite",
-   "statut": "candidat",
-   "titre": "Rançongiciels : les frameworks offensifs pilotés par agents arrivent"
+   "statut": "publie",
+   "titre": "Rançongiciels : les agents d'IA mènent désormais l'attaque"
   },
   {
    "date": "2026-11-24",
@@ -507,6 +507,62 @@
    "statut": "ecarte",
    "titre": "VMware vCenter : nouvelle faille critique d'authentification",
    "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "p1",
+   "categorie": "architecture",
+   "statut": "publie",
+   "titre": "Agoda : monolithe modulaire et revues de code 64 % plus rapides"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "cr1",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "Deterministic Simulation Testing : rejouer les bugs distribués"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "cr2",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "Tests as data : les tests client comme contrat face à l'IA"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "p2",
+   "categorie": "architecture",
+   "statut": "publie",
+   "titre": "Fowler : faire générer par un LLM le glossaire du domaine"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "cr3",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "Code sain : 22 à 35 % de tokens en moins pour la revue par agents"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "p3",
+   "categorie": "architecture",
+   "statut": "publie",
+   "titre": "Compute Engine : des versions d'API immuables, datées par trimestre"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "n1",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "Meziantou : déboguer des dumps .NET avec un agent IA, en série"
+  },
+  {
+   "date": "2026-11-24",
+   "id": "i1",
+   "categorie": "ia",
+   "statut": "publie",
+   "titre": "Bacs à sable externes pour agents de code (Simon Willison)"
   }
  ],
  "urls": {
@@ -530,6 +586,11 @@
    "id": "n6",
    "statut": "candidat"
   },
+  "https://blog.primeradiant.com/external-sandboxes-for-coding-agents/": {
+   "date": "2026-11-24",
+   "id": "i1",
+   "statut": "publie"
+  },
   "https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-009.pdf": {
    "date": "2026-11-23",
    "id": "d1",
@@ -538,6 +599,16 @@
   "https://claude.com/resources/articles/introducing-claude-ship": {
    "date": "2026-11-23",
    "id": "i1",
+   "statut": "publie"
+  },
+  "https://cloud.google.com/blog/topics/developers-practitioners/introducing-compute-engine-api-multi-versioning-predictable-evolution-without-breaking-production/": {
+   "date": "2026-11-24",
+   "id": "p3",
+   "statut": "publie"
+  },
+  "https://codescene.com/blog/does-code-quality-affect-ai-token-costs": {
+   "date": "2026-11-24",
+   "id": "cr3",
    "statut": "publie"
   },
   "https://devblogs.microsoft.com/dotnet/ai-cross-platform-decision-matrix/": {
@@ -690,6 +761,31 @@
    "id": "d1",
    "statut": "publie"
   },
+  "https://martinfowler.com/articles/deterministic-simulation-testing.html": {
+   "date": "2026-11-24",
+   "id": "cr1",
+   "statut": "publie"
+  },
+  "https://martinfowler.com/articles/tests-as-data.html": {
+   "date": "2026-11-24",
+   "id": "cr2",
+   "statut": "publie"
+  },
+  "https://martinfowler.com/bliki/GeneratedGlossary.html": {
+   "date": "2026-11-24",
+   "id": "p2",
+   "statut": "publie"
+  },
+  "https://martinfowler.com/fragments/2026-11-20.html": {
+   "date": "2026-11-24",
+   "id": "cr3",
+   "statut": "publie"
+  },
+  "https://medium.com/agoda-engineering/how-we-cut-the-coupling-tax-in-a-post-booking-api-2156a3175538": {
+   "date": "2026-11-24",
+   "id": "p1",
+   "statut": "publie"
+  },
   "https://milanjovanovic.tech/blog/csharp-union-types-vs-result-pattern": {
    "date": "2026-11-23",
    "id": "n9",
@@ -723,7 +819,7 @@
   "https://pointsdevente.fr/pdv-business/supermarches-pirates-les-deux-tiers-des-visites-perdues-deja-reconquis/": {
    "date": "2026-11-24",
    "id": "d4",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://reg.devoxx.fr": {
    "date": "2026-11-23",
@@ -758,6 +854,11 @@
   "https://shirudo.dev": {
    "date": "2026-11-24",
    "id": "i6",
+   "statut": "publie"
+  },
+  "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/": {
+   "date": "2026-11-24",
+   "id": "i1",
    "statut": "publie"
   },
   "https://spring.io/security": {
@@ -846,9 +947,19 @@
    "id": "d1",
    "statut": "publie"
   },
+  "https://www.infoq.com/news/2026/11/agoda-modular-monolith-framework/": {
+   "date": "2026-11-24",
+   "id": "p1",
+   "statut": "publie"
+  },
   "https://www.infoq.com/news/2026/11/asp-net-11-release/": {
    "date": "2026-11-23",
    "id": "p1",
+   "statut": "publie"
+  },
+  "https://www.infoq.com/news/2026/11/compute-engine-api-versioning/": {
+   "date": "2026-11-24",
+   "id": "p3",
    "statut": "publie"
   },
   "https://www.infoq.com/news/2026/11/dotnet-11-release": {
@@ -874,7 +985,7 @@
   "https://www.lemagit.fr/actualites/366655137/Ransomware-les-frameworks-offensifs-agentiques-sont-entres-dans-la-danse": {
    "date": "2026-11-24",
    "id": "s11",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://www.lemagit.fr/actualites/366655435/Cyberattaques-en-Norvege-une-vulnerabilite-affectait-Microsoft-API-Manager": {
    "date": "2026-11-24",
@@ -889,6 +1000,21 @@
   "https://www.lsa-conso.fr/distributeurs-alimentaires/casino/monoprix/cyberattaque-en-grande-distribution-pres-de-500-magasins-concernes-jusqua-200-000-de-pertes-par-hypermarche.XIAWZQOVLBGVNPXHNFFMIH7OMM.html": {
    "date": "2026-11-23",
    "id": "d1",
+   "statut": "publie"
+  },
+  "https://www.meziantou.net/finding-a-deadlock-in-a-dotnet-dump-with-an-ai-agent.htm": {
+   "date": "2026-11-24",
+   "id": "n1",
+   "statut": "publie"
+  },
+  "https://www.meziantou.net/finding-a-memory-leak-in-a-dotnet-dump-with-an-ai-agent.htm": {
+   "date": "2026-11-24",
+   "id": "n1",
+   "statut": "publie"
+  },
+  "https://www.meziantou.net/following-a-slow-request-across-services-with-aspire-and-an-ai-agent.htm": {
+   "date": "2026-11-24",
+   "id": "n1",
    "statut": "publie"
   },
   "https://www.nuget.org/packages/AutoFixture": {
