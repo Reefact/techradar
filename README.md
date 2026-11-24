@@ -8,6 +8,7 @@ Veille quotidienne : un brief HTML publié chaque matin (alertes de sécurité, 
 - `feed.xml` : flux Atom, **généré**. Il sert aussi à l'index pour découvrir les rapports.
 - `tools/build_feed.py` : régénère `feed.xml` (fait automatiquement par `.github/workflows/feed.yml` à chaque push dans `reports/`).
 - `tools/report-template.html` : gabarit à suivre pour un rapport.
+- `drafts/` : versions régénérées d'un rapport déjà publié (jamais listées) ; `.github/workflows/promote.yml` en promeut une vers `reports/`.
 
 ## Publier un rapport
 1. Ajouter `reports/AAAA/AAAAMMJJ.html`, avec `<link rel="stylesheet" href="../../assets/report.css">`.
