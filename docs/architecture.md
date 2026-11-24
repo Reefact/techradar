@@ -22,7 +22,7 @@ Tout est **statique** : pas de base de données, pas de code serveur. Le « back
 | `reports/AAAA/AAAAMMJJ.html` | Un rapport par jour (publié, listé dans l'index et le flux) |
 | `drafts/AAAA/AAAAMMJJ-HHMM.html` | Versions régénérées d'un jour déjà publié (jamais listées) |
 | `assets/report.css` | Feuille de style partagée par tous les rapports |
-| `assets/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` | Icône radar du site (index et rapports) |
+| `assets/favicon-32.png`, `icon-192.png`, `apple-touch-icon.png` | Icône du site = logo de Reefact (repris de reefact.net, index et rapports) |
 | `feed.xml` | Flux Atom **généré** ; sert aussi de liste de découverte pour l'index |
 | `tools/build_feed.py` | Génère `feed.xml` à partir des rapports |
 | `tools/build_site.sh` | Assemble `dist/` (ce qui est réellement déployé) |
