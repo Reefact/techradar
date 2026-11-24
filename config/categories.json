@@ -6,7 +6,8 @@
     "prefixe": "s",
     "ordre": 1,
     "min": 0,
-    "max": null,
+    "max": 2,
+    "poids": 3,
     "description": "Sécurité qui touche un développeur .NET et son outillage : failles (Java, .NET, NuGet, npm), attaques, chaîne d'approvisionnement des paquets, correctifs, pratiques et outils. Pour une faille : ce qui est touché, versions, correctif, gravité, « te concerne ? »."
   },
   "dotnet": {
@@ -15,8 +16,9 @@
     "classe": "b-dotnet",
     "prefixe": "n",
     "ordre": 3,
-    "min": 2,
-    "max": 5,
+    "min": 0,
+    "max": 4,
+    "poids": 3,
     "description": "Runtime, C#, ASP.NET Core, EF Core, bibliothèques, outillage Visual Studio et Rider."
   },
   "ia": {
@@ -25,8 +27,9 @@
     "classe": "b-ia",
     "prefixe": "i",
     "ordre": 4,
-    "min": 2,
-    "max": 5,
+    "min": 0,
+    "max": 4,
+    "poids": 2,
     "description": "Modèles et agents de code, MCP, usages concrets pour développeurs, annonces majeures. Jamais vide."
   },
   "craftsmanship": {
@@ -37,6 +40,7 @@
     "ordre": 5,
     "min": 0,
     "max": 4,
+    "poids": 3,
     "description": "Pratiques de développement : tests (TDD, tests de mutation, assertions, données de test), refactoring, revue de code, clean code, gestion des erreurs."
   },
   "architecture": {
@@ -45,8 +49,9 @@
     "classe": "b-api",
     "prefixe": "p",
     "ordre": 6,
-    "min": 2,
-    "max": 4,
+    "min": 0,
+    "max": 3,
+    "poids": 2,
     "description": "Architecture logicielle : événementiel, monolithe modulaire, microservices, patterns, conception d'API (tag API), retours de terrain publiés."
   },
   "outils": {
@@ -55,8 +60,9 @@
     "classe": "b-tool",
     "prefixe": "t",
     "ordre": 7,
-    "min": 3,
-    "max": 5,
+    "min": 0,
+    "max": 3,
+    "poids": 1,
     "description": "Découverte d'outils nouveaux ou qui montent : 2 à 3 utiles à un développeur .NET, plus une pépite originale. Jamais vide."
   },
   "distribution": {
@@ -66,7 +72,8 @@
     "prefixe": "d",
     "ordre": 8,
     "min": 0,
-    "max": 3,
+    "max": 2,
+    "poids": 1,
     "description": "Enseignes de la grande distribution : cyberattaques, SI, incidents, projets tech, IA, retail media."
   },
   "conferences": {
@@ -76,7 +83,8 @@
     "prefixe": "c",
     "ordre": 9,
     "min": 0,
-    "max": null,
+    "max": 3,
+    "poids": 2,
     "description": "Conférences et appels à propositions (CFP) pertinents ; affichées seulement en cas de déclencheur (voir config/sujets/conferences.json)."
   }
 }

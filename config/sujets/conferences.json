@@ -22,7 +22,7 @@
   "exclure": [],
   "declencheurs": [
     "ouverture du CFP ou de la billetterie",
-    "rappel avant la date limite du CFP (seuils ci-dessous)",
+    "rappel avant la date limite du CFP ou avant l'ouverture des inscriptions (voir rappels_regle)",
     "annonce des dates, du lieu, du programme ou des orateurs",
     "changement important (report, annulation, date limite prolongée)"
   ],
@@ -30,8 +30,27 @@
     30,
     14,
     7,
-    3
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
   ],
+  "rappels_inscription": [
+    30,
+    14,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "rappels_regle": "Rappels de date limite du CFP et d'ouverture des inscriptions (si la date est connue) : à J-30, J-14, puis tous les jours de J-7 à J-1. Tag rappel avec le seuil ({\"tag\": \"rappel\", \"seuil\": \"J-7\"}). Pas de rappel pour une conférence listée dans sans_rappel.",
+  "sans_rappel": [],
+  "sans_rappel_format": "Liste de {\"nom\": \"<série, ex. Devoxx Belgium>\", \"cfp\": true, \"inscription\": true} : true = plus de rappel de ce type pour cette série (la conférence reste suivie et affichée sur ses autres déclencheurs).",
   "regles": [
     "Une entrée par série (« Devoxx France »), pas par édition.",
     "Tout événement dont le CFP ou l'inscription est ouvert reste dans le tableau, trié par date limite la plus proche.",

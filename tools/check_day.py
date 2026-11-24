@@ -20,10 +20,11 @@ import re
 import subprocess
 import sys
 import tempfile
+from datetime import date as Date, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, pourquoi_types, sections_resume, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
+from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, day_files, pourquoi_types, sections_resume, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
 import check_front  # noqa: E402
 import check_report  # noqa: E402
 import render  # noqa: E402
@@ -34,9 +35,18 @@ def longueur_resume(ar):
     return sum(len(plain(p)) for x in ar for p in x.get("paragraphes", []) if isinstance(p, str))
 
 
+def rapport_precedent(day):
+    """Date du rapport précédent (fichier du jour antérieur le plus récent), sinon la veille : c'est le seuil du repère ☄️."""
+    avant = [p.stem for p in day_files() if p.stem < day["date"].replace("-", "")]
+    if avant:
+        a = max(avant)
+        return f"{a[:4]}-{a[4:6]}-{a[6:]}"
+    return (Date.fromisoformat(day["date"]) - timedelta(days=1)).isoformat()
+
+
 CHAMPS_SUJET = {"id", "categorie", "statut", "motif", "tags", "titre", "titre_sommaire", "resume", "pourquoi", "sources", "meta", "date",
                 "details", "depot", "conference", "verification", "verification_non_requise", "historique", "note",
-                "categorie_secondaire"}
+                "categorie_secondaire", "hors_fenetre"}
 
 
 def check_verification(s, where, day, cfg):
@@ -145,13 +155,28 @@ def check(path, contre=None, partiel=False):
             if s["categorie"] == "conferences" and not s.get("conference"): E(f"{where} : conférence publiée sans bloc « conference » (dates, lieu, cfp)")
         errs.extend(check_verification(s, where, day, cfg))
 
-    # ----- volumes
+    # ----- volumes : 15 publiés au plus ; les prioritaires (alerte récente, rappel) passent devant, hors plafonds de catégorie
     pub = published(day)
+    rap = per.get("rapport", {})
+    seuil = rapport_precedent(day)
+    tagset = lambda s: {t if isinstance(t, str) else t.get("tag") for t in s.get("tags", [])}
+    prio = [s for s in pub if ("alerte" in tagset(s) and (s.get("date") or "") >= seuil) or "rappel" in tagset(s)]
+    autres = [s for s in pub if s not in prio]
+    cap = rap.get("max_publies")
+    if cap and not legacy and len(autres) > max(0, cap - len(prio)):
+        E(f"{len(pub)} sujets publiés ({len(prio)} prioritaire(s) : alerte récente ou rappel) : {cap} au plus, dépassement permis seulement par les prioritaires")
     for k, c in cats.items():
         n = sum(1 for s in pub if s["categorie"] == k)
-        hors_projets = sum(1 for s in pub if s["categorie"] == k and not s.get("depot"))
+        hors_prio = sum(1 for s in autres if s["categorie"] == k)
         if c.get("min") and n < c["min"]: E(f"catégorie « {c['label']} » : {n} sujet(s) publié(s), minimum {c['min']}")
-        if c.get("max") is not None and hors_projets > c["max"]: E(f"catégorie « {c['label']} » : {hors_projets} sujet(s) publié(s) hors projets, plafond {c['max']}")
+        if c.get("max") is not None and not legacy and hors_prio > c["max"]: E(f"catégorie « {c['label']} » : {hors_prio} sujet(s) publié(s) hors prioritaires, plafond {c['max']}")
+    # ----- fraîcheur : un sujet publié est dans la fenêtre (rapport précédent ; 7 jours pour la distribution), sauf « hors_fenetre »
+    if not legacy:
+        for s in pub:
+            if s["categorie"] == "conferences" or s.get("hors_fenetre") or not s.get("date"):
+                continue
+            limite = (Date.fromisoformat(day["date"]) - timedelta(days=7)).isoformat() if s["categorie"] == "distribution" else min(seuil, (Date.fromisoformat(day["date"]) - timedelta(days=2)).isoformat())
+            if s["date"] < limite: E(f"{s['id']} : publié mais daté du {s['date']}, hors fenêtre (depuis le {limite}) : candidat, ou raison dans « hors_fenetre »")
     rap = per.get("rapport", {})
     ar = day.get("a_retenir", [])
     rule = rap.get("a_retenir", {})

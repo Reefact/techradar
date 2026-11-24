@@ -210,6 +210,30 @@ class Donnees(unittest.TestCase):
         s["pourquoi"] = {"type": "projet", "texte": "x"}
         self.assertTrue(any("type projet sans « depot »" in e for e in self.valider(day)))
 
+    def jour_recent(self):
+        """Le jour de test, traité comme un jour ordinaire (pas un jour converti de l'ancien format)."""
+        day = jour()
+        day["config"] = {"commit": "test"}
+        return day
+
+    def test_plus_de_15_publies_refuse(self):
+        day = self.jour_recent()
+        for s in day["sujets"]: s["tags"] = [t for t in s.get("tags", []) if (t if isinstance(t, str) else t["tag"]) not in ("alerte", "rappel")]
+        self.assertTrue(any("15 au plus" in e for e in self.valider(day)))
+
+    def test_prioritaires_peuvent_depasser_15(self):
+        day = self.jour_recent()
+        pub = [s for s in day["sujets"] if s["statut"] == "publie"]
+        for s in pub[:16]: s["tags"], s["date"] = ["alerte"], day["date"]
+        for s in pub[16:]: s["statut"] = "candidat"
+        self.assertFalse(any("15 au plus" in e for e in self.valider(day)))
+
+    def test_sujet_ancien_publie_refuse(self):
+        day = self.jour_recent()
+        s = next(x for x in day["sujets"] if x["statut"] == "publie" and x["categorie"] not in ("conferences", "distribution") and x.get("date"))
+        s["date"] = "2026-01-01"
+        self.assertTrue(any(f"{s['id']} : publié mais daté" in e for e in self.valider(day)))
+
     def test_projet_inconnu_refuse(self):
         day = jour()
         day["sujets"][0]["depot"] = "Reefact/inconnu"

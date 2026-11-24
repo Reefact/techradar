@@ -1,7 +1,8 @@
 {
-  "consigne": "Tes projets (dépôts Reefact) et leurs thèmes. Chercher les signaux qui concernent un projet : nouvelle version ou annonce d'un concurrent listé dans « surveiller », évolution de l'écosystème qui le touche, article marquant sur son thème. Un tel sujet va dans la catégorie technique qui convient (.NET, Outils, Architecture…) et porte le champ « depot » : il s'affiche avec l'icône 📦 du projet. Ces sujets ne comptent pas dans le plafond de leur catégorie.",
+  "consigne": "Tes projets (dépôts Reefact) et leurs thèmes. Chercher les signaux qui concernent un projet : nouvelle version ou annonce d'un concurrent listé dans « surveiller », évolution de l'écosystème qui le touche, article marquant sur son thème. Un tel sujet va dans la catégorie technique qui convient (.NET, Outils, Architecture…) et porte le champ « depot » : il s'affiche avec l'icône 📦 du projet.",
   "regles": [
     "Un sujet ne touche qu'un projet (un seul « depot ») ; si un fait concerne plusieurs projets : un sujet par projet, chacun avec son angle.",
+    "Un sujet de projet compte comme les autres (plafond de sa catégorie, 15 sujets publiés au plus). Il n'est publié que s'il est récent (dans la fenêtre) et qu'il a un vrai impact sur le projet, dit en une phrase dans le « Recoupement » : dépendance qui casse, version majeure d'un concurrent, idée directement reprenable. Sinon il reste candidat. La plupart des jours, il n'y en a pas.",
     "Un sujet n'est rattaché à un projet que s'il y a un vrai signal pour lui (nouvelle version, annonce, concurrent, évolution de l'écosystème ou article qui le concerne vraiment).",
     "Le « pourquoi » dit en quoi ça recoupe le projet (« Recoupement avec <projet> : … »)."
   ],
