@@ -49,6 +49,11 @@
    "type": "manuelle",
    "debut": "2026-11-25T10:30+01:00",
    "note": "découpage : les sujets antérieurs au 24 passent dans le rapport reconstitué du lundi 23 ; reprise de candidats datés du 24"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-25T12:30+01:00",
+   "note": "ajout de 10 sujets (8 trouvés par une recherche complémentaire, 2 candidats du dossier), relus sur leur page ; « À retenir » réécrit"
   }
  ],
  "journal": {
@@ -64,8 +69,8 @@
   {
    "section": "urgent",
    "paragraphes": [
-    "Deux alertes ce matin. Google Project Zero montre qu'un [bit modifié suffit à contourner le contrôle d'intégrité](#s7) de .NET Framework 4 : rien à faire si les correctifs d'octobre sont posés, mais à vérifier sur les postes protégés par WDAC ou AppLocker. On apprend aussi qu'un acteur inconnu fouillait [Azure API Management Classic](#s9) à la recherche de secrets ; Microsoft a fermé la brèche le 19 et publié un guide de rotation des identifiants.",
-    "Côté CFP, celui des ateliers de [DDD Europe 2027](#c3) ferme dans six jours, et celui de [DevSum](#c4) dans deux semaines, le 8 décembre."
+    "Deux alertes ce matin. Google Project Zero montre qu'un [bit modifié suffit à contourner le contrôle d'intégrité](#s7) de .NET Framework 4 : rien à faire si les correctifs d'octobre sont posés, mais à vérifier sur les postes protégés par WDAC ou AppLocker. Et un acteur inconnu fouillait [Azure API Management Classic](#s9) à la recherche de secrets ; Microsoft a fermé la brèche le 19.",
+    "Côté CFP, celui des ateliers de [DDD Europe 2027](#c3) ferme dans six jours, et celui de [DevSum](#c4) dans deux semaines."
    ],
    "sujets": [
     "s7",
@@ -77,30 +82,72 @@
   {
    "section": "securite",
    "paragraphes": [
-    "Un rappel utile pour ta CI : [épingler une action GitHub sur un SHA](#s8) garantit que le code ne bouge plus, pas qui l'a écrit."
+    "Pour ta CI, [épingler une action GitHub sur un SHA](#s8) ne garantit pas qui a écrit le code. Et chez les attaquants, les [agents d'IA mènent désormais l'attaque](#s11), pour quelques dollars."
    ],
    "sujets": [
-    "s8"
+    "s8",
+    "s11"
+   ]
+  },
+  {
+   "section": "dotnet",
+   "paragraphes": [
+    "Gérald Barré termine aujourd'hui une série sur le [débogage de dumps .NET avec un agent](#n1), pièges compris."
+   ],
+   "sujets": [
+    "n1"
    ]
   },
   {
    "section": "ia",
    "paragraphes": [
-    "OpenAI et Cisco publient [Shirudo](#i6) : des agents écrivent des boucliers eBPF qui bloquent une faille le temps de la corriger."
+    "Simon Willison propose des [bacs à sable externes](#i1) pour laisser un agent exécuter du code sans lui ouvrir la machine, et OpenAI et Cisco publient [Shirudo](#i6), où des agents écrivent des boucliers eBPF."
    ],
    "sujets": [
+    "i1",
     "i6"
+   ]
+  },
+  {
+   "section": "craftsmanship",
+   "paragraphes": [
+    "Trois lectures de fond sur martinfowler.com ces dernières semaines : le [Deterministic Simulation Testing](#cr1), les [tests sous forme de données](#cr2) comme contrat avec l'IA, et une étude selon laquelle un [code sain réduit le coût des agents](#cr3)."
+   ],
+   "sujets": [
+    "cr1",
+    "cr2",
+    "cr3"
+   ]
+  },
+  {
+   "section": "architecture",
+   "paragraphes": [
+    "[Agoda](#p1) raconte comment il a découpé un monolithe sans le réécrire, Martin Fowler propose un [glossaire métier généré par LLM](#p2), et Google [date les versions de son API](#p3) Compute Engine."
+   ],
+   "sujets": [
+    "p1",
+    "p2",
+    "p3"
    ]
   },
   {
    "section": "outils",
    "paragraphes": [
-    "Trois outils repérés aujourd'hui : [chrome-devtools-mcp](#t1), qui laisse un agent piloter un vrai Chrome, [CLI-Anything](#t6), qui rend un logiciel pilotable en ligne de commande, et, pour sourire, [worker755](#t4), un jeu où tu es le sous-agent d'un manager IA."
+    "Trois outils repérés aujourd'hui : [chrome-devtools-mcp](#t1), [CLI-Anything](#t6) et, pour sourire, [worker755](#t4), un jeu où tu es le sous-agent d'un manager IA."
    ],
    "sujets": [
     "t1",
     "t6",
     "t4"
+   ]
+  },
+  {
+   "section": "distribution",
+   "paragraphes": [
+    "Un mois après les [frigos piratés](#d4), Intermarché et E.Leclerc ont déjà regagné les deux tiers des visites perdues."
+   ],
+   "sujets": [
+    "d4"
    ]
   }
  ],
@@ -778,42 +825,51 @@
   {
    "id": "d4",
    "categorie": "distribution",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [],
-   "titre": "Cyberattaque des frigos : l'effet sur la fréquentation",
-   "resume": "La cyberattaque d'octobre sur les régulateurs frigorifiques a touché environ 700 supermarchés. Intermarché et Leclerc ont perdu 0,3 point de part de visites en une semaine, dont deux tiers déjà regagnés.",
+   "titre": "Frigos piratés : les deux tiers des visites perdues déjà regagnées",
+   "resume": "Le cabinet Accurat a mesuré l'effet de la cyberattaque d'octobre contre les installations frigorifiques d'environ 700 supermarchés. La semaine de l'attaque, Intermarché et E.Leclerc perdent chacun 0,3 point de part de visites, mais en regagnent les deux tiers dès la semaine suivante.\n\nL'exposition ne se traduit pas mécaniquement en perte : Carrefour, pourtant touché, gagne 0,1 point. Les clients d'Intermarché sont surtout partis vers Aldi et Lidl. Accurat isole l'effet de l'attaque en comparant à la même période de 2025.",
    "sources": [
     {
-     "texte": "Source : Points de Vente",
+     "texte": "Source : Points de Vente (étude Accurat), 19 novembre 2026",
      "url": "https://pointsdevente.fr/pdv-business/supermarches-pirates-les-deux-tiers-des-visites-perdues-deja-reconquis/"
     }
    ],
-   "meta": "Points de Vente",
+   "meta": "Points de Vente · 19 nov. 2026 · te concerne : peut-être",
    "historique": [
     {
      "date": "2026-11-24",
      "statut": "candidat",
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
+    },
+    {
+     "date": "2026-11-25T12:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "publié et complété après lecture de la page"
     }
    ],
-   "date": "2026-11-24",
-   "note": "date d'observation (pas de date de publication)"
+   "date": "2026-11-19",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "une attaque contre des équipements de magasin a un coût commercial mesurable, au-delà des marchandises perdues."
+   }
   },
   {
    "id": "s11",
    "categorie": "securite",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [],
-   "titre": "Rançongiciels : les frameworks offensifs pilotés par agents arrivent",
-   "resume": "LeMagIT décrit l'arrivée de frameworks offensifs pilotés par des agents d'IA chez les opérateurs de rançongiciels.",
+   "titre": "Rançongiciels : les agents d'IA mènent désormais l'attaque",
+   "resume": "Des opérateurs de rançongiciels confient désormais une bonne partie de l'attaque à des agents d'IA. Un affidé de The Gentlemen donne à l'agent l'URL d'une instance GitLab et des identifiants volés : l'agent adapte seul ses scripts et peut viser des dizaines de cibles à la fois, pour 0,40 à 4 dollars de tokens par attaque.\n\nSelon SOCRadar, des affidés pilotent leurs intrusions avec OpenCode et 32 serveurs MCP, de la reconnaissance à l'extorsion, et vendent déjà cette panoplie « as-a-service ». Le groupe n0n aurait dépensé plus de 7 000 dollars en appels à des LLM. Le site Offensive.agency recense les consoles de ces frameworks exposées sur Internet.",
    "sources": [
     {
-     "texte": "Source : LeMagIT",
+     "texte": "Source : LeMagIT, novembre 2026",
      "url": "https://www.lemagit.fr/actualites/366655137/Ransomware-les-frameworks-offensifs-agentiques-sont-entres-dans-la-danse"
     }
    ],
-   "meta": "LeMagIT",
+   "meta": "LeMagIT · 24 nov. 2026 · te concerne : peut-être",
    "historique": [
     {
      "date": "2026-11-24",
@@ -826,10 +882,19 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "catégorie Alertes → Sécurité (a11 → s11)"
+    },
+    {
+     "date": "2026-11-25T12:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "publié et complété après lecture de la page"
     }
    ],
    "date": "2026-11-24",
-   "note": "date d'observation (pas de date de publication)"
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "les outils que tu adoptes pour coder avec des agents (OpenCode, serveurs MCP) servent aussi aux attaquants, et abaissent fortement le coût d'une attaque."
+   }
   },
   {
    "id": "s10",
@@ -869,11 +934,274 @@
     }
    ],
    "motif": "hors-perimetre"
+  },
+  {
+   "id": "p1",
+   "categorie": "architecture",
+   "statut": "publie",
+   "tags": [
+    "rex",
+    "api"
+   ],
+   "titre": "Agoda : monolithe modulaire et revues de code 64 % plus rapides",
+   "resume": "Agoda a découpé **BAPI**, son API post-réservation, sans la réécrire. Le framework interne **Platform** range le code par domaine métier : annulation, rebooking, paiement. Chaque composant cache sa logique et ses accès aux données derrière une interface. Le pattern **Data Mapper** garde les modèles techniques hors du métier, et des builders typés centralisent la création d'objets. Des tests **ArchUnit** vérifient les frontières en CI : toute nouvelle violation fait échouer le build.\n\nAu T2 2026, la revue médiane passe de 3,02 h à 1,08 h pour les MR du framework. Le premier retour arrive 34 % plus tôt. Les MR du framework consomment aussi 29 % de prompts IA en moins par 100 lignes. Agoda juge ces résultats IA « directionnels ».",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un exemple chiffré de modularisation progressive d'un monolithe, avec des règles d'architecture vérifiées en CI, transposable en .NET."
+   },
+   "sources": [
+    {
+     "texte": "Source : InfoQ, 23 novembre 2026",
+     "url": "https://www.infoq.com/news/2026/11/agoda-modular-monolith-framework/"
+    },
+    {
+     "texte": "Agoda Engineering (Medium), 20 octobre 2026",
+     "url": "https://medium.com/agoda-engineering/how-we-cut-the-coupling-tax-in-a-post-booking-api-2156a3175538"
+    }
+   ],
+   "meta": "InfoQ · 23 nov. 2026 · te concerne : peut-être",
+   "date": "2026-11-23",
+   "historique": [
+    {
+     "date": "2026-11-25T12:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
+    }
+   ]
+  },
+  {
+   "id": "cr1",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Deterministic Simulation Testing : rejouer les bugs distribués",
+   "resume": "Unmesh Joshi (Thoughtworks) présente le **Deterministic Simulation Testing** sur martinfowler.com. L'idée : remplacer horloge, réseau et stockage réels par des composants simulés. Une boucle d'exécution mono-thread pilote le tout, tick par tick. On peut alors injecter des pannes franches, comme des crashs ou des partitions, mais aussi de simples lenteurs disque ou réseau.\n\nLes fautes sont tirées par un générateur pseudo-aléatoire à graine : la même graine rejoue exactement le même scénario. Fil rouge : un store clé-valeur à quorum, avec le code de **Tickloom**, une bibliothèque Java inspirée de FoundationDB et TigerBeetle.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "une technique pour reproduire de façon fiable les bugs de concurrence et de pannes partielles, que les tests classiques ne savent pas provoquer."
+   },
+   "sources": [
+    {
+     "texte": "Source : martinfowler.com (Unmesh Joshi), 17 novembre 2026",
+     "url": "https://martinfowler.com/articles/deterministic-simulation-testing.html"
+    }
+   ],
+   "meta": "martinfowler.com · 17 nov. 2026 · te concerne : peut-être",
+   "date": "2026-11-17",
+   "historique": [
+    {
+     "date": "2026-11-25T12:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
+    }
+   ]
+  },
+  {
+   "id": "cr2",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Tests as data : les tests client comme contrat face à l'IA",
+   "resume": "Matteo Vaccari (Thoughtworks) part d'un constat : quand l'IA refactore code et tests, les développeurs n'ont plus confiance dans les tests. Sa thèse : quand l'IA écrit le code, le développeur devient son **client**. Les **tests client**, écrits dans la langue du métier et en boîte noire, deviennent alors le contrat principal. Les tests développeur restent utiles, mais secondaires.\n\nCes tests sortent du code : ils vivent dans des fichiers de données, souvent des tables, dans un petit DSL lisible. Un runner plus petit les interprète, ce qui les protège mieux des modifications de l'agent. Et l'IA sait justement écrire ces runners.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "une piste concrète pour garder le contrôle fonctionnel d'un code généré par des agents, applicable quel que soit le langage."
+   },
+   "sources": [
+    {
+     "texte": "Source : martinfowler.com (Matteo Vaccari), 11 novembre 2026",
+     "url": "https://martinfowler.com/articles/tests-as-data.html"
+    }
+   ],
+   "meta": "martinfowler.com · 11 nov. 2026 · te concerne : oui",
+   "date": "2026-11-11",
+   "historique": [
+    {
+     "date": "2026-11-25T12:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
+    }
+   ]
+  },
+  {
+   "id": "p2",
+   "categorie": "architecture",
+   "statut": "publie",
+   "tags": [
+    "ddd"
+   ],
+   "titre": "Fowler : faire générer par un LLM le glossaire du domaine",
+   "resume": "Dans son bliki, Martin Fowler propose de faire générer par un LLM un **glossaire du vocabulaire métier** de l'organisation. Sources possibles : documents, e-mails, discussions, voire transcriptions. Le LLM cherche les termes inconnus et les termes connus pris dans un sens inhabituel. Des experts du domaine relisent ensuite le brouillon et le corrigent.\n\nLe glossaire est versionné, puis revu et rafraîchi à intervalles réguliers. Le format doit consommer peu de tokens. Fowler suit les **contextes délimités** du DDD : il déconseille un glossaire unique et standard pour toute l'entreprise.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "un moyen simple d'expliciter le langage du domaine et d'améliorer le travail des agents sur un métier riche en jargon interne."
+   },
+   "sources": [
+    {
+     "texte": "Source : martinfowler.com (bliki), 12 novembre 2026",
+     "url": "https://martinfowler.com/bliki/GeneratedGlossary.html"
+    }
+   ],
+   "meta": "martinfowler.com · 12 nov. 2026 · te concerne : peut-être",
+   "date": "2026-11-12",
+   "historique": [
+    {
+     "date": "2026-11-25T12:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
+    }
+   ]
+  },
+  {
+   "id": "cr3",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "tags": [
+    "rex"
+   ],
+   "titre": "Code sain : 22 à 35 % de tokens en moins pour la revue par agents",
+   "resume": "Martin Fowler relaie une étude de **Markus Borg** (CodeScene), menée avec l'université de Lund. L'étude porte sur 465 PR écrites par des agents, issues de 246 dépôts open source, dont du C#. Elles passent dans un pipeline de cinq agents de revue et de correction, avec trois LLM. Chaque point de **Code Health** va de pair avec 3,5 à 6,1 % de tokens en moins.\n\nD'une PR typique malsaine (2,8) à une PR saine (9,7), l'écart atteint 22 à 35 %. Les smells **Complex Method** et **Complex Conditional** pèsent le plus. L'étude est observationnelle et vient de l'éditeur de la métrique.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "la qualité du code a désormais un coût direct et mesurable dans la facture des agents IA."
+   },
+   "sources": [
+    {
+     "texte": "Source : martinfowler.com (Fragments), 20 novembre 2026",
+     "url": "https://martinfowler.com/fragments/2026-11-20.html"
+    },
+    {
+     "texte": "CodeScene (Markus Borg), 26 octobre 2026",
+     "url": "https://codescene.com/blog/does-code-quality-affect-ai-token-costs"
+    }
+   ],
+   "meta": "martinfowler.com · 20 nov. 2026 · te concerne : oui",
+   "date": "2026-11-20",
+   "historique": [
+    {
+     "date": "2026-11-25T12:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
+    }
+   ]
+  },
+  {
+   "id": "p3",
+   "categorie": "architecture",
+   "statut": "publie",
+   "tags": [
+    "api"
+   ],
+   "titre": "Compute Engine : des versions d'API immuables, datées par trimestre",
+   "resume": "Google Cloud rend disponible le **multi-versioning** de l'API Compute Engine. Des versions stables, nommées par leur date et publiées chaque trimestre à partir de `2026-09-01`, s'ajoutent à `/v1`. Chacune fige un instantané : aucun changement cassant après publication. On la choisit par l'en-tête `X-Goog-Api-Version` ou le paramètre `$apiVersion`.\n\nLes versions `-preview` vivent un an. Sans version précisée, on reste sur `/v1`, sans date de fin. Les nouvelles versions activent par défaut le succès partiel d'AggregatedList : une zone en panne ne fait plus échouer la requête. Chaque SDK, C# compris, se lie à une version datée.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "un modèle de versioning d'API par dates, comparable à celui d'Azure Resource Manager, utile pour concevoir tes propres API."
+   },
+   "sources": [
+    {
+     "texte": "Source : InfoQ, 14 novembre 2026",
+     "url": "https://www.infoq.com/news/2026/11/compute-engine-api-versioning/"
+    },
+    {
+     "texte": "Google Cloud Blog, 5 novembre 2026",
+     "url": "https://cloud.google.com/blog/topics/developers-practitioners/introducing-compute-engine-api-multi-versioning-predictable-evolution-without-breaking-production/"
+    }
+   ],
+   "meta": "InfoQ · 14 nov. 2026 · te concerne : peut-être",
+   "date": "2026-11-14",
+   "historique": [
+    {
+     "date": "2026-11-25T12:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
+    }
+   ]
+  },
+  {
+   "id": "n1",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [
+    "agents",
+    "rex"
+   ],
+   "titre": "Meziantou : déboguer des dumps .NET avec un agent IA, en série",
+   "resume": "Gérald Barré publie depuis le 16 novembre une série de neuf billets sur le **débogage .NET assisté par agent**. Au programme : crash dump, deadlock, deadlock async lié au `SynchronizationContext`, famine du thread pool, fuites mémoire, puis WinDbg et Aspire. Pour le deadlock, l'agent utilise `dotnet-dump analyze` avec `syncblk`. Mais il tend à conclure au deadlock sans vérifier les piles.\n\nUne fuite se prouve en comparant deux instantanés `dotnet-gcdump` : un seul dump ne suffit pas. Le billet du 24 suit une requête lente à travers plusieurs services avec **Aspire**. L'agent trouve la bonne ligne, mais son explication reste un peu fausse.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "une méthode concrète et reproductible pour diagnostiquer des problèmes .NET en production avec un agent, pièges compris."
+   },
+   "sources": [
+    {
+     "texte": "Source : Meziantou's blog, 24 novembre 2026",
+     "url": "https://www.meziantou.net/following-a-slow-request-across-services-with-aspire-and-an-ai-agent.htm"
+    },
+    {
+     "texte": "Meziantou's blog, 17 novembre 2026",
+     "url": "https://www.meziantou.net/finding-a-deadlock-in-a-dotnet-dump-with-an-ai-agent.htm"
+    },
+    {
+     "texte": "Meziantou's blog, 20 novembre 2026",
+     "url": "https://www.meziantou.net/finding-a-memory-leak-in-a-dotnet-dump-with-an-ai-agent.htm"
+    }
+   ],
+   "meta": "Meziantou's blog · 24 nov. 2026 · te concerne : oui",
+   "date": "2026-11-24",
+   "historique": [
+    {
+     "date": "2026-11-25T12:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
+    }
+   ],
+   "categorie_secondaire": "ia"
+  },
+  {
+   "id": "i1",
+   "categorie": "ia",
+   "statut": "publie",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Bacs à sable externes pour agents de code (Simon Willison)",
+   "resume": "Simon Willison et le labo **Prime Radiant** présentent le motif **external sandbox**. L'agent tourne normalement sur la machine. Les commandes qu'il exécute partent vers un bac à sable Linux séparé, qui ne voit que les dossiers montés. Trois prototypes exposent la même API locale : **v86** (Alpine en WebAssembly sous Node.js), **Apple Containers** et **Quicksand** de Microsoft (QEMU).\n\nPar défaut, pas de réseau. Un proxy HTTP/HTTPS à liste blanche est proposé en option, avec remplacement d'identifiants : l'agent ne voit jamais la clé. Des démos couvrent Claude Code, Codex et Pi. Les auteurs parlent de prototypes expérimentaux, non audités.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "une façon de laisser un agent exécuter du code, y compris avec un modèle local moins fiable, sans lui ouvrir toute ta machine."
+   },
+   "sources": [
+    {
+     "texte": "Source : Simon Willison's Weblog, 17 novembre 2026",
+     "url": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/"
+    },
+    {
+     "texte": "Prime Radiant, 16 novembre 2026",
+     "url": "https://blog.primeradiant.com/external-sandboxes-for-coding-agents/"
+    }
+   ],
+   "meta": "Simon Willison · 17 nov. 2026 · te concerne : oui",
+   "date": "2026-11-17",
+   "historique": [
+    {
+     "date": "2026-11-25T12:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
+    }
+   ]
   }
  ],
  "pied": [
   "**Sources :** Microsoft .NET Blog et Microsoft Learn, InfoQ, The Hacker News, Threat Defence, SecurityOnline, SecurityWeek, OX Security, IT-Connect, Le Monde Informatique, Actu17, ZATAZ, L'Impertinent, FrenchBreaches, Boursorama, Claude, GitHub Changelog, The New Stack, LangChain, Replit, event-driven.io, milanjovanovic.tech, Stryker Mutator, NuGet, GitHub, Hacker News, devoxx.fr, Sessionize, dddeurope.com, mixitconf.org, devoxx.be.",
-  "**Hypothèses :** rapport reconstitué le 25 novembre : seuls les sujets datés du 24 restent ici, les plus anciens sont dans le rapport du lundi 23. VMware vCenter est écarté (infrastructure, hors périmètre).",
+  "**Hypothèses :** rapport reconstitué le 25 novembre : sujets datés du 24, puis complétés par une recherche de sujets de fond (craftsmanship, architecture, .NET, IA) et deux candidats du dossier, tous relus sur leur page d'origine. Les sujets plus anciens sont dans le rapport du lundi 23. VMware vCenter est écarté (infrastructure, hors périmètre).",
   "Reconstitué le 25 novembre 2026 (Paris)."
  ]
 }

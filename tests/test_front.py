@@ -19,8 +19,9 @@ from veille_lib import config, day_files, load_json  # noqa: E402
 
 
 def jour():
-    """Un jour de test : celui qui a le plus de sujets publiés (catégories, tags et projets variés)."""
-    return max((load_json(p) for p in day_files()), key=lambda d: sum(s["statut"] == "publie" for s in d["sujets"]))
+    """Un jour de test : de préférence avec un sujet de projet publié, et le plus de sujets publiés (catégories, tags variés)."""
+    return max((load_json(p) for p in day_files()),
+               key=lambda d: (any(s.get("depot") and s["statut"] == "publie" for s in d["sujets"]), sum(s["statut"] == "publie" for s in d["sujets"])))
 
 
 def avec_publies(day, n_autres, n_prio=0):
