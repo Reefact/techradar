@@ -84,7 +84,7 @@
    "reminders_seen": [
     {
      "date": "2026-11-24",
-     "label": "⏰ J-6 : CFP ateliers",
+     "label": "J-6",
      "n": 6
     }
    ],
@@ -357,7 +357,7 @@
    "id": "c3",
    "categorie": "conferences",
    "statut": "publie",
-   "titre": "DDD Europe 2027"
+   "titre": "DDD Europe 2027 : le CFP des ateliers ferme le 30 nov. (J-6)"
   },
   {
    "date": "2026-11-24",
