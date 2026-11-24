@@ -215,12 +215,12 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     return "\n".join(out)
 
 
-SORT_KEYS = ("statut", "cat", "date", "projet")     # ordre de tri par défaut (sans « statut » dans le rapport publié)
+SORT_KEYS = ("statut", "date", "cat", "projet")     # ordre de tri par défaut (sans « statut » dans le rapport publié)
 SORT_LABEL = {"statut": "Statut", "cat": "Catégorie", "date": "Date", "projet": "Projet"}
 
 
 def ordered(sujets, cfg, dossier=False):
-    """Tri par défaut : (statut), catégorie, date de survenance (la plus récente d'abord, sans date à la fin), projet.
+    """Tri par défaut : (statut), date de survenance (la plus récente d'abord, sans date à la fin), catégorie, projet.
     Le script des pages permet de mettre une autre clé en premier."""
     order = {k: i for i, k in enumerate(ordered_categories(cfg["categories"]))}
     def key(s, k):
