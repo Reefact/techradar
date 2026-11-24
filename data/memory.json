@@ -18,7 +18,7 @@
    {
     "date": "2026-11-24",
     "id": "r3",
-    "title": "kill-mutants : Stryker.NET, lecteur MTP et paquet 5.1.0"
+    "title": "kill-mutants : Stryker.NET, exécuteur de tests MTP et paquet 5.1.0"
    }
   ],
   "Reefact/unified-assertions": [
@@ -299,7 +299,7 @@
    "date": "2026-11-24",
    "id": "r3",
    "category": "radar",
-   "title": "kill-mutants : Stryker.NET, lecteur MTP et paquet 5.1.0",
+   "title": "kill-mutants : Stryker.NET, exécuteur de tests MTP et paquet 5.1.0",
    "sources": [
     {
      "text": "Source : Stryker Mutator",
@@ -598,7 +598,7 @@
    "date": "2026-11-24",
    "id": null,
    "category": "brief",
-   "title": "Replit Missions : un essaim d'agents travaille jusqu'à atteindre un objectif, avec budget plafonné et juge indépendant ;",
+   "title": "Replit Missions : un essaim d'agents travaille jusqu'à ce qu'un objectif soit atteint, avec budget plafonné et juge indé",
    "sources": [
     {
      "text": "Replit, 17 nov.",
@@ -610,7 +610,7 @@
    "date": "2026-11-24",
    "id": null,
    "category": "brief",
-   "title": "Fuite de 46 600 lignes d'hôtesses de caisse (Carrefour, Intermarché, Leclerc, U, Darty, Mr.Bricolage), origine inconnue,",
+   "title": "Fuite de 46 600 enregistrements d'hôtesses de caisse (Carrefour, Intermarché, Leclerc, U, Darty, Mr.Bricolage), origine ",
    "sources": [
     {
      "text": "FrenchBreaches, 11 nov.",
@@ -622,7 +622,7 @@
    "date": "2026-11-24",
    "id": null,
    "category": "brief",
-   "title": "IA et choix d'UI multiplateforme avec MAUI : des agents reconstruisent une app en UI native en moins de 4 h de travail h",
+   "title": "IA et choix d'interface multiplateforme avec MAUI : des agents reconstruisent une app en interface native en moins de 4 ",
    "sources": [
     {
      "text": ".NET Blog, 20 nov.",
@@ -658,7 +658,7 @@
    "date": "2026-11-24",
    "id": null,
    "category": "brief",
-   "title": "AutoMapper 17.0 et MediatR 15.0 publiés par Jimmy Bogard (titre lu seulement). 12 nov.",
+   "title": "AutoMapper 17.0 et MediatR 15.0 publiés par Jimmy Bogard (seul le titre a été lu). 12 nov.",
    "sources": [
     {
      "text": "12 nov.",
@@ -715,7 +715,7 @@
    "first_seen": "2026-11-24",
    "report": "reports/2026/20261124.html",
    "kind": "brief",
-   "ref": "IA et choix d'UI multiplateforme avec MAUI : des agents reconstruisent une app e"
+   "ref": "IA et choix d'interface multiplateforme avec MAUI : des agents reconstruisent un"
   },
   "https://devblogs.microsoft.com/dotnet/announcing-dotnet-11/": {
    "first_seen": "2026-11-24",
@@ -769,7 +769,7 @@
    "first_seen": "2026-11-24",
    "report": "reports/2026/20261124.html",
    "kind": "brief",
-   "ref": "Fuite de 46 600 lignes d'hôtesses de caisse (Carrefour, Intermarché, Leclerc, U,"
+   "ref": "Fuite de 46 600 enregistrements d'hôtesses de caisse (Carrefour, Intermarché, Le"
   },
   "https://github.blog/changelog/2026-11-17-github-copilot-in-jetbrains-ignite-releases/": {
    "first_seen": "2026-11-24",
@@ -889,7 +889,7 @@
    "first_seen": "2026-11-24",
    "report": "reports/2026/20261124.html",
    "kind": "brief",
-   "ref": "Replit Missions : un essaim d'agents travaille jusqu'à atteindre un objectif, av"
+   "ref": "Replit Missions : un essaim d'agents travaille jusqu'à ce qu'un objectif soit at"
   },
   "https://securityonline.info/spring-security-vulnerabilities-november-2026/": {
    "first_seen": "2026-11-24",
@@ -991,7 +991,7 @@
    "first_seen": "2026-11-24",
    "report": "reports/2026/20261124.html",
    "kind": "brief",
-   "ref": "AutoMapper 17.0 et MediatR 15.0 publiés par Jimmy Bogard (titre lu seulement). 1"
+   "ref": "AutoMapper 17.0 et MediatR 15.0 publiés par Jimmy Bogard (seul le titre a été lu"
   },
   "https://www.lemondeinformatique.fr/actualites/lire-une-cyberattaque-perturbe-les-installations-frigorifiques-de-centaines-de-supermarches-100850.html": {
    "first_seen": "2026-11-24",
