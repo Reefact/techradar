@@ -1477,7 +1477,7 @@
      "seuil": "J-6"
     }
    ],
-   "titre": "DDD Europe 2027 : CFP ateliers jusqu'au 30 nov., conférence au 16 janv.",
+   "titre": "DDD Europe 2027 : appel à propositions (ateliers et conférence)",
    "resume": "Conférence de référence sur le Domain-Driven Design, avec deux jours de conférence précédés d'ateliers. La date limite de soumission (CFP, appel à propositions) des ateliers tombe dans six jours ; celui de la conférence principale reste ouvert jusqu'en janvier.",
    "details": {
     "Dates et lieu": "Ateliers 31 mai – 2 juin, conférence 3–4 juin 2027, Meervaart, Amsterdam",
@@ -1513,6 +1513,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "titre aligné sur le contenu (avant : « DDD Europe 2027 : le CFP des ateliers ferme le 30 nov. (J-6) »)"
+    },
+    {
+     "date": "2026-11-24T22:55+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "titre = sujet du bloc, sans dates (avant : « DDD Europe 2027 : CFP ateliers jusqu'au 30 nov., conférence au 16 janv. »)"
     }
    ],
    "titre_sommaire": "DDD Europe 2027"
