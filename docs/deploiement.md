@@ -35,6 +35,7 @@ Variable de dépôt optionnelle : `SITE_URL` (Settings → Variables) pour des l
 ```bash
 python3 tools/build_feed.py [URL_DU_SITE]   # régénère feed.xml
 python3 tools/build_memory.py               # régénère data/memory.json
+python3 tools/check_report.py <fichier>     # valide un rapport/brouillon (gabarit et règles)
 python3 tools/build_memory.py --due 2026-12-01   # rappels de CFP à émettre ce jour-là
 python3 tools/build_memory.py --seen <URL>  # URL déjà publiée ?
 bash tools/build_site.sh                    # assemble dist/
