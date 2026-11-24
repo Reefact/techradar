@@ -56,5 +56,7 @@ nav .cnt{margin-left:6px;color:var(--mute);font-size:.75rem}
 .banner .draft-tag{align-self:center;margin-left:2px;padding:4px 9px;border:1px solid #fbbf24;border-radius:5px;color:#fbbf24;font:600 .68rem/1 "IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
 .banner .rss.back svg{display:none}
 .banner .rss.back span{display:inline!important}
+.banner .rss.back .lbl{margin-left:8px}
+@media(max-width:560px){.banner .rss.back .lbl{display:none!important}.banner .rss.back{padding:9px 13px}}
 .banner .rss.back{padding:8px 14px}
 @media(max-width:700px){.banner .draft-tag{display:none}}

@@ -119,7 +119,7 @@ const Radar = (() => {
       reports = (await res.json()).map(d => ({key: d.date, date: d.date, href: d.href, statuts: d.statuts}))
         .sort((a, b) => b.key.localeCompare(a.key));
     } else {
-      // Découverte : feed.xml (généré par tools/build_feed.py depuis la <meta name="date"> de chaque rapport).
+      // Découverte : feed.xml (généré au build par tools/render.py depuis data/days/).
       const res = await fetch('feed.xml', {cache: 'no-cache'});
       if (!res.ok) throw new Error(res.status);
       const xml = new DOMParser().parseFromString(await res.text(), 'application/xml');

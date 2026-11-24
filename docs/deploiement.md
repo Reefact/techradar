@@ -2,48 +2,45 @@
 
 ## Cloudflare Workers
 
-- **Worker** : `techradar` (tableau de bord : Workers & Pages → techradar). C'est un Worker avec *static assets*, pas un projet Pages.
-- **Config** : `wrangler.jsonc` — `name: "techradar"` (doit correspondre au Worker), `assets.directory: "./dist"`, pas de code de Worker.
-- **Build** (`tools/build_site.sh`) : régénère `feed.xml` (si `python3` est présent), puis copie `index.html`, `feed.xml`, `assets/`, `reports/` et la page des brouillons (`drafts/index.html`, `drafts/AAAA/*.html`, plus un `drafts.json` généré par `tools/build_drafts.py`) dans `dist/`, avec un fichier `_headers` qui demande aux moteurs de ne pas indexer `/drafts`. Sont donc **exclus** : `tools/`, `.github/`, `.claude/`, `docs/`, `data/`, README.
+- **Worker** : `techradar` (Workers & Pages → techradar), site statique (*static assets*), servi sur **https://techradar.reefact.net/**.
+- **Config** : `wrangler.jsonc` — `name: "techradar"`, `assets.directory: "./dist"`, pas de code de Worker.
+- **Build** (`tools/build_site.sh`) : contrôle de la configuration (`check_config.py`, le build échoue si elle est incohérente), rendu de tous les jours (`render.py` : `reports/`, `dossier/AAAA/`, `dossier/dossier.json`, `feed.xml`), copie de l'interface (`index.html`, `dossier/index.html`, `assets/`), puis `_headers` (pas d'indexation de `/dossier`) et `_redirects` (`/drafts` → `/dossier/`). Rien d'autre n'est publié (`config/`, `data/`, `tools/`, `docs/` restent dans le dépôt).
 - **Réglages Workers Builds** (Settings → Build) :
-  - branche de production : `main`
-  - build command : `bash tools/build_site.sh`
-  - deploy command : `npx wrangler deploy`
-  - variable de build `SITE_URL` = `https://techradar.reefact.net` (texte, pas un secret ; sans elle, les liens du flux restent relatifs) ;
-  - **Build watch paths**, inclusions : `index.html, assets/*, reports/*, drafts/*, wrangler.jsonc, tools/build_site.sh, tools/build_feed.py, tools/build_drafts.py` (exclusions : aucune). Un push qui ne touche aucun de ces fichiers (docs, data, skills, workflows…) ne déclenche pas de build. Un push **sans aucun fichier modifié** (commit vide) en déclenche toujours un : c'est le moyen de forcer un déploiement ;
+  - branche de production : `main` ;
+  - build command : `bash tools/build_site.sh` ; deploy command : `npx wrangler deploy` ;
+  - variable de build `SITE_URL` = `https://techradar.reefact.net` (liens absolus du flux) ;
+  - **build watch paths**, inclusions : `index.html, assets/*, dossier/*, data/days/*, config/*, tools/render.py, tools/veille_lib.py, tools/check_config.py, tools/build_site.sh, wrangler.jsonc`. Un push qui ne touche aucun de ces fichiers (docs, mémoire, skills, workflows…) ne déclenche pas de build ; un push **sans fichier modifié** (commit vide) en déclenche toujours un.
 
 ```mermaid
 flowchart LR
-    P["push sur main"] --> WB["Workers Builds"]
-    WB --> B["bash tools/build_site.sh<br/>(crée dist/)"]
+    P["push sur main"] --> WB["Workers Builds<br/>(watch paths)"]
+    WB --> B["bash tools/build_site.sh<br/>check_config + render.py"]
     B --> D["npx wrangler deploy"]
-    D --> W["Worker techradar<br/>*.workers.dev"]
+    D --> W["techradar.reefact.net"]
 ```
 
-Un brief provoque **un seul déploiement** (le push du rapport) : le commit de l'Action sur `feed.xml` et `data/memory.json` ne touche aucun chemin surveillé, et le flux servi est régénéré pendant le build.
+Les URL `…/reports/AAAA/AAAAMMJJ.html` redirigent (307) vers la même adresse sans `.html` (comportement par défaut de Cloudflare) : sans conséquence.
 
 ## GitHub Actions
 
 | Workflow | Déclencheur | Rôle |
 |---|---|---|
-| `feed.yml` | push sur `main` touchant `reports/**`, `tools/build_feed.py` ou `tools/build_memory.py` ; lancement manuel | régénère `feed.xml` **et** `data/memory.json`, et les commit s'ils ont changé |
-| `promote.yml` | lancement manuel (entrée : chemin du brouillon) | promeut un brouillon vers `reports/`, régénère le flux et la mémoire, commit |
-
-Variable de dépôt `SITE_URL` (Settings → Secrets and variables → Actions → Variables) = `https://techradar.reefact.net`, pour les liens absolus du `feed.xml` commité. Le flux réellement servi est celui régénéré par le build Cloudflare, qui lit sa propre variable `SITE_URL` (voir plus haut) : les deux doivent être définies.
+| `memory.yml` | push sur `main` touchant `data/days/**`, `config/**` ou les outils de mémoire et de contrôle ; lancement manuel | contrôle la configuration et les fichiers du jour (visible dans l'onglet Actions) ; régénère `data/memory.json` et le commite s'il a changé |
 
 ## Outils locaux
 
 ```bash
-python3 tools/build_feed.py [URL_DU_SITE]   # régénère feed.xml
-python3 tools/build_memory.py               # régénère data/memory.json
-python3 tools/check_report.py <fichier>     # valide un rapport/brouillon (gabarit et règles)
-python3 tools/build_memory.py --due 2026-12-01   # rappels de CFP à émettre ce jour-là
-python3 tools/build_memory.py --seen <URL>  # URL déjà publiée ?
-bash tools/build_site.sh                    # assemble dist/
-python3 -m http.server                      # sert le dépôt (l'index lit feed.xml par fetch)
-npx wrangler deploy --dry-run               # valide la config Cloudflare sans déployer
+python3 tools/check_config.py                              # configuration cohérente ?
+python3 tools/check_day.py data/days/2026/20261124.json    # un jour valide ? (--contre HEAD, --partiel)
+python3 tools/statut.py list 2026-11-24                    # sujets par statut
+bash tools/build_site.sh                                   # construit dist/ comme Cloudflare
+python3 -m http.server -d dist                             # puis http://localhost:8000/ et /dossier/
+python3 tools/build_memory.py --seen <URL>                 # déjà vue ? publiée ?
+npx wrangler deploy --dry-run                              # valide la config Cloudflare sans déployer
 ```
 
-## Adresse du site
+L'index lit `feed.xml` et la page du dossier lit `dossier/dossier.json` par `fetch` : il faut un serveur HTTP (pas `file://`).
 
-Le site est servi sur https://techradar.reefact.net/ (domaine attaché au Worker). Les URL `…/reports/AAAA/AAAAMMJJ.html` redirigent (307) vers la même adresse sans `.html` : comportement par défaut de Cloudflare (`html_handling`), sans conséquence ; l'index et le CSS se chargent normalement. Ne pas passer `html_handling` à `none` sans test : la gestion de la racine `/` en dépend.
+## Adresse et réseau
+
+Le domaine `techradar.reefact.net` est attaché au Worker. Certains réseaux d'entreprise ne le résolvent pas (DNS filtrant les domaines récents) : le site reste accessible depuis un autre réseau.

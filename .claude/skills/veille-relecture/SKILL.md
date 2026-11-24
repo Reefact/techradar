@@ -1,22 +1,22 @@
 ---
 name: veille-relecture
-description: Relit le français d'un rapport ou d'un brouillon de veille TechRadar (idiomatique, compréhensible seul, sans calques) avec un relecteur indépendant, propose les corrections avant/après et les applique après accord. À utiliser pour vérifier la qualité rédactionnelle d'un rapport ou d'un brouillon.
+description: Relit le français d'un jour de veille TechRadar (champs de texte du fichier data/days/AAAA/AAAAMMJJ.json : titres, résumés, « pourquoi », « À retenir », « En bref ») avec un relecteur indépendant, propose les corrections avant/après et les applique après accord. À utiliser pour vérifier la qualité rédactionnelle d'un rapport.
 ---
 
-# Relire le français d'un rapport
+# Relire le français d'un jour de veille
 
-Cible : un fichier `reports/AAAA/AAAAMMJJ.html` ou `drafts/AAAA/AAAAMMJJ-HHMM.html` (à demander à l'utilisateur s'il n'est pas précisé ; par défaut le dernier rapport).
+Cible : `data/days/AAAA/AAAAMMJJ.json` (par défaut le jour le plus récent). Le texte est en Markdown simple (`**gras**`, `` `code` ``, `[texte](url)`) dans les champs `titre`, `titre_sommaire`, `resume`, `pourquoi`, `meta`, `details`, `a_retenir[].texte`, `en_bref[].texte`. Relire les sujets `publie` (et `candidat` si l'utilisateur le demande).
 
 ## 1. Signaux automatiques
 
 ```bash
-python3 tools/check_report.py <fichier>
+python3 tools/check_day.py data/days/AAAA/AAAAMMJJ.json --partiel
 ```
 Les erreurs (structure) sont à traiter d'abord. Les lignes `? (langue)` sont des **signaux**, pas des verdicts : anglais résiduel, calques courants, phrases de plus de 45 mots, restes de gabarit. Les noter pour la suite.
 
 ## 2. Relecture indépendante
 
-Lancer UN sous-agent (outil Agent, type `general-purpose`) avec **uniquement** le texte du rapport (titres, entrées de sommaire, puces « À retenir », résumés, lignes « pourquoi ça compte », « En bref »), extrait du HTML (sans balises), et ces critères :
+Lancer UN sous-agent (outil Agent, type `general-purpose`) avec **uniquement** le texte du rapport (titres, entrées de sommaire, puces « À retenir », résumés, lignes « pourquoi ça compte », « En bref »), extrait du fichier du jour (identifiant du sujet, champ, texte), et ces critères :
 
 - français naturel de développeur francophone, pas une traduction mot à mot ; calques à corriger : « supporter » (anglais) → « prendre en charge », « adresser un problème » → « traiter », « impacter » → « toucher », « opportunité » → « occasion », « définitivement » → « clairement » ; termes techniques d'usage et noms propres conservés ;
 - phrases courtes (idéalement < 25 mots, jamais > 40), une idée par phrase ;
@@ -30,8 +30,8 @@ Demander en retour un tableau : identifiant de la carte, texte actuel, correctio
 
 1. Présenter à l'utilisateur : nombre de corrections, tableau avant/après (les plus importantes d'abord), signaux automatiques restants jugés faux positifs, et ce que le relecteur a signalé comme douteux sans corriger.
 2. **Demander l'accord** (tout, ou une sélection). Ne rien écrire avant.
-3. Appliquer uniquement les corrections acceptées, directement dans le fichier ciblé, sans toucher aux balises, aux liens ni aux attributs. Relancer `python3 tools/check_report.py <fichier>` : la structure doit rester valide.
-4. Commiter sur `main` (« Relecture du français AAAA-MM-JJ », pas de branche ni de PR) ; si le fichier est dans `reports/`, l'Action régénère le flux et la mémoire.
+3. Appliquer uniquement les corrections acceptées dans les champs de texte du fichier du jour, sans toucher aux URL, identifiants, statuts ni autres champs. Ajouter à chaque sujet modifié une entrée `historique` (« par » : utilisateur, note « relecture »). Relancer `python3 tools/check_day.py <fichier> --partiel` : aucune erreur.
+4. Commiter sur `main` (« Relecture du français AAAA-MM-JJ », pas de branche ni de PR) ; le site se redéploie.
 
 ## Règles
 

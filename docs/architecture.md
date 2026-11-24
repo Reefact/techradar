@@ -4,91 +4,72 @@
 
 ```mermaid
 flowchart LR
-    T["Tâche planifiée Claude<br/>lun-ven 6h06 Paris"] -->|"push reports/AAAA/AAAAMMJJ.html"| G[("GitHub<br/>Reefact/techradar<br/>branche main")]
-    G -->|"push dans reports/"| A["GitHub Action<br/>feed.yml"]
-    A -->|"commit feed.xml"| G
-    G -->|"push sur main"| C["Workers Builds<br/>Cloudflare"]
-    C -->|"build_site.sh puis<br/>wrangler deploy"| W["Worker techradar<br/>(static assets)"]
-    W --> U["Toi, navigateur<br/>index.html + flux Atom"]
+    C["config/<br/>catégories, tags, sujets"] --> T["Tâche planifiée<br/>lun-ven 6h06 Paris"]
+    P["tools/veille-prompt.md<br/>(processus)"] --> T
+    T -->|"push data/days/AAAA/AAAAMMJJ.json"| G[("GitHub<br/>Reefact/techradar<br/>main")]
+    G -->|"Action memory.yml"| M["data/memory.json<br/>+ contrôles"]
+    G -->|"Workers Builds"| B["tools/build_site.sh<br/>(render.py)"]
+    B --> W["Worker techradar<br/>techradar.reefact.net"]
+    W --> U1["/ : rapports publiés"]
+    W --> U2["/dossier/ : dossier du jour"]
+    W --> U3["feed.xml"]
 ```
 
-Tout est **statique** : pas de base de données, pas de code serveur. Le « backend » est la tâche planifiée qui écrit des fichiers HTML dans Git.
+Tout est **statique**. La source de vérité est un **fichier de données par jour** (`data/days/AAAA/AAAAMMJJ.json`) qui contient tous les sujets analysés avec leur statut ; le site est **rendu** à partir de ces fichiers au moment du déploiement. La tâche planifiée n'écrit jamais de HTML.
 
 ## Structure du dépôt
 
 | Chemin | Rôle |
 |---|---|
-| `index.html` | Page d'accueil : bandeau, barre latérale, rapport en iframe, radar animé (le code est dans `assets/site.css` et `assets/site.js`, partagés avec la page des brouillons) |
-| `drafts/index.html` | Page https://techradar.reefact.net/drafts/ : même interface, mais elle ne liste que les brouillons (`mar. 24 16h44`), avec un lien « ← Rapports publiés » à la place du flux |
-| `reports/AAAA/AAAAMMJJ.html` | Un rapport par jour (publié, listé dans l'index et le flux) |
-| `drafts/AAAA/AAAAMMJJ-HHMM.html` | Versions régénérées d'un jour déjà publié (jamais listées) |
-| `assets/report.css` | Feuille de style partagée par tous les rapports |
-| `assets/favicon-32.png`, `icon-192.png`, `apple-touch-icon.png` | Icône du site = logo de Reefact (repris de reefact.net, index et rapports) |
-| `feed.xml` | Flux Atom **généré** ; sert aussi de liste de découverte pour l'index |
-| `tools/build_feed.py` | Génère `feed.xml` à partir des rapports |
-| `tools/build_site.sh` | Assemble `dist/` (ce qui est réellement déployé) |
-| `data/memory.json`, `data/notes.md` | Mémoire de la veille côté dépôt (dérivée des rapports) et notes manuelles |
-| `tools/check_report.py` | Valide un rapport ou un brouillon (titre, date, tldr, liens, radar…) |
-| `.claude/skills/` | Skills Claude Code : `promote-draft`, `veille-memoire`, `veille-test` (teste la tâche planifiée), `veille-regenerer` (régénère le rapport d'une date, en brouillon ou en l'écrasant), `veille-copier-sujet` (copie des sujets d'un brouillon vers le rapport du même jour) |
-| `tools/merge_topic.py` | Copie des cartes et lignes « En bref » d'un brouillon vers le rapport du même jour (`list` / `copy`, essai à blanc par défaut) |
-| `tools/build_drafts.py` | Génère `drafts.json` (liste des brouillons) pour la page `/drafts/` |
-| `tools/build_memory.py` | Génère `data/memory.json` ; interroge les rappels de CFP et les URL déjà publiées |
-| `tools/report-template.html` | Gabarit que la tâche de veille doit suivre |
-| `wrangler.jsonc` | Config Cloudflare (Worker `techradar`, assets dans `dist/`) |
-| `.github/workflows/` | `feed.yml` (flux automatique), `promote.yml` (promotion manuelle) |
-| `.claude/skills/promote-draft/` | Skill Claude Code pour promouvoir un brouillon |
+| `config/categories.json` | Catégories : clé stable → libellé, libellé de carte, classe CSS, préfixe d'identifiant, ordre, minimum, plafond, description |
+| `config/tags.json` | Tags (badges) : clé stable → libellé, classe CSS, description (règle d'application) |
+| `config/sujets.json` | Index des fichiers « quoi chercher » (chemin, rôle, actif) |
+| `config/sujets/` | `perimetre.json` (priorités, exclusions, fenêtre, volumes), `sources.json`, `recherche/<catégorie>.json`, `outils.json`, `radar.json`, `conferences.json` |
+| `data/days/AAAA/AAAAMMJJ.json` | Fichier du jour : sujets (publiés, candidats, mis de côté, écartés), « À retenir », « En bref », journal de recherche, exécutions |
+| `data/demande.json` | (Ponctuel) demande de l'utilisateur pour la prochaine exécution : date cible, consignes |
+| `data/memory.json` | Mémoire dérivée des jours (générée par l'Action, ne pas éditer) |
+| `data/notes.md` | Notes non déductibles (préférences, versions vues, vérifications en attente) |
+| `tools/veille-prompt.md` | Processus de la tâche (comment travailler) |
+| `tools/veille-bootstrap.md` | Texte d'amorçage collé dans la tâche (il lui fait lire le processus) |
+| `tools/veille_lib.py` | Fonctions partagées : configuration, Markdown simple, dates |
+| `tools/render.py` | Rendu : rapports publiés, dossiers du jour, `dossier.json`, flux Atom |
+| `tools/check_config.py` | Validation de la configuration |
+| `tools/check_day.py` | Validation d'un fichier du jour (schéma, volumes, radar, journal, immuabilité, rendu, langue) |
+| `tools/check_report.py` | Contrôle du HTML rendu (structure, liens, signaux de langue) ; appelé par `check_day.py` |
+| `tools/statut.py` | Change le statut de sujets (utilisé par le skill `veille-publier`) |
+| `tools/build_memory.py` | Mémoire : `--seen`, `--due`, `--reconsiderer` |
+| `tools/build_site.sh` | Build Cloudflare : contrôle de la configuration, rendu, interface → `dist/` |
+| `index.html`, `dossier/index.html` | Interface : accueil (rapports publiés) et page du dossier du jour |
+| `assets/` | `site.css`, `site.js` (interface et radar), `report.css` (rapports et dossiers), icônes Reefact |
+| `.github/workflows/memory.yml` | Contrôles et régénération de la mémoire à chaque push |
+| `.claude/skills/` | Skills Claude Code : voir [skills.md](skills.md) |
+| `wrangler.jsonc` | Configuration Cloudflare (Worker `techradar`, assets dans `dist/`) |
 | `docs/` | Cette documentation |
+
+## Le fichier du jour
+
+Un sujet a un **statut** : `publie` (dans le rapport) · `candidat` (bon, non retenu ou trouvé lors d'une relance) · `mis-de-cote` (à réexaminer) · `ecarte` (avec un motif : `deja-publie`, `hors-fenetre`, `hors-perimetre`, `non-verifiable`, `doublon`, `trop-mineur`, `plafond-atteint`, `exclu-config`, `rien-de-neuf`).
+
+Champs principaux d'un sujet : `id` (préfixe de catégorie + numéro), `categorie`, `statut`, `motif`, `tags`, `titre`, `resume` (Markdown simple), `pourquoi`, `details`, `sources`, `meta` (ligne du sommaire), `depot` (radar), `conference` (dates, lieu, CFP), `historique`. Le détail est dans [`tools/veille-prompt.md`](../tools/veille-prompt.md) (§4) et la référence est le fichier existant `data/days/2026/20261124.json`.
+
+Le texte est en **Markdown simple** (`**gras**`, `` `code` ``, `[texte](https://…)`, paragraphes, listes « - ») ; le rendu garantit les classes CSS, les ancres, `target="_blank"` sur les liens externes, les badges et `data-repo`.
 
 ## Le site
 
-### Page d'accueil (`index.html`)
-- **Bandeau fixe** : nom, description, bouton « S'abonner » (flux Atom).
-- **Barre latérale** : rapports classés par mois et par jour.
-- **Découverte** : au chargement, le JavaScript lit `feed.xml` (un `fetch`) et en tire la date et le lien de chaque rapport. Il n'y a donc pas de liste à maintenir à la main. Cela exige un serveur HTTP : `index.html` ne marche pas en `file://`.
-- **Navigation** : le rapport choisi s'affiche dans une **iframe** ; l'URL garde le jour dans le hash (`index.html#2026-11-24`). Par défaut, le plus récent.
+### Accueil (`/`)
+Bandeau « Reefact | TechRadar » (liens vers reefact.net et vers l'accueil), barre latérale des rapports publiés (découverts via `feed.xml`), rapport affiché en iframe (le jour dans l'adresse : `/#2026-11-24`, par défaut le plus récent), radar animé en fond (les « blips » viennent du sommaire du rapport), boutons « Claude » / « Claude Code » sur chaque sujet, liens externes en nouvel onglet.
 
-```mermaid
-sequenceDiagram
-    participant N as Navigateur
-    participant I as index.html
-    participant F as feed.xml
-    participant R as rapport (iframe)
-    N->>I: charge la page
-    I->>F: fetch feed.xml
-    F-->>I: entrées (date + lien)
-    I->>I: construit la barre latérale
-    I->>R: iframe src = dernier rapport (ou #date)
-    R-->>I: évènement load
-    I->>R: injecte un fond transparent
-    I->>R: lit le sommaire, crée les blips du radar
-```
+### Dossier du jour (`/dossier/`)
+Même interface, mais la barre latérale liste les jours (avec le nombre de sujets à revoir) et l'iframe affiche le **dossier** : journal de recherche, compteurs par statut, filtres, tous les sujets (écartés en lignes compactes avec leur motif), légende des catégories et des tags, et un bouton « Demander la publication » sur chaque candidat qui copie la demande à coller dans Claude. Non indexé par les moteurs. L'ancienne adresse `/drafts/` redirige ici.
 
-### Radar d'arrière-plan
-Trois couches empilées derrière l'iframe, plus un voile CRT par-dessus :
-1. **Cadran** (canvas peint une seule fois) : anneaux, graduations, relèvements, échelle.
-2. **Balayage** : un `conic-gradient` qui tourne via l'API d'animation du navigateur (un tour = 16 s).
-3. **Blips** (petit canvas redessiné en continu) : un point carré par article du sommaire, coloré par catégorie ; il s'allume quand le faisceau passe dessus. S'y ajoutent des « échos » (anneaux) et de la poussière de phosphore.
-- Le radar suit légèrement le défilement du rapport (parallaxe).
-- `prefers-reduced-motion` : radar statique. L'animation se met en pause quand l'onglet est caché.
-- Les blips dépendent du fait que l'iframe est de même origine (c'est le cas sur le site déployé).
-
-### Un rapport
-- Un fichier HTML qui suit `tools/report-template.html`, avec `assets/report.css` en `<link>`.
-- **Obligatoires** : `<title>`, `<meta name="date" content="AAAA-MM-JJ">` (l'index et le flux s'en servent), le bloc `<div class="card tldr">` (résumé du flux), et dans le sommaire un `<span class="badge b-…">` par catégorie suivi de ses `<a class="item">` (les blips en dépendent).
-- Ouvert seul, un rapport est lisible avec son thème (sans le radar).
-
-### Style
-Thème sombre noir-vert, accent turquoise, couleurs par catégorie. Polices Google Fonts : **VT323** (titres), **IBM Plex Sans** (texte), **IBM Plex Mono** (badges). C'est un appel externe ; elles pourraient être hébergées dans `assets/fonts/`.
-
-### Flux Atom
-`feed.xml` : une entrée par rapport (titre, date, lien, résumé = les puces « À retenir »). Les liens sont relatifs tant que la variable `SITE_URL` n'est pas définie.
+### Rapport publié (`/reports/AAAA/AAAAMMJJ`)
+Rendu des seuls sujets publiés : « À retenir », sommaire, conférences (tableau), « En bref », résumés, pied de page. Titre d'onglet : « Veille technologique du mardi 24 novembre 2026 – Reefact ».
 
 ### Boutons « Claude » sur chaque sujet
-- L'index injecte (depuis `index.html`, dans l'iframe de même origine) un bouton sous chaque `<article class="card" id="…">` d'un rapport. Rien à écrire dans les rapports, anciens ou nouveaux.
-- Le prompt est construit à partir de la carte : titre, résumé, ligne « pourquoi ça compte », sources, date du brief.
-- **Bouton « Claude Code »** (violet) : sur les cartes qui portent `data-repo="Reefact/nom"` (sujets du radar : **un article par dépôt**, jamais de mélange, et seulement s'il y a un vrai signal pour ce dépôt). Il ouvre `https://claude.ai/code?repositories=…&prompt=…` : dépôt présélectionné, prompt pré-rempli, **non envoyé** (documenté officiellement). Le dépôt privé exige l'app GitHub Claude installée dessus.
-- **Bouton « Claude »** (turquoise) : sur les autres cartes. Il ouvre `https://claude.ai/new?q=…` — ce pré-remplissage n'est **pas documenté** — et **copie aussi le prompt dans le presse-papiers** (un message le signale) pour le coller si la conversation s'ouvre vide.
-- La tâche de veille ajoute `data-repo` sur les cartes du radar (règle dans son prompt et dans `tools/report-template.html`).
+L'interface ajoute un bouton sous chaque sujet : « Claude Code » (violet) pour un sujet du radar, qui ouvre `claude.ai/code` avec le dépôt présélectionné et le prompt pré-rempli (non envoyé) ; « Claude » (turquoise) pour les autres, qui ouvre `claude.ai/new` et copie aussi le prompt dans le presse-papiers.
 
-### Liens externes
-Tout lien externe d'un rapport s'ouvre dans un nouvel onglet. Double sécurité : le gabarit impose `target="_blank" rel="noopener"` (le rapport ouvert seul se comporte aussi bien), et l'index l'applique de lui-même à tout lien externe de l'iframe (filet de sécurité si la tâche l'oublie). Les ancres internes (`#a1`, `#top`) restent dans la page.
+### Style
+Thème sombre noir-vert, accent turquoise, « Reefact » en bleu (#5eaedb, couleur du logo). Polices Google Fonts : VT323 (titres), IBM Plex Sans (texte), IBM Plex Mono (badges). Icônes du site = logo Reefact.
+
+### Flux Atom
+`feed.xml` : une entrée par jour publié (titre, lien, résumé = « À retenir »), liens absolus grâce à la variable `SITE_URL` du build.

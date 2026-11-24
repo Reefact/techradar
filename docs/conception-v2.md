@@ -1,6 +1,6 @@
 # Conception v2 : une source de données par jour
 
-Statut : **conception validée, pas encore réalisée** (24 novembre 2026). Ce document décrit la cible ; l'état actuel est décrit dans [architecture.md](architecture.md), [generation.md](generation.md) et [deploiement.md](deploiement.md).
+Statut : **réalisée le 24 novembre 2026**. Ce document garde le raisonnement et les choix ; le fonctionnement est décrit dans [architecture.md](architecture.md), [generation.md](generation.md), [deploiement.md](deploiement.md) et [skills.md](skills.md).
 
 ## 1. Pourquoi changer
 
@@ -242,4 +242,4 @@ Chaque étape se termine par un test de la tâche (skill `veille-test`) et une v
 | Conférences et « À retenir » dans le fichier du jour | Oui |
 | Toujours suivre / exclure (conférences et au-delà) | Oui |
 | Arrêt de l'artefact « Veille — registre » | Oui |
-| Dépôt public ou privé | **À trancher** |
+| Dépôt public ou privé | Public |
