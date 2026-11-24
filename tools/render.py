@@ -112,6 +112,13 @@ def verif_popover(s):
     return "\n".join(o)
 
 
+def verif_h3(s):
+    """Titre de la carte ; s'il y a une vérification, le badge se place juste à gauche du texte."""
+    if not s.get("verification"):
+        return f'<h3>{inline(s["titre"])}</h3>'
+    return f'<h3 class="vf-h3">{verif_button(s)}<span>{inline(s["titre"])}</span></h3>'
+
+
 def card(s, cfg, statut_badge=None):
     cats, tags = cfg["categories"], cfg["tags"]
     c = cats[s["categorie"]]
@@ -119,7 +126,7 @@ def card(s, cfg, statut_badge=None):
     badges = f'<span class="badge {c["classe"]}">{E(s.get("etiquette") or c["carte"])}</span>' + "".join(tag_html(t, tags) for t in s.get("tags", []))
     if statut_badge:
         badges = statut_badge + badges
-    out = [f'<article class="card" id="{E(s["id"])}"{repo}>', f'  <div class="head">{verif_button(s)}{badges}<h3>{inline(s["titre"])}</h3></div>']
+    out = [f'<article class="card" id="{E(s["id"])}"{repo}>', f'  <div class="head">{badges}{verif_h3(s)}</div>']
     out += blocks(s.get("resume", ""))
     if s.get("details"):
         out.append('  <dl class="kv">' + "".join(f"<dt>{E(k)}</dt><dd>{inline(v)}</dd>" for k, v in s["details"].items()) + "</dl>")
