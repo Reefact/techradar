@@ -18,10 +18,5 @@
     "label": "⏰ Rappel",
     "classe": "b-up",
     "description": "Une échéance importante approche : date limite d'un CFP, fin de support, migration…"
-  },
-  "revendication": {
-    "label": "Revendication",
-    "classe": "b-up",
-    "description": "Incident revendiqué (fuite, attaque) dont l'annonce a été constatée par au moins deux sources indépendantes, sans confirmation de la victime ni d'une source de référence : le sujet rapporte la revendication, pas l'incident comme un fait."
   }
 }

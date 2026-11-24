@@ -2180,9 +2180,7 @@
    "id": "d3",
    "categorie": "distribution",
    "statut": "publie",
-   "tags": [
-    "revendication"
-   ],
+   "tags": [],
    "titre": "Fuite revendiquée : 46 600 lignes sur des salariés de supermarchés",
    "resume": "Le 11 novembre, un vendeur a mis en vente sur un forum cybercriminel un fichier d'environ 46 600 lignes sur des salariés de supermarchés français. Deux sites de veille l'ont constaté et analysé chacun de leur côté : FrenchBreaches et Fuites Infos.\n\nSelon Fuites Infos, le fichier compte 42 406 salariés, dont environ 9 sur 10 dans des magasins U, avec quelques Leclerc, Darty, Mr.Bricolage, Weldom, Auchan et trois magasins des Mousquetaires ; Carrefour n'y apparaît pas, contrairement à ce qu'annonce le vendeur. Les données : nom, prénom, poste, magasin, et un e-mail pour environ un quart des lignes. Fuites Infos attribue le fichier au logiciel de planning Gestool (éditeur Lixora). Aucune confirmation de l'éditeur, d'une enseigne ou d'un média de référence n'a été trouvée.",
    "sources": [

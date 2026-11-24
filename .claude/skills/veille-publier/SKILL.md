@@ -18,7 +18,7 @@ python3 tools/statut.py list AAAA-MM-JJ
 ## 2. Vérifier les affirmations avant de publier
 
 Avant de publier un candidat ou un sujet mis de côté, applique `tools/veille-verification.md` : s'il contient une affirmation qui pourrait être fausse, portée ni par l'auteur du fait ni par une source de référence (`config/sujets/sources.json`), et qu'il n'a pas de `verification` au verdict `vrai`, lance d'abord le sous-agent vérificateur (brief du fichier, sans ton avis). Puis :
-- `vrai` : écris le bloc `verification`, rebase le sujet sur la source fiable trouvée (en tête des sources, résumé réécrit à partir d'elle, seulement les affirmations prouvées ; tag `revendication` pour un incident seulement revendiqué), montre le résultat à l'utilisateur et publie ;
+- `vrai` : écris le bloc `verification`, rebase le sujet sur la source fiable trouvée (en tête des sources, résumé réécrit à partir d'elle, seulement les affirmations prouvées ; titre qui dit « revendiqué » pour un incident seulement revendiqué), montre le résultat à l'utilisateur et publie ;
 - `faux` : ne publie pas ; propose d'écarter le sujet (`--motif infirme`) ;
 - `indetermine` : ne publie pas ; propose de le mettre de côté, il sera revérifié à la prochaine exécution.
 

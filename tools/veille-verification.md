@@ -23,7 +23,7 @@ Le but n'est pas d'écarter un sujet réel parce que sa première source est fai
 - le titre, le résumé, la ligne `meta` et les `details` sont réécrits **à partir d'elle** ;
 - ce que seule la source d'origine affirmait va dans `retirees`.
 
-**Revendications.** Une fuite ou une attaque revendiquée (forum, site de rançongiciel) est un fait vérifiable : l'annonce existe ou non. Si aucune source fiable ne confirme l'incident mais qu'**au moins deux sources indépendantes** ont constaté et analysé l'annonce elle-même (pas une reprise l'une de l'autre), le sujet est publiable **comme revendication** : tag `revendication`, titre qui le dit (« Fuite revendiquée : … », « … revendique … »), résumé qui attribue chaque chiffre à qui l'avance, et précise qu'aucune confirmation n'a été trouvée. Le verdict est alors `vrai` : ce qui est affirmé (la revendication) est prouvé.
+**Revendications.** Une fuite ou une attaque revendiquée (forum, site de rançongiciel) est un fait vérifiable : l'annonce existe ou non. Si aucune source fiable ne confirme l'incident mais qu'**au moins deux sources indépendantes** ont constaté et analysé l'annonce elle-même (pas une reprise l'une de l'autre), le sujet est publiable **comme revendication** : titre qui le dit (« Fuite revendiquée : … », « … revendique … »), résumé qui attribue chaque chiffre à qui l'avance, et précise qu'aucune confirmation n'a été trouvée. Le verdict est alors `vrai` : ce qui est affirmé (la revendication) est prouvé.
 
 Seul un sujet pour lequel on ne trouve **ni source fiable, ni deux constats indépendants** reste `indetermine`.
 
@@ -87,6 +87,6 @@ Lance **un sous-agent par sujet** (outil Agent). Donne-lui **seulement** le titr
 ## Après la vérification
 
 1. Écris le bloc `verification` dans le sujet (paraphrase, citations de moins de 15 mots).
-2. Si le verdict est `vrai`, rebase le sujet : la source fiable trouvée passe en tête des `sources`, et le titre, le résumé, `meta` et `details` sont réécrits à partir d'elle, avec seulement les affirmations prouvées. Pour une revendication : tag `revendication` et titre qui le dit.
+2. Si le verdict est `vrai`, rebase le sujet : la source fiable trouvée passe en tête des `sources`, et le titre, le résumé, `meta` et `details` sont réécrits à partir d'elle, avec seulement les affirmations prouvées. Pour une revendication : le titre le dit.
 3. Applique le statut du tableau ci-dessus et ajoute une entrée à `historique`.
 4. Compte les vérifications dans `journal.verifications_sources` : `{"lancees": n, "vrai": n, "faux": n, "indetermine": n}`.
