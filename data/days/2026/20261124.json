@@ -1165,7 +1165,7 @@
   {
    "id": "t6",
    "categorie": "outils",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [],
    "titre": "CLI-Anything : rendre n'importe quel logiciel pilotable par un agent",
    "resume": "Un plugin ou une skill génère, en sept phases, une interface en ligne de commande avec sortie JSON pour un logiciel existant : analyse du code, conception des commandes, implémentation, tests, publication. Un « CLI-Hub » permet d'installer des enveloppes prêtes à l'emploi (GIMP, Blender, LibreOffice…).",
@@ -1187,6 +1187,11 @@
      "statut": "candidat",
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
+    },
+    {
+     "date": "2026-11-24T16:43+00:00",
+     "statut": "publie",
+     "par": "utilisateur"
     }
    ]
   },
