@@ -88,3 +88,7 @@ Pour ne plus recopier le prompt à chaque modification, la tâche peut ne conten
 - Si le dépôt n'est pas cloné ou si le fichier est illisible, la tâche ne produit rien et envoie une notification (plutôt que d'improviser).
 - Quelques garde-fous sont répétés dans le prompt d'amorçage (jamais de force-push, push sur `main` seulement, aucune modification des fichiers d'instructions, aucun écrasement d'un rapport publié) pour qu'ils tiennent même si le fichier était modifié par erreur.
 - Qui peut écrire sur `main` peut changer le comportement de la tâche : à garder en tête si le dépôt a d'autres contributeurs.
+
+## Jours fériés et lancements manuels
+
+Le saut d'un jour férié ne s'applique qu'à l'exécution **planifiée** (jour ouvré, démarrage entre 05:45 et 07:00 heure de Paris). Tout lancement manuel (« Run now », ou un jour/une heure hors planning) produit toujours un rapport : on peut donc forcer un brief n'importe quand. Limite : un lancement manuel un jour férié entre 05:45 et 07:00 serait pris pour l'exécution planifiée et sauté ; le relancer après 07:00.
