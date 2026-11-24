@@ -84,7 +84,8 @@ class Front(unittest.TestCase):
         s = next(s for s in day["sujets"] if s["statut"] == "publie")
         s["tags"] = s.get("tags", []) + ["nouveau"]
         rapport, _ = self.rendu(day)
-        faux = rapport.replace(f'>{self.cfg["tags"]["nouveau"]["label"]}</span>', ">Tout neuf</span>")
+        self.assertIn(">#nouveau</span>", rapport)
+        faux = rapport.replace(">#nouveau</span>", ">#tout-neuf</span>")
         self.assertTrue(any("tag « nouveau »" in e for e in self.erreurs([faux])))
 
     def test_infobulle_de_tag_emoji_dependant_du_sujet(self):

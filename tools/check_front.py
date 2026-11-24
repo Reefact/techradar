@@ -5,8 +5,8 @@
 
 Tout ce qu'affiche un bloc ou la barre de filtres doit venir de config/, à l'identique :
   - catégorie : clé connue, badge avec le libellé et la classe déclarés (aucun libellé propre au sujet) ;
-  - tags : clés connues, chacun affiché une fois (badge à son libellé, ou icône seule si le libellé commence par un emoji,
-    avec une infobulle « <libellé> : <description> » qui ne dépend pas du sujet), aucun badge en trop ;
+  - tags : clés connues, chacun affiché une fois (icône seule si le libellé commence par un emoji, sinon « #clé » dans la
+    couleur du tag ; infobulle « <libellé> : <description> », qui ne dépend pas du sujet), rien en trop ;
   - projet : dépôt déclaré dans config/sujets/projets.json, icône 📦 avec le nom du projet ;
   - filtres : chaque puce correspond à une clé déclarée et affiche son libellé déclaré.
 """
@@ -62,7 +62,8 @@ def check(raw, cfg, nom="page"):
                 want = f"{em[1]} : {d['description'][:1].lower()}{d['description'][1:]}"
                 hit = [x for x in rest if "ico" in x[0] and "projet" not in x[0] and x[2] == em[0] and x[1] == want]
             else:
-                hit = [x for x in rest if "badge" in x[0] and x[2] == d["label"] and d["classe"] in x[0]]
+                want = f"{d['label']} : {d['description'][:1].lower()}{d['description'][1:]}"
+                hit = [x for x in rest if "htag" in x[0] and x[2] == "#" + k and d["classe"] in x[0] and x[1] == want]
             if len(hit) != 1:
                 E(f"{sid} : tag « {k} » non affiché à l'identique de sa déclaration (« {d['label']} »)")
             else:

@@ -64,6 +64,7 @@ details.card[open]{border-color:#2a4b50}
 .body>p:first-child{margin-top:2px}
 .fresh{margin-right:6px;cursor:default;font-size:1.05em}
 .ico{cursor:default;font-size:1.05em;line-height:1}
+.htag{cursor:default;font:600 .74rem/1 var(--font-m);letter-spacing:.02em}
 .src{font-size:.88rem;overflow-wrap:anywhere}
 .foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:12px}
 .foot .actions{display:flex;flex-wrap:wrap;gap:10px;margin-left:auto}

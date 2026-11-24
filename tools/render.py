@@ -70,14 +70,18 @@ def tag_key(t):
 
 
 def tag_html(t, tags, icone=False):
-    """Badge d'un tag. Avec icone=True (en-tête d'un sujet), un tag dont le libellé commence par un emoji
-    (« 🧪 Pépite », « ⏰ J-7 ») s'affiche comme l'emoji seul, comme ☄️ et 📦 ; le texte passe dans l'infobulle."""
+    """Tag. Avec icone=True (en-tête d'un sujet) : un tag dont le libellé commence par un emoji (« 🧪 Pépite ») s'affiche
+    comme l'emoji seul, comme ☄️ et 📦 ; les autres en « #clé » (« #api », « #mise-a-jour »), plus petit, dans la couleur
+    du tag. Le libellé et la description passent dans l'infobulle."""
     d = tags[tag_key(t)]
     txt = d["label"]                       # l'infobulle et le libellé ne dépendent jamais du sujet : c'est le titre qui précise
     m = re.match(r"^(\S+)\s+(.+)$", txt)
     if icone and m and not re.match(r"[\w«(]", m.group(1)):
         aide = f"{m.group(2)} : {d['description'][:1].lower()}{d['description'][1:]}"
         return f'<span class="ico" title="{E(aide)}" aria-label="{E(aide)}">{E(m.group(1))}</span>'
+    if icone:
+        aide = f"{txt} : {d['description'][:1].lower()}{d['description'][1:]}"
+        return f'<span class="htag {d["classe"]}" title="{E(aide)}" aria-label="{E(aide)}">#{E(tag_key(t))}</span>'
     return badge(d["classe"], txt, d["description"])
 
 
