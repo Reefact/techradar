@@ -32,12 +32,35 @@
     function syncExpand() { expand.textContent = visible().length && visible().every(el => el.open) ? 'Tout replier' : 'Tout déplier'; }
     bar.addEventListener('click', e => {
       const chip = e.target.closest('.chip');
-      if (chip) { chip.setAttribute('aria-pressed', chip.getAttribute('aria-pressed') !== 'true'); apply(); }
+      if (chip && !chip.closest('.fsort')) { chip.setAttribute('aria-pressed', chip.getAttribute('aria-pressed') !== 'true'); apply(); }
     });
-    reset.addEventListener('click', () => { bar.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', 'false')); apply(); });
+    reset.addEventListener('click', () => { bar.querySelectorAll('.fgroup .chip').forEach(c => c.setAttribute('aria-pressed', 'false')); apply(); });
     expand.addEventListener('click', () => { const open = expand.textContent === 'Tout déplier'; visible().forEach(el => { el.open = open; }); syncExpand(); });
     items.forEach(el => el.addEventListener('toggle', syncExpand));
     apply();
+
+    // ---------- Tri : une clé choisie passe en premier, les autres suivent dans l'ordre par défaut ----------
+    const sortBar = bar.querySelector('.fsort');
+    if (sortBar) {
+      const chips = [...sortBar.querySelectorAll('.chip')], all = chips.map(c => c.dataset.k), LABEL = {};
+      chips.forEach(c => { LABEL[c.dataset.k] = c.textContent; });
+      const STATUTS = ['publie', 'candidat', 'mis-de-cote', 'ecarte'];
+      const val = {statut: el => STATUTS.indexOf(el.dataset.statut), cat: el => +el.dataset.ordre,
+                   date: el => -(+(el.dataset.date || '').replace(/-/g, '') || 0), projet: el => el.dataset.repo ? '0' + el.dataset.repo : '1'};
+      const store = 'techradar-tri-' + (document.querySelector('.dossier') ? 'dossier' : 'rapport');
+      function sortBy(first, save) {
+        const keys = [first, ...all.filter(k => k !== first)];
+        items.sort((a, b) => { for (const k of keys) { const x = val[k](a), y = val[k](b); if (x < y) return -1; if (x > y) return 1; } return 0; });
+        items.forEach(el => sum.appendChild(el));
+        chips.forEach(c => c.setAttribute('aria-pressed', c.dataset.k === first));
+        sortBar.querySelector('.sorder').textContent = keys.map(k => LABEL[k]).join(' › ');
+        if (save) { try { localStorage.setItem(store, first); } catch (e) { /* stockage indisponible : tri non retenu */ } }
+      }
+      sortBar.addEventListener('click', e => { const c = e.target.closest('.chip'); if (c) sortBy(c.dataset.k, true); });
+      let saved = null;
+      try { saved = localStorage.getItem(store); } catch (e) { /* stockage indisponible */ }
+      if (saved && all.includes(saved) && saved !== all[0]) sortBy(saved, false);
+    }
   }
 
   // ---------- Chevron « Replier ce sujet » : replie et ramène à l'en-tête ----------

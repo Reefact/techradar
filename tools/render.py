@@ -182,6 +182,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     attrs = f' data-cat="{E(s["categorie"])}" data-classe="{E(c["classe"])}" data-tags="{E(" ".join(tag_key(t) for t in s.get("tags", [])))}" data-statut="{st}"'
     if frais: attrs += " data-frais"
     if s.get("depot"): attrs += f' data-repo="{E(s["depot"])}"'
+    attrs += f' data-ordre="{list(ordered_categories(cats)).index(s["categorie"])}" data-date="{E(s.get("date") or "")}"'
     badges = (statut_badge(s) if dossier else "") + badge(c["classe"], s.get("etiquette") or c["carte"], c["label"] + " : " + c["description"]) \
         + "".join(tag_html(t, tags) for t in s.get("tags", [])) + projet_badge(s, cfg)   # catégorie, tags (0 à N), projet (0 ou 1)
     blip = (f'<span class="fresh" title="Récent : paru le {date_courte(s["date"])}, depuis le brief précédent ({date_courte(seuil)}, jour compris)" '
@@ -214,10 +215,21 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     return "\n".join(out)
 
 
-def ordered(sujets, cfg):
+SORT_KEYS = ("statut", "cat", "date", "projet")     # ordre de tri par défaut (sans « statut » dans le rapport publié)
+SORT_LABEL = {"statut": "Statut", "cat": "Catégorie", "date": "Date", "projet": "Projet"}
+
+
+def ordered(sujets, cfg, dossier=False):
+    """Tri par défaut : (statut), catégorie, date de survenance (la plus récente d'abord, sans date à la fin), projet.
+    Le script des pages permet de mettre une autre clé en premier."""
     order = {k: i for i, k in enumerate(ordered_categories(cfg["categories"]))}
-    # tri stable : dans une catégorie, les sujets de tes projets d'abord, puis l'ordre du fichier
-    return sorted(sujets, key=lambda s: (order.get(s["categorie"], 99), not s.get("depot")))
+    def key(s, k):
+        if k == "statut": return STATUTS.index(s.get("statut", "candidat"))
+        if k == "cat": return order.get(s["categorie"], 99)
+        if k == "date": return -int((s.get("date") or "0").replace("-", ""))
+        return (0, s["depot"]) if s.get("depot") else (1, "")
+    keys = SORT_KEYS if dossier else SORT_KEYS[1:]
+    return sorted(sujets, key=lambda s: tuple(key(s, k) for k in keys))
 
 
 def filters(sujets, cfg, seuil, dossier=False):
@@ -246,6 +258,11 @@ def filters(sujets, cfg, seuil, dossier=False):
     o = ['<div class="filters" id="filtres" hidden>']
     for g, label, chips in groups:
         o.append(f'  <div class="fgroup" data-g="{g}" role="group" aria-label="{label}"><span class="flabel">{label}</span><span class="chips">{"".join(chips)}</span></div>')
+    keys = SORT_KEYS if dossier else SORT_KEYS[1:]
+    o.append('  <div class="fsort" role="group" aria-label="Trier par"><span class="flabel">Trier par</span><span class="chips">'
+             + "".join(f'<button type="button" class="chip" data-k="{k}" aria-pressed="{str(i == 0).lower()}" '
+                       f'title="Trier d\'abord par {SORT_LABEL[k].lower()}, puis dans l\'ordre par défaut">{SORT_LABEL[k]}</button>' for i, k in enumerate(keys))
+             + f'<span class="sorder">{" › ".join(SORT_LABEL[k] for k in keys)}</span></span></div>')
     o.append('  <div class="fbar"><span class="count" aria-live="polite"></span><button type="button" class="reset" hidden>Réinitialiser</button>'
              '<button type="button" class="expand">Tout déplier</button></div>')
     o.append("</div>")
@@ -295,7 +312,7 @@ MOTIF_LABEL = {"deja-publie": "déjà publié", "hors-fenetre": "hors fenêtre d
 
 def render_dossier(day, cfg, seuil=None):
     seuil = seuil or seuil_frais(day)
-    allt = ordered(day.get("sujets", []), cfg)
+    allt = ordered(day.get("sujets", []), cfg, dossier=True)
     count = {st: sum(1 for s in allt if s.get("statut") == st) for st in STATUTS}
     jour = titre_jour(day["date"]).removeprefix("Veille technologique du ")
     o = [HEAD.format(title=E("Dossier du " + jour + SUFFIX), date=day["date"], extra_head='\n<meta name="robots" content="noindex, nofollow">'),

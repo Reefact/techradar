@@ -74,11 +74,13 @@ details.card[open]{border-color:#2a4b50}
 .totop.on{opacity:1;pointer-events:auto}
 /* Filtres */
 .filters{display:flex;flex-direction:column;gap:0;margin:0 0 14px}
-.fgroup,.fbar{padding:10px 0}
-.fgroup+.fgroup,.fbar{border-top:1px solid var(--line)}
+.fgroup,.fsort,.fbar{padding:10px 0}
+.fgroup+.fgroup,.fsort,.fbar{border-top:1px solid var(--line)}
 .fgroup:first-child{padding-top:0}.fbar{padding-bottom:0}
-.fgroup{display:grid;grid-template-columns:max-content 1fr;align-items:start;gap:6px 10px}
-.fgroup .flabel{padding-top:7px}
+.fgroup,.fsort{display:grid;grid-template-columns:max-content 1fr;align-items:start;gap:6px 10px}
+.fgroup .flabel,.fsort .flabel{padding-top:7px}
+.fsort .chip{color:var(--accent)}
+.sorder{align-self:center;color:var(--mute);font-size:.8rem;margin-left:6px}
 .chips{display:flex;flex-wrap:wrap;gap:8px 6px;min-width:0}
 .flabel{font:600 .68rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;color:var(--mute);min-width:74px}
 .chip{font:600 .68rem/1 var(--font-m);letter-spacing:.05em;text-transform:uppercase;padding:6px 9px;border-radius:999px;border:1px solid var(--line);background:var(--panel);cursor:pointer;opacity:.75}
@@ -98,7 +100,7 @@ details.card[open]{border-color:#2a4b50}
 .dz-journal dt{color:var(--mute)}
 .ask{font:600 .72rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;padding:8px 12px;border-radius:999px;border:1px dashed currentColor;background:transparent;color:var(--accent);cursor:pointer}
 @media(max-width:560px){.head h3{flex-basis:100%}}
-@media(max-width:480px){.fgroup{grid-template-columns:1fr}.fgroup .flabel{padding-top:0}.flabel{min-width:0}.dz-journal dl{grid-template-columns:1fr}}
+@media(max-width:480px){.fgroup,.fsort{grid-template-columns:1fr}.fgroup .flabel,.fsort .flabel{padding-top:0}.flabel{min-width:0}.dz-journal dl{grid-template-columns:1fr}}
 /* Vérification des sources : bouton « badge-check » sur la carte et fenêtre de détail (API popover, sans JavaScript) */
 .vf-btn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;border-radius:7px;border:1px solid var(--line);background:var(--panel2);color:var(--tool);cursor:pointer;flex:none}
 .vf-h3{display:flex;align-items:flex-start;gap:8px;min-width:0}.vf-h3 .fresh{margin-right:0}.vf-h3 .vf-btn{width:26px;height:26px}
