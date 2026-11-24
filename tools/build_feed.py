@@ -9,7 +9,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = (sys.argv[1] if len(sys.argv) > 1 else os.environ.get("SITE_URL", "")).rstrip("/")
+SITE = ((sys.argv[1] if len(sys.argv) > 1 else "") or os.environ.get("SITE_URL", "")).rstrip("/")
 TITLE = "TechRadar"
 SUBTITLE = "Veille quotidienne : sécurité, .NET, IA, API et architecture, outils, conférences et CFP."
 

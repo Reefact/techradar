@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Veille dev .NET — AAAA-MM-JJ</title>
+<meta name="date" content="AAAA-MM-JJ">
+<link rel="stylesheet" href="../../assets/report.css">
+</head>
+<body>
+<!--
+  GABARIT DES RAPPORTS TECHRADAR — à copier dans reports/AAAA/AAAAMMJJ.html.
+  Règles :
+  - ne pas ajouter de <style> ni de <script> ; ne jamais modifier assets/report.css (seules les classes ci-dessous existent) ;
+  - <title> et <meta name="date"> sont obligatoires (l'index et le flux s'en servent) ; la date est AAAA-MM-JJ ;
+  - le bloc <div class="card tldr"> avec ses <li> alimente le résumé du flux Atom ;
+  - un <div class="toc"> : un <span class="badge b-…"> par catégorie, suivi de ses <a class="item"> ; l'index en tire les "blips" du radar ;
+  - classes de badge : b-alert, b-radar, b-dotnet, b-ia, b-ddd, b-api, b-tool, b-retail, b-conf, b-star (⭐ tes sujets), b-new (Nouveau), b-up (⏰ rappel CFP) ;
+  - supprimer toute catégorie vide ; garder les ancres (#a1, #n1, …) cohérentes entre sommaire et résumés.
+-->
+<div class="wrap">
+<header>
+  <h1>Veille dev .NET — jour de la semaine JJ mois AAAA</h1>
+  <p class="sub">Brief du Chapter Dev .NET · (hypothèse de couverture éventuelle)</p>
+</header>
+
+<h2 id="top">À retenir aujourd'hui</h2>
+<div class="card tldr"><ul>
+  <li><strong>Point clé 1</strong> : une phrase.</li>
+  <li><strong>Point clé 2</strong> : une phrase.</li>
+  <li><strong>Point clé 3</strong> : une phrase.</li>
+</ul></div>
+
+<h2>Sommaire</h2>
+<div class="toc">
+  <span class="badge b-alert">Alertes &amp; incidents</span>
+  <a class="item" href="#a1"><strong>Titre du sujet</strong><span class="meta">Source · date · te concerne : oui/peut-être/non</span></a>
+  <span class="badge b-dotnet">.NET</span>
+  <a class="item" href="#n1"><strong>Titre du sujet</strong><span class="meta">Source · date</span></a>
+  <!-- idem pour b-radar, b-ia, b-ddd, b-api, b-tool, b-retail -->
+</div>
+
+<h2>Conférences &amp; CFP</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Événement</th><th>Dates</th><th>Lieu</th><th>Date limite CFP</th></tr></thead>
+<tbody>
+<tr><td><a href="#c1">Nom de la conférence</a> <span class="badge b-new">Nouveau</span> <span class="badge b-up">⏰ J-30</span></td><td>dates</td><td>lieu</td><td>date limite</td></tr>
+</tbody></table></div>
+
+<h2>En bref</h2>
+<ul class="brief">
+  <li><strong>Sujet :</strong> une ligne. <a href="https://exemple.org/">Source, date</a></li>
+</ul>
+
+<h2>Résumés</h2>
+<div class="sum">
+<h3 style="margin-top:8px"><span class="badge b-alert">Alertes &amp; incidents</span></h3>
+
+<article class="card" id="a1">
+  <div class="head"><span class="badge b-alert">Alerte</span><h3>Titre du sujet</h3></div>
+  <p>Résumé en français, 4 à 6 lignes.</p>
+  <dl class="kv"><dt>Touché</dt><dd>…</dd><dt>Correctif</dt><dd>…</dd><dt>Gravité</dt><dd>…</dd><dt>Action</dt><dd>…</dd></dl>
+  <p class="why">Pourquoi ça compte pour toi : une ligne. Te concerne : peut-être.</p>
+  <a href="https://exemple.org/">Source : nom, date</a> · <a class="back" href="#top">↑ sommaire</a>
+</article>
+
+<h3 style="margin-top:12px"><span class="badge b-conf">Conférences &amp; CFP</span></h3>
+<article class="card" id="c1">
+  <div class="head"><span class="badge b-conf">Conférence</span><h3>Nom de la conférence</h3></div>
+  <p>Présentation courte.</p>
+  <dl class="kv"><dt>Dates et lieu</dt><dd>…</dd><dt>CFP</dt><dd>date limite · <a href="https://exemple.org/">lien</a></dd></dl>
+  <a href="https://exemple.org/">Source : site officiel</a> · <a class="back" href="#top">↑ sommaire</a>
+</article>
+</div>
+
+<footer>
+  <p><strong>Sources :</strong> liste des sources consultées.</p>
+  <p><strong>Hypothèses :</strong> éventuelles hypothèses prises en mode non surveillé.</p>
+  <p>Généré le jour mois AAAA, à HH:MM (Paris).</p>
+</footer>
+</div>
+</body>
+</html>
