@@ -51,6 +51,8 @@ Les brouillons (`drafts/`) n'apparaissent ni dans l'index ni dans le flux. Pour 
 
 L'ancienne version reste dans l'historique Git.
 
+**Régénérer le rapport du jour** : skill `veille-regenerer`. Il lance la tâche avec une consigne de régénération ; elle écrit toujours un brouillon. Au choix : en rester là (brouillon), ou « écraser » = contrôle (`tools/check_report.py`), accord explicite, puis promotion via le workflow. Le prompt de la tâche n'est pas modifié : il continue d'interdire l'écrasement direct.
+
 ## Mémoire côté dépôt (outillage prêt, pas encore branché sur la tâche)
 
 Aujourd'hui la tâche s'appuie sur l'artefact « Veille — registre ». En parallèle, le dépôt sait reconstruire cette mémoire à partir des rapports eux-mêmes :
