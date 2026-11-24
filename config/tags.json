@@ -38,5 +38,20 @@
     "label": "Talk",
     "classe": "b-conf",
     "description": "Le sujet est une présentation enregistrée (vidéo d'une conférence ou d'un meetup), pas un article."
+  },
+  "agents": {
+    "label": "Agents",
+    "classe": "b-ia",
+    "description": "Agents de code et agents d'IA : outils, méthodes, plateformes et retours d'usage (à distinguer des modèles eux-mêmes)."
+  },
+  "supply-chain": {
+    "label": "Supply chain",
+    "classe": "b-up",
+    "description": "Chaîne d'approvisionnement logicielle : paquets (NuGet, npm, PyPI), dépendances, CI et publication, et les attaques qui les visent."
+  },
+  "rex": {
+    "label": "REX",
+    "classe": "b-new",
+    "description": "Retour d'expérience : une équipe raconte ce qu'elle a fait et ce qu'elle en a appris, chiffres à l'appui si possible."
   }
 }

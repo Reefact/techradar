@@ -641,7 +641,8 @@
    "categorie": "securite",
    "statut": "publie",
    "tags": [
-    "alerte"
+    "alerte",
+    "supply-chain"
    ],
    "titre": "Paquets PyPI agent-framework piégés : vol d'identifiants Azure et CI",
    "resume": "Le 17 novembre, deux versions du paquet PyPI officiel agent-framework de Microsoft (1.26.1 et 1.26.2, publiées à environ 33 minutes d'écart) ont été détournées. Elles contiennent un voleur d'identifiants qui s'exécute via un fichier .pth à chaque démarrage de l'interpréteur Python, sans même importer le paquet, et envoie les secrets Azure et CI vers webhook.site.\n\nLes versions ont été mises en quarantaine ; la dernière version saine est la 1.26.0. Les équipes concernées doivent contrôler leurs images CI et leurs environnements, renouveler tous les secrets possiblement exposés et bloquer webhook.site en sortie. Ce n'est pas du .NET, mais cela touche le même écosystème Azure et CI/CD (la gravité « critique » est mon évaluation, pas celle des sources).",
@@ -668,6 +669,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie Alertes → Sécurité (a6 → s6) ; tag Alerte"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : supply-chain"
     }
    ],
    "date": "2026-11-18"
@@ -930,7 +937,9 @@
    "id": "n2",
    "categorie": "dotnet",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "supply-chain"
+   ],
    "titre": "NuGet.org : publication en deux temps (staged publishing)",
    "resume": "NuGet.org propose une fonction optionnelle de publication en deux temps. Un paquet envoyé en zone d'attente (« staging ») passe les contrôles habituels (anti-malware, signatures) mais reste invisible pour la recherche et le restore. Un mainteneur autorisé le promeut ensuite depuis le site web, et plusieurs paquets liés peuvent être promus ensemble par groupe de release. Le contenu non promu finit par expirer.\n\nDes clés API « staging seulement » permettent à un pipeline de téléverser sans pouvoir publier directement : si la clé fuit, l'attaquant ne peut pas mettre un paquet en ligne. Côté CLI, `dotnet package stage push` exige le SDK .NET 11 RC2 (version préliminaire). La promotion se fait pour l'instant uniquement sur le site, sans approbation en ligne de commande, et la promotion d'un groupe n'est pas atomique. Le billet recommande de l'associer à la publication de confiance (Trusted Publishing). L'article ne dit pas si la fonction est en préversion ou disponible pour tous.",
    "pourquoi": "Pourquoi ça compte pour toi : tu peux mettre une validation humaine entre le build CI et la mise en ligne de tes bibliothèques (kill-mutants, first-class-errors, etc.) et limiter les dégâts d'un vol de clé, comme dans l'attaque PyPI citée plus haut.",
@@ -946,6 +955,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : supply-chain"
     }
    ],
    "date": "2026-11-17"
@@ -978,7 +993,9 @@
    "id": "i1",
    "categorie": "ia",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "Claude Ship : des agents qui prennent en charge les PR après ouverture",
    "resume": "Anthropic lance en bêta une offre qui prend en charge les pull requests après leur ouverture. Elle réunit Code Review (déjà disponible, avec trois niveaux Quick, Standard ou Deep réglables par dépôt) et deux agents en bêta.\n\n- **PR Steward** corrige les échecs de CI, les conflits de merge et traite les retours de revue. Il commente ce qu'il a changé et comment annuler, et il n'approuve ni ne fusionne jamais.\n- **Claude Approvals** applique une politique d'approbation stockée dans le dépôt, un peu comme un CODEOWNERS avancé : il approuve les changements courants et exige un humain pour les changements sensibles.\n\nL'offre est réservée aux plans Team et Enterprise sur GitHub, facturée aux tokens avec des plafonds de dépense. Elle n'est pas disponible avec la rétention zéro des données (ZDR), la conformité HIPAA ni les clés de chiffrement gérées par le client. Une commande `/ship` arrive dans Claude Code.",
    "pourquoi": "Pourquoi ça compte pour toi : une politique d'approbation versionnée avec le code et un agent qui répare la CI touchent directement le flux de PR d'une équipe .NET. Point de vigilance : la compatibilité avec tes contraintes de rétention des données.",
@@ -994,6 +1011,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ],
    "date": "2026-11-23"
@@ -1002,7 +1025,10 @@
    "id": "i2",
    "categorie": "ia",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "agents",
+    "rex"
+   ],
    "titre": "Netflix : adapter le cycle de développement aux agents de code",
    "resume": "À QCon SF, un ingénieur de Netflix explique que le gain vient surtout de la documentation, de la cohérence et de la revue, plus que des agents eux-mêmes. L'équipe a rédigé 45 ADR (Architecture Decision Records, fiches de décision d'architecture) lisibles par des humains comme par des agents, plus un fichier AGENTS.md pour naviguer dans plus de 300 documents.\n\nUn agent de revue vérifie les PR par rapport à ces documents ; il a été réglé pour ne poster que des problèmes bloquants vérifiés, après une première version jugée trop bavarde. Pour les changements qui touchent plusieurs services, ils utilisent des graphes GraphRAG par domaine, épinglés sur des commits et exposés par un seul outil MCP (Model Context Protocol). Chiffres rapportés par Netflix : aucun incident Sev 1 sur un service clé en 2026, 32 % de PR en plus sur un an, et un NPS (indice de recommandation) développeur passé de -3 à +25.",
    "pourquoi": "Pourquoi ça compte pour toi : un retour d'expérience chiffré et reproductible (ADR, AGENTS.md, revue par agent, MCP) pour cadrer l'usage des agents dans tes missions. Il rejoint aussi ton sujet des conventions de revue de code.",
@@ -1018,6 +1044,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents, rex"
     }
    ],
    "date": "2026-11-23"
@@ -1026,7 +1058,9 @@
    "id": "i3",
    "categorie": "ia",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "GitHub Copilot dans JetBrains : sandbox cloud, accès distant, navigateur",
    "resume": "Plusieurs fonctions passent en préversion publique dans Copilot pour les IDE JetBrains. Les sessions peuvent tourner dans un sandbox cloud hébergé par GitHub, avec des sessions parallèles. Les conversations sont accessibles depuis d'autres clients (VS Code, application Copilot). Copilot peut piloter le navigateur via l'extension Chrome, la dictée vocale tourne sur l'appareil, et un mode « split » permet le développement à distance.\n\nCôté ergonomie, Entrée permet de réorienter un agent en cours d'exécution et Ctrl/Cmd+Entrée met un suivi en file d'attente. Côté administration, les paramètres entreprise désactivent désormais Claude et Codex sauf exception décidée par un administrateur. JetBrains 2025.2 n'est plus pris en charge.",
    "pourquoi": "Pourquoi ça compte pour toi : si l'équipe .NET utilise Rider, la version minimale passe à 2025.3, et la nouvelle règle entreprise sur Claude et Codex peut bloquer des usages existants.",
@@ -1042,6 +1076,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ],
    "date": "2026-11-17"
@@ -1050,7 +1090,9 @@
    "id": "i4",
    "categorie": "ia",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "Devin Bots : des agents persistants qui pilotent d'autres agents",
    "resume": "Cognition lance des agents persistants qui supervisent plusieurs sessions Devin et portent un objectif pendant des jours ou des semaines. Ils créent eux-mêmes les tâches et les assignent, et envoient ce qui demande une validation humaine vers une boîte « Needs You ».\n\nExemple cité : un Bot a produit une version Android de Devin sans ingénieur Android, avec 1 134 PR fusionnées en 44 jours (chiffres de Cognition). The New Stack souligne des questions ouvertes : résolution des conflits entre agents, auto-vérification du code et critère de prêt à fusionner. L'annonce initiale semble dater du 17 novembre (article Fortune repéré, non ouvert).",
    "pourquoi": "Pourquoi ça compte pour toi : l'orchestration d'agents progresse vite, et la gouvernance de la qualité (revue, critères de fusion) devient le vrai sujet dès qu'on cadre l'usage des agents en équipe.",
@@ -1066,6 +1108,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ],
    "date": "2026-11-19"
@@ -1074,7 +1122,9 @@
    "id": "i5",
    "categorie": "ia",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "LangSmith Tool Gateway : une passerelle MCP avec politiques et audit",
    "resume": "LangChain passe en bêta publique une couche gérée qui centralise identifiants, identité et accès pour les appels d'outils des agents. Tous les appels passent par une URL unique, avec des politiques de refus ou d'approbation et un traçage de chaque appel, exécutable au nom de l'utilisateur ou de l'agent.\n\nOn peut y enregistrer n'importe quel serveur MCP ou activer un serveur intégré (Google, GitHub, Salesforce). Un « tool kit » est un ensemble d'outils publié sur une URL MCP, et un mode recherche charge seulement les outils utiles. Tout client MCP peut s'y connecter, dont Claude Code et Cursor. Les journaux d'audit complets sont réservés à l'offre Enterprise. Le blog officiel MCP n'a rien publié entre le 17 et le 24 novembre.",
    "pourquoi": "Pourquoi ça compte pour toi : une réponse concrète au problème de gouvernance des serveurs MCP (secrets, droits, audit) quand on les déploie à l'échelle d'une équipe.",
@@ -1090,6 +1140,12 @@
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ],
    "date": "2026-11-19"
@@ -1141,7 +1197,9 @@
    "id": "cr1",
    "categorie": "craftsmanship",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "rex"
+   ],
    "titre": "Revue de code : « rendre le changement facile d'abord »",
    "resume": "Oskar Dudycz soutient que la revue de code n'est pas le vrai goulot d'étranglement : il faut d'abord un processus de livraison sain, car accélérer un processus défaillant amplifie ses défauts. Il suggère de fusionner du code « débranché » (non activé), de séparer le refactoring mécanique des changements de comportement, et de relire le code produit par des agents par petits incréments réguliers.\n\nSa conclusion : la bonne question est comment travailler autrement, pas comment relire plus vite ni comment supprimer les revues. L'article date du 16 novembre, à la limite de la fenêtre.",
    "pourquoi": "Pourquoi ça compte pour toi : directement lié à tes conventions de commentaires de revue (conventional-comments-toolkit) et à la question de relire du code généré.",
@@ -1175,6 +1233,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "Architecture → Craftsmanship (p2 → cr1)"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : rex"
     }
    ],
    "date": "2026-11-16",
@@ -1184,7 +1248,9 @@
    "id": "p3",
    "categorie": "architecture",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "rex"
+   ],
    "titre": "Outbox pattern sous Postgres : workers concurrents ou lecture du WAL",
    "resume": "L'outbox écrit le message dans la même transaction que la donnée métier. Plusieurs workers en polling peuvent vider la table avec des verrous de lignes, au prix d'une latence liée à l'intervalle de polling. Un `NOTIFY` envoyé par trigger dans la transaction provoque une forte contention ; envoyé après le commit, il l'évite mais ajoute de la complexité.\n\nLa lecture du journal WAL (journal des écritures de Postgres) par réplication logique atteint environ 1 ms à faible charge avec le meilleur débit des benchmarks de l'auteur, mais exige un slot de réplication et une surveillance de l'espace disque. Les deux approches peuvent livrer des doublons, donc les consommateurs doivent être idempotents. L'article date du 7 novembre (hors fenêtre), gardé faute de sujet plus récent sur l'événementiel.",
    "pourquoi": "Pourquoi ça compte pour toi : un retour de terrain chiffré pour choisir entre polling et WAL dans une architecture événementielle. Rien de daté et vérifié cette semaine sur le versioning d'API, le modular monolith ou le DDD.",
@@ -1206,6 +1272,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie API & architecture → Architecture ; libellé de carte propre supprimé"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : rex"
     }
    ],
    "date": "2026-11-07"
@@ -1214,7 +1286,9 @@
    "id": "t1",
    "categorie": "outils",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "chrome-devtools-mcp : un agent de code qui pilote un vrai Chrome",
    "resume": "Serveur MCP et ligne de commande qui laissent un agent de code piloter et inspecter un Chrome en cours d'exécution : traces de performance, réseau, console avec piles d'appels résolues par source maps, et automatisation via Puppeteer.",
    "details": {
@@ -1240,6 +1314,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie secondaire IA"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ],
    "date": "2026-11-24",
@@ -1249,7 +1329,9 @@
    "id": "t2",
    "categorie": "outils",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "open-code-review (Alibaba) : revue de code par pipelines et agent LLM",
    "resume": "Outil de revue de code qui combine des pipelines déterministes et un agent LLM. `ocr review` travaille sur un diff, une branche ou un commit, et `ocr scan` sur des fichiers entiers. Il fonctionne avec des modèles OpenAI ou Anthropic et se branche en CI (GitHub Actions, GitLab CI, Gerrit).",
    "details": {
@@ -1275,6 +1357,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie secondaire IA"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ],
    "date": "2026-11-24",
@@ -1319,7 +1407,8 @@
    "categorie": "outils",
    "statut": "publie",
    "tags": [
-    "pepite"
+    "pepite",
+    "agents"
    ],
    "titre": "worker755 : le jeu où tu es le sous-agent d'un manager IA",
    "resume": "Jeu dans le navigateur où le joueur est le sous-agent d'un manager IA. Le manager, scripté ou piloté par un LLM, distribue des tâches ; le joueur choisit un lieu de travail (bac à sable ou production) et peut autoriser l'échec des tâches. Quelques « shifts » (quarts de travail) gratuits par jour avec la clé du serveur, sinon on apporte sa clé OpenRouter ou Vercel AI Gateway ; une version hors ligne tourne avec `npm run mock`.",
@@ -1350,6 +1439,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie secondaire IA"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ],
    "date": "2026-11-24",
@@ -1860,7 +1955,9 @@
    "id": "s8",
    "categorie": "securite",
    "statut": "candidat",
-   "tags": [],
+   "tags": [
+    "supply-chain"
+   ],
    "titre": "Actions GitHub : épingler un SHA ne garantit pas l'auteur du code",
    "resume": "Épingler une action GitHub sur un SHA de commit garantit que le code ne change plus, mais pas qui l'a écrit. Les dépôts d'un même réseau de forks partagent leurs commits : un attaquant peut y déposer un commit piégé, que l'on épingle ensuite sans se méfier.\n\nL'article cite le piratage de Trivy en mars 2026 (code déguisé en correctif de l'action de checkout) et celui de l'action actions-cool/issues-helper en mai, qui a volé des identifiants de pipeline. Le texte est un contenu sponsorisé qui annonce un webinaire ; les faits cités sont à recouper.",
    "details": {
@@ -1888,6 +1985,12 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "catégorie Alertes → Sécurité (a8 → s8)"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "tags ajoutés : supply-chain"
     }
    ],
    "date": "2026-11-24"
@@ -2004,7 +2107,9 @@
    "id": "t5",
    "categorie": "outils",
    "statut": "candidat",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "Superpowers : une méthode complète de développement pour agents de code",
    "resume": "Framework de « skills » (compétences) composables qui impose à l'agent une méthode : clarifier l'intention, rédiger une conception par sections, écrire un plan détaillé, puis implémenter par tâches avec des sous-agents et une revue après chaque étape. Les skills se déclenchent seules une fois installées.",
    "details": {
@@ -2031,6 +2136,12 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "catégorie secondaire IA"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ],
    "categorie_secondaire": "ia"
@@ -2039,7 +2150,9 @@
    "id": "t6",
    "categorie": "outils",
    "statut": "publie",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "CLI-Anything : rendre n'importe quel logiciel pilotable par un agent",
    "resume": "Un plugin ou une skill génère, en sept phases, une interface en ligne de commande avec sortie JSON pour un logiciel existant : analyse du code, conception des commandes, implémentation, tests, publication. Un « CLI-Hub » permet d'installer des enveloppes prêtes à l'emploi (GIMP, Blender, LibreOffice…).",
    "details": {
@@ -2071,6 +2184,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "catégorie secondaire IA"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ],
    "categorie_secondaire": "ia"
@@ -2226,7 +2345,9 @@
    "id": "n8",
    "categorie": "dotnet",
    "statut": "candidat",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "Skills d'agents livrés dans des paquets NuGet",
    "resume": "Richard Lander présente la livraison de skills d'agents (instructions et outils pour les assistants de code) à l'intérieur de paquets NuGet, pour qu'une bibliothèque apporte avec elle le mode d'emploi destiné aux agents.",
    "sources": [
@@ -2243,6 +2364,12 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ]
   },
@@ -2250,7 +2377,9 @@
    "id": "i7",
    "categorie": "ia",
    "statut": "candidat",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "Replit Missions : un essaim d'agents jusqu'à l'objectif",
    "resume": "Replit lance Missions : un essaim d'agents travaille jusqu'à ce qu'un objectif soit atteint, avec un budget plafonné et un juge indépendant qui valide le résultat. Les chiffres annoncés par Replit ne sont pas vérifiés.",
    "sources": [
@@ -2267,6 +2396,12 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ]
   },
@@ -2295,7 +2430,9 @@
    "id": "t9",
    "categorie": "outils",
    "statut": "candidat",
-   "tags": [],
+   "tags": [
+    "agents"
+   ],
    "titre": "Plannotator : revue de plans et de diffs d'agents",
    "resume": "Outil de revue des plans et des diffs produits par des agents de code (Claude Code, Codex, Copilot CLI), environ 9 600 étoiles sur GitHub.",
    "sources": [
@@ -2318,6 +2455,12 @@
      "statut": "candidat",
      "par": "utilisateur",
      "note": "catégorie secondaire IA"
+    },
+    {
+     "date": "2026-11-25T01:20+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "tags ajoutés : agents"
     }
    ],
    "categorie_secondaire": "ia"
