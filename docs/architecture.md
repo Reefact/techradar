@@ -79,7 +79,7 @@ Thème sombre noir-vert, accent turquoise, couleurs par catégorie. Polices Goog
 ### Boutons « Claude » sur chaque sujet
 - L'index injecte (depuis `index.html`, dans l'iframe de même origine) un bouton sous chaque `<article class="card" id="…">` d'un rapport. Rien à écrire dans les rapports, anciens ou nouveaux.
 - Le prompt est construit à partir de la carte : titre, résumé, ligne « pourquoi ça compte », sources, date du brief.
-- **Bouton « Claude Code »** (violet) : sur les cartes qui portent `data-repo="Reefact/nom"` (sujets du radar, plusieurs dépôts séparés par des virgules). Il ouvre `https://claude.ai/code?repositories=…&prompt=…` : dépôt présélectionné, prompt pré-rempli, **non envoyé** (documenté officiellement). Le dépôt privé exige l'app GitHub Claude installée dessus.
+- **Bouton « Claude Code »** (violet) : sur les cartes qui portent `data-repo="Reefact/nom"` (sujets du radar : **un article par dépôt**, jamais de mélange, et seulement s'il y a un vrai signal pour ce dépôt). Il ouvre `https://claude.ai/code?repositories=…&prompt=…` : dépôt présélectionné, prompt pré-rempli, **non envoyé** (documenté officiellement). Le dépôt privé exige l'app GitHub Claude installée dessus.
 - **Bouton « Claude »** (turquoise) : sur les autres cartes. Il ouvre `https://claude.ai/new?q=…` — ce pré-remplissage n'est **pas documenté** — et **copie aussi le prompt dans le presse-papiers** (un message le signale) pour le coller si la conversation s'ouvre vide.
 - La tâche de veille ajoute `data-repo` sur les cartes du radar (règle dans son prompt et dans `tools/report-template.html`).
 

@@ -39,7 +39,8 @@
   <span class="badge b-radar">Radar de tes projets</span>
   <a class="item" href="#r2"><strong>first-class-errors : unions C# 15 contre Result pattern</strong><span class="meta">Milan Jovanović · 21 nov. 2026 ; .NET Blog · 10 sept. 2026</span></a>
   <a class="item" href="#r3"><strong>kill-mutants : Stryker.NET, lecteur MTP et paquet 5.1.0</strong><span class="meta">Stryker blog · 13 mars 2026 ; NuGet · 10 nov. 2026</span></a>
-  <a class="item" href="#r4"><strong>unified-assertions et just-dummies : Shouldly 5 et AutoFixture 5 en préversion</strong><span class="meta">NuGet · juin à juil. 2026 (signal ancien)</span></a>
+  <a class="item" href="#r4"><strong>unified-assertions : Shouldly 5 en préversion</strong><span class="meta">NuGet · juin à juil. 2026 (signal ancien)</span></a>
+  <a class="item" href="#r5"><strong>just-dummies : AutoFixture 5 en préversion</strong><span class="meta">NuGet · juil. 2026 (signal ancien)</span></a>
 
   <span class="badge b-dotnet">.NET</span>
   <a class="item" href="#n1"><strong>.NET 11 et C# 15 sont disponibles</strong><span class="meta">.NET Blog · 10 nov. 2026 ; InfoQ · 17 nov. 2026</span></a>
@@ -166,12 +167,18 @@
   <a href="https://stryker-mutator.io/blog/stryker-net-mtp-runner/" target="_blank" rel="noopener">Source : Stryker Mutator</a> · <a href="https://www.nuget.org/packages/stryker" target="_blank" rel="noopener">NuGet</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 
-<article class="card" id="r4" data-repo="Reefact/unified-assertions,Reefact/just-dummies">
-  <div class="head"><span class="badge b-radar">Radar</span><span class="badge b-star">⭐ Tes sujets</span><h3>unified-assertions et just-dummies : Shouldly 5 et AutoFixture 5 en préversion</h3></div>
-  <p>Relevé des versions sur NuGet (dates lues sur les pages, aucune dans les 7 derniers jours). Assertions : AwesomeAssertions est à la 9.6.0 (20 août 2026) après la 9.5.0 (19 juillet) ; Shouldly reste à la 4.3.0 stable (janvier 2025) mais prépare une 5.0.0 avec deux préversions (10 juin et 18 juillet 2026). Données de test : Bogus est à la 35.6.5 (octobre 2025) ; AutoFixture reste à la 4.18.1 stable (novembre 2023) avec une 5.0.0-rc.1 du 31 juillet 2026.</p>
-  <p>Hors périmètre direct mais utile pour first-class-errors : ErrorOr est à la 2.1.1 (15 mai 2026) et FluentResults à la 4.0.0 (juin 2025). Pour slugger : Slugify.Core 5.2.0, dernière mise à jour le 26 octobre 2026, sans notes de version pour cette version ; la dernière entrée détaillée (5.1.1) corrige le « i » turc, et la page ne mentionne pas la normalisation Unicode.</p>
-  <p class="why">Recoupement : deux concurrents d'assertions et de génération de données préparent une version majeure 5. Une rupture de compatibilité chez eux est l'occasion de positionner unified-assertions et just-dummies. Signal ancien : à relire quand les versions stables sortent.</p>
-  <a href="https://www.nuget.org/packages/AwesomeAssertions" target="_blank" rel="noopener">AwesomeAssertions</a> · <a href="https://www.nuget.org/packages/Shouldly" target="_blank" rel="noopener">Shouldly</a> · <a href="https://www.nuget.org/packages/AutoFixture" target="_blank" rel="noopener">AutoFixture</a> · <a href="https://www.nuget.org/packages/Slugify.Core" target="_blank" rel="noopener">Slugify.Core</a> · <a class="back" href="#top">↑ sommaire</a>
+<article class="card" id="r4" data-repo="Reefact/unified-assertions">
+  <div class="head"><span class="badge b-radar">Radar</span><span class="badge b-star">⭐ Tes sujets</span><h3>unified-assertions : Shouldly 5 en préversion</h3></div>
+  <p>Relevé des versions sur NuGet (dates lues sur les pages, aucune dans les 7 derniers jours). AwesomeAssertions est à la 9.6.0 (20 août 2026) après la 9.5.0 (19 juillet). Shouldly reste à la 4.3.0 stable (janvier 2025) mais prépare une 5.0.0, avec deux préversions (10 juin et 18 juillet 2026).</p>
+  <p class="why">Recoupement avec unified-assertions : un concurrent d'assertions prépare une version majeure 5. Une rupture de compatibilité chez lui est l'occasion de positionner ta bibliothèque. Signal ancien : à relire quand la 5.0.0 stable sort.</p>
+  <a href="https://www.nuget.org/packages/AwesomeAssertions" target="_blank" rel="noopener">AwesomeAssertions</a> · <a href="https://www.nuget.org/packages/Shouldly" target="_blank" rel="noopener">Shouldly</a> · <a class="back" href="#top">↑ sommaire</a>
+</article>
+
+<article class="card" id="r5" data-repo="Reefact/just-dummies">
+  <div class="head"><span class="badge b-radar">Radar</span><span class="badge b-star">⭐ Tes sujets</span><h3>just-dummies : AutoFixture 5 en préversion</h3></div>
+  <p>Relevé des versions sur NuGet (dates lues sur les pages, aucune dans les 7 derniers jours). AutoFixture reste à la 4.18.1 stable (novembre 2023) avec une 5.0.0-rc.1 du 31 juillet 2026. Bogus est à la 35.6.5 (octobre 2025).</p>
+  <p class="why">Recoupement avec just-dummies : un concurrent de génération de données de test prépare une version majeure 5. Une rupture de compatibilité chez lui est l'occasion de positionner ta bibliothèque. Signal ancien : à relire quand la 5.0.0 stable sort.</p>
+  <a href="https://www.nuget.org/packages/AutoFixture" target="_blank" rel="noopener">AutoFixture</a> · <a class="back" href="#top">↑ sommaire</a>
 </article>
 <h3 style="margin-top:12px"><span class="badge b-dotnet">.NET</span></h3>
 

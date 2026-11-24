@@ -20,7 +20,7 @@
   - le bloc <div class="card tldr"> avec ses <li> alimente le résumé du flux Atom ;
   - un <div class="toc"> : un <span class="badge b-…"> par catégorie, suivi de ses <a class="item"> ; l'index en tire les "blips" du radar ;
   - classes de badge : b-alert, b-radar, b-dotnet, b-ia, b-ddd, b-api, b-tool, b-retail, b-conf, b-star (⭐ tes sujets), b-new (Nouveau), b-up (⏰ rappel CFP) ;
-  - boutons « travailler ce sujet avec Claude » : l'index les ajoute tout seul sur chaque <article class="card" id="…"> (il lit le <h3>, les <p>, la ligne « why » et les liens). Pour un sujet du RADAR qui concerne un de mes dépôts, mettre data-repo="Reefact/nom-du-depot" sur l'<article> (plusieurs dépôts : séparés par des virgules, ex. data-repo="Reefact/unified-assertions,Reefact/just-dummies") : le bouton devient « Claude Code » avec ce dépôt présélectionné. Sans data-repo : bouton « Claude » (conversation simple) ;
+  - boutons « travailler ce sujet avec Claude » : l'index les ajoute tout seul sur chaque <article class="card" id="…"> (il lit le <h3>, les <p>, la ligne « why » et les liens). RADAR : un article PAR dépôt, jamais deux dépôts dans le même article, et un article seulement s'il y a un vrai signal pour ce dépôt (sinon aucun). Il porte data-repo="Reefact/nom-du-depot" (un seul dépôt) : le bouton devient « Claude Code » avec ce dépôt présélectionné. Sans data-repo : bouton « Claude » (conversation simple) ;
   - TOUT lien externe (http/https) porte target="_blank" rel="noopener" ; les ancres internes (#a1, #top) n'en portent pas ;
   - supprimer toute catégorie vide ; garder les ancres (#a1, #n1, …) cohérentes entre sommaire et résumés.
 -->
