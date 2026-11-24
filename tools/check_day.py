@@ -23,7 +23,7 @@ import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import MOTIFS, ROOT, STATUTS, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
+from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
 import check_report  # noqa: E402
 import render  # noqa: E402
 
@@ -88,6 +88,7 @@ def check(path, contre=None, partiel=False):
         for f in ("id", "categorie", "statut", "titre"):
             if not s.get(f): E(f"{where} : champ « {f} » manquant")
         if s.get("id") in ids: E(f"{where} : identifiant en double")
+        if len(plain(s.get("titre", ""))) > TITRE_MAX: E(f"{where} : titre de {len(plain(s['titre']))} caractères, {TITRE_MAX} au plus : « {plain(s['titre'])} »")
         ids.add(s.get("id"))
         c = cats.get(s.get("categorie"))
         if not c:

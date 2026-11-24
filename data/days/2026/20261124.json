@@ -71,7 +71,7 @@
    "categorie": "alertes",
    "statut": "publie",
    "tags": [],
-   "titre": "Idunno.AntiCsrf : exécution de code à distance exploitée, aucun correctif",
+   "titre": "Idunno.AntiCsrf : exécution de code à distance exploitée, sans correctif",
    "resume": "La bibliothèque tierce Idunno.AntiCsrf protège les formulaires ASP.NET WebForms contre les attaques CSRF (falsification de requête inter-sites). Son module HTTP désérialise le jeton envoyé par le client sans clé, donc sans signature ni contrôle d'intégrité. Une seule requête POST non authentifiée suffit à exécuter du code dans le processus IIS (w3wp.exe).\n\nMandiant a publié l'avis MNDT-2026-0048 le 18 novembre (CVE-2026-131914, CVSS 4.0 : 9,3). Il signale une exploitation active, découverte lors d'une réponse à incident. Le projet n'a plus de mainteneur depuis sa dernière version, en décembre 2008 : aucun correctif n'existe. La solution : retirer la bibliothèque et la remplacer par System.Web.Helpers.AntiForgery, par ViewStateUserKey avec un ViewState protégé par MAC, ou par IAntiforgery sous ASP.NET Core.",
    "details": {
     "Touché": "Idunno.AntiCsrf.dll 0.9.1.0 (la « 0.9.1 Beta ») et les versions recompilées depuis ses sources, sur .NET Framework / WebForms",
@@ -90,7 +90,6 @@
      "url": "https://thehackernews.com/2026/11/hackers-exploit-critical-aspnet-anti.html"
     }
    ],
-   "titre_sommaire": "Idunno.AntiCsrf : exécution de code exploitée, aucun correctif",
    "meta": "Mandiant · 18 nov. 2026 ; The Hacker News · 23 nov. 2026 · te concerne : peut-être (.NET Framework legacy)",
    "historique": [
     {
@@ -103,6 +102,12 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
+    },
+    {
+     "date": "2026-11-24T20:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "titre raccourci à 72 caractères au plus (avant : « Idunno.AntiCsrf : exécution de code à distance exploitée, aucun correctif »)"
     }
    ],
    "date": "2026-11-23",
@@ -1652,7 +1657,7 @@
    "categorie": "alertes",
    "statut": "candidat",
    "tags": [],
-   "titre": ".NET Framework : un bit modifié suffit à contourner le contrôle d'intégrité du code Windows",
+   "titre": ".NET Framework : un bit modifié contourne le contrôle d'intégrité",
    "resume": "James Forshaw, de Google Project Zero, décrit deux contournements fondés sur un défaut de chargement de .NET Framework 4. Quand le chargement normal d'une image échoue, .NET Framework retombe sur une copie exécutée en mémoire qui saute les contrôles d'image.\n\nCe repli a contourné le durcissement des processus de VirtualBox. Ensuite, effacer un seul bit d'en-tête (IMAGE_FILE_EXECUTABLE_IMAGE) fait rejeter l'image par Windows, alors que .NET l'exécute quand même : la règle UMCI (contrôle d'intégrité du code en mode utilisateur) est contournée. L'attaque est locale et passe par un détournement COM.",
    "details": {
     "Touché": ".NET Framework 4 sous Windows (CVE-2026-108398, CVSS 8,8) ; VirtualBox 7.2.16 sur hôte Windows (CVE-2026-87268, CVSS 7,8)",
@@ -1673,6 +1678,12 @@
      "statut": "candidat",
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
+    },
+    {
+     "date": "2026-11-24T20:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "titre raccourci à 72 caractères au plus (avant : « .NET Framework : un bit modifié suffit à contourner le contrôle d'intégrité du code Windows »)"
     }
    ],
    "date": "2026-11-24"
@@ -1712,7 +1723,7 @@
    "categorie": "alertes",
    "statut": "candidat",
    "tags": [],
-   "titre": "Azure API Management (niveau Classic) : un acteur cherche des secrets, Microsoft corrige",
+   "titre": "Azure API Management Classic : des secrets ciblés, Microsoft corrige",
    "resume": "L'autorité norvégienne NSM a signalé qu'un acteur inconnu cherchait des jetons, des secrets et des valeurs nommées dans des instances Azure API Management du niveau Classic. Equinor et Skagerak Energi figureraient parmi les victimes.\n\nMicrosoft a fermé la voie d'accès vulnérable le 19 novembre et publié le 21 novembre un guide de rotation des identifiants. L'exposition dépend du respect des bonnes pratiques de sécurité documentées. Aucun identifiant CVE n'est cité.",
    "details": {
     "Touché": "API Management, niveau Classic (les niveaux v2 ne le sont pas)",
@@ -1737,6 +1748,12 @@
      "statut": "candidat",
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
+    },
+    {
+     "date": "2026-11-24T20:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "titre raccourci à 72 caractères au plus (avant : « Azure API Management (niveau Classic) : un acteur cherche des secrets, Microsoft corrige »)"
     }
    ],
    "date": "2026-11-24"
@@ -1771,7 +1788,7 @@
    "categorie": "ia",
    "statut": "candidat",
    "tags": [],
-   "titre": "Shirudo (OpenAI et Cisco) : des agents qui écrivent des boucliers eBPF avant le correctif",
+   "titre": "Shirudo (OpenAI, Cisco) : des agents qui écrivent des boucliers eBPF",
    "resume": "OpenAI et Cisco publient Shirudo, un environnement d'exécution Linux libre bâti sur Tetragon (plateforme de sécurité eBPF d'Isovalent). Un agent reproduit et valide une faille, puis écrit un « bouclier » eBPF ciblé qui bloque l'exploitation pendant que le vrai correctif est testé.\n\nLes boucliers sont signés, distribués en paquets .bee via un registre compatible OCI et vérifiés par TPM avant chargement. L'opérateur peut mesurer l'effet avant d'activer le blocage ; le bouclier s'efface quand le correctif arrive. Dans un test unique, un bouclier généré par Codex a bloqué l'exploit Java4Shell sur un Elasticsearch en marche. La licence n'est pas précisée dans l'article.",
    "pourquoi": "Pourquoi ça compte pour toi : une illustration concrète d'agents de code appliqués à la sécurité opérationnelle, liée à l'alerte Java4Shell de ce brief. Expérience encore isolée, à suivre.",
    "sources": [
@@ -1791,6 +1808,12 @@
      "statut": "candidat",
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
+    },
+    {
+     "date": "2026-11-24T20:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "titre raccourci à 72 caractères au plus (avant : « Shirudo (OpenAI et Cisco) : des agents qui écrivent des boucliers eBPF avant le correctif »)"
     }
    ],
    "date": "2026-11-24"
@@ -1892,7 +1915,7 @@
    "categorie": "outils",
    "statut": "candidat",
    "tags": [],
-   "titre": "Stalwart 1.2 : un serveur de messagerie qui parle le protocole d'Exchange",
+   "titre": "Stalwart 1.2 : un serveur de messagerie qui parle le protocole Exchange",
    "resume": "Stalwart 1.2.0 implémente MAPI sur HTTP, EWS, Exchange ActiveSync et Autodiscover : Outlook, Apple Mail et les mobiles s'y connectent comme à Exchange, avec courrier, agendas, contacts, tâches et notes. Ces protocoles sont désactivés par défaut et isolés dans une fonctionnalité Cargo « exchange ». La migration des boîtes passe par l'outil Vandelay. Non pris en charge : dossiers publics, boîtes d'archive, MDM, NTLM et Kerberos.",
    "details": {
     "Pourquoi il monte": "600 points sur la page d'accueil de Hacker News le 24 nov.",
@@ -1912,6 +1935,12 @@
      "statut": "candidat",
      "par": "tache",
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
+    },
+    {
+     "date": "2026-11-24T20:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "titre raccourci à 72 caractères au plus (avant : « Stalwart 1.2 : un serveur de messagerie qui parle le protocole d'Exchange »)"
     }
    ]
   },

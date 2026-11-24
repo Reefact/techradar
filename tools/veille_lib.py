@@ -12,6 +12,7 @@ SUFFIX = " – Reefact"          # suffixe des <title> (tiret demi-cadratin, com
 STATUTS = ("publie", "candidat", "mis-de-cote", "ecarte")
 MOTIFS = ("deja-publie", "hors-fenetre", "hors-perimetre", "non-verifiable", "doublon", "trop-mineur",
           "plafond-atteint", "exclu-config", "rien-de-neuf", "infirme")
+TITRE_MAX = 72                               # longueur maximale d'un titre de sujet (texte affiché, sans Markdown)
 VERDICTS = ("vrai", "faux", "indetermine")   # « indetermine » : seulement sur un sujet non publié, à revérifier
 JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]

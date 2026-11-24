@@ -59,7 +59,7 @@ L'historique Git de `data/days/AAAA/AAAAMMJJ.json` garde toutes les versions d'u
 ## Contrôles
 
 - `python3 tools/check_config.py` : configuration cohérente (clés, préfixes, index, fichiers de recherche, dépôts des projets).
-- `python3 tools/check_day.py <jour.json> [--contre REF] [--partiel]` : schéma, catégories et tags connus, dépôts des projets, minimums et plafonds (hors sujets des projets), « À retenir » (3 à 5), `date` des sujets publiés et candidats, pas de champ `en_bref`, vérification des sources (catégories à risque sans source de référence, verdicts, format du bloc `verification`), motifs des écartés, éléments toujours suivis vérifiés, exclusions respectées, nombre de sujets analysés, immuabilité des sujets publiés, puis rendu et contrôle du HTML (structure, liens, signaux de langue « ? »).
+- `python3 tools/check_day.py <jour.json> [--contre REF] [--partiel]` : schéma, catégories et tags connus, titres de 72 caractères au plus, dépôts des projets, minimums et plafonds (hors sujets des projets), « À retenir » (3 à 5), `date` des sujets publiés et candidats, pas de champ `en_bref`, vérification des sources (catégories à risque sans source de référence, verdicts, format du bloc `verification`), motifs des écartés, éléments toujours suivis vérifiés, exclusions respectées, nombre de sujets analysés, immuabilité des sujets publiés, puis rendu et contrôle du HTML (structure, liens, signaux de langue « ? »).
 - L'Action `memory.yml` lance ces contrôles à chaque push (onglet Actions de GitHub) et régénère `data/memory.json`.
 
 ## Mémoire
