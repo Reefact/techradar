@@ -243,7 +243,7 @@ const Radar = (() => {
     t += `Résumé du brief :\n${clip(paras.join('\n'), 1800)}\n`;
     if (why) t += `\n${why.replace(/\s+/g, ' ').trim()}\n`;
     if (src.length) t += `\nSources :\n${src.join('\n')}\n`;
-    t += repos.length ? `\nCommence par explorer le dépôt, puis propose-moi des pistes concrètes pour ce sujet avant de modifier quoi que ce soit.`
+    t += repos.length ? `\nCommence par explorer le dépôt pour voir comment ce sujet le concerne et dis-moi ce que tu constates, puis demande-moi ce que je veux en faire. Ne modifie rien tant qu'on n'a pas décidé ensemble de la suite.`
                       : `\nCommence par me poser quelques questions pour cerner ce que je veux en faire.`;
     return t;
   }
