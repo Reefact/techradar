@@ -19,12 +19,23 @@
    "type": "manuelle",
    "debut": "2026-11-24T18:00+01:00",
    "note": "brèves supprimées : les 12 lignes « En bref » converties en sujets (3 publiés, 8 candidats, 1 écarté)"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-24T18:50+01:00",
+   "note": "vérification a posteriori des sources de a3, a4, a5, d1 et d3 : 4 vrais (résumés corrigés), d3 non tranché et retiré du rapport"
   }
  ],
  "journal": {
   "hypotheses": [
    "Journal de recherche non tenu : jour antérieur au fichier du jour, converti depuis les fichiers HTML."
-  ]
+  ],
+  "verifications_sources": {
+   "lancees": 5,
+   "vrai": 4,
+   "faux": 0,
+   "indetermine": 1
+  }
  },
  "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact · version complétée, publiée après l'échéance de 8h (Paris)",
  "a_retenir": [
@@ -56,30 +67,137 @@
    "statut": "publie",
    "tags": [],
    "titre": "Idunno.AntiCsrf : exécution de code à distance exploitée, aucun correctif",
-   "resume": "La bibliothèque tierce Idunno.AntiCsrf protège les formulaires ASP.NET WebForms contre les attaques CSRF (falsification de requête inter-sites). Son module HTTP désérialise le jeton envoyé par le client sans clé secrète ni vérification de signature. Une seule requête POST non authentifiée suffit ainsi à faire exécuter du code dans le processus IIS (w3wp.exe).\n\nMandiant signale une exploitation active (avis MNDT-2026-0048, CVE-2026-131914, CVSS 9,3). Le projet est abandonné depuis décembre 2008, donc il n'existe pas de correctif et il n'y en aura pas. La seule solution : retirer la bibliothèque et la remplacer par System.Web.Helpers.AntiForgery, par un ViewState protégé par MAC, ou par IAntiforgery côté ASP.NET Core.",
+   "resume": "La bibliothèque tierce Idunno.AntiCsrf protège les formulaires ASP.NET WebForms contre les attaques CSRF (falsification de requête inter-sites). Son module HTTP désérialise le jeton envoyé par le client sans clé, donc sans signature ni contrôle d'intégrité. Une seule requête POST non authentifiée suffit à exécuter du code dans le processus IIS (w3wp.exe).\n\nMandiant a publié l'avis MNDT-2026-0048 le 18 novembre (CVE-2026-131914, CVSS 4.0 : 9,3). Il signale une exploitation active, découverte lors d'une réponse à incident. Le projet n'a plus de mainteneur depuis sa dernière version, en décembre 2008 : aucun correctif n'existe. La solution : retirer la bibliothèque et la remplacer par System.Web.Helpers.AntiForgery, par ViewStateUserKey avec un ViewState protégé par MAC, ou par IAntiforgery sous ASP.NET Core.",
    "details": {
-    "Touché": "Idunno.AntiCsrf 0.9.1.0 et 0.9.1 Beta, sur applications .NET Framework / WebForms",
-    "Correctif": "Aucun : suppression et migration vers un mécanisme anti-CSRF maintenu",
-    "Gravité": "Critique (CVSS 9,3), exploitation active",
+    "Touché": "Idunno.AntiCsrf.dll 0.9.1.0 (la « 0.9.1 Beta ») et les versions recompilées depuis ses sources, sur .NET Framework / WebForms",
+    "Correctif": "Aucun : retirer la bibliothèque et migrer vers un mécanisme anti-CSRF maintenu",
+    "Gravité": "Critique (CVSS 4.0 : 9,3), exploitation active selon Mandiant",
     "Action": "Chercher la référence NuGet ou la DLL dans les dépôts et sur les serveurs IIS legacy"
    },
    "pourquoi": "Pourquoi ça compte pour toi : toute application WebForms ancienne du parc peut embarquer cette bibliothèque sans que personne s'en souvienne. Te concerne : peut-être.",
    "sources": [
+    {
+     "texte": "Source : Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
+     "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
+    },
     {
      "texte": "Source : The Hacker News, 23 nov. 2026",
      "url": "https://thehackernews.com/2026/11/hackers-exploit-critical-aspnet-anti.html"
     }
    ],
    "titre_sommaire": "Idunno.AntiCsrf : exécution de code exploitée, aucun correctif",
-   "meta": "The Hacker News · 23 nov. 2026 · te concerne : peut-être (.NET Framework legacy)",
+   "meta": "Mandiant · 18 nov. 2026 ; The Hacker News · 23 nov. 2026 · te concerne : peut-être (.NET Framework legacy)",
    "historique": [
     {
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-24T18:50+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
     }
    ],
-   "date": "2026-11-23"
+   "date": "2026-11-23",
+   "verification": {
+    "date": "2026-11-24T18:50+01:00",
+    "verdict": "vrai",
+    "resume": "La source primaire, l'avis Mandiant MNDT-2026-0048, confirme la faille, son identifiant, son score, l'exploitation active et l'absence de correctif. L'avis GitHub reprend ces éléments en citant Mandiant. Aucun démenti trouvé.",
+    "source": {
+     "nom": "The Hacker News, 23 nov. 2026",
+     "nature": "média spécialisé en cybersécurité, très lu, qui reprend en général les avis des éditeurs ; hors de la liste de référence"
+    },
+    "affirmations": [
+     {
+      "texte": "Idunno.AntiCsrf est une ancienne bibliothèque anti-CSRF tierce pour ASP.NET WebForms, installée comme module HTTP",
+      "preuves": [
+       {
+        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
+        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
+       }
+      ]
+     },
+     {
+      "texte": "Le module désérialise le jeton sans clé ni signature ; une requête POST non authentifiée suffit à exécuter du code dans w3wp.exe",
+      "preuves": [
+       {
+        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
+        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
+       }
+      ]
+     },
+     {
+      "texte": "Mandiant signale une exploitation active, découverte lors d'une réponse à incident le 4 novembre",
+      "preuves": [
+       {
+        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
+        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
+       },
+       {
+        "texte": "GitHub Advisory Database, GHSA-pj2m-2r8v-h9cp, 19 nov. 2026",
+        "url": "https://github.com/advisories/GHSA-pj2m-2r8v-h9cp"
+       }
+      ]
+     },
+     {
+      "texte": "Identifiant CVE-2026-131914, score CVSS 4.0 de 9,3 (critique)",
+      "preuves": [
+       {
+        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
+        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
+       },
+       {
+        "texte": "GitHub Advisory Database, GHSA-pj2m-2r8v-h9cp, 19 nov. 2026",
+        "url": "https://github.com/advisories/GHSA-pj2m-2r8v-h9cp"
+       }
+      ]
+     },
+     {
+      "texte": "Projet sans mainteneur depuis décembre 2008, aucun correctif disponible",
+      "preuves": [
+       {
+        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
+        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
+       }
+      ]
+     },
+     {
+      "texte": "Remplacements recommandés : AntiForgery, ViewStateUserKey avec ViewState protégé par MAC, IAntiforgery",
+      "preuves": [
+       {
+        "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
+        "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
+       }
+      ]
+     }
+    ],
+    "retirees": [
+     {
+      "texte": "« Il n'y aura jamais de correctif »",
+      "raison": "c'est une prévision : Mandiant constate seulement qu'il n'y a ni mainteneur ni correctif aujourd'hui"
+     },
+     {
+      "texte": "Deux versions touchées, 0.9.1.0 et 0.9.1 Beta",
+      "raison": "c'est une seule et même version ; les recompilations depuis les sources sont aussi touchées"
+     }
+    ],
+    "ecarts": [
+     "Score : 9,3 en CVSS 4.0 selon Mandiant et GitHub ; 7,3 selon VulDB.",
+     "Correctif : quelques agrégateurs évoquent une mise à jour, sans numéro de version ; Mandiant et GitHub n'en listent aucune."
+    ],
+    "recoupements": [
+     {
+      "texte": "Mandiant, avis MNDT-2026-0048, 18 nov. 2026",
+      "url": "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md"
+     },
+     {
+      "texte": "GitHub Advisory Database, GHSA-pj2m-2r8v-h9cp, 19 nov. 2026",
+      "url": "https://github.com/advisories/GHSA-pj2m-2r8v-h9cp"
+     }
+    ]
+   }
   },
   {
    "id": "a1",
@@ -115,52 +233,360 @@
    "categorie": "alertes",
    "statut": "publie",
    "tags": [],
-   "titre": "Java4Shell : faille OpenJDK, mise à jour de l'avis",
-   "resume": "Le correctif de la faille a été publié le 17 novembre, l'avis le 18 ; l'analyse a été mise à jour le 21. La faille (CVE-2026-114938) permet une exécution de code à distance. Elle touche les JDK basés sur OpenJDK 17.0.6 et plus, 21, 25 et 27, ainsi que GraalVM 17 et 21. Elle ne concerne que les processeurs x86-64 disposant d'AVX-512 VBMI : Java 8 et 11 standard, ARM et OpenJ9 ne sont pas touchés.\n\nLes versions corrigées sont 17.0.21.1, 21.0.13.1, 25.0.5.1 et 27.0.1.1, avec Temurin et Corretto alignés. Au 21 novembre, plusieurs produits embarquant Java n'étaient pas encore corrigés (images Keycloak/JBoss, Atlassian Data Center, SonarQube, image apache/kafka). Contournement provisoire : l'option JVM `-XX:-UseBASE64Intrinsics`. On n'observe que des sondes (261 requêtes, 7 adresses IP). Aucun exploit public n'est connu, et la faille ne figure pas au catalogue KEV (vulnérabilités connues comme exploitées) de la CISA. Attention aux faux dépôts GitHub « exploits Java4Shell », qui sont des leurres malveillants.",
+   "titre": "Java4Shell : faille critique dans OpenJDK, correctifs disponibles",
+   "resume": "La faille CVE-2026-114938, surnommée « Java4Shell », est une corruption mémoire dans le décodeur Base64 optimisé de la JVM HotSpot. Elle peut mener à une exécution de code à distance sans authentification. Elle touche les lignes 17 (à partir de 17.0.6), 21, 25 et 27, seulement sur les processeurs x86-64 dotés d'AVX-512 VBMI ; ARM64 n'est pas concerné.\n\nOpenJDK et Oracle ont publié les correctifs le 17 novembre : 17.0.21.1, 21.0.13.1, 25.0.5.1 et 27.0.1.1. GraalVM et Corretto ont suivi, et Keycloak a publié des images corrigées. Red Hat propose un contournement provisoire : l'option JVM `-XX:-UseBASE64Intrinsics`. Une preuve de concept qui fait planter la JVM circule, et des tentatives d'exploitation sont observées depuis le 18 novembre, sans compromission confirmée. Pense aux produits qui embarquent leur propre JDK.",
    "details": {
-    "Gravité": "Critique : CVSS 8,1 chez Oracle/OpenJDK, 9,8 chez Red Hat",
-    "À vérifier": "L'alerte CISA du 17 nov. n'a pas pu être lue"
+    "Touché": "OpenJDK 17.0.6 et plus, 21, 25, 27 et les JDK qui en dérivent, sur x86-64 avec AVX-512 VBMI",
+    "Correctif": "17.0.21.1, 21.0.13.1, 25.0.5.1, 27.0.1.1 (17 nov.) ; GraalVM et Corretto alignés",
+    "Gravité": "CVSS 3.1 : 8,1 selon Oracle et OpenJDK ; 9,2 en CVSS 4.0 selon les chercheurs ; « critique » chez Red Hat",
+    "Action": "Mettre à jour les JDK et les images de conteneurs Java ; à défaut, appliquer le contournement de Red Hat"
    },
    "pourquoi": "Pourquoi ça compte pour toi : tu es côté .NET, mais SonarQube, Keycloak ou Kafka tournent souvent à côté de tes applications. Te concerne : peut-être.",
    "sources": [
     {
-     "texte": "Source : Threat Defence, 21 nov. 2026",
+     "texte": "Source : OpenJDK, avis de vulnérabilité du 17 nov. 2026",
+     "url": "https://openjdk.org/groups/vulnerability/advisories/2026-11-17"
+    },
+    {
+     "texte": "Red Hat, RHSB-2026-018",
+     "url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018"
+    },
+    {
+     "texte": "SecurityWeek, nov. 2026",
+     "url": "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/"
+    },
+    {
+     "texte": "Threat Defence, 21 nov. 2026",
      "url": "https://threatdefence.com/article/java4shell-cve-2026-114938-openjdk-rce-patching-hunting"
     }
    ],
-   "meta": "Threat Defence · 21 nov. 2026 · te concerne : peut-être (services Java)",
+   "meta": "OpenJDK · 17 nov. 2026 ; Red Hat, SecurityWeek · te concerne : peut-être (services Java)",
    "historique": [
     {
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-24T18:50+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
     }
    ],
-   "date": "2026-11-21"
+   "date": "2026-11-21",
+   "verification": {
+    "date": "2026-11-24T18:50+01:00",
+    "verdict": "vrai",
+    "resume": "La faille, son identifiant, les versions touchées et les correctifs du 17 novembre sont confirmés par l'avis OpenJDK et par plusieurs sources indépendantes (Red Hat, Tenable, SecurityWeek, CERT-EU). Plusieurs détails de l'article d'origine sont faux ou invérifiables et ont été retirés. Réserve : le réseau de la session n'a pas permis d'ouvrir les pages ; la vérification repose sur les avis officiels et les extraits des résultats de recherche.",
+    "source": {
+     "nom": "Threat Defence, 21 nov. 2026",
+     "nature": "blog d'un éditeur de sécurité, hors de la liste de référence ; seule origine de plusieurs chiffres de l'article"
+    },
+    "affirmations": [
+     {
+      "texte": "CVE-2026-114938 (« Java4Shell ») est une corruption mémoire du décodeur Base64 optimisé d'OpenJDK, pouvant mener à une exécution de code à distance sans authentification",
+      "preuves": [
+       {
+        "texte": "OpenJDK, avis de vulnérabilité du 17 nov. 2026",
+        "url": "https://openjdk.org/groups/vulnerability/advisories/2026-11-17"
+       },
+       {
+        "texte": "oss-security (Openwall), 17 nov. 2026",
+        "url": "https://www.openwall.com/lists/oss-security/2026/11/17/31"
+       },
+       {
+        "texte": "Sophos, avis SA-20261118",
+        "url": "https://www.sophos.com/en-us/security-advisories/sophos-sa-20261118-java4shell"
+       }
+      ]
+     },
+     {
+      "texte": "Lignes touchées : 17 (à partir de 17.0.6), 21, 25 et 27, seulement sur x86-64 avec AVX-512 VBMI ; ARM64 non concerné",
+      "preuves": [
+       {
+        "texte": "Tenable, FAQ Java4Shell, nov. 2026",
+        "url": "https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability"
+       },
+       {
+        "texte": "Red Hat, bulletin RHSB-2026-018",
+        "url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018"
+       }
+      ]
+     },
+     {
+      "texte": "Correctifs publiés le 17 novembre : 17.0.21.1, 21.0.13.1, 25.0.5.1, 27.0.1.1 ; GraalVM et Corretto alignés",
+      "preuves": [
+       {
+        "texte": "OpenJDK, avis de vulnérabilité du 17 nov. 2026",
+        "url": "https://openjdk.org/groups/vulnerability/advisories/2026-11-17"
+       },
+       {
+        "texte": "Tenable, FAQ Java4Shell, nov. 2026",
+        "url": "https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability"
+       }
+      ]
+     },
+     {
+      "texte": "Contournement provisoire recommandé par Red Hat : -XX:-UseBASE64Intrinsics",
+      "preuves": [
+       {
+        "texte": "Red Hat, bulletin RHSB-2026-018",
+        "url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018"
+       },
+       {
+        "texte": "Keycloak, nov. 2026",
+        "url": "https://www.keycloak.org/2026/11/java4shell-vulnerability-cve-2026-114938"
+       }
+      ]
+     },
+     {
+      "texte": "Score CVSS 3.1 de 8,1 chez Oracle et OpenJDK ; « critique » chez Red Hat",
+      "preuves": [
+       {
+        "texte": "Tenable, FAQ Java4Shell, nov. 2026",
+        "url": "https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability"
+       }
+      ]
+     },
+     {
+      "texte": "Tentatives d'exploitation observées, sans compromission confirmée au 20 novembre",
+      "preuves": [
+       {
+        "texte": "SecurityWeek, nov. 2026",
+        "url": "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/"
+       }
+      ]
+     }
+    ],
+    "retirees": [
+     {
+      "texte": "Aucun exploit public",
+      "raison": "une preuve de concept publique (plantage de la JVM) est signalée"
+     },
+     {
+      "texte": "Avis publié le 18 novembre",
+      "raison": "l'avis OpenJDK est daté du 17 ; le 18 correspond aux avis de tiers"
+     },
+     {
+      "texte": "261 requêtes depuis 7 adresses IP",
+      "raison": "chiffre propre à l'article d'origine ; les autres sources donnent d'autres chiffres"
+     },
+     {
+      "texte": "Images Keycloak, Atlassian Data Center, SonarQube et Kafka non corrigées",
+      "raison": "Keycloak a publié des images corrigées ; rien de vérifiable pour les autres"
+     },
+     {
+      "texte": "Temurin aligné",
+      "raison": "les sources se contredisent"
+     },
+     {
+      "texte": "Java 8 et OpenJ9 non touchés",
+      "raison": "une seule source pour OpenJ9 ; une version Java 8 d'Oracle serait concernée"
+     },
+     {
+      "texte": "Faux dépôts GitHub d'exploits malveillants",
+      "raison": "seulement affirmé par l'article d'origine"
+     },
+     {
+      "texte": "CVSS 9,8 chez Red Hat",
+      "raison": "score non confirmé"
+     }
+    ],
+    "ecarts": [
+     "CVSS : 8,1 (CVSS 3.1, Oracle et OpenJDK) ; 9,2 (CVSS 4.0, chercheurs) ; 9,8 « préliminaire » chez Red Hat selon une seule source.",
+     "Sondes : 261 requêtes / 7 IP au 21 nov. selon Threat Defence ; plus de 150 / 5 IP au 19 nov. selon SecurityWeek ; 69 / 4 IP selon Precursor."
+    ],
+    "recoupements": [
+     {
+      "texte": "OpenJDK, avis de vulnérabilité du 17 nov. 2026",
+      "url": "https://openjdk.org/groups/vulnerability/advisories/2026-11-17"
+     },
+     {
+      "texte": "oss-security (Openwall), 17 nov. 2026",
+      "url": "https://www.openwall.com/lists/oss-security/2026/11/17/31"
+     },
+     {
+      "texte": "CERT-EU, avis 2026-021",
+      "url": "https://cert.europa.eu/publications/security-advisories/2026-021/pdf"
+     },
+     {
+      "texte": "Red Hat, bulletin RHSB-2026-018",
+      "url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018"
+     },
+     {
+      "texte": "Sophos, avis SA-20261118",
+      "url": "https://www.sophos.com/en-us/security-advisories/sophos-sa-20261118-java4shell"
+     },
+     {
+      "texte": "Tenable, FAQ Java4Shell, nov. 2026",
+      "url": "https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability"
+     },
+     {
+      "texte": "SecurityWeek, nov. 2026",
+      "url": "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/"
+     },
+     {
+      "texte": "Keycloak, nov. 2026",
+      "url": "https://www.keycloak.org/2026/11/java4shell-vulnerability-cve-2026-114938"
+     }
+    ]
+   }
   },
   {
    "id": "a5",
    "categorie": "alertes",
    "statut": "publie",
    "tags": [],
-   "titre": "Spring : failles critiques corrigées en novembre",
-   "resume": "Deux failles dominent. CVE-2026-59273 (CVSS 9,8) est une injection d'expressions SpEL (Spring Expression Language) dans l'ELRequestMatcher de Spring Security. CVE-2026-59367 (CVSS 9,4) vient d'un mot de passe administrateur fixe dans spring-ldap-test. Sont aussi corrigés un contournement de l'authentification sur les chemins Actuator avec Jersey (CVSS 8,2) et une faille d'isolation entre locataires (tenants) dans les vector stores de Spring AI.\n\nVersions corrigées : Spring Security 7.1.3 ou 7.0.9, Spring AI 2.0.3, Spring Integration 7.1.3 ou 7.0.8, Spring Data Elasticsearch 6.1.3 ou 6.0.9. Le titre de l'article annonce 50 failles mais n'en détaille que 10 : recouper avec l'avis officiel Spring. Aucune exploitation connue n'est signalée.",
+   "titre": "Spring : grosse série de correctifs de sécurité en novembre",
+   "resume": "Spring a publié le 19 novembre une importante série d'avis de sécurité, sur de nombreux projets. Les plus marquants :\n\n- CVE-2026-59367 (critique) : le serveur LDAP de test de spring-ldap-test écoute sur toutes les interfaces, avec un identifiant administrateur fixe ; corrigé en 4.1.3 et 4.0.7.\n- CVE-2026-59378 (haute) : contournement de l'authentification sur les endpoints de santé d'Actuator avec Jersey ; corrigé dans Spring Boot 4.1.3 et 4.0.10.\n- CVE-2026-123886 (haute) : injection SpEL (Spring Expression Language) dans Spring Data Elasticsearch ; corrigé en 6.1.3 et 6.0.9.\n- CVE-2026-59273 : injection SpEL dans l'ELRequestMatcher de Spring Security, corrigée en 7.1.3 et 7.0.9 ; annoncée à 9,8, elle a été reclassée en sévérité moyenne par Spring le 23 novembre.\n- Failles d'isolation entre locataires dans les vector stores de Spring AI, corrigées en 2.0.3.\n\nSpring Integration est corrigé en 7.1.3 et 7.0.8. Le nombre total de failles varie selon les médias (de 50 à 91) : la liste officielle de spring.io fait foi.",
    "pourquoi": "Pourquoi ça compte pour toi : surtout un sujet pour les équipes Java du groupe. Te concerne : peut-être.",
    "sources": [
     {
-     "texte": "Source : SecurityOnline, 20 nov. 2026",
+     "texte": "Source : Spring, avis de sécurité, 19 nov. 2026",
+     "url": "https://spring.io/security"
+    },
+    {
+     "texte": "Spring, CVE-2026-59273 (révisé le 23 nov.)",
+     "url": "https://spring.io/security/cve-2026-59273/"
+    },
+    {
+     "texte": "SecurityOnline, 20 nov. 2026",
      "url": "https://securityonline.info/spring-security-vulnerabilities-november-2026/"
     }
    ],
-   "meta": "SecurityOnline · 20 nov. 2026 · te concerne : peut-être",
+   "meta": "Spring · 19 nov. 2026, révisé le 23 · te concerne : peut-être",
    "historique": [
     {
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-24T18:50+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
     }
    ],
-   "date": "2026-11-20"
+   "date": "2026-11-23",
+   "verification": {
+    "date": "2026-11-24T18:50+01:00",
+    "verdict": "vrai",
+    "resume": "Les avis officiels de spring.io confirment la série de correctifs, les failles décrites et les versions corrigées. Le score de 9,8 de la faille SpEL de Spring Security est dépassé : Spring l'a reclassée en sévérité moyenne le 23 novembre. Le total de « 50 failles » et l'absence d'exploitation ne sont pas prouvés.",
+    "source": {
+     "nom": "SecurityOnline (Daily CyberSecurity), 20 nov. 2026",
+     "nature": "agrégateur d'actualités et de CVE, hors de la liste de référence"
+    },
+    "affirmations": [
+     {
+      "texte": "CVE-2026-59273 : injection SpEL dans l'ELRequestMatcher de Spring Security, corrigée en 7.1.3 et 7.0.9",
+      "preuves": [
+       {
+        "texte": "Spring, avis CVE-2026-59273, révisé le 23 nov. 2026",
+        "url": "https://spring.io/security/cve-2026-59273/"
+       }
+      ]
+     },
+     {
+      "texte": "CVE-2026-59367 : identifiant administrateur fixe dans le serveur LDAP de spring-ldap-test (critique), corrigé en 4.1.3 et 4.0.7",
+      "preuves": [
+       {
+        "texte": "Spring, avis CVE-2026-59367, 19 nov. 2026",
+        "url": "https://spring.io/security/cve-2026-59367/"
+       }
+      ]
+     },
+     {
+      "texte": "CVE-2026-59378 : contournement d'authentification Actuator avec Jersey (haute), corrigé dans Spring Boot 4.1.3 et 4.0.10",
+      "preuves": [
+       {
+        "texte": "Spring, avis CVE-2026-59378, 19 nov. 2026",
+        "url": "https://spring.io/security/cve-2026-59378/"
+       }
+      ]
+     },
+     {
+      "texte": "Failles d'isolation entre locataires dans les vector stores de Spring AI, corrigées en 2.0.3",
+      "preuves": [
+       {
+        "texte": "Spring, avis CVE-2026-59369, 19 nov. 2026",
+        "url": "https://spring.io/security/cve-2026-59369/"
+       }
+      ]
+     },
+     {
+      "texte": "Spring Integration corrigé en 7.1.3 et 7.0.8",
+      "preuves": [
+       {
+        "texte": "Spring, avis CVE-2026-59362, 19 nov. 2026",
+        "url": "https://spring.io/security/cve-2026-59362/"
+       }
+      ]
+     },
+     {
+      "texte": "Spring Data Elasticsearch corrigé en 6.1.3 et 6.0.9 (injection SpEL, haute)",
+      "preuves": [
+       {
+        "texte": "Spring, avis CVE-2026-123886, 19 nov. 2026",
+        "url": "https://spring.io/security/cve-2026-123886/"
+       }
+      ]
+     }
+    ],
+    "retirees": [
+     {
+      "texte": "CVE-2026-59273 notée 9,8 (critique)",
+      "raison": "Spring l'a reclassée en sévérité moyenne le 23 novembre (environ 6,6)"
+     },
+     {
+      "texte": "Contournement Actuator noté 8,2",
+      "raison": "Spring donne la sévérité « haute » sans score ; son vecteur donne 8,1"
+     },
+     {
+      "texte": "50 failles corrigées",
+      "raison": "aucune source primaire ne donne ce total ; d'autres médias parlent de 90 ou 91 avis"
+     },
+     {
+      "texte": "Aucune exploitation connue",
+      "raison": "les avis ne l'excluent pas, et des preuves de concept sont signalées pour CVE-2026-59273"
+     }
+    ],
+    "ecarts": [
+     "CVE-2026-59273 : 9,8 selon SecurityOnline et d'autres sites ; sévérité moyenne (environ 6,6) selon Spring depuis le 23 novembre.",
+     "Nombre de failles : 50 selon SecurityOnline ; 90 ou 91 avis selon d'autres médias."
+    ],
+    "recoupements": [
+     {
+      "texte": "Spring, liste des avis de sécurité",
+      "url": "https://spring.io/security"
+     },
+     {
+      "texte": "Spring, avis CVE-2026-59273, révisé le 23 nov. 2026",
+      "url": "https://spring.io/security/cve-2026-59273/"
+     },
+     {
+      "texte": "Spring, avis CVE-2026-59367, 19 nov. 2026",
+      "url": "https://spring.io/security/cve-2026-59367/"
+     },
+     {
+      "texte": "Spring, avis CVE-2026-59378, 19 nov. 2026",
+      "url": "https://spring.io/security/cve-2026-59378/"
+     },
+     {
+      "texte": "Spring, avis CVE-2026-59369, 19 nov. 2026",
+      "url": "https://spring.io/security/cve-2026-59369/"
+     },
+     {
+      "texte": "Spring, avis CVE-2026-59362, 19 nov. 2026",
+      "url": "https://spring.io/security/cve-2026-59362/"
+     },
+     {
+      "texte": "Spring, avis CVE-2026-123886, 19 nov. 2026",
+      "url": "https://spring.io/security/cve-2026-123886/"
+     }
+    ]
+   }
   },
   {
    "id": "a6",
@@ -767,16 +1193,20 @@
     "mise-a-jour"
    ],
    "titre": "Frigos Danfoss : l'enquête vise des responsables liés à l'Iran",
-   "resume": "**Rappel.** Dans la nuit du 11 au 12 octobre, des régulateurs frigorifiques du fabricant danois Danfoss ont été attaqués à distance : températures modifiées, dégivrages forcés, jusqu'à 50 °C. Au moins 300 magasins Intermarché et Netto sont touchés, selon Mousquetaires, pour plusieurs millions d'euros de pertes. Les attaquants visaient d'anciennes versions du régulateur (avant la version 4).\n\n**Nouveau.** Le parquet de Paris a ouvert le 9 novembre une information judiciaire visant le chef de l'unité Shahid Kaveh, liée aux Gardiens de la Révolution iraniens, et deux adjoints, avec demande de mandats d'arrêt internationaux ; l'enquête est menée par l'OFAC et la DGSI. Les indices avancés : l'usage du farsi, des adresses IP situées en Iran, un mode opératoire associé à l'unité, et des serveurs aussi utilisés pour repérer des équipements de petites centrales hydroélectriques. Le bilan donne environ 700 magasins touchés en tout et une vingtaine de départs de feu (ZATAZ parle d'au moins 15).\n\nUn article de L'Impertinent du 22 novembre (partiellement payant) critique le dossier : le rapport public de 5 pages ne contient pas de données vérifiables, et l'ANSSI limite son attribution aux incidents des 11 et 12 octobre. Un bilan de LSA évoque près de 500 magasins et jusqu'à 200 000 € de pertes par hypermarché, mais la page n'a pas pu être lue (non vérifié). Le titre de franceinfo annonçant l'accusation de l'Iran n'a pas pu être ouvert non plus.",
-   "pourquoi": "Pourquoi ça compte pour toi : première attribution étatique d'une attaque sur des équipements OT/IoT (technologies opérationnelles et objets connectés) en magasin, et Intermarché est le plus touché. Cela rappelle d'inventorier les firmwares exposés et les mots de passe par défaut, de segmenter le réseau des magasins et de traiter les fournisseurs d'équipements comme une surface d'attaque.",
+   "resume": "**Rappel.** Dans la nuit du 11 au 12 octobre, des régulateurs frigorifiques du fabricant danois Danfoss ont été piratés à distance : dégivrages forcés, températures jusqu'à environ 50 °C. Le Groupement Mousquetaires a confirmé environ 300 magasins Intermarché et Netto touchés. LSA comptait près de 500 magasins dans son premier bilan, avec jusqu'à 200 000 € de pertes par hypermarché.\n\n**Nouveau.** Le 9 novembre, le parquet de Paris a ouvert une information judiciaire visant le chef de l'unité iranienne Shahid Kaveh, rattachée aux Gardiens de la Révolution, et deux adjoints. Il a requis des mandats d'arrêt internationaux. Le CERT-FR a publié un rapport le même jour. Les indices avancés : usage du farsi, adresses IP en Iran, mode opératoire de l'unité. Environ 700 sites ont été ciblés ; le parquet parle d'une vingtaine de départs de feu, l'ANSSI d'au moins 15. L'Iran dément.\n\nL'Impertinent (22 novembre) juge le rapport public pauvre en éléments techniques vérifiables. L'attribution ne porte que sur la nuit du 11 au 12 octobre.",
+   "pourquoi": "Pourquoi ça compte pour toi : une attribution étatique d'une attaque contre des équipements OT/IoT (technologies opérationnelles et objets connectés) en magasin, et Intermarché est le plus touché. Cela rappelle d'inventorier les firmwares exposés et les mots de passe par défaut, de segmenter le réseau des magasins et de traiter les fournisseurs d'équipements comme une surface d'attaque.",
    "sources": [
     {
-     "texte": "Actu17, 9 nov. 2026",
-     "url": "https://actu17.fr/international/frigos-a-50-degres-dans-700-supermarches-la-justice-francaise-remonte-jusqu-aux-gardiens-de-la-revolution-iraniens.html"
+     "texte": "franceinfo, 9 nov. 2026",
+     "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html"
     },
     {
-     "texte": "ZATAZ, 9 nov. 2026",
-     "url": "https://www.zataz.com/cyberattaque-des-frigos-la-piste-iranienne-se-precise/"
+     "texte": "CERT-FR, rapport CERTFR-2026-CTI-009, 9 nov. 2026",
+     "url": "https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-009.pdf"
+    },
+    {
+     "texte": "LSA, oct. 2026",
+     "url": "https://www.lsa-conso.fr/distributeurs-alimentaires/casino/monoprix/cyberattaque-en-grande-distribution-pres-de-500-magasins-concernes-jusqua-200-000-de-pertes-par-hypermarche.XIAWZQOVLBGVNPXHNFFMIH7OMM.html"
     },
     {
      "texte": "L'Impertinent, 22 nov. 2026",
@@ -785,17 +1215,182 @@
     {
      "texte": "Le Monde Informatique, 13 oct. 2026",
      "url": "https://www.lemondeinformatique.fr/actualites/lire-une-cyberattaque-perturbe-les-installations-frigorifiques-de-centaines-de-supermarches-100850.html"
+    },
+    {
+     "texte": "Actu17, 9 nov. 2026",
+     "url": "https://actu17.fr/international/frigos-a-50-degres-dans-700-supermarches-la-justice-francaise-remonte-jusqu-aux-gardiens-de-la-revolution-iraniens.html"
+    },
+    {
+     "texte": "ZATAZ, 9 nov. 2026",
+     "url": "https://www.zataz.com/cyberattaque-des-frigos-la-piste-iranienne-se-precise/"
     }
    ],
-   "meta": "Actu17, ZATAZ · 9 nov. 2026 ; L'Impertinent · 22 nov. 2026",
+   "meta": "franceinfo, CERT-FR · 9 nov. 2026 ; L'Impertinent · 22 nov. 2026",
    "historique": [
     {
      "date": "2026-11-24",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-24T18:50+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "vérification a posteriori : vrai ; résumé réduit aux affirmations prouvées"
     }
    ],
-   "date": "2026-11-22"
+   "date": "2026-11-22",
+   "verification": {
+    "date": "2026-11-24T18:50+01:00",
+    "verdict": "vrai",
+    "resume": "L'attribution judiciaire à l'unité iranienne Shahid Kaveh est rapportée par plusieurs médias de référence indépendants (franceinfo, Ouest-France, ICI, Radio-Canada) et s'appuie sur un rapport du CERT-FR. Plusieurs détails des articles d'origine n'ont pas été confirmés et ont été retirés. Réserve : le réseau de la session n'a pas permis d'ouvrir les pages ; la vérification repose sur les avis officiels et les extraits des résultats de recherche.",
+    "source": {
+     "nom": "Actu17, ZATAZ, L'Impertinent, Le Monde Informatique",
+     "nature": "site police-justice, blog cyber, média indépendant suisse et presse IT ; aucun n'est une source primaire, et seul Le Monde Informatique (attaque d'octobre) est dans la liste de référence"
+    },
+    "affirmations": [
+     {
+      "texte": "Nuit du 11 au 12 octobre : régulateurs Danfoss piratés à distance, températures jusqu'à environ 50 °C",
+      "preuves": [
+       {
+        "texte": "franceinfo, 12 oct. 2026",
+        "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/des-magasins-systeme-u-et-intermarche-touches-par-une-cyberattaque-contre-leurs-installations-frigorifiques_8233720.html"
+       }
+      ]
+     },
+     {
+      "texte": "Environ 300 magasins Intermarché et Netto touchés selon le Groupement Mousquetaires",
+      "preuves": [
+       {
+        "texte": "franceinfo, 12 oct. 2026",
+        "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/des-magasins-systeme-u-et-intermarche-touches-par-une-cyberattaque-contre-leurs-installations-frigorifiques_8233720.html"
+       }
+      ]
+     },
+     {
+      "texte": "Information judiciaire ouverte le 9 novembre contre le chef de l'unité Shahid Kaveh (Gardiens de la Révolution) et deux adjoints, avec mandats d'arrêt internationaux",
+      "preuves": [
+       {
+        "texte": "franceinfo, 9 nov. 2026",
+        "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html"
+       },
+       {
+        "texte": "ICI, 9 nov. 2026",
+        "url": "https://www.ici.fr/infos/faits-divers-justice/cyberattaque-contre-des-supermarches-le-parquet-de-paris-soupconne-une-attaque-commise-dans-le-but-de-servir-l-Iran-1328699"
+       },
+       {
+        "texte": "Ouest-France, nov. 2026",
+        "url": "https://www.ouest-france.fr/societe/cyberattaque/cyberattaques-visant-des-frigos-de-supermarches-en-france-des-juges-enquetent-sur-un-groupe-iranien-6a6338ba-dc56-11f1-81f5-8e32b0872d76"
+       },
+       {
+        "texte": "CERT-FR, rapport CERTFR-2026-CTI-009, 9 nov. 2026",
+        "url": "https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-009.pdf"
+       }
+      ]
+     },
+     {
+      "texte": "Indices : farsi, adresses IP en Iran, mode opératoire de l'unité",
+      "preuves": [
+       {
+        "texte": "Next, nov. 2026",
+        "url": "https://next.ink/266516/cyberattaque-contre-les-frigos-de-700-supermarches-pourquoi-la-france-accuse-liran/"
+       }
+      ]
+     },
+     {
+      "texte": "Environ 700 sites ciblés ; une vingtaine de départs de feu selon le parquet, au moins 15 selon l'ANSSI",
+      "preuves": [
+       {
+        "texte": "franceinfo, 9 nov. 2026",
+        "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html"
+       }
+      ]
+     },
+     {
+      "texte": "LSA : près de 500 magasins et jusqu'à 200 000 € de pertes par hypermarché (premier bilan)",
+      "preuves": [
+       {
+        "texte": "LSA, oct. 2026",
+        "url": "https://www.lsa-conso.fr/distributeurs-alimentaires/casino/monoprix/cyberattaque-en-grande-distribution-pres-de-500-magasins-concernes-jusqua-200-000-de-pertes-par-hypermarche.XIAWZQOVLBGVNPXHNFFMIH7OMM.html"
+       }
+      ]
+     },
+     {
+      "texte": "L'Impertinent critique le peu d'éléments techniques du rapport public",
+      "preuves": [
+       {
+        "texte": "L'Impertinent, 22 nov. 2026",
+        "url": "https://limpertinentmedia.com/post/cyberattaque-frigos-iran-preuves"
+       }
+      ]
+     },
+     {
+      "texte": "L'Iran rejette l'accusation",
+      "preuves": [
+       {
+        "texte": "franceinfo, démenti iranien, nov. 2026",
+        "url": "https://www.franceinfo.fr/monde/iran/l-iran-rejette-les-accusations-infondees-de-la-france-concernant-la-cyberattaque-contre-des-frigos_8276831.html"
+       }
+      ]
+     }
+    ],
+    "retirees": [
+     {
+      "texte": "Plusieurs millions d'euros de pertes chez Mousquetaires",
+      "raison": "chiffre de seconde main, sans bilan consolidé"
+     },
+     {
+      "texte": "Visées : les versions du régulateur antérieures à la version 4",
+      "raison": "affirmé seulement par des sites secondaires"
+     },
+     {
+      "texte": "Enquête menée par l'OFAC et la DGSI",
+      "raison": "plausible, mais aucun communiqué du parquet consulté ne le dit"
+     },
+     {
+      "texte": "Serveurs aussi utilisés pour repérer de petites centrales hydroélectriques",
+      "raison": "une seule source, non confirmée par le rapport du CERT-FR"
+     },
+     {
+      "texte": "700 magasins touchés",
+      "raison": "les sources officielles parlent de 700 sites ciblés, pas de 700 magasins endommagés"
+     },
+     {
+      "texte": "« Première » attribution étatique de ce type",
+      "raison": "non vérifiable"
+     }
+    ],
+    "ecarts": [
+     "Magasins : environ 300 Intermarché et Netto selon Mousquetaires ; près de 500 selon LSA (octobre) ; environ 700 sites ciblés selon le parquet.",
+     "Départs de feu : une vingtaine selon le parquet ; au moins 15 selon l'ANSSI."
+    ],
+    "recoupements": [
+     {
+      "texte": "franceinfo, 9 nov. 2026",
+      "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html"
+     },
+     {
+      "texte": "Ouest-France, nov. 2026",
+      "url": "https://www.ouest-france.fr/societe/cyberattaque/cyberattaques-visant-des-frigos-de-supermarches-en-france-des-juges-enquetent-sur-un-groupe-iranien-6a6338ba-dc56-11f1-81f5-8e32b0872d76"
+     },
+     {
+      "texte": "ICI, 9 nov. 2026",
+      "url": "https://www.ici.fr/infos/faits-divers-justice/cyberattaque-contre-des-supermarches-le-parquet-de-paris-soupconne-une-attaque-commise-dans-le-but-de-servir-l-Iran-1328699"
+     },
+     {
+      "texte": "Radio-Canada, nov. 2026",
+      "url": "https://ici.radio-canada.ca/nouvelle/2299376/cyberattaque-refrigerateurs-france-accuse-iran"
+     },
+     {
+      "texte": "CERT-FR, rapport CERTFR-2026-CTI-009, 9 nov. 2026",
+      "url": "https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-009.pdf"
+     },
+     {
+      "texte": "franceinfo, démenti iranien, nov. 2026",
+      "url": "https://www.franceinfo.fr/monde/iran/l-iran-rejette-les-accusations-infondees-de-la-france-concernant-la-cyberattaque-contre-des-frigos_8276831.html"
+     }
+    ]
+   }
   },
   {
    "id": "d2",
@@ -1491,17 +2086,21 @@
   {
    "id": "d3",
    "categorie": "distribution",
-   "statut": "publie",
+   "statut": "mis-de-cote",
    "tags": [],
-   "titre": "Fuite de 46 600 enregistrements d'hôtesses de caisse",
-   "resume": "Un jeu de données de 46 600 enregistrements concernant des employés de caisse de plusieurs enseignes (Carrefour, Intermarché, Leclerc, U, Darty, Mr.Bricolage) circule. L'origine est inconnue ; un prestataire commun aux enseignes est la piste évoquée.",
+   "titre": "Fuite revendiquée : 46 600 lignes sur des salariés de supermarchés",
+   "resume": "Le 11 novembre, un vendeur a proposé sur un forum cybercriminel un fichier d'environ 46 600 lignes sur des salariés de supermarchés français. Selon le site de veille Fuites Infos, environ 9 lignes sur 10 concernent des magasins U, Carrefour n'y apparaît pas, et le fichier viendrait du logiciel de planning Gestool (éditeur Lixora). Aucune confirmation de l'éditeur, d'une enseigne ou d'un média de référence n'a été trouvée.",
    "sources": [
     {
-     "texte": "Source : FrenchBreaches, 11 nov. 2026",
+     "texte": "FrenchBreaches, 11 nov. 2026",
      "url": "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees"
+    },
+    {
+     "texte": "Fuites Infos, 11 nov. 2026",
+     "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
     }
    ],
-   "meta": "FrenchBreaches · 11 nov. 2026",
+   "meta": "FrenchBreaches, Fuites Infos · 11 nov. 2026",
    "pourquoi": "Pourquoi ça compte pour toi : un prestataire partagé par plusieurs enseignes est un point de fuite commun à surveiller.",
    "date": "2026-11-11",
    "historique": [
@@ -1510,8 +2109,61 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
+    },
+    {
+     "date": "2026-11-24T18:50+01:00",
+     "statut": "mis-de-cote",
+     "par": "utilisateur",
+     "note": "vérification non tranchée : retiré du rapport, à revérifier"
     }
-   ]
+   ],
+   "verification": {
+    "date": "2026-11-24T18:50+01:00",
+    "verdict": "indetermine",
+    "resume": "La mise en vente du fichier sur un forum est établie, mais pas la fuite elle-même ni son périmètre. La liste des enseignes vient du vendeur et est contredite par l'analyse de Fuites Infos. Une confirmation de Lixora est annoncée par un titre de Fuites Infos du 12 novembre, mais l'article n'a pas pu être lu. À revérifier.",
+    "source": {
+     "nom": "FrenchBreaches",
+     "nature": "site bénévole de veille sur les fuites de données ; relaie surtout des revendications « crédibles mais non confirmées »"
+    },
+    "affirmations": [
+     {
+      "texte": "Le 11 novembre, un fichier d'environ 46 600 lignes sur des salariés de supermarchés français est mis en vente sur un forum cybercriminel (revendication)",
+      "preuves": [
+       {
+        "texte": "FrenchBreaches, 11 nov. 2026",
+        "url": "https://frenchbreaches.com/blog/carrefour-intermarche-leclerc-darty-les-donnees-de-46-000-employes-potentiellement-exposees"
+       },
+       {
+        "texte": "Fuites Infos, 11 nov. 2026",
+        "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
+       }
+      ]
+     }
+    ],
+    "retirees": [
+     {
+      "texte": "Six enseignes touchées : Carrefour, Intermarché, Leclerc, U, Darty, Mr.Bricolage",
+      "raison": "liste du vendeur ; selon Fuites Infos, surtout des magasins U et aucune trace de Carrefour"
+     },
+     {
+      "texte": "Origine inconnue, piste d'un prestataire commun",
+      "raison": "Fuites Infos désigne Gestool (Lixora) ; la confirmation de l'éditeur n'a pas pu être lue"
+     },
+     {
+      "texte": "Les 46 600 enregistrements concernent des hôtesses de caisse",
+      "raison": "seulement environ 16 800 lignes concernent des postes de caisse"
+     }
+    ],
+    "ecarts": [
+     "46 619 lignes selon l'annonce, 42 406 salariés selon Fuites Infos : les lignes ne correspondent pas à des personnes distinctes."
+    ],
+    "recoupements": [
+     {
+      "texte": "Fuites Infos, 11 nov. 2026",
+      "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
+     }
+    ]
+   }
   },
   {
    "id": "d4",
