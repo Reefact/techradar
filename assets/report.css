@@ -70,6 +70,9 @@ details.card[open]{border-color:#2a4b50}
 .fold,.totop{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);color:var(--mute);text-decoration:none;font-size:0;flex:none}
 .fold::before,.totop::before{content:"";width:7px;height:7px;margin-top:4px;border:solid currentColor;border-width:2px 0 0 2px;transform:rotate(45deg)}
 .fold:hover,.totop:hover{color:var(--accent);border-color:var(--accent)}
+/* « Replier » en bas d'un bloc : la même flèche que l'en-tête (bloc ouvert), sans cercle, alignée sur elle (centre à 19,5 px du bord droit) */
+.fold{border:0;border-radius:0;margin-right:-13.5px}
+.fold::before{margin-top:4px}
 .totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));width:40px;height:40px;background:var(--panel);opacity:0;pointer-events:none;transition:opacity .2s;z-index:5}
 .totop.on{opacity:1;pointer-events:auto}
 /* Filtres */
