@@ -1,0 +1,27 @@
+{
+  "tes-sujets": {
+    "label": "⭐ Tes sujets",
+    "classe": "b-star",
+    "description": "Sujet prioritaire listé dans config/sujets/perimetre.json ; placé en tête de sa catégorie."
+  },
+  "nouveau": {
+    "label": "Nouveau",
+    "classe": "b-new",
+    "description": "Première apparition d'une conférence ou d'un CFP dans la veille."
+  },
+  "mise-a-jour": {
+    "label": "Mise à jour",
+    "classe": "b-up",
+    "description": "Sujet déjà publié un jour précédent qui revient pour une grosse nouveauté ; le résumé dit ce qui a changé."
+  },
+  "pepite": {
+    "label": "🧪 Pépite du jour",
+    "classe": "b-new",
+    "description": "L'outil original ou surprenant du jour dans « Outils du moment » (un seul par jour)."
+  },
+  "rappel-cfp": {
+    "label": "⏰ J-{n}",
+    "classe": "b-up",
+    "description": "Rappel avant la date limite d'un CFP, aux seuils J-30, J-14, J-7, J-3 ; le texte précise le seuil (« ⏰ J-6 (ateliers) »)."
+  }
+}

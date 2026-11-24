@@ -108,15 +108,15 @@ const Radar = (() => {
 // ---------- Index ----------
 (async () => {
   const list = document.getElementById('list'), view = document.getElementById('view');
-  const DRAFTS = document.documentElement.dataset.kind === 'drafts';   // page /drafts/ : brouillons au lieu des rapports publiés
+  const DOSSIER = document.documentElement.dataset.kind === 'dossier';   // page /dossier/ : dossiers du jour au lieu des rapports publiés
   const ATOM = 'http://www.w3.org/2005/Atom';
   let reports = [];
   try {
-    if (DRAFTS) {
-      // Brouillons : drafts.json, généré au build par tools/build_drafts.py (date et heure lues dans le nom de fichier).
-      const res = await fetch('drafts.json', {cache: 'no-cache'});
+    if (DOSSIER) {
+      // Dossiers du jour : dossier.json, généré au build par tools/render.py (un jour par fichier de data/days/).
+      const res = await fetch('dossier.json', {cache: 'no-cache'});
       if (!res.ok) throw new Error(res.status);
-      reports = (await res.json()).map(d => ({key: d.date + '-' + d.time.replace(':', ''), date: d.date, time: d.time, href: d.href}))
+      reports = (await res.json()).map(d => ({key: d.date, date: d.date, href: d.href, statuts: d.statuts}))
         .sort((a, b) => b.key.localeCompare(a.key));
     } else {
       // Découverte : feed.xml (généré par tools/build_feed.py depuis la <meta name="date"> de chaque rapport).
@@ -129,10 +129,10 @@ const Radar = (() => {
       }).sort((a, b) => b.key.localeCompare(a.key));
     }
   } catch (err) {
-    list.innerHTML = `<p class="msg">Impossible de charger la liste des ${DRAFTS ? 'brouillons' : 'rapports'} (servir le site en HTTP, pas via file://).</p>`;
+    list.innerHTML = `<p class="msg">Impossible de charger la liste des ${DOSSIER ? 'dossiers' : 'rapports'} (servir le site en HTTP, pas via file://).</p>`;
     return;
   }
-  if (!reports.length) { list.innerHTML = `<p class="msg">Aucun ${DRAFTS ? 'brouillon pour le moment' : 'rapport'}.</p>`; return; }
+  if (!reports.length) { list.innerHTML = `<p class="msg">Aucun ${DOSSIER ? 'dossier' : 'rapport'} pour le moment.</p>`; return; }
 
   const fmtDay = d => new Date(d + 'T12:00:00').toLocaleDateString('fr-FR', {weekday: 'short', day: 'numeric'});
   const fmtMonth = d => new Date(d + 'T12:00:00').toLocaleDateString('fr-FR', {month: 'long', year: 'numeric'});
@@ -140,7 +140,9 @@ const Radar = (() => {
   for (const r of reports) {
     const m = r.date.slice(0, 7);
     if (m !== month) { if (month) html += '</ul>'; html += `<div class="month">${fmtMonth(r.date)}</div><ul>`; month = m; }
-    html += `<li><a href="#${r.key}" data-key="${r.key}">${fmtDay(r.date)}${r.time ? ' ' + r.time.replace(':', 'h') : ''}</a></li>`;
+    const st = r.statuts ? ` title="${r.statuts.publie || 0} publiés · ${r.statuts.candidat || 0} candidats · ${r.statuts['mis-de-cote'] || 0} mis de côté · ${r.statuts.ecarte || 0} écartés"` : '';
+    const cnt = r.statuts ? ` <span class="cnt">${(r.statuts.candidat || 0) + (r.statuts['mis-de-cote'] || 0)} à revoir</span>` : '';
+    html += `<li><a href="#${r.key}" data-key="${r.key}"${st}>${fmtDay(r.date)}${cnt}</a></li>`;
   }
   list.innerHTML = html + '</ul>';
 

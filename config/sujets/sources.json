@@ -1,0 +1,17 @@
+{
+  "preferer": {
+    "consigne": "Privilégier les sources françaises quand elles sont vraiment pertinentes, sinon les sources anglophones.",
+    "sources": [
+      "LeMagIT",
+      "Silicon.fr",
+      "ZDNet.fr",
+      "IT-Connect",
+      "LSA",
+      "Libre Service Actualités",
+      "blogs de la communauté .NET francophone"
+    ]
+  },
+  "toujours_consulter": [],
+  "ignorer": [],
+  "verification": "Ouvrir la page source (WebFetch) avant de résumer ; ne jamais affirmer ce qui n'a pas pu être vérifié. Lister dans le journal les sources illisibles."
+}

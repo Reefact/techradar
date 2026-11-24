@@ -1,0 +1,16 @@
+{
+  "categorie": "dotnet",
+  "consigne": "Actualité .NET récente : nouvelles versions, préversions, changements notables, outillage, communauté.",
+  "sources": [
+    "blog .NET Microsoft",
+    "notes de version",
+    "GitHub dotnet/*",
+    "This Week in .NET",
+    "ASP.NET Core",
+    "C#",
+    "EF Core",
+    "Visual Studio et Rider"
+  ],
+  "toujours_suivre": [],
+  "exclure": []
+}

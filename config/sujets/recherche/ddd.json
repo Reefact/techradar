@@ -1,0 +1,11 @@
+{
+  "categorie": "ddd",
+  "consigne": "Domain-Driven Design : publications, retours de terrain et événements marquants. Seulement s'il y a du vraiment nouveau.",
+  "sources": [
+    "DDD Europe",
+    "Virtual DDD",
+    "blogs de praticiens reconnus"
+  ],
+  "toujours_suivre": [],
+  "exclure": []
+}

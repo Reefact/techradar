@@ -1,0 +1,26 @@
+{
+  "objectif": "Faire DÉCOUVRIR chaque jour des outils nouveaux ou qui montent, y compris des pépites qu'on n'aurait pas cherchées.",
+  "composition": "3 à 5 outils : 2 à 3 directement utiles à un développeur .NET (agents et assistants de code, serveurs MCP, test et qualité, API, observabilité, productivité, CLI, architecture) et 1 « pépite du jour » (tag pepite) : un outil original ou surprenant, même hors périmètre direct.",
+  "sources": [
+    "GitHub Trending (jour et semaine ; C#, TypeScript, Python, Rust, Go)",
+    "Hacker News (front page, Show HN)",
+    "Product Hunt (développeurs, IA)",
+    "Reddit (r/dotnet, r/programming, r/csharp, r/ExperiencedDevs)",
+    "Lobsters",
+    "dev.to",
+    "TLDR",
+    "Last Week in .NET",
+    "This Week in .NET",
+    "Console.dev",
+    "daily.dev",
+    "annonces JetBrains, VS Code, GitHub, Anthropic, OpenAI, Vercel",
+    "awesome-lists récentes"
+  ],
+  "fiche": "Pour chaque outil : ce qu'il fait en une phrase, pourquoi il monte (signal vérifiable : étoiles, HN, Product Hunt, annonce), lien officiel, maturité (âge, licence, mainteneurs, open source ou SaaS, tarif), et « utile pour toi parce que… » ou « à surveiller parce que… ».",
+  "exclure": [
+    {
+      "nom": "Outils purement marketing ou sans produit vérifiable",
+      "raison": "non vérifiable"
+    }
+  ]
+}

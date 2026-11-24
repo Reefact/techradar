@@ -1,0 +1,43 @@
+{
+  "langue": "Tout en français ; paraphrase toujours (jamais de long extrait, citations de moins de 15 mots, une seule par source).",
+  "fenetre": "Les dernières 24 à 48 h ; si la veille ouvrée précède un week-end ou un férié, toute la période depuis le dernier rapport. Distribution : 7 jours.",
+  "priorites": {
+    "tag": "tes-sujets",
+    "description": "Sujets prioritaires : badge « ⭐ Tes sujets », en tête de leur catégorie.",
+    "sujets": [
+      "Tests de mutation (Stryker.NET et équivalents)",
+      "Contrats d'API (OpenAPI, versioning, rétrocompatibilité, hypermédia)",
+      "Gestion d'erreurs en .NET (Result pattern, ProblemDetails…)",
+      "Tests, assertions et génération de données de test",
+      "Revue de code (pratiques, conventions de commentaires)"
+    ]
+  },
+  "exclusions": [
+    {
+      "nom": "Cloud et FinOps",
+      "raison": "hors périmètre"
+    },
+    {
+      "nom": "Réglementation",
+      "raison": "hors périmètre"
+    },
+    {
+      "nom": "Retours d'expérience d'architecture génériques",
+      "raison": "trop peu actionnables"
+    }
+  ],
+  "rapport": {
+    "volume": "15 à 25 sujets publiés en général, plafond souple d'environ 30.",
+    "a_retenir": {
+      "min": 3,
+      "max": 5
+    },
+    "en_bref": {
+      "min": 5,
+      "max": 10
+    },
+    "regle": "Ne jamais remplir une catégorie avec du bruit, mais respecter les minimums de config/categories.json en cherchant davantage.",
+    "analyses_min": 30,
+    "analyses_regle": "Nombre minimal de sujets analysés (tous statuts) consignés dans le fichier du jour lors d'une exécution complète."
+  }
+}

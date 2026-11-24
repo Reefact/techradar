@@ -7,8 +7,89 @@ ils ne prouvent pas un mauvais français, ils désignent ce que la relecture doi
 """
 import re, sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from build_memory import Report   # même parseur que la mémoire
+from html.parser import HTMLParser
+
+norm = lambda s: re.sub(r"\s+", " ", s).strip()
+
+
+class Report(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.title = self.date = None
+        self.articles, self.rows, self.brief = [], [], []
+        self._cat = None            # catégorie courante (badge du <h3> hors article)
+        self._art = None            # article en cours
+        self._h3 = None             # ("cat"|"title", [textes])
+        self._in_title = False
+        self._tr = self._td = None  # ligne / cellule de tableau
+        self._li = None             # <li> de « En bref »
+        self._brief_ul = False
+        self._a = None              # lien en cours : [href, [textes]]
+        self._badge = None          # badge en cours : [classes, [textes]]
+        self._in_text = False       # dans un <p>/<dt>/<dd> d'un article
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        cls = a.get("class", "")
+        if tag == "title": self._in_title = True
+        elif tag == "meta" and a.get("name") == "date": self.date = a.get("content")
+        elif tag == "article" and "card" in cls.split():
+            self._art = {"id": a.get("id"), "repo": a.get("data-repo"), "category": self._cat, "title": "", "badges": [], "sources": [], "text": []}
+        elif tag == "h3":
+            self._h3 = ("title" if self._art else "cat", [])
+        elif tag == "span" and "badge" in cls.split():
+            self._badge = [[c for c in cls.split() if c.startswith("b-")], []]
+        elif tag == "ul" and "brief" in cls.split(): self._brief_ul = True
+        elif tag == "li" and self._brief_ul: self._li = {"text": [], "links": []}
+        elif tag == "tr": self._tr = []
+        elif tag == "td" and self._tr is not None: self._td = {"text": [], "badges": [], "link": None}
+        elif tag in ("p", "dt", "dd") and self._art is not None:
+            self._art["text"].append(""); self._in_text = True
+        elif tag == "a":
+            self._a = [a.get("href", ""), []]
+
+    def handle_endtag(self, tag):
+        if tag == "title": self._in_title = False
+        elif tag == "h3" and self._h3:
+            kind, parts = self._h3; text = norm("".join(parts)); self._h3 = None
+            if kind == "title": self._art["title"] = text
+        elif tag == "span" and self._badge:
+            classes, parts = self._badge; self._badge = None
+            text = norm("".join(parts))
+            if self._h3 and self._h3[0] == "cat" and classes: self._cat = classes[0]
+            elif self._td is not None: self._td["badges"].append(text)
+            elif self._art is not None: self._art["badges"].append({"class": classes, "text": text})
+        elif tag == "a" and self._a:
+            href, parts = self._a; self._a = None
+            text = norm("".join(parts))
+            if href.startswith("http"):
+                link = {"text": text, "url": href}
+                if self._art is not None: self._art["sources"].append(link)
+                if self._li is not None: self._li["links"].append(link)
+            elif self._td is not None and href.startswith("#") and not self._td["link"]:
+                self._td["link"] = text
+        elif tag == "td" and self._td is not None:
+            self._tr.append(self._td); self._td = None
+        elif tag == "tr" and self._tr:
+            if len(self._tr) >= 4: self.rows.append(self._tr)
+            self._tr = None
+        elif tag == "li" and self._li is not None:
+            self.brief.append({"text": norm("".join(self._li["text"])), "links": self._li["links"]}); self._li = None
+        elif tag in ("p", "dt", "dd"): self._in_text = False
+        elif tag == "ul": self._brief_ul = False
+        elif tag == "article" and self._art is not None:
+            art = self._art; art["paras"] = [norm(x) for x in art["text"] if norm(x)]; art["text"] = norm(" ".join(art["paras"])); self.articles.append(art); self._art = None
+
+    def handle_data(self, d):
+        if self._in_title: self.title = norm((self.title or "") + d)
+        if self._h3: self._h3[1].append(d)
+        if self._badge: self._badge[1].append(d)
+        if self._a: self._a[1].append(d)
+        if self._td is not None: self._td["text"].append(d)
+        if self._li is not None: self._li["text"].append(d)
+        if self._art is not None and self._in_text and self._h3 is None and self._badge is None and self._art["text"]:
+            self._art["text"][-1] += d
+
 
 DAYS = "lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche"
 MONTHS = "janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre"

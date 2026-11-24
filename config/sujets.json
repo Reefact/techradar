@@ -1,0 +1,60 @@
+{
+  "description": "Index de la configuration de la veille : ce qu'on cherche. Chaque fichier a un rôle ; un fichier inactif est ignoré sans être supprimé.",
+  "fichiers": [
+    {
+      "chemin": "sujets/perimetre.json",
+      "role": "Langue, fenêtre de dates, sujets prioritaires, exclusions globales, règles de volume",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/sources.json",
+      "role": "Sources à privilégier, à toujours consulter ou à ignorer",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/recherche/alertes.json",
+      "role": "Recherche : alertes et incidents",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/recherche/dotnet.json",
+      "role": "Recherche : .NET",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/recherche/ia.json",
+      "role": "Recherche : IA",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/recherche/ddd.json",
+      "role": "Recherche : DDD",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/recherche/api.json",
+      "role": "Recherche : API et architecture",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/recherche/distribution.json",
+      "role": "Recherche : distribution",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/outils.json",
+      "role": "Découverte des outils du moment",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/radar.json",
+      "role": "Radar de tes projets",
+      "actif": true
+    },
+    {
+      "chemin": "sujets/conferences.json",
+      "role": "Conférences et CFP",
+      "actif": true
+    }
+  ]
+}

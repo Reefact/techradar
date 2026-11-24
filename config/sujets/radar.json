@@ -1,0 +1,88 @@
+{
+  "regles": [
+    "Un sujet par dépôt, jamais deux projets mélangés ; le titre ne nomme qu'un projet.",
+    "Un sujet n'existe que s'il y a un vrai signal pour ce dépôt (nouvelle version, annonce, concurrent ou évolution de l'écosystème qui le concerne vraiment).",
+    "Si un fait concerne plusieurs projets : un sujet par projet, chacun avec son angle.",
+    "Pour chaque signal : en quoi ça recoupe ce projet."
+  ],
+  "projets": [
+    {
+      "nom": "kill-mutants",
+      "depot": "Reefact/kill-mutants",
+      "theme": "tests de mutation",
+      "surveiller": [
+        "Stryker.NET"
+      ]
+    },
+    {
+      "nom": "unified-assertions",
+      "depot": "Reefact/unified-assertions",
+      "theme": "assertions",
+      "surveiller": [
+        "AwesomeAssertions",
+        "Shouldly",
+        "FluentAssertions"
+      ]
+    },
+    {
+      "nom": "just-dummies",
+      "depot": "Reefact/just-dummies",
+      "theme": "données de test",
+      "surveiller": [
+        "Bogus",
+        "AutoFixture"
+      ]
+    },
+    {
+      "nom": "first-class-errors",
+      "depot": "Reefact/first-class-errors",
+      "theme": "gestion d'erreurs",
+      "surveiller": [
+        "unions C# 15",
+        "ErrorOr",
+        "FluentResults",
+        "OneOf"
+      ]
+    },
+    {
+      "nom": "conventional-comments-toolkit",
+      "depot": "Reefact/conventional-comments-toolkit",
+      "theme": "revue de code",
+      "surveiller": [
+        "conventions de commentaires de revue"
+      ]
+    },
+    {
+      "nom": "slugger",
+      "depot": "Reefact/slugger",
+      "theme": "génération de slugs",
+      "surveiller": [
+        "Slugify",
+        "évolutions .NET sur la normalisation Unicode et l'i18n"
+      ]
+    },
+    {
+      "nom": "enum-member-name-binding",
+      "depot": "Reefact/enum-member-name-binding",
+      "theme": "binding des enums",
+      "surveiller": [
+        "notes de version, préversions et issues de .NET, ASP.NET Core et System.Text.Json sur la sérialisation et le binding des enums (une version précédente, json-enum-value-binding, a été absorbée par .NET : signaler tout recoupement et la version concernée)"
+      ]
+    },
+    {
+      "nom": "design-pattern-catalog",
+      "depot": "Reefact/design-pattern-catalog",
+      "theme": "catalogue de patterns",
+      "surveiller": [
+        "nouveaux catalogues ou patterns de référence pertinents pour .NET (seulement si vraiment pertinent)"
+      ]
+    }
+  ],
+  "exclure": [
+    {
+      "nom": "api-contract-guardrails",
+      "raison": "exclu à la demande de l'utilisateur : ne pas le lire ni surveiller ses concurrents ; le sujet prioritaire « contrats d'API » reste actif ailleurs"
+    }
+  ],
+  "note": "Les README des dépôts Reefact ne sont pas lisibles de façon fiable depuis la tâche : s'appuyer sur cette liste."
+}

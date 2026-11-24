@@ -1,0 +1,92 @@
+{
+  "alertes": {
+    "label": "Alertes & incidents",
+    "carte": "Alerte",
+    "classe": "b-alert",
+    "prefixe": "a",
+    "ordre": 1,
+    "min": 0,
+    "max": null,
+    "description": "Failles de sécurité en cours (Java, .NET, NuGet, npm, supply chain), gros bugs et pannes (Microsoft, Cloudflare, GitHub). Pour chacun : ce qui est touché, versions, correctif, gravité, « te concerne ? ». Section omise s'il n'y a rien."
+  },
+  "radar": {
+    "label": "Radar de tes projets",
+    "carte": "Radar",
+    "classe": "b-radar",
+    "prefixe": "r",
+    "ordre": 2,
+    "min": 0,
+    "max": null,
+    "description": "Signaux qui concernent un de tes dépôts (concurrents, nouvelles versions de l'écosystème). Un sujet par dépôt, seulement s'il y a un vrai signal."
+  },
+  "dotnet": {
+    "label": ".NET",
+    "carte": ".NET",
+    "classe": "b-dotnet",
+    "prefixe": "n",
+    "ordre": 3,
+    "min": 2,
+    "max": 5,
+    "description": "Runtime, C#, ASP.NET Core, EF Core, bibliothèques, outillage Visual Studio et Rider."
+  },
+  "ia": {
+    "label": "IA",
+    "carte": "IA",
+    "classe": "b-ia",
+    "prefixe": "i",
+    "ordre": 4,
+    "min": 2,
+    "max": 5,
+    "description": "Modèles et agents de code, MCP, usages concrets pour développeurs, annonces majeures. Jamais vide."
+  },
+  "ddd": {
+    "label": "DDD",
+    "carte": "DDD",
+    "classe": "b-ddd",
+    "prefixe": "dd",
+    "ordre": 5,
+    "min": 0,
+    "max": 2,
+    "description": "Domain-Driven Design : pratiques, retours d'expérience, publications marquantes. Omise s'il n'y a rien de vraiment nouveau."
+  },
+  "api": {
+    "label": "API & architecture",
+    "carte": "API",
+    "classe": "b-api",
+    "prefixe": "p",
+    "ordre": 6,
+    "min": 2,
+    "max": 4,
+    "description": "Conception d'API, OpenAPI, événementiel, monolithe modulaire, microservices, patterns, retours de terrain publiés."
+  },
+  "outils": {
+    "label": "Outils du moment",
+    "carte": "Outil",
+    "classe": "b-tool",
+    "prefixe": "t",
+    "ordre": 7,
+    "min": 3,
+    "max": 5,
+    "description": "Découverte d'outils nouveaux ou qui montent : 2 à 3 utiles à un développeur .NET, plus une pépite originale. Jamais vide."
+  },
+  "distribution": {
+    "label": "Distribution",
+    "carte": "Distribution",
+    "classe": "b-retail",
+    "prefixe": "d",
+    "ordre": 8,
+    "min": 0,
+    "max": 3,
+    "description": "Enseignes de la grande distribution : cyberattaques, SI, incidents, projets tech, IA, retail media."
+  },
+  "conferences": {
+    "label": "Conférences & CFP",
+    "carte": "Conférence",
+    "classe": "b-conf",
+    "prefixe": "c",
+    "ordre": 9,
+    "min": 0,
+    "max": null,
+    "description": "Conférences et appels à propositions (CFP) pertinents ; affichées seulement en cas de déclencheur (voir config/sujets/conferences.json)."
+  }
+}

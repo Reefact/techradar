@@ -1,0 +1,41 @@
+{
+  "themes": [
+    ".NET",
+    "IA",
+    "DDD",
+    "API et architecture",
+    "tests de mutation et qualité"
+  ],
+  "zones": [
+    "Europe",
+    "France"
+  ],
+  "sources": [
+    "Sessionize",
+    "confs.tech",
+    "conference-hall",
+    "devoxx.fr",
+    "sites officiels"
+  ],
+  "decouverte": "Suivi exhaustif des événements pertinents, en particulier Devoxx (France, Belgique, UK, Poland), NDC (Oslo, London, Porto, Copenhagen…), DotNetDay et communautés .NET FR, Microsoft Build / Ignite / .NET Conf, BDX I/O, MiXiT, Paris Web, Agile, DDD Europe, KCDC, Techorama, dotnetos, Update Conference, meetups majeurs, conférences IA pour développeurs.",
+  "toujours_suivre": [],
+  "exclure": [],
+  "declencheurs": [
+    "ouverture du CFP ou de la billetterie",
+    "rappel avant la date limite du CFP (seuils ci-dessous)",
+    "annonce des dates, du lieu, du programme ou des orateurs",
+    "changement important (report, annulation, date limite prolongée)"
+  ],
+  "rappels_cfp": [
+    30,
+    14,
+    7,
+    3
+  ],
+  "regles": [
+    "Une entrée par série (« Devoxx France »), pas par édition.",
+    "Tout événement dont le CFP ou l'inscription est ouvert reste dans le tableau, trié par date limite la plus proche.",
+    "Détail complet à la première apparition (tag nouveau) ; dates vérifiées sur la page officielle, sinon le dire.",
+    "Écrire toujours l'année dans les dates limites."
+  ]
+}

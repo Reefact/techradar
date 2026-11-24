@@ -1,0 +1,14 @@
+{
+  "categorie": "ia",
+  "consigne": "Modèles et agents de code (Claude, Copilot, Codex, Cursor, JetBrains AI…), MCP, usages concrets pour les développeurs, annonces majeures. L'actualité IA est quotidienne : cette section n'est jamais vide.",
+  "sources": [
+    "Anthropic",
+    "OpenAI",
+    "GitHub Changelog",
+    "JetBrains",
+    "InfoQ",
+    "The New Stack"
+  ],
+  "toujours_suivre": [],
+  "exclure": []
+}

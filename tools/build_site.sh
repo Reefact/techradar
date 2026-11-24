@@ -1,31 +1,27 @@
 #!/usr/bin/env bash
 # Assemble le site publiable dans dist/ (seul dist/ est déployé sur Cloudflare).
-# Publiés : index, flux, assets/, reports/, et la page /drafts/ (index + brouillons + drafts.json).
-# Exclus volontairement : tools/, .github/, .claude/, data/, docs/, README...
+# Le contenu est GÉNÉRÉ depuis data/days/*.json par tools/render.py : rapports publiés,
+# dossiers du jour, flux Atom. S'y ajoutent l'interface (index, page /dossier/, assets/).
 # Variable optionnelle SITE_URL : liens absolus dans feed.xml.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-if command -v python3 >/dev/null 2>&1; then
-  python3 tools/build_feed.py "${SITE_URL:-}"   # flux toujours cohérent avec reports/
-else
-  echo "python3 absent : feed.xml du dépôt utilisé tel quel" >&2
-fi
-rm -rf dist && mkdir -p dist/drafts
-cp index.html feed.xml dist/
-cp -r assets reports dist/
-# Page des brouillons : drafts/index.html + les fichiers drafts/AAAA/*.html + drafts.json (généré)
-cp drafts/index.html dist/drafts/
-for d in drafts/[0-9][0-9][0-9][0-9]; do [ -d "$d" ] && cp -r "$d" dist/drafts/; done
-if command -v python3 >/dev/null 2>&1; then
-  python3 tools/build_drafts.py dist/drafts/drafts.json
-else
-  echo "[]" > dist/drafts/drafts.json
-fi
-# Les brouillons ne doivent pas être indexés par les moteurs de recherche.
+command -v python3 >/dev/null 2>&1 || { echo "python3 est nécessaire au rendu" >&2; exit 1; }
+rm -rf dist && mkdir -p dist
+python3 tools/check_config.py                     # configuration cohérente, sinon pas de déploiement
+python3 tools/render.py dist "${SITE_URL:-}"      # reports/, dossier/AAAA/, dossier/dossier.json, feed.xml
+cp index.html dist/
+cp -r assets dist/
+cp dossier/index.html dist/dossier/
+# Le dossier du jour ne doit pas être indexé ; les anciennes adresses /drafts mènent au dossier.
 cat > dist/_headers <<'H'
-/drafts
+/dossier
   X-Robots-Tag: noindex, nofollow
-/drafts/*
+/dossier/*
   X-Robots-Tag: noindex, nofollow
 H
+cat > dist/_redirects <<'R'
+/drafts /dossier/ 301
+/drafts/ /dossier/ 301
+/drafts/* /dossier/ 301
+R
 echo "dist/ : $(find dist -type f | wc -l) fichier(s)"
