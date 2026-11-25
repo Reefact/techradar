@@ -1,0 +1,1126 @@
+{
+ "date": "2026-11-25",
+ "config": {
+  "commit": "e675c29"
+ },
+ "executions": [
+  {
+   "type": "planifiee",
+   "debut": "2026-11-25T06:07+01:00",
+   "note": "création : recherche web et lecture de sources ; relecture par sous-agent, 26 corrections appliquées"
+  }
+ ],
+ "journal": {
+  "recherches": {
+   "securite": 4,
+   "dotnet": 3,
+   "ia": 9,
+   "architecture": 4,
+   "craftsmanship": 4,
+   "distribution": 1,
+   "outils": 4,
+   "conferences": 4,
+   "projets": 2
+  },
+  "pages_ouvertes": 30,
+  "sources_illisibles": [
+   "thenewstack.io (403)",
+   "nuget.org Stryker.NET (404)",
+   "devoxxfr2027.cfp.dev (chargement en erreur)",
+   "LSA, LeMagIT (non ouverts)"
+  ],
+  "verifications": [
+   {
+    "nom": "Stryker.NET / AwesomeAssertions / Shouldly / AutoFixture / Bogus",
+    "resultat": "rien de neuf"
+   },
+   {
+    "nom": "Devoxx France 2027",
+    "resultat": "CFP annoncé le 23 nov., non confirmé"
+   }
+  ],
+  "verifications_sources": {
+   "lancees": 0,
+   "vrai": 0,
+   "faux": 0,
+   "indetermine": 0
+  },
+  "decouverte": 3,
+  "hypotheses": [
+   "Recherche plus courte que la cible (moins de 3 à 5 requêtes pour certaines catégories) : le moteur renvoie peu de résultats récents, j'ai donc privilégié la lecture directe des sources (blogs, InfoQ, Hacker News, GitHub).",
+   "Résumés plus détaillés que le prompt (demande notée dans data/notes.md, à confirmer).",
+   "Aucun sujet de sécurité publié : les alertes du jour sont soit déjà publiées, soit hors périmètre.",
+   "Pas de pépite du jour : aucun candidat vérifiable."
+  ]
+ },
+ "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact",
+ "a_retenir": [
+  {
+   "section": "urgent",
+   "paragraphes": [
+    "Rappel : l'appel à propositions (CFP) des ateliers de [DDD Europe 2027](#c1) ferme le 30 novembre, dans cinq jours ; celui de la conférence reste ouvert jusqu'au 16 janvier."
+   ],
+   "sujets": [
+    "c1"
+   ]
+  },
+  {
+   "section": "dotnet",
+   "paragraphes": [
+    "Hier, Microsoft a lancé en préversion [DocumentExtractionClient](#n1), une API unique pour extraire le contenu structuré de PDF, de scans et de fichiers Office."
+   ],
+   "sujets": [
+    "n1"
+   ]
+  },
+  {
+   "section": "ia",
+   "paragraphes": [
+    "OpenAI explique dans [Pando](#i1) comment Git tient la charge de ses agents de code. Et pour ses deux ans, [MCP](#i2) (Model Context Protocol) fait le point : l'autorisation d'entreprise est stable, Skills over MCP encore en bêta."
+   ],
+   "sujets": [
+    "i1",
+    "i2"
+   ]
+  },
+  {
+   "section": "craftsmanship",
+   "paragraphes": [
+    "Emily Bache décrit [EXACT](#cr1), une méthode de TDD (développement piloté par les tests) avec agents : exemples, liste de tests, puis boucle rouge-vert-refactoring."
+   ],
+   "sujets": [
+    "cr1"
+   ]
+  },
+  {
+   "section": "architecture",
+   "paragraphes": [
+    "Deux lectures de fond chez Fowler : les [contrats de données](#p1), pensés comme des API, et les [agents de longue durée](#p2), où l'exécution durable ne garantit pas l'exactitude."
+   ],
+   "sujets": [
+    "p1",
+    "p2"
+   ]
+  },
+  {
+   "section": "outils",
+   "paragraphes": [
+    "AWS publie un [émulateur local](#t1) de plus de 200 services, écrit par des agents : pratique pour des tests d'intégration, sans valeur pour tester la sécurité."
+   ],
+   "sujets": [
+    "t1"
+   ]
+  }
+ ],
+ "sujets": [
+  {
+   "id": "c1",
+   "categorie": "conferences",
+   "statut": "publie",
+   "tags": [
+    "ddd",
+    {
+     "tag": "rappel",
+     "seuil": "J-5"
+    }
+   ],
+   "titre": "DDD Europe 2027 : rappel, le CFP des ateliers ferme le 30 novembre",
+   "resume": "Rappel : la date limite de l'appel à propositions (CFP) des **ateliers** de DDD Europe 2027 tombe le 30 novembre 2026, dans cinq jours. Celle de la conférence principale reste ouverte jusqu'au 16 janvier 2027.\n\nL'édition aura lieu à Amsterdam : ateliers du 31 mai au 2 juin, conférence les 3 et 4 juin 2027. Le site officiel donne les dates ; le détail des deux CFP (heure limite comprise) est sur Sessionize.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "thème central de tes sujets (DDD, first-class-errors). Si tu veux proposer un atelier, il reste cinq jours."
+   },
+   "sources": [
+    {
+     "texte": "Source : dddeurope.com",
+     "url": "https://2027.dddeurope.com/"
+    },
+    {
+     "texte": "CFP : Sessionize",
+     "url": "https://sessionize.com/aardling27/"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ],
+   "choix": "Publié en priorité : rappel du CFP des ateliers de DDD Europe (J-5).",
+   "details": {
+    "Dates et lieu": "Ateliers 31 mai – 2 juin, conférence 3–4 juin 2027, Meervaart, Amsterdam",
+    "CFP": "ateliers : 30 nov. 2026 ; conférence : 16 janv. 2027",
+    "Inscription": "billetterie ti.to annoncée sur le site, ouverture non confirmée"
+   },
+   "conference": {
+    "dates": "Ateliers 31 mai – 2 juin ; conférence 3–4 juin 2027",
+    "lieu": "Meervaart, Amsterdam",
+    "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)",
+    "site": "https://2027.dddeurope.com/"
+   },
+   "date": "2026-11-25"
+  },
+  {
+   "id": "n1",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [],
+   "titre": "DocumentExtractionClient : extraire des documents en .NET (préversion)",
+   "resume": "Microsoft présente `DocumentExtractionClient`, une API unique pour transformer des PDF, des scans, des images et des fichiers Office en contenu structuré : titres, tableaux, figures, avec leur position dans la source.\n\n- Fournisseurs de départ : PdfPig (PDF avec couche texte, en processus), un modèle de vision via `IChatClient`, Azure Content Understanding, Azure AI Document Intelligence et Mistral OCR.\n- Usage : `ExtractAsync` avec un flux et un type de média renvoie un `ExtractionDocument` ; `EnumerateContent()` parcourt tous les éléments, sections imbriquées comprises.\n- Intégration : middleware, injection de dépendances, et branchement sur `Microsoft.Extensions.DataIngestion` pour découper et vectoriser les documents (RAG, génération augmentée par récupération).\n\nTout est en préversion ; les exemples ciblent .NET 11 et se lancent en fichier unique avec `dotnet run`.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "tu peux brancher l'extraction de documents dans une application .NET 11 sans écrire un client par fournisseur, et changer de fournisseur par configuration."
+   },
+   "sources": [
+    {
+     "texte": "Source : Blog .NET, 24 nov. 2026",
+     "url": "https://devblogs.microsoft.com/dotnet/document-extraction-dotnet-preview/"
+    }
+   ],
+   "meta": "Blog .NET · 24 nov. 2026 · te concerne : oui",
+   "date": "2026-11-24",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ],
+   "choix": "Publié : actualité .NET du jour (☄️), officielle, utilisable dès maintenant en préversion."
+  },
+  {
+   "id": "i1",
+   "categorie": "ia",
+   "statut": "publie",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Pando : OpenAI fait tenir Git sous la charge des agents de code",
+   "resume": "OpenAI décrit Pando, un nouveau serveur Git conçu pour la charge des agents de code (Codex) : beaucoup plus de pushs, et chaque push déclenche plusieurs jobs d'intégration continue qui téléchargent le même historique.\n\nPando vérifie les packfiles au fil de leur arrivée dans un stockage objet. Il met à jour les références de branches de façon atomique : des pushs sans rapport ne se bloquent plus. Les récupérations passent par le mécanisme `packfile-uri` de Git et un cache régional.\n\nChiffres annoncés par OpenAI : médiane de latence des pushs réduite de près de 80 %, près d'un pétaoctet de données Git servi par jour, plus de 99 % de succès de cache. En production depuis avril 2026 sur le monorepo d'OpenAI. Contrepartie : les branches ne sont pas lues comme un instantané global du dépôt.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "si tes dépôts reçoivent un jour des dizaines d'agents en parallèle, c'est le premier goulot à anticiper : Git et l'intégration continue, avant le modèle."
+   },
+   "sources": [
+    {
+     "texte": "Source : InfoQ, 24 nov. 2026",
+     "url": "https://www.infoq.com/news/2026/11/openai-git-pando/"
+    }
+   ],
+   "meta": "InfoQ · 24 nov. 2026 · te concerne : peut-être",
+   "date": "2026-11-24",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ],
+   "choix": "Publié : actualité IA du jour (☄️) sur l'infrastructure des agents, rarement traitée."
+  },
+  {
+   "id": "i2",
+   "categorie": "ia",
+   "statut": "publie",
+   "tags": [
+    "agents"
+   ],
+   "titre": "MCP a deux ans : Skills over MCP et Events en bêta",
+   "resume": "Pour les deux ans du protocole MCP (Model Context Protocol, 25 novembre), l'équipe publie un bilan chiffré. Plus de 2 500 contributeurs, plus de 5 milliards de téléchargements cumulés des kits de développement (SDK), dont plus de 700 millions sur les 30 derniers jours (au 23 novembre).\n\nCôté technique, la spécification du 28 juillet 2026 est la plus grosse révision à ce jour : le cœur du protocole devient sans état. MCP Apps est la première extension officielle et l'autorisation gérée par l'entreprise est stable.\n\nÀ suivre : **Skills over MCP** (livrer des compétences d'agent par un serveur MCP) et **Events** sont en bêta, et un groupe de travail prototype une extension d'envoi et de téléchargement de fichiers. Prochaine version de la spécification : mars 2027.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "MCP est devenu la prise standard des agents ; savoir ce qui est stable (autorisation) et ce qui est en bêta (Skills, Events) évite de construire sur du provisoire."
+   },
+   "sources": [
+    {
+     "texte": "Source : blog MCP, 24 nov. 2026",
+     "url": "https://blog.modelcontextprotocol.io/posts/mcp-turns-two/"
+    }
+   ],
+   "meta": "Blog MCP · 24 nov. 2026 · te concerne : oui",
+   "date": "2026-11-24",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ],
+   "choix": "Publié : annonce officielle du jour (☄️) qui fixe l'état du protocole."
+  },
+  {
+   "id": "cr1",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "tags": [],
+   "titre": "TDD avec des agents : la méthode EXACT, de l'exemple au test",
+   "resume": "Emily Bache présente EXACT, un flux de travail de Marco Emrich et Ferdi Abe pour obtenir d'un agent de code ce qu'on veut vraiment, en TDD (développement piloté par les tests), sans dégrader la qualité du code.\n\n- On part d'un atelier d'exemples (example mapping) avec les parties prenantes, puis l'agent en tire une liste de tests.\n- On traite la liste un test à la fois, en boucle rouge-vert-refactoring.\n- « TDD prédictif » : avant chaque pas, l'agent prédit le résultat, y compris pourquoi le test échouera et avec quel message.\n- Un sous-agent de refactoring à contexte neuf aide, mais son apport baisse avec les modèles récents.\n\nSon constat : rester dans la boucle et corriger la trajectoire donne de meilleurs résultats qu'une autonomie totale. Le harnais et le laboratoire de test sont ouverts sur GitHub.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "la boucle test d'abord, prédiction ensuite se reprend telle quelle avec ton agent, sans changer d'outil."
+   },
+   "sources": [
+    {
+     "texte": "Source : Coding Is Like Cooking, 5 nov. 2026",
+     "url": "https://coding-is-like-cooking.info/2026/11/how-to-use-test-driven-development-with-ai-agents-without-lowering-code-quality/"
+    }
+   ],
+   "meta": "Coding Is Like Cooking · 5 nov. 2026 · te concerne : oui",
+   "date": "2026-11-05",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ],
+   "choix": "Publié : sujet de fond récent (moins de 3 mois) sur les tests, un thème central de tes projets, jamais traité."
+  },
+  {
+   "id": "p1",
+   "categorie": "architecture",
+   "statut": "publie",
+   "tags": [
+    "api"
+   ],
+   "titre": "Contrats de données : traiter les données comme une API",
+   "resume": "Simon Harrer et Arif Wider défendent les contrats de données : appliquer aux jeux de données la rigueur qu'on met dans une API, avec des métadonnées explicites que les humains et les agents peuvent lire.\n\n- Un contrat est lisible par machine, vérifiable, versionné, piloté par le fournisseur et pensé pour le consommateur.\n- Le standard ODCS (Open Data Contract Standard) couvre schéma, règles de qualité, niveaux de service, propriétaire et conditions d'usage.\n- Versionnement : sémantique (SemVer) ; supprimer ou renommer une colonne est un changement cassant ; éviter `SELECT *`.\n- Conseil : commencer là où le problème se fait sentir, rédiger avec les consommateurs, ranger le contrat dans Git et le faire respecter dans la chaîne d'intégration et de déploiement continus (CI/CD).\n\nL'article présente les contrats de données comme l'équivalent d'OpenAPI pour les API REST.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "même discipline que tes contrats d'API : détecter les changements cassants en intégration continue, et versionner explicitement."
+   },
+   "sources": [
+    {
+     "texte": "Source : martinfowler.com, 18 nov. 2026",
+     "url": "https://martinfowler.com/articles/data-contracts.html"
+    }
+   ],
+   "meta": "martinfowler.com · 18 nov. 2026 · te concerne : peut-être",
+   "date": "2026-11-18",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ],
+   "choix": "Découverte : thème proche des contrats d'API, mais côté données, que ta veille n'a pas encore traité."
+  },
+  {
+   "id": "p2",
+   "categorie": "architecture",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Agents de longue durée : l'exécution durable ne suffit pas",
+   "resume": "Kiran Prakash (Thoughtworks) explique comment faire tourner des agents sur plusieurs semaines. L'exécution durable journalise chaque appel au monde extérieur ; après un plantage, le programme rejoue le journal, saute les étapes faites et reconstruit son état.\n\nArchitecture proposée : un workflow longue durée par entité métier (par exemple une référence produit) qui aiguille des messages vers de courts workflows de traitement ; les attentes ne consomment aucun calcul. Les reprises étant « au moins une fois », des clés d'idempotence évitent les doublons.\n\nSon avertissement : durable n'est pas correct. Modes de défaillance : résultats jamais vus, faits périmés pendant l'attente, code modifié sous une tâche en cours, historique non borné, texte non fiable qui oriente l'agent. Conseils : dater la validité des décisions, revérifier avant tout acte irréversible, appliquer les règles métier dans le code.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "si tu mets un agent dans un processus métier long, les règles d'idempotence et d'expiration relèvent de l'architecture, pas du prompt."
+   },
+   "sources": [
+    {
+     "texte": "Source : martinfowler.com, 10 nov. 2026",
+     "url": "https://martinfowler.com/articles/durable-execution-agents.html"
+    }
+   ],
+   "meta": "martinfowler.com · 10 nov. 2026 · te concerne : peut-être",
+   "date": "2026-11-10",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ],
+   "choix": "Découverte : patron d'architecture (exécution durable) que tes avis ne permettent pas encore de juger."
+  },
+  {
+   "id": "t1",
+   "categorie": "outils",
+   "statut": "publie",
+   "tags": [],
+   "titre": "AWS Emulator : un émulateur AWS local, écrit par des agents",
+   "resume": "AWS publie un émulateur local gratuit de ses services : un seul binaire Rust qui écoute sur le port 9297 et couvre plus de 200 services. Des tests de fidélité ont porté sur DynamoDB, S3, SQS et CloudFormation. Licence CC0 (domaine public).\n\nSelon AWS, des milliers d'agents autonomes ont écrit tout le code à partir de 438 modèles d'API publics ; trois équipes d'agents (tests, recherche d'anomalies, corrections) ne fusionnent qu'après compilation et revue. Le projet est né d'une invite de trois lignes à Kiro.\n\nLimites : fidélité partielle constatée par les premiers testeurs, et les politiques IAM (gestion des accès AWS) ne sont pas évaluées, donc à ne pas utiliser pour tester la sécurité.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "des tests d'intégration .NET contre S3, SQS ou DynamoDB sans compte AWS ni réseau, à essayer sur un projet de test."
+   },
+   "sources": [
+    {
+     "texte": "Source : InfoQ, 20 nov. 2026",
+     "url": "https://www.infoq.com/news/2026/11/aws-emulator-local-testing/"
+    }
+   ],
+   "meta": "InfoQ · 20 nov. 2026 · te concerne : peut-être",
+   "date": "2026-11-20",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ],
+   "choix": "Découverte : outil de test d'intégration, format que tes avis ne permettent pas encore de juger.",
+   "details": {
+    "Pourquoi il monte": "annonce AWS d'il y a une semaine, relayée par InfoQ le 20 nov.",
+    "Maturité": "CC0, binaire Rust unique, jeune ; fidélité partielle, IAM non évalué"
+   },
+   "categorie_secondaire": "ia"
+  },
+  {
+   "id": "t2",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "DuckDB 2.0 : première version à support long, mode agent dans la CLI",
+   "resume": "DuckDB 2.0.0 (« Cinnamon Teal »), version à support long (LTS), est sortie le 21 octobre 2026 ; un correctif 2.0.1 est paru le 20 novembre. Le projet a aussi publié le protocole client-serveur « Quack » (mai 2026) et un mode agent dans sa ligne de commande (octobre 2026). The New Stack les rattache à cette version ; cet article n'a pas pu être relu (accès refusé) : ni la licence ni le détail du mode agent n'ont été vérifiés.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "base analytique embarquée qui devient aussi un serveur ; à suivre si tu l'utilises pour des tests ou des données locales."
+   },
+   "sources": [
+    {
+     "texte": "Source : DuckDB, annonce 2.0",
+     "url": "https://duckdb.org/2026/10/21/announcing-duckdb-200.html"
+    }
+   ],
+   "meta": "DuckDB · 21 oct. 2026 (2.0.1 le 20 nov.) · te concerne : peut-être",
+   "date": "2026-11-20",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ],
+   "choix": "Candidat : version majeure intéressante, mais détails non relus (mode agent, licence) ; rien de neuf du jour."
+  },
+  {
+   "id": "c2",
+   "categorie": "conferences",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Devoxx France 2027 : ouverture du CFP à confirmer",
+   "resume": "Le site de Devoxx France 2027 (7 au 9 avril 2027, Palais des Congrès, Paris) annonce l'ouverture de l'appel à propositions (CFP) le lundi 23 novembre 2026, sur devoxxfr2027.cfp.dev. La page du CFP ne s'est pas chargée à la lecture : ouverture effective et date limite non confirmées.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "guetter la date limite dès que le CFP s'affiche."
+   },
+   "sources": [
+    {
+     "texte": "Source : devoxx.fr",
+     "url": "https://2027.devoxx.fr/"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ],
+   "choix": "Candidat : déclencheur réel (ouverture du CFP) mais ni l'ouverture effective ni la date limite ne sont vérifiées.",
+   "conference": {
+    "dates": "7–9 avril 2027",
+    "lieu": "Palais des Congrès, Paris",
+    "cfp": "ouverture annoncée le 23 nov. 2026, date limite non confirmée",
+    "site": "https://2027.devoxx.fr/"
+   }
+  },
+  {
+   "id": "s1",
+   "categorie": "securite",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "binary-parser (npm) : injection de JavaScript via les définitions",
+   "resume": "CVE-2026-134814 : dans binary-parser avant la 2.3.1, des options de type chaîne passées sans validation permettent d'injecter du JavaScript, exécuté dans le processus Node.js à la compilation du parseur. Corrigé en 2.3.1. Le mainteneur précise qu'analyser des données non fiables avec une définition de parseur de confiance n'est pas concerné. Aucune exploitation signalée.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "ne concerne que les projets Node.js qui construisent des parseurs depuis des entrées externes."
+   },
+   "sources": [
+    {
+     "texte": "Source : The Hacker News, 23 nov. 2026",
+     "url": "https://thehackernews.com/2026/11/critical-binary-parser-flaw-enables.html"
+    }
+   ],
+   "meta": "The Hacker News · 23 nov. 2026 · te concerne : non",
+   "date": "2026-11-23",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ],
+   "choix": "Candidat : faille réelle mais hors écosystème .NET et sans exploitation connue."
+  },
+  {
+   "id": "i3",
+   "categorie": "ia",
+   "statut": "candidat",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Anthropic décrit sa revue de code par agents (Claude Code)",
+   "resume": "Anthropic décrit comment l'équipe Claude Code relit un code de plus en plus écrit par des agents. Les étapes : tests, builds et linters avant la pull request (PR), relecteurs multiples puis agents de vérification, revue de sécurité bloquante. Le niveau d'approbation humaine dépend du risque (aucune, une ou deux personnes). Chiffres cités : PR fusionnées plus que doublées de juin à septembre, retours en arrière en baisse de plus de 40 %.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un modèle de revue graduée selon le risque, reprenable pour ton propre dépôt."
+   },
+   "sources": [
+    {
+     "texte": "Source : InfoQ, 15 nov. 2026",
+     "url": "https://www.infoq.com/news/2026/11/claude-code-review"
+    }
+   ],
+   "meta": "InfoQ · 15 nov. 2026 · te concerne : oui",
+   "date": "2026-11-15",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ],
+   "choix": "Candidat : hors de la fenêtre de 7 jours des actualités IA."
+  },
+  {
+   "id": "i4",
+   "categorie": "ia",
+   "statut": "candidat",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Uber : une passerelle MCP pour plus de 800 serveurs",
+   "resume": "Uber a construit une passerelle MCP (un registre et un proxy) qui expose ses API internes comme outils d'agents : plus de 800 serveurs et 5 000 outils, autorisation par serveur et par outil, masquage des données personnelles, outils désactivés tant que l'équipe propriétaire ne les active pas.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "patron de gouvernance à copier si tes agents appellent des services internes."
+   },
+   "sources": [
+    {
+     "texte": "Source : InfoQ, 2 nov. 2026",
+     "url": "https://www.infoq.com/news/2026/11/uber-mcp-gateway-ai-agents/"
+    }
+   ],
+   "meta": "InfoQ · 2 nov. 2026 · te concerne : peut-être",
+   "date": "2026-11-02",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ],
+   "choix": "Candidat : plus de trois semaines, hors de la fenêtre des actualités IA."
+  },
+  {
+   "id": "n2",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "GitHub Copilot : migrer des applications .NET vers Windows Arm64",
+   "resume": "L'agent de mise à niveau de GitHub Copilot repère les blocages d'une migration vers Windows Arm64, planifie et applique les changements de code. Seul le résumé de l'article du blog .NET a pu être lu.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "utile si tu dois livrer des applications de bureau sur machines Arm."
+   },
+   "sources": [
+    {
+     "texte": "Source : Blog .NET, 5 nov. 2026",
+     "url": "https://devblogs.microsoft.com/dotnet/modernize-dotnet-apps-for-windows-arm64/"
+    }
+   ],
+   "meta": "Blog .NET · 5 nov. 2026 · te concerne : peut-être",
+   "date": "2026-11-05",
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ],
+   "choix": "Candidat : trois semaines, simple résumé lu, intérêt limité pour tes projets."
+  },
+  {
+   "id": "i5",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "non-verifiable",
+   "tags": [],
+   "titre": "Claude Ship : Claude approuverait les PR courantes",
+   "note": "annoncé par The New Stack (page illisible, accès refusé) ; aucune source Anthropic trouvée.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thenewstack.io/anthropic-claude-ship-approvals/"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : annoncé par The New Stack (page illisible, accès refusé) ; aucune source Anthropic trouvée.",
+   "meta": "The New Stack · 23 nov. 2026",
+   "date": "2026-11-23"
+  },
+  {
+   "id": "i6",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Ternary Bonsai 2.5 27B",
+   "note": "modèle de recherche, sans usage développeur.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://prismml.com/news/bonsai-2-5-27b"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : modèle de recherche, sans usage développeur."
+  },
+  {
+   "id": "i7",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "GPT-6 : capacités de conception de protéines",
+   "note": "biologie, hors périmètre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : biologie, hors périmètre."
+  },
+  {
+   "id": "i8",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Multiplication de matrices en Θ(n^2,25)",
+   "note": "mathématiques théoriques, hors périmètre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : mathématiques théoriques, hors périmètre."
+  },
+  {
+   "id": "i9",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Modèles qui communiquent via des serveurs d'inférence",
+   "note": "recherche en alignement, sans lien direct avec ton travail.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : recherche en alignement, sans lien direct avec ton travail."
+  },
+  {
+   "id": "i10",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "AWS Strands : cinq modèles de décision ouverts",
+   "note": "annonce sans détail vérifié.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thenewstack.io/aws-strands-decider-v2/"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : annonce sans détail vérifié."
+  },
+  {
+   "id": "i11",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "DeepMind : agents et vérification Lean en calcul quantique",
+   "note": "recherche, hors périmètre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thenewstack.io/deepmind-lean-quantum-verification/"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : recherche, hors périmètre."
+  },
+  {
+   "id": "i12",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "OpenClaw : un an de croissance (entretien)",
+   "note": "entretien sans information technique nouvelle.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thenewstack.io/openclaw-vincent-koc-interview/"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : entretien sans information technique nouvelle."
+  },
+  {
+   "id": "i13",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "The Evolution of Agentic Harnesses : des chaînes au code",
+   "note": "paru le 26 octobre : au-delà de la fenêtre des actualités IA.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.infoq.com/articles/agentic-ai-architecture-harness-evolution/"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : paru le 26 octobre : au-delà de la fenêtre des actualités IA.",
+   "date": "2026-10-26"
+  },
+  {
+   "id": "n3",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "Enquête développeurs .NET 2026",
+   "note": "appel à répondre à un sondage.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://devblogs.microsoft.com/dotnet/dotnet-developer-survey-2026/"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : appel à répondre à un sondage."
+  },
+  {
+   "id": "n4",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "tags": [],
+   "titre": "Meziantou : suivre une requête lente avec Aspire et un agent",
+   "note": "même série que n1 du rapport du 24 novembre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.meziantou.net/following-a-slow-request-across-services-with-aspire-and-an-ai-agent.htm"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : même série que n1 du rapport du 24 novembre."
+  },
+  {
+   "id": "n5",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "AwesomeAssertions.Web 3.0.1",
+   "note": "simple mise à jour de sécurité d'une dépendance.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/AwesomeAssertions/AwesomeAssertions/releases"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : simple mise à jour de sécurité d'une dépendance."
+  },
+  {
+   "id": "n6",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "GitHub : migrations en direct depuis Azure DevOps disponibles",
+   "note": "outillage d'entreprise, pas de lien avec ton périmètre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.blog/changelog/2026-11-19-enterprise-live-migrations-from-azure-devops-generally-available"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : outillage d'entreprise, pas de lien avec ton périmètre."
+  },
+  {
+   "id": "n7",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "GitHub : validation des formats de couverture de code",
+   "note": "amélioration mineure.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.blog/changelog/2026-11-23-code-coverage-uploads-now-flag-invalid-report-formats"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : amélioration mineure."
+  },
+  {
+   "id": "n8",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "GitHub : statuts d'issues et tableaux de dépôt",
+   "note": "préversion de gestion de projet.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.blog/changelog/2026-11-23-issue-statuses-and-repository-boards-are-in-public-preview"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : préversion de gestion de projet."
+  },
+  {
+   "id": "s2",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "ScreenConnect : faille critique côté client",
+   "note": "outil de support pour prestataires, hors périmètre développeur .NET.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/hackers-exploit-critical-screenconnect.html"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : outil de support pour prestataires, hors périmètre développeur .NET."
+  },
+  {
+   "id": "s3",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "N-able Mail Assure : faille exploitée",
+   "note": "infrastructure de messagerie, hors périmètre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/hackers-exploit-n-able-mailassure-flaw.html"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : infrastructure de messagerie, hors périmètre."
+  },
+  {
+   "id": "s4",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "WHMCS : injection SQL sans authentification",
+   "note": "logiciel d'hébergeur, hors périmètre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/whmcs-sql-injection-flaw-could-expose.html"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : logiciel d'hébergeur, hors périmètre."
+  },
+  {
+   "id": "s5",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Volant Manticore : porte dérobée KuboShell via IPFS",
+   "note": "espionnage ciblé, sans lien avec le développement.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/iran-aligned-volant-manticore-uses-ipfs.html"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : espionnage ciblé, sans lien avec le développement."
+  },
+  {
+   "id": "s6",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Check Point : campagne d'intrusion sur les serveurs de gestion",
+   "note": "infrastructure réseau, hors périmètre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.greynoise.io/blog/check-point-security-management-servers-intrusion-campaign"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : infrastructure réseau, hors périmètre."
+  },
+  {
+   "id": "s7",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "tags": [],
+   "titre": "Microsoft Agent Framework : paquet PyPI piégé",
+   "note": "déjà traité dans le rapport du 23 novembre (s6).",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/attackers-compromise-microsofts-agent.html"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : déjà traité dans le rapport du 23 novembre (s6)."
+  },
+  {
+   "id": "d1",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Decathlon : fuite de 163 646 fiches clients chez un prestataire",
+   "note": "distribution non alimentaire hors liste d'enseignes suivies ; source non relue.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://lsa-conso.fr/distributeurs-non-alimentaires/mode-sport/decathlon/apres-carrefour-decathlon-cible-par-une-cyberattaque-faisant-fuiter-les-donnees-personnelles-de-163-000-clients.HEQKFRLC65CINF7HEUNHZM5SS4.html"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : distribution non alimentaire hors liste d'enseignes suivies ; source non relue."
+  },
+  {
+   "id": "t3",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "unity-mcp : un pont entre assistants d'IA et Unity",
+   "note": "18 étoiles du jour, outil de niche.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/CoplayDev/unity-mcp"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : 18 étoiles du jour, outil de niche."
+  },
+  {
+   "id": "t4",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "Button Sounds : bruitages de boutons pour interfaces",
+   "note": "page lue sans détail de licence ni d'usage.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://buttons.joshwcomeau.com/"
+    }
+   ],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : page lue sans détail de licence ni d'usage."
+  },
+  {
+   "id": "cr2",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "tags": [],
+   "titre": "Stryker.NET, Shouldly, AutoFixture, Bogus : vérification des versions",
+   "note": "aucune nouvelle version trouvée depuis les dernières versions notées.",
+   "sources": [],
+   "historique": [
+    {
+     "date": "2026-11-25T06:40+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "choix": "Écarté : aucune nouvelle version trouvée depuis les dernières versions notées."
+  }
+ ],
+ "pied": [
+  "**Sources :** Blog .NET, InfoQ, The Hacker News, blog MCP, martinfowler.com, Coding Is Like Cooking, DuckDB, devoxx.fr, dddeurope.com, GitHub Changelog.",
+  "**Hypothèses :** voir le journal ; certaines sources (The New Stack, page CFP de Devoxx France) étaient illisibles.",
+  "Généré le 25 novembre 2026 à 07:00 (Paris)."
+ ]
+}
