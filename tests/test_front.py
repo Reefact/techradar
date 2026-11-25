@@ -105,6 +105,14 @@ class Front(unittest.TestCase):
         faux = rapport.replace("Pourquoi ça compte pour toi :", "Ça te parle :", 1)
         self.assertTrue(any("ne commence pas par" in e for e in self.erreurs([faux])))
 
+    def test_repere_froid_pour_l_ia_ancienne(self):
+        day = copy.deepcopy(self.day)
+        s = next(x for x in day["sujets"] if x["statut"] == "publie" and x["categorie"] == "ia")
+        s["date"] = "2026-11-10"
+        rapport, _ = self.rendu(day)
+        self.assertIn("🧊", rapport.split(f'id="{s["id"]}"')[1].split("</summary>")[0])
+        self.assertEqual(self.erreurs([rapport]), [])
+
     def test_tag_non_declare(self):
         rapport, _ = self.rendu()
         faux = rapport.replace('data-tags="', 'data-tags="invente ', 1)
@@ -311,6 +319,18 @@ class Donnees(unittest.TestCase):
         self.assertTrue(any("JetBrains Security" in e and "n'a pas été lu" in e for e in self.valider(day)))
         day["journal"]["verifications"] = [{"nom": f, "resultat": "rien de neuf"} for f in ("JetBrains Security", "JetBrains .NET Tools")]
         self.assertFalse(any("n'a pas été lu" in e for e in self.valider(day)))
+
+    def test_ia_jusqua_14_jours_et_categories_vides(self):
+        day = self.jour_recent()
+        day["date"] = "2026-11-26"
+        for x in day["sujets"]: x["choix"] = "raison"
+        s = next(x for x in day["sujets"] if x["statut"] == "publie" and x["categorie"] == "ia")
+        s["date"] = "2026-11-14"                                            # 12 jours : accepté pour l'IA
+        self.assertFalse(any(f"{s['id']} : publié mais daté" in e for e in self.valider(day)))
+        s["date"] = "2026-11-10"                                            # 16 jours : refusé
+        self.assertTrue(any(f"{s['id']} : publié mais daté" in e for e in self.valider(day)))
+        day["journal"]["recherches"] = {"ia": 9}
+        self.assertTrue(any("vide avec 0 requête" in e for e in self.valider(day)))
 
     def test_projet_inconnu_refuse(self):
         day = jour()

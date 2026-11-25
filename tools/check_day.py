@@ -24,7 +24,7 @@ from datetime import date as Date, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, day_files, pourquoi_types, sections_resume, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
+from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, categories_de, day_files, pourquoi_types, sections_resume, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
 import check_front  # noqa: E402
 import check_report  # noqa: E402
 import render  # noqa: E402
@@ -210,7 +210,8 @@ def check(path, contre=None, partiel=False):
             fond = bool(cs & set(fr.get("fond_categories", [])) or tg & set(fr.get("fond_tags", [])))
             if cs & set(fr.get("pas_de_fond_categories", [])) or tg & set(fr.get("pas_de_fond_tags", [])):
                 fond = False                                                       # l'IA change trop vite : toujours une actualité
-            jours = fr.get("fond_jours", 14) if fond else fr.get("actualites_jours", 7)
+            ia = bool(cs & set(fr.get("pas_de_fond_categories", [])) or tg & set(fr.get("pas_de_fond_tags", [])))
+            jours = fr.get("fond_jours", 14) if fond else fr.get("ia_jours", 14) if ia else fr.get("actualites_jours", 7)
             limite = (Date.fromisoformat(day["date"]) - timedelta(days=jours)).isoformat()
             if s["date"] < limite: E(f"{s['id']} : publié mais daté du {s['date']}, au-delà de {jours} jours ({'sujet de fond' if fond else 'actualité'}) : candidat, ou raison dans « hors_fenetre »")
     rap = per.get("rapport", {})
@@ -247,6 +248,13 @@ def check(path, contre=None, partiel=False):
         for item in confs.get("toujours_suivre", []) + [x for f, d in sj.items() if "/recherche/" in f for x in d.get("toujours_suivre", [])]:
             n = item["nom"].lower()
             if not any(n in v for v in verified): E(f"journal : « {item['nom']} » est toujours suivi mais n'a pas été vérifié (ajouter une entrée dans journal.verifications)")
+    # ----- catégories vides : seulement après un vrai effort de recherche (à partir du 26)
+    if not legacy and day.get("date", "") >= (rap.get("choix") or {}).get("depuis", "9999") and rap.get("categorie_vide_recherches_min"):
+        mini = rap["categorie_vide_recherches_min"]
+        for k, c in cats.items():
+            if k == "conferences" or any(k in categories_de(s) for s in pub): continue
+            n = (j.get("recherches") or {}).get(k, 0)
+            if n < mini: E(f"catégorie « {c['label']} » vide avec {n} requête(s) dédiée(s) : au moins {mini} avant de la laisser vide (journal.recherches)")
     flux_cfg = sj.get("sujets/flux.json", {})
     if not legacy and day.get("date", "") >= flux_cfg.get("depuis", "9999"):
         vus = {plain(v.get("nom", "")).lower() for v in j.get("verifications", [])}

@@ -207,6 +207,20 @@ def majuscule(md):
     return md if not m else md[:m.start()] + md[m.start()].upper() + md[m.start() + 1:]
 
 
+def froid_html(s, cfg, jour):
+    """Repère 🧊 d'un sujet d'IA paru il y a plus de N jours (config/sujets/perimetre.json → rapport.fraicheur.froid)."""
+    fr = ((cfg["sujets"].get("sujets/perimetre.json") or {}).get("rapport") or {}).get("fraicheur") or {}
+    fd = fr.get("froid") or {}
+    if not fd or not s.get("date") or not jour:
+        return ""
+    tg = {tag_key(t) for t in s.get("tags", [])}
+    if not (set(categories_de(s)) & set(fr.get("pas_de_fond_categories", [])) or tg & set(fr.get("pas_de_fond_tags", []))):
+        return ""
+    if (Date.fromisoformat(jour[:10]) - Date.fromisoformat(s["date"])).days <= fd.get("apres_jours", 7):
+        return ""
+    return f'<span class="fresh froid" title="{E(fd.get("aide", ""))} (paru le {date_courte(s["date"])})" aria-label="Moins frais">{E(fd.get("emoji", "🧊"))}</span>'
+
+
 def card(s, cfg, seuil, dossier=False, date_jour=""):
     """Un sujet = un bloc dépliant : en-tête (badges, titre, ligne source · date) ; corps (résumé, détails, sources, actions)."""
     cats, tags = cfg["categories"], cfg["tags"]
@@ -220,7 +234,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     badges = (statut_badge(s) if dossier else "") + "".join(badge(cats[k]["classe"], cats[k]["label"], cats[k]["description"]) for k in categories_de(s)) \
         + "".join(tag_html(t, tags, icone=True) for t in s.get("tags", [])) + projet_badge(s, cfg)   # catégorie, tags (0 à N), projet (0 ou 1)
     blip = (f'<span class="fresh" title="Récent : paru le {date_courte(s["date"])}, depuis le brief précédent ({date_courte(seuil)}, jour compris)" '
-            'aria-label="Récent">☄️</span>') if frais else ""
+            'aria-label="Récent">☄️</span>') if frais else froid_html(s, cfg, date_jour or seuil)
     meta = meta_of(s)
     out = [f'<details class="card" id="{E(s["id"])}"{attrs}>',
            f'  <summary class="head"><span class="badges">{badges}</span>{titre_h3(s, blip)}'
@@ -369,7 +383,7 @@ def render_report(day, cfg, seuil=None):
     o += resume_html(day, cfg)
     o += ["</div>", "", "<h2>Sujets</h2>"] + filters(pub, cfg, seuil) + ['<div class="sum">']
     for s in pub:
-        o += ["", card(s, cfg, seuil)]
+        o += ["", card(s, cfg, seuil, date_jour=day["date"])]
     o += ["</div>", "", "<footer>"] + [f"  <p>{inline(p)}</p>" for p in day.get("pied", [])] + ["</footer>", "</div>", TOTOP, SCRIPT, "</body></html>", ""]
     return "\n".join(o)
 
