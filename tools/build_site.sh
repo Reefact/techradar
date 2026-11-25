@@ -14,6 +14,11 @@ python3 tools/check_front.py                      # tout ce qui est affiché est
 cp index.html dist/
 cp -r assets dist/
 cp dossier/index.html dist/dossier/
+# Version (empreinte du contenu) de site.css et site.js dans l'adresse : un changement d'interface est vu sans rechargement forcé.
+for f in site.css site.js; do
+  v=$(sha256sum "assets/$f" | cut -c1-10)
+  sed -i "s|assets/$f\"|assets/$f?v=$v\"|" dist/index.html dist/dossier/index.html
+done
 # Le dossier du jour ne doit pas être indexé ; les anciennes adresses /drafts mènent au dossier.
 cat > dist/_headers <<'H'
 /dossier
