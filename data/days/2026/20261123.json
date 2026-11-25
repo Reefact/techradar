@@ -17,7 +17,8 @@
   },
   "hypotheses": [
    "Rapport reconstitué le 25 novembre 2026 à partir de la veille du 24, qui couvrait une fenêtre de 7 jours : les sujets sont répartis entre le lundi 23 et le mardi 24 selon leur date de survenance, avec les règles de volume (15 sujets au plus hors prioritaires, plafonds par catégorie, fraîcheur).",
-   "Premier rapport : fenêtre de recherche de 7 jours (du 16 au 23 novembre)."
+   "Premier rapport : fenêtre de recherche de 7 jours (du 16 au 23 novembre).",
+   "Raisons de choix (« Pourquoi ce choix ») ajoutées a posteriori le 25 novembre, à partir des décisions prises lors de la reconstitution ; aucun avis de l'utilisateur n'existait encore."
   ],
   "verifications_sources": {
    "lancees": 5,
@@ -265,7 +266,8 @@
       "url": "https://github.com/advisories/GHSA-pj2m-2r8v-h9cp"
      }
     ]
-   }
+   },
+   "choix": "Publié en priorité : alerte récente (☄️), faille exploitée et sans correctif qui touche du .NET Framework."
   },
   {
    "id": "s5",
@@ -431,7 +433,8 @@
       "url": "https://spring.io/security/cve-2026-123886/"
      }
     ]
-   }
+   },
+   "choix": "Publié en priorité : alerte récente (☄️), série de correctifs Spring révisée le jour même."
   },
   {
    "id": "s4",
@@ -647,7 +650,8 @@
       "url": "https://www.keycloak.org/2026/11/java4shell-vulnerability-cve-2026-114938"
      }
     ]
-   }
+   },
+   "choix": "Publié : faille critique d'OpenJDK dans la fenêtre du premier rapport ; elle occupe l'une des 2 places de Sécurité."
   },
   {
    "id": "s6",
@@ -693,7 +697,8 @@
      "note": "tags ajoutés : supply-chain"
     }
    ],
-   "date": "2026-11-18"
+   "date": "2026-11-18",
+   "choix": "Publié : attaque contre la chaîne d'approvisionnement (paquets PyPI) qui vise Azure et la CI ; seconde place de Sécurité."
   },
   {
    "id": "n1",
@@ -741,7 +746,8 @@
      "par": "tache"
     }
    ],
-   "date": "2026-11-17"
+   "date": "2026-11-17",
+   "choix": "Publié : sortie majeure de .NET 11, au cœur de ton périmètre, dans la fenêtre de 7 jours du premier rapport."
   },
   {
    "id": "n2",
@@ -776,7 +782,8 @@
      "note": "tags ajoutés : supply-chain"
     }
    ],
-   "date": "2026-11-17"
+   "date": "2026-11-17",
+   "choix": "Publié : changement du mode de publication sur NuGet.org, qui touche toute la chaîne de paquets .NET."
   },
   {
    "id": "n3",
@@ -803,7 +810,8 @@
      "par": "tache"
     }
    ],
-   "date": "2026-11-23"
+   "date": "2026-11-23",
+   "choix": "Publié : sujet .NET frais (☄️), un usage concret des modèles locaux dans une application .NET."
   },
   {
    "id": "n9",
@@ -841,7 +849,8 @@
      "note": "catégorie Radar et badge « Tes sujets » remplacés par le badge du projet (champ depot)"
     }
    ],
-   "date": "2026-11-21"
+   "date": "2026-11-21",
+   "choix": "Publié : les unions de C# 15 recoupent directement first-class-errors ; sujet de projet récent, à fort impact."
   },
   {
    "id": "i1",
@@ -876,7 +885,8 @@
      "note": "tags ajoutés : agents"
     }
    ],
-   "date": "2026-11-23"
+   "date": "2026-11-23",
+   "choix": "Publié : annonce récente (☄️) sur les agents de code, thème central de la catégorie IA."
   },
   {
    "id": "i2",
@@ -912,7 +922,8 @@
      "note": "tags ajoutés : agents, rex"
     }
    ],
-   "date": "2026-11-23"
+   "date": "2026-11-23",
+   "choix": "Publié : retour d'expérience chiffré et récent (☄️) de Netflix sur les agents de code."
   },
   {
    "id": "i3",
@@ -947,7 +958,8 @@
      "note": "tags ajoutés : agents"
     }
    ],
-   "date": "2026-11-17"
+   "date": "2026-11-17",
+   "choix": "Publié : Copilot dans JetBrains, outillage directement lié à ton environnement de développement."
   },
   {
    "id": "i4",
@@ -982,7 +994,8 @@
      "note": "tags ajoutés : agents"
     }
    ],
-   "date": "2026-11-19"
+   "date": "2026-11-19",
+   "choix": "Publié : quatrième et dernière place d'IA, pour une évolution marquante des agents (agents qui pilotent d'autres agents)."
   },
   {
    "id": "cr1",
@@ -1042,7 +1055,8 @@
     }
    ],
    "date": "2026-11-16",
-   "depot": "Reefact/conventional-comments-toolkit"
+   "depot": "Reefact/conventional-comments-toolkit",
+   "choix": "Publié : article de fond sur la revue de code, qui recoupe tes conventions de commentaires."
   },
   {
    "id": "p1",
@@ -1094,7 +1108,8 @@
     }
    ],
    "date": "2026-11-19",
-   "depot": "Reefact/hypermedia-domain-language"
+   "depot": "Reefact/hypermedia-domain-language",
+   "choix": "Publié : OpenAPI 3.2 par défaut dans ASP.NET Core 11, au cœur du thème des contrats d'API."
   },
   {
    "id": "d1",
@@ -1304,7 +1319,8 @@
       "url": "https://www.franceinfo.fr/monde/iran/l-iran-rejette-les-accusations-infondees-de-la-france-concernant-la-cyberattaque-contre-des-frigos_8276831.html"
      }
     ]
-   }
+   },
+   "choix": "Publié : rebondissement récent (☄️) de l'enquête sur les frigos piratés, avec Intermarché parmi les enseignes touchées."
   },
   {
    "id": "c3",
@@ -1372,7 +1388,8 @@
      "note": "tag ddd"
     }
    ],
-   "titre_sommaire": "DDD Europe 2027"
+   "titre_sommaire": "DDD Europe 2027",
+   "choix": "Publié en priorité : rappel du CFP des ateliers de DDD Europe, qui ferme dans une semaine (J-7)."
   },
   {
    "id": "c4",
@@ -1415,7 +1432,8 @@
      "par": "utilisateur",
      "note": "ligne « pourquoi » reformulée (avant : « Date vérifiée sur la page Sessionize. Rappels prévus 14, 7 et 3 jours avant la clôture : le 24 nov. (aujourd'hui), le 1er déc. et le 5 déc. »)"
     }
-   ]
+   ],
+   "choix": "Publié : CFP de DevSum, ouvert et qui ferme le 8 décembre."
   },
   {
    "id": "c1",
@@ -1457,7 +1475,8 @@
      "par": "utilisateur",
      "note": "ligne « pourquoi » reformulée (avant : « À vérifier : la page du CFP n'a pas pu être chargée (application JavaScript), donc l'ouverture effective et l'heure limite restent à confirmer. Rappel prévu 30 jours avant la clôture, le 11 déc. 2026. »)"
     }
-   ]
+   ],
+   "choix": "Publié : CFP de Devoxx France, ouvert jusqu'au 10 janvier ; conférence majeure en France."
   },
   {
    "id": "i5",
@@ -1498,7 +1517,8 @@
      "note": "découpage du 24 en deux rapports : publie → candidat"
     }
    ],
-   "date": "2026-11-19"
+   "date": "2026-11-19",
+   "choix": "Candidat : intéressant, mais les 4 places d'IA étaient prises par des sujets plus marquants."
   },
   {
    "id": "t3",
@@ -1541,7 +1561,8 @@
      "note": "découpage du 24 en deux rapports : publie → candidat"
     }
    ],
-   "date": "2026-11-21"
+   "date": "2026-11-21",
+   "choix": "Candidat : pépite originale, mais les 15 places étaient prises et la catégorie Outils pèse peu dans l'arbitrage."
   },
   {
    "id": "d2",
@@ -1574,7 +1595,8 @@
      "note": "découpage du 24 en deux rapports : publie → candidat"
     }
    ],
-   "date": "2026-11-17"
+   "date": "2026-11-17",
+   "choix": "Candidat : stratégie d'enseigne sans dimension technique forte ; les 15 places étaient prises et Distribution pèse peu."
   },
   {
    "id": "c2",
@@ -1621,7 +1643,8 @@
      "par": "utilisateur",
      "note": "découpage du 24 en deux rapports : publie → candidat"
     }
-   ]
+   ],
+   "choix": "Candidat : CFP ouvert jusqu'au 17 janvier, plus lointain que ceux retenus ; il reviendra avec ses rappels."
   },
   {
    "id": "c5",
@@ -1670,7 +1693,8 @@
      "par": "utilisateur",
      "note": "découpage du 24 en deux rapports : publie → candidat"
     }
-   ]
+   ],
+   "choix": "Candidat : CFP pas encore ouvert (le 30 novembre) ; il reviendra à son ouverture."
   },
   {
    "id": "c6",
@@ -1718,7 +1742,8 @@
      "par": "utilisateur",
      "note": "découpage du 24 en deux rapports : publie → candidat"
     }
-   ]
+   ],
+   "choix": "Candidat : CFP seulement en juin 2027 ; trop tôt pour en parler."
   },
   {
    "id": "s1",
@@ -1765,7 +1790,8 @@
     }
    ],
    "date": "2026-11-10",
-   "categorie_secondaire": "dotnet"
+   "categorie_secondaire": "dotnet",
+   "choix": "Candidat : fin de support datée du 10 novembre, hors de la fenêtre de 7 jours du premier rapport (depuis le 16)."
   },
   {
    "id": "s2",
@@ -1811,7 +1837,8 @@
      "note": "découpage du 24 en deux rapports : publie → candidat"
     }
    ],
-   "date": "2026-11-11"
+   "date": "2026-11-11",
+   "choix": "Candidat : Patch Tuesday du 10 novembre, hors de la fenêtre de 7 jours du premier rapport."
   },
   {
    "id": "n10",
@@ -1862,7 +1889,8 @@
     }
    ],
    "date": "2026-11-10",
-   "categorie_secondaire": "craftsmanship"
+   "categorie_secondaire": "craftsmanship",
+   "choix": "Candidat : version de Stryker.NET du 10 novembre, hors de la fenêtre de 7 jours du premier rapport."
   },
   {
    "id": "n5",
@@ -1904,7 +1932,8 @@
      "par": "utilisateur",
      "note": "découpage du 24 en deux rapports : publie → candidat"
     }
-   ]
+   ],
+   "choix": "Candidat : versions du 12 novembre, hors de la fenêtre de 7 jours du premier rapport."
   },
   {
    "id": "n6",
@@ -1938,7 +1967,8 @@
      "par": "utilisateur",
      "note": "découpage du 24 en deux rapports : publie → candidat"
     }
-   ]
+   ],
+   "choix": "Candidat : article du 5 novembre, hors de la fenêtre de 7 jours du premier rapport."
   },
   {
    "id": "p3",
@@ -1985,7 +2015,8 @@
      "note": "découpage du 24 en deux rapports : publie → candidat"
     }
    ],
-   "date": "2026-11-07"
+   "date": "2026-11-07",
+   "choix": "Candidat : article du 7 novembre, hors de la fenêtre du premier rapport, alors en vigueur pour tous les sujets."
   },
   {
    "id": "d3",
@@ -2091,7 +2122,8 @@
       "url": "https://fuitesinfos.fr/article/2026-11-11-gestool"
      }
     ]
-   }
+   },
+   "choix": "Candidat : revendication du 11 novembre, hors de la fenêtre de 7 jours de la distribution."
   },
   {
    "id": "n11",
@@ -2148,7 +2180,8 @@
     }
    ],
    "date": "2026-07-18",
-   "categorie_secondaire": "craftsmanship"
+   "categorie_secondaire": "craftsmanship",
+   "choix": "Candidat : préversion publiée en juillet, signal trop ancien pour un rapport du jour."
   },
   {
    "id": "n12",
@@ -2201,7 +2234,8 @@
     }
    ],
    "date": "2026-07-31",
-   "categorie_secondaire": "craftsmanship"
+   "categorie_secondaire": "craftsmanship",
+   "choix": "Candidat : préversion publiée fin juillet, signal trop ancien pour un rapport du jour."
   },
   {
    "id": "n4",
@@ -2229,7 +2263,8 @@
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
     }
    ],
-   "date": "2026-10-29"
+   "date": "2026-10-29",
+   "choix": "Candidat : annonce du 29 octobre, hors de la fenêtre du premier rapport."
   },
   {
    "id": "n8",
@@ -2261,7 +2296,8 @@
      "par": "utilisateur",
      "note": "tags ajoutés : agents"
     }
-   ]
+   ],
+   "choix": "Candidat : article du 3 novembre, hors de la fenêtre du premier rapport."
   },
   {
    "id": "i7",
@@ -2293,7 +2329,8 @@
      "par": "utilisateur",
      "note": "tags ajoutés : agents"
     }
-   ]
+   ],
+   "choix": "Candidat : dans la fenêtre, mais les 4 places d'IA étaient prises par des sujets plus marquants."
   },
   {
    "id": "n7",
@@ -2317,7 +2354,8 @@
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
     }
-   ]
+   ],
+   "choix": "Candidat : dans la fenêtre, mais les 4 places de .NET étaient prises."
   },
   {
    "id": "t7",
@@ -2351,7 +2389,8 @@
      "note": "trouvé par la relance de 16h44 (brouillon converti)"
     }
    ],
-   "date": "2026-11-23"
+   "date": "2026-11-23",
+   "choix": "Candidat : pépite intéressante, mais les 15 places étaient prises et la catégorie Outils pèse peu dans l'arbitrage."
   },
   {
    "id": "i8",
@@ -2372,7 +2411,8 @@
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
     }
-   ]
+   ],
+   "choix": "Écarté : doublon d'un sujet déjà traité ailleurs."
   }
  ],
  "pied": [

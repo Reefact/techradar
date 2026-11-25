@@ -61,7 +61,8 @@
    "non tenues (rapport reconstitué)": 0
   },
   "hypotheses": [
-   "Rapport reconstitué le 25 novembre 2026 à partir de la veille du 24, qui couvrait une fenêtre de 7 jours : les sujets sont répartis entre le lundi 23 et le mardi 24 selon leur date de survenance, avec les règles de volume (15 sujets au plus hors prioritaires, plafonds par catégorie, fraîcheur)."
+   "Rapport reconstitué le 25 novembre 2026 à partir de la veille du 24, qui couvrait une fenêtre de 7 jours : les sujets sont répartis entre le lundi 23 et le mardi 24 selon leur date de survenance, avec les règles de volume (15 sujets au plus hors prioritaires, plafonds par catégorie, fraîcheur).",
+   "Raisons de choix (« Pourquoi ce choix ») ajoutées a posteriori le 25 novembre, à partir des décisions prises lors de la reconstitution ; aucun avis de l'utilisateur n'existait encore."
   ]
  },
  "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact",
@@ -203,7 +204,8 @@
      "note": "découpage du 24 en deux rapports : candidat → publie"
     }
    ],
-   "date": "2026-11-24"
+   "date": "2026-11-24",
+   "choix": "Publié en priorité : alerte du jour (☄️) qui touche directement .NET Framework."
   },
   {
    "id": "s9",
@@ -260,7 +262,8 @@
      "note": "découpage du 24 en deux rapports : candidat → publie"
     }
    ],
-   "date": "2026-11-24"
+   "date": "2026-11-24",
+   "choix": "Publié en priorité : alerte du jour (☄️) sur Azure API Management, à vérifier chez les clients qui l'utilisent."
   },
   {
    "id": "c3",
@@ -327,7 +330,8 @@
      "note": "tag ddd"
     }
    ],
-   "titre_sommaire": "DDD Europe 2027"
+   "titre_sommaire": "DDD Europe 2027",
+   "choix": "Publié en priorité : rappel du CFP des ateliers de DDD Europe, qui ferme dans six jours (J-6)."
   },
   {
    "id": "c4",
@@ -373,7 +377,8 @@
      "par": "utilisateur",
      "note": "ligne « pourquoi » reformulée (avant : « Date vérifiée sur la page Sessionize. Rappels prévus 14, 7 et 3 jours avant la clôture : le 24 nov. (aujourd'hui), le 1er déc. et le 5 déc. »)"
     }
-   ]
+   ],
+   "choix": "Publié en priorité : rappel du CFP de DevSum, qui ferme dans deux semaines (J-14)."
   },
   {
    "id": "s8",
@@ -426,7 +431,8 @@
      "note": "découpage du 24 en deux rapports : candidat → publie"
     }
    ],
-   "date": "2026-11-24"
+   "date": "2026-11-24",
+   "choix": "Publié : sujet du jour qui touche ta CI (publication de paquets depuis GitHub Actions)."
   },
   {
    "id": "i6",
@@ -470,7 +476,8 @@
      "note": "découpage du 24 en deux rapports : candidat → publie"
     }
    ],
-   "date": "2026-11-24"
+   "date": "2026-11-24",
+   "choix": "Publié : annonce du jour sur des agents appliqués à la sécurité opérationnelle."
   },
   {
    "id": "t1",
@@ -516,7 +523,8 @@
     }
    ],
    "date": "2026-11-24",
-   "categorie_secondaire": "ia"
+   "categorie_secondaire": "ia",
+   "choix": "Publié : outil du jour retenu par toi parmi 7 candidats, pour la place limitée d'Outils (3)."
   },
   {
    "id": "t6",
@@ -569,7 +577,8 @@
    ],
    "categorie_secondaire": "ia",
    "date": "2026-11-24",
-   "note": "date d'observation (pas de date de publication)"
+   "note": "date d'observation (pas de date de publication)",
+   "choix": "Publié : outil du jour retenu par toi, alternative à MCP pour exposer des outils aux agents."
   },
   {
    "id": "t4",
@@ -620,7 +629,8 @@
     }
    ],
    "date": "2026-11-24",
-   "categorie_secondaire": "ia"
+   "categorie_secondaire": "ia",
+   "choix": "Publié : pépite du jour retenue par toi."
   },
   {
    "id": "t2",
@@ -672,7 +682,8 @@
     }
    ],
    "date": "2026-11-24",
-   "categorie_secondaire": "ia"
+   "categorie_secondaire": "ia",
+   "choix": "Candidat : intéressant, mais les 3 places d'Outils étaient prises par les outils que tu as choisis."
   },
   {
    "id": "t9",
@@ -711,7 +722,8 @@
      "note": "tags ajoutés : agents"
     }
    ],
-   "categorie_secondaire": "ia"
+   "categorie_secondaire": "ia",
+   "choix": "Candidat : les 3 places d'Outils étaient prises par les outils que tu as choisis."
   },
   {
    "id": "t10",
@@ -735,7 +747,8 @@
      "par": "utilisateur",
      "note": "ancienne ligne « En bref » convertie en sujet"
     }
-   ]
+   ],
+   "choix": "Candidat : les 3 places d'Outils étaient prises, et le sujet est éloigné de .NET."
   },
   {
    "id": "t5",
@@ -783,7 +796,8 @@
    ],
    "categorie_secondaire": "ia",
    "date": "2026-11-24",
-   "note": "date d'observation (pas de date de publication)"
+   "note": "date d'observation (pas de date de publication)",
+   "choix": "Candidat : les 3 places d'Outils étaient prises par les outils que tu as choisis."
   },
   {
    "id": "t8",
@@ -822,7 +836,8 @@
     }
    ],
    "date": "2026-11-24",
-   "note": "date d'observation (pas de date de publication)"
+   "note": "date d'observation (pas de date de publication)",
+   "choix": "Candidat : les 3 places d'Outils étaient prises, et le sujet est éloigné de ton périmètre."
   },
   {
    "id": "d4",
@@ -856,7 +871,8 @@
    "pourquoi": {
     "type": "compte",
     "texte": "une attaque contre des équipements de magasin a un coût commercial mesurable, au-delà des marchandises perdues."
-   }
+   },
+   "choix": "Publié : effet commercial mesuré de l'attaque des frigos, dans la fenêtre de la distribution ; repris du dossier pour compléter le rapport."
   },
   {
    "id": "s11",
@@ -896,7 +912,8 @@
    "pourquoi": {
     "type": "surveiller",
     "texte": "les outils que tu adoptes pour coder avec des agents (OpenCode, serveurs MCP) servent aussi aux attaquants, et abaissent fortement le coût d'une attaque."
-   }
+   },
+   "choix": "Publié : seconde place de Sécurité, tendance de fond sur des attaques menées par des agents d'IA ; repris du dossier."
   },
   {
    "id": "s10",
@@ -935,7 +952,8 @@
      "note": "hors périmètre : infrastructure, sans lien avec le développement .NET"
     }
    ],
-   "motif": "hors-perimetre"
+   "motif": "hors-perimetre",
+   "choix": "Écarté : faille d'infrastructure (VMware), hors de ton périmètre de développeur .NET."
   },
   {
    "id": "p1",
@@ -970,7 +988,8 @@
      "par": "utilisateur",
      "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
     }
-   ]
+   ],
+   "choix": "Publié : retour d'expérience chiffré et récent sur un monolithe modulaire, ajouté par la recherche complémentaire."
   },
   {
    "id": "cr1",
@@ -998,7 +1017,8 @@
      "par": "utilisateur",
      "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
     }
-   ]
+   ],
+   "choix": "Publié : article de fond de la semaine dernière sur les tests, jamais traité ; ajouté par la recherche complémentaire."
   },
   {
    "id": "cr2",
@@ -1026,7 +1046,8 @@
      "par": "utilisateur",
      "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
     }
-   ]
+   ],
+   "choix": "Publié : article de fond récent sur les tests face aux agents, jamais traité ; ajouté par la recherche complémentaire."
   },
   {
    "id": "p2",
@@ -1056,7 +1077,8 @@
      "par": "utilisateur",
      "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
     }
-   ]
+   ],
+   "choix": "Publié : réflexion de fond sur le langage du domaine (#ddd), jamais traitée ; ajoutée par la recherche complémentaire."
   },
   {
    "id": "cr3",
@@ -1090,7 +1112,8 @@
      "par": "utilisateur",
      "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
     }
-   ]
+   ],
+   "choix": "Publié : étude récente qui chiffre l'intérêt d'un code sain à l'ère des agents ; ajoutée par la recherche complémentaire."
   },
   {
    "id": "p3",
@@ -1124,7 +1147,8 @@
      "par": "utilisateur",
      "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
     }
-   ]
+   ],
+   "choix": "Publié : cas réel de versioning d'API par dates (#api), jamais traité ; ajouté par la recherche complémentaire."
   },
   {
    "id": "n1",
@@ -1164,7 +1188,8 @@
      "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
     }
    ],
-   "categorie_secondaire": "ia"
+   "categorie_secondaire": "ia",
+   "choix": "Publié : série .NET concrète, terminée le jour même, sur le débogage avec un agent ; ajoutée par la recherche complémentaire."
   },
   {
    "id": "i1",
@@ -1198,7 +1223,8 @@
      "par": "utilisateur",
      "note": "ajouté au rapport reconstitué : recherche complémentaire du 25 novembre, relu sur la page d'origine"
     }
-   ]
+   ],
+   "choix": "Publié : actualité IA de moins de 7 jours, jamais traitée, sur la sécurité des agents de code ; ajoutée par la recherche complémentaire."
   }
  ],
  "pied": [
