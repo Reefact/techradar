@@ -140,7 +140,7 @@ def check(path, contre=None, partiel=False):
                 debut = plain(pq["texte"]).lower()
                 for t in types.values():
                     if debut.startswith(t["prefixe"].split("{")[0].strip().lower()): E(f"{where} : le texte du « pourquoi » reprend le préfixe « {t['prefixe']} », que le rendu ajoute déjà")
-        if day.get("date", "") >= (rap_cfg := (per.get("rapport", {}).get("choix") or {})).get("depuis", "9999") and not str(s.get("choix") or "").strip():
+        if day.get("date", "") >= (per.get("rapport", {}).get("choix") or {}).get("depuis", "9999") and not str(s.get("choix") or "").strip():
             E(f"{where} : « choix » manquant (pourquoi ce sujet est {s.get('statut')}, en s'appuyant sur tes préférences quand c'est le cas)")
         sec = s.get("categorie_secondaire")
         if sec is not None:
@@ -188,6 +188,13 @@ def check(path, contre=None, partiel=False):
         hors_prio = sum(1 for s in autres if s["categorie"] == k)
         if c.get("min") and n < c["min"]: E(f"catégorie « {c['label']} » : {n} sujet(s) publié(s), minimum {c['min']}")
         if c.get("max") is not None and not legacy and hors_prio > c["max"]: E(f"catégorie « {c['label']} » : {hors_prio} sujet(s) publié(s) hors prioritaires, plafond {c['max']}")
+    # ----- découverte : nombre de sujets de découverte publiés, consigné dans le journal (à partir de la date des raisons de choix)
+    if not legacy and day.get("date", "") >= (rap.get("choix") or {}).get("depuis", "9999"):
+        n_dec = sum(1 for s in pub if str(s.get("choix") or "").startswith("Découverte"))
+        if not isinstance(day.get("journal", {}).get("decouverte"), int): E("journal : « decouverte » manquant (nombre de sujets de découverte publiés)")
+        elif day["journal"]["decouverte"] != n_dec: E(f"journal : « decouverte » vaut {day['journal']['decouverte']}, mais {n_dec} sujet(s) publié(s) ont un choix « Découverte : … »")
+        places = (rap.get("gouts") or {}).get("decouverte_places")
+        if places and n_dec > places: E(f"{n_dec} sujets de découverte publiés : {places} places au plus")
     # ----- fraîcheur et anti-doublon (config/sujets/perimetre.json → rapport.fraicheur)
     if not legacy:
         fr = rap.get("fraicheur", {})

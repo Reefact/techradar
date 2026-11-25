@@ -73,6 +73,16 @@
     "choix": {
       "depuis": "2026-11-26",
       "description": "Chaque sujet, quel que soit son statut, porte une raison de choix (champ « choix », une ou deux phrases) : pourquoi il est publié, candidat, mis de côté ou écarté. Elle s'appuie sur les préférences de l'utilisateur (data/avis/preferences.md) et ses avis (data/avis/notes.json) quand c'est le cas, sinon sur les règles (fraîcheur, plafonds, prioritaires). Affichée dans le dossier seulement."
+    },
+    "gouts": {
+      "description": "Comment tes avis (data/avis/) pèsent sur le choix des sujets, sans t'enfermer dans tes habitudes.",
+      "decouverte_places": 3,
+      "decouverte": "Chaque jour, 3 des 15 places sont réservées à des sujets que tes avis ne permettent pas encore de juger ou qui sortent de tes thèmes habituels (thème jamais noté, source nouvelle, format différent). Leur « choix » commence par « Découverte : ». Pas de remplissage : sans bon sujet de découverte, la place revient aux autres. Le nombre retenu va dans journal.decouverte.",
+      "avis_concordants_min": 3,
+      "concordance": "Un thème, une source ou un format n'est jugé apprécié ou non qu'à partir de 3 avis concordants ; la question « thème ou ce sujet-là ? » aide à distinguer.",
+      "vieillissement_mois": 3,
+      "vieillissement": "Un avis de plus de 3 mois compte moins qu'un avis récent : tes centres d'intérêt évoluent.",
+      "mauvaise_note": "Une mauvaise note baisse la priorité d'un thème, sans l'exclure : un sujet vraiment marquant de ce thème reste possible. Exclure un thème est une décision explicite de l'utilisateur (« exclure » dans config/)."
     }
   },
   "pourquoi": {

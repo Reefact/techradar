@@ -290,6 +290,20 @@ class Donnees(unittest.TestCase):
         for s in day["sujets"]: s["choix"] = "raison"
         self.assertFalse(any("« choix » manquant" in e for e in self.valider(day)))
 
+    def test_places_de_decouverte(self):
+        day = self.jour_recent()
+        day["date"] = "2026-11-26"
+        pub = [x for x in day["sujets"] if x["statut"] == "publie"]
+        for x in day["sujets"]: x["choix"] = "raison"
+        for x in pub[:3]: x["choix"] = "Découverte : thème jamais noté."
+        day["journal"]["decouverte"] = 3
+        self.assertFalse(any("découverte" in e.lower() for e in self.valider(day)))
+        pub[3]["choix"] = "Découverte : source nouvelle."
+        day["journal"]["decouverte"] = 4
+        self.assertTrue(any("places au plus" in e for e in self.valider(day)))
+        day["journal"]["decouverte"] = 2
+        self.assertTrue(any("« decouverte » vaut 2" in e for e in self.valider(day)))
+
     def test_projet_inconnu_refuse(self):
         day = jour()
         day["sujets"][0]["depot"] = "Reefact/inconnu"

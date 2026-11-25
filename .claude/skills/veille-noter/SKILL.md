@@ -31,7 +31,7 @@ Ajoute à `data/avis/notes.json` (liste JSON, indentation 1, UTF-8) :
 
 ## 4. Mettre à jour la synthèse
 
-Réécris `data/avis/preferences.md` à partir de **tous** les avis de `notes.json` (pas seulement le dernier) : ce qui plaît (thèmes, catégories, tags, types de sujets, projets), ce qui intéresse moins, les sources et auteurs à suivre davantage ou moins, le niveau et le format préférés, le moment. Phrases courtes, concrètes, avec le nombre d'avis qui fondent chaque constat (« 3 avis ») ; ne généralise pas à partir d'un seul avis sans le dire. Garde les corrections que l'utilisateur aurait faites lui-même dans le fichier.
+Réécris `data/avis/preferences.md` à partir de **tous** les avis de `notes.json` (pas seulement le dernier) : ce qui plaît (thèmes, catégories, tags, types de sujets, projets), ce qui intéresse moins, les sources et auteurs à suivre davantage ou moins, le niveau et le format préférés, le moment. Phrases courtes, concrètes, avec le nombre d'avis qui fondent chaque constat (« 3 avis ») et leur ancienneté. Un constat n'est affirmé qu'à partir de **3 avis concordants** ; en dessous, range-le dans une section « À confirmer ». Les avis de plus de 3 mois pèsent moins. Une mauvaise note baisse l'intérêt d'un thème, elle ne l'exclut pas (voir `config/sujets/perimetre.json` → `rapport.gouts`). Garde les corrections que l'utilisateur aurait faites lui-même dans le fichier.
 
 ## 5. Publier
 

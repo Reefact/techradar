@@ -17,3 +17,7 @@ _(pas encore d'avis)_
 ## Niveau, format et moment
 
 _(pas encore d'avis)_
+
+## À confirmer (moins de 3 avis concordants)
+
+_(pas encore d'avis)_

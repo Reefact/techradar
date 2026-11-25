@@ -49,7 +49,11 @@ Règles :
   1. les **sujets frais** (depuis le rapport précédent, ☄️), toujours en premier ;
   2. puis, **en concurrence** pour les places restantes : les **candidats et sujets mis de côté des rapports précédents** (`build_memory.py --reconsiderer`) encore dans leur fenêtre de fraîcheur et jamais publiés, et de **nouveaux sujets de fond moins frais** (jusqu'à 3 mois, jamais l'IA) jamais traités. Les meilleurs l'emportent, d'où qu'ils viennent. Un sujet repris est relu sur sa source et remis à jour (évolution, repères de temps), et son `historique` note « repris du rapport du AAAA-MM-JJ » ;
   à chaque étape, seulement de bons sujets : mieux vaut un rapport plus court qu'un sujet de remplissage.
-- **Tes goûts** : lis `data/avis/preferences.md` (synthèse de tes avis) et les avis récents de `data/avis/notes.json` au démarrage. Ils comptent dans le tri et l'arbitrage : favorise ce que tu as bien noté (thèmes, sources, auteurs, formats, niveau), méfie-toi de ce que tu as mal noté, sans pour autant t'enfermer dans tes habitudes.
+- **Tes goûts** : lis `data/avis/preferences.md` (synthèse de tes avis) et les avis récents de `data/avis/notes.json` au démarrage. Ils comptent dans le tri et l'arbitrage, **sans t'enfermer dans tes habitudes** (`rapport.gouts`) :
+  - **3 places de découverte** sur les 15 : des sujets que tes avis ne permettent pas encore de juger ou qui sortent de tes thèmes habituels (thème jamais noté, source nouvelle, format différent) ; leur `choix` commence par « Découverte : » ; sans bon sujet de découverte, la place revient aux autres ; le nombre retenu va dans `journal.decouverte` ;
+  - **pas de conclusion sur un seul avis** : un thème, une source ou un format n'est jugé apprécié ou non qu'à partir de **3 avis concordants** ;
+  - **les avis vieillissent** : un avis de plus de 3 mois compte moins qu'un avis récent ;
+  - **une mauvaise note baisse la priorité sans exclure** : un sujet vraiment marquant d'un thème mal noté reste possible ; exclure un thème est ta décision explicite (`exclure` dans `config/`).
 - **Pourquoi ce choix** (`rapport.choix`) : chaque sujet, quel que soit son statut, porte un champ `choix` (une ou deux phrases, Markdown) qui dit pourquoi il est publié, candidat, mis de côté ou écarté ; appuie-toi sur tes préférences et tes avis quand c'est le cas (« tu as noté 5/5 les articles de fond sur les tests »), sinon sur les règles (fraîcheur, plafond atteint, prioritaire). Affiché dans le dossier seulement.
 - **Puis l'arbitrage** : les 15 places vont aux meilleurs sujets non prioritaires, dans la limite des **plafonds** de `config/categories.json` (`max`) ; à intérêt égal, le **poids** de la catégorie (`poids`, 3 = le plus important) départage. Les minimums sont à 0 : une catégorie sans rien d'intéressant reste vide.
 - **Fraîcheur** (`config/sujets/perimetre.json` → `rapport.fraicheur`, vérifiée par `check_day.py`) :
@@ -75,7 +79,7 @@ Chemin : `data/days/AAAA/AAAAMMJJ.json`. Exemple et référence : les fichiers e
 
 - `date` (AAAA-MM-JJ) ; `config` : `{"commit": "<git rev-parse --short HEAD au démarrage>"}`.
 - `executions` : liste ; ajoute `{"type": "planifiee"|"manuelle", "debut": "<ISO avec fuseau>", "note": "…"}` à chaque exécution.
-- `journal` : `{"recherches": {"<clé de catégorie>": <nombre de requêtes>, …}, "pages_ouvertes": <n>, "sources_illisibles": [...], "verifications": [...], "verifications_sources": {"lancees": n, "vrai": n, "faux": n, "indetermine": n}, "hypotheses": [...]}`. Lors d'une relance, additionne aux valeurs existantes.
+- `journal` : `{"recherches": {"<clé de catégorie>": <nombre de requêtes>, …}, "pages_ouvertes": <n>, "sources_illisibles": [...], "verifications": [...], "verifications_sources": {"lancees": n, "vrai": n, "faux": n, "indetermine": n}, "decouverte": <n sujets de découverte publiés>, "hypotheses": [...]}`. Lors d'une relance, additionne aux valeurs existantes.
 - `sous_titre` : « Ta veille technologique, dans le cadre de tes missions Reefact » (+ éventuelle hypothèse de couverture).
 - `a_retenir` : le texte « À retenir aujourd'hui ».
   - **Rôle** : un résumé rédigé de **tout** le rapport, comme l'introduction qu'un journaliste écrit pour préparer la lecture. Ce n'est pas une sélection de points forts.
