@@ -44,6 +44,9 @@ def check():
             if d.get("categorie") not in cats: add(f"{f['chemin']} : catégorie inconnue « {d.get('categorie')} »")
             for champ in ("consigne", "sources", "toujours_suivre", "exclure"):
                 if champ not in d: add(f"{f['chemin']} : champ « {champ} » manquant")
+        for champ in ("toujours_suivre", "exclure"):
+            for x in d.get(champ, []) if isinstance(d, dict) else []:
+                if not isinstance(x, dict) or not x.get("nom"): add(f"{f['chemin']} : « {champ} » : chaque élément est un objet avec « nom » (reçu : {x!r})")
     for p in (CONFIG / "sujets").rglob("*.json"):
         if p.resolve() not in listed: add(f"{p.relative_to(CONFIG)} : présent mais absent de l'index sujets.json")
     per = CONFIG / "sujets" / "perimetre.json"

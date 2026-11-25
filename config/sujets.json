@@ -47,6 +47,11 @@
       "actif": true
     },
     {
+      "chemin": "sujets/recherche/observabilite.json",
+      "role": "Recherche : observabilité",
+      "actif": true
+    },
+    {
       "chemin": "sujets/recherche/distribution.json",
       "role": "Recherche : distribution",
       "actif": true

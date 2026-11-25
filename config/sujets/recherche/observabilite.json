@@ -1,0 +1,19 @@
+{
+  "categorie": "observabilite",
+  "consigne": "Observabilité vue par un développeur (métier et goût personnel, pas un projet) : instrumenter, diagnostiquer, comprendre une application en production. OpenTelemetry (SDK .NET, conventions sémantiques, collecteur), logs structurés, traces distribuées, métriques, outils de diagnostic .NET (dotnet-trace, dotnet-counters, dotnet-dump, dotnet-monitor), tableau de bord d'Aspire, Grafana, Seq, Jaeger, Prometheus ; SLO et alerting côté développeur ; observabilité des applications à base de LLM et d'agents (traces des prompts et des appels d'outils). Privilégier l'instrumentation, le diagnostic et les retours d'expérience plutôt que l'exploitation. Hors périmètre : l'exploitation d'infrastructure pure (supervision de clusters, réseau) et les annonces commerciales d'éditeurs (Datadog, Dynatrace, New Relic…) sans contenu technique. Le plafond (max) est un maximum, pas un objectif : la plupart des jours, rien ou un seul sujet.",
+  "chevauchements": [
+    "Aspire : un sujet sur Aspire reste en .NET, sauf si son angle principal est l'observabilité (tableau de bord, télémétrie) ; Observabilité peut alors être sa catégorie principale, avec .NET en secondaire, ou l'inverse selon l'angle dominant.",
+    "Outils : un outil d'observabilité va en Observabilité, pas en Outils.",
+    "IA : l'observabilité des agents et des LLM va en Observabilité, avec IA en catégorie secondaire (le sujet prend alors le profil de fraîcheur IA)."
+  ],
+  "sources": [
+    "OpenTelemetry (blog et notes de version)",
+    "blog .NET Microsoft (diagnostics, Aspire)",
+    "InfoQ",
+    "blogs de praticiens (Meziantou, Andrew Lock…)",
+    "Grafana Labs (blog technique)",
+    "Honeycomb (blog technique)"
+  ],
+  "toujours_suivre": [],
+  "exclure": []
+}
