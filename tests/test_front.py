@@ -317,7 +317,7 @@ class Donnees(unittest.TestCase):
         day["date"] = "2026-11-26"
         day["journal"]["verifications"] = []
         self.assertTrue(any("JetBrains Security" in e and "n'a pas été lu" in e for e in self.valider(day)))
-        day["journal"]["verifications"] = [{"nom": f, "resultat": "rien de neuf"} for f in ("JetBrains Security", "JetBrains .NET Tools")]
+        day["journal"]["verifications"] = [{"nom": f, "resultat": "rien de neuf"} for f in (x["nom"] for x in json.loads((ROOT / "config" / "sujets" / "flux.json").read_text(encoding="utf-8"))["flux"])]
         self.assertFalse(any("n'a pas été lu" in e for e in self.valider(day)))
 
     def test_ia_jusqua_14_jours_et_categories_vides(self):
