@@ -13,7 +13,7 @@ Le rapport publié d'un jour = les sujets `publie` de `data/days/AAAA/AAAAMMJJ.j
 ```bash
 python3 tools/statut.py list AAAA-MM-JJ
 ```
-(par défaut le jour le plus récent de `data/days/`). Présenter à l'utilisateur, en clair, les candidats et mis de côté (titre, catégorie), et ce qu'il a demandé. La page https://techradar.reefact.net/dossier/ montre la même chose avec les résumés ; ses boutons « Demander la publication » produisent une phrase du type « Publie le sujet n4 (« … ») du 2026-11-24 dans le rapport ».
+(par défaut le jour le plus récent de `data/days/`). Présenter à l'utilisateur, en clair, les candidats et mis de côté (titre, catégorie), et ce qu'il a demandé. La page https://techradar.reefact.net/dossier/ montre la même chose avec les résumés ; ses boutons « Demander la publication » et « Demander le retrait » ouvrent une session avec une demande du type « Publie dans le rapport le sujet n4 du 2026-11-24 (« … ») avec le skill veille-publier, puis fais-moi noter ce sujet avec le skill veille-noter ».
 
 ## 2. Vérifier les affirmations avant de publier
 
@@ -34,6 +34,10 @@ python3 tools/statut.py set AAAA-MM-JJ a8 ecarte --motif doublon
 Le script refuse un changement qui rendrait le jour invalide (plafond ou minimum d'une catégorie, sujet sans résumé, dépôt inconnu…) : rapporter le refus tel quel et proposer une solution (retirer un autre sujet de la catégorie, par exemple), sans contourner.
 
 **Retirer un sujet publié** change le rapport en ligne : demander une confirmation explicite.
+
+## 3 bis. Faire noter le sujet
+
+Après une publication ou un retrait, enchaîne avec le skill `veille-noter` sur ce sujet (le bouton du dossier le demande déjà) : c'est le meilleur moment pour savoir ce qui a motivé la décision. Pour un retrait, la question ouverte demande en priorité pourquoi le sujet n'avait pas sa place. Si l'utilisateur ne veut pas noter, n'insiste pas.
 
 ## 4. « À retenir »
 

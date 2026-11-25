@@ -12,6 +12,7 @@ Produit dans le dossier de sortie :
 import html
 import json
 import re
+from urllib.parse import quote
 import sys
 from datetime import date as Date, datetime, timedelta, timezone
 from pathlib import Path
@@ -241,9 +242,14 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
         + [f'<a href="{E(x["url"])}" target="_blank" rel="noopener">{inline(x["texte"])}</a>' for x in sources]
     links = " · ".join(liens)
     ask = ""
-    if dossier and st != "publie":
-        ask = (f'<button type="button" class="ask" data-ask="Publie le sujet {E(s["id"])} (« {E(plain(s["titre"]))} ») du {date_jour} dans le rapport.">'
-               "Demander la publication</button>")
+    if dossier:   # ouvre une session Claude Code sur le dépôt de la veille : (dé)publication par veille-publier, puis notation par veille-noter
+        quoi = "Retire du rapport" if st == "publie" else "Publie dans le rapport"
+        demande = (f"{quoi} le sujet {s['id']} du {date_jour} (« {plain(s['titre'])} ») avec le skill veille-publier, "
+                   f"puis fais-moi noter ce sujet avec le skill veille-noter.")
+        url = "https://claude.ai/code?repositories=" + quote("Reefact/techradar", safe="") + "&prompt=" + quote(demande, safe="")
+        libelle = "Demander le retrait" if st == "publie" else "Demander la publication"
+        aide = "Ouvre une session Claude Code qui " + ("retire ce sujet du rapport" if st == "publie" else "publie ce sujet") + ", puis te le fait noter"
+        ask = f'<a class="ask{" retrait" if st == "publie" else ""}" href="{E(url)}" target="_blank" rel="noopener" title="{E(aide)}">{libelle}</a>'
     if links:
         out.append(f'  <p class="src">{links}</p>')
     if dossier and (s.get("choix") or avis_de(date_jour, s["id"]) or st == "ecarte"):

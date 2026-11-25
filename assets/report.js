@@ -96,9 +96,4 @@
     top.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); });
   }
 
-  // ---------- Dossier : « Demander la publication » prépare la demande à coller dans Claude ----------
-  document.querySelectorAll('button.ask').forEach(b => b.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(b.dataset.ask); b.textContent = 'Demande copiée : colle-la dans Claude'; }
-    catch (e) { prompt('Copie cette demande et colle-la dans Claude :', b.dataset.ask); }
-  }));
 })();

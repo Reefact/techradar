@@ -48,7 +48,7 @@ flowchart TD
 
 | Besoin | Moyen |
 |---|---|
-| Publier un candidat, retirer un sujet, écarter | skill `veille-publier` (ou bouton « Demander la publication » du dossier, puis coller la demande dans Claude) |
+| Publier un candidat, retirer un sujet, écarter | skill `veille-publier` (ou boutons « Demander la publication » / « Demander le retrait » du dossier, qui ouvrent une session Claude Code, puis la notation du sujet) |
 | Relancer la veille d'un jour, avec consignes | skill `veille-regenerer` (écrit `data/demande.json`, puis « Run now ») |
 | Corriger le français | skill `veille-relecture` |
 | Changer ce qu'on cherche | skill `veille-sujets` |

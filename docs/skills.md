@@ -24,7 +24,7 @@ Tous commitent directement sur `main` (pas de branche ni de PR) après ton accor
 
 **Déroulé** : liste les sujets par statut (`tools/statut.py list`) ; applique ta demande (`set … publie|candidat|mis-de-cote|ecarte`) ; refuse un changement qui casserait une règle (plafond ou minimum d'une catégorie, dépôt inconnu, sujet sans résumé) ; propose d'ajuster « À retenir » ; valide, commite, vérifie en ligne.
 
-**Raccourci** : sur https://techradar.reefact.net/dossier/, le bouton « Demander la publication » d'un candidat copie la demande ; colle-la dans Claude.
+**Raccourci** : sur https://techradar.reefact.net/dossier/, le bouton « Demander la publication » d'un sujet non publié, ou « Demander le retrait » d'un sujet publié, ouvre une session Claude Code avec la demande pré-remplie ; la session enchaîne avec la notation du sujet (`veille-noter`).
 
 **Exemples** : « publie n4 et i6 du 24 novembre », « retire t3 du rapport », « écarte a8, c'est un doublon ».
 
