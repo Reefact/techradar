@@ -186,6 +186,8 @@ def projet_badge(s, cfg):
     return f'<span class="ico projet" title="{E(aide)}" aria-label="{E(aide)}">📦</span>'   # icône seule, comme ☄️
 
 
+CHOIX_TITRE = {"publie": "Pourquoi ce sujet a été retenu", "candidat": "Pourquoi ce sujet n'a pas été retenu",
+               "mis-de-cote": "Pourquoi ce sujet est mis de côté", "ecarte": "Pourquoi ce sujet a été écarté"}
 _AVIS = None
 
 
@@ -243,13 +245,14 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     if dossier and st != "publie":
         ask = (f'<button type="button" class="ask" data-ask="Publie le sujet {E(s["id"])} (« {E(plain(s["titre"]))} ») du {date_jour} dans le rapport.">'
                "Demander la publication</button>")
+    if links:
+        out.append(f'  <p class="src">{links}</p>')
     if dossier and (s.get("choix") or avis_de(date_jour, s["id"])):
         a = avis_de(date_jour, s["id"])
         note = f' <span class="ch-note" title="Ta note pour ce sujet">⭐ ta note : {a["reponses"]["note"]}/5</span>' if a and a.get("reponses", {}).get("note") else ""
-        out.append(f'  <p class="choix"><span class="ch-h">⚖️ Pourquoi ce choix</span>{note}'
-                   + (f'<br>{inline(s["choix"])}' if s.get("choix") else "") + "</p>")
-    if links:
-        out.append(f'  <p class="src">{links}</p>')
+        texte = re.sub(r"^(Publié(?: en priorité)?|Candidat|Mis de côté|Écarté)\s*:\s*", "", s.get("choix") or "")
+        out.append(f'  <div class="choix"><p class="ch-h">⚖️ {CHOIX_TITRE.get(st, "Pourquoi ce statut")}{note}</p>'
+                   + (f'<p>{inline(majuscule(texte))}</p>' if texte else "") + "</div>")
     out.append(f'  <div class="foot">{ask}<span class="actions"></span>'
                f'<a class="fold" href="#{E(s["id"])}" title="Replier ce sujet" aria-label="Replier ce sujet">⌃</a></div>')
     out += ["  </div>", "</details>"]

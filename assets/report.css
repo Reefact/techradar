@@ -43,7 +43,9 @@ td{font-variant-numeric:tabular-nums}
 .sum{display:flex;flex-direction:column;gap:14px}
 .sum p{margin:8px 0}
 .why{color:var(--accent);font-size:.9rem}.why-e{margin-right:2px}.why-p{font-weight:600}
-.choix{font-size:.88rem;color:var(--mute);border-left:2px solid var(--line);padding-left:10px}.ch-h{font-weight:600;color:var(--fg)}.ch-note{margin-left:10px;color:var(--api)}
+/* Décision (dossier) : zone de pré-footer, séparée du contenu par un trait d'un bord à l'autre du bloc */
+.choix{margin:14px -18px 0;padding:12px 18px 2px;border-top:1px solid var(--line);font-size:.88rem;color:var(--mute)}
+.choix p{margin:0 0 6px}.ch-h{font-weight:600;color:var(--fg)}.ch-note{margin-left:10px;font-weight:400;color:var(--api)}
 .kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:.88rem;margin:8px 0}
 .kv dt{color:var(--mute)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
 footer{margin-top:48px;color:var(--mute);font-size:.82rem}
