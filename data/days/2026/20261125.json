@@ -13,17 +13,22 @@
    "type": "manuelle",
    "debut": "2026-11-25T15:30+01:00",
    "note": "ajout de l'alerte JetBrains sur Java4Shell (s8), manquée par la tâche du matin ; flux JetBrains ajoutés à config/sujets/flux.json pour les prochaines exécutions"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-25T17:30+01:00",
+   "note": "complément selon les nouvelles règles de remplissage (catégories vides d'abord, IA jusqu'à 14 jours, sujets de fond) : 8 sujets ajoutés, 6 candidats ; sujets déjà publiés inchangés"
   }
  ],
  "journal": {
   "recherches": {
-   "securite": 4,
-   "dotnet": 3,
+   "securite": 8,
+   "dotnet": 6,
    "ia": 9,
-   "architecture": 4,
-   "craftsmanship": 4,
-   "distribution": 1,
-   "outils": 4,
+   "architecture": 10,
+   "craftsmanship": 9,
+   "distribution": 11,
+   "outils": 9,
    "conferences": 4,
    "projets": 2
   },
@@ -32,7 +37,10 @@
    "thenewstack.io (403)",
    "nuget.org Stryker.NET (404)",
    "devoxxfr2027.cfp.dev (chargement en erreur)",
-   "LSA, LeMagIT (non ouverts)"
+   "LSA, LeMagIT (non ouverts)",
+   "lsa-conso.fr (blocage JavaScript, même avec curl)",
+   "lesechos.fr (403)",
+   "socket.dev (403 avec curl ; rapport des paquets NuGet piégés)"
   ],
   "verifications": [
    {
@@ -45,17 +53,18 @@
    }
   ],
   "verifications_sources": {
-   "lancees": 0,
+   "lancees": 1,
    "vrai": 0,
    "faux": 0,
-   "indetermine": 0
+   "indetermine": 1
   },
   "decouverte": 3,
   "hypotheses": [
    "Recherche plus courte que la cible (moins de 3 à 5 requêtes pour certaines catégories) : le moteur renvoie peu de résultats récents, j'ai donc privilégié la lecture directe des sources (blogs, InfoQ, Hacker News, GitHub).",
    "Résumés plus détaillés que le prompt (demande notée dans data/notes.md, à confirmer).",
    "Aucun sujet de sécurité publié : les alertes du jour sont soit déjà publiées, soit hors périmètre.",
-   "Pas de pépite du jour : aucun candidat vérifiable."
+   "Pas de pépite du jour : aucun candidat vérifiable.",
+   "Complément de l'après-midi (nouvelles règles de remplissage) : 10 recherches dédiées à la distribution, sans sujet technique ou cyber sur une enseigne alimentaire entre le 18 et le 25 novembre (la fuite Auchan « du 19 novembre » date de 2024) ; la catégorie reste vide. Candidats des rapports précédents relus (LangSmith, Replit Missions, IA et MAUI, Zero C#, outils du 24) : aucun ne l'emporte sur les nouveaux sujets."
   ]
  },
  "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact",
@@ -74,10 +83,13 @@
   {
    "section": "dotnet",
    "paragraphes": [
-    "Hier, Microsoft a lancé en préversion [DocumentExtractionClient](#n1), une API unique pour extraire le contenu structuré de PDF, de scans et de fichiers Office."
+    "Microsoft lance en préversion [DocumentExtractionClient](#n1), une API unique pour extraire le contenu structuré de PDF, de scans et de fichiers Office. [Aspire 17](#n9) change la structure de l'AppHost : lis les changements cassants avant de migrer. [Visual Studio 18.12](#n10) passe Copilot Chat sur un nouveau moteur, et [Andrew Lock](#n11) règle l'interpolation en culture invariante."
    ],
    "sujets": [
-    "n1"
+    "n1",
+    "n9",
+    "n10",
+    "n11"
    ]
   },
   {
@@ -93,29 +105,33 @@
   {
    "section": "craftsmanship",
    "paragraphes": [
-    "Emily Bache décrit [EXACT](#cr1), une méthode de TDD (développement piloté par les tests) avec agents : exemples, liste de tests, puis boucle rouge-vert-refactoring."
+    "Emily Bache décrit [EXACT](#cr1), une méthode de TDD avec agents. Thoughtworks fait passer les [tests de mutation](#cr3) en « Adopt », et [Mark Seemann](#cr4) cherche de vraies propriétés à tester."
    ],
    "sujets": [
-    "cr1"
+    "cr1",
+    "cr3",
+    "cr4"
    ]
   },
   {
    "section": "architecture",
    "paragraphes": [
-    "Deux lectures de fond chez Fowler : les [contrats de données](#p1), pensés comme des API, et les [agents de longue durée](#p2), où l'exécution durable ne garantit pas l'exactitude."
+    "Chez Fowler, les [contrats de données](#p1), pensés comme des API, et les [agents de longue durée](#p2). Derek Comartin montre que les [données périmées](#p3) relèvent de la conception, pas du cache."
    ],
    "sujets": [
     "p1",
-    "p2"
+    "p2",
+    "p3"
    ]
   },
   {
    "section": "outils",
    "paragraphes": [
-    "AWS publie un [émulateur local](#t1) de plus de 200 services, écrit par des agents : pratique pour des tests d'intégration, sans valeur pour tester la sécurité."
+    "AWS publie un [émulateur local](#t1) de plus de 200 services, écrit par des agents, et Microsoft [dotnetup](#t5), un gestionnaire de SDK .NET sans droits administrateur."
    ],
    "sujets": [
-    "t1"
+    "t1",
+    "t5"
    ]
   }
  ],
@@ -415,6 +431,220 @@
    "categorie_secondaire": "ia"
   },
   {
+   "id": "n9",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Aspire 17 : modèle de projet .NET, Kubernetes stable, AppHost en Go",
+   "date": "2026-11-18",
+   "resume": "Grosse version d'Aspire, présentée comme « prête pour la production ». Le nouveau `AddDotnetProject` ajoute un service **par son chemin**, sans ProjectReference depuis l'AppHost : les services peuvent vivre dans d'autres solutions et se recompilent sans redémarrer l'AppHost. `AddProject` et `Aspire.AppHost.Sdk` deviennent obsolètes, et les AppHost .NET exigent désormais **.NET 10**.\n\n`Aspire.Hosting.Kubernetes` et `Aspire.Hosting.Azure.Kubernetes` passent en version stable (génération de charts Helm, déploiement sur un cluster existant ou AKS). Autres ajouts : secrets par environnement, tableau de bord refondu avec tags et vue graphe, `aspire describe --format mermaid`, modèles d'équipe partagés via Git et un AppHost en Go (préversion).\n\nAttention aux changements cassants : le niveau AKS par défaut passe de Free à Standard (payant), et le stockage des secrets est déplacé.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "la mise à jour touche la structure même de l'AppHost et le déploiement : lis le guide de migration avant de monter de version."
+   },
+   "sources": [
+    {
+     "texte": "Source : Blog Aspire (Microsoft), 18 nov. 2026",
+     "url": "https://devblogs.microsoft.com/aspire/whats-new-aspire-17/"
+    }
+   ],
+   "meta": "Blog Aspire · 18 nov. 2026 · te concerne : oui",
+   "choix": "Publié : version majeure officielle de la semaine, avec des changements cassants à connaître avant de monter de version.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté à la demande de l'utilisateur : complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "n10",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Visual Studio 18.12 : Copilot Chat change de moteur, revue de grosses PR",
+   "date": "2026-11-24",
+   "resume": "Avec Visual Studio 2026 18.12, Copilot Chat passe sur le **Copilot SDK de GitHub** (le moteur de Copilot CLI et de VS Code), activé par défaut. On peut glisser des fichiers dans le prompt, corriger l'agent en cours de tâche et voir le résultat de chaque étape. Le mode (Interactive ou Autopilot) et les permissions d'outils sont mémorisés pour chaque session.\n\nPour la revue, **Change Groups** découpe une grosse pull request en lots cohérents, chacun avec un résumé et des points d'attention. Côté performances, l'ouverture et la fermeture des grosses solutions sont allégées ; en Open Folder, on peut lancer la restauration MSBuild sans ouvrir de solution. L'éditeur CSS affiche enfin des pastilles de couleur.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "c'est l'IDE du quotidien : le nouveau moteur de Copilot et Change Groups changent la façon de coder et de relire."
+   },
+   "sources": [
+    {
+     "texte": "Source : Blog Visual Studio (Microsoft), 24 nov. 2026",
+     "url": "https://devblogs.microsoft.com/visualstudio/visual-studio-november-update-faster-workflows-better-reviews/"
+    }
+   ],
+   "meta": "Blog Visual Studio · 24 nov. 2026 · te concerne : oui",
+   "choix": "Publié : mise à jour officielle d'hier (☄️) de ton IDE, avec une aide concrète à la revue de grosses PR.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté à la demande de l'utilisateur : complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "n11",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Andrew Lock : interpolation en culture invariante sans allocations",
+   "date": "2026-11-24",
+   "resume": "Une interpolation `$\"...\"` utilise toujours la **culture courante** : `-1.23` s'écrit `-1,23` en fr-FR. Andrew Lock passe en revue les solutions. Le mode Globalization Invariant agit sur toute l'application et ne convient donc pas à une bibliothèque. `string.Create(CultureInfo.InvariantCulture, $\"...\")` fonctionne en .NET moderne. `FormattableString.Invariant` reste disponible pour netstandard2.0 et .NET Framework, mais alloue un tableau d'objets et boxe les types valeur.\n\nIl montre ensuite comment écrire son propre `[InterpolatedStringHandler]` pour garder une seule API, sans allocations superflues, quel que soit le framework ciblé.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "un bug classique de formatage des décimaux sur un poste français, avec une solution propre pour les bibliothèques multi-cibles."
+   },
+   "sources": [
+    {
+     "texte": "Source : Andrew Lock (.NET Escapades), 24 nov. 2026",
+     "url": "https://andrewlock.net/invariant-culture-string-interpolation-with-interpolatedstringhandler/"
+    }
+   ],
+   "meta": "andrewlock.net · 24 nov. 2026 · te concerne : peut-être",
+   "choix": "Publié : article .NET d'hier (☄️), pratique et directement utile pour tes bibliothèques NuGet multi-cibles.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté à la demande de l'utilisateur : complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "cr3",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "tags": [],
+   "depot": "Reefact/kill-mutants",
+   "titre": "Radar Thoughtworks : les tests de mutation passent en « Adopt »",
+   "date": "2026-11-04",
+   "resume": "Dans le volume 35 de son **Technology Radar**, Thoughtworks place les tests de mutation en *Adopt* : ils étaient en *Trial* en avril. Le principe : injecter de petits bugs dans le code et vérifier qu'au moins un test échoue. Une mutation qui survit révèle un trou dans les tests ou une assertion trop faible.\n\nL'argument : avec du code et des tests générés en masse, le **taux de couverture** devient facile à gonfler avec des tests creux, et la mutation sert de garde-fou. Comme ces campagnes sont lentes, le radar conseille de cibler certains paquets ou seulement le code récemment modifié. Outils cités : Stryker, Pitest et cargo-mutants.",
+   "pourquoi": {
+    "type": "projet",
+    "texte": "le thème même de kill-mutants passe en « Adopt » chez Thoughtworks, avec l'argument du code généré : un appui pour présenter ton projet, et l'exécution incrémentale comme attente forte."
+   },
+   "sources": [
+    {
+     "texte": "Source : Thoughtworks Technology Radar, vol. 35, 4 nov. 2026",
+     "url": "https://www.thoughtworks.com/radar/techniques/mutation-testing"
+    }
+   ],
+   "meta": "Thoughtworks Technology Radar · 4 nov. 2026 · te concerne : oui",
+   "choix": "Publié : sujet de fond (moins de 3 mois) qui recoupe directement kill-mutants, jamais traité.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté à la demande de l'utilisateur : complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "cr4",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "tags": [],
+   "titre": "TDD par propriétés : Mark Seemann cherche de vrais invariants",
+   "date": "2026-10-19",
+   "resume": "Mark Seemann consacre une série d'articles au **kata budget** de Hillel Wayne, conçu pour comparer les tests par propriétés aux tests par exemples. Il s'impose un TDD guidé par de *vraies* propriétés (monotonie, distributivité, limites…) et refuse les « exemples sous stéroïdes » qu'on obtient en généralisant mécaniquement un test.\n\nIl lui a fallu trois tentatives, toutes visibles sur GitHub, et il publie une propriété par semaine avec QuickCheck (Haskell). Sa conclusion est honnête : sur ce problème, le TDD par exemples semblait plus simple, mais l'exercice apprend à repérer des invariants métier.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "une démarche concrète pour trouver des propriétés sur des règles métier, transposable avec FsCheck ou CsCheck en C#."
+   },
+   "sources": [
+    {
+     "texte": "Source : blog ploeh (Mark Seemann), 19 oct. 2026",
+     "url": "https://blog.ploeh.dk/2026/10/19/properties-for-a-budgeting-exercise/"
+    },
+    {
+     "texte": "blog ploeh, dernier épisode, 23 nov. 2026",
+     "url": "https://blog.ploeh.dk/2026/11/23/quickcheck-property-monotonicity-in-items/"
+    }
+   ],
+   "meta": "blog ploeh · 19 oct. 2026, série en cours · te concerne : oui",
+   "choix": "Publié : série de fond encore en cours (dernier épisode avant-hier) sur les tests, un thème central de tes projets.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté à la demande de l'utilisateur : complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "p3",
+   "categorie": "architecture",
+   "statut": "publie",
+   "tags": [
+    "ddd"
+   ],
+   "titre": "Données périmées : un problème de conception, pas de cache",
+   "date": "2026-11-11",
+   "resume": "Derek Comartin rappelle qu'une donnée est potentiellement périmée **dès qu'on la lit**, même depuis la base principale. Son exemple : deux répartiteurs voient le même créneau libre chez un transporteur. Relire juste avant la commande réduit la fenêtre sans l'éliminer, car lecture et écriture ne forment pas une décision atomique.\n\nLa solution est de modéliser la vraie opération métier : *réserver* de la capacité, et non « affecter un transporteur ». La règle s'applique alors dans la seule frontière qui en est responsable. Avec un traitement asynchrone, on passe par le **reservation pattern** : réservation, acquittement, expiration. Il distingue aussi validation et règles métier, en s'appuyant sur le *Clarified CQRS* d'Udi Dahan.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "un raisonnement directement applicable pour placer les invariants dans le bon agrégat ou service."
+   },
+   "sources": [
+    {
+     "texte": "Source : CodeOpinion (Derek Comartin), 11 nov. 2026",
+     "url": "https://codeopinion.com/stale-data-consistency-boundaries/"
+    }
+   ],
+   "meta": "CodeOpinion · 11 nov. 2026 · te concerne : oui",
+   "choix": "Publié : sujet de fond DDD récent, très concret, sur les frontières de cohérence ; jamais traité.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté à la demande de l'utilisateur : complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "t5",
+   "categorie": "outils",
+   "statut": "publie",
+   "tags": [],
+   "titre": "dotnetup : un gestionnaire de SDK .NET à la rustup",
+   "date": "2026-10-15",
+   "resume": "Microsoft publie en préversion **dotnetup**, un gestionnaire de chaîne d'outils .NET inspiré de rustup et nvm. Il installe SDK et runtimes dans le dossier de l'utilisateur, **sans droits administrateur**, et fait cohabiter versions de maintenance, préversions et builds quotidiens.\n\n`dotnetup init` configure le shell et récupère le dernier SDK stable ; `dotnetup update` réinstalle la dernière version des canaux suivis. L'outil respecte le `global.json` du projet. Il cible d'abord macOS et Linux, avec un script d'amorçage PowerShell.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "remplace avantageusement dotnet-install.sh et les paquets système sur les postes Linux ou macOS et en CI."
+   },
+   "details": {
+    "Pourquoi il monte": "annoncé sur le blog .NET, puis repris par InfoQ et Visual Studio Magazine : l'outil officiel qui manquait face à rustup et nvm.",
+    "Maturité": "préversion publique ; builds quotidiens non signés, aspérités à prévoir."
+   },
+   "sources": [
+    {
+     "texte": "Source : Blog .NET (Chet Husk), 15 oct. 2026",
+     "url": "https://devblogs.microsoft.com/dotnet/introducing-dotnetup/"
+    }
+   ],
+   "meta": "Blog .NET · 15 oct. 2026 · te concerne : oui",
+   "choix": "Publié : outil officiel qui monte, moins de 3 mois, jamais traité ; plus utile au quotidien que les autres outils du jour.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté à la demande de l'utilisateur : complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
    "id": "t2",
    "categorie": "outils",
    "statut": "candidat",
@@ -530,7 +760,7 @@
      "par": "tache"
     }
    ],
-   "choix": "Candidat : hors de la fenêtre de 7 jours des actualités IA."
+   "choix": "Candidat : sujet IA de 10 jours, désormais dans la fenêtre de 14 jours (🧊), mais les places restantes sont allées à des sujets plus solides et plus proches de tes projets."
   },
   {
    "id": "i4",
@@ -589,6 +819,269 @@
     }
    ],
    "choix": "Candidat : trois semaines, simple résumé lu, intérêt limité pour tes projets."
+  },
+  {
+   "id": "cr5",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Stacked PRs : Thoughtworks met en garde contre le découpage après coup",
+   "date": "2026-11-04",
+   "resume": "Le volume 35 du Technology Radar range les **stacked pull requests** en *Caution* : une chaîne de petites PR dépendantes compense souvent un **mauvais découpage en amont**. Le radar recommande de spécifier et de livrer de petites unités indépendantes.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "un point d'appui pour discuter en équipe de la taille des PR."
+   },
+   "sources": [
+    {
+     "texte": "Source : Thoughtworks Technology Radar, vol. 35, 4 nov. 2026",
+     "url": "https://www.thoughtworks.com/radar/techniques"
+    }
+   ],
+   "meta": "Thoughtworks Technology Radar · 4 nov. 2026 · te concerne : peut-être",
+   "choix": "Candidat : avis intéressant mais court ; le radar a déjà une place avec les tests de mutation.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "trouvé lors du complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "cr6",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Refonte sans peur : le Strangler Fig appliqué au code",
+   "date": "2026-10-02",
+   "resume": "Mark Seemann applique le **Strangler Fig** au niveau du code : écrire la nouvelle conception à côté de l'ancienne, l'intégrer tôt (que des nouveaux fichiers, donc pas de conflit), puis migrer les appelants un par un.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "une tactique simple pour refactorer en profondeur une base partagée sans bloquer l'équipe."
+   },
+   "sources": [
+    {
+     "texte": "Source : blog ploeh (Mark Seemann), 2 oct. 2026",
+     "url": "https://blog.ploeh.dk/2026/10/02/redesign-without-fear/"
+    }
+   ],
+   "meta": "blog ploeh · 2 oct. 2026 · te concerne : oui",
+   "choix": "Candidat : bon article, mais plus ancien et un seul sujet de Mark Seemann par jour suffit.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "trouvé lors du complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "p4",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "tags": [
+    "ddd"
+   ],
+   "titre": "Dynamic Consistency Boundary : l'avis critique d'Oskar Dudycz",
+   "date": "2026-10-19",
+   "resume": "La **Dynamic Consistency Boundary** (DCB) remplace les flux de l'event sourcing par des événements tagués, chaque commande définissant sa frontière de cohérence par une requête. Oskar Dudycz en reconnaît les atouts, mais y voit des flux qui ne disent pas leur nom : un motif intéressant, pas un choix par défaut.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un éclairage sur les frontières de cohérence en event sourcing, au moment où DCB fait parler."
+   },
+   "sources": [
+    {
+     "texte": "Source : event-driven.io (Oskar Dudycz), 19 oct. 2026",
+     "url": "https://event-driven.io/en/dynamic_consistency_boundary/"
+    }
+   ],
+   "meta": "event-driven.io · 19 oct. 2026 · te concerne : oui",
+   "choix": "Candidat : bon sujet de fond, mais plafond d'architecture atteint (3) ; Derek Comartin traite le même thème plus concrètement.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "trouvé lors du complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "p5",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Kafka share groups : des files d'attente dans Kafka",
+   "date": "2026-11-04",
+   "resume": "Thoughtworks place en *Trial* les **share groups** de Kafka (KIP-932), prêts pour la production depuis Kafka 4.2 : plus de consommateurs que de partitions, verrou et acquittement par message, livraison au moins une fois, sans ordre garanti.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "peut éviter un courtier de files à côté de Kafka, avec des consommateurs idempotents."
+   },
+   "sources": [
+    {
+     "texte": "Source : Thoughtworks Technology Radar, vol. 35, 4 nov. 2026",
+     "url": "https://www.thoughtworks.com/radar/platforms"
+    }
+   ],
+   "meta": "Thoughtworks Technology Radar · 4 nov. 2026 · te concerne : peut-être",
+   "choix": "Candidat : plafond d'architecture atteint (3), intérêt plus éloigné de tes projets.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "trouvé lors du complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "t6",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "ast-grep : recherche et réécriture structurelles du code, C# compris",
+   "date": "2026-11-04",
+   "resume": "**ast-grep** cherche, linte et réécrit du code à partir de son arbre syntaxique (tree-sitter, plus de 20 langages dont C#), avec des motifs écrits comme du code et des règles en YAML. Entré au Technology Radar en *Trial*.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "des règles maison et des migrations mécaniques sans écrire d'analyseur Roslyn."
+   },
+   "details": {
+    "Pourquoi il monte": "entrée au Technology Radar vol. 35 ; utilisé pour contrôler le code produit par les agents.",
+    "Maturité": "projet open source établi (Rust, tree-sitter)."
+   },
+   "sources": [
+    {
+     "texte": "Source : Thoughtworks Technology Radar, vol. 35, 4 nov. 2026",
+     "url": "https://www.thoughtworks.com/radar/tools"
+    }
+   ],
+   "meta": "Thoughtworks Technology Radar · 4 nov. 2026 · te concerne : peut-être",
+   "choix": "Candidat : outil intéressant, mais source secondaire (radar) et dotnetup plus utile au quotidien.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "trouvé lors du complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "t7",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [
+    "rex"
+   ],
+   "titre": "CI locale avec gh-signoff : 833 PR fusionnées sans CI cloud",
+   "date": "2026-10-31",
+   "resume": "Milan Jovanović a coupé le déclencheur `pull_request` de GitHub Actions : un script local lance build et tests, un hook Git le rejoue avant chaque push, puis l'extension **gh-signoff** publie un statut exigé par une règle de branche. La CI cloud ne tourne plus qu'après fusion.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "une piste pour accélérer la boucle de feedback sur un petit dépôt, selon la confiance dans l'équipe."
+   },
+   "sources": [
+    {
+     "texte": "Source : Milan Jovanović, 31 oct. 2026",
+     "url": "https://www.milanjovanovic.tech/blog/i-turned-off-ci-for-pull-requests"
+    }
+   ],
+   "meta": "milanjovanovic.tech · 31 oct. 2026 · te concerne : peut-être",
+   "choix": "Candidat : retour d'expérience intéressant, mais pratique risquée et plafond d'outils réservé aux outils plus utiles.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "trouvé lors du complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "categorie": "securite",
+   "statut": "candidat",
+   "tags": [
+    "supply-chain"
+   ],
+   "titre": "NuGet : 13 paquets piégés via de faux tests d'embauche .NET",
+   "date": "2026-11-23",
+   "resume": "Selon Socket, **13 paquets NuGet malveillants** (28 versions, publiés du 23 juillet au 4 novembre) visaient des développeurs .NET sous Windows au moyen de faux exercices de recrutement : une solution Visual Studio « Home Assessment » WinUI 3.\n\nUn fichier `.targets` MSBuild du paquet lance, après chaque compilation, le téléchargement d'une charge qui vole notamment les profils Chrome. Les paquets cités (WinUI.Button, StyledComponent, HappyOne.MSBuildAnalyzer, VS_Builder.MSBuildAnalyzer…) sont supprimés de nuget.org. Aucune victime confirmée, aucune attribution.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "il suffit de compiler une solution pour exécuter le code d'un paquet : le même vecteur peut viser n'importe quel développeur .NET ou agent de build."
+   },
+   "sources": [
+    {
+     "texte": "Source : The Machine Herald (d'après Socket), 24 nov. 2026",
+     "url": "https://machineherald.io/article/2026-11/24-socket-finds-13-malicious-nuget-packages-that-used-fake-developer-job-assessments-to-deliver-dll-side-loading-and-credential-stealing-malware/"
+    },
+    {
+     "texte": "Helix Threat Watch, 24 nov. 2026",
+     "url": "https://helix.ml/threat-watch/i/fake-job-assessment-nuget-campaign-net-developers-13-malicious-packages-steal-credentials-side-load-dlls"
+    },
+    {
+     "texte": "Socket, 23 nov. 2026 (non lu : 403)",
+     "url": "https://socket.dev/blog/malicious-nuget-packages-fake-job-assessments"
+    }
+   ],
+   "meta": "The Machine Herald (d'après Socket) · 24 nov. 2026 · te concerne : oui",
+   "verification": {
+    "date": "2026-11-25T17:30+01:00",
+    "verdict": "indetermine",
+    "resume": "La suppression des paquets est constatée sur nuget.org, mais le rapport de Socket, source primaire, n'a pas pu être ouvert (403) : il n'est connu que par des extraits de recherche. Les deux sources lues sont des reprises sans rédaction identifiée, et aucun média de référence n'a encore couvert la campagne.",
+    "source": {
+     "nom": "The Machine Herald, Helix Threat Watch",
+     "nature": "reprises secondaires du billet de Socket ; Machine Herald publie par pull requests, sans rédaction identifiée"
+    },
+    "affirmations": [
+     {
+      "texte": "Les paquets cités sont supprimés de nuget.org",
+      "preuves": [
+       {
+        "texte": "nuget.org, WinUI.Button : paquet supprimé (constaté le 25 nov.)",
+        "url": "https://www.nuget.org/packages/WinUI.Button"
+       },
+       {
+        "texte": "nuget.org, HappyOne.MSBuildAnalyzer : paquet supprimé",
+        "url": "https://www.nuget.org/packages/HappyOne.MSBuildAnalyzer"
+       }
+      ]
+     }
+    ],
+    "retirees": [
+     {
+      "texte": "« VSBuilder.MSBuildAnalyzer »",
+      "raison": "le vrai nom est VS_Builder.MSBuildAnalyzer"
+     },
+     {
+      "texte": "Environ 160 téléchargements pour WinUI.Button",
+      "raison": "chiffre de source secondaire, plafond selon Socket, plus vérifiable"
+     },
+     {
+      "texte": "Side-loading via osk.exe",
+      "raison": "préparé par le malware mais non vérifié par Socket"
+     }
+    ],
+    "ecarts": [
+     "Au 23 nov., Socket comptait 12 paquets retirés sur 13 ; le 25, WinUI.Button l'est aussi."
+    ],
+    "recoupements": []
+   },
+   "choix": "Candidat : vérification indéterminée ; la source primaire (Socket) n'a pas pu être lue et aucune source de référence n'a encore couvert la campagne. À revérifier en priorité à la prochaine exécution.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "trouvé lors du complément du rapport ; vérification indéterminée (source primaire illisible)"
+    }
+   ]
   },
   {
    "id": "i5",
