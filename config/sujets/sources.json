@@ -13,7 +13,7 @@
   },
   "toujours_consulter": [],
   "ignorer": [],
-  "lecture": "Ouvrir la page source (WebFetch) avant de résumer ; ne jamais affirmer ce qui n'a pas pu être vérifié. Lister dans le journal les sources illisibles.",
+  "lecture": "Ouvrir la page source (WebFetch) avant de résumer ; ne jamais affirmer ce qui n'a pas pu être vérifié. En cas de refus (403, page vide ou protégée contre les robots), réessayer avec curl en se présentant comme un navigateur : curl -sL -A \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36\" <URL>. Si le site bloque quand même (LSA, par exemple), passer par une autre source du même fait, sans jamais s'appuyer sur le seul titre ou l'extrait de recherche. Lister dans journal.sources_illisibles ce qui reste illisible après ces essais, avec la raison (« 403 après curl », « page vide »…).",
   "verification": {
     "depuis": "2026-11-25",
     "consigne": "Un sujet passe par l'agent vérificateur (tools/veille-verification.md) quand il contient une affirmation qui pourrait être fausse (faille, incident, attaque, fuite, attribution, rumeur, chiffre) ET que cette affirmation n'est portée ni par l'auteur du fait (l'éditeur qui annonce sa propre version, le projet qui présente son outil) ni par une source de référence ci-dessous. Ce qui compte, c'est la source qui porte l'affirmation, pas la présence d'une source fiable ailleurs dans la liste. Un chiffre central d'un incident est toujours recoupé, même entre sources de référence. Les outils présentés par leur propre dépôt, les annonces d'un éditeur sur son produit et les dates d'une conférence sur son site ne se vérifient pas.",
