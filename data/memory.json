@@ -13,7 +13,7 @@
   {
    "date": "2026-11-25",
    "path": "reports/2026/20261125.html",
-   "publies": 9
+   "publies": 16
   }
  ],
  "projets": {
@@ -37,6 +37,13 @@
     "id": "p1",
     "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf"
    }
+  ],
+  "Reefact/kill-mutants": [
+   {
+    "date": "2026-11-25",
+    "id": "cr3",
+    "titre": "Radar Thoughtworks : les tests de mutation passent en « Adopt »"
+   }
   ]
  },
  "tools_proposed": [
@@ -59,6 +66,11 @@
    "date": "2026-11-25",
    "titre": "AWS Emulator : un émulateur AWS local, écrit par des agents",
    "url": "https://www.infoq.com/news/2026/11/aws-emulator-local-testing/"
+  },
+  {
+   "date": "2026-11-25",
+   "titre": "dotnetup : un gestionnaire de SDK .NET à la rustup",
+   "url": "https://devblogs.microsoft.com/dotnet/introducing-dotnetup/"
   }
  ],
  "conferences": [
@@ -658,6 +670,56 @@
   },
   {
    "date": "2026-11-25",
+   "id": "n9",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "Aspire 17 : modèle de projet .NET, Kubernetes stable, AppHost en Go"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "n10",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "Visual Studio 18.12 : Copilot Chat change de moteur, revue de grosses PR"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "n11",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "Andrew Lock : interpolation en culture invariante sans allocations"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "cr3",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "Radar Thoughtworks : les tests de mutation passent en « Adopt »",
+   "depot": "Reefact/kill-mutants"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "cr4",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "TDD par propriétés : Mark Seemann cherche de vrais invariants"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "p3",
+   "categorie": "architecture",
+   "statut": "publie",
+   "titre": "Données périmées : un problème de conception, pas de cache"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "t5",
+   "categorie": "outils",
+   "statut": "publie",
+   "titre": "dotnetup : un gestionnaire de SDK .NET à la rustup"
+  },
+  {
+   "date": "2026-11-25",
    "id": "t2",
    "categorie": "outils",
    "statut": "candidat",
@@ -697,6 +759,55 @@
    "categorie": "dotnet",
    "statut": "candidat",
    "titre": "GitHub Copilot : migrer des applications .NET vers Windows Arm64"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "cr5",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "titre": "Stacked PRs : Thoughtworks met en garde contre le découpage après coup"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "cr6",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "titre": "Refonte sans peur : le Strangler Fig appliqué au code"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "p4",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "titre": "Dynamic Consistency Boundary : l'avis critique d'Oskar Dudycz"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "p5",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "titre": "Kafka share groups : des files d'attente dans Kafka"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "t6",
+   "categorie": "outils",
+   "statut": "candidat",
+   "titre": "ast-grep : recherche et réécriture structurelles du code, C# compris"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "t7",
+   "categorie": "outils",
+   "statut": "candidat",
+   "titre": "CI locale avec gh-signoff : 833 PR fusionnées sans CI cloud"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "s9",
+   "categorie": "securite",
+   "statut": "candidat",
+   "titre": "NuGet : 13 paquets piégés via de faux tests d'embauche .NET"
   },
   {
    "date": "2026-11-25",
@@ -920,6 +1031,11 @@
    "id": "d1",
    "statut": "publie"
   },
+  "https://andrewlock.net/invariant-culture-string-interpolation-with-interpolatedstringhandler/": {
+   "date": "2026-11-25",
+   "id": "n11",
+   "statut": "publie"
+  },
   "https://blog.jetbrains.com/security/2026/11/java4shell-vulnerability/": {
    "date": "2026-11-25",
    "id": "s8",
@@ -934,6 +1050,21 @@
    "date": "2026-11-23",
    "id": "n6",
    "statut": "candidat"
+  },
+  "https://blog.ploeh.dk/2026/10/02/redesign-without-fear/": {
+   "date": "2026-11-25",
+   "id": "cr6",
+   "statut": "candidat"
+  },
+  "https://blog.ploeh.dk/2026/10/19/properties-for-a-budgeting-exercise/": {
+   "date": "2026-11-25",
+   "id": "cr4",
+   "statut": "publie"
+  },
+  "https://blog.ploeh.dk/2026/11/23/quickcheck-property-monotonicity-in-items/": {
+   "date": "2026-11-25",
+   "id": "cr4",
+   "statut": "publie"
   },
   "https://blog.primeradiant.com/external-sandboxes-for-coding-agents/": {
    "date": "2026-11-24",
@@ -961,6 +1092,11 @@
    "id": "p3",
    "statut": "publie"
   },
+  "https://codeopinion.com/stale-data-consistency-boundaries/": {
+   "date": "2026-11-25",
+   "id": "p3",
+   "statut": "publie"
+  },
   "https://codescene.com/blog/does-code-quality-affect-ai-token-costs": {
    "date": "2026-11-24",
    "id": "cr3",
@@ -969,6 +1105,11 @@
   "https://coding-is-like-cooking.info/2026/11/how-to-use-test-driven-development-with-ai-agents-without-lowering-code-quality/": {
    "date": "2026-11-25",
    "id": "cr1",
+   "statut": "publie"
+  },
+  "https://devblogs.microsoft.com/aspire/whats-new-aspire-17/": {
+   "date": "2026-11-25",
+   "id": "n9",
    "statut": "publie"
   },
   "https://devblogs.microsoft.com/dotnet/ai-cross-platform-decision-matrix/": {
@@ -1002,6 +1143,11 @@
    "statut": "ecarte",
    "motif": "trop-mineur"
   },
+  "https://devblogs.microsoft.com/dotnet/introducing-dotnetup/": {
+   "date": "2026-11-25",
+   "id": "t5",
+   "statut": "publie"
+  },
   "https://devblogs.microsoft.com/dotnet/local-models-dotnet-llama-windows/": {
    "date": "2026-11-23",
    "id": "n3",
@@ -1022,6 +1168,11 @@
    "id": "n9",
    "statut": "publie"
   },
+  "https://devblogs.microsoft.com/visualstudio/visual-studio-november-update-faster-workflows-better-reviews/": {
+   "date": "2026-11-25",
+   "id": "n10",
+   "statut": "publie"
+  },
   "https://devoxx.be/": {
    "date": "2026-11-23",
    "id": "c6",
@@ -1035,6 +1186,11 @@
   "https://duckdb.org/2026/10/21/announcing-duckdb-200.html": {
    "date": "2026-11-25",
    "id": "t2",
+   "statut": "candidat"
+  },
+  "https://event-driven.io/en/dynamic_consistency_boundary/": {
+   "date": "2026-11-25",
+   "id": "p4",
    "statut": "candidat"
   },
   "https://event-driven.io/en/make_the_change_easy_make_the_easy_change/": {
@@ -1138,6 +1294,11 @@
    "id": "t10",
    "statut": "candidat"
   },
+  "https://helix.ml/threat-watch/i/fake-job-assessment-nuget-campaign-net-developers-13-malicious-packages-steal-credentials-side-load-dlls": {
+   "date": "2026-11-25",
+   "id": "s9",
+   "statut": "candidat"
+  },
   "https://ladybird.org/posts/alpha/": {
    "date": "2026-11-23",
    "id": "t7",
@@ -1183,6 +1344,11 @@
    "id": "d1",
    "statut": "ecarte",
    "motif": "hors-perimetre"
+  },
+  "https://machineherald.io/article/2026-11/24-socket-finds-13-malicious-nuget-packages-that-used-fake-developer-job-assessments-to-deliver-dll-side-loading-and-credential-stealing-malware/": {
+   "date": "2026-11-25",
+   "id": "s9",
+   "statut": "candidat"
   },
   "https://martinfowler.com/articles/data-contracts.html": {
    "date": "2026-11-25",
@@ -1300,6 +1466,11 @@
    "date": "2026-11-24",
    "id": "i1",
    "statut": "publie"
+  },
+  "https://socket.dev/blog/malicious-nuget-packages-fake-job-assessments": {
+   "date": "2026-11-25",
+   "id": "s9",
+   "statut": "candidat"
   },
   "https://spring.io/security": {
    "date": "2026-11-23",
@@ -1554,6 +1725,11 @@
    "id": "n1",
    "statut": "publie"
   },
+  "https://www.milanjovanovic.tech/blog/i-turned-off-ci-for-pull-requests": {
+   "date": "2026-11-25",
+   "id": "t7",
+   "statut": "candidat"
+  },
   "https://www.nuget.org/packages/AutoFixture": {
    "date": "2026-11-23",
    "id": "n12",
@@ -1598,6 +1774,26 @@
    "date": "2026-11-23",
    "id": "s6",
    "statut": "publie"
+  },
+  "https://www.thoughtworks.com/radar/platforms": {
+   "date": "2026-11-25",
+   "id": "p5",
+   "statut": "candidat"
+  },
+  "https://www.thoughtworks.com/radar/techniques": {
+   "date": "2026-11-25",
+   "id": "cr5",
+   "statut": "candidat"
+  },
+  "https://www.thoughtworks.com/radar/techniques/mutation-testing": {
+   "date": "2026-11-25",
+   "id": "cr3",
+   "statut": "publie"
+  },
+  "https://www.thoughtworks.com/radar/tools": {
+   "date": "2026-11-25",
+   "id": "t6",
+   "statut": "candidat"
   },
   "https://www.zataz.com/cyberattaque-des-frigos-la-piste-iranienne-se-precise/": {
    "date": "2026-11-23",
