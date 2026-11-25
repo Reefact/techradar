@@ -1,5 +1,5 @@
 {
-  "description": "Flux (RSS ou Atom) lus à CHAQUE exécution, quels que soient les sujets du jour : chaque article paru depuis le rapport précédent est examiné, et devient un sujet de sa catégorie s'il le mérite (sinon candidat ou écarté, avec son motif). Chaque flux est consigné dans journal.verifications ({\"nom\": …, \"resultat\": \"n article(s) examiné(s)\" ou \"rien de neuf\"}).",
+  "description": "Flux (RSS ou Atom) lus à CHAQUE exécution, quels que soient les sujets du jour. Chaque flux est consigné dans journal.verifications ({\"nom\": …, \"resultat\": \"n article(s) examiné(s)\" ou \"rien de neuf\"}).",
   "depuis": "2026-11-26",
   "flux": [
     {
@@ -11,6 +11,41 @@
       "nom": "JetBrains .NET Tools",
       "url": "https://blog.jetbrains.com/dotnet/feed/",
       "pour": "Rider, ReSharper, dotTrace, dotMemory : nouvelles versions et annonces qui touchent ton outillage .NET."
+    },
+    {
+      "nom": "GitLab Patch Releases",
+      "url": "https://about.gitlab.com/security-releases.xml",
+      "pour": "Correctifs de sécurité de GitLab (versions de patch, critiques ou non). Une faille critique corrigée est une alerte."
+    },
+    {
+      "nom": "GitLab Releases",
+      "url": "https://about.gitlab.com/releases.xml",
+      "pour": "Versions mensuelles de GitLab : ne retenir que ce qui change vraiment ta façon de travailler (CI, revue de code, sécurité)."
+    },
+    {
+      "nom": "Blog .NET",
+      "url": "https://devblogs.microsoft.com/dotnet/feed/",
+      "pour": "Annonces officielles .NET : versions, préversions, mises à jour de maintenance et de sécurité, ASP.NET Core, EF Core, C#."
+    },
+    {
+      "nom": "Blog Visual Studio",
+      "url": "https://devblogs.microsoft.com/visualstudio/feed/",
+      "pour": "Mises à jour de Visual Studio et de Copilot dans l'IDE."
+    },
+    {
+      "nom": "Blog Aspire",
+      "url": "https://devblogs.microsoft.com/aspire/feed/",
+      "pour": "Versions d'Aspire et changements cassants."
+    },
+    {
+      "nom": "Blog NuGet",
+      "url": "https://devblogs.microsoft.com/nuget/feed/",
+      "pour": "Évolutions de NuGet et de nuget.org, dont la sécurité de la chaîne d'approvisionnement."
     }
+  ],
+  "regles": [
+    "Un complément, pas une liste fermée : les flux garantissent qu'on ne rate pas une source importante, mais la recherche continue partout ailleurs, pour toutes les catégories, .NET compris.",
+    "Un article de flux n'est pas intéressant d'office : il est jugé comme n'importe quel sujet (intérêt pour toi, fraîcheur, plafonds). La plupart des articles sont simplement lus et comptés dans le journal ; seuls ceux qui méritent d'être retenus ou discutés deviennent un sujet (publié ou candidat).",
+    "Exception : une faille qui touche ton outillage est une alerte, souvent la suite d'un sujet déjà publié (tag mise-a-jour)."
   ]
 }
