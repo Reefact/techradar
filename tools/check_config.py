@@ -56,6 +56,18 @@ def check():
         for g, d in v.get("references", {}).items():
             for dom in d.get("domaines", []):
                 if not re.fullmatch(r"[a-z0-9.-]+\.[a-z]{2,}(/[\w./-]+)?", dom): add(f"sources.json : référence « {g} » : domaine invalide « {dom} » (sans https://, ex. lemonde.fr ou github.com/dotnet)")
+    css = (CONFIG.parent / "assets" / "report.css").read_text(encoding="utf-8")
+    definies = set(re.findall(r"\.(b-[\w-]+)\s*\{", css)) | set(re.findall(r"\.(b-[\w-]+)\s*[,{]", css))
+    for nom, d in (("categories.json", cats), ("tags.json", tags)):
+        for k, v in d.items():
+            if v.get("classe") and v["classe"] not in definies: add(f"{nom} : classe « {v['classe']} » de « {k} » absente de assets/report.css (badge sans couleur)")
+    nota = CONFIG / "notation.json"
+    if nota.exists():
+        qs = load_json(nota).get("questions", [])
+        if not any(q.get("type") == "ouverte" for q in qs): add("notation.json : il faut au moins une question ouverte")
+        for q in qs:
+            if q.get("type") not in ("echelle", "oui_non", "ouverte"): add(f"notation.json : type inconnu pour « {q.get('cle')} »")
+            if not q.get("cle") or not q.get("texte"): add("notation.json : question sans « cle » ou sans « texte »")
     proj = CONFIG / "sujets" / "projets.json"
     if proj.exists():
         for pr in load_json(proj).get("projets", []):

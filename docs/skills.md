@@ -11,6 +11,7 @@ Un **skill** est une procédure rangée dans `.claude/skills/<nom>/SKILL.md`. Da
 | [`veille-sujets`](#veille-sujets) | Changer ce que la veille cherche | `config/` |
 | [`veille-relecture`](#veille-relecture) | Vérifier ou corriger le français | textes du fichier du jour |
 | [`veille-test`](#veille-test) | Vérifier une exécution de la tâche | rien (il observe) |
+| [`veille-noter`](#veille-noter) | Noter un sujet (bouton « ⭐ Noter » du site) pour que la veille apprenne tes goûts | `data/avis/notes.json`, `data/avis/preferences.md` |
 | [`veille-memoire`](#veille-memoire) | Savoir si un sujet est déjà paru, quels rappels de CFP sont dus | rien (sauf `data/notes.md` sur demande) |
 
 Tous commitent directement sur `main` (pas de branche ni de PR) après ton accord, et le site se redéploie tout seul.
@@ -58,6 +59,14 @@ Tous commitent directement sur `main` (pas de branche ni de PR) après ton accor
 **Déroulé** : note l'état de `main` ; te fait lancer la tâche ; attend sa fin ; lit sa notification ; contrôle le commit (directement sur `main`, seulement le fichier du jour), la validation (`check_day.py --contre <avant>`, immuabilité comprise), le journal, la relecture, puis le site en ligne ; rend un tableau.
 
 **Exemple** : « teste la tâche de veille ».
+
+## veille-noter
+
+**Quand** : depuis le bouton « ⭐ Noter » d'un sujet (rapport ou dossier), qui ouvre une session Claude Code sur ce dépôt avec la demande pré-remplie, ou en demandant « note le sujet s3 du 2026-11-24 ».
+
+**Déroulé** : rappelle le sujet ; pose en un message les questions rapides de `config/notation.json` (échelle de 1 à 5, oui/non : réponse attendue sous la forme `5 4 5 3 3 4 o o n`), puis les questions conditionnelles et le commentaire facultatif ; enregistre l'avis dans `data/avis/notes.json` ; réécrit la synthèse `data/avis/preferences.md` à partir de tous les avis ; commite et pousse.
+
+**Effet** : la tâche de veille lit cette synthèse et les avis pour choisir les sujets ; dans le dossier, chaque sujet explique « Pourquoi ce choix » et affiche ta note s'il en a une.
 
 ## veille-memoire
 

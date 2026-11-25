@@ -22,8 +22,7 @@
     "arbitrage": "Les 15 places vont aux meilleurs sujets non prioritaires, dans la limite des plafonds de config/categories.json (max) ; à intérêt égal, le poids de la catégorie (poids, 3 = le plus important) départage. Les minimums sont à 0 : une catégorie sans rien d'intéressant reste vide.",
     "remplissage": [
       "1. Sujets frais (depuis le rapport précédent, ☄️) : toujours en premier.",
-      "2. Candidats et sujets mis de côté des rapports précédents (build_memory.py --reconsiderer), s'ils sont encore dans leur fenêtre de fraîcheur et jamais publiés : relus sur leur source et remis à jour avant publication, l'historique note d'où ils viennent.",
-      "3. Si les 15 places ne sont toujours pas remplies : nouvelle recherche de sujets de fond moins frais (jusqu'à 3 mois, jamais l'IA), jamais traités.",
+      "2. Puis, en concurrence pour les places restantes : les candidats et sujets mis de côté des rapports précédents (build_memory.py --reconsiderer) encore dans leur fenêtre de fraîcheur et jamais publiés, et de nouveaux sujets de fond moins frais (jusqu'à 3 mois, jamais l'IA) jamais traités. Les meilleurs l'emportent, d'où qu'ils viennent ; un sujet repris est relu sur sa source et remis à jour, son historique note d'où il vient.",
       "À chaque étape, seulement de bons sujets : mieux vaut un rapport plus court qu'un sujet de remplissage."
     ],
     "fraicheur": {
@@ -70,7 +69,11 @@
     },
     "regle": "Ne jamais remplir une catégorie avec du bruit : les minimums sont à 0.",
     "analyses_min": 30,
-    "analyses_regle": "Nombre minimal de sujets analysés (tous statuts) consignés dans le fichier du jour lors d'une exécution complète."
+    "analyses_regle": "Nombre minimal de sujets analysés (tous statuts) consignés dans le fichier du jour lors d'une exécution complète.",
+    "choix": {
+      "depuis": "2026-11-26",
+      "description": "Chaque sujet, quel que soit son statut, porte une raison de choix (champ « choix », une ou deux phrases) : pourquoi il est publié, candidat, mis de côté ou écarté. Elle s'appuie sur les préférences de l'utilisateur (data/avis/preferences.md) et ses avis (data/avis/notes.json) quand c'est le cas, sinon sur les règles (fraîcheur, plafonds, prioritaires). Affichée dans le dossier seulement."
+    }
   },
   "pourquoi": {
     "description": "Ligne « pourquoi » d'un sujet : un type (clé ci-dessous) et un texte. Le rendu affiche l'emoji et le préfixe déclarés ici, puis le texte ; la tâche n'écrit jamais le préfixe. Un seul type par sujet ; si plusieurs conviennent, l'ordre de priorité est : projet, utile, compte, surveiller.",

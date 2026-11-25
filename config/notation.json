@@ -1,0 +1,87 @@
+{
+  "description": "Questions posées par le skill veille-noter pour noter un sujet de la veille. Surtout des réponses rapides (échelle de 1 à 5, oui/non), et au moins une question ouverte, facultative. Les réponses vont dans data/avis/notes.json ; la synthèse des goûts dans data/avis/preferences.md, que la tâche de veille lit pour choisir les sujets.",
+  "questions": [
+    {
+      "cle": "note",
+      "type": "echelle",
+      "texte": "Ce sujet t'a plu ?",
+      "bornes": [
+        "pas du tout",
+        "énormément"
+      ]
+    },
+    {
+      "cle": "plus",
+      "type": "echelle",
+      "texte": "Tu voudrais plus de sujets comme celui-ci ?",
+      "bornes": [
+        "non",
+        "oui, oui, oui !"
+      ]
+    },
+    {
+      "cle": "theme",
+      "type": "echelle",
+      "texte": "Le thème t'intéresse, en général ?",
+      "bornes": [
+        "pas du tout",
+        "beaucoup"
+      ]
+    },
+    {
+      "cle": "utile",
+      "type": "echelle",
+      "texte": "Ça t'est utile dans ton travail ?",
+      "bornes": [
+        "pas du tout",
+        "tout de suite"
+      ]
+    },
+    {
+      "cle": "niveau",
+      "type": "echelle",
+      "texte": "Le niveau technique ?",
+      "bornes": [
+        "trop simple",
+        "trop pointu"
+      ],
+      "milieu": "juste bien"
+    },
+    {
+      "cle": "source",
+      "type": "echelle",
+      "texte": "La source te semble de qualité ?",
+      "bornes": [
+        "médiocre",
+        "excellente"
+      ]
+    },
+    {
+      "cle": "resume",
+      "type": "oui_non",
+      "texte": "Le résumé t'a suffi, sans lire l'article ?"
+    },
+    {
+      "cle": "moment",
+      "type": "oui_non",
+      "texte": "Le sujet est arrivé au bon moment (ni trop tôt, ni trop tard) ?"
+    },
+    {
+      "cle": "suivre",
+      "type": "oui_non",
+      "texte": "Tu veux qu'on suive davantage cette source ou cet auteur ?"
+    },
+    {
+      "cle": "cause",
+      "type": "oui_non",
+      "texte": "C'est le thème qui ne t'intéresse pas (oui), ou seulement ce sujet-là (non) ?",
+      "si": "note <= 2"
+    },
+    {
+      "cle": "commentaire",
+      "type": "ouverte",
+      "texte": "Un mot pour expliquer ta note ? (facultatif)",
+      "facultative": true
+    }
+  ]
+}

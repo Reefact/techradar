@@ -282,6 +282,14 @@ class Donnees(unittest.TestCase):
         c["conference"].pop("site", None)
         self.assertTrue(any("conference.site" in e for e in self.valider(day)))
 
+    def test_raison_de_choix_exigee_a_partir_du_26(self):
+        day = self.jour_recent()
+        day["date"] = "2026-11-26"
+        for s in day["sujets"]: s.pop("choix", None)
+        self.assertTrue(any("« choix » manquant" in e for e in self.valider(day)))
+        for s in day["sujets"]: s["choix"] = "raison"
+        self.assertFalse(any("« choix » manquant" in e for e in self.valider(day)))
+
     def test_projet_inconnu_refuse(self):
         day = jour()
         day["sujets"][0]["depot"] = "Reefact/inconnu"

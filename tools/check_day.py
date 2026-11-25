@@ -60,7 +60,7 @@ def rapport_precedent(day):
 
 CHAMPS_SUJET = {"id", "categorie", "statut", "motif", "tags", "titre", "titre_sommaire", "resume", "pourquoi", "sources", "meta", "date",
                 "details", "depot", "conference", "verification", "verification_non_requise", "historique", "note",
-                "categorie_secondaire", "hors_fenetre"}
+                "categorie_secondaire", "hors_fenetre", "choix"}
 
 
 def check_verification(s, where, day, cfg):
@@ -140,6 +140,8 @@ def check(path, contre=None, partiel=False):
                 debut = plain(pq["texte"]).lower()
                 for t in types.values():
                     if debut.startswith(t["prefixe"].split("{")[0].strip().lower()): E(f"{where} : le texte du « pourquoi » reprend le préfixe « {t['prefixe']} », que le rendu ajoute déjà")
+        if day.get("date", "") >= (rap_cfg := (per.get("rapport", {}).get("choix") or {})).get("depuis", "9999") and not str(s.get("choix") or "").strip():
+            E(f"{where} : « choix » manquant (pourquoi ce sujet est {s.get('statut')}, en s'appuyant sur tes préférences quand c'est le cas)")
         sec = s.get("categorie_secondaire")
         if sec is not None:
             if not isinstance(sec, str) or sec not in cats: E(f"{where} : catégorie secondaire « {sec} » absente de config/categories.json (une seule, 2 catégories au plus)")

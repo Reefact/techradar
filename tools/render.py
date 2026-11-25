@@ -186,6 +186,19 @@ def projet_badge(s, cfg):
     return f'<span class="ico projet" title="{E(aide)}" aria-label="{E(aide)}">📦</span>'   # icône seule, comme ☄️
 
 
+_AVIS = None
+
+
+def avis_de(jour, sid):
+    """Dernier avis de l'utilisateur sur un sujet (data/avis/notes.json), ou None."""
+    global _AVIS
+    if _AVIS is None:
+        p = Path(__file__).resolve().parent.parent / "data" / "avis" / "notes.json"
+        _AVIS = json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
+    trouves = [a for a in _AVIS if a.get("jour") == jour and a.get("id") == sid]
+    return trouves[-1] if trouves else None
+
+
 def majuscule(md):
     """Met une majuscule à la première lettre du texte (en sautant le Markdown de tête : **, `, [)."""
     m = re.search(r"[^\W\d_]", md)
@@ -230,6 +243,11 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     if dossier and st != "publie":
         ask = (f'<button type="button" class="ask" data-ask="Publie le sujet {E(s["id"])} (« {E(plain(s["titre"]))} ») du {date_jour} dans le rapport.">'
                "Demander la publication</button>")
+    if dossier and (s.get("choix") or avis_de(date_jour, s["id"])):
+        a = avis_de(date_jour, s["id"])
+        note = f' <span class="ch-note" title="Ta note pour ce sujet">⭐ ta note : {a["reponses"]["note"]}/5</span>' if a and a.get("reponses", {}).get("note") else ""
+        out.append(f'  <p class="choix"><span class="ch-h">🧭 Pourquoi ce choix</span>{note}'
+                   + (f'<br>{inline(s["choix"])}' if s.get("choix") else "") + "</p>")
     if links:
         out.append(f'  <p class="src">{links}</p>')
     out.append(f'  <div class="foot">{ask}<span class="actions"></span>'

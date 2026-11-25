@@ -178,12 +178,13 @@ const Radar = (() => {
   function addActions(doc, date) {
     const st = doc.createElement('style');
     st.textContent = '.tr-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid currentColor;text-decoration:none;font:600 .74rem/1 var(--font-m);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:box-shadow .2s,background .2s}'
-      + '.tr-btn.chat{color:var(--accent)}.tr-btn.code{color:var(--dotnet)}'
+      + '.tr-btn.chat{color:var(--accent)}.tr-btn.code{color:var(--dotnet)}.tr-btn.note{color:var(--api)}'
       + '.tr-btn:hover{background:rgba(255,255,255,.06);box-shadow:0 0 14px currentColor}'
       + '.tr-btn svg{width:14px;height:14px;flex:none}';
     doc.head.appendChild(st);
     const ICON = {chat: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M2 3h12v8H7l-3 3v-3H2z"/></svg>',
-                  code: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>'};
+                  code: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4 2 8l4 4M10 4l4 4-4 4"/></svg>',
+                  star: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M8 1.8l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6z"/></svg>'};
     doc.querySelectorAll('details.card[id]').forEach(card => {
       const slot = card.querySelector('.foot .actions');
       if (!card.querySelector('h3') || !slot) return;
@@ -202,6 +203,16 @@ const Radar = (() => {
         a.addEventListener('click', async () => { say((await copy(prompt)) ? 'Prompt copié : si la conversation s\'ouvre vide, colle-le (Ctrl/Cmd+V).' : 'Conversation ouverte (copie du prompt impossible).'); });
       }
       slot.appendChild(a);
+      // « Noter » : session Claude Code sur le dépôt de la veille, qui lance le skill veille-noter pour ce sujet
+      const n = doc.createElement('a');
+      const titre = card.querySelector('h3').textContent.trim();
+      n.className = 'tr-btn note'; n.target = '_blank'; n.rel = 'noopener';
+      n.innerHTML = ICON.star + '<span>Noter</span>';
+      n.title = 'Noter ce sujet : quelques questions rapides pour que la veille apprenne ce qui t\'intéresse';
+      n.href = 'https://claude.ai/code?repositories=' + encodeURIComponent('Reefact/techradar') + '&prompt='
+        + encodeURIComponent(`Lance le skill veille-noter : je veux noter le sujet ${card.id} du ${date} (« ${titre} »).`);
+      n.addEventListener('click', () => say('Session de notation ouverte : envoie le prompt pré-rempli, puis réponds aux questions.'));
+      slot.appendChild(n);
     });
   }
 
