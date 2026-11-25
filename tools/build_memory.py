@@ -4,10 +4,10 @@
   python3 tools/build_memory.py                       (ré)écrit data/memory.json
   python3 tools/build_memory.py --seen URL            cette URL a-t-elle déjà été vue ? (code retour 0 = déjà PUBLIÉE)
   python3 tools/build_memory.py --due [AAAA-MM-JJ]    rappels de CFP à émettre ce jour-là (défaut : aujourd'hui)
-  python3 tools/build_memory.py --reconsiderer        sujets « mis de côté » ou « candidat » des jours précédents
+  python3 tools/build_memory.py --reconsiderer        sujets candidats (non publiés) des jours précédents
 
 Sortie déterministe (aucun horodatage). Seuls les sujets PUBLIÉS bloquent l'anti-doublon ; un sujet écarté
-ou mis de côté reste reconsidérable (son motif est donné).
+ou candidat reste reconsidérable (son motif est donné).
 """
 import json
 import re
@@ -100,7 +100,7 @@ def due(today):
 
 
 def reconsider():
-    """Derniers sujets « mis de côté » (et candidats non publiés) : à réexaminer par l'exécution suivante."""
+    """Derniers sujets candidats non publiés : à réexaminer par l'exécution suivante (« mis-de-cote » : ancien statut, lu pour les vieux fichiers)."""
     m = mem()
     published_titles = {t["titre"] for t in m["topics"] if t["statut"] == "publie"}
     return [t for t in m["topics"] if t["statut"] in ("mis-de-cote", "candidat") and t["titre"] not in published_titles][-40:]

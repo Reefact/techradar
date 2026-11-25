@@ -140,8 +140,8 @@ const Radar = (() => {
   for (const r of reports) {
     const m = r.date.slice(0, 7);
     if (m !== month) { if (month) html += '</ul>'; html += `<div class="month">${fmtMonth(r.date)}</div><ul>`; month = m; }
-    const st = r.statuts ? ` title="${r.statuts.publie || 0} publiés · ${r.statuts.candidat || 0} candidats · ${r.statuts['mis-de-cote'] || 0} mis de côté · ${r.statuts.ecarte || 0} écartés"` : '';
-    const cnt = r.statuts ? ` <span class="cnt">${(r.statuts.candidat || 0) + (r.statuts['mis-de-cote'] || 0)} à revoir</span>` : '';
+    const st = r.statuts ? ` title="${r.statuts.publie || 0} publiés · ${r.statuts.candidat || 0} candidats · ${r.statuts.ecarte || 0} écartés"` : '';
+    const cnt = r.statuts ? ` <span class="cnt">${r.statuts.candidat || 0} à revoir</span>` : '';
     html += `<li><a href="#${r.key}" data-key="${r.key}"${st}>${fmtDay(r.date)}${cnt}</a></li>`;
   }
   list.innerHTML = html + '</ul>';

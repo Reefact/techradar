@@ -1,6 +1,6 @@
 ---
 name: veille-publier
-description: Change le statut des sujets d'un jour de veille (publier un candidat, retirer un sujet publié, mettre de côté, écarter avec un motif), puis valide, commite et déploie. À utiliser quand l'utilisateur veut ajouter au rapport un sujet du dossier du jour, en retirer un, ou réviser la sélection.
+description: Change le statut des sujets d'un jour de veille (publier un candidat, retirer un sujet publié, écarter avec un motif), puis valide, commite et déploie. À utiliser quand l'utilisateur veut ajouter au rapport un sujet du dossier du jour, en retirer un, ou réviser la sélection.
 ---
 
 # Publier ou retirer des sujets
@@ -13,14 +13,14 @@ Le rapport publié d'un jour = les sujets `publie` de `data/days/AAAA/AAAAMMJJ.j
 ```bash
 python3 tools/statut.py list AAAA-MM-JJ
 ```
-(par défaut le jour le plus récent de `data/days/`). Présenter à l'utilisateur, en clair, les candidats et mis de côté (titre, catégorie), et ce qu'il a demandé. La page https://techradar.reefact.net/dossier/ montre la même chose avec les résumés ; ses boutons « Demander la publication » et « Demander le retrait » ouvrent une session avec une demande du type « Publie dans le rapport le sujet n4 du 2026-11-24 (« … ») avec le skill veille-publier, puis fais-moi noter ce sujet avec le skill veille-noter ».
+(par défaut le jour le plus récent de `data/days/`). Présenter à l'utilisateur, en clair, les candidats (titre, catégorie), et ce qu'il a demandé. La page https://techradar.reefact.net/dossier/ montre la même chose avec les résumés ; ses boutons « Demander la publication » et « Demander le retrait » ouvrent une session avec une demande du type « Publie dans le rapport le sujet n4 du 2026-11-24 (« … ») avec le skill veille-publier, puis fais-moi noter ce sujet avec le skill veille-noter ».
 
 ## 2. Vérifier les affirmations avant de publier
 
-Avant de publier un candidat ou un sujet mis de côté, applique `tools/veille-verification.md` : s'il contient une affirmation qui pourrait être fausse, portée ni par l'auteur du fait ni par une source de référence (`config/sujets/sources.json`), et qu'il n'a pas de `verification` au verdict `vrai`, lance d'abord le sous-agent vérificateur (brief du fichier, sans ton avis). Puis :
+Avant de publier un candidat, applique `tools/veille-verification.md` : s'il contient une affirmation qui pourrait être fausse, portée ni par l'auteur du fait ni par une source de référence (`config/sujets/sources.json`), et qu'il n'a pas de `verification` au verdict `vrai`, lance d'abord le sous-agent vérificateur (brief du fichier, sans ton avis). Puis :
 - `vrai` : écris le bloc `verification`, rebase le sujet sur la source fiable trouvée (en tête des sources, résumé réécrit à partir d'elle, seulement les affirmations prouvées ; titre qui dit « revendiqué » pour un incident seulement revendiqué), montre le résultat à l'utilisateur et publie ;
 - `faux` : ne publie pas ; propose d'écarter le sujet (`--motif infirme`) ;
-- `indetermine` : ne publie pas ; propose de le mettre de côté, il sera revérifié à la prochaine exécution.
+- `indetermine` : ne publie pas ; il reste candidat, avec une raison de choix qui dit qu'il attend une vérification, et il sera revérifié à la prochaine exécution.
 
 Le validateur refuse un sujet publié dans une catégorie à risque sans source de référence ni vérification `vrai`, et tout sujet publié dont le verdict n'est pas `vrai`.
 

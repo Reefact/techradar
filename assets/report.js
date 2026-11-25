@@ -45,7 +45,7 @@
       const chips = [...sortBar.querySelectorAll('.chip')], all = chips.map(c => c.dataset.k), LABEL = {};
       chips.forEach(c => { LABEL[c.dataset.k] = c.textContent.trim(); });
       const def = sortBar.querySelector('.sdefault');
-      const STATUTS = ['publie', 'candidat', 'mis-de-cote', 'ecarte'];
+      const STATUTS = ['publie', 'candidat', 'ecarte'];
       const val = {statut: el => STATUTS.indexOf(el.dataset.statut), cat: el => +el.dataset.ordre,
                    date: el => -(+(el.dataset.date || '').replace(/-/g, '') || 0)};
       const store = 'techradar-tri2-' + (document.querySelector('.dossier') ? 'dossier' : 'rapport');

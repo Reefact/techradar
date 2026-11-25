@@ -40,11 +40,10 @@ HEAD = """<!doctype html>
 
 # ---------- briques ----------
 MOIS_COURT = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
-STATUT_LABEL = {"publie": "Publié", "candidat": "Candidat", "mis-de-cote": "Mis de côté", "ecarte": "Écarté"}
-STATUT_CLASSE = {"publie": "b-tool", "candidat": "b-api", "mis-de-cote": "b-ia", "ecarte": "b-alert"}
+STATUT_LABEL = {"publie": "Publié", "candidat": "Candidat", "ecarte": "Écarté"}
+STATUT_CLASSE = {"publie": "b-tool", "candidat": "b-api", "ecarte": "b-alert"}
 STATUT_AIDE = {"publie": "Publié dans le rapport du jour.",
                "candidat": "Analysé et rédigé, mais pas publié : peut être ajouté au rapport.",
-               "mis-de-cote": "Intéressant mais pas retenu aujourd'hui ; peut revenir un autre jour.",
                "ecarte": "Écarté après analyse ; le motif est indiqué."}
 def aide_recent(seuil):
     return (f"Sujets parus depuis le brief précédent ({date_courte(seuil)}), jour compris : "
@@ -188,7 +187,7 @@ def projet_badge(s, cfg):
 
 
 CHOIX_TITRE = {"publie": "Pourquoi ce sujet a été retenu", "candidat": "Pourquoi ce sujet n'a pas été retenu",
-               "mis-de-cote": "Pourquoi ce sujet est mis de côté", "ecarte": "Pourquoi ce sujet a été écarté"}
+               "ecarte": "Pourquoi ce sujet a été écarté"}
 _AVIS = None
 
 
@@ -389,7 +388,7 @@ def render_dossier(day, cfg, seuil=None):
     jour = titre_jour(day["date"]).removeprefix("Veille technologique du ")
     o = [HEAD.format(title=E("Dossier du " + jour + SUFFIX), date=day["date"], extra_head='\n<meta name="robots" content="noindex, nofollow">'),
          '<div class="wrap dossier">', '<header id="top">', f"  <h1>Dossier du {E(jour)}</h1>",
-         '  <p class="sub">Tous les sujets analysés pour ce jour : publiés, candidats, mis de côté, écartés (avec leur motif).</p>',
+         '  <p class="sub">Tous les sujets analysés pour ce jour : publiés, candidats, écartés (avec leur motif).</p>',
          "</header>", ""]
     j = day.get("journal", {})
     rows = []

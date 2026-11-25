@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from veille_lib import ROOT, STATUTS, config, pourquoi_types, projets, sections_resume  # noqa: E402
 
-STATUT_LABEL = {"publie": "Publié", "candidat": "Candidat", "mis-de-cote": "Mis de côté", "ecarte": "Écarté"}
+STATUT_LABEL = {"publie": "Publié", "candidat": "Candidat", "ecarte": "Écarté"}
 SPAN = re.compile(r'<span class="([^"]*)"(?: title="([^"]*)")?[^>]*>(.*?)</span>', re.S)
 ATTR = lambda tag, name: (re.search(rf'\b{name}="([^"]*)"', tag) or [None, None])[1]
 texte = lambda s: re.sub(r"\s+", " ", H.unescape(re.sub(r"<[^>]+>", "", s or ""))).strip()

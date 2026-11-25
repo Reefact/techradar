@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config"
 DAYS = ROOT / "data" / "days"
 SUFFIX = " – Reefact"          # suffixe des <title> (tiret demi-cadratin, comme reefact.net)
-STATUTS = ("publie", "candidat", "mis-de-cote", "ecarte")
+STATUTS = ("publie", "candidat", "ecarte")
 MOTIFS = ("deja-publie", "hors-fenetre", "hors-perimetre", "non-verifiable", "doublon", "trop-mineur",
           "plafond-atteint", "exclu-config", "rien-de-neuf", "infirme")
 TITRE_MAX = 72                               # longueur maximale d'un titre de sujet (texte affiché, sans Markdown)

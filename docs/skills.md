@@ -22,7 +22,7 @@ Tous commitent directement sur `main` (pas de branche ni de PR) après ton accor
 
 **But** : choisir ce qui est publié. Le rapport d'un jour = ses sujets au statut `publie`.
 
-**Déroulé** : liste les sujets par statut (`tools/statut.py list`) ; applique ta demande (`set … publie|candidat|mis-de-cote|ecarte`) ; refuse un changement qui casserait une règle (plafond ou minimum d'une catégorie, dépôt inconnu, sujet sans résumé) ; propose d'ajuster « À retenir » ; valide, commite, vérifie en ligne.
+**Déroulé** : liste les sujets par statut (`tools/statut.py list`) ; applique ta demande (`set … publie|candidat|ecarte`) ; refuse un changement qui casserait une règle (plafond ou minimum d'une catégorie, dépôt inconnu, sujet sans résumé) ; propose d'ajuster « À retenir » ; valide, commite, vérifie en ligne.
 
 **Raccourci** : sur https://techradar.reefact.net/dossier/, le bouton « Demander la publication » d'un sujet non publié, ou « Demander le retrait » d'un sujet publié, ouvre une session Claude Code avec la demande pré-remplie ; la session enchaîne avec la notation du sujet (`veille-noter`).
 
@@ -72,6 +72,6 @@ Tous commitent directement sur `main` (pas de branche ni de PR) après ton accor
 
 **But** : interroger ce qui a déjà été vu.
 
-**Commandes** : `tools/build_memory.py --seen <URL>` (avec statut : publié, écarté et pourquoi…), `--due <date>` (rappels de CFP dus), `--reconsiderer` (mis de côté et candidats non publiés).
+**Commandes** : `tools/build_memory.py --seen <URL>` (avec statut : publié, écarté et pourquoi…), `--due <date>` (rappels de CFP dus), `--reconsiderer` (candidats non publiés).
 
 **Exemples** : « est-ce qu'on a déjà parlé de cet article ? », « quels rappels de CFP demain ? ».

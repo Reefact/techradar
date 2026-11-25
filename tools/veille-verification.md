@@ -35,7 +35,7 @@ Le verdict est **binaire**, pour le sujet comme pour chaque affirmation.
 |---|---|
 | `vrai` : le cœur de l'information est prouvé | publiable ; le résumé ne garde **que** les affirmations prouvées |
 | `faux` : l'information est démentie | `ecarte`, motif `infirme` |
-| `indetermine` : ni source fiable, ni revendication constatée par deux sources indépendantes | jamais publié : `mis-de-cote`, revérifié à l'exécution suivante |
+| `indetermine` : ni source fiable, ni revendication constatée par deux sources indépendantes | jamais publié : `candidat`, revérifié en priorité à l'exécution suivante |
 
 Une affirmation non prouvée **sort du résumé** et va dans `retirees`. Une revendication peut rester si elle est formulée comme telle (« le groupe X **revendique** 46 000 comptes ») : le fait vérifié est alors l'existence de la revendication. Pour des chiffres divergents, le résumé dit qui annonce quoi, et `ecarts` le consigne.
 
