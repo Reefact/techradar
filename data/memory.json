@@ -13,7 +13,7 @@
   {
    "date": "2026-11-25",
    "path": "reports/2026/20261125.html",
-   "publies": 8
+   "publies": 9
   }
  ],
  "projets": {
@@ -595,6 +595,13 @@
   },
   {
    "date": "2026-11-25",
+   "id": "s8",
+   "categorie": "securite",
+   "statut": "publie",
+   "titre": "Java4Shell : Rider, ReSharper et les IDE JetBrains à mettre à jour"
+  },
+  {
+   "date": "2026-11-25",
    "id": "c1",
    "categorie": "conferences",
    "statut": "publie",
@@ -911,6 +918,11 @@
   "https://actu17.fr/international/frigos-a-50-degres-dans-700-supermarches-la-justice-francaise-remonte-jusqu-aux-gardiens-de-la-revolution-iraniens.html": {
    "date": "2026-11-23",
    "id": "d1",
+   "statut": "publie"
+  },
+  "https://blog.jetbrains.com/security/2026/11/java4shell-vulnerability/": {
+   "date": "2026-11-25",
+   "id": "s8",
    "statut": "publie"
   },
   "https://blog.modelcontextprotocol.io/posts/mcp-turns-two/": {
