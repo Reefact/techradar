@@ -20,5 +20,5 @@ _(aucun constat : il faut 3 avis concordants)_
 
 ## À confirmer (moins de 3 avis concordants)
 
-- **Pratiques de test de fond (craftsmanship)** : thème très apprécié (5/5), utile (4/5), niveau juste bien, résumé suffisant, bon moment (1 avis, 2026-11-25, DST, sujet non lu, sans note globale). Souvent absentes ou mal mises en place en pratique, d'où l'intérêt. Mais pratiques lourdes : en proposer **régulièrement, pas davantage** (1 avis).
+- **Pratiques de test de fond (craftsmanship)** : sujet noté 5/5 sans avoir lu l'article, thème 5/5, utile 4/5, niveau juste bien, résumé suffisant, bon moment (1 avis, 2026-11-25, DST). Souvent absentes ou mal mises en place en pratique, d'où l'intérêt. Mais pratiques lourdes : en proposer **régulièrement, pas davantage** (1 avis).
 - **martinfowler.com** : source jugée excellente (5/5), mais pas de demande de la suivre davantage (1 avis, 2026-11-25).

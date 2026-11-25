@@ -12,7 +12,7 @@
   "source": "martinfowler.com",
   "statut": "publie",
   "reponses": {
-   "note": null,
+   "note": 5,
    "plus": 3,
    "theme": 5,
    "utile": 4,
@@ -22,7 +22,7 @@
    "moment": true,
    "suivre": false,
    "cause": null,
-   "commentaire": "Pas encore lu (note non donnée). Sujet très intéressant dans le principe : ce genre de tests est souvent absent ou mal mis en place. Pratiques lourdes, donc pas plus de sujets de ce type, mais régulièrement ; idem pour suivre la source."
+   "commentaire": "Pas encore lu, mais le sujet plaît beaucoup (5/5). Très intéressant dans le principe : ce genre de tests est souvent absent ou mal mis en place. Pratiques lourdes, donc pas plus de sujets de ce type, mais régulièrement ; idem pour suivre la source."
   }
  }
 ]
