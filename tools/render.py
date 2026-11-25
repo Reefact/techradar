@@ -388,7 +388,7 @@ def render_dossier(day, cfg, seuil=None):
     jour = titre_jour(day["date"]).removeprefix("Veille technologique du ")
     o = [HEAD.format(title=E("Dossier du " + jour + SUFFIX), date=day["date"], extra_head='\n<meta name="robots" content="noindex, nofollow">'),
          '<div class="wrap dossier">', '<header id="top">', f"  <h1>Dossier du {E(jour)}</h1>",
-         ('  <p class="sub">Retourner au <a href="../../#' + day['date'] + '" target="_top">rapport associé</a>.</p>' if published(day) else '  <p class="sub">Aucun sujet publié ce jour-là : pas de rapport associé.</p>'),
+         ('  <p class="sub">Retourner au <a href="../../#' + day['date'] + '" target="_top">rapport publié</a>.</p>' if published(day) else '  <p class="sub">Aucun sujet publié ce jour-là : pas de rapport publié.</p>'),
          "</header>", ""]
     j = day.get("journal", {})
     rows = []
