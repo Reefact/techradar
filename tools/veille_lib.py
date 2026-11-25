@@ -42,6 +42,32 @@ def categories_de(sujet):
     return [sujet["categorie"]] + ([sujet["categorie_secondaire"]] if sujet.get("categorie_secondaire") else [])
 
 
+def fraicheur_cfg(cfg):
+    """Règles de fraîcheur (config/sujets/perimetre.json → rapport.fraicheur)."""
+    return ((cfg["sujets"].get("sujets/perimetre.json") or {}).get("rapport") or {}).get("fraicheur") or {}
+
+
+def profil_fraicheur(sujet, cfg):
+    """(clé, profil) de fraîcheur d'un sujet : le premier de « priorite » donné par une de ses catégories
+    (config/categories.json → fraicheur) ou un de ses tags (config/tags.json → fraicheur) ; à défaut, « defaut »."""
+    fr = fraicheur_cfg(cfg)
+    profils = fr.get("profils", {})
+    donnes = {(cfg["categories"].get(c) or {}).get("fraicheur") for c in categories_de(sujet) if isinstance(c, str)}
+    donnes |= {(cfg["tags"].get(t if isinstance(t, str) else t.get("tag")) or {}).get("fraicheur") for t in sujet.get("tags", [])}
+    cle = next((k for k in fr.get("priorite", []) if k in donnes), fr.get("defaut"))
+    return cle, profils.get(cle, {})
+
+
+def froid_apres(sujet, cfg, jour):
+    """Seuil (en jours) dépassé par un sujet paru il y a plus de froid_apres_jours de son profil, sinon None."""
+    if not sujet.get("date") or not jour:
+        return None
+    seuil = profil_fraicheur(sujet, cfg)[1].get("froid_apres_jours")
+    if seuil is None or (Date.fromisoformat(jour[:10]) - Date.fromisoformat(sujet["date"][:10])).days <= seuil:
+        return None
+    return seuil
+
+
 def pourquoi_types(cfg):
     """Types de ligne « pourquoi » (config/sujets/perimetre.json → pourquoi.types) : clé → {emoji, prefixe, definition}."""
     return ((cfg["sujets"].get("sujets/perimetre.json") or {}).get("pourquoi") or {}).get("types", {})

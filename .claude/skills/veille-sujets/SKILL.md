@@ -15,6 +15,7 @@ La configuration vit dans `config/` ; la tâche planifiée la relit à chaque ex
 | Ajouter ou redéfinir un badge | `config/tags.json` |
 | Mettre en pause ou réactiver un domaine | `config/sujets.json` (champ `actif`) |
 | Exclusions globales, fenêtre de dates, volumes | `config/sujets/perimetre.json` |
+| Fraîcheur : fenêtre de publication et seuil du repère 🧊 par profil (actualité, IA, fond…), profil d'une catégorie ou d'un tag | profils : `config/sujets/perimetre.json` → `rapport.fraicheur` ; profil d'une catégorie : `fraicheur` dans `config/categories.json` ; d'un tag : `fraicheur` dans `config/tags.json` |
 | Sources à privilégier, à toujours consulter, à ignorer | `config/sujets/sources.json` |
 | **Flux RSS/Atom lus à chaque exécution**, pour tous les sujets (ajouter, retirer un flux) | `config/sujets/flux.json` |
 | Sources de référence (dispensent de vérification), catégories à risque, règle de vérification des affirmations | `config/sujets/sources.json`, bloc `verification` (voir `tools/veille-verification.md`) |

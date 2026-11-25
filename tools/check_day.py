@@ -24,7 +24,7 @@ from datetime import date as Date, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, categories_de, day_files, pourquoi_types, sections_resume, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
+from veille_lib import MOTIFS, ROOT, STATUTS, TITRE_MAX, categories_de, day_files, profil_fraicheur, pourquoi_types, sections_resume, VERDICTS, config, load_json, plain, published, verification_requise  # noqa: E402
 import check_front  # noqa: E402
 import check_report  # noqa: E402
 import render  # noqa: E402
@@ -197,7 +197,6 @@ def check(path, contre=None, partiel=False):
         if places and n_dec > places: E(f"{n_dec} sujets de découverte publiés : {places} places au plus")
     # ----- fraîcheur et anti-doublon (config/sujets/perimetre.json → rapport.fraicheur)
     if not legacy:
-        fr = rap.get("fraicheur", {})
         deja = deja_publies(day)
         for s in pub:
             tg = tagset(s)
@@ -206,14 +205,12 @@ def check(path, contre=None, partiel=False):
                 if vus: E(f"{s['id']} : déjà publié le {deja[vus[0]]} ({vus[0]}) : un sujet ne revient qu'avec le tag mise-a-jour")
             if s["categorie"] == "conferences" or s.get("hors_fenetre") or not s.get("date"):
                 continue
-            cs = {s["categorie"]} | ({s["categorie_secondaire"]} if isinstance(s.get("categorie_secondaire"), str) else set())
-            fond = bool(cs & set(fr.get("fond_categories", [])) or tg & set(fr.get("fond_tags", [])))
-            if cs & set(fr.get("pas_de_fond_categories", [])) or tg & set(fr.get("pas_de_fond_tags", [])):
-                fond = False                                                       # l'IA change trop vite : toujours une actualité
-            ia = bool(cs & set(fr.get("pas_de_fond_categories", [])) or tg & set(fr.get("pas_de_fond_tags", [])))
-            jours = fr.get("fond_jours", 14) if fond else fr.get("ia_jours", 14) if ia else fr.get("actualites_jours", 7)
+            cle, profil = profil_fraicheur(s, cfg)
+            jours = profil.get("fenetre_jours")
+            if jours is None:
+                continue
             limite = (Date.fromisoformat(day["date"]) - timedelta(days=jours)).isoformat()
-            if s["date"] < limite: E(f"{s['id']} : publié mais daté du {s['date']}, au-delà de {jours} jours ({'sujet de fond' if fond else 'actualité'}) : candidat, ou raison dans « hors_fenetre »")
+            if s["date"] < limite: E(f"{s['id']} : publié mais daté du {s['date']}, au-delà de {jours} jours (profil « {profil.get('label', cle)} ») : candidat, ou raison dans « hors_fenetre »")
     rap = per.get("rapport", {})
     ar = day.get("a_retenir", [])
     rule = rap.get("a_retenir", {})

@@ -8,6 +8,7 @@
     "min": 0,
     "max": 2,
     "poids": 3,
+    "fraicheur": "actualite",
     "description": "Sécurité qui touche un développeur .NET et son outillage : failles (Java, .NET, NuGet, npm), attaques, chaîne d'approvisionnement des paquets, correctifs, pratiques et outils. Pour une faille : ce qui est touché, versions, correctif, gravité, « te concerne ? »."
   },
   "dotnet": {
@@ -19,6 +20,7 @@
     "min": 0,
     "max": 4,
     "poids": 3,
+    "fraicheur": "actualite",
     "description": "Runtime, C#, ASP.NET Core, EF Core, bibliothèques, outillage Visual Studio et Rider."
   },
   "ia": {
@@ -30,6 +32,7 @@
     "min": 0,
     "max": 4,
     "poids": 2,
+    "fraicheur": "ia",
     "description": "Modèles et agents de code, MCP, usages concrets pour développeurs, annonces majeures. Jamais vide."
   },
   "craftsmanship": {
@@ -41,6 +44,7 @@
     "min": 0,
     "max": 4,
     "poids": 3,
+    "fraicheur": "fond",
     "description": "Pratiques de développement : tests (TDD, tests de mutation, assertions, données de test), refactoring, revue de code, clean code, gestion des erreurs."
   },
   "architecture": {
@@ -52,6 +56,7 @@
     "min": 0,
     "max": 3,
     "poids": 2,
+    "fraicheur": "fond",
     "description": "Architecture logicielle : événementiel, monolithe modulaire, microservices, patterns, conception d'API (tag API), retours de terrain publiés."
   },
   "outils": {
@@ -63,6 +68,7 @@
     "min": 0,
     "max": 3,
     "poids": 1,
+    "fraicheur": "fond",
     "description": "Découverte d'outils nouveaux ou qui montent : 2 à 3 utiles à un développeur .NET, plus une pépite originale. Jamais vide."
   },
   "distribution": {
@@ -74,6 +80,7 @@
     "min": 0,
     "max": 2,
     "poids": 1,
+    "fraicheur": "actualite",
     "description": "Enseignes de la grande distribution : cyberattaques, SI, incidents, projets tech, IA, retail media."
   },
   "conferences": {
@@ -85,6 +92,7 @@
     "min": 0,
     "max": 3,
     "poids": 2,
+    "fraicheur": "conference",
     "description": "Conférences et appels à propositions (CFP) pertinents ; affichées seulement en cas de déclencheur (voir config/sujets/conferences.json)."
   }
 }

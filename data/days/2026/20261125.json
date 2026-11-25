@@ -647,8 +647,15 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "ajouté à la demande de l'utilisateur : complément du rapport selon les nouvelles règles de remplissage"
+    },
+    {
+     "date": "2026-11-25T19:00+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "correction demandée par l'utilisateur : catégorie secondaire .NET ajoutée"
     }
-   ]
+   ],
+   "categorie_secondaire": "dotnet"
   },
   {
    "id": "s10",

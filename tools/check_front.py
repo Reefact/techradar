@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import ROOT, STATUTS, config, pourquoi_types, projets, sections_resume  # noqa: E402
+from veille_lib import ROOT, STATUTS, config, fraicheur_cfg, froid_apres, profil_fraicheur, pourquoi_types, projets, sections_resume  # noqa: E402
 
 STATUT_LABEL = {"publie": "Publié", "candidat": "Candidat", "ecarte": "Écarté"}
 SPAN = re.compile(r'<span class="([^"]*)"(?: title="([^"]*)")?[^>]*>(.*?)</span>', re.S)
@@ -87,6 +87,21 @@ def check(raw, cfg, nom="page"):
             attendu = f"{types[t]['emoji']} {types[t]['prefixe'].replace('{projet}', nom)} :"
             if not texte(inner).startswith(attendu): E(f"{sid} : « pourquoi » qui ne commence pas par « {attendu} »")
         if re.search(r'<p class="why">', m.group(2)): E(f"{sid} : ligne « pourquoi » sans type déclaré")
+    # ---------- repère 🧊 : posé exactement quand le profil de fraîcheur le demande ----------
+    fd = fraicheur_cfg(cfg).get("froid") or {}
+    for m in re.finditer(r'<details class="card"([^>]*)>\s*<summary class="head">(.*?)</summary>', raw, re.S):
+        a = m.group(1)
+        sid, jour, date = ATTR(a, "id") or "?", ATTR(a, "data-jour"), ATTR(a, "data-date")
+        cs = (ATTR(a, "data-cat") or "").split()
+        if not jour or not cs:
+            continue
+        sujet = {"categorie": cs[0], "categorie_secondaire": cs[1] if len(cs) > 1 else None,
+                 "tags": (ATTR(a, "data-tags") or "").split(), "date": date}
+        seuil = None if re.search(r"\bdata-frais\b", a) else froid_apres(sujet, cfg, jour)
+        vu = re.search(r'<span class="fresh froid" title="([^"]*)"', m.group(2))
+        if seuil is not None and not vu: E(f"{sid} : repère {fd.get('emoji', '🧊')} manquant (paru il y a plus de {seuil} jours, profil « {profil_fraicheur(sujet, cfg)[0]} »)")
+        elif vu and seuil is None: E(f"{sid} : repère {fd.get('emoji', '🧊')} injustifié (seuil du profil « {profil_fraicheur(sujet, cfg)[0]} » non dépassé)")
+        elif vu and not H.unescape(vu.group(1)).startswith(fd.get("aide", "").replace("{jours}", str(seuil))): E(f"{sid} : infobulle du repère {fd.get('emoji', '🧊')} différente de config")
     # ---------- « À retenir » : titres de sections déclarés ----------
     titres = sections_resume(cfg)
     for k, inner in re.findall(r'<h3 class="tl-h" data-section="([^"]*)">(.*?)</h3>', raw, re.S):

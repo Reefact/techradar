@@ -18,7 +18,7 @@ from datetime import date as Date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from veille_lib import (SUFFIX, STATUTS, blocks, config, day_files, inline, load_json, ordered_categories, projets, categories_de, sections_resume, pourquoi_prefixe,  # noqa: E402
+from veille_lib import (SUFFIX, fraicheur_cfg, froid_apres, STATUTS, blocks, config, day_files, inline, load_json, ordered_categories, projets, categories_de, sections_resume, pourquoi_prefixe,  # noqa: E402
                         plain, published, titre_jour)
 
 E = lambda s: html.escape(s or "", quote=True)
@@ -208,17 +208,14 @@ def majuscule(md):
 
 
 def froid_html(s, cfg, jour):
-    """Repère 🧊 d'un sujet d'IA paru il y a plus de N jours (config/sujets/perimetre.json → rapport.fraicheur.froid)."""
-    fr = ((cfg["sujets"].get("sujets/perimetre.json") or {}).get("rapport") or {}).get("fraicheur") or {}
-    fd = fr.get("froid") or {}
-    if not fd or not s.get("date") or not jour:
+    """Repère 🧊 d'un sujet paru il y a plus de froid_apres_jours jours de son profil de fraîcheur
+    (config/sujets/perimetre.json → rapport.fraicheur ; profil calculé par veille_lib.profil_fraicheur)."""
+    seuil = froid_apres(s, cfg, jour)
+    if seuil is None:
         return ""
-    tg = {tag_key(t) for t in s.get("tags", [])}
-    if not (set(categories_de(s)) & set(fr.get("pas_de_fond_categories", [])) or tg & set(fr.get("pas_de_fond_tags", []))):
-        return ""
-    if (Date.fromisoformat(jour[:10]) - Date.fromisoformat(s["date"])).days <= fd.get("apres_jours", 7):
-        return ""
-    return f'<span class="fresh froid" title="{E(fd.get("aide", ""))} (paru le {date_courte(s["date"])})" aria-label="Moins frais">{E(fd.get("emoji", "🧊"))}</span>'
+    fd = fraicheur_cfg(cfg).get("froid") or {}
+    aide = fd.get("aide", "").replace("{jours}", str(seuil))
+    return f'<span class="fresh froid" title="{E(aide)} (paru le {date_courte(s["date"])})" aria-label="Moins frais">{E(fd.get("emoji", "🧊"))}</span>'
 
 
 def card(s, cfg, seuil, dossier=False, date_jour=""):
@@ -230,6 +227,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     attrs = f' data-cat="{E(" ".join(categories_de(s)))}" data-classe="{E(c["classe"])}" data-tags="{E(" ".join(tag_key(t) for t in s.get("tags", [])))}" data-statut="{st}"'
     if frais: attrs += " data-frais"
     if s.get("depot"): attrs += f' data-repo="{E(s["depot"])}"'
+    attrs += f' data-jour="{E(date_jour[:10])}"' if date_jour else ""
     attrs += f' data-ordre="{list(ordered_categories(cats)).index(s["categorie"])}" data-date="{E(s.get("date") or "")}"'
     badges = (statut_badge(s) if dossier else "") + "".join(badge(cats[k]["classe"], cats[k]["label"], cats[k]["description"]) for k in categories_de(s)) \
         + "".join(tag_html(t, tags, icone=True) for t in s.get("tags", [])) + projet_badge(s, cfg)   # catégorie, tags (0 à N), projet (0 ou 1)

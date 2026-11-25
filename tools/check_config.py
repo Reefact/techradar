@@ -65,6 +65,21 @@ def check():
     if fx.exists():
         for f in load_json(fx).get("flux", []):
             if not f.get("nom") or not re.match(r"https?://", f.get("url", "")): add(f"flux.json : flux sans « nom » ou sans « url » http(s) ({f})")
+    fr = ((load_json(CONFIG / "sujets" / "perimetre.json").get("rapport") or {}).get("fraicheur") or {})
+    profils = fr.get("profils", {})
+    if not profils: add("perimetre.json : rapport.fraicheur.profils manquant")
+    if set(fr.get("priorite", [])) != set(profils): add("perimetre.json : fraicheur.priorite doit lister chaque profil une fois")
+    if fr.get("defaut") not in profils: add(f"perimetre.json : fraicheur.defaut « {fr.get('defaut')} » n'est pas un profil")
+    for k, p in profils.items():
+        for f in ("fenetre_jours", "froid_apres_jours"):
+            if p.get(f) is not None and not (isinstance(p[f], int) and p[f] > 0): add(f"perimetre.json : profil « {k} », {f} doit être un entier positif ou null")
+        if p.get("froid_apres_jours") is not None and (p.get("fenetre_jours") is None or p["froid_apres_jours"] >= p["fenetre_jours"]):
+            add(f"perimetre.json : profil « {k} », froid_apres_jours doit être inférieur à fenetre_jours (sinon 🧊 n'apparaît jamais)")
+    if "{jours}" not in (fr.get("froid") or {}).get("aide", ""): add("perimetre.json : fraicheur.froid.aide doit contenir {jours}")
+    for k, c in load_json(CONFIG / "categories.json").items():
+        if c.get("fraicheur") not in profils: add(f"categories.json : « {k} » : fraicheur « {c.get('fraicheur')} » n'est pas un profil de perimetre.json")
+    for k, t in load_json(CONFIG / "tags.json").items():
+        if "fraicheur" in t and t["fraicheur"] not in profils: add(f"tags.json : « {k} » : fraicheur « {t['fraicheur']} » n'est pas un profil de perimetre.json")
     nota = CONFIG / "notation.json"
     if nota.exists():
         qs = load_json(nota).get("questions", [])

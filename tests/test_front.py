@@ -6,6 +6,7 @@ tout libellé, tag, catégorie ou projet qui ne vient pas de config/.
 import copy
 import html
 import json
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -108,10 +109,45 @@ class Front(unittest.TestCase):
     def test_repere_froid_pour_l_ia_ancienne(self):
         day = copy.deepcopy(self.day)
         s = next(x for x in day["sujets"] if x["statut"] == "publie" and x["categorie"] == "ia")
-        s["date"] = "2026-11-10"
+        s["date"] = "2026-11-08"                                            # 15 jours avant le 23 : au-delà de 14
         rapport, _ = self.rendu(day)
         self.assertIn("🧊", rapport.split(f'id="{s["id"]}"')[1].split("</summary>")[0])
+        self.assertIn("plus de 14 jours", rapport.split(f'id="{s["id"]}"')[1].split("</summary>")[0])
         self.assertEqual(self.erreurs([rapport]), [])
+
+    def tete(self, rapport, sid):
+        return rapport.split(f'id="{sid}"')[1].split("</summary>")[0]
+
+    def sujet_seul(self, day, categorie, date, tags=()):
+        s = next(x for x in day["sujets"] if x["statut"] == "publie" and x["categorie"] not in ("conferences",))
+        s.update(categorie=categorie, date=date, tags=list(tags)); s.pop("categorie_secondaire", None)
+        return s
+
+    def test_profils_de_fraicheur_et_repere_froid(self):
+        jour = self.day["date"]
+        il_y_a = lambda j: (__import__("datetime").date.fromisoformat(jour) - __import__("datetime").timedelta(days=j)).isoformat()
+        cas = [("outils", 31, (), True), ("outils", 30, (), False),           # fond : 🧊 au-delà de 30 jours
+               ("ia", 15, (), True), ("ia", 14, (), False),                   # IA : au-delà de 14 jours
+               ("dotnet", 6, (), False),                                       # actualité : jamais
+               ("dotnet", 31, ("rex",), True),                                 # un tag fond impose le profil fond
+               ("outils", 15, ("agents",), True)]                              # agents (IA) l'emporte sur fond
+        for cat, j, tags, attendu in cas:
+            with self.subTest(cat=cat, jours=j, tags=tags):
+                day = copy.deepcopy(self.day)
+                s = self.sujet_seul(day, cat, il_y_a(j), tags)
+                rapport, _ = self.rendu(day)
+                self.assertEqual("🧊" in self.tete(rapport, s["id"]), attendu)
+                self.assertEqual(self.erreurs([rapport]), [])
+
+    def test_repere_froid_controle(self):
+        day = copy.deepcopy(self.day)
+        jour = day["date"]
+        s = self.sujet_seul(day, "outils", (__import__("datetime").date.fromisoformat(jour) - __import__("datetime").timedelta(days=40)).isoformat())
+        rapport, _ = self.rendu(day)
+        manque = re.sub(r'<span class="fresh froid"[^>]*>🧊</span>', "", rapport, count=1)
+        self.assertTrue(any("manquant" in e for e in self.erreurs([manque])))
+        faux = rapport.replace(f'data-cat="outils" data-classe', f'data-cat="dotnet" data-classe', 1)
+        self.assertTrue(any("injustifié" in e for e in self.erreurs([faux])))
 
     def test_tag_non_declare(self):
         rapport, _ = self.rendu()
@@ -320,14 +356,14 @@ class Donnees(unittest.TestCase):
         day["journal"]["verifications"] = [{"nom": f, "resultat": "rien de neuf"} for f in (x["nom"] for x in json.loads((ROOT / "config" / "sujets" / "flux.json").read_text(encoding="utf-8"))["flux"])]
         self.assertFalse(any("n'a pas été lu" in e for e in self.valider(day)))
 
-    def test_ia_jusqua_14_jours_et_categories_vides(self):
+    def test_ia_jusqua_21_jours_et_categories_vides(self):
         day = self.jour_recent()
         day["date"] = "2026-11-26"
         for x in day["sujets"]: x["choix"] = "raison"
         s = next(x for x in day["sujets"] if x["statut"] == "publie" and x["categorie"] == "ia")
-        s["date"] = "2026-11-14"                                            # 12 jours : accepté pour l'IA
+        s["date"] = "2026-11-06"                                            # 20 jours : accepté pour l'IA
         self.assertFalse(any(f"{s['id']} : publié mais daté" in e for e in self.valider(day)))
-        s["date"] = "2026-11-10"                                            # 16 jours : refusé
+        s["date"] = "2026-11-04"                                            # 22 jours : refusé
         self.assertTrue(any(f"{s['id']} : publié mais daté" in e for e in self.valider(day)))
         day["journal"]["recherches"] = {"ia": 9}
         self.assertTrue(any("vide avec 0 requête" in e for e in self.valider(day)))

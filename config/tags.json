@@ -32,6 +32,7 @@
   "ddd": {
     "label": "DDD",
     "classe": "b-ddd",
+    "fraicheur": "fond",
     "description": "Domain-Driven Design : modélisation du domaine, contextes délimités, langage omniprésent, retours de terrain."
   },
   "talk": {
@@ -42,6 +43,7 @@
   "agents": {
     "label": "Agents",
     "classe": "b-ia",
+    "fraicheur": "ia",
     "description": "Agents de code et agents d'IA : outils, méthodes, plateformes et retours d'usage (à distinguer des modèles eux-mêmes)."
   },
   "supply-chain": {
@@ -52,6 +54,7 @@
   "rex": {
     "label": "REX",
     "classe": "b-new",
+    "fraicheur": "fond",
     "description": "Retour d'expérience : une équipe raconte ce qu'elle a fait et ce qu'elle en a appris, chiffres à l'appui si possible."
   }
 }

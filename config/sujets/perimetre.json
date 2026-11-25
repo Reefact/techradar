@@ -22,40 +22,50 @@
     "arbitrage": "Les 15 places vont aux meilleurs sujets non prioritaires, dans la limite des plafonds de config/categories.json (max) ; à intérêt égal, le poids de la catégorie (poids, 3 = le plus important) départage. Les minimums sont à 0 : une catégorie sans rien d'intéressant reste vide.",
     "remplissage": [
       "1. Sujets frais (depuis le rapport précédent, ☄️) : toujours en premier.",
-      "2. Puis, en concurrence pour les places restantes : les candidats des rapports précédents encore dans leur fenêtre de fraîcheur et jamais publiés, et de nouveaux sujets de fond moins frais (jusqu'à 3 mois ; l'IA jusqu'à 14 jours) jamais traités. Les meilleurs l'emportent, d'où qu'ils viennent ; un sujet repris est relu sur sa source et remis à jour, son historique note d'où il vient.",
+      "2. Puis, en concurrence pour les places restantes : les candidats des rapports précédents encore dans leur fenêtre de fraîcheur et jamais publiés, et de nouveaux sujets de fond moins frais (dans la fenêtre de leur profil de fraîcheur) jamais traités. Les meilleurs l'emportent, d'où qu'ils viennent ; un sujet repris est relu sur sa source et remis à jour, son historique note d'où il vient.",
       "Catégories vides d'abord : avant de donner un deuxième ou un troisième sujet à une catégorie, cherche à remplir celles qui n'ont encore rien ce jour-là. Une catégorie (hors conférences) ne reste vide qu'après au moins categorie_vide_recherches_min requêtes dédiées, consignées dans journal.recherches.",
       "À chaque étape, seulement de bons sujets : mieux vaut un rapport plus court qu'un sujet de remplissage."
     ],
     "categorie_vide_recherches_min": 3,
     "fraicheur": {
       "description": "Un sujet déjà publié, quel que soit le jour (tout l'historique : la semaine, le mois, les trois mois précédents…), ne revient qu'avec une vraie nouveauté (tag mise-a-jour) ; les rappels de conférence sont à part. Le plus frais passe d'abord : les sujets plus anciens servent à compléter les jours calmes, jamais à remplir avec du bruit.",
-      "actualites_jours": 7,
-      "actualites": "Actualités (alertes, versions, annonces, incidents) : priorité aux dernières 24 à 48 h ; jusqu'à actualites_jours jours si jamais traitées et s'il reste de la place.",
-      "fond_jours": 90,
-      "fond": "Sujets de fond (catégories fond_categories, ou tags fond_tags) : articles, retours d'expérience, outils qui montent. On privilégie les plus récents, mais un article de moins de fond_jours jours reste publiable s'il est toujours d'actualité et n'a jamais été traité.",
-      "fond_categories": [
-        "craftsmanship",
-        "architecture",
-        "outils"
+      "profils": {
+        "conference": {
+          "label": "conférence",
+          "fenetre_jours": null,
+          "froid_apres_jours": null,
+          "description": "Une conférence n'a pas de fenêtre de date : elle s'affiche quand un déclencheur de config/sujets/conferences.json est atteint (CFP, inscriptions, programme, rappels)."
+        },
+        "actualite": {
+          "label": "actualité",
+          "fenetre_jours": 7,
+          "froid_apres_jours": null,
+          "description": "Alertes, versions, annonces, incidents : priorité aux dernières 24 à 48 h ; jusqu'à fenetre_jours jours si jamais traitées et s'il reste de la place. Jamais de 🧊 : la fenêtre est courte."
+        },
+        "ia": {
+          "label": "IA",
+          "fenetre_jours": 21,
+          "froid_apres_jours": 14,
+          "description": "L'IA change trop vite pour être un sujet de fond : priorité aux 7 derniers jours, puis jusqu'à fenetre_jours jours si des places restent libres et que le sujet n'a jamais été traité ; 🧊 au-delà de froid_apres_jours jours."
+        },
+        "fond": {
+          "label": "sujet de fond",
+          "fenetre_jours": 90,
+          "froid_apres_jours": 30,
+          "description": "Articles, retours d'expérience, outils qui montent : on privilégie les plus récents, mais un sujet reste publiable jusqu'à fenetre_jours jours s'il est toujours d'actualité et n'a jamais été traité ; 🧊 au-delà de froid_apres_jours jours."
+        }
+      },
+      "attribution": "Chaque catégorie de config/categories.json déclare son profil (« fraicheur ») ; un tag de config/tags.json peut en imposer un. Le profil d'un sujet est le premier de « priorite » donné par sa catégorie principale, sa catégorie secondaire ou l'un de ses tags ; à défaut, « defaut ». Calculé par veille_lib.profil_fraicheur, utilisé par le validateur et le rendu.",
+      "priorite": [
+        "conference",
+        "ia",
+        "fond",
+        "actualite"
       ],
-      "fond_tags": [
-        "ddd",
-        "rex"
-      ],
-      "pas_de_fond": "L'IA n'est jamais un sujet de fond : elle change trop vite. Un sujet de catégorie ia (principale ou secondaire) ou tagué agents suit toujours la règle des actualités.",
-      "pas_de_fond_categories": [
-        "ia"
-      ],
-      "pas_de_fond_tags": [
-        "agents"
-      ],
-      "ia_jours": 14,
-      "ia": "L'IA (catégorie ia, principale ou secondaire, ou tag agents) : priorité aux 7 derniers jours (actualites_jours) ; jusqu'à ia_jours jours si des places restent libres et que le sujet n'a jamais été traité.",
+      "defaut": "actualite",
       "froid": {
-        "apres_jours": 7,
         "emoji": "🧊",
-        "aide": "Moins frais : paru il y a plus de 7 jours, retenu parce qu'il n'avait pas encore été traité.",
-        "portee": "IA uniquement (même définition que ia)"
+        "aide": "Moins frais : paru il y a plus de {jours} jours, retenu parce qu'il n'avait pas encore été traité."
       },
       "hors_fenetre": "Au-delà : candidat, sauf raison écrite dans le champ « hors_fenetre » du sujet. Les conférences suivent leurs déclencheurs."
     },
