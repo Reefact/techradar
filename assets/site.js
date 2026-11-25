@@ -193,7 +193,7 @@ const Radar = (() => {
       const a = doc.createElement('a');
       a.className = 'tr-btn ' + (repos.length ? 'code' : 'chat');
       a.target = '_blank'; a.rel = 'noopener';
-      a.innerHTML = ICON[repos.length ? 'code' : 'chat'] + `<span>${repos.length ? 'Claude Code' : 'Claude'}</span>`;
+      a.innerHTML = ICON[repos.length ? 'code' : 'chat'] + `<span>Discuter</span>`;
       a.title = repos.length ? `Ouvre une session Claude Code sur ${repos.join(', ')} avec ce sujet` : 'Ouvre une conversation Claude avec ce sujet';
       if (repos.length) {
         a.href = 'https://claude.ai/code?repositories=' + encodeURIComponent(repos.join(',')) + '&prompt=' + encodeURIComponent(prompt);

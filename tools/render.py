@@ -246,7 +246,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     if dossier and (s.get("choix") or avis_de(date_jour, s["id"])):
         a = avis_de(date_jour, s["id"])
         note = f' <span class="ch-note" title="Ta note pour ce sujet">⭐ ta note : {a["reponses"]["note"]}/5</span>' if a and a.get("reponses", {}).get("note") else ""
-        out.append(f'  <p class="choix"><span class="ch-h">🧭 Pourquoi ce choix</span>{note}'
+        out.append(f'  <p class="choix"><span class="ch-h">⚖️ Pourquoi ce choix</span>{note}'
                    + (f'<br>{inline(s["choix"])}' if s.get("choix") else "") + "</p>")
     if links:
         out.append(f'  <p class="src">{links}</p>')
