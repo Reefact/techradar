@@ -364,7 +364,7 @@ def render_report(day, cfg, seuil=None):
     pub = ordered(published(day), cfg)
     h1 = titre_jour(day["date"])
     o = [HEAD.format(title=E(h1 + SUFFIX), date=day["date"], extra_head=""), '<div class="wrap">', '<header id="top">',
-         f"  <h1>{E(h1)}</h1>", f'  <p class="sub">{inline(day.get("sous_titre", ""))}</p>', "</header>", "",
+         f"  <h1>{E(h1)}</h1>", f'  <p class="sub">Tous les sujets analysés ce jour-là, y compris ceux qui n\'ont pas été retenus, sont dans le <a href="../../dossier/#{day["date"]}" target="_top">dossier du jour</a>.</p>', "</header>", "",
          "<h2>À retenir aujourd'hui</h2>", '<div class="card tldr">']
     o += resume_html(day, cfg)
     o += ["</div>", "", "<h2>Sujets</h2>"] + filters(pub, cfg, seuil) + ['<div class="sum">']
@@ -388,7 +388,7 @@ def render_dossier(day, cfg, seuil=None):
     jour = titre_jour(day["date"]).removeprefix("Veille technologique du ")
     o = [HEAD.format(title=E("Dossier du " + jour + SUFFIX), date=day["date"], extra_head='\n<meta name="robots" content="noindex, nofollow">'),
          '<div class="wrap dossier">', '<header id="top">', f"  <h1>Dossier du {E(jour)}</h1>",
-         '  <p class="sub">Tous les sujets analysés pour ce jour : publiés, candidats, écartés (avec leur motif).</p>',
+         ('  <p class="sub">Retourner au <a href="../../#' + day['date'] + '" target="_top">rapport associé</a>.</p>' if published(day) else '  <p class="sub">Aucun sujet publié ce jour-là : pas de rapport associé.</p>'),
          "</header>", ""]
     j = day.get("journal", {})
     rows = []

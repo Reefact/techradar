@@ -110,7 +110,7 @@ def check(path, contre=None, partiel=False):
     # ----- schéma
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", day.get("date", "")): E("champ « date » absent ou invalide (AAAA-MM-JJ)")
     elif Path(path).stem != day["date"].replace("-", ""): E(f"le nom du fichier ne correspond pas à la date {day['date']}")
-    for f in ("sous_titre", "a_retenir", "sujets", "pied", "executions", "journal"):
+    for f in ("a_retenir", "sujets", "pied", "executions", "journal"):
         if f not in day: E(f"champ « {f} » manquant")
     if "en_bref" in day: E("champ « en_bref » supprimé : chaque brève devient un sujet de sa catégorie")
     ids = set()

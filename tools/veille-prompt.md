@@ -79,7 +79,6 @@ Chemin : `data/days/AAAA/AAAAMMJJ.json`. Exemple et référence : les fichiers e
 - `date` (AAAA-MM-JJ) ; `config` : `{"commit": "<git rev-parse --short HEAD au démarrage>"}`.
 - `executions` : liste ; ajoute `{"type": "planifiee"|"manuelle", "debut": "<ISO avec fuseau>", "note": "…"}` à chaque exécution.
 - `journal` : `{"recherches": {"<clé de catégorie>": <nombre de requêtes>, …}, "pages_ouvertes": <n>, "sources_illisibles": [...], "verifications": [...], "verifications_sources": {"lancees": n, "vrai": n, "faux": n, "indetermine": n}, "decouverte": <n sujets de découverte publiés>, "hypotheses": [...]}`. Lors d'une relance, additionne aux valeurs existantes.
-- `sous_titre` : « Ta veille technologique, dans le cadre de tes missions Reefact » (+ éventuelle hypothèse de couverture).
 - `a_retenir` : le texte « À retenir aujourd'hui ».
   - **Rôle** : un résumé rédigé de **tout** le rapport, comme l'introduction qu'un journaliste écrit pour préparer la lecture. Ce n'est pas une sélection de points forts.
   - **Format** : `[{"section": "<clé>", "paragraphes": ["<Markdown>", …], "sujets": ["<id publiés cités>"]}, …]`. Les titres des sections (emoji et libellé) viennent de la configuration (`config/sujets/perimetre.json` → `rapport.a_retenir`, et `emoji` de `config/categories.json`) : ne les écris jamais.
