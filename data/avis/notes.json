@@ -1,1 +1,28 @@
-[]
+[
+ {
+  "date_avis": "2026-11-25",
+  "jour": "2026-11-24",
+  "id": "cr1",
+  "titre": "Deterministic Simulation Testing : rejouer les bugs distribués",
+  "categories": [
+   "craftsmanship"
+  ],
+  "tags": [],
+  "depot": "",
+  "source": "martinfowler.com",
+  "statut": "publie",
+  "reponses": {
+   "note": null,
+   "plus": 3,
+   "theme": 5,
+   "utile": 4,
+   "niveau": 3,
+   "source": 5,
+   "resume": true,
+   "moment": true,
+   "suivre": false,
+   "cause": null,
+   "commentaire": "Pas encore lu (note non donnée). Sujet très intéressant dans le principe : ce genre de tests est souvent absent ou mal mis en place. Pratiques lourdes, donc pas plus de sujets de ce type, mais régulièrement ; idem pour suivre la source."
+  }
+ }
+]
