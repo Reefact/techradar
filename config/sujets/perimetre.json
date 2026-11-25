@@ -20,6 +20,12 @@
     "volume": "15 sujets publiés au plus hors prioritaires (max_publies), pour un rapport qui se lit en 10 à 15 minutes ; moins les jours calmes, sans jamais remplir.",
     "prioritaires": "Sujets prioritaires : une alerte récente (tag alerte et date postérieure ou égale au rapport précédent, ☄️), quelle que soit sa catégorie, et un rappel de conférence (tag rappel). Ils sont toujours publiés, en plus des 15 : ils ne prennent aucune place aux autres sujets et ne comptent pas dans les plafonds de catégorie. Le total publié peut donc dépasser 15 ces jours-là.",
     "arbitrage": "Les 15 places vont aux meilleurs sujets non prioritaires, dans la limite des plafonds de config/categories.json (max) ; à intérêt égal, le poids de la catégorie (poids, 3 = le plus important) départage. Les minimums sont à 0 : une catégorie sans rien d'intéressant reste vide.",
+    "remplissage": [
+      "1. Sujets frais (depuis le rapport précédent, ☄️) : toujours en premier.",
+      "2. Candidats et sujets mis de côté des rapports précédents (build_memory.py --reconsiderer), s'ils sont encore dans leur fenêtre de fraîcheur et jamais publiés : relus sur leur source et remis à jour avant publication, l'historique note d'où ils viennent.",
+      "3. Si les 15 places ne sont toujours pas remplies : nouvelle recherche de sujets de fond moins frais (jusqu'à 3 mois, jamais l'IA), jamais traités.",
+      "À chaque étape, seulement de bons sujets : mieux vaut un rapport plus court qu'un sujet de remplissage."
+    ],
     "fraicheur": {
       "description": "Un sujet déjà publié, quel que soit le jour (tout l'historique : la semaine, le mois, les trois mois précédents…), ne revient qu'avec une vraie nouveauté (tag mise-a-jour) ; les rappels de conférence sont à part. Le plus frais passe d'abord : les sujets plus anciens servent à compléter les jours calmes, jamais à remplir avec du bruit.",
       "actualites_jours": 7,
