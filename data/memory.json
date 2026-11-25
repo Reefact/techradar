@@ -9,6 +9,11 @@
    "date": "2026-11-24",
    "path": "reports/2026/20261124.html",
    "publies": 19
+  },
+  {
+   "date": "2026-11-25",
+   "path": "reports/2026/20261125.html",
+   "publies": 8
   }
  ],
  "projets": {
@@ -49,6 +54,11 @@
    "date": "2026-11-24",
    "titre": "worker755 : le jeu où tu es le sous-agent d'un manager IA",
    "url": "https://worker755.com"
+  },
+  {
+   "date": "2026-11-25",
+   "titre": "AWS Emulator : un émulateur AWS local, écrit par des agents",
+   "url": "https://www.infoq.com/news/2026/11/aws-emulator-local-testing/"
   }
  ],
  "conferences": [
@@ -68,6 +78,25 @@
     }
    ],
    "last_seen": "2026-11-24",
+   "dates": "Ateliers 31 mai – 2 juin ; conférence 3–4 juin 2027",
+   "place": "Meervaart, Amsterdam",
+   "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)",
+   "cfp_deadlines": [
+    "2026-11-30",
+    "2027-01-16"
+   ]
+  },
+  {
+   "name": "DDD Europe 2027 : rappel, le CFP des ateliers ferme le 30 novembre",
+   "first_seen": "2026-11-25",
+   "reminders_seen": [
+    {
+     "date": "2026-11-25",
+     "label": "J-5",
+     "n": 5
+    }
+   ],
+   "last_seen": "2026-11-25",
    "dates": "Ateliers 31 mai – 2 juin ; conférence 3–4 juin 2027",
    "place": "Meervaart, Amsterdam",
    "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)",
@@ -563,6 +592,304 @@
    "categorie": "ia",
    "statut": "publie",
    "titre": "Bacs à sable externes pour agents de code (Simon Willison)"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "c1",
+   "categorie": "conferences",
+   "statut": "publie",
+   "titre": "DDD Europe 2027 : rappel, le CFP des ateliers ferme le 30 novembre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "n1",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "DocumentExtractionClient : extraire des documents en .NET (préversion)"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i1",
+   "categorie": "ia",
+   "statut": "publie",
+   "titre": "Pando : OpenAI fait tenir Git sous la charge des agents de code"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i2",
+   "categorie": "ia",
+   "statut": "publie",
+   "titre": "MCP a deux ans : Skills over MCP et Events en bêta"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "cr1",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "TDD avec des agents : la méthode EXACT, de l'exemple au test"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "p1",
+   "categorie": "architecture",
+   "statut": "publie",
+   "titre": "Contrats de données : traiter les données comme une API"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "p2",
+   "categorie": "architecture",
+   "statut": "publie",
+   "titre": "Agents de longue durée : l'exécution durable ne suffit pas"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "t1",
+   "categorie": "outils",
+   "statut": "publie",
+   "titre": "AWS Emulator : un émulateur AWS local, écrit par des agents"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "t2",
+   "categorie": "outils",
+   "statut": "candidat",
+   "titre": "DuckDB 2.0 : première version à support long, mode agent dans la CLI"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "c2",
+   "categorie": "conferences",
+   "statut": "candidat",
+   "titre": "Devoxx France 2027 : ouverture du CFP à confirmer"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "s1",
+   "categorie": "securite",
+   "statut": "candidat",
+   "titre": "binary-parser (npm) : injection de JavaScript via les définitions"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i3",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "Anthropic décrit sa revue de code par agents (Claude Code)"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i4",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "Uber : une passerelle MCP pour plus de 800 serveurs"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "n2",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "GitHub Copilot : migrer des applications .NET vers Windows Arm64"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i5",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Claude Ship : Claude approuverait les PR courantes",
+   "motif": "non-verifiable"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i6",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Ternary Bonsai 2.5 27B",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i7",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "GPT-6 : capacités de conception de protéines",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i8",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Multiplication de matrices en Θ(n^2,25)",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i9",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Modèles qui communiquent via des serveurs d'inférence",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i10",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "AWS Strands : cinq modèles de décision ouverts",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i11",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "DeepMind : agents et vérification Lean en calcul quantique",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i12",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "OpenClaw : un an de croissance (entretien)",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "i13",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "The Evolution of Agentic Harnesses : des chaînes au code",
+   "motif": "hors-fenetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "n3",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "Enquête développeurs .NET 2026",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "n4",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "Meziantou : suivre une requête lente avec Aspire et un agent",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "n5",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "AwesomeAssertions.Web 3.0.1",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "n6",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "GitHub : migrations en direct depuis Azure DevOps disponibles",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "n7",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "GitHub : validation des formats de couverture de code",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "n8",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "GitHub : statuts d'issues et tableaux de dépôt",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "s2",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "ScreenConnect : faille critique côté client",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "s3",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "N-able Mail Assure : faille exploitée",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "s4",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "WHMCS : injection SQL sans authentification",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "s5",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "Volant Manticore : porte dérobée KuboShell via IPFS",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "s6",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "Check Point : campagne d'intrusion sur les serveurs de gestion",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "s7",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "Microsoft Agent Framework : paquet PyPI piégé",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "d1",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "titre": "Decathlon : fuite de 163 646 fiches clients chez un prestataire",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "t3",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "titre": "unity-mcp : un pont entre assistants d'IA et Unity",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "t4",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "titre": "Button Sounds : bruitages de boutons pour interfaces",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-25",
+   "id": "cr2",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "titre": "Stryker.NET, Shouldly, AutoFixture, Bogus : vérification des versions",
+   "motif": "rien-de-neuf"
   }
  ],
  "urls": {
@@ -570,6 +897,11 @@
    "date": "2026-11-23",
    "id": "c3",
    "statut": "publie"
+  },
+  "https://2027.devoxx.fr/": {
+   "date": "2026-11-25",
+   "id": "c2",
+   "statut": "candidat"
   },
   "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018": {
    "date": "2026-11-23",
@@ -581,6 +913,11 @@
    "id": "d1",
    "statut": "publie"
   },
+  "https://blog.modelcontextprotocol.io/posts/mcp-turns-two/": {
+   "date": "2026-11-25",
+   "id": "i2",
+   "statut": "publie"
+  },
   "https://blog.nimblepros.com/blogs/ef-core-11-migrations/": {
    "date": "2026-11-23",
    "id": "n6",
@@ -590,6 +927,12 @@
    "date": "2026-11-24",
    "id": "i1",
    "statut": "publie"
+  },
+  "https://buttons.joshwcomeau.com/": {
+   "date": "2026-11-25",
+   "id": "t4",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
   },
   "https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-009.pdf": {
    "date": "2026-11-23",
@@ -609,6 +952,11 @@
   "https://codescene.com/blog/does-code-quality-affect-ai-token-costs": {
    "date": "2026-11-24",
    "id": "cr3",
+   "statut": "publie"
+  },
+  "https://coding-is-like-cooking.info/2026/11/how-to-use-test-driven-development-with-ai-agents-without-lowering-code-quality/": {
+   "date": "2026-11-25",
+   "id": "cr1",
    "statut": "publie"
   },
   "https://devblogs.microsoft.com/dotnet/ai-cross-platform-decision-matrix/": {
@@ -631,10 +979,26 @@
    "id": "n8",
    "statut": "candidat"
   },
+  "https://devblogs.microsoft.com/dotnet/document-extraction-dotnet-preview/": {
+   "date": "2026-11-25",
+   "id": "n1",
+   "statut": "publie"
+  },
+  "https://devblogs.microsoft.com/dotnet/dotnet-developer-survey-2026/": {
+   "date": "2026-11-25",
+   "id": "n3",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
+  },
   "https://devblogs.microsoft.com/dotnet/local-models-dotnet-llama-windows/": {
    "date": "2026-11-23",
    "id": "n3",
    "statut": "publie"
+  },
+  "https://devblogs.microsoft.com/dotnet/modernize-dotnet-apps-for-windows-arm64/": {
+   "date": "2026-11-25",
+   "id": "n2",
+   "statut": "candidat"
   },
   "https://devblogs.microsoft.com/dotnet/nuget-staged-publishing/": {
    "date": "2026-11-23",
@@ -656,6 +1020,11 @@
    "id": "c1",
    "statut": "publie"
   },
+  "https://duckdb.org/2026/10/21/announcing-duckdb-200.html": {
+   "date": "2026-11-25",
+   "id": "t2",
+   "statut": "candidat"
+  },
   "https://event-driven.io/en/make_the_change_easy_make_the_easy_change/": {
    "date": "2026-11-23",
    "id": "cr1",
@@ -676,10 +1045,40 @@
    "id": "i3",
    "statut": "publie"
   },
+  "https://github.blog/changelog/2026-11-19-enterprise-live-migrations-from-azure-devops-generally-available": {
+   "date": "2026-11-25",
+   "id": "n6",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
+  },
+  "https://github.blog/changelog/2026-11-23-code-coverage-uploads-now-flag-invalid-report-formats": {
+   "date": "2026-11-25",
+   "id": "n7",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
+  },
+  "https://github.blog/changelog/2026-11-23-issue-statuses-and-repository-boards-are-in-public-preview": {
+   "date": "2026-11-25",
+   "id": "n8",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
+  },
+  "https://github.com/AwesomeAssertions/AwesomeAssertions/releases": {
+   "date": "2026-11-25",
+   "id": "n5",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
+  },
   "https://github.com/ChromeDevTools/chrome-devtools-mcp": {
    "date": "2026-11-24",
    "id": "t1",
    "statut": "publie"
+  },
+  "https://github.com/CoplayDev/unity-mcp": {
+   "date": "2026-11-25",
+   "id": "t3",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
   },
   "https://github.com/HKUDS/CLI-Anything": {
    "date": "2026-11-24",
@@ -715,6 +1114,12 @@
    "date": "2026-11-24",
    "id": "t5",
    "statut": "candidat"
+  },
+  "https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf": {
+   "date": "2026-11-25",
+   "id": "i8",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
   },
   "https://github.com/zed-industries/gpui": {
    "date": "2026-11-24",
@@ -761,9 +1166,25 @@
    "id": "d1",
    "statut": "publie"
   },
+  "https://lsa-conso.fr/distributeurs-non-alimentaires/mode-sport/decathlon/apres-carrefour-decathlon-cible-par-une-cyberattaque-faisant-fuiter-les-donnees-personnelles-de-163-000-clients.HEQKFRLC65CINF7HEUNHZM5SS4.html": {
+   "date": "2026-11-25",
+   "id": "d1",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
+  },
+  "https://martinfowler.com/articles/data-contracts.html": {
+   "date": "2026-11-25",
+   "id": "p1",
+   "statut": "publie"
+  },
   "https://martinfowler.com/articles/deterministic-simulation-testing.html": {
    "date": "2026-11-24",
    "id": "cr1",
+   "statut": "publie"
+  },
+  "https://martinfowler.com/articles/durable-execution-agents.html": {
+   "date": "2026-11-25",
+   "id": "p2",
    "statut": "publie"
   },
   "https://martinfowler.com/articles/tests-as-data.html": {
@@ -806,6 +1227,12 @@
    "id": "t3",
    "statut": "candidat"
   },
+  "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/": {
+   "date": "2026-11-25",
+   "id": "i7",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
+  },
   "https://openjdk.org/groups/vulnerability/advisories/2026-11-17": {
    "date": "2026-11-23",
    "id": "s4",
@@ -815,6 +1242,12 @@
    "date": "2026-11-24",
    "id": "d4",
    "statut": "publie"
+  },
+  "https://prismml.com/news/bonsai-2-5-27b": {
+   "date": "2026-11-25",
+   "id": "i6",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
   },
   "https://reg.devoxx.fr": {
    "date": "2026-11-23",
@@ -876,6 +1309,17 @@
    "id": "n10",
    "statut": "candidat"
   },
+  "https://thehackernews.com/2026/11/attackers-compromise-microsofts-agent.html": {
+   "date": "2026-11-25",
+   "id": "s7",
+   "statut": "ecarte",
+   "motif": "deja-publie"
+  },
+  "https://thehackernews.com/2026/11/critical-binary-parser-flaw-enables.html": {
+   "date": "2026-11-25",
+   "id": "s1",
+   "statut": "candidat"
+  },
   "https://thehackernews.com/2026/11/google-researcher-shows-how-single-bit.html": {
    "date": "2026-11-24",
    "id": "s7",
@@ -886,10 +1330,28 @@
    "id": "s3",
    "statut": "publie"
   },
+  "https://thehackernews.com/2026/11/hackers-exploit-critical-screenconnect.html": {
+   "date": "2026-11-25",
+   "id": "s2",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
+  },
+  "https://thehackernews.com/2026/11/hackers-exploit-n-able-mailassure-flaw.html": {
+   "date": "2026-11-25",
+   "id": "s3",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
+  },
   "https://thehackernews.com/2026/11/hackers-found-way-around-github-sha.html": {
    "date": "2026-11-24",
    "id": "s8",
    "statut": "publie"
+  },
+  "https://thehackernews.com/2026/11/iran-aligned-volant-manticore-uses-ipfs.html": {
+   "date": "2026-11-25",
+   "id": "s5",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
   },
   "https://thehackernews.com/2026/11/microsoft-fixes-azure-api-management.html": {
    "date": "2026-11-24",
@@ -907,10 +1369,40 @@
    "statut": "ecarte",
    "motif": "hors-perimetre"
   },
+  "https://thehackernews.com/2026/11/whmcs-sql-injection-flaw-could-expose.html": {
+   "date": "2026-11-25",
+   "id": "s4",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
+  },
+  "https://thenewstack.io/anthropic-claude-ship-approvals/": {
+   "date": "2026-11-25",
+   "id": "i5",
+   "statut": "ecarte",
+   "motif": "non-verifiable"
+  },
+  "https://thenewstack.io/aws-strands-decider-v2/": {
+   "date": "2026-11-25",
+   "id": "i10",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
+  },
   "https://thenewstack.io/cognition-devin-bots-management/": {
    "date": "2026-11-23",
    "id": "i4",
    "statut": "publie"
+  },
+  "https://thenewstack.io/deepmind-lean-quantum-verification/": {
+   "date": "2026-11-25",
+   "id": "i11",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
+  },
+  "https://thenewstack.io/openclaw-vincent-koc-interview/": {
+   "date": "2026-11-25",
+   "id": "i12",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
   },
   "https://threatdefence.com/article/java4shell-cve-2026-114938-openjdk-rce-patching-hunting": {
    "date": "2026-11-23",
@@ -942,6 +1434,18 @@
    "id": "d1",
    "statut": "publie"
   },
+  "https://www.greynoise.io/blog/check-point-security-management-servers-intrusion-campaign": {
+   "date": "2026-11-25",
+   "id": "s6",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
+  },
+  "https://www.infoq.com/articles/agentic-ai-architecture-harness-evolution/": {
+   "date": "2026-11-25",
+   "id": "i13",
+   "statut": "ecarte",
+   "motif": "hors-fenetre"
+  },
   "https://www.infoq.com/news/2026/11/agoda-modular-monolith-framework/": {
    "date": "2026-11-24",
    "id": "p1",
@@ -951,6 +1455,16 @@
    "date": "2026-11-23",
    "id": "p1",
    "statut": "publie"
+  },
+  "https://www.infoq.com/news/2026/11/aws-emulator-local-testing/": {
+   "date": "2026-11-25",
+   "id": "t1",
+   "statut": "publie"
+  },
+  "https://www.infoq.com/news/2026/11/claude-code-review": {
+   "date": "2026-11-25",
+   "id": "i3",
+   "statut": "candidat"
   },
   "https://www.infoq.com/news/2026/11/compute-engine-api-versioning/": {
    "date": "2026-11-24",
@@ -966,6 +1480,16 @@
    "date": "2026-11-23",
    "id": "i2",
    "statut": "publie"
+  },
+  "https://www.infoq.com/news/2026/11/openai-git-pando/": {
+   "date": "2026-11-25",
+   "id": "i1",
+   "statut": "publie"
+  },
+  "https://www.infoq.com/news/2026/11/uber-mcp-gateway-ai-agents/": {
+   "date": "2026-11-25",
+   "id": "i4",
+   "statut": "candidat"
   },
   "https://www.it-connect.fr/patch-tuesday-novembre-2026-recapitulatif/": {
    "date": "2026-11-23",
@@ -991,6 +1515,12 @@
    "date": "2026-11-23",
    "id": "d1",
    "statut": "publie"
+  },
+  "https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being": {
+   "date": "2026-11-25",
+   "id": "i9",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
   },
   "https://www.lsa-conso.fr/distributeurs-alimentaires/casino/monoprix/cyberattaque-en-grande-distribution-pres-de-500-magasins-concernes-jusqua-200-000-de-pertes-par-hypermarche.XIAWZQOVLBGVNPXHNFFMIH7OMM.html": {
    "date": "2026-11-23",
