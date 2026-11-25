@@ -230,8 +230,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     if s.get("details"):
         out.append('  <dl class="kv">' + "".join(f"<dt>{E(k)}</dt><dd>{inline(v)}</dd>" for k, v in s["details"].items()) + "</dl>")
     if dossier and st == "ecarte":
-        motif = MOTIF_LABEL.get(s.get("motif"), s.get("motif") or "")
-        out.append(f'  <p class="why ecarte">Écarté : {E(motif)}{" · " + inline(s["note"]) if s.get("note") else ""}</p>')
+        pass                                                   # le motif est dans la zone de décision, en bas du bloc
     elif s.get("pourquoi"):
         emoji, prefixe = pourquoi_prefixe(s, cfg)
         out.append(f'  <p class="why" data-type="{E(s["pourquoi"]["type"])}"><span class="why-p"><span class="why-e" aria-hidden="true">{E(emoji)}</span> '
@@ -247,12 +246,14 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
                "Demander la publication</button>")
     if links:
         out.append(f'  <p class="src">{links}</p>')
-    if dossier and (s.get("choix") or avis_de(date_jour, s["id"])):
+    if dossier and (s.get("choix") or avis_de(date_jour, s["id"]) or st == "ecarte"):
         a = avis_de(date_jour, s["id"])
         note = f' <span class="ch-note" title="Ta note pour ce sujet">⭐ ta note : {a["reponses"]["note"]}/5</span>' if a and a.get("reponses", {}).get("note") else ""
         texte = re.sub(r"^(Publié(?: en priorité)?|Candidat|Mis de côté|Écarté)\s*:\s*", "", s.get("choix") or "")
-        out.append(f'  <div class="choix"><p class="ch-h">⚖️ {CHOIX_TITRE.get(st, "Pourquoi ce statut")}{note}</p>'
-                   + (f'<p>{inline(majuscule(texte))}</p>' if texte else "") + "</div>")
+        motif = f" ({MOTIF_LABEL.get(s.get('motif'), s.get('motif'))})" if st == "ecarte" and s.get("motif") else ""
+        out.append(f'  <div class="choix"><p class="ch-h">⚖️ {CHOIX_TITRE.get(st, "Pourquoi ce statut")}{E(motif)}{note}</p>'
+                   + (f'<p>{inline(majuscule(texte))}</p>' if texte else "")
+                   + (f'<p>{inline(majuscule(s["note"]))}</p>' if st == "ecarte" and s.get("note") else "") + "</div>")
     out.append(f'  <div class="foot">{ask}<span class="actions"></span>'
                f'<a class="fold" href="#{E(s["id"])}" title="Replier ce sujet" aria-label="Replier ce sujet">⌃</a></div>')
     out += ["  </div>", "</details>"]
