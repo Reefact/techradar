@@ -116,7 +116,7 @@ details.card[open] .foot{position:sticky;bottom:0;z-index:2;background:var(--pan
 .fbar button:hover{border-color:var(--accent)}
 .empty{color:var(--mute);font-style:italic}
 /* Dossier */
-.dz-stats{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+
 .dz-journal{font-size:.88rem}
 .dz-journal>summary{cursor:pointer;padding:12px 16px;color:var(--mute)}
 .dz-journal dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:0;padding:0 16px 14px}

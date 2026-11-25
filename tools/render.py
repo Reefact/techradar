@@ -386,12 +386,10 @@ MOTIF_LABEL = {"deja-publie": "déjà publié", "hors-fenetre": "hors fenêtre d
 def render_dossier(day, cfg, seuil=None):
     seuil = seuil or seuil_frais(day)
     allt = ordered(day.get("sujets", []), cfg, dossier=True)
-    count = {st: sum(1 for s in allt if s.get("statut") == st) for st in STATUTS}
     jour = titre_jour(day["date"]).removeprefix("Veille technologique du ")
     o = [HEAD.format(title=E("Dossier du " + jour + SUFFIX), date=day["date"], extra_head='\n<meta name="robots" content="noindex, nofollow">'),
          '<div class="wrap dossier">', '<header id="top">', f"  <h1>Dossier du {E(jour)}</h1>",
          '  <p class="sub">Tous les sujets analysés pour ce jour : publiés, candidats, mis de côté, écartés (avec leur motif).</p>',
-         '  <div class="dz-stats">' + "".join(badge(STATUT_CLASSE[st], f"{STATUT_LABEL[st]} : {count[st]}", STATUT_AIDE[st]) for st in STATUTS) + "</div>",
          "</header>", ""]
     j = day.get("journal", {})
     rows = []
