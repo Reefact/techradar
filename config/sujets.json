@@ -12,6 +12,11 @@
       "actif": true
     },
     {
+      "chemin": "sujets/flux.json",
+      "role": "Flux (RSS/Atom) lus à chaque exécution, pour tous les sujets",
+      "actif": true
+    },
+    {
       "chemin": "sujets/recherche/securite.json",
       "role": "Recherche : sécurité (et pannes à signaler)",
       "actif": true

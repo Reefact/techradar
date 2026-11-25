@@ -61,6 +61,10 @@ def check():
     for nom, d in (("categories.json", cats), ("tags.json", tags)):
         for k, v in d.items():
             if v.get("classe") and v["classe"] not in definies: add(f"{nom} : classe « {v['classe']} » de « {k} » absente de assets/report.css (badge sans couleur)")
+    fx = CONFIG / "sujets" / "flux.json"
+    if fx.exists():
+        for f in load_json(fx).get("flux", []):
+            if not f.get("nom") or not re.match(r"https?://", f.get("url", "")): add(f"flux.json : flux sans « nom » ou sans « url » http(s) ({f})")
     nota = CONFIG / "notation.json"
     if nota.exists():
         qs = load_json(nota).get("questions", [])

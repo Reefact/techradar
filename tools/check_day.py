@@ -247,6 +247,11 @@ def check(path, contre=None, partiel=False):
         for item in confs.get("toujours_suivre", []) + [x for f, d in sj.items() if "/recherche/" in f for x in d.get("toujours_suivre", [])]:
             n = item["nom"].lower()
             if not any(n in v for v in verified): E(f"journal : « {item['nom']} » est toujours suivi mais n'a pas été vérifié (ajouter une entrée dans journal.verifications)")
+    flux_cfg = sj.get("sujets/flux.json", {})
+    if not legacy and day.get("date", "") >= flux_cfg.get("depuis", "9999"):
+        vus = {plain(v.get("nom", "")).lower() for v in j.get("verifications", [])}
+        for f in flux_cfg.get("flux", []):
+            if f["nom"].lower() not in vus: E(f"journal : le flux « {f['nom']} » (config/sujets/flux.json) n'a pas été lu (ajouter une entrée dans journal.verifications)")
     for item in confs.get("exclure", []) + [x for f, d in sj.items() if "/recherche/" in f for x in d.get("exclure", [])] + proj.get("exclure", []):
         n = item["nom"].lower()
         for s in pub:

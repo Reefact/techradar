@@ -26,6 +26,8 @@ Ta production n'est PAS une page HTML : c'est un **fichier de données du jour**
 
 ## 2. Recherche
 
+**Flux du jour** : lis d'abord **chaque flux** de `config/sujets/flux.json` (RSS ou Atom, avec WebFetch ou `curl`) et examine chaque article paru depuis le rapport précédent : il devient un sujet de sa catégorie s'il le mérite (une faille qui touche ton outillage est une alerte, souvent la suite d'un sujet déjà publié : tag `mise-a-jour`), sinon un candidat ou un écarté avec son motif. Consigne chaque flux dans `journal.verifications` (`{"nom": "<nom du flux>", "resultat": "n article(s) examiné(s)"}` ou « rien de neuf ») : le validateur le vérifie.
+
 Pour chaque fichier de recherche actif (`config/sujets/recherche/*.json`), pour les outils (`outils.json`), tes projets (`projets.json`) et les conférences (`conferences.json`) : applique la consigne, parcours les sources, et :
 - **toujours suivre** : vérifie chaque élément listé à chaque exécution ; s'il n'y a rien de neuf, consigne-le dans `journal.verifications` (`{"nom": …, "resultat": "rien de neuf"}`) au lieu de l'afficher ;
 - **exclure** : n'affiche jamais un élément exclu ; s'il est trouvé, consigne-le comme sujet `ecarte`, motif `exclu-config`.

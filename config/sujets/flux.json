@@ -1,0 +1,16 @@
+{
+  "description": "Flux (RSS ou Atom) lus à CHAQUE exécution, quels que soient les sujets du jour : chaque article paru depuis le rapport précédent est examiné, et devient un sujet de sa catégorie s'il le mérite (sinon candidat ou écarté, avec son motif). Chaque flux est consigné dans journal.verifications ({\"nom\": …, \"resultat\": \"n article(s) examiné(s)\" ou \"rien de neuf\"}).",
+  "depuis": "2026-11-26",
+  "flux": [
+    {
+      "nom": "JetBrains Security",
+      "url": "https://blog.jetbrains.com/security/feed/",
+      "pour": "Avis de sécurité de JetBrains : Rider, ReSharper, IntelliJ, Toolbox, Gateway. Une faille qui touche ton IDE est une alerte."
+    },
+    {
+      "nom": "JetBrains .NET Tools",
+      "url": "https://blog.jetbrains.com/dotnet/feed/",
+      "pour": "Rider, ReSharper, dotTrace, dotMemory : nouvelles versions et annonces qui touchent ton outillage .NET."
+    }
+  ]
+}

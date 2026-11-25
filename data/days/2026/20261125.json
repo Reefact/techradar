@@ -8,6 +8,11 @@
    "type": "planifiee",
    "debut": "2026-11-25T06:07+01:00",
    "note": "création : recherche web et lecture de sources ; relecture par sous-agent, 26 corrections appliquées"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-25T15:30+01:00",
+   "note": "ajout de l'alerte JetBrains sur Java4Shell (s8), manquée par la tâche du matin ; flux JetBrains ajoutés à config/sujets/flux.json pour les prochaines exécutions"
   }
  ],
  "journal": {
@@ -58,9 +63,11 @@
   {
    "section": "urgent",
    "paragraphes": [
+    "Java4Shell revient, et cette fois il touche ton IDE : JetBrains confirme que [Rider, ReSharper et ses autres outils](#s8) embarquent un OpenJDK vulnérable. Mets-les à jour, ou ajoute l'option `-XX:-UseBASE64Intrinsics` en attendant.",
     "Rappel : l'appel à propositions (CFP) des ateliers de [DDD Europe 2027](#c1) ferme le 30 novembre, dans cinq jours ; celui de la conférence reste ouvert jusqu'au 16 janvier."
    ],
    "sujets": [
+    "s8",
     "c1"
    ]
   },
@@ -113,6 +120,45 @@
   }
  ],
  "sujets": [
+  {
+   "id": "s8",
+   "categorie": "securite",
+   "categorie_secondaire": "dotnet",
+   "statut": "publie",
+   "tags": [
+    "alerte",
+    "mise-a-jour"
+   ],
+   "titre": "Java4Shell : Rider, ReSharper et les IDE JetBrains à mettre à jour",
+   "date": "2026-11-24",
+   "resume": "**Mise à jour** du sujet Java4Shell publié le 23 novembre : JetBrains confirme que ses outils sont touchés. Tous les IDE (dont **Rider**), **ReSharper**, la Toolbox App et Gateway embarquent la JetBrains Runtime, basée sur OpenJDK. Une IDE n'est exposée que sur un processeur x86-64 doté d'AVX-512 VBMI, et seulement si elle décode du Base64 fourni par un attaquant ; aucune exploitation contre les IDE n'est connue.\n\nLes mises à jour ajoutent l'option `-XX:-UseBASE64Intrinsics` aux options de la machine virtuelle, en attendant une JetBrains Runtime corrigée. À défaut, on peut l'ajouter soi-même (Help | Edit Custom VM Options). Attention : la mise à jour de l'IDE ne couvre pas les JDK de tes projets (Gradle, Maven, tests), à mettre à jour séparément.",
+   "details": {
+    "Touché": "Rider, ReSharper, IntelliJ IDEA et les autres IDE JetBrains, Toolbox App, Gateway (JBR 17.0.6 et plus, 21, 25), sur x86-64 avec AVX-512 VBMI ; ARM64 et Apple Silicon non touchés",
+    "Correctif": "Rider 2026.3.0.2, 2026.2.5.1, 2026.1.5.4, 2025.3.6.4 ou 2025.2.6.3 ; ReSharper 2026.3.0.2, 2026.2.5.1, 2026.1.5.4, 2025.3.5.4 ou 2025.2.6.3 ; Toolbox App 3.9.2",
+    "Gravité": "Critique pour OpenJDK (CVE-2026-114938) ; pour une IDE, exposition limitée (Base64 contrôlé par un attaquant), aucune exploitation connue",
+    "Action": "Mettre à jour Rider et ReSharper, ou ajouter `-XX:-UseBASE64Intrinsics` aux options de la VM ; mettre aussi à jour les JDK des projets Java"
+   },
+   "pourquoi": {
+    "type": "compte",
+    "texte": "Rider et ReSharper font partie de ton outillage quotidien : la faille Java4Shell, qui semblait ne concerner que tes services Java, touche aussi ton IDE."
+   },
+   "sources": [
+    {
+     "texte": "Source : JetBrains Security Blog, 24 novembre 2026",
+     "url": "https://blog.jetbrains.com/security/2026/11/java4shell-vulnerability/"
+    }
+   ],
+   "meta": "JetBrains · 24 nov. 2026 · te concerne : oui (Rider, ReSharper)",
+   "choix": "Publié en priorité : alerte récente (☄️) qui touche directement ton IDE (Rider, ReSharper) ; suite du sujet Java4Shell du 23 novembre, d'où le tag mise à jour. Ajouté après coup : la tâche du matin ne l'avait pas trouvé.",
+   "historique": [
+    {
+     "date": "2026-11-25T15:30+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté à la demande de l'utilisateur : avis JetBrains du 24 novembre, manqué par la tâche du matin"
+    }
+   ]
+  },
   {
    "id": "c1",
    "categorie": "conferences",
