@@ -17,7 +17,7 @@
   {
    "type": "manuelle",
    "debut": "2026-11-25T17:30+01:00",
-   "note": "complément selon les nouvelles règles de remplissage (catégories vides d'abord, IA jusqu'à 14 jours, sujets de fond) : 8 sujets ajoutés, 6 candidats ; sujets déjà publiés inchangés"
+   "note": "complément selon les nouvelles règles de remplissage (catégories vides d'abord, IA jusqu'à 14 jours, sujets de fond) : 8 sujets ajoutés, 6 candidats ; sujets déjà publiés inchangés ; puis correctif critique GitLab (s10), repéré dans le nouveau flux"
   }
  ],
  "journal": {
@@ -50,6 +50,10 @@
    {
     "nom": "Devoxx France 2027",
     "resultat": "CFP annoncé le 23 nov., non confirmé"
+   },
+   {
+    "nom": "GitLab Patch Releases",
+    "resultat": "1 article examiné (correctif critique du 20 novembre, publié)"
    }
   ],
   "verifications_sources": {
@@ -73,10 +77,12 @@
    "section": "urgent",
    "paragraphes": [
     "Java4Shell revient, et cette fois il touche ton IDE : JetBrains confirme que [Rider, ReSharper et ses autres outils](#s8) embarquent un OpenJDK vulnérable. Mets-les à jour, ou ajoute l'option `-XX:-UseBASE64Intrinsics` en attendant.",
+    "Si tu héberges un GitLab, passe-le en [19.6.1, 19.5.8 ou 19.4.10](#s10) : le correctif critique du 20 novembre corrige une faille du Ruby embarqué qui peut permettre une exécution de code à distance.",
     "Rappel : l'appel à propositions (CFP) des ateliers de [DDD Europe 2027](#c1) ferme le 30 novembre, dans cinq jours ; celui de la conférence reste ouvert jusqu'au 16 janvier."
    ],
    "sujets": [
     "s8",
+    "s10",
     "c1"
    ]
   },
@@ -641,6 +647,44 @@
      "statut": "publie",
      "par": "utilisateur",
      "note": "ajouté à la demande de l'utilisateur : complément du rapport selon les nouvelles règles de remplissage"
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "categorie": "securite",
+   "statut": "publie",
+   "tags": [
+    "alerte"
+   ],
+   "titre": "GitLab : correctif critique pour une faille de Ruby (auto-hébergé)",
+   "date": "2026-11-20",
+   "resume": "GitLab a publié en urgence les versions **19.6.1, 19.5.8 et 19.4.10** de GitLab CE et EE, et recommande de mettre à jour **immédiatement** toutes les installations auto-hébergées. GitLab.com et GitLab Dedicated sont déjà corrigés.\n\nLe correctif principal (CVE-2026-132825) met à jour le Ruby embarqué : la conversion de casse d'une chaîne forgée peut provoquer une écriture hors limites sur le tas. Selon l'équipe sécurité de Ruby, la faille peut permettre une exécution de code à distance dans certains cas. Les autres failles de l'avis Ruby sur Regexp et String sont aussi corrigées.\n\nLes paquets Linux et images officiels embarquent déjà le Ruby corrigé ; une installation compilée depuis les sources doit être reconstruite avec ce Ruby. Pas de nouvelle migration : la mise à jour se fait sans interruption sur un déploiement multi-nœuds.",
+   "details": {
+    "Touché": "GitLab CE/EE auto-hébergé : toutes les versions avant 19.4.10, 19.5 avant 19.5.8, 19.6 avant 19.6.1",
+    "Correctif": "19.6.1, 19.5.8 ou 19.4.10 ; GitLab.com et Dedicated déjà corrigés",
+    "Gravité": "Critique (correctif hors calendrier) ; exécution de code à distance possible selon l'équipe Ruby",
+    "Action": "Mettre à jour toute instance GitLab auto-hébergée ; reconstruire avec le Ruby corrigé si GitLab est compilé depuis les sources"
+   },
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si toi ou un client héberge son propre GitLab, c'est une mise à jour à faire tout de suite ; sur GitLab.com, rien à faire."
+   },
+   "sources": [
+    {
+     "texte": "Source : GitLab, 20 nov. 2026",
+     "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-6-1-released/"
+    }
+   ],
+   "meta": "GitLab · 20 nov. 2026 · te concerne : si GitLab auto-hébergé",
+   "verification_non_requise": "correctif annoncé par l'éditeur lui-même (GitLab)",
+   "choix": "Publié : correctif critique de la semaine sur un outil de ta chaîne de développement, annoncé par l'éditeur ; repéré dans le nouveau flux GitLab, dernière place du rapport.",
+   "historique": [
+    {
+     "date": "2026-11-25T18:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajouté à la demande de l'utilisateur, repéré dans le flux des correctifs GitLab"
     }
    ]
   },

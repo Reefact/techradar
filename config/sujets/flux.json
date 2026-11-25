@@ -41,6 +41,11 @@
       "nom": "Blog NuGet",
       "url": "https://devblogs.microsoft.com/nuget/feed/",
       "pour": "Évolutions de NuGet et de nuget.org, dont la sécurité de la chaîne d'approvisionnement."
+    },
+    {
+      "nom": "Microsoft Security Update Guide (MSRC)",
+      "url": "https://api.msrc.microsoft.com/update-guide/rss",
+      "pour": "Failles corrigées par Microsoft. Flux très large (Windows, Office…) : ne regarder que .NET, ASP.NET Core, Visual Studio, VS Code, NuGet et Azure DevOps ; ignorer le reste sans le consigner comme sujet."
     }
   ],
   "regles": [
