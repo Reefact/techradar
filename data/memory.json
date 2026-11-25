@@ -13,7 +13,7 @@
   {
    "date": "2026-11-25",
    "path": "reports/2026/20261125.html",
-   "publies": 16
+   "publies": 17
   }
  ],
  "projets": {
@@ -720,6 +720,13 @@
   },
   {
    "date": "2026-11-25",
+   "id": "s10",
+   "categorie": "securite",
+   "statut": "publie",
+   "titre": "GitLab : correctif critique pour une faille de Ruby (auto-hébergé)"
+  },
+  {
+   "date": "2026-11-25",
    "id": "t2",
    "categorie": "outils",
    "statut": "candidat",
@@ -1181,6 +1188,11 @@
   "https://devoxxfr2027.cfp.dev": {
    "date": "2026-11-23",
    "id": "c1",
+   "statut": "publie"
+  },
+  "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-6-1-released/": {
+   "date": "2026-11-25",
+   "id": "s10",
    "statut": "publie"
   },
   "https://duckdb.org/2026/10/21/announcing-duckdb-200.html": {
