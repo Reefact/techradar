@@ -307,6 +307,26 @@ def check(path, contre=None, partiel=False):
             if k == "conferences" or any(k in categories_de(s) for s in pub): continue
             n = (j.get("recherches") or {}).get(k, 0)
             if n < mini: E(f"catégorie « {c['label']} » vide avec {n} requête(s) dédiée(s) : au moins {mini} avant de la laisser vide (journal.recherches)")
+    # ----- effort de recherche : minimum par catégorie, seconde passe avant de déclarer un jour calme (rapport.recherche)
+    rch = rap.get("recherche") or {}
+    if not legacy and not partiel and day.get("date", "") >= rch.get("depuis", "9999"):
+        cles = [k for k in cats if k != "conferences"]
+        mini = rch.get("requetes_min_par_categorie", 0)
+        for k in cles:
+            n = (j.get("recherches") or {}).get(k, 0)
+            if n < mini: E(f"journal : {n} requête(s) pour « {cats[k]['label']} », au moins {mini} par catégorie (journal.recherches)")
+        seuil_calme = (rap.get("intemporels") or {}).get("seuil_jour_calme")
+        passes = j.get("passes") or []
+        if not isinstance(passes, list) or not all(isinstance(x, dict) and isinstance(x.get("recherches"), dict) for x in passes):
+            E("journal : « passes » doit être une liste de {\"recherches\": {\"<catégorie>\": n}}")
+        elif seuil_calme is not None and len([s for s in pub if s not in prio]) < seuil_calme:
+            if len(passes) < 2:
+                E(f"jour calme ({len([s for s in pub if s not in prio])} sujets hors prioritaires, moins de {seuil_calme}) sans seconde passe de recherche (journal.passes) : "
+                  "relance une vague de recherche avec d'autres angles avant de conclure")
+            else:
+                m2 = rch.get("seconde_passe_requetes_min", 0)
+                manque = [cats[k]["label"] for k in cles if (passes[1]["recherches"].get(k, 0)) < m2]
+                if manque: E(f"seconde passe : moins de {m2} requêtes pour {', '.join(manque)} (journal.passes[1].recherches)")
     flux_cfg = sj.get("sujets/flux.json", {})
     if not legacy and day.get("date", "") >= flux_cfg.get("depuis", "9999"):
         vus = {plain(v.get("nom", "")).lower() for v in j.get("verifications", [])}

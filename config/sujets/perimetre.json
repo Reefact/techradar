@@ -35,6 +35,12 @@
       ],
       "regle": "Dernier recours des jours calmes : seulement si, après les sujets frais et les reprises de candidats, moins de seuil_jour_calme sujets non prioritaires sont publiés. Alors, et seulement alors, cherche des articles de conception de référence, quelle que soit leur date (billets de fond, chapitres, essais, retours d'expérience détaillés) dans les catégories listées, et publie-en au plus max_par_jour, avec le tag « intemporel ». Chacun doit n'avoir jamais été publié (vérifie la mémoire, y compris l'URL) et rester juste aujourd'hui ; son « choix » dit pourquoi il ne vieillit pas. Un jour qui atteint le seuil n'en cherche pas. Les recherches vont dans journal.recherches de leur catégorie."
     },
+    "recherche": {
+      "depuis": "2026-11-27",
+      "requetes_min_par_categorie": 6,
+      "seconde_passe_requetes_min": 3,
+      "regle": "Première passe : au moins requetes_min_par_categorie requêtes distinctes par catégorie (hors conférences, qui suivent leurs déclencheurs). Un jour n'est déclaré calme qu'après une seconde passe : si la première donne moins de intemporels.seuil_jour_calme sujets publiables hors prioritaires, lance une deuxième vague de recherche (sous-agents) avec des angles différents (autres requêtes, autres sources, sujets de fond dans leur fenêtre), au moins seconde_passe_requetes_min requêtes par catégorie hors conférences, avant les reprises et les sujets intemporels. Chaque passe est consignée dans journal.passes ([{\"recherches\": {\"<catégorie>\": n}}, …]) ; journal.recherches en fait le total. Vérifié par check_day.py."
+    },
     "reprises": {
       "depuis": "2026-11-27",
       "regle": "Les candidats du rapport précédent encore dans leur fenêtre de fraîcheur et jamais publiés sont réexaminés à chaque exécution, en concurrence avec les nouveaux sujets (remplissage, étape 2). Un jour calme (moins de intemporels.seuil_jour_calme sujets publiés hors prioritaires), chacun doit figurer dans le fichier du jour : repris (publié, historique « repris du rapport du AAAA-MM-JJ »), toujours candidat, ou écarté pour un motif valable. « rien-de-neuf » ne vaut jamais pour un candidat : il n'a pas besoin de nouveauté pour être publié. Les candidats plus anciens (build_memory.py --reconsiderer) complètent les jours calmes. Vérifié par check_day.py."
