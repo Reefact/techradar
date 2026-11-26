@@ -1,6 +1,0 @@
-{
-  "date_cible": "2026-11-26",
-  "consignes": "Jour calme (7 sujets non prioritaires publiés) : applique la règle rapport.intemporels de config/sujets/perimetre.json. Cherche 1 ou 2 articles de conception de référence, quelle que soit leur date, en Craftsmanship ou Architecture, avec le tag « intemporel », jamais publiés (vérifie la mémoire). Inclus le blog de Mathias Verraes (flux https://verraes.net/feed.atom) parmi les sources. Les trouvailles restent candidates, comme pour toute relance.",
-  "creee_le": "2026-11-26T08:38:38+01:00",
-  "par": "utilisateur (skill veille-regenerer)"
-}

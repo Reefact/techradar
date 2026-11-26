@@ -8,21 +8,26 @@
    "type": "planifiee",
    "debut": "2026-11-26T06:07+01:00",
    "note": "création : recherche web déléguée à trois sous-agents, lecture des flux ; relecture par sous-agent, 13 corrections appliquées"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-26T09:20+01:00",
+   "note": "relance : règle des sujets intemporels et nouveaux flux (Verraes, Pierrain) ; 3 candidats, 2 écartés ; relecture par sous-agent, 5 corrections appliquées ; p5 et cr6 publiés à la demande de l'utilisateur"
   }
  ],
  "journal": {
   "recherches": {
    "securite": 10,
    "dotnet": 8,
-   "ia": 10,
-   "architecture": 7,
-   "craftsmanship": 7,
+   "ia": 11,
+   "architecture": 9,
+   "craftsmanship": 9,
    "distribution": 6,
    "outils": 8,
    "conferences": 7,
    "projets": 2
   },
-  "pages_ouvertes": 65,
+  "pages_ouvertes": 72,
   "sources_illisibles": [
    "bleepingcomputer.com (403)",
    "neowin.net (403)",
@@ -34,7 +39,8 @@
    "prague.updateconference.net (JavaScript)",
    "CERT-FR CTI-009 (PDF illisible)",
    "changelog Claude Code (tronqué, 2.1.323 non lu)",
-   "Reddit r/dotnet et Lobsters (aucune page directe)"
+   "Reddit r/dotnet et Lobsters (aucune page directe)",
+   "medium.com (page de contrôle anti-robot ; texte lu dans le flux RSS)"
   ],
   "verifications": [
    {
@@ -84,6 +90,14 @@
    {
     "nom": "DDD Europe 2027",
     "resultat": "CFP ateliers J-4, conférence 16 janv. 2027"
+   },
+   {
+    "nom": "Blog de Mathias Verraes",
+    "resultat": "1 article examiné (keynote du 8 nov., sans contenu)"
+   },
+   {
+    "nom": "Thomas Pierrain (Medium)",
+    "resultat": "5 articles examinés (1 candidat, 4 hors fenêtre)"
    }
   ],
   "verifications_sources": {
@@ -100,7 +114,8 @@
    "Seulement 2 sujets de découverte (Seemann, minipg) : pas de troisième bon candidat.",
    "Aucun sujet publié pour la distribution, l'architecture et les projets hors first-class-errors : rien de frais ni d'actionnable après 6 à 7 requêtes dédiées.",
    "Le flux Blog NuGet de config/sujets/flux.json renvoie le contenu du Blog .NET : à corriger côté configuration.",
-   "Résumés de 6 à 10 lignes, selon la demande du 24 novembre notée dans data/notes.md."
+   "Résumés de 6 à 10 lignes, selon la demande du 24 novembre notée dans data/notes.md.",
+   "Relance manuelle de 09:20 (demande du 26 novembre) : sujets intemporels selon rapport.intemporels (jour calme, 7 sujets non prioritaires), lecture des nouveaux flux de Mathias Verraes et Thomas Pierrain."
   ]
  },
  "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact",
@@ -137,11 +152,22 @@
   {
    "section": "craftsmanship",
    "paragraphes": [
-    "Les unions et hiérarchies fermées de C# 15, sorties avec .NET 11 le 10 novembre, [changent la façon de modéliser les erreurs](#cr1), un sujet cher à first-class-errors. [Mark Seemann](#cr2) rappelle de son côté ce qui manque à C# pour composer des effets."
+    "Les unions et hiérarchies fermées de C# 15, sorties avec .NET 11 le 10 novembre, [changent la façon de modéliser les erreurs](#cr1), un sujet cher à first-class-errors. [Mark Seemann](#cr2) rappelle de son côté ce qui manque à C# pour composer des effets.",
+    "Jour calme oblige, un classique pour compléter : l'[Outside-in Diamond TDD](#cr6) de Thomas Pierrain (2021), qui pilote le code surtout par des tests d'acceptation et garde les tests unitaires pour les passages délicats."
    ],
    "sujets": [
     "cr1",
-    "cr2"
+    "cr2",
+    "cr6"
+   ]
+  },
+  {
+   "section": "architecture",
+   "paragraphes": [
+    "Autre lecture de fond, parue en août 2025 : [Mathias Verraes](#p5) démonte l'idée qu'un domaine métier doit correspondre à un seul bounded context. Pour lui, ces frontières sont des choix de conception, pas le reflet de l'organigramme."
+   ],
+   "sujets": [
+    "p5"
    ]
   },
   {
@@ -1304,6 +1330,161 @@
    "historique": [
     {
      "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p5",
+   "categorie": "architecture",
+   "statut": "publie",
+   "tags": [
+    "ddd",
+    "intemporel"
+   ],
+   "titre": "Verraes : domaines et bounded contexts ne se calquent pas un pour un",
+   "date": "2025-08-28",
+   "resume": "Mathias Verraes s'attaque à une idée reçue du DDD (Domain-Driven Design) : chaque domaine métier devrait correspondre à un seul bounded context. Pour lui, le domaine est la façon dont l'entreprise se voit. Le bounded context (contexte délimité) est une frontière de langage et de modèle, choisie par les développeurs pour comprendre et faire évoluer le système.\n\nIl le montre sur un exemple de tarification : un seul domaine aux yeux de l'entreprise, mais quatre langages et modèles distincts (collecte des prix concurrents, apprentissage automatique, prix manuels, règles de prix final), donc quatre contextes.\n\nIl passe ensuite en revue les cas où l'alignement est impossible ou nuisible : la start-up qui découvre son métier en codant, le contexte isolé pour expérimenter, le système ancien trop couplé, la fusion de deux entreprises. Sa conclusion : un bounded context est un outil de conception, pas le reflet de l'organigramme. Eric Evans ajoute en commentaire qu'il est aussi la trace de décisions passées.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "il donne des arguments concrets pour découper un système selon les besoins de conception plutôt que selon l'organigramme, une discussion qui revient à chaque atelier de modélisation."
+   },
+   "sources": [
+    {
+     "texte": "Source : blog de Mathias Verraes, 28 août 2025",
+     "url": "https://verraes.net/2025/08/domain-and-bounded-contexts-dont-map-one-on-one/"
+    }
+   ],
+   "meta": "verraes.net · 28 août 2025 · te concerne : oui",
+   "choix": "Intemporel : un article de référence sur le découpage en bounded contexts, dont le propos ne dépend pas de l'actualité ; jamais traité, et la catégorie Architecture était vide aujourd'hui.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:20+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    },
+    {
+     "date": "2026-11-26T07:46+00:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "sujets intemporels du jour calme, publiés à la demande de l'utilisateur"
+    }
+   ]
+  },
+  {
+   "id": "cr6",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "tags": [
+    "intemporel"
+   ],
+   "titre": "Outside-in Diamond TDD : piloter le code par les tests d'acceptation",
+   "date": "2021-03-26",
+   "resume": "Thomas Pierrain décrit en deux articles un style de TDD (développement piloté par les tests) mûri en seize ans de pratique. Le point de départ : dans beaucoup d'équipes, les tests sont du code de seconde zone, aux préparations interminables, cassés à chaque refactoring et truffés de mocks partiels.\n\nSa réponse, l'Outside-in Diamond : écrire surtout des tests d'acceptation contre le système vu de l'extérieur (le contrôleur d'une API web, par exemple), en remplaçant seulement les dépendances d'infrastructure. Le code se généralise par triangulation : on code en dur les premiers cas, puis on remplace ces valeurs par le vrai modèle, à petits pas et sans casser les tests.\n\nLes tests unitaires fins ne viennent qu'en cas de besoin, quand une difficulté apparaît. D'où le losange qui remplace la pyramide de tests. Les tests sont couplés au comportement et non à l'implémentation, ce qui laisse le champ libre au refactoring.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "il propose une stratégie de tests simple à transmettre à une équipe, qui protège le refactoring au lieu de le freiner."
+   },
+   "sources": [
+    {
+     "texte": "Source : blog de Thomas Pierrain, 12 mars 2021 (partie 1)",
+     "url": "https://tpierrain.blogspot.com/2021/03/outside-in-diamond-tdd-1-style-made.html"
+    },
+    {
+     "texte": "Source : blog de Thomas Pierrain, 26 mars 2021 (partie 2)",
+     "url": "https://tpierrain.blogspot.com/2021/03/outside-in-diamond-tdd-2-anatomy-of.html"
+    }
+   ],
+   "meta": "tpierrain.blogspot.com · mars 2021 · te concerne : oui",
+   "choix": "Intemporel : une méthode de TDD exposée par un praticien reconnu, toujours valable ; jamais traitée, et ajoutée un jour calme.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:20+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    },
+    {
+     "date": "2026-11-26T07:46+00:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "sujets intemporels du jour calme, publiés à la demande de l'utilisateur"
+    }
+   ]
+  },
+  {
+   "id": "i9",
+   "categorie": "ia",
+   "statut": "candidat",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Pierrain : un agent de code qui lance lui-même son /clear",
+   "date": "2026-11-09",
+   "resume": "Thomas Pierrain raconte une expérience faite avec Claude Code : un mod (une extension de Claude Code) d'une quarantaine de lignes de TypeScript qui remplace la compaction automatique du contexte. Au-delà d'un seuil, il demande à l'agent de mettre à jour un fichier `state.md` (ce qui est acquis, ce qui a échoué, la prochaine étape), lance `/clear`, puis relance la conversation, qui relit ce fichier.\n\nSelon lui, la compaction automatique arrive au pire moment et résume au hasard : une décision oubliée revient plus tard sous forme de bug. Avec ce relais, c'est au contraire l'agent qui choisit ce qui survit. L'article détaille aussi trois pièges rencontrés en le mettant au point.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "il montre une façon concrète de garder un agent efficace sur une longue tâche sans rester devant l'écran."
+   },
+   "sources": [
+    {
+     "texte": "Source : Thomas Pierrain sur Medium, 9 nov. 2026",
+     "url": "https://medium.com/@tpierrain/my-agents-run-clear-on-their-own-5d7727180b43"
+    }
+   ],
+   "meta": "Medium · 9 nov. 2026 · te concerne : peut-être",
+   "choix": "Retour d'expérience précis, mais propre à Claude Code et vieux de 17 jours ; à publier si tu utilises ce genre de harnais.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:20+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i10",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "Thomas Pierrain : articles d'octobre sur l'usine agentique",
+   "note": "« The hardest part begins when it works » (11 oct.), « Back in the equation » (17 oct.), « Five useful things and zero progress » (24 oct.), « Why some companies are not there (yet) with AI » (28 oct.) : au-delà de la fenêtre de 21 jours du profil IA.",
+   "choix": "Au-delà de la fenêtre de fraîcheur de l'IA ; la série reste lisible dans le flux de l'auteur.",
+   "sources": [
+    {
+     "texte": "Source : Thomas Pierrain sur Medium",
+     "url": "https://medium.com/@tpierrain"
+    }
+   ],
+   "date": "2026-10-28",
+   "historique": [
+    {
+     "date": "2026-11-26T09:20+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p6",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "Verraes : keynote « Reasoning While We Still Can » (AxonIQ 2026)",
+   "note": "la page annonce seulement la keynote d'ouverture d'AxonIQ 2026, sans texte ni vidéo lisible.",
+   "choix": "Rien à résumer : la page n'annonce qu'une keynote, sans contenu lisible.",
+   "sources": [
+    {
+     "texte": "Source : blog de Mathias Verraes, 8 nov. 2026",
+     "url": "https://verraes.net/2026/11/reasoning-while-we-still-can/"
+    }
+   ],
+   "date": "2026-11-08",
+   "historique": [
+    {
+     "date": "2026-11-26T09:20+01:00",
      "statut": "ecarte",
      "par": "tache"
     }
