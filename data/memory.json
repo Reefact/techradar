@@ -18,7 +18,7 @@
   {
    "date": "2026-11-26",
    "path": "reports/2026/20261126.html",
-   "publies": 11
+   "publies": 14
   }
  ],
  "projets": {
@@ -1057,7 +1057,7 @@
    "date": "2026-11-26",
    "id": "s1",
    "categorie": "securite",
-   "statut": "publie",
+   "statut": "candidat",
    "titre": "GitLab 19.6.2 : treize failles corrigées, aucune critique"
   },
   {
@@ -1456,7 +1456,7 @@
    "date": "2026-11-26",
    "id": "s10",
    "categorie": "securite",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Agent Framework : Microsoft ferme le dépôt après le paquet PyPI piégé"
   },
   {
@@ -1477,7 +1477,7 @@
    "date": "2026-11-26",
    "id": "n7",
    "categorie": "dotnet",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Qodana 2026.3 : repérer la cryptographie non post-quantique en .NET"
   },
   {
@@ -1785,14 +1785,14 @@
    "date": "2026-11-26",
    "id": "p7",
    "categorie": "architecture",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Dudycz : exporter un EventStorming Miro pour le donner à un agent"
   },
   {
    "date": "2026-11-26",
    "id": "p8",
    "categorie": "architecture",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Pourquoi laisser la base de données générer tes identifiants ?"
   },
   {
@@ -2005,7 +2005,7 @@
   "https://blog.jetbrains.com/qodana/2026/11/qodana-2026-3-release/": {
    "date": "2026-11-26",
    "id": "n7",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://blog.jetbrains.com/security/2026/11/java4shell-vulnerability/": {
    "date": "2026-11-25",
@@ -2096,7 +2096,7 @@
   "https://codeopinion.com/database-generated-ids/": {
    "date": "2026-11-26",
    "id": "p8",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://codeopinion.com/stale-data-consistency-boundaries/": {
    "date": "2026-11-25",
@@ -2122,7 +2122,7 @@
   "https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-repository-update/": {
    "date": "2026-11-26",
    "id": "s10",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://devblogs.microsoft.com/aspire/whats-new-aspire-17/": {
    "date": "2026-11-25",
@@ -2225,7 +2225,7 @@
   "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-6-2-released/": {
    "date": "2026-11-26",
    "id": "s1",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://duckdb.org/2026/10/21/announcing-duckdb-200.html": {
    "date": "2026-11-25",
@@ -2240,7 +2240,7 @@
   "https://event-driven.io/en/eventstorming_collaboration_and_llm/": {
    "date": "2026-11-26",
    "id": "p7",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://event-driven.io/en/make_the_change_easy_make_the_easy_change/": {
    "date": "2026-11-23",
