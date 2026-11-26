@@ -12,7 +12,7 @@ Contrôles : schéma, clés de catégories et de tags, dépôts des projets (con
 (config/categories.json ; les sujets d'un projet ne comptent pas dans le plafond),
 « À retenir » (config/sujets/perimetre.json), dates des sujets, un sujet publié par dépôt, vérification des sources
 (bloc « verification », config/sujets/sources.json), journal (motifs, éléments
-toujours suivis vérifiés, exclusions respectées), puis rendu du rapport et contrôle du HTML produit
+toujours suivis vérifiés, exclusions respectées), reprise des candidats du rapport précédent (rapport.reprises), puis rendu du rapport et contrôle du HTML produit
 (tools/check_report.py : structure et signaux de langue).
 """
 import json
@@ -61,6 +61,61 @@ def rapport_precedent(day):
 CHAMPS_SUJET = {"id", "categorie", "statut", "motif", "tags", "titre", "titre_sommaire", "resume", "pourquoi", "sources", "meta", "date",
                 "details", "depot", "conference", "verification", "verification_non_requise", "historique", "note",
                 "categorie_secondaire", "hors_fenetre", "choix"}
+
+
+def candidats_precedents(day, cfg):
+    """Candidats du rapport précédent, jamais publiés depuis (URL ou titre) et encore dans leur fenêtre de fraîcheur
+    au jour de `day` : ceux qu'un jour calme doit réexaminer (rapport.reprises). Conférences exclues (déclencheurs)."""
+    avant = [p for p in day_files() if p.stem < day["date"].replace("-", "")]
+    if not avant:
+        return []
+    prec = load_json(max(avant, key=lambda p: p.stem))
+    pub_urls, pub_titres = set(), set()
+    for p in day_files():
+        if p.stem >= day["date"].replace("-", ""):
+            continue
+        for s in load_json(p).get("sujets", []):
+            if s.get("statut") == "publie":
+                pub_urls |= {u.get("url") for u in s.get("sources", []) if u.get("url")}
+                pub_titres.add(plain(s.get("titre", "")).lower())
+    out = []
+    for s in prec.get("sujets", []):
+        if s.get("statut") not in ("candidat", "mis-de-cote") or s.get("categorie") == "conferences":
+            continue
+        if {u.get("url") for u in s.get("sources", [])} & pub_urls or plain(s.get("titre", "")).lower() in pub_titres:
+            continue
+        jours = profil_fraicheur(s, cfg)[1].get("fenetre_jours")
+        if s.get("date") and jours is not None and s["date"] < (Date.fromisoformat(day["date"]) - timedelta(days=jours)).isoformat():
+            continue
+        out.append(s)
+    return out
+
+
+def check_reprises(day, cfg, rap, pub, prio):
+    """Un jour calme (moins de seuil_jour_calme sujets publiés hors prioritaires), chaque candidat du rapport précédent
+    encore reprenable apparaît dans le fichier du jour (même URL ou même titre) : repris, toujours candidat, ou écarté pour
+    un motif valable — jamais « rien-de-neuf », qui ne vaut pas pour un candidat (il n'a pas besoin de nouveauté)."""
+    errs = []
+    seuil = (rap.get("intemporels") or {}).get("seuil_jour_calme")
+    du_jour = day.get("sujets", [])
+    def trouve(c):
+        urls = {u.get("url") for u in c.get("sources", []) if u.get("url")}
+        titre = plain(c.get("titre", "")).lower()
+        return [s for s in du_jour if urls & {u.get("url") for u in s.get("sources", [])} or plain(s.get("titre", "")).lower() == titre]
+    cands = candidats_precedents(day, cfg)
+    calme = seuil is not None and len([s for s in pub if s not in prio]) < seuil
+    for c in cands:
+        vus = trouve(c)
+        if not vus:
+            if calme:
+                errs.append(f"jour calme : le candidat « {plain(c['titre'])} » du rapport précédent n'a pas été réexaminé "
+                            "(le reprendre, le garder candidat ou l'écarter avec un motif valable)")
+            continue
+        for s in vus:
+            if s.get("statut") == "ecarte" and s.get("motif") == "rien-de-neuf":
+                errs.append(f"{s['id']} : candidat du rapport précédent écarté pour « rien-de-neuf » : un candidat n'a pas besoin de nouveauté "
+                            "(le reprendre, le garder candidat, ou un autre motif : deja-publie, hors-fenetre, doublon, trop-mineur…)")
+    return errs
 
 
 def check_verification(s, where, day, cfg):
@@ -257,6 +312,11 @@ def check(path, contre=None, partiel=False):
         vus = {plain(v.get("nom", "")).lower() for v in j.get("verifications", [])}
         for f in flux_cfg.get("flux", []):
             if f["nom"].lower() not in vus: E(f"journal : le flux « {f['nom']} » (config/sujets/flux.json) n'a pas été lu (ajouter une entrée dans journal.verifications)")
+    # ----- reprise des candidats du rapport précédent (config/sujets/perimetre.json → rapport.reprises)
+    rep = rap.get("reprises") or {}
+    if not legacy and not partiel and day.get("date", "") >= rep.get("depuis", "9999"):
+        for err in check_reprises(day, cfg, rap, pub, prio):
+            E(err)
     for item in confs.get("exclure", []) + [x for f, d in sj.items() if "/recherche/" in f for x in d.get("exclure", [])] + proj.get("exclure", []):
         n = item["nom"].lower()
         for s in pub:
