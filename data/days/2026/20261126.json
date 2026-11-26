@@ -123,7 +123,7 @@
    "faux": 0,
    "indetermine": 0
   },
-  "decouverte": 2,
+  "decouverte": 1,
   "hypotheses": [
    "Recherche déléguée à trois sous-agents ; le moteur renvoie peu de résultats récents et plusieurs sites sont bloqués (voir sources illisibles).",
    "Beaucoup de sujets trouvés étaient déjà publiés les 23 à 25 novembre : seuls les sujets nouveaux ont été retenus.",
@@ -202,11 +202,12 @@
   {
    "section": "outils",
    "paragraphes": [
-    "[dotnet/skills](#t1) donne à tes agents de code des consignes officielles pour .NET. La pépite du jour, [minipg](#t2), lance PostgreSQL dans un seul binaire, sans Docker : encore très jeune."
+    "[dotnet/skills](#t1) donne à tes agents de code des consignes officielles pour .NET. [Cilica](#t7) optimise l'IL de tes assemblages après compilation, encore en préversion, et [AAE](#t8) confie l'optimisation du code à un agent qui avance par hypothèses réfutables."
    ],
    "sujets": [
     "t1",
-    "t2"
+    "t7",
+    "t8"
    ]
   }
  ],
@@ -423,7 +424,7 @@
   {
    "id": "t2",
    "categorie": "outils",
-   "statut": "publie",
+   "statut": "candidat",
    "tags": [
     "pepite"
    ],
@@ -455,6 +456,12 @@
      "date": "2026-11-26T06:45+01:00",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-26T10:25+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "retiré à la demande de l'utilisateur pour publier t7 et t8 (plafond Outils)"
     }
    ]
   },
@@ -2194,7 +2201,7 @@
   {
    "id": "t7",
    "categorie": "outils",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [],
    "titre": "Cilica : un optimiseur d'IL après compilation pour .NET",
    "date": "2026-11-12",
@@ -2220,13 +2227,19 @@
      "date": "2026-11-26T09:50+01:00",
      "statut": "candidat",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-26T10:25+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "choix de l'utilisateur après la relance complète"
     }
    ]
   },
   {
    "id": "t8",
    "categorie": "outils",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [
     "agents"
    ],
@@ -2254,6 +2267,12 @@
      "date": "2026-11-26T09:50+01:00",
      "statut": "candidat",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-26T10:25+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "choix de l'utilisateur après la relance complète"
     }
    ]
   },
