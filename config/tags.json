@@ -58,7 +58,7 @@
     "description": "Retour d'expérience : une équipe raconte ce qu'elle a fait et ce qu'elle en a appris, chiffres à l'appui si possible."
   },
   "intemporel": {
-    "label": "🪨 Intemporel",
+    "label": "⚓ Intemporel",
     "classe": "b-ddd",
     "fraicheur": "intemporel",
     "description": "Article de fond sur la conception dont le propos ne vieillit pas, ressorti un jour calme quelle que soit sa date de parution."
