@@ -13,21 +13,26 @@
    "type": "manuelle",
    "debut": "2026-11-26T09:20+01:00",
    "note": "relance : règle des sujets intemporels et nouveaux flux (Verraes, Pierrain) ; 3 candidats, 2 écartés ; relecture par sous-agent, 5 corrections appliquées ; p5 et cr6 publiés à la demande de l'utilisateur"
+  },
+  {
+   "type": "manuelle",
+   "debut": "2026-11-26T09:35+01:00",
+   "note": "relance complète : recherche par trois sous-agents ; 17 candidats, 47 écartés ; relecture par sous-agent, 18 corrections appliquées"
   }
  ],
  "journal": {
   "recherches": {
-   "securite": 10,
-   "dotnet": 8,
-   "ia": 11,
-   "architecture": 9,
-   "craftsmanship": 9,
-   "distribution": 6,
-   "outils": 8,
-   "conferences": 7,
-   "projets": 2
+   "securite": 19,
+   "dotnet": 17,
+   "ia": 25,
+   "architecture": 15,
+   "craftsmanship": 17,
+   "distribution": 14,
+   "outils": 17,
+   "conferences": 14,
+   "projets": 6
   },
-  "pages_ouvertes": 72,
+  "pages_ouvertes": 149,
   "sources_illisibles": [
    "bleepingcomputer.com (403)",
    "neowin.net (403)",
@@ -40,7 +45,19 @@
    "CERT-FR CTI-009 (PDF illisible)",
    "changelog Claude Code (tronqué, 2.1.323 non lu)",
    "Reddit r/dotnet et Lobsters (aucune page directe)",
-   "medium.com (page de contrôle anti-robot ; texte lu dans le flux RSS)"
+   "medium.com (page de contrôle anti-robot ; texte lu dans le flux RSS)",
+   "lsa-conso.fr : 403 après curl (et hôte non résolu par WebFetch)",
+   "cisa.gov (avis ICSA-26-328-03) : 403 après curl, remplacé par l'avis Danfoss",
+   "visualstudiomagazine.com : 403 après curl",
+   "github.com (flux de versions et API) : bloqué par la session",
+   "thehackernews.com : hôte non résolu par WebFetch, lu par curl",
+   "thenewstack.io : 403 après curl, hôte refusé par WebFetch",
+   "github.com/trending : 403 après curl (remplacé par l'API de recherche GitHub)",
+   "WebFetch : résolution DNS refusée pour github.blog et thenewstack.io (curl utilisé à la place quand possible)",
+   "arxiv.org et leaddev.com : WebFetch refusé (DNS), lus avec curl",
+   "github.com/datadog-labs/ephyra : 403 après curl",
+   "API GitHub (gh) pour les dépôts concurrents : accès non activé dans la session, remplacée par l'API NuGet",
+   "nuget.org/packages/Slugify.Core/5.2.0 : pas de notes de version"
   ],
   "verifications": [
    {
@@ -115,7 +132,8 @@
    "Aucun sujet publié pour la distribution, l'architecture et les projets hors first-class-errors : rien de frais ni d'actionnable après 6 à 7 requêtes dédiées.",
    "Le flux Blog NuGet de config/sujets/flux.json renvoie le contenu du Blog .NET : à corriger côté configuration.",
    "Résumés de 6 à 10 lignes, selon la demande du 24 novembre notée dans data/notes.md.",
-   "Relance manuelle de 09:20 (demande du 26 novembre) : sujets intemporels selon rapport.intemporels (jour calme, 7 sujets non prioritaires), lecture des nouveaux flux de Mathias Verraes et Thomas Pierrain."
+   "Relance manuelle de 09:20 (demande du 26 novembre) : sujets intemporels selon rapport.intemporels (jour calme, 7 sujets non prioritaires), lecture des nouveaux flux de Mathias Verraes et Thomas Pierrain.",
+   "Relance complète de 09:50 à la demande de l'utilisateur : recherche répartie entre trois sous-agents (sécurité/.NET/distribution, IA/outils, craftsmanship/architecture/conférences/projets) ; trouvailles ajoutées en candidat ou écartées, aucun sujet publié modifié."
   ]
  },
  "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact",
@@ -1485,6 +1503,1603 @@
    "historique": [
     {
      "date": "2026-11-26T09:20+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "categorie": "securite",
+   "statut": "candidat",
+   "tags": [
+    "supply-chain"
+   ],
+   "titre": "Agent Framework : Microsoft ferme le dépôt après le paquet PyPI piégé",
+   "date": "2026-11-25",
+   "resume": "Le 17 novembre, deux versions du méta-paquet Python agent-framework (1.26.1 et 1.26.2) ont été publiées sur PyPI sans autorisation. Elles contenaient un voleur d'identifiants, qui s'exécute dès que Python démarre, même sans import du paquet.\n\nFait nouveau du 25 novembre : Microsoft publie son propre bilan et rend le dépôt GitHub de Microsoft Agent Framework indisponible, par précaution, sans date de retour. Le code malveillant était dans les paquets publiés, pas dans le dépôt.\n\nMicrosoft précise que les paquets .NET et Semantic Kernel ne sont pas touchés, et que le projet n'est pas abandonné. Si une des deux versions a été installée : machine ou tâche de CI (intégration continue) considérée comme compromise, rotation de tous les secrets accessibles, reconstruction depuis une image propre.\n\nSinon : épingler agent-framework==1.26.0 en attendant de nouvelles consignes.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "Si tu suis Agent Framework en .NET, tes paquets sont sains, mais le dépôt (code, exemples, issues) est fermé pour un temps."
+   },
+   "sources": [
+    {
+     "texte": "Source : blog Microsoft Agent Framework, 25 nov.",
+     "url": "https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-repository-update/"
+    }
+   ],
+   "meta": "Microsoft Agent Framework · 25 nov. · te concerne : peut-être",
+   "choix": "Le piratage PyPI avait été écarté le 25 (Python seulement) ; le fait nouveau est la communication officielle de Microsoft et la fermeture du dépôt, qui héberge aussi la partie .NET. La confirmation que les paquets .NET sont sains répond directement à la question « te concerne ? ».",
+   "details": {
+    "Touché": "méta-paquet Python agent-framework 1.26.1 et 1.26.2 (PyPI, 17 nov.) ; paquets .NET non touchés",
+    "Correctif": "versions retirées de PyPI ; épingler 1.26.0",
+    "Gravité": "vol d'identifiants au démarrage de Python",
+    "Action": "vérifier lockfiles, caches et images ; si installé, tout révoquer et reconstruire"
+   },
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s11",
+   "categorie": "securite",
+   "statut": "candidat",
+   "tags": [
+    "supply-chain"
+   ],
+   "titre": "OpenRouter : des fournisseurs d'inférence fuitaient prompts et secrets",
+   "date": "2026-11-23",
+   "resume": "Dragos a envoyé environ deux millions de prompts pièges via OpenRouter, chacun avec un lien ou une clé AWS unique. Résultat : des secrets ont été réutilisés par des tiers, preuve que des requêtes avaient fuité chez au moins trois fournisseurs d'inférence.\n\nOpenRouter dit ne pas avoir été piraté lui-même. Il a retiré des fournisseurs et sorti 125 points d'accès de son offre Zero Data Retention (ZDR, aucune conservation des requêtes). Des requêtes marquées ZDR ont pourtant été copiées.\n\nLes fournisseurs donnent des causes variées : un agent de code qui a exposé un identifiant de dépôt sur GitHub chez Together AI, un serveur compromis chez Phala, un mauvais routage chez Novita. Together AI conteste avoir été retiré de la plateforme.\n\nConseil commun : changer tout secret passé dans un prompt et ne pas prendre l'étiquette ZDR pour une garantie de sécurité.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "Un agent de code qui lit ton .env envoie ces secrets au modèle : chaque intermédiaire peut les voir."
+   },
+   "sources": [
+    {
+     "texte": "Source : BleepingComputer, 23 nov.",
+     "url": "https://www.bleepingcomputer.com/news/security/openrouter-drops-ai-providers-over-leaked-prompts-and-secrets/"
+    },
+    {
+     "texte": "Source : LeMagIT, 23 nov.",
+     "url": "https://www.lemagit.fr/actualites/366655292/Supply-Chain-IA-les-fuites-de-secrets-dans-les-infrastructures-dinference"
+    }
+   ],
+   "meta": "BleepingComputer · 23 nov. · te concerne : peut-être",
+   "choix": "Étude concrète et chiffrée sur un risque que tout utilisateur d'agents de code court sans le voir : les secrets qui transitent dans les prompts. Deux sources de référence, dont une française. À vérifier avant publication : Les noms des trois fournisseurs retirés (Together AI, Phala, Novita) viennent de la presse ; Together AI dément avoir été retiré.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s12",
+   "categorie": "securite",
+   "statut": "candidat",
+   "tags": [
+    "alerte"
+   ],
+   "titre": "Windows : la signature NTLM de novembre casse des proxys et des SSO",
+   "date": "2026-11-26",
+   "resume": "Les mises à jour Windows du 10 novembre lancent la première phase du durcissement de NTLM : le poste propose désormais la signature des messages sur toutes ses connexions authentifiées. C'est une protection contre le relais NTLM, liée à la faille CVE-2026-118737 du RPC Runtime.\n\nMicrosoft confirme des échecs d'authentification avec des produits tiers qui implémentent mal le protocole : proxys d'authentification, solutions d'authentification unique (SSO) et outils d'empaquetage d'applications.\n\nIndices : un événement 4021 dans le journal NTLM/Operational, ou une réponse du proxy avec un champ TargetInfo vide. Contournement temporaire : la valeur de registre ClientAllowUnsignedNtlm à 1. Mieux : passer à Kerberos ou mettre à jour le produit.\n\nLa phase 2, en mai 2027, rendra la signature obligatoire côté serveur.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "Derrière un proxy d'entreprise en NTLM, tes accès réseau depuis le poste peuvent échouer après la mise à jour."
+   },
+   "sources": [
+    {
+     "texte": "Source : IT-Connect, 26 nov.",
+     "url": "https://www.it-connect.fr/windows-novembre-2026-echec-authentification-ntlm-proxy-sso/"
+    },
+    {
+     "texte": "Source : BleepingComputer, 25 nov.",
+     "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-authentication-issues-after-november-updates/"
+    }
+   ],
+   "meta": "IT-Connect · 26 nov. · te concerne : peut-être",
+   "choix": "Fait des dernières 48 heures, confirmé par Microsoft et rapporté par deux sources de référence. Sujet plutôt d'administration Windows : à garder seulement si la place le permet.",
+   "details": {
+    "Touché": "Windows 11 23H2 à 26H2, Windows 10 Entreprise LTSC 2021, Windows Server 2016 à 2025, avec un proxy, un SSO ou un outil d'empaquetage NTLM mal implémenté",
+    "Correctif": "aucun côté Microsoft ; correctif attendu des éditeurs tiers",
+    "Gravité": "panne d'authentification (pas une faille)",
+    "Action": "chercher l'événement 4021 ; contournement par ClientAllowUnsignedNtlm=1 en attendant"
+   },
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n7",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Qodana 2026.3 : repérer la cryptographie non post-quantique en .NET",
+   "date": "2026-11-25",
+   "resume": "JetBrains publie Qodana 2026.3, sa plateforme d'analyse de code pour la CI. Côté .NET, de nouvelles inspections signalent les algorithmes cryptographiques non compatibles post-quantique et les protocoles SSL/TLS anciens, avec la note de sécurité du NIST pour chaque algorithme.\n\nL'idée : faire l'inventaire de ce que ton code utilise avant de planifier une migration. Les inspections de sécurité C# produisent aussi moins de fausses alertes sur le banc d'essai SABER.\n\nLe nouvel algorithme de « baseline », qui reconnaît un problème déjà connu après un déplacement ou un renommage de fichier, ne couvre pour l'instant que Java, Kotlin, JavaScript et TypeScript.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "Un moyen outillé de savoir où ton code .NET dépend d'une cryptographie à remplacer."
+   },
+   "sources": [
+    {
+     "texte": "Source : blog Qodana (JetBrains), 25 nov.",
+     "url": "https://blog.jetbrains.com/qodana/2026/11/qodana-2026-3-release/"
+    }
+   ],
+   "meta": "JetBrains · 25 nov. · te concerne : peut-être",
+   "choix": "Nouveauté d'outillage .NET récente et concrète, sur un sujet de fond (migration post-quantique) qui arrive dans les équipes. Annonce d'éditeur sur son produit, sans vérification nécessaire.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n8",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "NetWasm 0.10 : du C# en WebAssembly plus rapide que Mono AOT",
+   "date": "2026-11-19",
+   "resume": "NetWasm compile à l'avance (AOT) le code intermédiaire (IL) produit par Roslyn, le compilateur C#, en petits fichiers WebAssembly autonomes, avec son propre runtime et une CoreLib portée de .NET.\n\nLa série 0.10 retravaille la gestion des exceptions, supprime des contrôles de bornes redondants, ajoute le SIMD (Vector128, Vector<T>) et optimise la division.\n\nSur 2 213 cas de test, NetWasm prend en moyenne 0,41 fois le temps de Mono AOT (sa version WASI) et 0,87 fois celui du JIT de .NET 11 sur poste. Le projet reconnaît des limites : code vectoriel 3 fois plus lent que .NET natif, Math.Pow plus lent, une régression connue.\n\nChiffres mesurés par le projet, sur une seule machine et un seul moteur (Wasmtime).",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "Une alternative crédible à Mono pour faire tourner du C# hors navigateur en Wasm."
+   },
+   "sources": [
+    {
+     "texte": "Source : InfoQ, 19 nov.",
+     "url": "https://www.infoq.com/news/2026/11/NetWasm-0-10-Faster/"
+    }
+   ],
+   "meta": "InfoQ · 19 nov. · te concerne : non",
+   "choix": "Projet communautaire .NET original, chiffres détaillés et limites assumées ; à la limite de la fenêtre de 7 jours (19 nov.), à prendre seulement si la catégorie manque de sujets.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "d5",
+   "categorie": "distribution",
+   "statut": "candidat",
+   "tags": [
+    "mise-a-jour"
+   ],
+   "titre": "Frigos Danfoss : une faille critique sans correctif sur les AK-SM 800A",
+   "date": "2026-11-25",
+   "resume": "Suite de l'affaire des frigos de supermarchés piratés (sujet publié le 23 novembre) : Danfoss a publié le 20 novembre un avis sur une faille critique de ses contrôleurs AK-SM 8xxA, qui pilotent froid, chauffage et éclairage en magasin.\n\nLa faille, CVE-2026-129713, est un dépassement de tampon dans un gestionnaire web accessible sans authentification. Une requête forgée fait redémarrer le serveur web et pourrait permettre d'exécuter du code. Sont touchées les versions 5.4.0 et antérieures.\n\nPas encore de correctif : il viendra avec une version 5.5.x, qui supprimera aussi la possibilité de désactiver le « Strict mode ». La CISA (agence américaine de cybersécurité) a relayé l'alerte le 25 novembre.\n\nEn attendant : sortir ces contrôleurs d'Internet, les isoler derrière un pare-feu et passer par un VPN.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "Les enseignes visées en octobre restent exposées : la porte d'entrée n'a pas encore de serrure."
+   },
+   "sources": [
+    {
+     "texte": "Source : avis Danfoss DSA-2026-12-01, 20 nov.",
+     "url": "https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2026-12-01"
+    },
+    {
+     "texte": "Source : BleepingComputer, 25 nov.",
+     "url": "https://www.bleepingcomputer.com/news/security/cisa-warns-of-critical-unpatched-flaw-in-danfoss-refrigeration-controllers/"
+    }
+   ],
+   "meta": "Danfoss, BleepingComputer · 25 nov. · te concerne : non",
+   "choix": "Vrai fait nouveau sur un sujet déjà publié (une faille critique non corrigée dans le matériel en cause), d'où le tag « mise à jour ». Avis de l'éditeur lu directement. À vérifier avant publication : Rien ne relie officiellement cette faille aux attaques d'octobre et de novembre ; ne pas écrire qu'elle a servi.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s13",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "doublon",
+   "tags": [],
+   "titre": "NuGet : 13 paquets piégés via de faux tests d'embauche .NET",
+   "note": "Candidat du 25 nov. (s9) ; The Hacker News le reprend le 26 sans fait nouveau. Si repris, citer cette source plus solide.",
+   "choix": "Candidat du 25 nov. (s9) ; The Hacker News le reprend le 26 sans fait nouveau. Si repris, citer cette source plus solide.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/13-malicious-nuget-packages-turn-fake.html"
+    }
+   ]
+  },
+  {
+   "id": "s14",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "Claude Code : secrets exposés via « Don't ask again » (settings.local.js",
+   "note": "Études Apiiro (5 nov.) et GitGuardian (9 nov.) ; InfoQ y revient le 22 nov. Hors fenêtre sécurité (7 j) ; pourrait aller en IA (21 j).",
+   "choix": "Études Apiiro (5 nov.) et GitGuardian (9 nov.) ; InfoQ y revient le 22 nov. Hors fenêtre sécurité (7 j) ; pourrait aller en IA (21 j).",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.infoq.com/news/2026/11/claude-code-leaking-secrets/"
+    }
+   ]
+  },
+  {
+   "id": "s15",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "wfx-loot : 4 837 comptes GitHub volés pour piller les secrets de CI",
+   "note": "Publié le 12 nov.",
+   "choix": "Publié le 12 nov.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.bleepingcomputer.com/news/security/hackers-compromise-4-800-github-accounts-to-steal-cloud-credentials/"
+    }
+   ]
+  },
+  {
+   "id": "s16",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Drupal : nouvelle faille critique exploitée (CVE-2026-136716)",
+   "note": "Pas de lien avec l'écosystème .NET.",
+   "choix": "Pas de lien avec l'écosystème .NET.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/drupal-warns-of-new-highly-critical.html"
+    }
+   ]
+  },
+  {
+   "id": "s17",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "MONAI Label : faille trouvée par des agents d'IA (Cairn)",
+   "note": "Logiciel d'imagerie médicale Python, hors de l'outillage .NET.",
+   "choix": "Logiciel d'imagerie médicale Python, hors de l'outillage .NET.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html"
+    }
+   ]
+  },
+  {
+   "id": "s18",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Com/ShinyHunters : vishing et vol de comptes cloud (Unit 42)",
+   "note": "Menace d'entreprise générale, pas d'angle développeur.",
+   "choix": "Menace d'entreprise générale, pas d'angle développeur.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/com-affiliated-hackers-hijack-cloud.html"
+    }
+   ]
+  },
+  {
+   "id": "s19",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "CISA KEV : Mitel, Juniper, Vates, Danfoss",
+   "note": "Aucun produit de l'outillage .NET.",
+   "choix": "Aucun produit de l'outillage .NET.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/hackers-exploit-10-vulnerabilities.html"
+    }
+   ]
+  },
+  {
+   "id": "n9",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": ".NET 11 : changements cassants (hébergement, configuration, DI)",
+   "note": "Billet de Milan Jovanović du 13 nov.",
+   "choix": "Billet de Milan Jovanović du 13 nov.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://milanjovanovic.tech/blog/dotnet-11-breaking-changes"
+    }
+   ]
+  },
+  {
+   "id": "n10",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "elmah.io : runtime async dans .NET 11",
+   "note": "Tutoriel générique sans mesures exploitables.",
+   "choix": "Tutoriel générique sans mesures exploitables.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://blog.elmah.io/new-in-net-11-faster-asp-net-core-apis-with-runtime-async/"
+    }
+   ]
+  },
+  {
+   "id": "n11",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "tags": [],
+   "titre": "Modèles locaux en .NET avec Llama sur Windows",
+   "note": "Publié le 23 nov. (n3).",
+   "choix": "Publié le 23 nov. (n3).",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://devblogs.microsoft.com/dotnet/local-models-dotnet-llama-windows/"
+    }
+   ]
+  },
+  {
+   "id": "n12",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "Uno Platform 7.0",
+   "note": "InfoQ, 16 nov.",
+   "choix": "InfoQ, 16 nov.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.infoq.com/news/2026/11/Uno-Platform-6-7-targets/"
+    }
+   ]
+  },
+  {
+   "id": "n13",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "Microsoft.Extensions.AI 11.0.1 et Dapper 2.1.100",
+   "note": "Versions correctives sans annonce notable (NuGet, 20-21 nov.).",
+   "choix": "Versions correctives sans annonce notable (NuGet, 20-21 nov.).",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "d6",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Les Mousquetaires vont racheter Chronodrive (Auchan)",
+   "note": "Opération commerciale, aucun angle SI ou tech dans les sources.",
+   "choix": "Opération commerciale, aucun angle SI ou tech dans les sources.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.olivierdauvers.fr/2026/11/26/exclu-avec-chronodrive-les-mousquetaires-simposent-en-nouveau-dauphin-de-leclerc-et-soffrent-loutil-qui-leur-manquait"
+    }
+   ]
+  },
+  {
+   "id": "d7",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "Ahold Delhaize : jusqu'à 250 M€ de ventes perdues après la cyberattaque",
+   "note": "Annoncé le 4 nov.",
+   "choix": "Annoncé le 4 nov.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.dutchnews.nl/2026/11/cyberattack-to-cost-ahold-delhaize-up-to-e250m-in-lost-sales/"
+    }
+   ]
+  },
+  {
+   "id": "d8",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "motif": "doublon",
+   "tags": [],
+   "titre": "Decathlon : fuite de 163 000 fiches clients chez un prestataire",
+   "note": "Déjà écarté le 25 nov. (d1), rien de neuf.",
+   "choix": "Déjà écarté le 25 nov. (d1), rien de neuf.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.ouest-france.fr/societe/cyberattaque/decathlon-un-pirate-revendique-une-cyberattaque-et-le-vol-de-donnees-personnelles-de-plus-de-163-000-clients-bee105b8-e749-11f1-bd4e-6f30b8f49e21"
+    }
+   ]
+  },
+  {
+   "id": "d9",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Inmac Wstore : cyberattaque le 24 novembre",
+   "note": "Revendeur informatique B2B, pas une enseigne de grande distribution.",
+   "choix": "Revendeur informatique B2B, pas une enseigne de grande distribution.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://frenchbreaches.com/alertes/cyberattaque-inmac-wstore-piratage-commandes-livraisons-mww3u8je0cvghzp64xlp"
+    }
+   ]
+  },
+  {
+   "id": "i11",
+   "categorie": "ia",
+   "statut": "candidat",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Google : les TODO périmés détournent les agents de code",
+   "date": "2026-11-10",
+   "resume": "Deux ingénieurs de Google ont mesuré ce qu'ils appellent la « distraction des agents » : un agent de code lit un vieux commentaire TODO qui pointe vers un ticket, et part le traiter sans qu'on le lui ait demandé.\n\nSur des centaines de millions d'étapes d'agents, 13 % des sessions croisent un TODO ou un FIXME lié à un ticket. Dans 6 % de ces cas, l'agent agit dessus, et plus de quatre fois sur cinq sans que le développeur l'ait demandé. Ces détours visent un ticket déjà fermé dans 41 % des cas, un sujet hors de la demande dans 57 %.\n\nLe coût est net : environ 70 % d'étapes en plus, 77 % de jetons en plus et deux fois plus d'attente par session.\n\nGoogle a lancé des agents qui repèrent les TODO morts, fouillent l'historique Git et proposent leur suppression : des milliers retirés en six mois, plus de 95 % acceptés en revue.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "un ménage de tes TODO, specs et docs périmés rend tes agents moins chers et plus fiables."
+   },
+   "sources": [
+    {
+     "texte": "Source : Google Developers Blog, 6 nov.",
+     "url": "https://developers.googleblog.com/agent-distraction/"
+    },
+    {
+     "texte": "Source : InfoQ, 10 nov.",
+     "url": "https://www.infoq.com/news/2026/11/google-agent-distraction/"
+    }
+   ],
+   "meta": "Google Developers Blog · 6 nov. · te concerne : oui",
+   "choix": "Une mesure à grande échelle qui relie dette technique et efficacité des agents : un argument concret pour le ménage du code, avec une remédiation reproductible. Paru il y a 16 à 20 jours (🧊), jamais traité.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i12",
+   "categorie": "ia",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Codex : erreur de facturation corrigée, quotas GPT-6.2 vite atteints",
+   "date": "2026-11-26",
+   "resume": "OpenAI reconnaît une erreur de facturation au lancement de GPT-6.2 : l'usage des modèles Astra et Sol était sous-compté pour la plupart des abonnés, notamment dans Codex.\n\nC'est corrigé. À travail égal, tu atteindras ta limite environ 40 % plus vite avec Astra et 25 % plus vite avec Sol que la semaine dernière. Les prix des abonnements ne changent pas et rien n'est refacturé sur l'usage passé. OpenAI offre une remise à zéro du quota en réserve aux abonnés Go, Plus, Pro et Business.\n\nSelon Tibo Sottiaux, responsable de ChatGPT et Codex, ces modèles restent plus économes que GPT-6 Astra et GPT-6.1 Sol.\n\nÀ rapprocher du quota d'usage commun à ChatGPT et Codex, prévu en décembre.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si tu utilises Codex au quotidien, ton budget d'usage fond plus vite dès cette semaine."
+   },
+   "sources": [
+    {
+     "texte": "Source : OfficeChai, 26 nov.",
+     "url": "https://officechai.com/ai/openai-says-a-billing-mistake-incorrectly-discounted-gpt-6-2-astra-gpt-6-2-sol-usage-users-will-now-reach-limits-40-faster-on-astra/"
+    }
+   ],
+   "meta": "OfficeChai · 26 nov. · te concerne : peut-être",
+   "choix": "Fait des dernières 24 heures, en tête de Hacker News, qui complète le candidat du jour sur le pool d'usage partagé (i4) : on peut fusionner les deux. À vérifier avant publication : Les chiffres (40 % et 25 %) viennent d'un message de Tibo Sottiaux sur X, relayé par OfficeChai et Notebookcheck ; pas de page officielle d'OpenAI lue.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t6",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [
+    "agents"
+   ],
+   "titre": "BlazingFastDotnet : un skill de performance .NET signé EgorBo",
+   "date": "2026-10-23",
+   "resume": "Egor Bogatov (EgorBo), contributeur bien connu du runtime .NET, publie un guide de réglage des performances pour .NET 10 et 11, livré comme un seul fichier SKILL.md pour agents de code. Il se lit aussi comme une doc.\n\nAu programme : profilage (dotnet-counters, dotnet-trace, perf et flame graphs), lecture du code généré par le JIT, chaînes et culture, famine du pool de threads, contention et faux partage, vectorisation sûre, ASP.NET Core (JSON, routage, Kestrel), réglages du runtime et de NativeAOT.\n\nL'usage conseillé : le donner à ton agent à la demande, avec une consigne stricte. Mesurer d'abord, profiler, un changement à la fois, ne garder que les gains mesurés.\n\nL'auteur précise que ce n'est pas un guide officiel de Microsoft. Dépôt créé le 23 octobre, environ 320 étoiles.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "tu peux le donner tel quel à ton agent pour une passe d'optimisation mesurée d'un service .NET."
+   },
+   "sources": [
+    {
+     "texte": "Source : GitHub EgorBo/BlazingFastDotnet, 23 oct.",
+     "url": "https://github.com/EgorBo/BlazingFastDotnet"
+    }
+   ],
+   "meta": "GitHub · 23 oct. · te concerne : oui",
+   "choix": "Complète les skills officiels dotnet/skills publiés aujourd'hui par un contenu pointu et non officiel, écrit par un spécialiste de la performance .NET. Plus de 30 jours (🧊), jamais traité.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t7",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Cilica : un optimiseur d'IL après compilation pour .NET",
+   "date": "2026-11-12",
+   "resume": "Cilica réécrit l'IL (le code intermédiaire .NET) de ton assembly après la compilation. Il reprend le projet DistIL.\n\nIl travaille sur une représentation intermédiaire de forme SSA (affectation unique statique) et applique des passes classiques : déroulement des requêtes LINQ en boucles, vectorisation de boucles, dévirtualisation, inlining, pré-dimensionnement des listes, remplacement scalaire.\n\nUn paquet NuGet ajoute une tâche MSBuild qui l'exécute en Release ; par défaut, seules les méthodes marquées d'un attribut sont transformées. Il nécessite .NET 10 ou plus et sait préparer une compilation NativeAOT. Un « Cilica Lab » permet d'explorer les passes dans le navigateur.\n\nC'est expérimental : préversions 0.20.x publiées sur NuGet début novembre, dépôt créé le 4 novembre par hez2010, contributeur actif de l'écosystème .NET.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "LINQ sans surcoût sur un chemin critique, sans réécrire ton code ; à évaluer quand il sortira de l'expérimental."
+   },
+   "sources": [
+    {
+     "texte": "Source : GitHub hez2010/Cilica, 4 nov.",
+     "url": "https://github.com/hez2010/Cilica"
+    },
+    {
+     "texte": "Source : NuGet Cilica.OptimizerTask, 12 nov.",
+     "url": "https://www.nuget.org/packages/Cilica.OptimizerTask"
+    }
+   ],
+   "meta": "GitHub · 12 nov. · te concerne : peut-être",
+   "choix": "Outil .NET neuf et original, branché sur MSBuild, qu'on ne trouve pas dans les canaux habituels.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t8",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [
+    "agents"
+   ],
+   "titre": "AAE : un agent qui optimise ton code par hypothèses réfutables",
+   "date": "2026-11-23",
+   "resume": "Agentic Algorithm Engineering (AAE) est un skill pour Claude Code et Codex, publié par le groupe d'algorithmique de l'université de Heidelberg.\n\nL'agent applique le cycle de l'ingénierie des algorithmes : une hypothèse réfutable avant chaque expérience, la validité du résultat vérifiée après chaque changement, un correctif relisible par changement retenu, et un rapport PDF de toute la session. Au départ, tu fixes avec lui le banc d'essai, la mesure, les assertions de correction et le budget.\n\nSur des codes libres de partitionnement de graphes et de flots, les auteurs annoncent des gains de 1,2 à 8,9 fois, chaque changement gardé étant comparé à la sortie d'origine.\n\nPrésenté sur Hacker News (« Show HN ») le 23 novembre (106 points).",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "la méthode (hypothèse, mesure, vérification, un correctif par gain) s'applique telle quelle à tes optimisations .NET."
+   },
+   "sources": [
+    {
+     "texte": "Source : CHSZLab (université de Heidelberg), 23 nov.",
+     "url": "https://chszlab.github.io/AgenticAlgorithmEngineering/"
+    },
+    {
+     "texte": "Source : Hacker News, 23 nov.",
+     "url": "https://news.ycombinator.com/item?id=50611593"
+    }
+   ],
+   "meta": "Heidelberg · 23 nov. · te concerne : peut-être",
+   "choix": "Une démarche rigoureuse et outillée pour cadrer un agent sur l'optimisation, qui fait écho à l'esprit des tests et du craftsmanship.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t9",
+   "categorie": "outils",
+   "statut": "candidat",
+   "tags": [
+    "pepite"
+   ],
+   "titre": "rust-anything : réécrire une appli en Rust, preuve par l'enregistrement",
+   "date": "2026-11-26",
+   "resume": "rust-anything enregistre ce que fait ton application (retours et exceptions sur des cas générés et tes propres entrées), puis vérifie chaque morceau réécrit en Rust contre cet enregistrement avant de passer au suivant. C'est la technique du « golden master » appliquée à une migration.\n\nC'est toi ou ton agent qui écrit le Rust ; l'outil choisit quoi déplacer, génère les ponts et rejoue les cas. Il gère Node.js, Python, Go, Java, Ruby et C, et des portages unitaires pour C# via P/Invoke.\n\nVitrine : Prettier porté en Rust, 19 fois plus rapide, avec une sortie identique à l'octet sur 17 224 exécutions enregistrées.\n\nDépôt créé mi-novembre, près de 10 000 étoiles, version 5.0.1 publiée aujourd'hui ; licence MIT ou Apache 2.0.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "l'idée (enregistrer le comportement puis migrer pièce par pièce) vaut pour toute refonte de code existant."
+   },
+   "sources": [
+    {
+     "texte": "Source : GitHub erkamyaman/rust-anything, 26 nov.",
+     "url": "https://github.com/erkamyaman/rust-anything"
+    }
+   ],
+   "meta": "GitHub · 26 nov. · te concerne : non",
+   "choix": "Pépite du jour : le dépôt neuf le plus étoilé de la quinzaine, qui industrialise le test de caractérisation au service d'une migration pilotée par agent.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i13",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "Junie Eco Mode (JetBrains)",
+   "note": "Billet JetBrains d'octobre, plus de 21 jours.",
+   "choix": "Billet JetBrains d'octobre, plus de 21 jours.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://blog.jetbrains.com/junie/2026/10/junie-eco-mode/"
+    }
+   ]
+  },
+  {
+   "id": "i14",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "Copilot : la revue de code facturée à l'organisation par défaut au 30 dé",
+   "note": "Réglage de facturation pour administrateurs (FinOps).",
+   "choix": "Réglage de facturation pour administrateurs (FinOps).",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.blog/changelog/2026-11-25-copilot-code-review-billing-will-default-to-the-organization"
+    }
+   ]
+  },
+  {
+   "id": "i15",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "Postman installe ses plugins dans Claude Code et Codex sans demander",
+   "note": "Faits du 24 oct. au 5 nov., 21 jours ou plus.",
+   "choix": "Faits du 24 oct. au 5 nov., 21 jours ou plus.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.notebookcheck.net/Postman-added-itself-to-Claude-Code-and-Codex-without-asking.1442933.0.html"
+    }
+   ]
+  },
+  {
+   "id": "i16",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "non-verifiable",
+   "tags": [],
+   "titre": "Coût d'un agent : jusqu'à 5 fois selon le harnais (22 configurations)",
+   "note": "The New Stack illisible (403) ; l'étude HarnessTax d'Arena date de septembre.",
+   "choix": "The New Stack illisible (403) ; l'étude HarnessTax d'Arena date de septembre.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thenewstack.io/coding-agent-harness-costs/"
+    }
+   ]
+  },
+  {
+   "id": "i17",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "non-verifiable",
+   "tags": [],
+   "titre": "Tether 0.4.0 : rejeu des exécutions d'agents enregistrées",
+   "note": "Plusieurs projets du même nom, version non confirmée.",
+   "choix": "Plusieurs projets du même nom, version non confirmée.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/brendanboyle87/tether"
+    }
+   ]
+  },
+  {
+   "id": "i18",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "MCPhantom : serveurs MCP obsolètes jamais corrigés",
+   "note": "Help Net Security, 3 nov.",
+   "choix": "Help Net Security, 3 nov.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.helpnetsecurity.com/2026/11/03/mcphantom-deprecated-mcp-servers/"
+    }
+   ]
+  },
+  {
+   "id": "i19",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "Codex CLI 0.172 et Copilot CLI 1.0.116",
+   "note": "Versions de maintenance.",
+   "choix": "Versions de maintenance.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://developers.openai.com/codex/changelog"
+    }
+   ]
+  },
+  {
+   "id": "i20",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "Google Jules fermé au 31 décembre, remplacé par Antigravity",
+   "note": "Annonce du 29 oct., outil peu utilisé côté .NET.",
+   "choix": "Annonce du 29 oct., outil peu utilisé côté .NET.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t10",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "deslop-please : un linter de modules profonds à la Ousterhout",
+   "note": "Rust seulement ; idée intéressante pour le craftsmanship.",
+   "choix": "Rust seulement ; idée intéressante pour le craftsmanship.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/deterministic-machines/deslop-please"
+    }
+   ]
+  },
+  {
+   "id": "t11",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Brickie : bacs à sable durables pour agents sur Kubernetes",
+   "note": "Infrastructure cloud et k8s, bêta.",
+   "choix": "Infrastructure cloud et k8s, bêta.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/hatchet-dev/brickie"
+    }
+   ]
+  },
+  {
+   "id": "t12",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "motif": "doublon",
+   "tags": [],
+   "titre": "fast-anything : ne réécrire en Rust que les 5 % lents",
+   "note": "Même idée que rust-anything (mode go).",
+   "choix": "Même idée que rust-anything (mode go).",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/EL4CTEO/fast-anything"
+    }
+   ]
+  },
+  {
+   "id": "t13",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "Mergeon : client Git natif en Rust (GPUI)",
+   "note": "Show HN, jeune projet.",
+   "choix": "Show HN, jeune projet.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/Spilveru/mergeon"
+    }
+   ]
+  },
+  {
+   "id": "cr7",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Revue de code et IA : la charge des relecteurs augmente",
+   "date": "2026-11-23",
+   "resume": "Quatre chercheurs, dont Christian Bird et Emerson Murphy-Hill, ont publié le 13 novembre une étude menée dans une grande entreprise du logiciel où l'IA est partout. Elle combine 24 entretiens et un questionnaire rempli par 2 590 développeurs.\n\nConstat : le code écrit avec l'IA alourdit la revue. Les PR (pull requests) sont plus nombreuses et plus grosses, et leurs auteurs s'approprient moins leur code. Utiliser l'IA pour relire ne réduit pas la difficulté à suivre le flux. Ce qui aide vraiment : du temps de revue reconnu par l'organisation, un travail fait en amont par l'auteur, et une attention réservée à la conception et à l'intention.\n\nLe 23 novembre, LeadDev rapporte l'avis inverse du PDG de JetBrains, Kirill Skrygan : d'ici deux ans, plus personne ne relirait le code ligne à ligne. L'humain fixerait des règles d'architecture (des invariants) et écrirait sa connaissance du domaine, pendant que des agents se contrôleraient entre eux.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "Des données de terrain, et non des intuitions, pour organiser la revue quand l'équipe code avec des agents."
+   },
+   "sources": [
+    {
+     "texte": "Source : arXiv (Newman, Bird, Butler, Murphy-Hill), 13 nov.",
+     "url": "https://arxiv.org/abs/2611.18939"
+    },
+    {
+     "texte": "Source : LeadDev, 23 nov.",
+     "url": "https://leaddev.com/software-quality/the-end-of-manual-code-review"
+    }
+   ],
+   "meta": "arXiv · LeadDev · 23 nov. · te concerne : oui",
+   "choix": "Une étude chiffrée (2 590 réponses) sur la revue de code à l'heure des agents, mise face à une prédiction radicale : utile pour arbitrer, et complémentaire des sujets déjà publiés sur la revue par agents.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr8",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Ephyra : des agents écrivent les générateurs de tests par propriétés",
+   "date": "2026-11-24",
+   "resume": "Datadog publie Ephyra, une bibliothèque libre de tests par propriétés (property-based testing) pilotée par des agents de code. L'humain écrit les propriétés, c'est-à-dire les règles que le code doit toujours respecter. L'agent écrit et améliore les générateurs d'entrées aléatoires, en suivant la couverture de code d'une exécution à l'autre.\n\nSur 26 projets libres déjà très testés, l'équipe annonce 535 bogues inconnus jusque-là, dont 313 déjà corrigés. Parmi eux : un bogue mémoire vieux de 24 ans dans OCaml, un bogue d'analyse syntaxique de 21 ans dans PostgreSQL et une corruption de base de 13 ans dans SQLite.\n\nEphyra est écrit en Rust mais peut tester d'autres langages (C++, Python). Datadog fournit une consigne de départ à donner à ton agent. Un article de recherche sera présenté en janvier à un atelier de POPL 2027. Les auteurs reconnaissent que le coût et la fiabilité de la méthode restent à mesurer.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "Écrire de bons générateurs était le frein des tests par propriétés : les agents peuvent maintenant s'en charger."
+   },
+   "sources": [
+    {
+     "texte": "Source : Datadog (blog), 24 nov.",
+     "url": "https://www.datadoghq.com/blog/ai/agentic-property-based-testing-with-ephyra/"
+    }
+   ],
+   "meta": "Datadog · 24 nov. · te concerne : peut-être",
+   "choix": "Un résultat concret et frais sur les tests par propriétés, très suivis dans ta veille (Seemann, Fowler) : l'IA sert ici à mieux tester, pas seulement à produire plus de code. À vérifier avant publication : Les chiffres (535 bogues, 313 corrigés) viennent de Datadog seul ; l'article de recherche n'est pas encore paru.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr9",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Seemann : l'IA n'est pas un nouveau niveau d'abstraction",
+   "date": "2026-11-02",
+   "resume": "On entend souvent que les LLM (grands modèles de langage) sont le niveau d'abstraction suivant, après l'assembleur, les fonctions et les objets. Mark Seemann répond que tout dépend du sens qu'on donne au mot.\n\nIl part de Dijkstra : abstraire ne veut pas dire être vague, mais créer un niveau où l'on peut être absolument précis. Les niveaux connus se traduisent vers le niveau du dessous de façon définie et déterministe. La génération par LLM n'est ni l'une ni l'autre : le même prompt donne des résultats différents.\n\nReprenant Rich Hickey, il distingue l'outil, prévisible une fois maîtrisé (le compilateur), et l'automatisation, à laquelle il faut faire confiance (le LLM). On peut voir les LLM comme un multiplicateur de productivité. Mais les traiter comme un compilateur serait dangereux.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "Un argument clair pour garder tests et revue quand on délègue du code à un LLM."
+   },
+   "sources": [
+    {
+     "texte": "Source : blog de Mark Seemann, 2 nov.",
+     "url": "https://blog.ploeh.dk/2026/11/02/is-ai-the-next-layer-of-abstraction/"
+    }
+   ],
+   "meta": "ploeh blog · 2 nov. · te concerne : peut-être",
+   "choix": "Un billet de fond, court, d'un auteur que tu suis, sur une idée reçue très répandue ; à garder pour un jour calme, car deux billets de Seemann sont déjà parus.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p7",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "tags": [
+    "ddd"
+   ],
+   "titre": "Dudycz : exporter un EventStorming Miro pour le donner à un agent",
+   "date": "2026-11-09",
+   "resume": "Oskar Dudycz défend les ateliers collaboratifs comme l'EventStorming ou l'Example Mapping face à la tentation de tout concevoir seul avec un LLM. Selon lui, le dialogue avec un agent reste un face-à-face avec soi-même, qui mène au mieux à un optimum local.\n\nIl veut en revanche réduire l'écart entre le modèle issu de l'atelier et le code. Les notions de l'EventStorming (commande, événement, modèle de lecture) sont précises et répétables : c'est ce qu'il faut à un agent.\n\nExporter l'image ou le JSON du tableau vers un LLM marchait mal et coûtait trop de jetons. Il a donc écrit un plugin Miro gratuit qui lit le tableau de façon déterministe (couleurs et positions). Le plugin produit un fichier ESML (en YAML) et le squelette du code. L'agent n'a plus qu'à compléter. Il imagine la suite : un serveur MCP (Model Context Protocol) branché sur Miro pour animer un Example Mapping avec l'expert métier.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "Un pont concret entre la modélisation collaborative du DDD (Domain-Driven Design) et les agents de code."
+   },
+   "sources": [
+    {
+     "texte": "Source : Event-Driven.io (Oskar Dudycz), 9 nov.",
+     "url": "https://event-driven.io/en/eventstorming_collaboration_and_llm/"
+    }
+   ],
+   "meta": "Event-Driven.io · 9 nov. · te concerne : oui",
+   "choix": "Un sujet DDD avec un outil utilisable tout de suite, qui garde l'atelier humain au centre ; il complète le glossaire généré de Fowler déjà publié sans faire doublon.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p8",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Pourquoi laisser la base de données générer tes identifiants ?",
+   "date": "2026-10-27",
+   "resume": "Derek Comartin (CodeOpinion) remet en cause un réflexe CRUD : laisser la base générer l'identifiant d'une entité. Son exemple : un envoi (shipment) dans une application de logistique.\n\nDès que la création devient asynchrone (message en file, validation et règles métier plus tard), l'identifiant n'existe pas encore quand on répond au client. On bricole alors un enregistrement provisoire ou un identifiant d'opération.\n\nSa proposition : le client génère l'identifiant (un GUID, par exemple) et l'envoie avec la requête, puis dans le message. Il peut ensuite suivre l'état de l'envoi avant même qu'il soit traité. Le même identifiant relie toutes les étapes du flux et les différents contextes, sans service central qui recopie tout. Il précise que cela ne suffit pas à découpler un système, mais que cela enlève une contrainte inutile.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "Un petit choix de conception qui simplifie l'asynchrone et les échanges entre contextes délimités."
+   },
+   "sources": [
+    {
+     "texte": "Source : CodeOpinion (Derek Comartin), 27 oct.",
+     "url": "https://codeopinion.com/database-generated-ids/"
+    }
+   ],
+   "meta": "CodeOpinion · 27 oct. · te concerne : oui",
+   "choix": "Un sujet d'architecture simple et applicable en .NET dès demain ; un mois d'âge, donc à garder pour un jour calme.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr10",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "motif": "doublon",
+   "tags": [],
+   "titre": "Teleport : Property Based Thinking (propriétés, Go, Antithesis)",
+   "note": "Bon article du 24 nov., mais recoupe Ephyra (même jour) et le DST de Fowler déjà publié ; exemples en Go.",
+   "choix": "Bon article du 24 nov., mais recoupe Ephyra (même jour) et le DST de Fowler déjà publié ; exemples en Go.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://goteleport.com/blog/property-based-thinking/"
+    }
+   ]
+  },
+  {
+   "id": "cr11",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "motif": "doublon",
+   "tags": [],
+   "titre": "Seemann : QuickCheck property, Monotonicity in items",
+   "note": "Suite de la série sur les propriétés déjà publiée le 25 nov. (cr4).",
+   "choix": "Suite de la série sur les propriétés déjà publiée le 25 nov. (cr4).",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://blog.ploeh.dk/2026/11/23/quickcheck-property-monotonicity-in-items/"
+    }
+   ]
+  },
+  {
+   "id": "cr12",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Kent Beck : You Don't Get Paid For What You Did",
+   "note": "Billet du 25 nov. sur l'économie de la création de valeur, pas sur les pratiques.",
+   "choix": "Billet du 25 nov. sur l'économie de la création de valeur, pas sur les pratiques.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://newsletter.kentbeck.com/p/you-dont-get-paid-for-what-you-did"
+    }
+   ]
+  },
+  {
+   "id": "cr13",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Vitest 5 et Mock Service Worker 3 (InfoQ)",
+   "note": "Outillage de test JavaScript.",
+   "choix": "Outillage de test JavaScript.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.infoq.com/news/2026/11/mock-service-worker-v3/"
+    }
+   ]
+  },
+  {
+   "id": "p9",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "Three Dots : le DDD compte davantage quand l'IA écrit le code",
+   "note": "Paru le 20 août 2026 (98 jours).",
+   "choix": "Paru le 20 août 2026 (98 jours).",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://threedots.tech/post/ddd-and-ai-coding/"
+    }
+   ]
+  },
+  {
+   "id": "p10",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "tags": [],
+   "titre": "Milan Jovanović : le versioning d'API en dernier recours",
+   "note": "Paru le 9 mai 2026.",
+   "choix": "Paru le 9 mai 2026.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://milanjovanovic.tech/blog/api-versioning-should-be-your-last-resort"
+    }
+   ]
+  },
+  {
+   "id": "p11",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "motif": "doublon",
+   "tags": [],
+   "titre": "DoorDash : dispatch au débit décuplé",
+   "note": "Déjà candidat aujourd'hui (p1).",
+   "choix": "Déjà candidat aujourd'hui (p1).",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.infoq.com/news/2026/11/doordash-dispatch-redesign/"
+    }
+   ]
+  },
+  {
+   "id": "p12",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "tags": [],
+   "titre": "OpenAPI Initiative : rien de neuf en novembre (Overlay 1.2 en septembre)",
+   "note": "Aucune annonce OAI trouvée dans la fenêtre récente.",
+   "choix": "Aucune annonce OAI trouvée dans la fenêtre récente.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.openapis.org/blog/"
+    }
+   ]
+  },
+  {
+   "id": "c7",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "non-verifiable",
+   "tags": [],
+   "titre": "Craft Conference 2027 : CFP jusqu'au 30 novembre ?",
+   "note": "Date limite donnée seulement par un agrégateur ; le site officiel dit « jusqu'en novembre » sans date, et le lien « Become a speaker » mène à un formulaire fermé d'un autre événement.",
+   "choix": "Date limite donnée seulement par un agrégateur ; le site officiel dit « jusqu'en novembre » sans date, et le lien « Become a speaker » mène à un formulaire fermé d'un autre événement.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://craft-conf.com/2027/"
+    }
+   ]
+  },
+  {
+   "id": "c8",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "tags": [],
+   "titre": "DevSum 2027 : CFP jusqu'au 8 décembre 2026",
+   "note": "J-12 aujourd'hui ; rappel J-14 déjà publié, prochain rappel J-7 le 1er décembre.",
+   "choix": "J-12 aujourd'hui ; rappel J-14 déjà publié, prochain rappel J-7 le 1er décembre.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://sessionize.com/devsum-2027/"
+    }
+   ]
+  },
+  {
+   "id": "c9",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "tags": [],
+   "titre": "MiXiT 2027 : CFP du 30 novembre au 23 janvier",
+   "note": "Déjà candidat le 23 nov. ; l'ouverture (déclencheur) tombe le 30 novembre. Dates lues seulement dans un résumé de recherche.",
+   "choix": "Déjà candidat le 23 nov. ; l'ouverture (déclencheur) tombe le 30 novembre. Dates lues seulement dans un résumé de recherche.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://mixitconf.org/fr/"
+    }
+   ]
+  },
+  {
+   "id": "c10",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "tags": [],
+   "titre": "NDC London 2027 (25-29 janvier)",
+   "note": "CFP clos depuis août, billetterie ouverte de longue date ; pas de nouvelle annonce datée.",
+   "choix": "CFP clos depuis août, billetterie ouverte de longue date ; pas de nouvelle annonce datée.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://ndclondon.com/"
+    }
+   ]
+  },
+  {
+   "id": "c11",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "non-verifiable",
+   "tags": [],
+   "titre": "Devoxx UK 2027",
+   "note": "Édition 2027 seulement envisagée, aucun CFP annoncé.",
+   "choix": "Édition 2027 seulement envisagée, aucun CFP annoncé.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.devoxx.co.uk/index.html"
+    }
+   ]
+  },
+  {
+   "id": "c12",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "tags": [],
+   "titre": "Agile Testing Days 2027 (22-25 novembre 2027)",
+   "note": "Pas encore de CFP publié.",
+   "choix": "Pas encore de CFP publié.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://agiletestingdays.com/"
+    }
+   ]
+  },
+  {
+   "id": "c13",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "tags": [],
+   "titre": "Dawn Conferences 2027 (Amsterdam), CFP au 18 décembre",
+   "note": "Mobile, web, PHP : hors thèmes suivis.",
+   "choix": "Mobile, web, PHP : hors thèmes suivis.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://sessionize.com/dawn-conferences-2027/"
+    }
+   ]
+  },
+  {
+   "id": "p13",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "slugger : Slugify.Core 5.2.0 (26 octobre)",
+   "note": "Notes de version absentes sur NuGet ; aucun changement lisible.",
+   "choix": "Notes de version absentes sur NuGet ; aucun changement lisible.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.nuget.org/packages/Slugify.Core/5.2.0"
+    }
+   ]
+  },
+  {
+   "id": "p14",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "hypermedia-domain-language : Microsoft.OpenApi 3.11.1",
+   "note": "Version corrective du 16 novembre.",
+   "choix": "Version corrective du 16 novembre.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.nuget.org/packages/Microsoft.OpenApi"
+    }
+   ]
+  },
+  {
+   "id": "cr14",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "tags": [],
+   "titre": "conventional-comments-toolkit : RFC ROOST pour adopter Conventional Comm",
+   "note": "Simple proposition, aucun adoptant.",
+   "choix": "Simple proposition, aucun adoptant.",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ],
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/roostorg/community/issues/133"
+    }
+   ]
+  },
+  {
+   "id": "cr15",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "tags": [],
+   "titre": "first-class-errors, just-dummies, unified-assertions : pas de nouvelle v",
+   "note": "NuGet vérifié : ErrorOr 2.1.1 (mai), FluentResults 4.0.0 (2025), OneOf (2024), Bogus 35.6.5 (2025), FluentAssertions 8.11.0 (sept.), AwesomeAssertions 9.6.0 (août).",
+   "choix": "NuGet vérifié : ErrorOr 2.1.1 (mai), FluentResults 4.0.0 (2025), OneOf (2024), Bogus 35.6.5 (2025), FluentAssertions 8.11.0 (sept.), AwesomeAssertions 9.6.0 (août).",
+   "historique": [
+    {
+     "date": "2026-11-26T09:50+01:00",
      "statut": "ecarte",
      "par": "tache"
     }
