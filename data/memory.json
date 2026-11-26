@@ -14,6 +14,11 @@
    "date": "2026-11-25",
    "path": "reports/2026/20261125.html",
    "publies": 17
+  },
+  {
+   "date": "2026-11-26",
+   "path": "reports/2026/20261126.html",
+   "publies": 9
   }
  ],
  "projets": {
@@ -22,6 +27,11 @@
     "date": "2026-11-23",
     "id": "n9",
     "titre": "first-class-errors : unions C# 15 contre Result pattern"
+   },
+   {
+    "date": "2026-11-26",
+    "id": "cr1",
+    "titre": "C# 15 : unions et hiérarchies fermées pour modéliser les erreurs"
    }
   ],
   "Reefact/conventional-comments-toolkit": [
@@ -71,6 +81,16 @@
    "date": "2026-11-25",
    "titre": "dotnetup : un gestionnaire de SDK .NET à la rustup",
    "url": "https://devblogs.microsoft.com/dotnet/introducing-dotnetup/"
+  },
+  {
+   "date": "2026-11-26",
+   "titre": "dotnet/skills : les skills officiels pour agents de code .NET",
+   "url": "https://github.com/dotnet/skills"
+  },
+  {
+   "date": "2026-11-26",
+   "titre": "minipg : PostgreSQL 18 en un seul exécutable, sans Docker",
+   "url": "https://progrium.github.io/minipg/"
   }
  ],
  "conferences": [
@@ -106,9 +126,14 @@
      "date": "2026-11-25",
      "label": "J-5",
      "n": 5
+    },
+    {
+     "date": "2026-11-26",
+     "label": "J-4",
+     "n": 4
     }
    ],
-   "last_seen": "2026-11-25",
+   "last_seen": "2026-11-26",
    "dates": "Ateliers 31 mai – 2 juin ; conférence 3–4 juin 2027",
    "place": "Meervaart, Amsterdam",
    "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)",
@@ -143,6 +168,18 @@
    "dates": "7–9 avril 2027",
    "place": "Palais des Congrès, Paris",
    "cfp": "10 janv. 2027 (heure non publiée)",
+   "cfp_deadlines": [
+    "2027-01-10"
+   ]
+  },
+  {
+   "name": "Devoxx France 2027 : le CFP est ouvert jusqu'au 10 janvier",
+   "first_seen": "2026-11-26",
+   "reminders_seen": [],
+   "last_seen": "2026-11-26",
+   "dates": "7–9 avril 2027",
+   "place": "Palais des Congrès, Paris",
+   "cfp": "10 janv. 2027",
    "cfp_deadlines": [
     "2027-01-10"
    ]
@@ -1015,9 +1052,376 @@
    "statut": "ecarte",
    "titre": "Stryker.NET, Shouldly, AutoFixture, Bogus : vérification des versions",
    "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "s1",
+   "categorie": "securite",
+   "statut": "publie",
+   "titre": "GitLab 19.6.2 : treize failles corrigées, aucune critique"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "s2",
+   "categorie": "securite",
+   "statut": "publie",
+   "titre": "1Password : intrusion via le compte GitHub d'un employé"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "i1",
+   "categorie": "ia",
+   "statut": "publie",
+   "titre": "Claude Ship : Anthropic automatise le suivi et l'approbation des PR"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "cr1",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "C# 15 : unions et hiérarchies fermées pour modéliser les erreurs",
+   "depot": "Reefact/first-class-errors"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "cr2",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "Seemann : async/await, une occasion manquée pour la composition"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "t1",
+   "categorie": "outils",
+   "statut": "publie",
+   "titre": "dotnet/skills : les skills officiels pour agents de code .NET"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "t2",
+   "categorie": "outils",
+   "statut": "publie",
+   "titre": "minipg : PostgreSQL 18 en un seul exécutable, sans Docker"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "c1",
+   "categorie": "conferences",
+   "statut": "publie",
+   "titre": "DDD Europe 2027 : rappel, le CFP des ateliers ferme le 30 novembre"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "c2",
+   "categorie": "conferences",
+   "statut": "publie",
+   "titre": "Devoxx France 2027 : le CFP est ouvert jusqu'au 10 janvier"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "i2",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "Claude Code : Code Mode et skills fournis par des serveurs MCP"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "i3",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "Copilot : le harnais Local disparaît en février 2027"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "i4",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "OpenAI : ChatGPT et Codex partageront un pool d'usage dès décembre"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "s3",
+   "categorie": "securite",
+   "statut": "candidat",
+   "titre": "GitHub : panne majeure le 25 novembre (Issues, PR, Actions)"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "s4",
+   "categorie": "securite",
+   "statut": "candidat",
+   "titre": "Forshaw : contourner le contrôle de code de .NET Framework 4"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "p1",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "titre": "DoorDash : un dispatch au débit décuplé, 99,99 % de disponibilité"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "s5",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "Hex.pm : faille CVSS 10 exploitée sur six serveurs",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "s6",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "GitHub : contournement de l'épinglage par SHA",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "s7",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "CISA KEV : Idunno AntiCsrf, Optimizely et autres",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "s9",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "Check Point : 24 serveurs de gestion visés",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "s8",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "Microsoft 365 et Cloudflare : pannes du 12 au 14 novembre",
+   "motif": "hors-fenetre"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "i5",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Cursor : voix pour l'agent et projets multijoueurs",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "i6",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Cognition SWE-2.1",
+   "motif": "non-verifiable"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "i7",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "JetBrains Air dans Rider 2026.3, Junie",
+   "motif": "non-verifiable"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "i8",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Netflix : ADR et AGENTS.md pour les agents de codage",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "n1",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": ".NET 11 et C# 15 : annonce de la version",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "n2",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "Visual Studio 18.12 : Copilot Chat sur le Copilot SDK",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "n3",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "Rider 2026.3.0.1 : notes de version",
+   "motif": "non-verifiable"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "n4",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "Shouldly 5.0.0-preview.2 et AutoFixture 5.0.0-rc.1",
+   "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "n5",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "Migration FluentAssertions 8 vers AwesomeAssertions 9",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "n6",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "Stryker.NET 5.1.0",
+   "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "cr3",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "titre": "Deterministic Simulation Testing (Fowler)",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "cr4",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "titre": "Tests as data (Vaccari)",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "cr5",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "titre": "Conventional comments : rien de récent",
+   "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "p2",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "titre": "Agoda : monolithe modulaire, revue de code réduite de 64 %",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "p3",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "titre": "DDD Europe : billets de blog",
+   "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "p4",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "titre": "OpenAPI, versioning, hypermédia : rien de récent",
+   "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "d1",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "titre": "Cyberattaque contre les frigos des supermarchés : attribution à l'Iran",
+   "motif": "hors-fenetre"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "d2",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "titre": "Coles : incident de cybersécurité",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "d3",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "titre": "Divalto : cyberattaque touchant un distributeur de livres",
+   "motif": "hors-perimetre"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "d4",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "titre": "Retail media et IA : Lidl, Casino, Auchan",
+   "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "t3",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "titre": "CLI-Anything (HKUDS)",
+   "motif": "non-verifiable"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "t4",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "titre": "Outils de Console.dev (TextJS, DBDelve, Parcel v3…)",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "t5",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "titre": "ast-grep, DuckDB 2.0, gh-signoff : candidats déjà connus",
+   "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "c3",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "titre": "NDC London 2027",
+   "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "c4",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "titre": "NDC Oslo 2027",
+   "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "c5",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "titre": "Devoxx Belgium 2027",
+   "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "c6",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "titre": "Techorama, Update Conference, BDX I/O, MiXiT",
+   "motif": "rien-de-neuf"
   }
  ],
  "urls": {
+  "https://1password.com/blog/update-on-nov-2026-security-incident": {
+   "date": "2026-11-26",
+   "id": "s2",
+   "statut": "publie"
+  },
   "https://2027.dddeurope.com/": {
    "date": "2026-11-23",
    "id": "c3",
@@ -1053,6 +1457,16 @@
    "id": "i2",
    "statut": "publie"
   },
+  "https://blog.ndepend.com/c-15-closed-hierarchies/": {
+   "date": "2026-11-26",
+   "id": "cr1",
+   "statut": "publie"
+  },
+  "https://blog.ndepend.com/csharp-unions/": {
+   "date": "2026-11-26",
+   "id": "cr1",
+   "statut": "publie"
+  },
   "https://blog.nimblepros.com/blogs/ef-core-11-migrations/": {
    "date": "2026-11-23",
    "id": "n6",
@@ -1066,6 +1480,11 @@
   "https://blog.ploeh.dk/2026/10/19/properties-for-a-budgeting-exercise/": {
    "date": "2026-11-25",
    "id": "cr4",
+   "statut": "publie"
+  },
+  "https://blog.ploeh.dk/2026/11/16/worse-is-better-asyncawait-versus-syntactic-sugar-for-monadic-composition/": {
+   "date": "2026-11-26",
+   "id": "cr2",
    "statut": "publie"
   },
   "https://blog.ploeh.dk/2026/11/23/quickcheck-property-monotonicity-in-items/": {
@@ -1098,6 +1517,11 @@
    "date": "2026-11-24",
    "id": "p3",
    "statut": "publie"
+  },
+  "https://code.claude.com/docs/en/changelog": {
+   "date": "2026-11-26",
+   "id": "i2",
+   "statut": "candidat"
   },
   "https://codeopinion.com/stale-data-consistency-boundaries/": {
    "date": "2026-11-25",
@@ -1185,6 +1609,12 @@
    "id": "c6",
    "statut": "candidat"
   },
+  "https://devoxx.be/?id=15361": {
+   "date": "2026-11-26",
+   "id": "c5",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf"
+  },
   "https://devoxxfr2027.cfp.dev": {
    "date": "2026-11-23",
    "id": "c1",
@@ -1193,6 +1623,11 @@
   "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-6-1-released/": {
    "date": "2026-11-25",
    "id": "s10",
+   "statut": "publie"
+  },
+  "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-6-2-released/": {
+   "date": "2026-11-26",
+   "id": "s1",
    "statut": "publie"
   },
   "https://duckdb.org/2026/10/21/announcing-duckdb-200.html": {
@@ -1218,6 +1653,11 @@
   "https://fuitesinfos.fr/article/2026-11-11-gestool": {
    "date": "2026-11-23",
    "id": "d3",
+   "statut": "candidat"
+  },
+  "https://github.blog/changelog/2026-11-16-github-copilot-weekly-releases-november-9/": {
+   "date": "2026-11-26",
+   "id": "i3",
    "statut": "candidat"
   },
   "https://github.blog/changelog/2026-11-17-github-copilot-in-jetbrains-ignite-releases/": {
@@ -1280,6 +1720,11 @@
    "id": "t9",
    "statut": "candidat"
   },
+  "https://github.com/dotnet/skills": {
+   "date": "2026-11-26",
+   "id": "t1",
+   "statut": "publie"
+  },
   "https://github.com/gulivan/worker755": {
    "date": "2026-11-24",
    "id": "t4",
@@ -1300,6 +1745,11 @@
    "id": "i8",
    "statut": "ecarte",
    "motif": "hors-perimetre"
+  },
+  "https://github.com/progrium/minipg": {
+   "date": "2026-11-26",
+   "id": "t2",
+   "statut": "publie"
   },
   "https://github.com/zed-industries/gpui": {
    "date": "2026-11-24",
@@ -1412,6 +1862,12 @@
    "id": "c5",
    "statut": "candidat"
   },
+  "https://ndclondon.com/call-for-papers": {
+   "date": "2026-11-26",
+   "id": "c3",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf"
+  },
   "https://onurgumus.github.io/zero-csharp/": {
    "date": "2026-11-23",
    "id": "t3",
@@ -1439,10 +1895,20 @@
    "statut": "ecarte",
    "motif": "hors-perimetre"
   },
+  "https://progrium.github.io/minipg/": {
+   "date": "2026-11-26",
+   "id": "t2",
+   "statut": "publie"
+  },
   "https://reg.devoxx.fr": {
    "date": "2026-11-23",
    "id": "c1",
    "statut": "publie"
+  },
+  "https://releasebot.io/updates/openai/codex": {
+   "date": "2026-11-26",
+   "id": "i4",
+   "statut": "candidat"
   },
   "https://replit.com/blog/introducing-replit-missions": {
    "date": "2026-11-23",
@@ -1504,6 +1970,16 @@
    "id": "n10",
    "statut": "candidat"
   },
+  "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/": {
+   "date": "2026-11-26",
+   "id": "i1",
+   "statut": "publie"
+  },
+  "https://thehackernews.com/2026/11/1password-hacked-customer-data-and.html": {
+   "date": "2026-11-26",
+   "id": "s2",
+   "statut": "publie"
+  },
   "https://thehackernews.com/2026/11/attackers-compromise-microsofts-agent.html": {
    "date": "2026-11-25",
    "id": "s7",
@@ -1534,6 +2010,12 @@
   "https://thehackernews.com/2026/11/hackers-exploit-n-able-mailassure-flaw.html": {
    "date": "2026-11-25",
    "id": "s3",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
+  },
+  "https://thehackernews.com/2026/11/hackers-exploited-cvss-100-hexpm-rce.html": {
+   "date": "2026-11-26",
+   "id": "s5",
    "statut": "ecarte",
    "motif": "hors-perimetre"
   },
@@ -1609,6 +2091,11 @@
    "id": "c3",
    "statut": "publie"
   },
+  "https://windowsforum.com/news/github-outage-on-november-25-2026-high-database-load-disrupts-git-actions-and-pull-requests.454087/": {
+   "date": "2026-11-26",
+   "id": "s3",
+   "statut": "candidat"
+  },
   "https://worker755.com": {
    "date": "2026-11-24",
    "id": "t4",
@@ -1618,6 +2105,17 @@
    "date": "2026-11-23",
    "id": "d2",
    "statut": "candidat"
+  },
+  "https://www.cisa.gov/news-events/alerts/2026/11/25/cisa-adds-10-known-exploited-vulnerabilities-catalog": {
+   "date": "2026-11-26",
+   "id": "s7",
+   "statut": "ecarte",
+   "motif": "deja-publie"
+  },
+  "https://www.devoxx.fr/en/speak": {
+   "date": "2026-11-26",
+   "id": "c2",
+   "statut": "publie"
   },
   "https://www.devoxx.fr/presenter": {
    "date": "2026-11-23",
@@ -1666,6 +2164,11 @@
    "id": "p3",
    "statut": "publie"
   },
+  "https://www.infoq.com/news/2026/11/doordash-dispatch-redesign/": {
+   "date": "2026-11-26",
+   "id": "p1",
+   "statut": "candidat"
+  },
   "https://www.infoq.com/news/2026/11/dotnet-11-release": {
    "date": "2026-11-23",
    "id": "n1",
@@ -1695,6 +2198,12 @@
    "date": "2026-11-23",
    "id": "n5",
    "statut": "candidat"
+  },
+  "https://www.lemagit.fr/actualites/366655112/Cyberhebdo-du-20-novembre-2026": {
+   "date": "2026-11-26",
+   "id": "d2",
+   "statut": "ecarte",
+   "motif": "hors-perimetre"
   },
   "https://www.lemagit.fr/actualites/366655137/Ransomware-les-frameworks-offensifs-agentiques-sont-entres-dans-la-danse": {
    "date": "2026-11-24",
@@ -1785,6 +2294,11 @@
   "https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/": {
    "date": "2026-11-23",
    "id": "s6",
+   "statut": "publie"
+  },
+  "https://www.theregister.com/ai-and-ml/2026/11/24/claude-ship-puts-ai-at-the-helm-of-pull-request-approvals/5311883": {
+   "date": "2026-11-26",
+   "id": "i1",
    "statut": "publie"
   },
   "https://www.thoughtworks.com/radar/platforms": {
