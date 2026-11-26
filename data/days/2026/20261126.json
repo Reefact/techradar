@@ -1,0 +1,1318 @@
+{
+ "date": "2026-11-26",
+ "config": {
+  "commit": "b429ab2"
+ },
+ "executions": [
+  {
+   "type": "planifiee",
+   "debut": "2026-11-26T06:07+01:00",
+   "note": "création : recherche web déléguée à trois sous-agents, lecture des flux ; relecture par sous-agent, 13 corrections appliquées"
+  }
+ ],
+ "journal": {
+  "recherches": {
+   "securite": 10,
+   "dotnet": 8,
+   "ia": 10,
+   "architecture": 7,
+   "craftsmanship": 7,
+   "distribution": 6,
+   "outils": 8,
+   "conferences": 7,
+   "projets": 2
+  },
+  "pages_ouvertes": 65,
+  "sources_illisibles": [
+   "bleepingcomputer.com (403)",
+   "neowin.net (403)",
+   "thenewstack.io (403, même avec curl)",
+   "theverge.com (bloqué)",
+   "lsa-conso.fr (403)",
+   "github.com/trending et API GitHub (accès refusé)",
+   "pages « Nouveautés Rider » (vides)",
+   "prague.updateconference.net (JavaScript)",
+   "CERT-FR CTI-009 (PDF illisible)",
+   "changelog Claude Code (tronqué, 2.1.323 non lu)",
+   "Reddit r/dotnet et Lobsters (aucune page directe)"
+  ],
+  "verifications": [
+   {
+    "nom": "JetBrains Security",
+    "resultat": "1 article examiné (Java4Shell, déjà publié)"
+   },
+   {
+    "nom": "JetBrains .NET Tools",
+    "resultat": "1 article examiné (Java4Shell, déjà publié)"
+   },
+   {
+    "nom": "GitLab Patch Releases",
+    "resultat": "1 article examiné (patch 19.6.2, publié)"
+   },
+   {
+    "nom": "GitLab Releases",
+    "resultat": "rien de neuf"
+   },
+   {
+    "nom": "Blog .NET",
+    "resultat": "1 article examiné (DocumentExtractionClient, déjà publié)"
+   },
+   {
+    "nom": "Blog Visual Studio",
+    "resultat": "2 articles examinés (VS 18.12, déjà publié ; un billet promotionnel)"
+   },
+   {
+    "nom": "Blog Aspire",
+    "resultat": "rien de neuf"
+   },
+   {
+    "nom": "Blog NuGet",
+    "resultat": "rien de neuf (l'URL du flux renvoie le contenu du Blog .NET)"
+   },
+   {
+    "nom": "Microsoft Security Update Guide (MSRC)",
+    "resultat": "aucune nouvelle CVE .NET, VS ou NuGet depuis le 17 nov."
+   },
+   {
+    "nom": "Stryker.NET / AwesomeAssertions / Shouldly / AutoFixture / Bogus / ErrorOr / FluentResults / Slugify",
+    "resultat": "rien de neuf (registre NuGet)"
+   },
+   {
+    "nom": "Devoxx France 2027",
+    "resultat": "CFP ouvert confirmé, ferme le 10 janv. 2027"
+   },
+   {
+    "nom": "DDD Europe 2027",
+    "resultat": "CFP ateliers J-4, conférence 16 janv. 2027"
+   }
+  ],
+  "verifications_sources": {
+   "lancees": 0,
+   "vrai": 0,
+   "faux": 0,
+   "indetermine": 0
+  },
+  "decouverte": 2,
+  "hypotheses": [
+   "Recherche déléguée à trois sous-agents ; le moteur renvoie peu de résultats récents et plusieurs sites sont bloqués (voir sources illisibles).",
+   "Beaucoup de sujets trouvés étaient déjà publiés les 23 à 25 novembre : seuls les sujets nouveaux ont été retenus.",
+   "Aucun sujet de sécurité à vérifier n'a été publié : les deux sujets publiés (GitLab, 1Password) sont annoncés par leur auteur, donc sans vérification ; Forshaw et GitHub restent candidats.",
+   "Seulement 2 sujets de découverte (Seemann, minipg) : pas de troisième bon candidat.",
+   "Aucun sujet publié pour la distribution, l'architecture et les projets hors first-class-errors : rien de frais ni d'actionnable après 6 à 7 requêtes dédiées.",
+   "Le flux Blog NuGet de config/sujets/flux.json renvoie le contenu du Blog .NET : à corriger côté configuration.",
+   "Résumés de 6 à 10 lignes, selon la demande du 24 novembre notée dans data/notes.md."
+  ]
+ },
+ "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact",
+ "a_retenir": [
+  {
+   "section": "urgent",
+   "paragraphes": [
+    "Rappel : l'appel à propositions des ateliers de [DDD Europe 2027](#c1) ferme lundi 30 novembre, dans quatre jours. À l'inverse, celui de [Devoxx France 2027](#c2), ouvert depuis lundi, court jusqu'au 10 janvier : tu as le temps de préparer un sujet."
+   ],
+   "sujets": [
+    "c1",
+    "c2"
+   ]
+  },
+  {
+   "section": "securite",
+   "paragraphes": [
+    "Rien de critique aujourd'hui. [GitLab 19.6.2](#s1) corrige treize failles de gravité moyenne ou faible : mise à jour de routine si tu héberges ton instance. [1Password](#s2) raconte une intrusion partie du compte GitHub d'un employé, avec accès au code et au CI/CD ; selon l'éditeur, les coffres ne sont pas touchés."
+   ],
+   "sujets": [
+    "s1",
+    "s2"
+   ]
+  },
+  {
+   "section": "ia",
+   "paragraphes": [
+    "Avec [Claude Ship](#i1), lancé lundi, Anthropic veut automatiser la relecture, les correctifs de CI et même l'approbation des pull requests. L'outil démarre en mode observation ; l'éditeur reconnaît qu'il peut manquer des bugs."
+   ],
+   "sujets": [
+    "i1"
+   ]
+  },
+  {
+   "section": "craftsmanship",
+   "paragraphes": [
+    "Les unions et hiérarchies fermées de C# 15, sorties avec .NET 11 le 10 novembre, [changent la façon de modéliser les erreurs](#cr1), un sujet cher à first-class-errors. [Mark Seemann](#cr2) rappelle de son côté ce qui manque à C# pour composer des effets."
+   ],
+   "sujets": [
+    "cr1",
+    "cr2"
+   ]
+  },
+  {
+   "section": "outils",
+   "paragraphes": [
+    "[dotnet/skills](#t1) donne à tes agents de code des consignes officielles pour .NET. La pépite du jour, [minipg](#t2), lance PostgreSQL dans un seul binaire, sans Docker : encore très jeune."
+   ],
+   "sujets": [
+    "t1",
+    "t2"
+   ]
+  }
+ ],
+ "sujets": [
+  {
+   "id": "s1",
+   "categorie": "securite",
+   "statut": "publie",
+   "titre": "GitLab 19.6.2 : treize failles corrigées, aucune critique",
+   "date": "2026-11-25",
+   "resume": "GitLab a publié le 25 novembre la version de correctifs **19.6.2** et les mises à jour des branches 19.5.9, 19.4.11, 19.3.10, 19.2.11, 19.1.11, 19.0.12 et 18.11.15. Treize failles sont corrigées, toutes de gravité moyenne ou faible (score CVSS de 3,5 à 6,7).\n\nLes plus sérieuses : une fuite de cookie de session via l'authentification du proxy de dépendances (CVE-2026-119452, 6,7), deux dénis de service (6,5) et l'exécution de commandes rapides par des e-mails du Service Desk sans authentification (CVE-2026-81336, 6,5). Une portée trop large du jeton de job CI (intégration continue) et une requête côté serveur forgée (SSRF) dans l'OAuth du serveur MCP (Model Context Protocol) sont aussi corrigées.\n\nLes dépendances embarquées (Git, Ruby, GPGME, NGINX) sont mises à jour. La 19.6.2 comprend des migrations après déploiement : prévois une courte indisponibilité sur une instance mono-nœud. Autre point : l'Ingress NGINX (Helm et Operator) est déprécié, sans correctifs amont ; GitLab conseille de migrer vers Envoy Gateway ou un autre contrôleur.",
+   "details": {
+    "Touché": "GitLab CE/EE auto-hébergé, branches avant 19.6.2, 19.5.9, 19.4.11 et les branches plus anciennes listées",
+    "Correctif": "19.6.2, 19.5.9, 19.4.11, 19.3.10, 19.2.11, 19.1.11, 19.0.12 ou 18.11.15 ; GitLab.com et Dedicated déjà à jour",
+    "Gravité": "Moyenne à faible (CVSS 3,5 à 6,7), aucune faille critique",
+    "Action": "Planifier la mise à jour d'une instance auto-hébergée ; anticiper la migration hors Ingress NGINX"
+   },
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si toi ou un client héberge son propre GitLab, c'est une mise à jour de routine à planifier ; sur GitLab.com, rien à faire."
+   },
+   "sources": [
+    {
+     "texte": "Source : GitLab, 25 nov. 2026",
+     "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-6-2-released/"
+    }
+   ],
+   "meta": "GitLab · 25 nov. 2026 · te concerne : si GitLab auto-hébergé",
+   "verification_non_requise": "correctifs annoncés par l'éditeur lui-même (GitLab)",
+   "choix": "Publié : sujet frais (☄️) sur un outil de ta chaîne de développement, annoncé par l'éditeur. Gravité modeste, donc ni alerte ni urgence ; flux GitLab Patch Releases.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "categorie": "securite",
+   "statut": "publie",
+   "tags": [
+    "supply-chain"
+   ],
+   "titre": "1Password : intrusion via le compte GitHub d'un employé",
+   "date": "2026-11-25",
+   "resume": "1Password a détaillé le 25 novembre un incident de sécurité découvert le 19 novembre. Un attaquant a pris le contrôle du compte GitHub professionnel d'un employé. Il a pu copier du code de dépôts privés, accéder au CI/CD et pousser du code malveillant vers des services de l'entreprise.\n\nSelon 1Password, des données de compte d'un sous-ensemble d'utilisateurs ont été téléchargées : noms, adresses e-mail, identifiants, clés publiques, paramètres SRP et jetons de liens e-mail. Les coffres, les mots de passe et les clés qui les protègent ne seraient pas touchés, ni les applications et extensions.\n\nL'entreprise a révoqué le jeton, désactivé le compte, renouvelé ses identifiants et allongé ses codes d'invitation. Elle indique qu'aucune action n'est requise des clients ; restent à surveiller les tentatives d'hameçonnage. Ces éléments sont les déclarations de 1Password : aucune enquête indépendante n'a été trouvée à ce stade.",
+   "details": {
+    "Touché": "Un sous-ensemble de comptes clients 1Password (données de compte, pas les coffres)",
+    "Correctif": "Jeton révoqué, compte désactivé, identifiants renouvelés (annoncé par 1Password)",
+    "Gravité": "Élevée pour l'éditeur (accès au code et au CI/CD) ; limitée pour les clients selon 1Password",
+    "Action": "Aucune action requise selon 1Password ; vigilance face au phishing"
+   },
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un seul compte GitHub piraté a ouvert le code et le CI/CD d'un éditeur de sécurité : un rappel pour durcir tes comptes (SSO, clés matérielles, protection de branche, jetons à durée courte)."
+   },
+   "sources": [
+    {
+     "texte": "Source : 1Password, 25 nov. 2026",
+     "url": "https://1password.com/blog/update-on-nov-2026-security-incident"
+    },
+    {
+     "texte": "Reprise : The Hacker News, 26 nov. 2026",
+     "url": "https://thehackernews.com/2026/11/1password-hacked-customer-data-and.html"
+    }
+   ],
+   "meta": "1Password · 25 nov. 2026 · te concerne : peut-être (si tu l'utilises, et pour la leçon CI/CD)",
+   "verification_non_requise": "incident annoncé et détaillé par l'entreprise concernée (1Password) ; les affirmations sont présentées comme ses déclarations",
+   "choix": "Publié : sujet frais (☄️), de sécurité de la chaîne de développement (compte GitHub, CI/CD), qui touche un outil très répandu chez les développeurs. Les affirmations sont attribuées à 1Password.",
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i1",
+   "categorie": "ia",
+   "statut": "publie",
+   "titre": "Claude Ship : Anthropic automatise le suivi et l'approbation des PR",
+   "date": "2026-11-23",
+   "resume": "Anthropic a lancé le 23 novembre **Claude Ship**, un ensemble d'outils pour l'après-ouverture d'une pull request (PR). La revue de code (**Code Review**) est disponible pour tous. **PR Steward** (bêta) corrige les échecs de CI, les conflits de fusion et les retours de relecture, puis commente ce qu'il a changé et comment l'annuler.\n\n**Claude Approvals** (bêta) approuve les PR selon une politique écrite en langage naturel dans un fichier du dépôt. Anthropic conseille de commencer en mode observation, puis d'en faire un contrôle GitHub obligatoire. Approuver n'est pas fusionner : les protections de branche restent en vigueur.\n\nL'offre est réservée aux plans Team et Enterprise, aux dépôts GitHub, avec facturation à l'usage et plafond mensuel réglable. Même l'observation peut coûter. Anthropic reconnaît que l'outil peut manquer des bugs ou des failles ; The Register relaie des critiques sur la perte de contrôle et les coûts imprévisibles.\n\nNote : sujet écarté hier faute de source lisible ; il est confirmé par deux articles de presse.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "à tester en observation sur les PR de routine (montées de version NuGet, renommages) avant de lui confier une approbation ; guetter le coût réel."
+   },
+   "sources": [
+    {
+     "texte": "Source : TechCrunch, 23 nov. 2026",
+     "url": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/"
+    },
+    {
+     "texte": "Source : The Register, 24 nov. 2026",
+     "url": "https://www.theregister.com/ai-and-ml/2026/11/24/claude-ship-puts-ai-at-the-helm-of-pull-request-approvals/5311883"
+    }
+   ],
+   "meta": "TechCrunch, The Register · 23-24 nov. 2026 · te concerne : peut-être",
+   "choix": "Publié : annonce majeure de la semaine sur les agents de code, dans la fenêtre IA. Écartée hier faute de source lisible, elle est désormais confirmée par deux articles ouverts ; ton thème revue de code recoupe aussi conventional-comments-toolkit.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr1",
+   "categorie": "craftsmanship",
+   "categorie_secondaire": "dotnet",
+   "statut": "publie",
+   "depot": "Reefact/first-class-errors",
+   "titre": "C# 15 : unions et hiérarchies fermées pour modéliser les erreurs",
+   "date": "2026-11-13",
+   "resume": "C# 15 (livré avec .NET 11 le 10 novembre) apporte deux fonctionnalités qui touchent directement à la gestion d'erreurs.\n\nLes **unions** (`union Pet(Dog, Cat, Bird)`) déclarent un type qui vaut l'un de plusieurs cas. Le `switch` est exhaustif sans branche par défaut, et ajouter un cas produit l'avertissement CS8509. La bibliothèque de base ne fournit pas de type `Option` ni `Result` : on déclare les siens, par exemple `Result<T>` avec les cas `T` et `Exception`.\n\nLes **hiérarchies fermées** (`closed`) limitent l'héritage direct à l'assembly déclarant : un `switch` sur toutes les sous-classes est exhaustif, et ajouter une sous-classe fait apparaître l'avertissement.\n\nLimites relevées par NDepend : pas d'égalité par valeur générée, boxing des types valeur dans les unions générées, `default` donne une valeur nulle ; ajouter `closed` à une hiérarchie publiée est un changement cassant. Les sources de détail sont des billets d'un éditeur d'outils ; l'annonce officielle de .NET 11 confirme les unions.",
+   "pourquoi": {
+    "type": "projet",
+    "texte": "c'est le sujet « unions C# 15 » que tu surveilles pour first-class-errors : un `Result` natif exhaustif concurrence directement ErrorOr et FluentResults et peut simplifier la bibliothèque."
+   },
+   "sources": [
+    {
+     "texte": "Source : NDepend, 5 nov. 2026 (unions)",
+     "url": "https://blog.ndepend.com/csharp-unions/"
+    },
+    {
+     "texte": "Source : NDepend, 13 nov. 2026 (hiérarchies fermées)",
+     "url": "https://blog.ndepend.com/c-15-closed-hierarchies/"
+    }
+   ],
+   "meta": "NDepend · 13 nov. 2026 · te concerne : oui (first-class-errors)",
+   "choix": "Publié : recoupement direct avec un de tes projets (unions C# 15 listées dans la surveillance de first-class-errors) ; sujet de fond de moins de 30 jours, jamais traité sous cet angle. Source secondaire, à recouper avec la doc Microsoft avant de s'engager.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr2",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Seemann : async/await, une occasion manquée pour la composition",
+   "date": "2026-11-16",
+   "resume": "Mark Seemann juge que `async`/`await` de C# est une occasion manquée présentée comme une fonctionnalité phare. Il l'oppose aux *computation expressions* de F# (`let!`) et à la notation `do` de Haskell : des mécanismes généraux de composition d'effets, là où C# a une solution propre à `Task<T>`.\n\nIl rappelle que la syntaxe de requêtes LINQ ne gère ni `if`/`switch` ni les méthodes `void`, et qu'aucune de ces approches ne couvre la composition applicative, celle qui sert à cumuler les erreurs de validation. La critique vise la conception du langage, pas l'implémentation .NET.\n\nSa conclusion : F# est un meilleur langage, et une troisième fonctionnalité de composition en C# est improbable. C'est un avis tranché de praticien, pas un fait.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "il éclaire les limites de la composition d'erreurs et d'effets (Result, Option, validation) en C#, au moment où les unions de C# 15 viennent d'arriver."
+   },
+   "sources": [
+    {
+     "texte": "Source : blog de Mark Seemann, 16 nov. 2026",
+     "url": "https://blog.ploeh.dk/2026/11/16/worse-is-better-asyncawait-versus-syntactic-sugar-for-monadic-composition/"
+    }
+   ],
+   "meta": "blog.ploeh.dk · 16 nov. 2026 · te concerne : peut-être",
+   "choix": "Découverte : un auteur et un format (billet d'opinion sur le langage) que tes avis ne permettent pas encore de juger ; sujet de fond de dix jours, jamais traité.",
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t1",
+   "categorie": "outils",
+   "categorie_secondaire": "ia",
+   "statut": "publie",
+   "titre": "dotnet/skills : les skills officiels pour agents de code .NET",
+   "date": "2026-11-10",
+   "resume": "Le dépôt **dotnet/skills** rassemble des *skills* (consignes et scripts que charge un agent de code) pour travailler en .NET et C#. Il compte 16 plugins : diagnostics, MSBuild, NuGet, mises à jour de version, tests, ASP.NET Core, Blazor, MAUI, données et un lot dédié à .NET 11.\n\nIls s'installent dans Copilot CLI, Claude Code, VS Code, Cursor et Codex CLI, par exemple via la place de marché de plugins (`/plugin marketplace add dotnet/skills`, selon la recherche : à vérifier dans le README). Le billet d'annonce de .NET 11 les cite parmi les nouveautés pour l'IA.\n\nSignaux : environ 6,4 k étoiles, 510 forks, licence MIT, plus de 1 400 commits, 53 tickets ouverts ; projet porté par l'équipe .NET, annoncé en mars 2026.",
+   "details": {
+    "Pourquoi il monte": "cité dans l'annonce de .NET 11 ; dépôt très actif, environ 6,4 k étoiles",
+    "Maturité": "environ huit mois, open source (MIT), maintenu par l'équipe .NET"
+   },
+   "pourquoi": {
+    "type": "utile",
+    "texte": "tu peux donner à Claude Code ou Copilot des consignes éprouvées pour NuGet, MSBuild ou les montées de version .NET, sans les écrire toi-même."
+   },
+   "sources": [
+    {
+     "texte": "Source : dépôt dotnet/skills",
+     "url": "https://github.com/dotnet/skills"
+    }
+   ],
+   "meta": "GitHub dotnet/skills · 10 nov. 2026 · te concerne : oui",
+   "choix": "Publié : outil directement utilisable avec tes agents de code, de source officielle ; catégorie Outils sinon vide. Le dépôt n'est pas nouveau, mais il n'avait jamais été traité.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t2",
+   "categorie": "outils",
+   "statut": "publie",
+   "tags": [
+    "pepite"
+   ],
+   "titre": "minipg : PostgreSQL 18 en un seul exécutable, sans Docker",
+   "date": "2026-11-26",
+   "resume": "**minipg** est un binaire unique qui lance PostgreSQL 18 sans Docker, sans machine virtuelle et sans noyau Linux installé : il embarque une image Alpine exécutée par la bibliothèque h9 (en Zig). Les données vivent dans un dossier `.pgdb` ; le serveur démarre à la demande et s'arrête après un temps d'inactivité.\n\nIl fonctionne sous Linux (x86_64 et arm64) et macOS sur Apple Silicon. Licence MIT.\n\nLa page est franche sur les limites : projet jeune, personnalité Linux de h9 encore récente, PostgreSQL environ deux fois plus lent qu'en natif, et déconseillé pour des données irremplaçables. Aucune mention de .NET ni de Windows. Signal de montée faible : 21 points sur Hacker News ce matin.",
+   "details": {
+    "Pourquoi il monte": "présenté sur la page d'accueil de Hacker News le 26 novembre (21 points)",
+    "Maturité": "précoce, MIT ; Linux et macOS Apple Silicon seulement"
+   },
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "piste pour lancer des tests d'intégration EF Core/Npgsql sans Docker ; trop jeune et sans Windows pour l'instant."
+   },
+   "sources": [
+    {
+     "texte": "Source : page du projet minipg",
+     "url": "https://progrium.github.io/minipg/"
+    },
+    {
+     "texte": "Dépôt : progrium/minipg",
+     "url": "https://github.com/progrium/minipg"
+    }
+   ],
+   "meta": "progrium.github.io · 26 nov. 2026 · te concerne : peut-être",
+   "choix": "Découverte : la pépite du jour, originale et sans lien direct avec tes thèmes habituels ; signal de montée faible, d'où la mise en garde.",
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "c1",
+   "categorie": "conferences",
+   "statut": "publie",
+   "tags": [
+    "ddd",
+    {
+     "tag": "rappel",
+     "seuil": "J-4"
+    }
+   ],
+   "titre": "DDD Europe 2027 : rappel, le CFP des ateliers ferme le 30 novembre",
+   "resume": "Rappel : la date limite de l'appel à propositions (CFP) des **ateliers** de DDD Europe 2027 tombe le 30 novembre 2026, dans quatre jours. Celle de la conférence principale reste ouverte jusqu'au 16 janvier 2027 à 23 h 59.\n\nL'édition a lieu à Amsterdam : ateliers du 31 mai au 2 juin, conférence les 3 et 4 juin 2027. Les orateurs ont une participation gratuite ; le détail des deux CFP est sur Sessionize.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "DDD est un thème central de tes projets ; si tu veux proposer un atelier, il te reste quatre jours."
+   },
+   "sources": [
+    {
+     "texte": "Source : dddeurope.com",
+     "url": "https://2027.dddeurope.com/"
+    },
+    {
+     "texte": "CFP : Sessionize",
+     "url": "https://sessionize.com/aardling27/"
+    }
+   ],
+   "details": {
+    "Dates et lieu": "Ateliers 31 mai – 2 juin, conférence 3–4 juin 2027, Meervaart, Amsterdam",
+    "CFP": "ateliers : 30 nov. 2026 ; conférence : 16 janv. 2027",
+    "Inscription": "billetterie ti.to annoncée, prix non lus"
+   },
+   "conference": {
+    "dates": "Ateliers 31 mai – 2 juin ; conférence 3–4 juin 2027",
+    "lieu": "Meervaart, Amsterdam",
+    "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)",
+    "site": "https://2027.dddeurope.com/"
+   },
+   "date": "2026-11-26",
+   "choix": "Publié en priorité : rappel du CFP des ateliers de DDD Europe (J-4), publié aussi hier à J-5.",
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "c2",
+   "categorie": "conferences",
+   "statut": "publie",
+   "tags": [
+    "nouveau"
+   ],
+   "titre": "Devoxx France 2027 : le CFP est ouvert jusqu'au 10 janvier",
+   "resume": "L'appel à propositions (CFP) de **Devoxx France 2027** est ouvert depuis le 23 novembre 2026 et ferme le **10 janvier 2027**. La conférence aura lieu du 7 au 9 avril 2027 au Palais des Congrès de Paris (une page du CFP indique le 6 avril : à confirmer).\n\nNeuf thèmes sont proposés, dont IA et systèmes agentiques, pratiques de développement, architecture et sécurité. Formats : conférence de 45 minutes, *Tools-in-Action* de 30 minutes, créneau de 15 minutes réservé aux nouveaux orateurs, ateliers de 2 à 3 heures et BOF. Environ 75 % des sessions sont en français. Les orateurs retenus reçoivent un pass de trois jours.\n\nLes réponses sont attendues début février, le programme fin février. En 2026, 1 100 propositions avaient été reçues pour 270 sessions retenues.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un thème .NET, IA, DDD ou tests de mutation peut y trouver sa place ; la date limite est dans six semaines."
+   },
+   "sources": [
+    {
+     "texte": "Source : devoxx.fr, appel à orateurs",
+     "url": "https://www.devoxx.fr/en/speak"
+    }
+   ],
+   "details": {
+    "Dates et lieu": "7–9 avril 2027, Palais des Congrès, Paris",
+    "CFP": "ouvert le 23 nov. 2026, ferme le 10 janv. 2027",
+    "Inscription": "via reg.devoxx.fr, prix non lus"
+   },
+   "conference": {
+    "dates": "7–9 avril 2027",
+    "lieu": "Palais des Congrès, Paris",
+    "cfp": "10 janv. 2027",
+    "site": "https://www.devoxx.fr/"
+   },
+   "date": "2026-11-23",
+   "choix": "Publié en priorité : déclencheur réel, l'ouverture du CFP est désormais confirmée sur la page officielle (candidat hier).",
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "publie",
+     "par": "tache"
+    },
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "publie",
+     "par": "tache",
+     "note": "repris du rapport du 2026-11-25 (candidat c2), ouverture confirmée"
+    }
+   ]
+  },
+  {
+   "id": "i2",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "Claude Code : Code Mode et skills fournis par des serveurs MCP",
+   "date": "2026-11-25",
+   "resume": "Les versions 2.1.330 à 2.1.332 de Claude Code (20 au 25 novembre) étendent **Code Mode** : Claude écrit un script qui appelle les outils (au lieu d'un appel par étape), sous le mode de permission de la session, avec la possibilité d'utiliser des hooks `PreToolUse`. La 2.1.332 ajoute des skills venus de serveurs MCP (bêta) et un hook `PreSkillShellCommand` qui peut refuser les commandes shell d'un skill. Le changelog n'a été lu qu'en partie.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "utile pour les refactors en lot sur une solution ; le hook de contrôle des commandes d'un skill mérite un coup d'œil."
+   },
+   "sources": [
+    {
+     "texte": "Source : changelog de Claude Code",
+     "url": "https://code.claude.com/docs/en/changelog"
+    }
+   ],
+   "meta": "Anthropic · 25 nov. 2026 · te concerne : peut-être",
+   "choix": "Candidat : se recoupe avec « Skills over MCP » déjà publié ; changelog lu partiellement.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i3",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "Copilot : le harnais Local disparaît en février 2027",
+   "date": "2026-11-16",
+   "resume": "Le bilan hebdomadaire de GitHub du 16 novembre annonce Claude Fable 5.2 dans Copilot, VS Code 1.146 (outil *Compare Models*, mode Inbox, expérimentaux) et la suppression du harnais **Local** en février 2027. Le harnais Copilot devient celui par défaut. L'app Copilot gagne des automatisations planifiées et la dictée en français. Le 25 novembre, la facturation de la revue de code passe par défaut à l'organisation.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "l'échéance de février 2027 (harnais Local) est à noter si tu l'utilises."
+   },
+   "sources": [
+    {
+     "texte": "Source : GitHub Changelog, 16 nov. 2026",
+     "url": "https://github.blog/changelog/2026-11-16-github-copilot-weekly-releases-november-9/"
+    }
+   ],
+   "meta": "GitHub · 16 nov. 2026 · te concerne : peut-être",
+   "choix": "Candidat : bilan de plusieurs annonces, sans rien de spécifique à .NET ; fenêtre IA de 21 jours encore ouverte.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i4",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "OpenAI : ChatGPT et Codex partageront un pool d'usage dès décembre",
+   "date": "2026-11-25",
+   "resume": "Selon des sources tierces, les abonnés Plus, Pro et Business partageront dès décembre un seul pool de jetons entre ChatGPT et Codex. Codex 0.171 et 0.172 (18 et 23 novembre) apportent GPT-6.2 Sol et Astra, `codex exec --remote` et un démarrage paresseux des serveurs MCP. Aucune annonce officielle trouvée pour le pool ; date incertaine.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "budget d'usage à surveiller si Codex sert à tes refactors .NET."
+   },
+   "sources": [
+    {
+     "texte": "Source : Releasebot, notes de Codex",
+     "url": "https://releasebot.io/updates/openai/codex"
+    }
+   ],
+   "meta": "Releasebot · 25 nov. 2026 · te concerne : peut-être",
+   "choix": "Candidat : source tierce uniquement, aucune annonce officielle lue.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "categorie": "securite",
+   "statut": "candidat",
+   "titre": "GitHub : panne majeure le 25 novembre (Issues, PR, Actions)",
+   "date": "2026-11-25",
+   "resume": "Le 25 novembre, vers 15 h 55 UTC, une forte charge sur la base de données de GitHub a mis Issues et Pull Requests en panne majeure, Actions, Packages et Pages en panne partielle, Git, webhooks et API dégradés. Copilot et Codespaces étaient épargnés. Résolution indiquée vers 16 h 52 UTC ; GitHub promet une analyse de cause racine, non publiée. Source secondaire uniquement.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "guetter l'analyse de cause racine si ton CI ou tes paquets passent par GitHub."
+   },
+   "sources": [
+    {
+     "texte": "Source : WindowsForum (reprise de Neowin)",
+     "url": "https://windowsforum.com/news/github-outage-on-november-25-2026-high-database-load-disrupts-git-actions-and-pull-requests.454087/"
+    }
+   ],
+   "meta": "WindowsForum · 25 nov. 2026 · te concerne : oui (si CI sur GitHub)",
+   "choix": "Candidat : incident terminé, lu seulement via une source secondaire ; à reprendre si GitHub publie son analyse.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "categorie": "securite",
+   "statut": "candidat",
+   "titre": "Forshaw : contourner le contrôle de code de .NET Framework 4",
+   "date": "2026-11-24",
+   "resume": "D'après The Hacker News, James Forshaw (Google Project Zero) montre que .NET Framework 4 charge en mémoire une copie d'un exécutable dont l'en-tête a été modifié, échappant aux contrôles d'intégrité de code (UMCI). CVE-2026-108398 (CVSS 8,8) a été corrigée au Patch Tuesday d'octobre ; une CVE VirtualBox liée l'a été en septembre. Accès local requis. Billet original de Project Zero non retrouvé : affirmations non vérifiées.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "concerne les postes Windows durcis (Windows Defender Application Control, WDAC) ; vérifie que les mises à jour cumulatives d'octobre sont installées."
+   },
+   "sources": [
+    {
+     "texte": "Source : The Hacker News, 24 nov. 2026",
+     "url": "https://thehackernews.com/2026/11/google-researcher-shows-how-single-bit.html"
+    }
+   ],
+   "meta": "The Hacker News · 24 nov. 2026 · te concerne : peut-être",
+   "choix": "Candidat : catégorie à risque, source secondaire sans avis Microsoft lu ; à vérifier avant publication.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p1",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "titre": "DoorDash : un dispatch au débit décuplé, 99,99 % de disponibilité",
+   "date": "2026-11-25",
+   "resume": "DoorDash a refondu son moteur de dispatch, un monolithe aux algorithmes en O(n²) : un coordinateur avec état et des *workers* de calcul sans état, partage des données par charge utile via gRPC, découpage géographique, inférence ONNX Runtime. Déploiement en trafic fantôme puis bascule. Chiffres annoncés : débit multiplié par dix, plus de 99,96 % des exécutions sous 20 secondes, plus de 99,99 % de disponibilité au Super Bowl.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "séparer coordination et calcul, et rejouer du trafic réel avant une bascule : des patterns transposables."
+   },
+   "sources": [
+    {
+     "texte": "Source : InfoQ, 25 nov. 2026",
+     "url": "https://www.infoq.com/news/2026/11/doordash-dispatch-redesign/"
+    }
+   ],
+   "meta": "InfoQ · 25 nov. 2026 · te concerne : peut-être",
+   "choix": "Candidat : retour de terrain d'échelle hors .NET, proche de l'exclusion « retours d'expérience génériques » ; catégorie Architecture vide ce jour.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "titre": "Hex.pm : faille CVSS 10 exploitée sur six serveurs",
+   "note": "registre Elixir/Erlang, sans lien avec .NET ; leçon valable pour NuGet mais déjà couverte par d'autres sujets.",
+   "choix": "Écarté (hors-perimetre) : registre Elixir/Erlang, sans lien avec .NET ; leçon valable pour NuGet mais déjà couverte par d'autres sujets.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/hackers-exploited-cvss-100-hexpm-rce.html"
+    }
+   ],
+   "date": "2026-11-25",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "titre": "GitHub : contournement de l'épinglage par SHA",
+   "note": "déjà publié le 24 novembre.",
+   "choix": "Écarté (deja-publie) : déjà publié le 24 novembre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://thehackernews.com/2026/11/hackers-found-way-around-github-sha.html"
+    }
+   ],
+   "date": "2026-11-24",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "titre": "CISA KEV : Idunno AntiCsrf, Optimizely et autres",
+   "note": "Idunno.AntiCsrf déjà publié ; le reste (VMware, SAP, Cisco, Mitel, Danfoss…) est hors périmètre .NET.",
+   "choix": "Écarté (deja-publie) : Idunno.AntiCsrf déjà publié ; le reste (VMware, SAP, Cisco, Mitel, Danfoss…) est hors périmètre .NET.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.cisa.gov/news-events/alerts/2026/11/25/cisa-adds-10-known-exploited-vulnerabilities-catalog"
+    }
+   ],
+   "date": "2026-11-25",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "titre": "Check Point : 24 serveurs de gestion visés",
+   "note": "produit réseau sans lien avec un développeur .NET ; déjà écarté hier.",
+   "choix": "Écarté (hors-perimetre) : produit réseau sans lien avec un développeur .NET ; déjà écarté hier.",
+   "date": "2026-11-25",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "titre": "Microsoft 365 et Cloudflare : pannes du 12 au 14 novembre",
+   "note": "hors fenêtre de 7 jours, sources secondaires seulement.",
+   "choix": "Écarté (hors-fenetre) : hors fenêtre de 7 jours, sources secondaires seulement.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i5",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "titre": "Cursor : voix pour l'agent et projets multijoueurs",
+   "note": "annonces de blogs, aucune source ouverte.",
+   "choix": "Écarté (trop-mineur) : annonces de blogs, aucune source ouverte.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i6",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "non-verifiable",
+   "titre": "Cognition SWE-2.1",
+   "note": "chiffres du vendeur relayés par un digest tiers.",
+   "choix": "Écarté (non-verifiable) : chiffres du vendeur relayés par un digest tiers.",
+   "date": "2026-11-24",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i7",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "non-verifiable",
+   "titre": "JetBrains Air dans Rider 2026.3, Junie",
+   "note": "page « Nouveautés Rider » illisible ; seulement des extraits de recherche.",
+   "choix": "Écarté (non-verifiable) : page « Nouveautés Rider » illisible ; seulement des extraits de recherche.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i8",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "titre": "Netflix : ADR et AGENTS.md pour les agents de codage",
+   "note": "déjà publié le 23 novembre.",
+   "choix": "Écarté (deja-publie) : déjà publié le 23 novembre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.infoq.com/news/2026/11/netflix-sdlc-ai-coding-agents/"
+    }
+   ],
+   "date": "2026-11-23",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n1",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "titre": ".NET 11 et C# 15 : annonce de la version",
+   "note": "traité le 23 novembre ; les unions C# 15 reviennent dans un sujet dédié.",
+   "choix": "Écarté (deja-publie) : traité le 23 novembre ; les unions C# 15 reviennent dans un sujet dédié.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://devblogs.microsoft.com/dotnet/announcing-dotnet-11/"
+    }
+   ],
+   "date": "2026-11-10",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n2",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "titre": "Visual Studio 18.12 : Copilot Chat sur le Copilot SDK",
+   "note": "déjà publié le 25 novembre (n10).",
+   "choix": "Écarté (deja-publie) : déjà publié le 25 novembre (n10).",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://devblogs.microsoft.com/visualstudio/visual-studio-november-update-faster-workflows-better-reviews/"
+    }
+   ],
+   "date": "2026-11-24",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n3",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "non-verifiable",
+   "titre": "Rider 2026.3.0.1 : notes de version",
+   "note": "page des notes vide, date non lue.",
+   "choix": "Écarté (non-verifiable) : page des notes vide, date non lue.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n4",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "Shouldly 5.0.0-preview.2 et AutoFixture 5.0.0-rc.1",
+   "note": "préversions déjà publiées en juillet, rien de nouveau depuis le 24 novembre ; notes de version non lues.",
+   "choix": "Écarté (rien-de-neuf) : préversions déjà publiées en juillet, rien de nouveau depuis le 24 novembre ; notes de version non lues.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n5",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "titre": "Migration FluentAssertions 8 vers AwesomeAssertions 9",
+   "note": "billet personnel du 1er novembre, hors fenêtre et sans nouveauté.",
+   "choix": "Écarté (trop-mineur) : billet personnel du 1er novembre, hors fenêtre et sans nouveauté.",
+   "date": "2026-11-01",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n6",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "Stryker.NET 5.1.0",
+   "note": "version du 10 novembre déjà connue.",
+   "choix": "Écarté (rien-de-neuf) : version du 10 novembre déjà connue.",
+   "date": "2026-11-10",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr3",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "titre": "Deterministic Simulation Testing (Fowler)",
+   "note": "déjà publié le 25 novembre (cr1).",
+   "choix": "Écarté (deja-publie) : déjà publié le 25 novembre (cr1).",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://martinfowler.com/articles/deterministic-simulation-testing.html"
+    }
+   ],
+   "date": "2026-11-17",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr4",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "titre": "Tests as data (Vaccari)",
+   "note": "déjà publié le 25 novembre (cr2 du rapport précédent).",
+   "choix": "Écarté (deja-publie) : déjà publié le 25 novembre (cr2 du rapport précédent).",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://martinfowler.com/articles/tests-as-data.html"
+    }
+   ],
+   "date": "2026-11-11",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr5",
+   "categorie": "craftsmanship",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "Conventional comments : rien de récent",
+   "note": "aucun résultat pertinent trouvé.",
+   "choix": "Écarté (rien-de-neuf) : aucun résultat pertinent trouvé.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p2",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "motif": "deja-publie",
+   "titre": "Agoda : monolithe modulaire, revue de code réduite de 64 %",
+   "note": "déjà publié le 25 novembre.",
+   "choix": "Écarté (deja-publie) : déjà publié le 25 novembre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.infoq.com/news/2026/11/agoda-modular-monolith-framework/"
+    }
+   ],
+   "date": "2026-11-23",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p3",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "DDD Europe : billets de blog",
+   "note": "billets ouverts datant de février et avril 2026.",
+   "choix": "Écarté (rien-de-neuf) : billets ouverts datant de février et avril 2026.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p4",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "OpenAPI, versioning, hypermédia : rien de récent",
+   "note": "aucune annonce récente trouvée.",
+   "choix": "Écarté (rien-de-neuf) : aucune annonce récente trouvée.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "d1",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "motif": "hors-fenetre",
+   "titre": "Cyberattaque contre les frigos des supermarchés : attribution à l'Iran",
+   "note": "paru le 9 novembre ; contexte, sans fait des sept derniers jours.",
+   "choix": "Écarté (hors-fenetre) : paru le 9 novembre ; contexte, sans fait des sept derniers jours.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/cyberattaque-contre-des-frigos-de-supermarches-le-parquet-de-paris-ouvre-une-enquete-visant-une-unite-des-gardiens-de-la-revolution-iraniens_8274806.html"
+    }
+   ],
+   "date": "2026-11-09",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "d2",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "titre": "Coles : incident de cybersécurité",
+   "note": "enseigne australienne, nature de l'incident inconnue.",
+   "choix": "Écarté (hors-perimetre) : enseigne australienne, nature de l'incident inconnue.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.lemagit.fr/actualites/366655112/Cyberhebdo-du-20-novembre-2026"
+    }
+   ],
+   "date": "2026-11-20",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "d3",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "motif": "hors-perimetre",
+   "titre": "Divalto : cyberattaque touchant un distributeur de livres",
+   "note": "éditeur d'ERP, aucun lien avec l'alimentaire ni avec .NET.",
+   "choix": "Écarté (hors-perimetre) : éditeur d'ERP, aucun lien avec l'alimentaire ni avec .NET.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.lemagit.fr/actualites/366655112/Cyberhebdo-du-20-novembre-2026"
+    }
+   ],
+   "date": "2026-11-20",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "d4",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "Retail media et IA : Lidl, Casino, Auchan",
+   "note": "aucun fait daté des sept derniers jours ouvert.",
+   "choix": "Écarté (rien-de-neuf) : aucun fait daté des sept derniers jours ouvert.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t3",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "motif": "non-verifiable",
+   "titre": "CLI-Anything (HKUDS)",
+   "note": "étoiles relevées via un blog agrégateur seulement.",
+   "choix": "Écarté (non-verifiable) : étoiles relevées via un blog agrégateur seulement.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t4",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "motif": "trop-mineur",
+   "titre": "Outils de Console.dev (TextJS, DBDelve, Parcel v3…)",
+   "note": "seuls les titres ont été lus.",
+   "choix": "Écarté (trop-mineur) : seuls les titres ont été lus.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t5",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "ast-grep, DuckDB 2.0, gh-signoff : candidats déjà connus",
+   "note": "aucune nouveauté depuis leur dernier examen.",
+   "choix": "Écarté (rien-de-neuf) : aucune nouveauté depuis leur dernier examen.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "c3",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "NDC London 2027",
+   "note": "25-29 janvier 2027 ; CFP clos depuis le 30 août, rien de nouveau.",
+   "choix": "Écarté (rien-de-neuf) : 25-29 janvier 2027 ; CFP clos depuis le 30 août, rien de nouveau.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://ndclondon.com/call-for-papers"
+    }
+   ],
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "c4",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "NDC Oslo 2027",
+   "note": "CFP ouvert depuis le 2 novembre, fermeture le 17 janvier 2027 : rappel à J-30 le 18 décembre.",
+   "choix": "Écarté (rien-de-neuf) : CFP ouvert depuis le 2 novembre, fermeture le 17 janvier 2027 : rappel à J-30 le 18 décembre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://sessionize.com/ndc-oslo-2027/"
+    }
+   ],
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "c5",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "Devoxx Belgium 2027",
+   "note": "CFP du 1er juin au 16 juillet 2027, rien de nouveau.",
+   "choix": "Écarté (rien-de-neuf) : CFP du 1er juin au 16 juillet 2027, rien de nouveau.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://devoxx.be/?id=15361"
+    }
+   ],
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "c6",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "motif": "rien-de-neuf",
+   "titre": "Techorama, Update Conference, BDX I/O, MiXiT",
+   "note": "aucune échéance ni annonce nouvelle ; sites partiellement illisibles.",
+   "choix": "Écarté (rien-de-neuf) : aucune échéance ni annonce nouvelle ; sites partiellement illisibles.",
+   "tags": [],
+   "historique": [
+    {
+     "date": "2026-11-26T06:45+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  }
+ ],
+ "pied": [
+  "**Sources :** GitLab, 1Password, TechCrunch, The Register, NDepend, blog de Mark Seemann, dotnet/skills, minipg, devoxx.fr, dddeurope.com, InfoQ, The Hacker News, GitHub Changelog.",
+  "**Hypothèses :** voir le journal ; plusieurs sources (The New Stack, LSA, Neowin, GitHub Trending) étaient illisibles.",
+  "Généré le 26 novembre 2026 à 07:00 (Paris)."
+ ]
+}
