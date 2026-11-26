@@ -51,6 +51,11 @@
       "nom": "Blog de Mathias Verraes",
       "url": "https://verraes.net/feed.atom",
       "pour": "Conception et DDD par un praticien reconnu (modélisation, événements, conception à l'ère des agents) : billets de fond, rares mais denses ; candidats naturels au tag « intemporel »."
+    },
+    {
+      "nom": "Thomas Pierrain (Medium)",
+      "url": "https://medium.com/feed/@tpierrain",
+      "pour": "Conception et DDD appliqués au développement avec des agents de code (usine agentique, harnais, retours d'expérience chiffrés), environ un article par semaine, en anglais et parfois en français. Le flux contient le texte complet : lis-le là, car les pages medium.com bloquent la lecture automatique. Un article réservé aux membres (texte tronqué) n'est pas publiable."
     }
   ],
   "regles": [
