@@ -151,11 +151,20 @@
   {
    "section": "securite",
    "paragraphes": [
-    "Rien de critique aujourd'hui. [GitLab 19.6.2](#s1) corrige treize failles de gravité moyenne ou faible : mise à jour de routine si tu héberges ton instance. [1Password](#s2) raconte une intrusion partie du compte GitHub d'un employé, avec accès au code et au CI/CD ; selon l'éditeur, les coffres ne sont pas touchés."
+    "Rien de critique aujourd'hui. Microsoft fait le point sur les [paquets PyPI piégés d'Agent Framework](#s10) : les paquets .NET sont épargnés, mais le dépôt est fermé par précaution. [1Password](#s2) raconte une intrusion partie du compte GitHub d'un employé ; les coffres seraient intacts."
    ],
    "sujets": [
-    "s1",
+    "s10",
     "s2"
+   ]
+  },
+  {
+   "section": "dotnet",
+   "paragraphes": [
+    "[Qodana 2026.3](#n7), sorti hier, repère dans ton code C# la cryptographie qui ne résistera pas aux ordinateurs quantiques : un inventaire utile avant toute migration."
+   ],
+   "sujets": [
+    "n7"
    ]
   },
   {
@@ -171,7 +180,7 @@
    "section": "craftsmanship",
    "paragraphes": [
     "Les unions et hiérarchies fermées de C# 15, sorties avec .NET 11 le 10 novembre, [changent la façon de modéliser les erreurs](#cr1), un sujet cher à first-class-errors. [Mark Seemann](#cr2) rappelle de son côté ce qui manque à C# pour composer des effets.",
-    "Jour calme oblige, un classique pour compléter : l'[Outside-in Diamond TDD](#cr6) de Thomas Pierrain (2021), qui pilote le code surtout par des tests d'acceptation et garde les tests unitaires pour les passages délicats."
+    "Jour calme oblige, un classique : l'[Outside-in Diamond TDD](#cr6) de Thomas Pierrain (2021), qui pilote le code surtout par des tests d'acceptation."
    ],
    "sujets": [
     "cr1",
@@ -182,10 +191,12 @@
   {
    "section": "architecture",
    "paragraphes": [
-    "Autre lecture de fond, parue en août 2025 : [Mathias Verraes](#p5) démonte l'idée qu'un domaine métier doit correspondre à un seul bounded context. Pour lui, ces frontières sont des choix de conception, pas le reflet de l'organigramme."
+    "Deux lectures de fond : [Mathias Verraes](#p5) montre qu'un domaine métier ne donne pas forcément un seul bounded context, et [Derek Comartin](#p8) plaide pour des identifiants générés par le client. [Oskar Dudycz](#p7), lui, transforme un EventStorming Miro en squelette de code pour un agent."
    ],
    "sujets": [
-    "p5"
+    "p5",
+    "p7",
+    "p8"
    ]
   },
   {
@@ -203,7 +214,7 @@
   {
    "id": "s1",
    "categorie": "securite",
-   "statut": "publie",
+   "statut": "candidat",
    "titre": "GitLab 19.6.2 : treize failles corrigées, aucune critique",
    "date": "2026-11-25",
    "resume": "GitLab a publié le 25 novembre la version de correctifs **19.6.2** et les mises à jour des branches 19.5.9, 19.4.11, 19.3.10, 19.2.11, 19.1.11, 19.0.12 et 18.11.15. Treize failles sont corrigées, toutes de gravité moyenne ou faible (score CVSS de 3,5 à 6,7).\n\nLes plus sérieuses : une fuite de cookie de session via l'authentification du proxy de dépendances (CVE-2026-119452, 6,7), deux dénis de service (6,5) et l'exécution de commandes rapides par des e-mails du Service Desk sans authentification (CVE-2026-81336, 6,5). Une portée trop large du jeton de job CI (intégration continue) et une requête côté serveur forgée (SSRF) dans l'OAuth du serveur MCP (Model Context Protocol) sont aussi corrigées.\n\nLes dépendances embarquées (Git, Ruby, GPGME, NGINX) sont mises à jour. La 19.6.2 comprend des migrations après déploiement : prévois une courte indisponibilité sur une instance mono-nœud. Autre point : l'Ingress NGINX (Helm et Operator) est déprécié, sans correctifs amont ; GitLab conseille de migrer vers Envoy Gateway ou un autre contrôleur.",
@@ -232,6 +243,12 @@
      "date": "2026-11-26T06:45+01:00",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-26T10:15+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "remplacé par s10 à la demande de l'utilisateur (plafond Sécurité)"
     }
    ]
   },
@@ -1511,7 +1528,7 @@
   {
    "id": "s10",
    "categorie": "securite",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [
     "supply-chain"
    ],
@@ -1541,6 +1558,12 @@
      "date": "2026-11-26T09:50+01:00",
      "statut": "candidat",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-26T10:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "choix de l'utilisateur après la relance complète"
     }
    ]
   },
@@ -1621,7 +1644,7 @@
   {
    "id": "n7",
    "categorie": "dotnet",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [],
    "titre": "Qodana 2026.3 : repérer la cryptographie non post-quantique en .NET",
    "date": "2026-11-25",
@@ -1643,6 +1666,12 @@
      "date": "2026-11-26T09:50+01:00",
      "statut": "candidat",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-26T10:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "choix de l'utilisateur après la relance complète"
     }
    ]
   },
@@ -2619,7 +2648,7 @@
   {
    "id": "p7",
    "categorie": "architecture",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [
     "ddd"
    ],
@@ -2643,13 +2672,19 @@
      "date": "2026-11-26T09:50+01:00",
      "statut": "candidat",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-26T10:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "choix de l'utilisateur après la relance complète"
     }
    ]
   },
   {
    "id": "p8",
    "categorie": "architecture",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [],
    "titre": "Pourquoi laisser la base de données générer tes identifiants ?",
    "date": "2026-10-27",
@@ -2671,6 +2706,12 @@
      "date": "2026-11-26T09:50+01:00",
      "statut": "candidat",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-26T10:15+01:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "choix de l'utilisateur après la relance complète"
     }
    ]
   },
