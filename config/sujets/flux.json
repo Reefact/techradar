@@ -46,6 +46,11 @@
       "nom": "Microsoft Security Update Guide (MSRC)",
       "url": "https://api.msrc.microsoft.com/update-guide/rss",
       "pour": "Failles corrigées par Microsoft. Flux très large (Windows, Office…) : ne regarder que .NET, ASP.NET Core, Visual Studio, VS Code, NuGet et Azure DevOps ; ignorer le reste sans le consigner comme sujet."
+    },
+    {
+      "nom": "Blog de Mathias Verraes",
+      "url": "https://verraes.net/feed.atom",
+      "pour": "Conception et DDD par un praticien reconnu (modélisation, événements, conception à l'ère des agents) : billets de fond, rares mais denses ; candidats naturels au tag « intemporel »."
     }
   ],
   "regles": [
