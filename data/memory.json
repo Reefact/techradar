@@ -18,7 +18,7 @@
   {
    "date": "2026-11-26",
    "path": "reports/2026/20261126.html",
-   "publies": 14
+   "publies": 15
   }
  ],
  "projets": {
@@ -89,8 +89,13 @@
   },
   {
    "date": "2026-11-26",
-   "titre": "minipg : PostgreSQL 18 en un seul exécutable, sans Docker",
-   "url": "https://progrium.github.io/minipg/"
+   "titre": "Cilica : un optimiseur d'IL après compilation pour .NET",
+   "url": "https://github.com/hez2010/Cilica"
+  },
+  {
+   "date": "2026-11-26",
+   "titre": "AAE : un agent qui optimise ton code par hypothèses réfutables",
+   "url": "https://chszlab.github.io/AgenticAlgorithmEngineering/"
   }
  ],
  "conferences": [
@@ -1100,7 +1105,7 @@
    "date": "2026-11-26",
    "id": "t2",
    "categorie": "outils",
-   "statut": "publie",
+   "statut": "candidat",
    "titre": "minipg : PostgreSQL 18 en un seul exécutable, sans Docker"
   },
   {
@@ -1647,14 +1652,14 @@
    "date": "2026-11-26",
    "id": "t7",
    "categorie": "outils",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Cilica : un optimiseur d'IL après compilation pour .NET"
   },
   {
    "date": "2026-11-26",
    "id": "t8",
    "categorie": "outils",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "AAE : un agent qui optimise ton code par hypothèses réfutables"
   },
   {
@@ -2076,7 +2081,7 @@
   "https://chszlab.github.io/AgenticAlgorithmEngineering/": {
    "date": "2026-11-26",
    "id": "t8",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://claude.com/resources/articles/introducing-claude-ship": {
    "date": "2026-11-23",
@@ -2387,7 +2392,7 @@
   "https://github.com/hez2010/Cilica": {
    "date": "2026-11-26",
    "id": "t7",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0048.md": {
    "date": "2026-11-23",
@@ -2408,7 +2413,7 @@
   "https://github.com/progrium/minipg": {
    "date": "2026-11-26",
    "id": "t2",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://github.com/roostorg/community/issues/133": {
    "date": "2026-11-26",
@@ -2576,7 +2581,7 @@
   "https://news.ycombinator.com/item?id=50611593": {
    "date": "2026-11-26",
    "id": "t8",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://newsletter.kentbeck.com/p/you-dont-get-paid-for-what-you-did": {
    "date": "2026-11-26",
@@ -2619,7 +2624,7 @@
   "https://progrium.github.io/minipg/": {
    "date": "2026-11-26",
    "id": "t2",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://reg.devoxx.fr": {
    "date": "2026-11-23",
@@ -3152,7 +3157,7 @@
   "https://www.nuget.org/packages/Cilica.OptimizerTask": {
    "date": "2026-11-26",
    "id": "t7",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://www.nuget.org/packages/MediatR/15.0.0": {
    "date": "2026-11-23",
