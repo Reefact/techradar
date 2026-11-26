@@ -18,7 +18,7 @@
   {
    "date": "2026-11-26",
    "path": "reports/2026/20261126.html",
-   "publies": 9
+   "publies": 11
   }
  ],
  "projets": {
@@ -1414,6 +1414,43 @@
    "statut": "ecarte",
    "titre": "Techorama, Update Conference, BDX I/O, MiXiT",
    "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "p5",
+   "categorie": "architecture",
+   "statut": "publie",
+   "titre": "Verraes : domaines et bounded contexts ne se calquent pas un pour un"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "cr6",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "Outside-in Diamond TDD : piloter le code par les tests d'acceptation"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "i9",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "Pierrain : un agent de code qui lance lui-même son /clear"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "i10",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Thomas Pierrain : articles d'octobre sur l'usine agentique",
+   "motif": "hors-fenetre"
+  },
+  {
+   "date": "2026-11-26",
+   "id": "p6",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "titre": "Verraes : keynote « Reasoning While We Still Can » (AxonIQ 2026)",
+   "motif": "trop-mineur"
   }
  ],
  "urls": {
@@ -1842,6 +1879,17 @@
    "id": "cr3",
    "statut": "publie"
   },
+  "https://medium.com/@tpierrain": {
+   "date": "2026-11-26",
+   "id": "i10",
+   "statut": "ecarte",
+   "motif": "hors-fenetre"
+  },
+  "https://medium.com/@tpierrain/my-agents-run-clear-on-their-own-5d7727180b43": {
+   "date": "2026-11-26",
+   "id": "i9",
+   "statut": "candidat"
+  },
   "https://medium.com/agoda-engineering/how-we-cut-the-coupling-tax-in-a-post-booking-api-2156a3175538": {
    "date": "2026-11-24",
    "id": "p1",
@@ -2090,6 +2138,27 @@
    "date": "2026-11-23",
    "id": "c3",
    "statut": "publie"
+  },
+  "https://tpierrain.blogspot.com/2021/03/outside-in-diamond-tdd-1-style-made.html": {
+   "date": "2026-11-26",
+   "id": "cr6",
+   "statut": "publie"
+  },
+  "https://tpierrain.blogspot.com/2021/03/outside-in-diamond-tdd-2-anatomy-of.html": {
+   "date": "2026-11-26",
+   "id": "cr6",
+   "statut": "publie"
+  },
+  "https://verraes.net/2025/08/domain-and-bounded-contexts-dont-map-one-on-one/": {
+   "date": "2026-11-26",
+   "id": "p5",
+   "statut": "publie"
+  },
+  "https://verraes.net/2026/11/reasoning-while-we-still-can/": {
+   "date": "2026-11-26",
+   "id": "p6",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
   },
   "https://windowsforum.com/news/github-outage-on-november-25-2026-high-database-load-disrupts-git-actions-and-pull-requests.454087/": {
    "date": "2026-11-26",
