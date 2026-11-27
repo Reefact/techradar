@@ -138,7 +138,7 @@
    "faux": 0,
    "indetermine": 0
   },
-  "decouverte": 3,
+  "decouverte": 2,
   "hypotheses": [
    "Les candidats repris (Claude Code skills par MCP, Copilot harnais Local) reprennent le contenu du 26 novembre, source relue en partie seulement ; le détail de la 2.1.332 vient d'un agrégateur de changelogs.",
    "L'intemporel n'est pas utilisé : plus de 10 sujets non prioritaires publiés ; Vernon et Fowler restent candidats.",
@@ -212,12 +212,11 @@
   {
    "section": "outils",
    "paragraphes": [
-    "[npkill 1.0](#t1) nettoie aussi les dossiers obj, [Voiden](#t2) range les requêtes d'API dans Git, et [Psychoscript](#t3) exécute du JavaScript non fiable en le rendant suspendable."
+    "[npkill 1.0](#t1) nettoie aussi les dossiers obj, et [Voiden](#t2) range les requêtes d'API dans Git."
    ],
    "sujets": [
     "t1",
-    "t2",
-    "t3"
+    "t2"
    ]
   },
   {
@@ -800,7 +799,7 @@
   {
    "id": "t3",
    "categorie": "outils",
-   "statut": "publie",
+   "statut": "candidat",
    "tags": [
     "pepite"
    ],
@@ -832,6 +831,12 @@
      "date": "2026-11-27T06:50+01:00",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-27T11:48+00:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "Retrait demandé par l'utilisateur"
     }
    ]
   },
