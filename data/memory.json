@@ -23,7 +23,7 @@
   {
    "date": "2026-11-27",
    "path": "reports/2026/20261127.html",
-   "publies": 16
+   "publies": 17
   }
  ],
  "projets": {
@@ -2137,7 +2137,7 @@
    "date": "2026-11-27",
    "id": "cr3",
    "categorie": "craftsmanship",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Tests de caractérisation avant de refactorer du C#"
   },
   {
@@ -3454,7 +3454,7 @@
   "https://www.devleader.ca/2026/11/10/characterization-tests-before-refactoring-c-code": {
    "date": "2026-11-27",
    "id": "cr3",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://www.devoxx.co.uk/index.html": {
    "date": "2026-11-26",
