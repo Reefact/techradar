@@ -1,1 +1,29 @@
-[]
+[
+ {
+  "date_avis": "2026-11-27",
+  "jour": "2026-11-27",
+  "id": "t3",
+  "titre": "Psychoscript : un interpréteur JavaScript confiné et suspendable",
+  "categories": [
+   "outils"
+  ],
+  "tags": [
+   "pepite"
+  ],
+  "source": "github.com",
+  "statut": "publie",
+  "reponses": {
+   "note": 1,
+   "plus": 1,
+   "theme": 1,
+   "utile": 1,
+   "niveau": null,
+   "source": null,
+   "resume": true,
+   "moment": null,
+   "suivre": null,
+   "cause": true,
+   "commentaire": "Le JavaScript ne m'intéresse pas, je n'en fais pas."
+  }
+ }
+]
