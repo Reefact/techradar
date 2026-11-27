@@ -2021,7 +2021,7 @@
    "date": "2026-11-27",
    "id": "n2",
    "categorie": "dotnet",
-   "statut": "publie",
+   "statut": "candidat",
    "titre": "Avalonia 12.2 : prise en charge de .NET 11, thème Fluent2"
   },
   {
@@ -2114,7 +2114,7 @@
    "date": "2026-11-27",
    "id": "n3",
    "categorie": "dotnet",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Polly : 20 $/mois de frais de maintenance dès la prochaine majeure"
   },
   {
@@ -2353,7 +2353,7 @@
   "https://avaloniaui.net/blog/release-12-2": {
    "date": "2026-11-27",
    "id": "n2",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://blog.elmah.io/new-in-net-11-faster-asp-net-core-apis-with-runtime-async/": {
    "date": "2026-11-26",
@@ -3345,7 +3345,7 @@
   "https://thepollyproject.org/2026/07/14/polly-osmf-announcement.html": {
    "date": "2026-11-27",
    "id": "n3",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://threatdefence.com/article/java4shell-cve-2026-114938-openjdk-rce-patching-hunting": {
    "date": "2026-11-23",
