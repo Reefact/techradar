@@ -23,7 +23,7 @@
   {
    "date": "2026-11-27",
    "path": "reports/2026/20261127.html",
-   "publies": 18
+   "publies": 20
   }
  ],
  "projets": {
@@ -2285,6 +2285,20 @@
    "statut": "ecarte",
    "titre": "NuGet : publication par étapes (staged publishing)",
    "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "n8",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "PostgreSQL 19 : REPACK CONCURRENTLY, ON CONFLICT DO SELECT, JIT coupé"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "n9",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "Npgsql 11 et EF Core 11 : fin de .NET 8 et 9, multiplexing supprimé"
   }
  ],
  "urls": {
@@ -2818,6 +2832,11 @@
    "id": "t4",
    "statut": "ecarte",
    "motif": "trop-mineur"
+  },
+  "https://github.com/npgsql/npgsql/releases/tag/v11.0.0": {
+   "date": "2026-11-27",
+   "id": "n9",
+   "statut": "publie"
   },
   "https://github.com/obra/superpowers": {
    "date": "2026-11-24",
@@ -3694,6 +3713,16 @@
    "statut": "ecarte",
    "motif": "hors-fenetre"
   },
+  "https://www.npgsql.org/doc/release-notes/11.0.html": {
+   "date": "2026-11-27",
+   "id": "n9",
+   "statut": "publie"
+  },
+  "https://www.npgsql.org/efcore/release-notes/11.0.html": {
+   "date": "2026-11-27",
+   "id": "n9",
+   "statut": "publie"
+  },
   "https://www.nuget.org/packages/AutoFixture": {
    "date": "2026-11-23",
    "id": "n12",
@@ -3762,6 +3791,16 @@
   "https://www.ox.security/blog/breaking-hijacked-releases-of-microsofts-official-agent-framework-steals-azure-and-ci-credentials/": {
    "date": "2026-11-23",
    "id": "s6",
+   "statut": "publie"
+  },
+  "https://www.postgresql.org/about/news/postgresql-19-released-3449/": {
+   "date": "2026-11-27",
+   "id": "n8",
+   "statut": "publie"
+  },
+  "https://www.postgresql.org/support/versioning/": {
+   "date": "2026-11-27",
+   "id": "n8",
    "statut": "publie"
   },
   "https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/": {
