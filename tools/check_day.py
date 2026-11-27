@@ -60,7 +60,7 @@ def rapport_precedent(day):
 
 CHAMPS_SUJET = {"id", "categorie", "statut", "motif", "tags", "titre", "titre_sommaire", "resume", "pourquoi", "sources", "meta", "date",
                 "details", "depot", "conference", "verification", "verification_non_requise", "historique", "note",
-                "categorie_secondaire", "hors_fenetre", "choix"}
+                "categorie_secondaire", "hors_fenetre", "choix", "force_utilisateur"}
 
 
 def candidats_precedents(day, cfg):
@@ -234,7 +234,8 @@ def check(path, contre=None, partiel=False):
     seuil = rapport_precedent(day)
     tagset = lambda s: {t if isinstance(t, str) else t.get("tag") for t in s.get("tags", [])}
     prio = [s for s in pub if ("alerte" in tagset(s) and (s.get("date") or "") >= seuil) or "rappel" in tagset(s)]
-    autres = [s for s in pub if s not in prio]
+    # publication forcée par l'utilisateur (statut.py --force) : hors plafonds, comme un prioritaire
+    autres = [s for s in pub if s not in prio and not s.get("force_utilisateur")]
     cap = rap.get("max_publies")
     if cap and not legacy and len(autres) > cap:
         E(f"{len(autres)} sujets publiés hors prioritaires (alerte récente, rappel) : {cap} au plus")

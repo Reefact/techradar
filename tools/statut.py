@@ -2,7 +2,10 @@
 """Change le statut de sujets dans un fichier du jour. Utilisé par le skill veille-publier.
 
   python3 tools/statut.py list AAAA-MM-JJ
-  python3 tools/statut.py set  AAAA-MM-JJ <id>[,<id>…] <publie|candidat|ecarte> [--motif M] [--note "…"]
+  python3 tools/statut.py set  AAAA-MM-JJ <id>[,<id>…] <publie|candidat|ecarte> [--motif M] [--note "…"] [--force]
+
+--force (publie seulement) : décision de l'utilisateur ; le sujet est marqué « force_utilisateur » et ne compte
+ni dans les 15 publiés ni dans le plafond de sa catégorie. Les autres contrôles s'appliquent toujours.
 
 Chaque changement ajoute une entrée à l'historique du sujet (« par » : utilisateur). Le fichier est ensuite
 validé par tools/check_day.py (--partiel) ; en cas d'erreur, rien n'est écrit.
@@ -46,6 +49,8 @@ def main(a):
             s = by_id.get(i) or sys.exit(f"Sujet {i} introuvable.")
             if st == "publie" and not s.get("resume"): sys.exit(f"{i} n'a pas de résumé : il ne peut pas être publié tel quel.")
             s["statut"] = st
+            if st == "publie" and "--force" in a: s["force_utilisateur"] = True
+            elif st != "publie": s.pop("force_utilisateur", None)
             if st == "ecarte": s["motif"] = motif
             else: s.pop("motif", None)
             s.setdefault("historique", []).append({"date": now, "statut": st, "par": "utilisateur", **({"note": note} if note else {})})

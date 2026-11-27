@@ -33,6 +33,11 @@ python3 tools/statut.py set AAAA-MM-JJ a8 ecarte --motif doublon
 ```
 Le script refuse un changement qui rendrait le jour invalide (plafond ou minimum d'une catégorie, sujet sans résumé, dépôt inconnu…) : rapporter le refus tel quel et proposer une solution (retirer un autre sujet de la catégorie, par exemple), sans contourner.
 
+Plafonds (15 publiés, maximum d'une catégorie) : l'utilisateur décide. S'il veut publier quand même, `--force` marque le sujet « force_utilisateur », hors plafonds. Les autres contrôles (résumé, vérification…) restent obligatoires.
+```bash
+python3 tools/statut.py set AAAA-MM-JJ p5 publie --force --note "pourquoi"
+```
+
 **Retirer un sujet publié** change le rapport en ligne : demander une confirmation explicite.
 
 ## 3 bis. Faire noter le sujet
