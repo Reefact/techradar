@@ -57,6 +57,12 @@
     "fraicheur": "fond",
     "description": "Retour d'expérience : une équipe raconte ce qu'elle a fait et ce qu'elle en a appris, chiffres à l'appui si possible."
   },
+  "opinion": {
+    "label": "🤔 Opinion",
+    "classe": "b-new",
+    "fraicheur": "fond",
+    "description": "Billet d'opinion : un auteur défend une position tranchée plus qu'il ne présente une technique ou un retour d'expérience."
+  },
   "intemporel": {
     "label": "⚓ Intemporel",
     "classe": "b-ddd",
