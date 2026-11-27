@@ -244,6 +244,17 @@ def check(path, contre=None, partiel=False):
         hors_prio = sum(1 for s in autres if s["categorie"] == k)
         if c.get("min") and n < c["min"]: E(f"catégorie « {c['label']} » : {n} sujet(s) publié(s), minimum {c['min']}")
         if c.get("max") is not None and not legacy and hors_prio > c["max"]: E(f"catégorie « {c['label']} » : {hors_prio} sujet(s) publié(s) hors prioritaires, plafond {c['max']}")
+    # les plafonds restent contrôlés avec les sujets forcés : le dépassement est signalé, mais n'est pas une erreur
+    forces = [s for s in pub if s not in prio and s.get("force_utilisateur")]
+    if forces and not legacy:
+        tous = autres + forces
+        if cap and len(tous) > cap:
+            W(f"publication forcée ({', '.join(s['id'] for s in forces)}) : {len(tous)} sujets publiés hors prioritaires, {cap} au plus")
+        for k, c in cats.items():
+            fk = [s["id"] for s in forces if s["categorie"] == k]
+            nk = sum(1 for s in tous if s["categorie"] == k)
+            if fk and c.get("max") is not None and nk > c["max"]:
+                W(f"publication forcée ({', '.join(fk)}) : catégorie « {c['label']} » à {nk} sujet(s), plafond {c['max']}")
     # ----- découverte : nombre de sujets de découverte publiés, consigné dans le journal (à partir de la date des raisons de choix)
     if not legacy and day.get("date", "") >= (rap.get("choix") or {}).get("depuis", "9999"):
         n_dec = sum(1 for s in pub if str(s.get("choix") or "").startswith("Découverte"))

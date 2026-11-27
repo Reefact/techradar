@@ -63,6 +63,9 @@ def main(a):
         errs, warns = check_day.check(tmp, None, partiel=True)
     if errs:
         print("\nREFUSÉ : le fichier deviendrait invalide :"); [print("  -", e) for e in errs]; sys.exit(1)
+    quotas = [w for w in warns if w.startswith("publication forcée")]
+    if quotas:
+        print("\nCONTRÔLES DÉPASSÉS (publication forcée à ta demande) :"); [print("  -", w) for w in quotas]
     write_day(p, day)
     print(f"\nÉcrit : {p.relative_to(p.parents[3])}" + (f" ({len(warns)} signal(aux) de langue)" if warns else ""))
 

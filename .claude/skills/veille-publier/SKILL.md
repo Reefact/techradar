@@ -33,7 +33,7 @@ python3 tools/statut.py set AAAA-MM-JJ a8 ecarte --motif doublon
 ```
 Le script refuse un changement qui rendrait le jour invalide (plafond ou minimum d'une catégorie, sujet sans résumé, dépôt inconnu…) : rapporter le refus tel quel et proposer une solution (retirer un autre sujet de la catégorie, par exemple), sans contourner.
 
-Plafonds (15 publiés, maximum d'une catégorie) : l'utilisateur décide. S'il veut publier quand même, `--force` marque le sujet « force_utilisateur », hors plafonds. Les autres contrôles (résumé, vérification…) restent obligatoires.
+Plafonds (15 publiés, maximum d'une catégorie) : par défaut, le refus s'applique et tu le rapportes à l'utilisateur. N'utilise `--force` que s'il demande **explicitement** de forcer : le sujet est alors marqué « force_utilisateur » et le quota ne bloque plus, mais le dépassement reste affiché (« CONTRÔLES DÉPASSÉS ») et signalé par `check_day.py` ; rapporte-le à l'utilisateur. Les autres contrôles (résumé, vérification…) restent bloquants, même forcés.
 ```bash
 python3 tools/statut.py set AAAA-MM-JJ p5 publie --force --note "pourquoi"
 ```
