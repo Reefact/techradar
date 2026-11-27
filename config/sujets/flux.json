@@ -56,6 +56,21 @@
       "nom": "Thomas Pierrain (Medium)",
       "url": "https://medium.com/feed/@tpierrain",
       "pour": "Conception et DDD appliqués au développement avec des agents de code (usine agentique, harnais, retours d'expérience chiffrés), environ un article par semaine, en anglais et parfois en français. Le flux contient le texte complet : lis-le là, car les pages medium.com bloquent la lecture automatique. Un article réservé aux membres (texte tronqué) n'est pas publiable."
+    },
+    {
+      "nom": "PostgreSQL News",
+      "url": "https://www.postgresql.org/news.rss",
+      "pour": "Annonces officielles de PostgreSQL : versions majeures et mineures, correctifs de sécurité, fins de support. Une faille corrigée ou une fin de support d'une version en usage est une alerte ; une version mineure sans impact se consigne seulement au journal."
+    },
+    {
+      "nom": "Npgsql",
+      "url": "https://github.com/npgsql/npgsql/releases.atom",
+      "pour": "Versions du pilote ADO.NET Npgsql : changements cassants, prise en charge des nouvelles versions de PostgreSQL et de .NET. Une faille corrigée est une alerte ; une version de patch sans impact se consigne seulement au journal."
+    },
+    {
+      "nom": "Npgsql EF Core",
+      "url": "https://github.com/npgsql/efcore.pg/releases.atom",
+      "pour": "Versions du fournisseur EF Core pour PostgreSQL (Npgsql.EntityFrameworkCore.PostgreSQL), à suivre avec les versions d'EF Core. Une faille corrigée est une alerte ; une version de patch sans impact se consigne seulement au journal."
     }
   ],
   "regles": [
