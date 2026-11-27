@@ -23,7 +23,7 @@
   {
    "date": "2026-11-27",
    "path": "reports/2026/20261127.html",
-   "publies": 16
+   "publies": 15
   }
  ],
  "projets": {
@@ -121,11 +121,6 @@
    "date": "2026-11-27",
    "titre": "Voiden : un client d'API dont les requêtes vivent dans Git",
    "url": "https://console.dev/tools/voiden"
-  },
-  {
-   "date": "2026-11-27",
-   "titre": "Psychoscript : un interpréteur JavaScript confiné et suspendable",
-   "url": "https://github.com/anomalyco/psychoscript"
   }
  ],
  "conferences": [
@@ -2026,7 +2021,7 @@
    "date": "2026-11-27",
    "id": "n2",
    "categorie": "dotnet",
-   "statut": "publie",
+   "statut": "candidat",
    "titre": "Avalonia 12.2 : prise en charge de .NET 11, thème Fluent2"
   },
   {
@@ -2105,7 +2100,7 @@
    "date": "2026-11-27",
    "id": "t3",
    "categorie": "outils",
-   "statut": "publie",
+   "statut": "candidat",
    "titre": "Psychoscript : un interpréteur JavaScript confiné et suspendable"
   },
   {
@@ -2119,7 +2114,7 @@
    "date": "2026-11-27",
    "id": "n3",
    "categorie": "dotnet",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Polly : 20 $/mois de frais de maintenance dès la prochaine majeure"
   },
   {
@@ -2358,7 +2353,7 @@
   "https://avaloniaui.net/blog/release-12-2": {
    "date": "2026-11-27",
    "id": "n2",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://blog.elmah.io/new-in-net-11-faster-asp-net-core-apis-with-runtime-async/": {
    "date": "2026-11-26",
@@ -2773,7 +2768,7 @@
   "https://github.com/anomalyco/psychoscript": {
    "date": "2026-11-27",
    "id": "t3",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://github.com/backnotprop/plannotator": {
    "date": "2026-11-24",
@@ -3107,7 +3102,7 @@
   "https://psychoscript.com/": {
    "date": "2026-11-27",
    "id": "t3",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://reg.devoxx.fr": {
    "date": "2026-11-23",
@@ -3350,7 +3345,7 @@
   "https://thepollyproject.org/2026/07/14/polly-osmf-announcement.html": {
    "date": "2026-11-27",
    "id": "n3",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://threatdefence.com/article/java4shell-cve-2026-114938-openjdk-rce-patching-hunting": {
    "date": "2026-11-23",
