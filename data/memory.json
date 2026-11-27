@@ -19,6 +19,11 @@
    "date": "2026-11-26",
    "path": "reports/2026/20261126.html",
    "publies": 15
+  },
+  {
+   "date": "2026-11-27",
+   "path": "reports/2026/20261127.html",
+   "publies": 16
   }
  ],
  "projets": {
@@ -32,6 +37,11 @@
     "date": "2026-11-26",
     "id": "cr1",
     "titre": "C# 15 : unions et hiérarchies fermées pour modéliser les erreurs"
+   },
+   {
+    "date": "2026-11-27",
+    "id": "cr1",
+    "titre": "C# 15 : les unions peuvent-elles remplacer le Result pattern ?"
    }
   ],
   "Reefact/conventional-comments-toolkit": [
@@ -46,6 +56,11 @@
     "date": "2026-11-23",
     "id": "p1",
     "titre": "ASP.NET Core 11 : OpenAPI 3.2 par défaut, unions en anyOf"
+   },
+   {
+    "date": "2026-11-27",
+    "id": "p3",
+    "titre": "OpenAPI 3.2 et .NET 11 : QUERY, SSE et réponses en union"
    }
   ],
   "Reefact/kill-mutants": [
@@ -96,6 +111,21 @@
    "date": "2026-11-26",
    "titre": "AAE : un agent qui optimise ton code par hypothèses réfutables",
    "url": "https://chszlab.github.io/AgenticAlgorithmEngineering/"
+  },
+  {
+   "date": "2026-11-27",
+   "titre": "npkill 1.0 : nettoie aussi les dossiers obj de .NET",
+   "url": "https://console.dev/tools/npkill"
+  },
+  {
+   "date": "2026-11-27",
+   "titre": "Voiden : un client d'API dont les requêtes vivent dans Git",
+   "url": "https://console.dev/tools/voiden"
+  },
+  {
+   "date": "2026-11-27",
+   "titre": "Psychoscript : un interpréteur JavaScript confiné et suspendable",
+   "url": "https://github.com/anomalyco/psychoscript"
   }
  ],
  "conferences": [
@@ -139,6 +169,25 @@
     }
    ],
    "last_seen": "2026-11-26",
+   "dates": "Ateliers 31 mai – 2 juin ; conférence 3–4 juin 2027",
+   "place": "Meervaart, Amsterdam",
+   "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)",
+   "cfp_deadlines": [
+    "2026-11-30",
+    "2027-01-16"
+   ]
+  },
+  {
+   "name": "DDD Europe 2027 : rappel, le CFP des ateliers ferme lundi",
+   "first_seen": "2026-11-27",
+   "reminders_seen": [
+    {
+     "date": "2026-11-27",
+     "label": "J-3",
+     "n": 3
+    }
+   ],
+   "last_seen": "2026-11-27",
    "dates": "Ateliers 31 mai – 2 juin ; conférence 3–4 juin 2027",
    "place": "Meervaart, Amsterdam",
    "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)",
@@ -1951,6 +2000,301 @@
    "statut": "ecarte",
    "titre": "first-class-errors, just-dummies, unified-assertions : pas de nouvelle v",
    "motif": "rien-de-neuf"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "c1",
+   "categorie": "conferences",
+   "statut": "publie",
+   "titre": "DDD Europe 2027 : rappel, le CFP des ateliers ferme lundi"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "s1",
+   "categorie": "securite",
+   "statut": "publie",
+   "titre": "PolinRider : faux tests d'embauche et chargeur Python piégé"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "n1",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": ".NET MAUI 11 : CoreCLR par défaut et hot reload XAML incrémental"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "n2",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "titre": "Avalonia 12.2 : prise en charge de .NET 11, thème Fluent2"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "i1",
+   "categorie": "ia",
+   "statut": "publie",
+   "titre": "GPT-6.2 Astra et Sol : dans Codex et l'API, prix en baisse"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "i2",
+   "categorie": "ia",
+   "statut": "publie",
+   "titre": "Claude Code : skills fournis par des serveurs MCP et Code Mode"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "i3",
+   "categorie": "ia",
+   "statut": "publie",
+   "titre": "Copilot : le harnais Local disparaît en février 2027"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "cr1",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "C# 15 : les unions peuvent-elles remplacer le Result pattern ?",
+   "depot": "Reefact/first-class-errors"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "cr2",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "titre": "QCon SF : « Comment tuer la revue de code »"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "p1",
+   "categorie": "architecture",
+   "statut": "publie",
+   "titre": "L'architecture événementielle ne supprime pas le couplage"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "p2",
+   "categorie": "architecture",
+   "statut": "publie",
+   "titre": "Outbox Postgres : workers par polling ou lecture du WAL ?"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "p3",
+   "categorie": "architecture",
+   "statut": "publie",
+   "titre": "OpenAPI 3.2 et .NET 11 : QUERY, SSE et réponses en union",
+   "depot": "Reefact/hypermedia-domain-language"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "t1",
+   "categorie": "outils",
+   "statut": "publie",
+   "titre": "npkill 1.0 : nettoie aussi les dossiers obj de .NET"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "t2",
+   "categorie": "outils",
+   "statut": "publie",
+   "titre": "Voiden : un client d'API dont les requêtes vivent dans Git"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "t3",
+   "categorie": "outils",
+   "statut": "publie",
+   "titre": "Psychoscript : un interpréteur JavaScript confiné et suspendable"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "d1",
+   "categorie": "distribution",
+   "statut": "publie",
+   "titre": "Les Mousquetaires déploient Claude (Anthropic) via AWS Bedrock en 2027"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "n3",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "Polly : 20 $/mois de frais de maintenance dès la prochaine majeure"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "n4",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "titre": "Novembre 2026 : 25 CVE corrigées, fin de support de .NET 8 et .NET 9"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "s2",
+   "categorie": "securite",
+   "statut": "candidat",
+   "titre": "simple-git : faille critique (CVE-2026-134815), RCE via --exec"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "i4",
+   "categorie": "ia",
+   "statut": "candidat",
+   "titre": "Gemini 4 Neon : un score de code triplé par le seul harnais Antigravity"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "cr3",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "titre": "Tests de caractérisation avant de refactorer du C#"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "cr4",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "titre": "Seemann : publier du logiciel généré par IA, qui est responsable ?"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "p4",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "titre": "Dudycz : « on voulait tous être Netflix, qui veut-on être après ? »"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "p5",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "titre": "Effective Aggregate Design, partie I (Vaughn Vernon)"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "cr5",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "titre": "Mocks Aren't Stubs (Martin Fowler)"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "c2",
+   "categorie": "conferences",
+   "statut": "candidat",
+   "titre": "NDC Oslo 2027 : CFP ouvert jusqu'au 17 janvier 2027"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "s3",
+   "categorie": "securite",
+   "statut": "candidat",
+   "titre": "NuGet : 13 paquets piégés via de faux tests d'embauche .NET"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "i5",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Visual Studio 2026 18.12 : nouveau Copilot Chat et agents",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "i6",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Google : accès des agents à Workspace via MCP obligatoire en 2027",
+   "motif": "non-verifiable"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "i7",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "titre": "Junie : un mode Eco qui sépare planification et écriture",
+   "motif": "non-verifiable"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "d2",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "titre": "Edeka rejoint la régie retail media Valiuz",
+   "motif": "non-verifiable"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "n5",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "Blazor CacheView : du HTML en cache en rendu statique (.NET 11)",
+   "motif": "hors-fenetre"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "t4",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "titre": "sidebyside : trois navigateurs en VM WebAssembly dans un onglet",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "t5",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "titre": "SimDrop : les simulateurs iOS dans la barre latérale du Finder",
+   "motif": "trop-mineur"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "p6",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "titre": "Netflix Conductor 4 : workflows 10 fois plus gros sans verrous",
+   "motif": "hors-fenetre"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "c3",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "titre": "Devoxx France 2027 : CFP ouvert jusqu'au 10 janvier 2027",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "s4",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "Java4Shell : alerte JetBrains",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "n6",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "DocumentExtractionClient (blog .NET)",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "n7",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "titre": "Aspire 17",
+   "motif": "deja-publie"
+  },
+  {
+   "date": "2026-11-27",
+   "id": "s5",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "titre": "NuGet : publication par étapes (staged publishing)",
+   "motif": "deja-publie"
   }
  ],
  "urls": {
@@ -1964,10 +2308,20 @@
    "id": "c3",
    "statut": "publie"
   },
+  "https://2027.dddeurope.com/cfp/": {
+   "date": "2026-11-27",
+   "id": "c1",
+   "statut": "publie"
+  },
   "https://2027.devoxx.fr/": {
    "date": "2026-11-25",
    "id": "c2",
    "statut": "candidat"
+  },
+  "https://abit.ee/en/cybersecurity/hackers-and-attacks/polinrider-north-korea-github-malware-contagious-interview-ethereum-nullreceiver-npm-vs-code-safedep-en": {
+   "date": "2026-11-27",
+   "id": "s1",
+   "statut": "publie"
   },
   "https://access.redhat.com/security/vulnerabilities/RHSB-2026-018": {
    "date": "2026-11-23",
@@ -1978,6 +2332,12 @@
    "date": "2026-11-23",
    "id": "d1",
    "statut": "publie"
+  },
+  "https://agihunt.info/en/p/1a2149edd157045a47fb5ecd40a": {
+   "date": "2026-11-27",
+   "id": "i7",
+   "statut": "ecarte",
+   "motif": "non-verifiable"
   },
   "https://agiletestingdays.com/": {
    "date": "2026-11-26",
@@ -1994,6 +2354,11 @@
    "date": "2026-11-26",
    "id": "cr7",
    "statut": "candidat"
+  },
+  "https://avaloniaui.net/blog/release-12-2": {
+   "date": "2026-11-27",
+   "id": "n2",
+   "statut": "publie"
   },
   "https://blog.elmah.io/new-in-net-11-faster-asp-net-core-apis-with-runtime-async/": {
    "date": "2026-11-26",
@@ -2016,6 +2381,12 @@
    "date": "2026-11-25",
    "id": "s8",
    "statut": "publie"
+  },
+  "https://blog.jetbrains.com/security/feed/": {
+   "date": "2026-11-27",
+   "id": "s4",
+   "statut": "ecarte",
+   "motif": "deja-publie"
   },
   "https://blog.modelcontextprotocol.io/posts/mcp-turns-two/": {
    "date": "2026-11-25",
@@ -2040,6 +2411,11 @@
   "https://blog.ploeh.dk/2026/10/02/redesign-without-fear/": {
    "date": "2026-11-25",
    "id": "cr6",
+   "statut": "candidat"
+  },
+  "https://blog.ploeh.dk/2026/10/12/releasing-ai-generated-software/": {
+   "date": "2026-11-27",
+   "id": "cr4",
    "statut": "candidat"
   },
   "https://blog.ploeh.dk/2026/10/19/properties-for-a-budgeting-exercise/": {
@@ -2094,13 +2470,18 @@
    "statut": "publie"
   },
   "https://code.claude.com/docs/en/changelog": {
-   "date": "2026-11-26",
+   "date": "2026-11-27",
    "id": "i2",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://codeopinion.com/database-generated-ids/": {
    "date": "2026-11-26",
    "id": "p8",
+   "statut": "publie"
+  },
+  "https://codeopinion.com/event-driven-architecture-coupling/": {
+   "date": "2026-11-27",
+   "id": "p1",
    "statut": "publie"
   },
   "https://codeopinion.com/stale-data-consistency-boundaries/": {
@@ -2118,16 +2499,37 @@
    "id": "cr1",
    "statut": "publie"
   },
+  "https://console.dev/tools/npkill": {
+   "date": "2026-11-27",
+   "id": "t1",
+   "statut": "publie"
+  },
+  "https://console.dev/tools/voiden": {
+   "date": "2026-11-27",
+   "id": "t2",
+   "statut": "publie"
+  },
   "https://craft-conf.com/2027/": {
    "date": "2026-11-26",
    "id": "c7",
    "statut": "ecarte",
    "motif": "non-verifiable"
   },
+  "https://cybersecuritynews.com/node-js-simple-git-library-flaw/": {
+   "date": "2026-11-27",
+   "id": "s2",
+   "statut": "candidat"
+  },
   "https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-repository-update/": {
    "date": "2026-11-26",
    "id": "s10",
    "statut": "publie"
+  },
+  "https://devblogs.microsoft.com/aspire/feed/": {
+   "date": "2026-11-27",
+   "id": "n7",
+   "statut": "ecarte",
+   "motif": "deja-publie"
   },
   "https://devblogs.microsoft.com/aspire/whats-new-aspire-17/": {
    "date": "2026-11-25",
@@ -2159,11 +2561,22 @@
    "id": "n1",
    "statut": "publie"
   },
+  "https://devblogs.microsoft.com/dotnet/dotnet-and-dotnet-framework-november-2026-servicing-updates/": {
+   "date": "2026-11-27",
+   "id": "n4",
+   "statut": "candidat"
+  },
   "https://devblogs.microsoft.com/dotnet/dotnet-developer-survey-2026/": {
    "date": "2026-11-25",
    "id": "n3",
    "statut": "ecarte",
    "motif": "trop-mineur"
+  },
+  "https://devblogs.microsoft.com/dotnet/feed/": {
+   "date": "2026-11-27",
+   "id": "n6",
+   "statut": "ecarte",
+   "motif": "deja-publie"
   },
   "https://devblogs.microsoft.com/dotnet/introducing-dotnetup/": {
    "date": "2026-11-25",
@@ -2189,6 +2602,12 @@
    "date": "2026-11-23",
    "id": "n9",
    "statut": "publie"
+  },
+  "https://devblogs.microsoft.com/nuget/feed/": {
+   "date": "2026-11-27",
+   "id": "s5",
+   "statut": "ecarte",
+   "motif": "deja-publie"
   },
   "https://devblogs.microsoft.com/visualstudio/visual-studio-november-update-faster-workflows-better-reviews/": {
    "date": "2026-11-25",
@@ -2269,9 +2688,9 @@
    "statut": "candidat"
   },
   "https://github.blog/changelog/2026-11-16-github-copilot-weekly-releases-november-9/": {
-   "date": "2026-11-26",
+   "date": "2026-11-27",
    "id": "i3",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://github.blog/changelog/2026-11-17-github-copilot-in-jetbrains-ignite-releases/": {
    "date": "2026-11-23",
@@ -2351,6 +2770,11 @@
    "id": "t2",
    "statut": "candidat"
   },
+  "https://github.com/anomalyco/psychoscript": {
+   "date": "2026-11-27",
+   "id": "t3",
+   "statut": "publie"
+  },
   "https://github.com/backnotprop/plannotator": {
    "date": "2026-11-24",
    "id": "t9",
@@ -2399,6 +2823,12 @@
    "id": "s3",
    "statut": "publie"
   },
+  "https://github.com/michidk/sidebyside": {
+   "date": "2026-11-27",
+   "id": "t4",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
+  },
   "https://github.com/obra/superpowers": {
    "date": "2026-11-24",
    "id": "t5",
@@ -2421,6 +2851,17 @@
    "statut": "ecarte",
    "motif": "trop-mineur"
   },
+  "https://github.com/rxliuli/sim-drop": {
+   "date": "2026-11-27",
+   "id": "t5",
+   "statut": "ecarte",
+   "motif": "trop-mineur"
+  },
+  "https://github.com/voidcosmos/npkill/releases/tag/v1.0.0": {
+   "date": "2026-11-27",
+   "id": "t1",
+   "statut": "publie"
+  },
   "https://github.com/zed-industries/gpui": {
    "date": "2026-11-24",
    "id": "t10",
@@ -2437,6 +2878,12 @@
    "id": "s9",
    "statut": "candidat"
   },
+  "https://infosecurity-magazine.com/news/google-cloud-ai-agents-workspace": {
+   "date": "2026-11-27",
+   "id": "i6",
+   "statut": "ecarte",
+   "motif": "non-verifiable"
+  },
   "https://ladybird.org/posts/alpha/": {
    "date": "2026-11-23",
    "id": "t7",
@@ -2451,6 +2898,11 @@
    "date": "2026-11-26",
    "id": "cr7",
    "statut": "candidat"
+  },
+  "https://learn.chatgpt.com/docs/changelog": {
+   "date": "2026-11-27",
+   "id": "i1",
+   "statut": "publie"
   },
   "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11": {
    "date": "2026-11-23",
@@ -2508,6 +2960,11 @@
    "id": "p2",
    "statut": "publie"
   },
+  "https://martinfowler.com/articles/mocksArentStubs.html": {
+   "date": "2026-11-27",
+   "id": "cr5",
+   "statut": "candidat"
+  },
   "https://martinfowler.com/articles/tests-as-data.html": {
    "date": "2026-11-24",
    "id": "cr2",
@@ -2542,6 +2999,12 @@
   "https://milanjovanovic.tech/blog/api-versioning-should-be-your-last-resort": {
    "date": "2026-11-26",
    "id": "p10",
+   "statut": "ecarte",
+   "motif": "hors-fenetre"
+  },
+  "https://milanjovanovic.tech/blog/blazor-cacheview-dotnet-11": {
+   "date": "2026-11-27",
+   "id": "n5",
    "statut": "ecarte",
    "motif": "hors-fenetre"
   },
@@ -2605,9 +3068,24 @@
    "statut": "ecarte",
    "motif": "hors-perimetre"
   },
+  "https://openai.com/index/introducing-gpt-6-2-astra-sol/": {
+   "date": "2026-11-27",
+   "id": "i1",
+   "statut": "publie"
+  },
   "https://openjdk.org/groups/vulnerability/advisories/2026-11-17": {
    "date": "2026-11-23",
    "id": "s4",
+   "statut": "publie"
+  },
+  "https://opensource.microsoft.com/blog/2026/10/01/from-standards-to-software-microsofts-ongoing-work-on-openapi-and-developer-tooling/": {
+   "date": "2026-11-27",
+   "id": "p3",
+   "statut": "publie"
+  },
+  "https://pointsdevente.fr/fil-info/2026-11-26-le-groupement-mousquetaires-conclut-un-accord-avec-anthropic/": {
+   "date": "2026-11-27",
+   "id": "d1",
    "statut": "publie"
   },
   "https://pointsdevente.fr/pdv-business/supermarches-pirates-les-deux-tiers-des-visites-perdues-deja-reconquis/": {
@@ -2626,9 +3104,19 @@
    "id": "t2",
    "statut": "candidat"
   },
+  "https://psychoscript.com/": {
+   "date": "2026-11-27",
+   "id": "t3",
+   "statut": "publie"
+  },
   "https://reg.devoxx.fr": {
    "date": "2026-11-23",
    "id": "c1",
+   "statut": "publie"
+  },
+  "https://releasebot.io/updates/anthropic/claude-code": {
+   "date": "2026-11-27",
+   "id": "i2",
    "statut": "publie"
   },
   "https://releasebot.io/updates/openai/codex": {
@@ -2640,6 +3128,11 @@
    "date": "2026-11-23",
    "id": "i7",
    "statut": "candidat"
+  },
+  "https://safedep.io/blog/polinrider-python-loader-ethereum-calldata": {
+   "date": "2026-11-27",
+   "id": "s1",
+   "statut": "publie"
   },
   "https://securityonline.info/spring-security-vulnerabilities-november-2026/": {
    "date": "2026-11-23",
@@ -2843,11 +3336,21 @@
    "statut": "ecarte",
    "motif": "hors-perimetre"
   },
+  "https://thenewstack.io/gemini-neon-antigravity-harness/": {
+   "date": "2026-11-27",
+   "id": "i4",
+   "statut": "candidat"
+  },
   "https://thenewstack.io/openclaw-vincent-koc-interview/": {
    "date": "2026-11-25",
    "id": "i12",
    "statut": "ecarte",
    "motif": "trop-mineur"
+  },
+  "https://thepollyproject.org/2026/07/14/polly-osmf-announcement.html": {
+   "date": "2026-11-27",
+   "id": "n3",
+   "statut": "candidat"
   },
   "https://threatdefence.com/article/java4shell-cve-2026-114938-openjdk-rce-patching-hunting": {
    "date": "2026-11-23",
@@ -2886,6 +3389,11 @@
    "statut": "ecarte",
    "motif": "trop-mineur"
   },
+  "https://voiden.md/": {
+   "date": "2026-11-27",
+   "id": "t2",
+   "statut": "publie"
+  },
   "https://windowsforum.com/news/github-outage-on-november-25-2026-high-database-load-disrupts-git-actions-and-pull-requests.454087/": {
    "date": "2026-11-26",
    "id": "s3",
@@ -2895,6 +3403,11 @@
    "date": "2026-11-24",
    "id": "t4",
    "statut": "publie"
+  },
+  "https://www.architecture-weekly.com/p/we-all-wanted-to-be-netflix-who-do": {
+   "date": "2026-11-27",
+   "id": "p4",
+   "statut": "candidat"
   },
   "https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-authentication-issues-after-november-updates/": {
    "date": "2026-11-26",
@@ -2928,6 +3441,11 @@
    "statut": "ecarte",
    "motif": "deja-publie"
   },
+  "https://www.clubic.com/actualite-641071-intermarche-va-faire-entrer-l-ia-d-anthropic-dans-ses-magasins-d-ici-quelques-semaines.html": {
+   "date": "2026-11-27",
+   "id": "d1",
+   "statut": "publie"
+  },
   "https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2026-12-01": {
    "date": "2026-11-26",
    "id": "d5",
@@ -2936,6 +3454,16 @@
   "https://www.datadoghq.com/blog/ai/agentic-property-based-testing-with-ephyra/": {
    "date": "2026-11-26",
    "id": "cr8",
+   "statut": "candidat"
+  },
+  "https://www.dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf": {
+   "date": "2026-11-27",
+   "id": "p5",
+   "statut": "candidat"
+  },
+  "https://www.devleader.ca/2026/11/10/characterization-tests-before-refactoring-c-code": {
+   "date": "2026-11-27",
+   "id": "cr3",
    "statut": "candidat"
   },
   "https://www.devoxx.co.uk/index.html": {
@@ -2980,6 +3508,12 @@
   "https://www.infoq.com/articles/agentic-ai-architecture-harness-evolution/": {
    "date": "2026-11-25",
    "id": "i13",
+   "statut": "ecarte",
+   "motif": "hors-fenetre"
+  },
+  "https://www.infoq.com/news/2026/09/netflix-conductor-4-workflow/": {
+   "date": "2026-11-27",
+   "id": "p6",
    "statut": "ecarte",
    "motif": "hors-fenetre"
   },
@@ -3035,6 +3569,11 @@
    "id": "n1",
    "statut": "publie"
   },
+  "https://www.infoq.com/news/2026/11/dotnet-maui-11-coreclr-hotreload/": {
+   "date": "2026-11-27",
+   "id": "n1",
+   "statut": "publie"
+  },
   "https://www.infoq.com/news/2026/11/google-agent-distraction/": {
    "date": "2026-11-26",
    "id": "i11",
@@ -3056,6 +3595,11 @@
    "id": "i1",
    "statut": "publie"
   },
+  "https://www.infoq.com/news/2026/11/qcon-sf-26-kill-code-review/": {
+   "date": "2026-11-27",
+   "id": "cr2",
+   "statut": "publie"
+  },
   "https://www.infoq.com/news/2026/11/uber-mcp-gateway-ai-agents/": {
    "date": "2026-11-25",
    "id": "i4",
@@ -3075,6 +3619,11 @@
    "date": "2026-11-23",
    "id": "n5",
    "statut": "candidat"
+  },
+  "https://www.lefilia.fr/article/6531352-les-mousquetaires-preparent-l-arrivee-de-claude-dans-500-magasins-avec-aws": {
+   "date": "2026-11-27",
+   "id": "d1",
+   "statut": "publie"
   },
   "https://www.lemagit.fr/actualites/366655112/Cyberhebdo-du-20-novembre-2026": {
    "date": "2026-11-26",
@@ -3113,6 +3662,12 @@
    "id": "d1",
    "statut": "publie"
   },
+  "https://www.lsa-conso.fr/distributeurs-alimentaires/les-mousquetaires/intermarche/exclusif-les-grandes-annonces-de-thierry-cotillard-au-congres-des-mousquetaires-rachat-de-chronodrive-partenariat-anthropic-retail-media-achats-cybersecurite.55XW52C7DZEM7BHCL4RZDJ5MLM.html": {
+   "date": "2026-11-27",
+   "id": "d2",
+   "statut": "ecarte",
+   "motif": "non-verifiable"
+  },
   "https://www.meziantou.net/finding-a-deadlock-in-a-dotnet-dump-with-an-ai-agent.htm": {
    "date": "2026-11-24",
    "id": "n1",
@@ -3128,10 +3683,20 @@
    "id": "n1",
    "statut": "publie"
   },
+  "https://www.milanjovanovic.tech/blog/csharp-union-types-vs-result-pattern": {
+   "date": "2026-11-27",
+   "id": "cr1",
+   "statut": "publie"
+  },
   "https://www.milanjovanovic.tech/blog/i-turned-off-ci-for-pull-requests": {
    "date": "2026-11-25",
    "id": "t7",
    "statut": "candidat"
+  },
+  "https://www.milanjovanovic.tech/blog/outbox-pattern-postgres-workers-vs-wal": {
+   "date": "2026-11-27",
+   "id": "p2",
+   "statut": "publie"
   },
   "https://www.notebookcheck.net/Postman-added-itself-to-Claude-Code-and-Codex-without-asking.1442933.0.html": {
    "date": "2026-11-26",
