@@ -23,7 +23,7 @@
   {
    "date": "2026-11-27",
    "path": "reports/2026/20261127.html",
-   "publies": 15
+   "publies": 16
   }
  ],
  "projets": {
@@ -2163,7 +2163,7 @@
    "date": "2026-11-27",
    "id": "p5",
    "categorie": "architecture",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Effective Aggregate Design, partie I (Vaughn Vernon)"
   },
   {
@@ -3454,7 +3454,7 @@
   "https://www.dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf": {
    "date": "2026-11-27",
    "id": "p5",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://www.devleader.ca/2026/11/10/characterization-tests-before-refactoring-c-code": {
    "date": "2026-11-27",
