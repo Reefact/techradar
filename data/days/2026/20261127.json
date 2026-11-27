@@ -170,11 +170,10 @@
   {
    "section": "dotnet",
    "paragraphes": [
-    "Deux semaines après .NET 11, [MAUI 11](#n1) passe sur CoreCLR, avec des changements cassants à tester. [Avalonia 12.2](#n2), sortie lundi, prend en charge .NET 11."
+    "Deux semaines après .NET 11, [MAUI 11](#n1) passe sur CoreCLR, avec des changements cassants à tester."
    ],
    "sujets": [
-    "n1",
-    "n2"
+    "n1"
    ]
   },
   {
@@ -448,7 +447,7 @@
   {
    "id": "n2",
    "categorie": "dotnet",
-   "statut": "publie",
+   "statut": "candidat",
    "tags": [],
    "titre": "Avalonia 12.2 : prise en charge de .NET 11, thème Fluent2",
    "date": "2026-11-23",
@@ -474,6 +473,12 @@
      "date": "2026-11-27T06:50+01:00",
      "statut": "publie",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-27T11:56+00:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "Retiré pour faire place à n3 (plafond de 15), à la demande de l'utilisateur"
     }
    ]
   },
@@ -875,7 +880,7 @@
   {
    "id": "n3",
    "categorie": "dotnet",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [],
    "titre": "Polly : 20 $/mois de frais de maintenance dès la prochaine majeure",
    "date": "2026-11-16",
@@ -897,8 +902,15 @@
      "date": "2026-11-27T06:50+01:00",
      "statut": "candidat",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-27T11:56+00:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "Publication demandée par l'utilisateur depuis le dossier"
     }
-   ]
+   ],
+   "hors_fenetre": "Changement de licence d'une dépendance .NET très répandue, sans version payante publiée à ce jour : encore utile à anticiper."
   },
   {
    "id": "n4",
