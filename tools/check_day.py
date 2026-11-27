@@ -236,6 +236,11 @@ def check(path, contre=None, partiel=False):
     prio = [s for s in pub if ("alerte" in tagset(s) and (s.get("date") or "") >= seuil) or "rappel" in tagset(s)]
     # publication forcée par l'utilisateur (statut.py --force) : hors plafonds, comme un prioritaire
     autres = [s for s in pub if s not in prio and not s.get("force_utilisateur")]
+    # un sujet intemporel porte sa date de parution d'origine, forcément antérieure au rapport précédent
+    if not legacy:
+        for s in day.get("sujets", []):
+            if s.get("statut") != "ecarte" and "intemporel" in tagset(s) and (s.get("date") or "") >= seuil:
+                E(f"{s.get('id')} : sujet « intemporel » daté du {s.get('date')} : « date » doit être sa date de parution d'origine (avant le rapport précédent, {seuil})")
     cap = rap.get("max_publies")
     if cap and not legacy and len(autres) > cap:
         E(f"{len(autres)} sujets publiés hors prioritaires (alerte récente, rappel) : {cap} au plus")

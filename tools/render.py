@@ -207,6 +207,11 @@ def majuscule(md):
     return md if not m else md[:m.start()] + md[m.start()].upper() + md[m.start() + 1:]
 
 
+def est_frais(s, seuil):
+    """Repère ☄️ : date égale ou postérieure au brief précédent ; jamais pour un sujet « intemporel » (article de fond ancien)."""
+    return bool(s.get("date")) and s["date"] >= seuil and "intemporel" not in {tag_key(t) for t in s.get("tags", [])}
+
+
 def froid_html(s, cfg, jour):
     """Repère 🧊 d'un sujet paru il y a plus de froid_apres_jours jours de son profil de fraîcheur
     (config/sujets/perimetre.json → rapport.fraicheur ; profil calculé par veille_lib.profil_fraicheur)."""
@@ -223,7 +228,7 @@ def card(s, cfg, seuil, dossier=False, date_jour=""):
     cats, tags = cfg["categories"], cfg["tags"]
     c = cats[s["categorie"]]
     st = s.get("statut", "candidat")
-    frais = bool(s.get("date")) and s["date"] >= seuil
+    frais = est_frais(s, seuil)
     attrs = f' data-cat="{E(" ".join(categories_de(s)))}" data-classe="{E(c["classe"])}" data-tags="{E(" ".join(tag_key(t) for t in s.get("tags", [])))}" data-statut="{st}"'
     if frais: attrs += " data-frais"
     if s.get("depot"): attrs += f' data-repo="{E(s["depot"])}"'
@@ -307,7 +312,7 @@ def filters(sujets, cfg, seuil, dossier=False):
     present = [k for k in ordered_categories(cats) if any(k in categories_de(s) for s in sujets)]
     groups.append(("cat", "Catégorie", [chip(k, cats[k]["classe"], cats[k]["label"], cats[k]["description"], sum(1 for s in sujets if k in categories_de(s))) for k in present]))
     tchips = []
-    nf = sum(1 for s in sujets if s.get("date") and s["date"] >= seuil)
+    nf = sum(1 for s in sujets if est_frais(s, seuil))
     if nf: tchips.append(chip("frais", "b-fresh", "☄️ Récent", aide_recent(seuil), nf))
     for k, t in tags.items():
         n = sum(1 for s in sujets if k in [tag_key(x) for x in s.get("tags", [])])

@@ -1130,7 +1130,7 @@
     "intemporel"
    ],
    "titre": "Effective Aggregate Design, partie I (Vaughn Vernon)",
-   "date": "2026-11-27",
+   "date": "2011-01-01",
    "resume": "Article de référence sur l'agrégat, présenté comme l'un des patterns tactiques les moins bien compris du DDD (conception pilotée par le domaine). Vernon montre, avec un outil Scrum, comment une équipe tombe dans le piège de la commodité de composition : des agrégats trop gros posent des problèmes de transaction et de performance. À l'inverse, vider les agrégats fait perdre la protection des vrais invariants. La règle directrice est de partir des règles métier et des invariants pour tracer la frontière de cohérence, pas du graphe d'objets.",
    "pourquoi": {
     "type": "compte",
@@ -1167,7 +1167,7 @@
     "intemporel"
    ],
    "titre": "Mocks Aren't Stubs (Martin Fowler)",
-   "date": "2026-11-27",
+   "date": "2007-01-01",
    "resume": "Article de référence sur les doublures de test. Fowler reprend la typologie de Meszaros (dummy, fake, stub, spy, mock) et distingue la vérification d'état de la vérification de comportement. Il oppose le TDD (développement piloté par les tests) classique, qui emploie de vrais objets quand c'est possible, au TDD mockiste, qui simule tout collaborateur ayant un comportement. Les mockistes y voient une conception pilotée de l'extérieur, au prix d'un couplage à l'implémentation ; les classicistes valorisent des tests qui survivent au refactoring.",
    "pourquoi": {
     "type": "compte",
