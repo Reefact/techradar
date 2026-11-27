@@ -16,6 +16,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import check_day  # noqa: E402
 import check_front  # noqa: E402
 import render  # noqa: E402
+from veille_lib import categories_de  # noqa: E402
 from veille_lib import config, day_files, load_json  # noqa: E402
 
 
@@ -146,7 +147,8 @@ class Front(unittest.TestCase):
         rapport, _ = self.rendu(day)
         manque = re.sub(r'<span class="fresh froid"[^>]*>🧊</span>', "", rapport, count=1)
         self.assertTrue(any("manquant" in e for e in self.erreurs([manque])))
-        faux = rapport.replace(f'data-cat="outils" data-classe', f'data-cat="dotnet" data-classe', 1)
+        faux = rapport.replace(f'id="{s["id"]}" data-cat="outils" data-classe', f'id="{s["id"]}" data-cat="dotnet" data-classe', 1)
+        self.assertNotEqual(faux, rapport)
         self.assertTrue(any("injustifié" in e for e in self.erreurs([faux])))
 
     def test_tag_non_declare(self):
@@ -365,6 +367,8 @@ class Donnees(unittest.TestCase):
         self.assertFalse(any(f"{s['id']} : publié mais daté" in e for e in self.valider(day)))
         s["date"] = "2026-11-04"                                            # 22 jours : refusé
         self.assertTrue(any(f"{s['id']} : publié mais daté" in e for e in self.valider(day)))
+        for x in day["sujets"]:                                             # une catégorie vide, quel que soit le jour de test
+            if x["statut"] == "publie" and "outils" in categories_de(x): x["statut"] = "candidat"
         day["journal"]["recherches"] = {"ia": 9}
         self.assertTrue(any("vide avec 0 requête" in e for e in self.valider(day)))
 

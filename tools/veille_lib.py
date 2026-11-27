@@ -39,7 +39,8 @@ def projets(cfg):
 
 def categories_de(sujet):
     """Catégories d'un sujet : la principale, puis la secondaire éventuelle (2 au plus)."""
-    return [sujet["categorie"]] + ([sujet["categorie_secondaire"]] if sujet.get("categorie_secondaire") else [])
+    sec = sujet.get("categorie_secondaire")
+    return [sujet["categorie"]] + ([sec] if isinstance(sec, str) and sec else [])
 
 
 def fraicheur_cfg(cfg):
