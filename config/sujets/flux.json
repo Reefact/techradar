@@ -1,5 +1,5 @@
 {
-  "description": "Flux (RSS ou Atom) lus à CHAQUE exécution, quels que soient les sujets du jour. Chaque flux est consigné dans journal.verifications ({\"nom\": …, \"resultat\": \"n article(s) examiné(s)\" ou \"rien de neuf\"}).",
+  "description": "Flux (RSS ou Atom) lus à CHAQUE exécution, quels que soient les sujets du jour. Chaque flux est consigné dans journal.verifications ({\"nom\": …, \"resultat\": \"n article(s) examiné(s)\" ou \"rien de neuf\"}). Un flux ajouté après coup porte son propre « depuis » : il n'est exigé qu'à partir de cette date.",
   "depuis": "2026-11-26",
   "flux": [
     {
@@ -60,16 +60,19 @@
     {
       "nom": "PostgreSQL News",
       "url": "https://www.postgresql.org/news.rss",
+      "depuis": "2026-11-27",
       "pour": "Annonces officielles de PostgreSQL : versions majeures et mineures, correctifs de sécurité, fins de support. Une faille corrigée ou une fin de support d'une version en usage est une alerte ; une version mineure sans impact se consigne seulement au journal."
     },
     {
       "nom": "Npgsql",
       "url": "https://github.com/npgsql/npgsql/releases.atom",
+      "depuis": "2026-11-27",
       "pour": "Versions du pilote ADO.NET Npgsql : changements cassants, prise en charge des nouvelles versions de PostgreSQL et de .NET. Une faille corrigée est une alerte ; une version de patch sans impact se consigne seulement au journal."
     },
     {
       "nom": "Npgsql EF Core",
       "url": "https://github.com/npgsql/efcore.pg/releases.atom",
+      "depuis": "2026-11-27",
       "pour": "Versions du fournisseur EF Core pour PostgreSQL (Npgsql.EntityFrameworkCore.PostgreSQL), à suivre avec les versions d'EF Core. Une faille corrigée est une alerte ; une version de patch sans impact se consigne seulement au journal."
     }
   ],

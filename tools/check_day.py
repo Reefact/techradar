@@ -348,6 +348,8 @@ def check(path, contre=None, partiel=False):
     if not legacy and day.get("date", "") >= flux_cfg.get("depuis", "9999"):
         vus = {plain(v.get("nom", "")).lower() for v in j.get("verifications", [])}
         for f in flux_cfg.get("flux", []):
+            # un flux ajouté plus tard porte son propre « depuis » : les jours antérieurs n'avaient pas à le lire
+            if day.get("date", "") < f.get("depuis", flux_cfg.get("depuis", "")): continue
             if f["nom"].lower() not in vus: E(f"journal : le flux « {f['nom']} » (config/sujets/flux.json) n'a pas été lu (ajouter une entrée dans journal.verifications)")
     # ----- reprise des candidats du rapport précédent (config/sujets/perimetre.json → rapport.reprises)
     rep = rap.get("reprises") or {}
