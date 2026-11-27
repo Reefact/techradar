@@ -114,11 +114,6 @@
   },
   {
    "date": "2026-11-27",
-   "titre": "npkill 1.0 : nettoie aussi les dossiers obj de .NET",
-   "url": "https://console.dev/tools/npkill"
-  },
-  {
-   "date": "2026-11-27",
    "titre": "Voiden : un client d'API dont les requêtes vivent dans Git",
    "url": "https://console.dev/tools/voiden"
   }
@@ -2086,7 +2081,7 @@
    "date": "2026-11-27",
    "id": "t1",
    "categorie": "outils",
-   "statut": "publie",
+   "statut": "candidat",
    "titre": "npkill 1.0 : nettoie aussi les dossiers obj de .NET"
   },
   {
@@ -2121,7 +2116,7 @@
    "date": "2026-11-27",
    "id": "n4",
    "categorie": "dotnet",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Novembre 2026 : 25 CVE corrigées, fin de support de .NET 8 et .NET 9"
   },
   {
@@ -2497,7 +2492,7 @@
   "https://console.dev/tools/npkill": {
    "date": "2026-11-27",
    "id": "t1",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://console.dev/tools/voiden": {
    "date": "2026-11-27",
@@ -2559,7 +2554,7 @@
   "https://devblogs.microsoft.com/dotnet/dotnet-and-dotnet-framework-november-2026-servicing-updates/": {
    "date": "2026-11-27",
    "id": "n4",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://devblogs.microsoft.com/dotnet/dotnet-developer-survey-2026/": {
    "date": "2026-11-25",
@@ -2855,7 +2850,7 @@
   "https://github.com/voidcosmos/npkill/releases/tag/v1.0.0": {
    "date": "2026-11-27",
    "id": "t1",
-   "statut": "publie"
+   "statut": "candidat"
   },
   "https://github.com/zed-industries/gpui": {
    "date": "2026-11-24",
