@@ -1,0 +1,1579 @@
+{
+ "date": "2026-11-27",
+ "config": {
+  "commit": "fae04a0"
+ },
+ "executions": [
+  {
+   "type": "planifiee",
+   "debut": "2026-11-27T06:07+01:00",
+   "note": "création : recherche déléguée à six sous-agents (flux et projets, sécurité et distribution, .NET et outils, IA, craftsmanship et architecture, conférences) ; vérification indépendante de PolinRider ; relecture par sous-agent ; 25 corrections appliquées"
+  }
+ ],
+ "journal": {
+  "recherches": {
+   "securite": 17,
+   "dotnet": 26,
+   "ia": 15,
+   "craftsmanship": 15,
+   "architecture": 15,
+   "distribution": 11,
+   "outils": 19,
+   "conferences": 16,
+   "projets": 4
+  },
+  "passes": [
+   {
+    "recherches": {
+     "securite": 17,
+     "dotnet": 26,
+     "ia": 15,
+     "craftsmanship": 15,
+     "architecture": 15,
+     "distribution": 11,
+     "outils": 19,
+     "conferences": 16,
+     "projets": 4
+    }
+   }
+  ],
+  "pages_ouvertes": 127,
+  "sources_illisibles": [
+   "lsa-conso.fr (403 après curl)",
+   "usine-digitale.fr (403 puis page JavaScript vide)",
+   "thenewstack.io (403)",
+   "infosecurity-magazine.com, techrepublic.com, agihunt.info (403)",
+   "apiiro.com (page non rendue)",
+   "devoxxfr2027.cfp.dev (erreur de chargement)",
+   "confs.tech/dotnet (contenu vide)",
+   "API GitHub : accès non activé dans la session, remplacée par WebSearch",
+   "sidebyside (site vide, README lu)",
+   "Console.dev : revues partielles"
+  ],
+  "verifications": [
+   {
+    "nom": "JetBrains Security",
+    "resultat": "rien de neuf (seul article récent : Java4Shell du 2026-11-24, déjà publié s8)"
+   },
+   {
+    "nom": "JetBrains .NET Tools",
+    "resultat": "rien de neuf (dernier billet 2026-11-11 ; Java4Shell 11-24 déjà publié)"
+   },
+   {
+    "nom": "GitLab Patch Releases",
+    "resultat": "1 article examiné : patch 19.6.2/19.5.9/19.4.11… du 2026-11-25 (correctifs de dépendances Git, Ruby, GPGME ; non critique), déjà candidat s1 du 11-26"
+   },
+   {
+    "nom": "GitLab Releases",
+    "resultat": "rien de neuf (19.6 du 2026-11-19)"
+   },
+   {
+    "nom": "Blog .NET",
+    "resultat": "rien de neuf depuis le 11-25 (derniers : DocumentExtractionClient 11-24 et Llama local 11-23, déjà vus/publiés)"
+   },
+   {
+    "nom": "Blog Visual Studio",
+    "resultat": "rien de neuf (VS November Update du 11-24 déjà publié n10)"
+   },
+   {
+    "nom": "Blog Aspire",
+    "resultat": "rien de neuf (Aspire 17 du 11-18 déjà publié n9)"
+   },
+   {
+    "nom": "Blog NuGet",
+    "resultat": "rien de neuf (l'URL du flux renvoie le même contenu que le Blog .NET ; staged publishing 11-17 déjà publié n2)"
+   },
+   {
+    "nom": "Microsoft Security Update Guide (MSRC)",
+    "resultat": "rien de neuf depuis le 11-25 (flux arrêté au 11-24 ; CVE .NET/ASP.NET Core/VS Code datés du 11-23, relevant du Patch Tuesday de novembre déjà traité)"
+   },
+   {
+    "nom": "Blog de Mathias Verraes",
+    "resultat": "rien de neuf (dernier billet 2026-11-08)"
+   },
+   {
+    "nom": "Thomas Pierrain (Medium)",
+    "resultat": "rien de neuf (dernier article 2026-11-09)"
+   },
+   {
+    "nom": "kill-mutants (Stryker.NET)",
+    "resultat": "rien de neuf : stryker 5.1.0 inchangé"
+   },
+   {
+    "nom": "unified-assertions",
+    "resultat": "rien de neuf : AwesomeAssertions 9.6.0, Shouldly 4.3.0/5.0.0-preview.2, FluentAssertions 8.11.0 (2026-09-14), inchangés"
+   },
+   {
+    "nom": "just-dummies",
+    "resultat": "rien de neuf : Bogus 35.6.5, AutoFixture 5.0.0-rc.1"
+   },
+   {
+    "nom": "first-class-errors",
+    "resultat": "rien de neuf : ErrorOr 2.1.1, FluentResults 4.0.0, OneOf 3.0.271 (2024) ; pas d'actualité unions C# 15 postérieure au 11-24 trouvée"
+   },
+   {
+    "nom": "hypermedia-domain-language",
+    "resultat": "rien de récent à fort impact : Swashbuckle 11.0.1 (11-12), NSwag 14.8.0 (11-11), Microsoft.AspNetCore.OpenApi 11.0.0 : antérieurs à 11-24"
+   },
+   {
+    "nom": "slugger",
+    "resultat": "rien de neuf : Slugify.Core 5.2.0"
+   },
+   {
+    "nom": "enum-member-name-binding",
+    "resultat": "non vérifié en profondeur (pas de signal trouvé)"
+   },
+   {
+    "nom": "conventional-comments-toolkit",
+    "resultat": "non recherché spécifiquement"
+   },
+   {
+    "nom": "Conférences hors DDD Europe et Devoxx France",
+    "resultat": "rien de neuf (MiXiT, NDC Porto/Copenhagen, Devoxx UK/Poland, Techorama, BDX I/O, Update, dotnetos, DotNetDay, Paris Web : aucune information trouvée)"
+   }
+  ],
+  "verifications_sources": {
+   "lancees": 1,
+   "vrai": 1,
+   "faux": 0,
+   "indetermine": 0
+  },
+  "decouverte": 3,
+  "hypotheses": [
+   "Les candidats repris (Claude Code skills par MCP, Copilot harnais Local) reprennent le contenu du 26 novembre, source relue en partie seulement ; le détail de la 2.1.332 vient d'un agrégateur de changelogs.",
+   "L'intemporel n'est pas utilisé : plus de 10 sujets non prioritaires publiés ; Vernon et Fowler restent candidats.",
+   "Les 15 autres candidats du 26 novembre non cités ici restent candidats sans changement.",
+   "Les Mousquetaires : distribution sans source de la liste de référence ; annonce du groupe lui-même, donc vérification non requise.",
+   "Un sujet NuGet (13 paquets piégés) reste candidat, vérification indéterminée."
+  ]
+ },
+ "sous_titre": "Ta veille technologique, dans le cadre de tes missions Reefact",
+ "a_retenir": [
+  {
+   "section": "urgent",
+   "paragraphes": [
+    "Rappel : l'appel à propositions des ateliers de [DDD Europe 2027](#c1) ferme lundi 30 novembre, dans trois jours."
+   ],
+   "sujets": [
+    "c1"
+   ]
+  },
+  {
+   "section": "securite",
+   "paragraphes": [
+    "Des chercheurs décrivent [PolinRider](#s1), une campagne attribuée à des pirates nord-coréens : de faux tests d'embauche cachent un chargeur Python qui récupère sa charge sur la blockchain Ethereum. Exécute ces tests dans une machine virtuelle."
+   ],
+   "sujets": [
+    "s1"
+   ]
+  },
+  {
+   "section": "dotnet",
+   "paragraphes": [
+    "Deux semaines après .NET 11, [MAUI 11](#n1) passe sur CoreCLR, avec des changements cassants à tester. [Avalonia 12.2](#n2), sortie lundi, prend en charge .NET 11."
+   ],
+   "sujets": [
+    "n1",
+    "n2"
+   ]
+  },
+  {
+   "section": "ia",
+   "paragraphes": [
+    "Les agents de code gagnent des contrôles : [Claude Code](#i2) accepte des skills fournis par MCP, et Copilot [retire son harnais Local](#i3) en février 2027. OpenAI baisse le prix de [GPT-6.2 Astra](#i1), lancé le 17 novembre."
+   ],
+   "sujets": [
+    "i2",
+    "i3",
+    "i1"
+   ]
+  },
+  {
+   "section": "craftsmanship",
+   "paragraphes": [
+    "Les [unions de C# 15](#cr1) peuvent-elles remplacer le Result pattern ? Une comparaison utile pour first-class-errors. Une conférence de QCon plaide pour [tuer la revue de code](#cr2) classique ; l'orateur vend un produit."
+   ],
+   "sujets": [
+    "cr1",
+    "cr2"
+   ]
+  },
+  {
+   "section": "architecture",
+   "paragraphes": [
+    "Hier, CodeOpinion rappelait que l'[événementiel ne supprime pas le couplage](#p1). Milan Jovanović mesure l'[outbox Postgres](#p2), et Microsoft détaille [OpenAPI 3.2](#p3), version par défaut d'ASP.NET Core 11."
+   ],
+   "sujets": [
+    "p1",
+    "p2",
+    "p3"
+   ]
+  },
+  {
+   "section": "outils",
+   "paragraphes": [
+    "[npkill 1.0](#t1) nettoie aussi les dossiers obj, [Voiden](#t2) range les requêtes d'API dans Git, et [Psychoscript](#t3) exécute du JavaScript non fiable en le rendant suspendable."
+   ],
+   "sujets": [
+    "t1",
+    "t2",
+    "t3"
+   ]
+  },
+  {
+   "section": "distribution",
+   "paragraphes": [
+    "Les Mousquetaires [déploieront Claude](#d1) dans 500 magasins dès janvier 2027."
+   ],
+   "sujets": [
+    "d1"
+   ]
+  }
+ ],
+ "sujets": [
+  {
+   "id": "c1",
+   "categorie": "conferences",
+   "statut": "publie",
+   "tags": [
+    "ddd",
+    {
+     "tag": "rappel",
+     "seuil": "J-3"
+    }
+   ],
+   "titre": "DDD Europe 2027 : rappel, le CFP des ateliers ferme lundi",
+   "date": "2026-11-27",
+   "resume": "Rappel : la date limite de l'appel à propositions (CFP) des **ateliers** de DDD Europe 2027 tombe le lundi 30 novembre 2026, dans trois jours. Celle de la conférence principale reste ouverte jusqu'au 16 janvier 2027 à 23 h 59.\n\nL'édition a lieu à Amsterdam : ateliers du 31 mai au 2 juin, conférence les 3 et 4 juin 2027. Le détail des deux CFP est sur Sessionize ; la page officielle et Sessionize donnent la même date.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "DDD est un thème central de tes projets ; si tu veux proposer un atelier, il te reste trois jours."
+   },
+   "details": {
+    "Dates et lieu": "Ateliers 31 mai – 2 juin, conférence 3–4 juin 2027, Meervaart, Amsterdam",
+    "CFP": "ateliers : 30 nov. 2026 ; conférence : 16 janv. 2027, 23 h 59",
+    "Inscription": "billetterie ti.to ouverte, prix non publiés sur la page"
+   },
+   "meta": "DDD Europe · 27 nov. 2026 · te concerne : oui",
+   "sources": [
+    {
+     "texte": "Source : dddeurope.com, page du CFP",
+     "url": "https://2027.dddeurope.com/cfp/"
+    },
+    {
+     "texte": "CFP : Sessionize",
+     "url": "https://sessionize.com/aardling27/"
+    }
+   ],
+   "conference": {
+    "dates": "Ateliers 31 mai – 2 juin ; conférence 3–4 juin 2027",
+    "lieu": "Meervaart, Amsterdam",
+    "cfp": "30 nov. 2026 (ateliers) ; 16 janv. 2027 (conférence)",
+    "site": "https://2027.dddeurope.com/"
+   },
+   "choix": "Publié en priorité : rappel du CFP des ateliers de DDD Europe à J-3, date confirmée sur la page officielle et sur Sessionize.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s1",
+   "categorie": "securite",
+   "statut": "publie",
+   "tags": [
+    "supply-chain"
+   ],
+   "titre": "PolinRider : faux tests d'embauche et chargeur Python piégé",
+   "date": "2026-11-26",
+   "resume": "La campagne PolinRider, rattachée par des chercheurs au groupe nord-coréen « Contagious Interview », vise les développeurs avec de faux tests d'embauche. Selon SafeDep, un chargeur Python de 58 lignes, caché dans un fichier `conftest.py` ou un paquet utilitaire, lit une transaction Ethereum, décode du JavaScript puis l'exécute avec Node.js ; un second portefeuille donne l'adresse du serveur de commande.\n\nUne extension du Marketplace VS Code, `huntrole.assessment-tool`, est liée au même portefeuille que des paquets npm piégés. SafeDep dénombre 375 dépôts touchés sur 260 comptes pour la seule variante Python ; Apiiro, cité par The Hacker News, compte au moins 7 609 dépôts pour l'ensemble de la campagne.\n\nL'attribution reste celle des chercheurs, sans confirmation officielle. La campagne rejoint les faux tests d'embauche qui visent les développeurs .NET sur NuGet.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un test d'embauche reçu d'un inconnu peut cacher un chargeur : ouvre-le toujours dans une machine virtuelle jetable."
+   },
+   "details": {
+    "Touché": "Dépôts GitHub contenant un chargeur Python, extension VS Code huntrole.assessment-tool, paquets npm liés",
+    "Correctif": "Aucun correctif ; pas de mise à jour à installer",
+    "Gravité": "Campagne active ciblant les développeurs ; exécution de code à distance par le chargeur",
+    "Action": "Ne pas exécuter de test d'embauche d'un recruteur inconnu ; l'ouvrir dans une machine virtuelle ; chercher conftest.py ou paquets utilitaires suspects dans tes dépôts"
+   },
+   "meta": "SafeDep, The Hacker News · 26 nov. 2026 · te concerne : oui, si tu exécutes du code reçu d'un recruteur",
+   "sources": [
+    {
+     "texte": "SafeDep, « PolinRider Moves to Python with an Ethereum Calldata Loader »",
+     "url": "https://safedep.io/blog/polinrider-python-loader-ethereum-calldata"
+    },
+    {
+     "texte": "Source : abit.ee (d'après SafeDep et Apiiro), 26 nov. 2026",
+     "url": "https://abit.ee/en/cybersecurity/hackers-and-attacks/polinrider-north-korea-github-malware-contagious-interview-ethereum-nullreceiver-npm-vs-code-safedep-en"
+    }
+   ],
+   "verification": {
+    "date": "2026-11-27T06:30:00+01:00",
+    "verdict": "vrai",
+    "resume": "SafeDep (éditeur de sécurité, source primaire, page lue) documente un loader Python de 58 lignes caché dans des dépôts GitHub (paquet utils ou conftest.py), qui lit une transaction Ethereum, exécute le JavaScript décodé avec Node.js et obtient l'adresse du serveur de commande via un second portefeuille. La campagne PolinRider est rattachée par des chercheurs à l'écosystème nord-coréen Contagious Interview (attribution de chercheurs, non confirmée officiellement). L'extension huntrole.assessment-tool et le portefeuille 0x1eEf sont établis par SafeDep et l'analyse indépendante de GetJump.",
+    "source": {
+     "nom": "abit.ee",
+     "nature": "agrégateur de presse cyber, reprise de The Hacker News et SafeDep, sans lien direct vers les sources"
+    },
+    "affirmations": [
+     {
+      "texte": "Un loader Python de 58 lignes, caché dans un paquet utils ou dans conftest.py de dépôts GitHub, lit la dernière transaction d'un portefeuille Ethereum, décode ses données en JavaScript et l'exécute avec Node.js ; ce script lit un second portefeuille pour trouver le serveur de commande (95.135.181.84 depuis le 12 nov. 2026)",
+      "preuves": [
+       {
+        "texte": "SafeDep, analyse du loader et des portefeuilles",
+        "url": "https://safedep.io/blog/polinrider-python-loader-ethereum-calldata"
+       },
+       {
+        "texte": "The Hacker News, 26 nov. 2026",
+        "url": "https://thehackernews.com/2026/11/north-korea-linked-polinrider-poisons.html"
+       }
+      ]
+     },
+     {
+      "texte": "SafeDep a trouvé ce loader dans 375 dépôts publics appartenant à 260 comptes (24 nov. 2026) ; aucun paquet PyPI ou npm ne le porte",
+      "preuves": [
+       {
+        "texte": "SafeDep, section Key findings",
+        "url": "https://safedep.io/blog/polinrider-python-loader-ethereum-calldata"
+       }
+      ]
+     },
+     {
+      "texte": "PolinRider est rattaché par des chercheurs à l'écosystème nord-coréen Contagious Interview (sous-groupe opérant en parallèle) ; attribution de chercheurs, non confirmée officiellement",
+      "preuves": [
+       {
+        "texte": "The Hacker News",
+        "url": "https://thehackernews.com/2026/11/north-korea-linked-polinrider-poisons.html"
+       },
+       {
+        "texte": "OpenSourceMalware, dossier PolinRider (attribue à la RPDC, lie à Contagious Interview)",
+        "url": "https://github.com/OpenSourceMalware/PolinRider"
+       }
+      ]
+     },
+     {
+      "texte": "L'extension VS Code Marketplace huntrole.assessment-tool (fausse offre d'emploi HuntRole) interroge le portefeuille 0x1eEf0849…CEF3, le même que celui servant un loader JavaScript dans des projets npm et GitHub (octobre 2026)",
+      "preuves": [
+       {
+        "texte": "GetJump, analyse HuntRole (extension, 126 installations au 16 nov.)",
+        "url": "https://getjump.me/posts/03-huntrole-fake-take-home/"
+       },
+       {
+        "texte": "SafeDep, même portefeuille 0x1eEf servant le loader npm (PR asyncapi/generator, 19 oct.)",
+        "url": "https://safedep.io/blog/polinrider-python-loader-ethereum-calldata"
+       }
+      ]
+     }
+    ],
+    "retirees": [
+     {
+      "texte": "Propagation en ver par réécriture de l'historique de commits avec jetons GitHub volés ; ouverture du dossier dans VS Code suffisant à déclencher l'exécution",
+      "raison": "attribué à Apiiro par The Hacker News ; la page Apiiro n'a pas pu être lue (contenu non rendu), donc non vérifié directement ; à ne citer que comme rapporté par Apiiro/The Hacker News"
+     },
+     {
+      "texte": "Les paquets npm compromis liés au même portefeuille, nommés par l'agrégateur",
+      "raison": "SafeDep et GetJump confirment l'usage du portefeuille en contexte npm ; les noms exacts des paquets n'ont pas été recoupés ici"
+     }
+    ],
+    "ecarts": [
+     "375 dépôts / 260 comptes selon SafeDep (recherche de code GitHub du loader Python précis, 24 nov. 2026)",
+     "au moins 7 609 dépôts / 2 330 comptes selon Apiiro (recensement cumulé de la campagne, rapporté par The Hacker News ; page Apiiro non lue)",
+     "1 951 dépôts / 1 047 propriétaires selon OpenSourceMalware au 11 avr. 2026 (état antérieur)",
+     "Les périmètres diffèrent : SafeDep ne compte que la variante Python, Apiiro l'ensemble de la campagne"
+    ],
+    "recoupements": [
+     {
+      "texte": "SafeDep, article primaire (lu en entier)",
+      "url": "https://safedep.io/blog/polinrider-python-loader-ethereum-calldata"
+     },
+     {
+      "texte": "The Hacker News, 26 nov. 2026 (presse cyber, reprend SafeDep et Apiiro)",
+      "url": "https://thehackernews.com/2026/11/north-korea-linked-polinrider-poisons.html"
+     },
+     {
+      "texte": "GetJump, analyse indépendante de l'extension HuntRole",
+      "url": "https://getjump.me/posts/03-huntrole-fake-take-home/"
+     },
+     {
+      "texte": "OpenSourceMalware, dossier PolinRider",
+      "url": "https://github.com/OpenSourceMalware/PolinRider"
+     }
+    ]
+   },
+   "choix": "Publié : seule vraie campagne fraîche de sécurité du jour, qui vise les développeurs (VS Code, GitHub) ; vérifiée par un agent indépendant.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n1",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [],
+   "titre": ".NET MAUI 11 : CoreCLR par défaut et hot reload XAML incrémental",
+   "date": "2026-11-26",
+   "resume": "MAUI 11 est livré avec .NET 11 et remplace Mono par CoreCLR comme runtime par défaut sur toutes les plateformes. Les builds Release utilisent ReadyToRun partiel composite (démarrage amélioré de 2,4 à 4,5 %), et le build incrémental après une modification du code managé passe de 68,3 à 52,3 s selon les notes de version.\n\nLe hot reload XAML incrémental, encore en préversion, met à jour les pages affichées sans les recréer ; il est actif par défaut en Debug. Windows adopte CollectionView2, le Shell Android passe aux handlers, et la classe Passkeys (WebAuthn) apparaît.\n\nChangements cassants : API Android 24 minimum (x86 abandonné), Xcode 26.4 et iOS 18.2 requis, plus de package Compatibility, et l'événement Appearing d'iOS se déclenche désormais avant l'empilement de la page. Microsoft conseille de tester la navigation, les handlers personnalisés et la publication avec trimming.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si tu as une appli MAUI, le changement de runtime et les ruptures (Android, Xcode, Appearing) sont à tester avant de passer à .NET 11."
+   },
+   "details": {
+    "Pourquoi il monte": "Premier MAUI aligné sur le runtime des autres charges .NET, avec une boucle de développement plus rapide.",
+    "Maturité": "Version finale avec .NET 11 ; hot reload incrémental et Native AOT Android restent en préversion ou expérimentaux."
+   },
+   "meta": "InfoQ · 26 nov. 2026 · te concerne : peut-être (si tu utilises MAUI)",
+   "sources": [
+    {
+     "texte": "Source : InfoQ, 26 nov. 2026",
+     "url": "https://www.infoq.com/news/2026/11/dotnet-maui-11-coreclr-hotreload/"
+    }
+   ],
+   "choix": "Publié : sujet frais (☄️) du runtime .NET 11, avec des ruptures concrètes à anticiper ; distinct du candidat « MAUI et IA ».",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n2",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Avalonia 12.2 : prise en charge de .NET 11, thème Fluent2",
+   "date": "2026-11-23",
+   "resume": "Avalonia 12.2 ajoute la prise en charge de .NET 11. Les applications de bureau et mobiles n'ont rien à changer ; seul WebAssembly (Avalonia.Browser) a demandé des adaptations au runtime, incluses dans cette version.\n\nLe nouveau thème Fluent2 devient le thème par défaut des modèles de projet, via le package Avalonia.Themes.Fluent2. Un générateur de code s'appuie sur les propriétés partielles de C# 13 pour supprimer le code répétitif des propriétés Avalonia. Le contrôle FlexPanel (disposition façon flexbox) rejoint le dépôt principal, avec des effets de fond GPU (flou) et des pinceaux de composition animables.\n\nL'équipe annonce jusqu'à 25 % d'images par seconde en plus sur appareils embarqués et jusqu'à 45 % d'allocations en moins dans les bindings compilés (chiffres de l'éditeur).",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "Avalonia suit .NET 11 dès la sortie : une alternative à MAUI à garder à l'œil pour les applications multiplateformes."
+   },
+   "details": {
+    "Pourquoi il monte": "Alternative à MAUI qui suit .NET 11 dès la sortie, avec un générateur qui réduit le boilerplate.",
+    "Maturité": "Version stable 12.2 ; changements cassants à lire dans les notes GitHub 12.2.0."
+   },
+   "meta": "Avalonia · 23 nov. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : blog Avalonia, 23 nov. 2026",
+     "url": "https://avaloniaui.net/blog/release-12-2"
+    }
+   ],
+   "choix": "Publié : actualité .NET de la semaine, qui complète le sujet MAUI 11 avec l'alternative la plus suivie.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i1",
+   "categorie": "ia",
+   "statut": "publie",
+   "tags": [
+    "agents"
+   ],
+   "titre": "GPT-6.2 Astra et Sol : dans Codex et l'API, prix en baisse",
+   "date": "2026-11-17",
+   "resume": "OpenAI a lancé GPT-6.2 Astra (travaux complexes) et GPT-6.2 Sol (usage quotidien), disponibles dans Codex et ChatGPT Work pour les offres Plus, Pro, Enterprise et Edu, et via l'API. Astra passe à 8 $ / 40 $ par million de tokens (environ 20 % de moins que GPT-6 Astra), Sol reste à 2 $ / 10 $. Le mode Ultrafast est proposé sur les deux modèles via l'API.\n\nOpenAI indique que les deux modèles atteignent le seuil « Critical » en cybersécurité et renforce ses garde-fous, au prix de refus sur certains travaux légitimes de recherche de vulnérabilités.\n\nCodex CLI 0.172.0 (24 novembre) ajoute la reprise de sessions avec permissions, un relecteur d'approbation par outil et un guide de migration vers GPT-6.2.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si tu codes avec Codex ou l'API d'OpenAI, le choix entre Astra et Sol joue sur le coût et sur les refus ; les quotas se vident vite (voir le sujet sur la facturation)."
+   },
+   "meta": "OpenAI · 17 nov. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : OpenAI, Introducing GPT-6.2 Astra and Sol",
+     "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+    },
+    {
+     "texte": "Source : changelog Codex, CLI 0.172.0, 24 nov. 2026",
+     "url": "https://learn.chatgpt.com/docs/changelog"
+    }
+   ],
+   "choix": "Publié : modèle majeur des 21 derniers jours, jamais traité ; annonce de l'éditeur sur son propre produit.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i2",
+   "categorie": "ia",
+   "statut": "publie",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Claude Code : skills fournis par des serveurs MCP et Code Mode",
+   "date": "2026-11-26",
+   "resume": "Les versions 2.1.330 à 2.1.332 de Claude Code (20 au 26 novembre) enrichissent **Code Mode** : Claude écrit un script qui appelle les outils (au lieu d'un appel par étape), sous le mode de permission de la session, avec la possibilité d'utiliser des hooks `PreToolUse`. La 2.1.331 l'étend aux sessions terminal sur Bedrock, Google Cloud, Foundry et Claude Platform on AWS.\n\nLa 2.1.332 permet aux serveurs MCP de fournir directement des skills, au format serveur:skill, en bêta. Un nouvel événement de hook, `PreSkillShellCommand`, permet de refuser les commandes shell d'un skill au chargement. Un événement OpenTelemetry supplémentaire trace les réponses envoyées à l'utilisateur lorsque leur journalisation est activée.\n\nLe changelog officiel n'a été lu qu'en partie ; le détail de la 2.1.332 vient d'un agrégateur de changelogs.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "distribuer des skills par MCP et les contrôler par un hook est une piste pour partager des procédures d'équipe ; la fonction reste en bêta."
+   },
+   "meta": "Anthropic · 26 nov. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : changelog de Claude Code, Anthropic",
+     "url": "https://code.claude.com/docs/en/changelog"
+    },
+    {
+     "texte": "Détail 2.1.332 : Releasebot, 26 nov. 2026",
+     "url": "https://releasebot.io/updates/anthropic/claude-code"
+    }
+   ],
+   "choix": "Publié : repris du rapport du 26 novembre ; la 2.1.332 confirme l'arrivée des skills par MCP, déjà évoquée dans « Skills over MCP ».",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache",
+     "note": "repris du rapport du 2026-11-26"
+    }
+   ]
+  },
+  {
+   "id": "i3",
+   "categorie": "ia",
+   "statut": "publie",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Copilot : le harnais Local disparaît en février 2027",
+   "date": "2026-11-16",
+   "resume": "Le bilan hebdomadaire de GitHub du 16 novembre annonce Claude Fable 5.2 dans Copilot, VS Code 1.146 (outil Compare Models et mode Inbox, tous deux expérimentaux) et la suppression du harnais **Local** en février 2027. Le harnais Copilot devient celui par défaut.\n\nL'application Copilot gagne des automatisations planifiées et la dictée en français. Le 25 novembre, la facturation de la revue de code passe par défaut à l'organisation.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "l'échéance de février 2027 (harnais Local) est à noter si tu utilises ce mode dans VS Code."
+   },
+   "meta": "GitHub · 16 nov. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : GitHub Changelog, 16 nov. 2026",
+     "url": "https://github.blog/changelog/2026-11-16-github-copilot-weekly-releases-november-9/"
+    }
+   ],
+   "choix": "Publié : repris du rapport du 26 novembre ; une échéance datée et un changement de défaut touchent directement les utilisateurs de Copilot dans VS Code.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache",
+     "note": "repris du rapport du 2026-11-26"
+    }
+   ]
+  },
+  {
+   "id": "cr1",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "tags": [],
+   "titre": "C# 15 : les unions peuvent-elles remplacer le Result pattern ?",
+   "date": "2026-11-21",
+   "resume": "Milan Jovanović compare un type Result classique (IsSuccess, Value) à une union générique C# 15 déclarée avec le mot-clé `union`, où le type de la valeur porte le résultat. Le même décorateur de validation continue de fonctionner, avec moins de code superflu.\n\nPiège principal : si l'erreur n'est qu'un code texte, le compilateur ne connaît pas les cas et un nouveau code passe silencieusement dans le cas par défaut. La variante plus solide fait de chaque échec un `record` dédié, inclus dans l'union du cas d'usage : ajouter un échec déclenche l'avertissement CS8509, qu'on peut élever en erreur de build.\n\nLimites relevées : conversions explicites dans les handlers, `switch` imbriqués dans les endpoints, boxing, valeur par défaut sans cas, exhaustivité vérifiée seulement par `switch` (pas par `if`/`is`). Enfin, une union renvoyée telle quelle par un endpoint Minimal API donne un 200 même en échec. Conseil : migrer d'abord Result<T>, puis les échecs typés là où ça vaut le coût.",
+   "pourquoi": {
+    "type": "projet",
+    "texte": "les unions de C# 15 sont l'alternative native aux types d'erreur de first-class-errors : à comparer, en particulier sur l'exhaustivité et le rendu HTTP."
+   },
+   "meta": "Milan Jovanović · 21 nov. 2026 · te concerne : oui",
+   "depot": "Reefact/first-class-errors",
+   "sources": [
+    {
+     "texte": "Source : Milan Jovanović, 21 nov. 2026",
+     "url": "https://www.milanjovanovic.tech/blog/csharp-union-types-vs-result-pattern"
+    }
+   ],
+   "choix": "Publié : article de fond récent sur un thème de ton projet first-class-errors, et complément du sujet publié hier sur les unions de C# 15.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr2",
+   "categorie": "craftsmanship",
+   "statut": "publie",
+   "tags": [
+    "agents"
+   ],
+   "titre": "QCon SF : « Comment tuer la revue de code »",
+   "date": "2026-11-26",
+   "resume": "Ankit Jain (Aviator, éditeur d'une solution de revue de code : conflit d'intérêts déclaré) affirme que la lecture ligne à ligne est déjà largement abandonnée. Plus de 75 % des pull requests (PR) seraient fusionnées sans revue humaine, et la qualité de revue chute sur les grosses PR. Selon lui, la revue sert surtout au partage de connaissances ; des études Microsoft et Google citées montrent qu'environ 14 % des commentaires concernent des défauts.\n\nIl propose de remplacer la revue unique par des couches : débat d'agents avant la PR, capture de l'intention et des critères d'acceptation, codification des remarques récurrentes en invariants détenus par l'équipe, preuve par exécution, et discussion humaine des décisions. Sécurité, authentification et facturation restent relues ligne à ligne.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un point de vue discutable mais utile pour repenser ta revue de code quand les agents multiplient les PR ; à lire en gardant en tête que l'orateur vend un produit."
+   },
+   "meta": "InfoQ · 26 nov. 2026 · te concerne : oui",
+   "sources": [
+    {
+     "texte": "Source : InfoQ, 26 nov. 2026",
+     "url": "https://www.infoq.com/news/2026/11/qcon-sf-26-kill-code-review/"
+    }
+   ],
+   "choix": "Publié : sujet frais (☄️) de revue de code, thème de ton projet conventional-comments-toolkit ; il prolonge le candidat sur la charge des relecteurs.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p1",
+   "categorie": "architecture",
+   "statut": "publie",
+   "tags": [],
+   "titre": "L'architecture événementielle ne supprime pas le couplage",
+   "date": "2026-11-26",
+   "resume": "Derek Comartin rappelle que « faiblement couplé » ne veut pas dire « non couplé ». Publier un événement inverse la dépendance : l'émetteur ne connaît plus ses consommateurs, le couplage temporel baisse et la résilience augmente. Mais les consommateurs restent dépendants de l'émetteur.\n\nIl distingue un couplage sémantique : le sens et le moment de déclenchement d'un événement. Déplacer « ShipmentArrived » de l'entrepôt à un géorepérage à 8 km casse la facturation en aval. Il décrit aussi un couplage comportemental (dépendance à l'ordre des événements, même sans changement de schéma). L'usage compte aussi : événements métier, event sourcing ou propagation de données n'ont pas le même couplage, et le CDC (capture des changements de données) couple au schéma de la base.\n\nRecommandation : choisir l'infrastructure selon l'usage réel et se demander « à quoi suis-je couplé, et que se passe-t-il si ça change ? ».",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "le couplage caché entre événements est une source classique de régressions : une grille de lecture utile avant de faire évoluer un événement existant."
+   },
+   "meta": "CodeOpinion · 26 nov. 2026 · te concerne : oui",
+   "sources": [
+    {
+     "texte": "Source : CodeOpinion, 26 nov. 2026",
+     "url": "https://codeopinion.com/event-driven-architecture-coupling/"
+    }
+   ],
+   "choix": "Publié : sujet frais (☄️) d'architecture événementielle, avec un propos concret et transposable en .NET.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p2",
+   "categorie": "architecture",
+   "statut": "publie",
+   "tags": [
+    "rex"
+   ],
+   "titre": "Outbox Postgres : workers par polling ou lecture du WAL ?",
+   "date": "2026-11-07",
+   "resume": "Milan Jovanović mesure deux implémentations de l'outbox en .NET avec Postgres et RabbitMQ. Polling : environ 15 000 messages/s avec un worker et 23 000 avec cinq, latence liée à l'intervalle ; sans pause, la boucle génère 289 000 requêtes/min et 118 % de CPU, une seconde de pause ramène à environ 305. Réplication logique (lecture du journal WAL de Postgres) : 28 000 à 35 000 messages/s et 1 à 9 ms de latence, mais un seul lecteur par slot, `wal_level=logical`, rétention du WAL à surveiller ; l'auteur qualifie son lecteur de prototype.\n\nDans les deux cas, la livraison est au moins une fois (4 536 doublons contre 31 095 après un arrêt brutal) : les consommateurs doivent être idempotents. Verdict : polling par défaut, WAL seulement si la latence l'exige et si l'équipe sait exploiter un slot. Chiffres issus d'un banc d'essai de l'auteur : des ordres de grandeur.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "des mesures chiffrées pour choisir entre deux implémentations de l'outbox avec Postgres, directement transposables dans un projet .NET."
+   },
+   "meta": "Milan Jovanović · 7 nov. 2026 · te concerne : oui",
+   "sources": [
+    {
+     "texte": "Source : Milan Jovanović, 7 nov. 2026",
+     "url": "https://www.milanjovanovic.tech/blog/outbox-pattern-postgres-workers-vs-wal"
+    }
+   ],
+   "choix": "Publié : article de fond avec benchmarks, dans la fenêtre des sujets de fond ; il complète le sujet d'hier sur les identifiants générés par la base.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p3",
+   "categorie": "architecture",
+   "statut": "publie",
+   "tags": [
+    "api"
+   ],
+   "titre": "OpenAPI 3.2 et .NET 11 : QUERY, SSE et réponses en union",
+   "date": "2026-10-01",
+   "resume": "Microsoft fait le point sur son travail autour d'OpenAPI. La version 3.2.0 de la spécification ajoute la méthode HTTP QUERY, le flux d'autorisation par appareil, le streaming et des évolutions sur les tags. La bibliothèque Microsoft.OpenAPI gère la 3.2.0 depuis sa v3.0.0 ; elle est le socle d'ASP.NET Core OpenAPI, de Swashbuckle, d'Azure API Management et de Kiota.\n\nASP.NET Core dans .NET 11 (alors en préversion publique) génère du 3.2.0 par défaut, avec des opérations QUERY, des flux Server-Sent Events, des schémas précis pour les réponses binaires et les fichiers, et des réponses typées par unions C#. TypeSpec peut émettre du 3.2.0. Azure API Management ne lisait que jusqu'à la 3.1 ; la prise en charge de la 3.2 se déploie région par région.\n\nPour les équipes .NET : vérifier la chaîne d'outils (génération de clients, passerelle) avant de monter la version du document.",
+   "pourquoi": {
+    "type": "projet",
+    "texte": "OpenAPI 3.2 devient la version par défaut d'ASP.NET Core dans .NET 11 : à suivre pour les contrats d'API de hypermedia-domain-language."
+   },
+   "meta": "Microsoft · 1er oct. 2026 · te concerne : oui",
+   "depot": "Reefact/hypermedia-domain-language",
+   "sources": [
+    {
+     "texte": "Source : Microsoft Open Source Blog, 1er oct. 2026",
+     "url": "https://opensource.microsoft.com/blog/2026/10/01/from-standards-to-software-microsofts-ongoing-work-on-openapi-and-developer-tooling/"
+    }
+   ],
+   "choix": "Publié : seul sujet API solide trouvé ; plus ancien (🧊) mais jamais traité, et directement lié à un de tes projets. À lire en sachant que l'état de .NET 11 a changé depuis (version finale le 10 novembre).",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t1",
+   "categorie": "outils",
+   "statut": "publie",
+   "tags": [],
+   "titre": "npkill 1.0 : nettoie aussi les dossiers obj de .NET",
+   "date": "2026-11-26",
+   "resume": "npkill, l'outil de terminal qui retrouve et supprime les `node_modules`, passe en 1.0 (12 novembre) après deux ans sans version. Il cherche désormais caches et sorties de build grâce à 20 profils (node, python, rust, java, dotnet, unity, godot, dart…), activables avec `--profiles`.\n\nLe profil dotnet cible le dossier `obj`, détecté par la présence de `project.assets.json` ; pour `bin`, il faut un profil personnalisé. Nouveautés : fichier `.npkillrc`, sélection multiple, recherche par expression régulière, sortie `--json` et jusqu'à trois fois plus rapide. Attention : l'option `--target` devient `--targets`. Lancement par `npx npkill`, licence MIT.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "tu peux récupérer de l'espace disque sur tes dépôts .NET (`obj`) avec une commande ; teste d'abord en lecture seule."
+   },
+   "details": {
+    "Pourquoi il monte": "Console.dev le met en avant et la 1.0 élargit l'outil au-delà de JavaScript.",
+    "Maturité": "Projet ancien, version 1.0 de novembre 2026, licence MIT."
+   },
+   "meta": "Console.dev · 26 nov. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : Console.dev, 26 nov. 2026",
+     "url": "https://console.dev/tools/npkill"
+    },
+    {
+     "texte": "Notes de la v1.0.0, GitHub, 12 nov. 2026",
+     "url": "https://github.com/voidcosmos/npkill/releases/tag/v1.0.0"
+    }
+   ],
+   "choix": "Publié : outil utilitaire dont la 1.0 s'ouvre à .NET ; mis en avant par Console.dev le 26 novembre.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t2",
+   "categorie": "outils",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Voiden : un client d'API dont les requêtes vivent dans Git",
+   "date": "2026-11-26",
+   "resume": "Voiden est un client d'API hors ligne, sans compte ni télémétrie, qui range requêtes, documentation et exemples dans des fichiers `.void` en Markdown, versionnés dans Git. Une requête se construit à partir de blocs réutilisables (endpoint, en-têtes, authentification, paramètres) ; le fichier sert à la fois de document et d'appel exécutable. Les tests s'exécutent aussi en intégration continue (CI).\n\nUn enregistrement MCP permet à Claude Code ou Codex de manipuler les requêtes du projet. Le site annonce plus de 17 000 installations. Compromis relevé par Console.dev : l'application repose sur Electron. Le site évoque l'open source sans nommer la licence.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "une alternative à Postman ou Insomnia dont les collections se relisent et se révisent comme du code ; la licence reste à confirmer."
+   },
+   "details": {
+    "Pourquoi il monte": "Alternative à Postman dont les collections se relisent comme du code.",
+    "Maturité": "Projet existant depuis 2025, mis en avant par Console.dev ; licence non confirmée."
+   },
+   "meta": "Console.dev · 26 nov. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : Console.dev, 26 nov. 2026",
+     "url": "https://console.dev/tools/voiden"
+    },
+    {
+     "texte": "Site du projet",
+     "url": "https://voiden.md/"
+    }
+   ],
+   "choix": "Découverte : outil d'API, thème sans avis noté ; le principe « requêtes dans Git » rejoint tes projets de contrats d'API.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t3",
+   "categorie": "outils",
+   "statut": "publie",
+   "tags": [
+    "pepite"
+   ],
+   "titre": "Psychoscript : un interpréteur JavaScript confiné et suspendable",
+   "date": "2026-11-27",
+   "resume": "Psychoscript, présenté sous le nom NormalScript et porté par l'équipe d'OpenCode, est une machine virtuelle compacte pour un sous-ensemble de JavaScript, destinée à exécuter du code non fiable (modèle, utilisateur, extension) contre une API fournie par l'hôte. Le programme est compilé en bytecode, sans accès au système de fichiers, au réseau, au processus ni aux minuteries : seules les fonctions hôtes passées par l'appelant sont accessibles.\n\nPoint original : un programme peut être suspendu, sérialisé en octets, puis repris dans un autre processus, ce qui permet des tâches longues et durables. Limites : un instantané ne se reprend qu'avec le même build, les appels hôtes peuvent être rejoués, et les fonctions du programme ne peuvent pas encore être passées à l'hôte. Node 24 ou Bun 1.4 requis, licence MIT.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "l'idée d'un bac à sable suspendable pour le code généré par des agents est transposable côté .NET ; le projet est très jeune."
+   },
+   "details": {
+    "Pourquoi il monte": "Répond au besoin de bacs à sable pour du code généré par des agents, avec reprise après interruption.",
+    "Maturité": "Très récent (388 étoiles), ne tourne que sous Node ou Bun ; une implémentation Rust est en cours."
+   },
+   "meta": "GitHub / Hacker News · 27 nov. 2026 · te concerne : non",
+   "sources": [
+    {
+     "texte": "Source : GitHub, anomalyco/psychoscript",
+     "url": "https://github.com/anomalyco/psychoscript"
+    },
+    {
+     "texte": "Site du projet, vu sur Hacker News le 26 nov. 2026",
+     "url": "https://psychoscript.com/"
+    }
+   ],
+   "choix": "Découverte : pépite du jour, hors de tes thèmes habituels ; elle a passé la page d'accueil de Hacker News.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "d1",
+   "categorie": "distribution",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Les Mousquetaires déploient Claude (Anthropic) via AWS Bedrock en 2027",
+   "date": "2026-11-26",
+   "resume": "Le Groupement Mousquetaires (Intermarché, Netto, Bricomarché…) annonce, à l'occasion de son congrès, un accord avec Anthropic pour déployer l'assistant Claude à partir de janvier 2027. Première vague : 500 points de vente et 300 collaborateurs des fonctions support, avec une extension possible à tout le groupe (plus de 4 300 magasins) sans échéance donnée.\n\nL'accès passe par Amazon Bedrock (AWS), présenté comme un environnement sécurisé. Les usages visés sont le pilotage des magasins, la logistique, l'informatique, les RH, le juridique et les achats. D'autres médias donnent des chiffres différents (non repris ici, pages illisibles).",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "un grand distributeur français met un assistant d'IA générative entre les mains de centaines de magasins : un signal sur les attentes futures de tes clients."
+   },
+   "meta": "Points de Vente · 26 nov. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : Points de Vente, 26 nov. 2026",
+     "url": "https://pointsdevente.fr/fil-info/2026-11-26-le-groupement-mousquetaires-conclut-un-accord-avec-anthropic/"
+    },
+    {
+     "texte": "Clubic, 25 nov. 2026",
+     "url": "https://www.clubic.com/actualite-641071-intermarche-va-faire-entrer-l-ia-d-anthropic-dans-ses-magasins-d-ici-quelques-semaines.html"
+    },
+    {
+     "texte": "Le Fil IA, 26 nov. 2026",
+     "url": "https://www.lefilia.fr/article/6531352-les-mousquetaires-preparent-l-arrivee-de-claude-dans-500-magasins-avec-aws"
+    }
+   ],
+   "verification_non_requise": "accord annoncé par le groupe Mousquetaires lui-même (communiqué relayé par la presse professionnelle) ; seuls les chiffres des annonces sont repris",
+   "choix": "Découverte : seule actualité retail du jour, dans une catégorie jamais notée ; sujet frais (☄️), annoncé par le groupe lui-même.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "publie",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n3",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Polly : 20 $/mois de frais de maintenance dès la prochaine majeure",
+   "date": "2026-11-16",
+   "resume": "Depuis le 16 novembre 2026, le projet Polly peut réclamer un « Open Source Maintenance Fee » de 20 $ par mois et par organisation. Il vise les entreprises qui gagnent au moins 20 000 $ avec un produit utilisant Polly. Il ne s'applique qu'à la prochaine version majeure publiée après cette date, et seulement aux références directes : Microsoft.Extensions.Http.Resilience, qui embarque Polly, n'est pas concerné.\n\nParticuliers, étudiants et associations sans revenus ne paient rien, et le code reste libre. Aucune version payante n'est publiée à ce jour ; rester sur 8.x évite la redevance.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "Polly est dans beaucoup de solutions .NET : la politique de licence de la prochaine majeure est à anticiper."
+   },
+   "meta": "The Polly Project · 16 nov. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : The Polly Project, 14 juil. 2026 (mise à jour du 12 oct.)",
+     "url": "https://thepollyproject.org/2026/07/14/polly-osmf-announcement.html"
+    }
+   ],
+   "choix": "Candidat : sujet .NET utile mais entré en vigueur il y a 11 jours, hors de la fenêtre de 7 jours des actualités ; aucune version payante publiée pour l'instant.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n4",
+   "categorie": "dotnet",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Novembre 2026 : 25 CVE corrigées, fin de support de .NET 8 et .NET 9",
+   "date": "2026-11-10",
+   "resume": "Le Patch Tuesday du 10 novembre publie .NET 10.0.15, 9.0.23 et 8.0.34 en même temps que .NET 11.0.0. Il corrige 25 failles (CVE), surtout dans ASP.NET Core, et cinq failles d'exécution de code à distance dans Visual Studio. Deux correctifs demandent une action : CVE-2026-118747 exige de mettre à jour System.Formats.Cbor, et CVE-2026-118741 touche les modèles et le scaffolding d'Identity, donc le code déjà généré doit être corrigé puis redéployé.\n\nCe sont les dernières mises à jour pour .NET 8 et .NET 9 ; seuls .NET 10 (support à long terme, LTS) et .NET 11 (support standard, STS) restent pris en charge.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si tu as encore des services en .NET 8 ou 9, ils ne recevront plus de correctifs : une migration à planifier."
+   },
+   "meta": "Blog .NET · 10 nov. 2026 · te concerne : oui",
+   "sources": [
+    {
+     "texte": "Source : blog .NET, servicing de novembre 2026, 10 nov.",
+     "url": "https://devblogs.microsoft.com/dotnet/dotnet-and-dotnet-framework-november-2026-servicing-updates/"
+    }
+   ],
+   "choix": "Candidat : paru il y a 17 jours, hors de la fenêtre de 7 jours des actualités ; à publier si une place reste libre.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "categorie": "securite",
+   "statut": "candidat",
+   "tags": [
+    "supply-chain"
+   ],
+   "titre": "simple-git : faille critique (CVE-2026-134815), RCE via --exec",
+   "date": "2026-11-24",
+   "resume": "simple-git, bibliothèque Node.js très utilisée (plus de 12 millions de téléchargements par semaine) pour piloter Git, présente une injection d'arguments. Le garde-fou ne bloquait --exec que pour push : en le passant à ls-remote, archive, fetch-pack ou send-pack via listRemote() ou raw(), un attaquant fait exécuter une commande au processus Node. Score CVSS 4.0 de 9,2 ; l'attaque exige qu'une application transmette des entrées non fiables à ces fonctions. Corrigé en simple-git 4.1.0. Aucune exploitation signalée.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si simple-git figure dans l'outillage Node d'un projet .NET ou d'un serveur de build, mets-la à jour."
+   },
+   "meta": "Cyber Security News · 24 nov. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : Cyber Security News, 24 nov. 2026",
+     "url": "https://cybersecuritynews.com/node-js-simple-git-library-flaw/"
+    }
+   ],
+   "choix": "Candidat : source unique non référencée, à recouper avec la fiche NVD ou l'avis du dépôt avant publication ; non vérifié aujourd'hui.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i4",
+   "categorie": "ia",
+   "statut": "candidat",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Gemini 4 Neon : un score de code triplé par le seul harnais Antigravity",
+   "date": "2026-11-18",
+   "resume": "Google a sorti Gemini 4 Neon le 18 novembre. Sur SWE-sweep, Google annonce 12,8 % avec un harnais neutre contre 39,0 % dans Antigravity, soit un triplement sans changer le modèle. La comparaison avec d'autres modèles n'est pas équivalente, car chacun tourne dans son propre harnais. Message utile : le harnais pèse autant que le modèle dans les benchmarks d'agents. Chiffres publiés par Google lui-même, lus via des résumés (page d'origine illisible).",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "les benchmarks d'agents mesurent autant le harnais que le modèle : à garder en tête à chaque comparaison."
+   },
+   "meta": "The New Stack · 18 nov. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : The New Stack, nov. 2026 (page illisible)",
+     "url": "https://thenewstack.io/gemini-neon-antigravity-harness/"
+    }
+   ],
+   "choix": "Candidat : source d'origine illisible (403), chiffres seulement recoupés par des résumés ; à confirmer avant publication.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr3",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "Tests de caractérisation avant de refactorer du C#",
+   "date": "2026-11-10",
+   "resume": "Guide pratique pour figer le comportement existant avant de restructurer : on choisit une frontière publique utilisée par les appelants, on enregistre sorties, exceptions et effets de bord ordonnés, puis on compare après chaque modification. Les tests de référence sont nommés comme tels pour ne pas confondre comportement actuel et exigence. Pièges : croire qu'un résultat vert prouve l'équivalence, accepter des instantanés sans les lire, partager des entrées mutables entre ancien et nouveau code.",
+   "pourquoi": {
+    "type": "utile",
+    "texte": "une méthode simple pour sécuriser un refactoring de code legacy en C#."
+   },
+   "meta": "Dev Leader · 10 nov. 2026 · te concerne : oui",
+   "sources": [
+    {
+     "texte": "Source : Dev Leader, 10 nov. 2026",
+     "url": "https://www.devleader.ca/2026/11/10/characterization-tests-before-refactoring-c-code"
+    }
+   ],
+   "choix": "Candidat : contenu classique bien synthétisé, moins marquant que les sujets retenus aujourd'hui.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr4",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "tags": [
+    "agents"
+   ],
+   "titre": "Seemann : publier du logiciel généré par IA, qui est responsable ?",
+   "date": "2026-10-12",
+   "resume": "Mark Seemann part du constat de Robert C. Martin, qui dit ne plus relire le code écrit par des agents et s'appuyer sur des contraintes : tests, QA, tests de mutation. Il rappelle que la lecture du code n'a jamais été infaillible. Rien n'interdit techniquement un processus entièrement piloté par un modèle, mais tribunaux et organisations attribuent la faute à des personnes. Question finale : qui sera responsable si personne n'a écrit le code ?",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "la question de la responsabilité devient concrète à mesure que les agents écrivent du code."
+   },
+   "meta": "ploeh.dk · 12 oct. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : Mark Seemann, 12 oct. 2026",
+     "url": "https://blog.ploeh.dk/2026/10/12/releasing-ai-generated-software/"
+    }
+   ],
+   "choix": "Candidat : proche du billet de Seemann déjà candidat sur l'IA et l'abstraction ; plus ancien.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p4",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "tags": [
+    "rex"
+   ],
+   "titre": "Dudycz : « on voulait tous être Netflix, qui veut-on être après ? »",
+   "date": "2026-09-14",
+   "resume": "Pendant des années, les équipes ont copié les pratiques des grandes entreprises. Les éditeurs d'IA générative, eux, emballent leurs pratiques dans des produits, gardent leur raisonnement caché et gagnent plus à mesure qu'on les utilise. Leur laisser découper les problèmes et définir le « terminé » revient à déléguer des décisions qui pilotent coût, qualité et délais. L'auteur n'utilise l'IA que pour mettre ses idées à l'épreuve.",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "un avis tranché sur la dépendance aux harnais d'agents, à confronter à ta pratique."
+   },
+   "meta": "Architecture Weekly · 14 sept. 2026 · te concerne : peut-être",
+   "sources": [
+    {
+     "texte": "Source : Architecture Weekly, 14 sept. 2026",
+     "url": "https://www.architecture-weekly.com/p/we-all-wanted-to-be-netflix-who-do"
+    }
+   ],
+   "choix": "Candidat : opinion plus que technique, paru il y a plus de deux mois.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p5",
+   "categorie": "architecture",
+   "statut": "candidat",
+   "tags": [
+    "ddd",
+    "intemporel"
+   ],
+   "titre": "Effective Aggregate Design, partie I (Vaughn Vernon)",
+   "date": "2026-11-27",
+   "resume": "Article de référence sur l'agrégat, présenté comme l'un des patterns tactiques les moins bien compris du DDD (conception pilotée par le domaine). Vernon montre, avec un outil Scrum, comment une équipe tombe dans le piège de la commodité de composition : des agrégats trop gros posent des problèmes de transaction et de performance. À l'inverse, vider les agrégats fait perdre la protection des vrais invariants. La règle directrice est de partir des règles métier et des invariants pour tracer la frontière de cohérence, pas du graphe d'objets.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "une base solide pour modéliser tes agrégats ; seul le début du texte (partie I) a été lu."
+   },
+   "meta": "DDD Community · 2011 · te concerne : oui",
+   "sources": [
+    {
+     "texte": "Source : DDD Community, Vaughn Vernon, 2011",
+     "url": "https://www.dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf"
+    }
+   ],
+   "choix": "Candidat : article intemporel réservé aux jours calmes ; aujourd'hui, assez de sujets frais.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "cr5",
+   "categorie": "craftsmanship",
+   "statut": "candidat",
+   "tags": [
+    "intemporel"
+   ],
+   "titre": "Mocks Aren't Stubs (Martin Fowler)",
+   "date": "2026-11-27",
+   "resume": "Article de référence sur les doublures de test. Fowler reprend la typologie de Meszaros (dummy, fake, stub, spy, mock) et distingue la vérification d'état de la vérification de comportement. Il oppose le TDD (développement piloté par les tests) classique, qui emploie de vrais objets quand c'est possible, au TDD mockiste, qui simule tout collaborateur ayant un comportement. Les mockistes y voient une conception pilotée de l'extérieur, au prix d'un couplage à l'implémentation ; les classicistes valorisent des tests qui survivent au refactoring.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "la distinction classiciste / mockiste éclaire tes choix de tests et d'assertions."
+   },
+   "meta": "martinfowler.com · 2007 · te concerne : oui",
+   "sources": [
+    {
+     "texte": "Source : martinfowler.com, 2007",
+     "url": "https://martinfowler.com/articles/mocksArentStubs.html"
+    }
+   ],
+   "choix": "Candidat : article intemporel réservé aux jours calmes ; aujourd'hui, assez de sujets frais.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "c2",
+   "categorie": "conferences",
+   "statut": "candidat",
+   "tags": [],
+   "titre": "NDC Oslo 2027 : CFP ouvert jusqu'au 17 janvier 2027",
+   "date": "2026-11-27",
+   "resume": "NDC Oslo 2027 se tient du 31 mai au 4 juin 2027 à l'Oslo Spektrum. L'appel à orateurs, ouvert le 2 novembre 2026, ferme le 17 janvier 2027 à 23 h 59. Dates vérifiées sur la page Sessionize, pas sur le site officiel. Aucun rappel n'est dû pour l'instant (J-51).",
+   "pourquoi": {
+    "type": "surveiller",
+    "texte": "conférence .NET majeure ; prochain rappel à J-30, le 18 décembre."
+   },
+   "meta": "Sessionize · 27 nov. 2026 · te concerne : oui",
+   "sources": [
+    {
+     "texte": "CFP : Sessionize, NDC Oslo 2027",
+     "url": "https://sessionize.com/ndc-oslo-2027/"
+    }
+   ],
+   "choix": "Candidat : pas de nouveau déclencheur aujourd'hui (déjà vu le 23 novembre) ; dates non vérifiées sur le site officiel.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache"
+    }
+   ],
+   "conference": {
+    "dates": "31 mai – 4 juin 2027",
+    "lieu": "Oslo Spektrum, Oslo (Norvège)",
+    "cfp": "17 janv. 2027",
+    "site": "https://ndcoslo.com"
+   }
+  },
+  {
+   "id": "s3",
+   "categorie": "securite",
+   "statut": "candidat",
+   "tags": [
+    "supply-chain"
+   ],
+   "titre": "NuGet : 13 paquets piégés via de faux tests d'embauche .NET",
+   "date": "2026-11-23",
+   "resume": "Selon Socket, **13 paquets NuGet malveillants** (28 versions, publiés du 23 juillet au 4 novembre) visaient des développeurs .NET sous Windows au moyen de faux exercices de recrutement : une solution Visual Studio « Home Assessment » WinUI 3.\n\nUn fichier `.targets` MSBuild du paquet lance, après chaque compilation, le téléchargement d'une charge qui vole notamment les profils Chrome. Les paquets cités (WinUI.Button, StyledComponent, HappyOne.MSBuildAnalyzer, VS_Builder.MSBuildAnalyzer…) sont supprimés de nuget.org. Aucune victime confirmée, aucune attribution.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "il suffit de compiler une solution pour exécuter le code d'un paquet : le même vecteur peut viser n'importe quel développeur .NET ou agent de build."
+   },
+   "sources": [
+    {
+     "texte": "Source : The Machine Herald (d'après Socket), 24 nov. 2026",
+     "url": "https://machineherald.io/article/2026-11/24-socket-finds-13-malicious-nuget-packages-that-used-fake-developer-job-assessments-to-deliver-dll-side-loading-and-credential-stealing-malware/"
+    },
+    {
+     "texte": "Helix Threat Watch, 24 nov. 2026",
+     "url": "https://helix.ml/threat-watch/i/fake-job-assessment-nuget-campaign-net-developers-13-malicious-packages-steal-credentials-side-load-dlls"
+    },
+    {
+     "texte": "Socket, 23 nov. 2026 (non lu : 403)",
+     "url": "https://socket.dev/blog/malicious-nuget-packages-fake-job-assessments"
+    }
+   ],
+   "meta": "The Machine Herald (d'après Socket) · 24 nov. 2026 · te concerne : oui",
+   "verification": {
+    "date": "2026-11-25T17:30+01:00",
+    "verdict": "indetermine",
+    "resume": "La suppression des paquets est constatée sur nuget.org, mais le rapport de Socket, source primaire, n'a pas pu être ouvert (403) : il n'est connu que par des extraits de recherche. Les deux sources lues sont des reprises sans rédaction identifiée, et aucun média de référence n'a encore couvert la campagne.",
+    "source": {
+     "nom": "The Machine Herald, Helix Threat Watch",
+     "nature": "reprises secondaires du billet de Socket ; Machine Herald publie par pull requests, sans rédaction identifiée"
+    },
+    "affirmations": [
+     {
+      "texte": "Les paquets cités sont supprimés de nuget.org",
+      "preuves": [
+       {
+        "texte": "nuget.org, WinUI.Button : paquet supprimé (constaté le 25 nov.)",
+        "url": "https://www.nuget.org/packages/WinUI.Button"
+       },
+       {
+        "texte": "nuget.org, HappyOne.MSBuildAnalyzer : paquet supprimé",
+        "url": "https://www.nuget.org/packages/HappyOne.MSBuildAnalyzer"
+       }
+      ]
+     }
+    ],
+    "retirees": [
+     {
+      "texte": "« VSBuilder.MSBuildAnalyzer »",
+      "raison": "le vrai nom est VS_Builder.MSBuildAnalyzer"
+     },
+     {
+      "texte": "Environ 160 téléchargements pour WinUI.Button",
+      "raison": "chiffre de source secondaire, plafond selon Socket, plus vérifiable"
+     },
+     {
+      "texte": "Side-loading via osk.exe",
+      "raison": "préparé par le malware mais non vérifié par Socket"
+     }
+    ],
+    "ecarts": [
+     "Au 23 nov., Socket comptait 12 paquets retirés sur 13 ; le 25, WinUI.Button l'est aussi."
+    ],
+    "recoupements": []
+   },
+   "choix": "Candidat (repris du 25 novembre) : la vérification reste indéterminée, le rapport de Socket n'a pas pu être lu et aucune source de référence n'a couvert la campagne ; non publié.",
+   "historique": [
+    {
+     "date": "2026-11-25T17:30+01:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "trouvé lors du complément du rapport ; vérification indéterminée (source primaire illisible)"
+    },
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "candidat",
+     "par": "tache",
+     "note": "réexaminé le 2026-11-27, vérification toujours indéterminée"
+    }
+   ]
+  },
+  {
+   "id": "i5",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "Visual Studio 2026 18.12 : nouveau Copilot Chat et agents",
+   "date": "2026-11-24",
+   "motif": "deja-publie",
+   "note": "la mise à jour de novembre de Visual Studio a déjà été publiée le 25 novembre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://devblogs.microsoft.com/visualstudio/visual-studio-november-update-faster-workflows-better-reviews/"
+    }
+   ],
+   "choix": "Écarté (deja-publie) : la mise à jour de novembre de Visual Studio a déjà été publiée le 25 novembre.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i6",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "Google : accès des agents à Workspace via MCP obligatoire en 2027",
+   "date": "2026-11-24",
+   "motif": "non-verifiable",
+   "note": "pages en 403, calendrier de février 2027 introuvable sur une source lisible.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://infosecurity-magazine.com/news/google-cloud-ai-agents-workspace"
+    }
+   ],
+   "choix": "Écarté (non-verifiable) : pages en 403, calendrier de février 2027 introuvable sur une source lisible.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "i7",
+   "categorie": "ia",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "Junie : un mode Eco qui sépare planification et écriture",
+   "date": "2026-11-26",
+   "motif": "non-verifiable",
+   "note": "source unique secondaire illisible, chiffres non confirmés par JetBrains.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://agihunt.info/en/p/1a2149edd157045a47fb5ecd40a"
+    }
+   ],
+   "choix": "Écarté (non-verifiable) : source unique secondaire illisible, chiffres non confirmés par JetBrains.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "d2",
+   "categorie": "distribution",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "Edeka rejoint la régie retail media Valiuz",
+   "date": "2026-11-25",
+   "motif": "non-verifiable",
+   "note": "seul un extrait de recherche LSA est disponible (page en 403).",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.lsa-conso.fr/distributeurs-alimentaires/les-mousquetaires/intermarche/exclusif-les-grandes-annonces-de-thierry-cotillard-au-congres-des-mousquetaires-rachat-de-chronodrive-partenariat-anthropic-retail-media-achats-cybersecurite.55XW52C7DZEM7BHCL4RZDJ5MLM.html"
+    }
+   ],
+   "choix": "Écarté (non-verifiable) : seul un extrait de recherche LSA est disponible (page en 403).",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n5",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "Blazor CacheView : du HTML en cache en rendu statique (.NET 11)",
+   "date": "2026-11-13",
+   "motif": "hors-fenetre",
+   "note": "tutoriel de 14 jours sur une fonction déjà couverte par la sortie d'ASP.NET Core 11.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://milanjovanovic.tech/blog/blazor-cacheview-dotnet-11"
+    }
+   ],
+   "choix": "Écarté (hors-fenetre) : tutoriel de 14 jours sur une fonction déjà couverte par la sortie d'ASP.NET Core 11.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t4",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "sidebyside : trois navigateurs en VM WebAssembly dans un onglet",
+   "date": "2026-11-26",
+   "motif": "trop-mineur",
+   "note": "démonstration très jeune et lente, sans usage fiable pour tester.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/michidk/sidebyside"
+    }
+   ],
+   "choix": "Écarté (trop-mineur) : démonstration très jeune et lente, sans usage fiable pour tester.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "t5",
+   "categorie": "outils",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "SimDrop : les simulateurs iOS dans la barre latérale du Finder",
+   "date": "2026-11-26",
+   "motif": "trop-mineur",
+   "note": "petit utilitaire macOS très jeune, intérêt limité aux développeurs MAUI sur Mac.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://github.com/rxliuli/sim-drop"
+    }
+   ],
+   "choix": "Écarté (trop-mineur) : petit utilitaire macOS très jeune, intérêt limité aux développeurs MAUI sur Mac.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "p6",
+   "categorie": "architecture",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "Netflix Conductor 4 : workflows 10 fois plus gros sans verrous",
+   "date": "2026-09-11",
+   "motif": "hors-fenetre",
+   "note": "retour d'expérience à grande échelle peu transposable, paru il y a plus de deux mois.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.infoq.com/news/2026/09/netflix-conductor-4-workflow/"
+    }
+   ],
+   "choix": "Écarté (hors-fenetre) : retour d'expérience à grande échelle peu transposable, paru il y a plus de deux mois.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "c3",
+   "categorie": "conferences",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "Devoxx France 2027 : CFP ouvert jusqu'au 10 janvier 2027",
+   "date": "2026-11-26",
+   "motif": "deja-publie",
+   "note": "déjà publié le 26 novembre, aucun seuil de rappel atteint (J-44) ; prochain rappel J-30 le 11 décembre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://www.devoxx.fr/en/speak"
+    }
+   ],
+   "choix": "Écarté (deja-publie) : déjà publié le 26 novembre, aucun seuil de rappel atteint (J-44) ; prochain rappel J-30 le 11 décembre.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "Java4Shell : alerte JetBrains",
+   "date": "2026-11-25",
+   "motif": "deja-publie",
+   "note": "déjà publié (flux JetBrains Security).",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://blog.jetbrains.com/security/feed/"
+    }
+   ],
+   "choix": "Écarté (deja-publie) : déjà publié (flux JetBrains Security).",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n6",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "DocumentExtractionClient (blog .NET)",
+   "date": "2026-11-25",
+   "motif": "deja-publie",
+   "note": "déjà publié le 25 novembre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://devblogs.microsoft.com/dotnet/feed/"
+    }
+   ],
+   "choix": "Écarté (deja-publie) : déjà publié le 25 novembre.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "n7",
+   "categorie": "dotnet",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "Aspire 17",
+   "date": "2026-11-25",
+   "motif": "deja-publie",
+   "note": "déjà publié le 25 novembre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://devblogs.microsoft.com/aspire/feed/"
+    }
+   ],
+   "choix": "Écarté (deja-publie) : déjà publié le 25 novembre.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "categorie": "securite",
+   "statut": "ecarte",
+   "tags": [],
+   "titre": "NuGet : publication par étapes (staged publishing)",
+   "date": "2026-11-25",
+   "motif": "deja-publie",
+   "note": "déjà publié le 25 novembre.",
+   "sources": [
+    {
+     "texte": "Source",
+     "url": "https://devblogs.microsoft.com/nuget/feed/"
+    }
+   ],
+   "choix": "Écarté (deja-publie) : déjà publié le 25 novembre.",
+   "historique": [
+    {
+     "date": "2026-11-27T06:50+01:00",
+     "statut": "ecarte",
+     "par": "tache"
+    }
+   ]
+  }
+ ],
+ "pied": [
+  "**Sources :** InfoQ, Console.dev, OpenAI, GitHub, Microsoft, Avalonia, CodeOpinion, Milan Jovanović, Points de Vente, Clubic, dddeurope.com, Sessionize.",
+  "**Hypothèses :** voir le journal ; plusieurs sources (LSA, The New Stack, Infosecurity Magazine) étaient illisibles.",
+  "Généré le 27 novembre 2026 à 07:00 (Paris)."
+ ]
+}
