@@ -130,6 +130,18 @@
    {
     "nom": "Conférences hors DDD Europe et Devoxx France",
     "resultat": "rien de neuf (MiXiT, NDC Porto/Copenhagen, Devoxx UK/Poland, Techorama, BDX I/O, Update, dotnetos, DotNetDay, Paris Web : aucune information trouvée)"
+   },
+   {
+    "nom": "PostgreSQL News",
+    "resultat": "10 article(s) examiné(s) (lecture manuelle, ajout du flux)"
+   },
+   {
+    "nom": "Npgsql",
+    "resultat": "7 article(s) examiné(s) (lecture manuelle, ajout du flux)"
+   },
+   {
+    "nom": "Npgsql EF Core",
+    "resultat": "6 article(s) examiné(s) (lecture manuelle, ajout du flux)"
    }
   ],
   "verifications_sources": {
@@ -1620,6 +1632,104 @@
      "par": "tache"
     }
    ]
+  },
+  {
+   "id": "n8",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [],
+   "titre": "PostgreSQL 19 : REPACK CONCURRENTLY, ON CONFLICT DO SELECT, JIT coupé",
+   "date": "2026-11-19",
+   "resume": "PostgreSQL 19 est sorti le 19 novembre. La commande REPACK (CONCURRENTLY) remplace VACUUM FULL et CLUSTER (toujours disponibles) et réorganise une table sans la bloquer. INSERT … ON CONFLICT DO SELECT renvoie la ligne déjà existante en cas de conflit : le « get or create » en une requête. COPY sait produire du JSON, et WAIT FOR LSN permet de lire ses propres écritures sur un réplica.\n\nCôté performances, les contrôles de clés étrangères accélèrent les insertions en masse (près de deux fois plus rapides selon l'annonce), NOT IN devient une anti-jointure quand il n'y a pas de NULL et l'agrégation peut se faire avant les jointures. La réplication logique s'active sans redémarrage et réplique aussi les séquences.\n\nÀ vérifier avant de migrer : le JIT est désormais désactivé par défaut, la compression TOAST par défaut passe à lz4, l'authentification RADIUS disparaît et md5 émet un avertissement (SCRAM recommandé). PostgreSQL 14 n'est plus maintenu depuis le 12 novembre 2026, et PostgreSQL 15 le sera jusqu'au 11 novembre 2027.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si tes bases tournent encore en PostgreSQL 14, elles ne reçoivent plus de correctifs : c'est le moment de planifier la montée de version, en vérifiant le JIT et md5."
+   },
+   "details": {
+    "Nouveautés": "REPACK (CONCURRENTLY), ON CONFLICT DO SELECT, COPY en JSON, IGNORE NULLS pour lead/lag, WAIT FOR LSN, pg_plan_advice",
+    "Ruptures": "JIT désactivé par défaut, TOAST en lz4 par défaut, RADIUS supprimé, io_workers remplacé par io_min_workers / io_max_workers",
+    "Support": "14 : fin de support le 12 nov. 2026 ; 15 : jusqu'au 11 nov. 2027 ; 19 : jusqu'au 19 nov. 2031",
+    "Migration": "pg_upgrade ou dump/restauration, comme pour toute version majeure"
+   },
+   "meta": "PostgreSQL · 19 nov. 2026 · te concerne : oui, si tu utilises PostgreSQL",
+   "sources": [
+    {
+     "texte": "Source : PostgreSQL, « PostgreSQL 19 Released! », 19 nov. 2026",
+     "url": "https://www.postgresql.org/about/news/postgresql-19-released-3449/"
+    },
+    {
+     "texte": "PostgreSQL, politique de versions et dates de fin de support",
+     "url": "https://www.postgresql.org/support/versioning/"
+    }
+   ],
+   "hors_fenetre": "Version majeure de PostgreSQL parue juste avant l'ajout du flux, jamais traitée ; la fin de support de PostgreSQL 14 la rend utile au-delà de la fenêtre.",
+   "choix": "Publié à la demande de l'utilisateur : premier sujet des nouveaux flux PostgreSQL, sortie majeure jamais traitée.",
+   "historique": [
+    {
+     "date": "2026-11-27T14:00+00:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ajout manuel (nouveaux flux PostgreSQL et Npgsql)"
+    },
+    {
+     "date": "2026-11-27T12:27+00:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajout manuel demandé par l'utilisateur (nouveaux flux)"
+    }
+   ],
+   "force_utilisateur": true
+  },
+  {
+   "id": "n9",
+   "categorie": "dotnet",
+   "statut": "publie",
+   "tags": [],
+   "titre": "Npgsql 11 et EF Core 11 : fin de .NET 8 et 9, multiplexing supprimé",
+   "titre_sommaire": "Npgsql 11 et EF Core 11 : les ruptures",
+   "date": "2026-11-20",
+   "resume": "Npgsql 11.0, le pilote .NET de PostgreSQL, est sorti le 20 novembre, avec son fournisseur EF Core 11.0. Le pilote ne cible plus net8.0 ni net9.0. Il supprime le multiplexing : retire les mots-clés Multiplexing et Write Coalescing Buffer Threshold Bytes de tes chaînes de connexion, même s'ils sont à false. Le paquet Npgsql.DependencyInjection est fusionné dans Npgsql, et les classes de large objects (obsolètes depuis la 8.0) disparaissent.\n\nLe fournisseur EF Core vise par défaut PostgreSQL 16 au lieu de 14 (SetPostgresVersion pour revenir en arrière). Les conflits de sérialisation et les verrous mortels (40001, 40P01) pendant SaveChanges lèvent désormais DbUpdateConcurrencyException, et la classe d'extension d'injection de dépendances est renommée, ce qui impose de recompiler les assemblys qui l'appellent.\n\nCôté nouveautés, EF Core 11 sait indexer les membres JSON des types complexes mappés avec ToJson, et prend en charge les contraintes temporelles de PostgreSQL 18 : WITHOUT OVERLAPS pour les clés et PERIOD pour les clés étrangères.",
+   "pourquoi": {
+    "type": "compte",
+    "texte": "si tu passes à Npgsql 11, nettoie tes chaînes de connexion et revois la gestion des exceptions de concurrence ; reste en 10.x tant que tu cibles .NET 8 ou 9."
+   },
+   "details": {
+    "Versions": "Npgsql 11.0.0 et Npgsql.EntityFrameworkCore.PostgreSQL 11.0.0 (20 nov. 2026) ; 10.0.4 le même jour, corrections seulement",
+    "Ruptures (pilote)": "net8.0 et net9.0 abandonnés, multiplexing supprimé, Npgsql.DependencyInjection fusionné, large objects supprimés, nom du pool dans les métriques",
+    "Ruptures (EF Core)": "PostgreSQL 16 visé par défaut, DbUpdateConcurrencyException pour 40001 et 40P01, classe d'extension renommée, rollback de la migration initiale",
+    "Action": "Lire les deux pages de notes de version avant de monter de version"
+   },
+   "meta": "Npgsql · 20 nov. 2026 · te concerne : oui, si tu utilises PostgreSQL en .NET",
+   "sources": [
+    {
+     "texte": "Source : Npgsql, notes de version 11.0",
+     "url": "https://www.npgsql.org/doc/release-notes/11.0.html"
+    },
+    {
+     "texte": "Npgsql EF Core, notes de version 11.0",
+     "url": "https://www.npgsql.org/efcore/release-notes/11.0.html"
+    },
+    {
+     "texte": "GitHub, npgsql v11.0.0",
+     "url": "https://github.com/npgsql/npgsql/releases/tag/v11.0.0"
+    }
+   ],
+   "choix": "Publié à la demande de l'utilisateur : premières versions majeures vues dans les nouveaux flux Npgsql, avec des ruptures concrètes ; dans la suite de la fin de support de .NET 8 et 9 (n4).",
+   "historique": [
+    {
+     "date": "2026-11-27T14:00+00:00",
+     "statut": "candidat",
+     "par": "utilisateur",
+     "note": "ajout manuel (nouveaux flux PostgreSQL et Npgsql)"
+    },
+    {
+     "date": "2026-11-27T12:27+00:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "ajout manuel demandé par l'utilisateur (nouveaux flux)"
+    }
+   ],
+   "force_utilisateur": true
   }
  ],
  "pied": [
