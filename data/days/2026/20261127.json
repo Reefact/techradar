@@ -1021,7 +1021,7 @@
   {
    "id": "cr3",
    "categorie": "craftsmanship",
-   "statut": "candidat",
+   "statut": "publie",
    "tags": [],
    "titre": "Tests de caractérisation avant de refactorer du C#",
    "date": "2026-11-10",
@@ -1043,8 +1043,15 @@
      "date": "2026-11-27T06:50+01:00",
      "statut": "candidat",
      "par": "tache"
+    },
+    {
+     "date": "2026-11-27T11:59+00:00",
+     "statut": "publie",
+     "par": "utilisateur",
+     "note": "publication forcée par l'utilisateur au-delà du plafond"
     }
-   ]
+   ],
+   "force_utilisateur": true
   },
   {
    "id": "cr4",
