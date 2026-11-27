@@ -23,7 +23,7 @@
   {
    "date": "2026-11-27",
    "path": "reports/2026/20261127.html",
-   "publies": 17
+   "publies": 18
   }
  ],
  "projets": {
@@ -2151,7 +2151,7 @@
    "date": "2026-11-27",
    "id": "p4",
    "categorie": "architecture",
-   "statut": "candidat",
+   "statut": "publie",
    "titre": "Dudycz : « on voulait tous être Netflix, qui veut-on être après ? »"
   },
   {
@@ -3397,7 +3397,7 @@
   "https://www.architecture-weekly.com/p/we-all-wanted-to-be-netflix-who-do": {
    "date": "2026-11-27",
    "id": "p4",
-   "statut": "candidat"
+   "statut": "publie"
   },
   "https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-authentication-issues-after-november-updates/": {
    "date": "2026-11-26",
